@@ -4,184 +4,809 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gestione Ordini KTM</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f5f5;color:#111}
-button{font-family:inherit}
-#home{min-height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;padding:25px;position:relative;overflow:hidden}
-.orange{position:absolute;background:#ff6600}
-.o1{width:550px;height:170px;top:-90px;left:-150px;transform:rotate(-12deg)}
-.o2{width:500px;height:160px;bottom:-90px;right:-150px;transform:rotate(-12deg)}
-.home{width:100%;max-width:850px;text-align:center;position:relative;z-index:2}
-.logo{font-size:80px;font-weight:900;font-style:italic;color:#ff6600}
-.home h1{font-size:32px;margin-top:8px}
-.home p{color:#777;margin-top:8px}
-.people{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:45px}
-.person{background:#fff;border:1px solid #ddd;border-radius:25px;padding:35px;box-shadow:0 10px 35px #00000012}
-.person:hover{border-color:#ff6600;transform:translateY(-3px)}
-.avatar{width:75px;height:75px;margin:auto;border-radius:50%;background:#ff6600;color:white;display:flex;align-items:center;justify-content:center;font-size:32px}
-.person h2{font-size:30px;margin-top:18px}
-.btn{border:0;border-radius:10px;padding:13px 20px;font-weight:bold;cursor:pointer}
-.orangebtn{background:#ff6600;color:white}
-.person .btn{width:100%;margin-top:22px}
-#app{display:none;min-height:100vh}
-.header{height:70px;background:white;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
-.smalllogo{font-size:30px;font-weight:900;font-style:italic;color:#ff6600}
-.headerRight{display:flex;align-items:center;gap:15px}
-.exit{background:white;border:1px solid #ccc;border-radius:8px;padding:9px 14px;cursor:pointer;font-weight:bold}
-.container{max-width:1200px;margin:auto;padding:28px 18px}
-.page{display:none}.page.active{display:block}
-.title{margin-bottom:22px}.title h1{font-size:31px}.title p{color:#777;margin-top:5px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}
-.stat{background:white;border:1px solid #ddd;border-radius:15px;padding:18px}
-.stat small{color:#777;font-weight:bold}.stat strong{display:block;font-size:22px;margin-top:8px}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:#fff;border:1px solid #ddd;border-radius:16px;padding:20px;display:flex;align-items:center;gap:15px;cursor:pointer}
-.card:hover{border-color:#ff6600}
-.icon{width:54px;height:54px;border-radius:13px;background:#fff0e8;color:#ff6600;display:flex;align-items:center;justify-content:center;font-size:24px}
-.card p{color:#888;font-size:13px;margin-top:4px}.arrow{margin-left:auto;color:#ff6600;font-size:25px}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.back{background:white;border:1px solid #ccc;border-radius:8px;padding:9px 14px;cursor:pointer;margin-bottom:18px}
-.tablebox{background:white;border:1px solid #ddd;border-radius:15px;overflow:auto}
-table{border-collapse:collapse;width:100%;min-width:950px}
-th{background:#fafafa;color:#777;font-size:11px;text-align:left;padding:12px}
-td{padding:11px 12px;border-top:1px solid #eee;font-size:13px}
-.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eee;color:#555;font-size:10px;font-weight:bold}
-.modalbg{display:none;position:fixed;inset:0;background:#0009;z-index:50;align-items:center;justify-content:center;padding:20px}
-.modalbg.open{display:flex}.modal{background:white;border-radius:20px;padding:24px;width:650px;max-width:100%}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
-.field{display:flex;flex-direction:column;gap:5px}.full{grid-column:1/-1}
-.field label{font-size:11px;color:#666;font-weight:bold}
-.field input,.field select{padding:11px;border:1px solid #ccc;border-radius:8px}
-.summary{background:#fff1e8;padding:14px;border-radius:12px;margin-top:18px}
-.sumrow{display:flex;justify-content:space-between;padding:5px 0}.sumtotal{border-top:1px solid #ffd0b8;margin-top:7px;padding-top:10px;font-weight:bold}
-.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.cancel{background:#eee;border:0;border-radius:8px;padding:12px;cursor:pointer;font-weight:bold}
-@media(max-width:700px){.logo{font-size:60px}.people,.menu{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.top{align-items:flex-start;gap:10px;flex-direction:column}}
+
+:root{
+--orange:#ff6600;
+--orange-dark:#e65300;
+--orange-light:#fff1e8;
+--black:#111;
+--gray:#666;
+--light:#f7f7f7;
+--white:#fff
+}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:#fff;
+color:var(--black);
+min-height:100vh
+}
+
+#home{
+min-height:100vh;
+position:relative;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px 20px
+}
+
+.orange{
+position:absolute;
+background:var(--orange)
+}
+
+.o1{
+top:-170px;
+left:-120px;
+width:520px;
+height:300px;
+transform:rotate(-15deg)
+}
+
+.o2{
+right:-170px;
+top:45%;
+width:350px;
+height:550px;
+transform:rotate(28deg)
+}
+
+.home{
+position:relative;
+z-index:2;
+width:100%;
+max-width:900px;
+text-align:center
+}
+
+.logo{
+font-size:78px;
+font-weight:1000;
+font-style:italic;
+letter-spacing:-7px;
+color:var(--orange);
+line-height:.8
+}
+
+.home h1{
+margin-top:55px;
+font-size:32px;
+font-weight:900
+}
+
+.home p{
+margin-top:10px;
+color:var(--gray);
+font-size:17px
+}
+
+.people{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+margin-top:45px
+}
+
+.person{
+background:rgba(255,255,255,.97);
+border:1px solid #eee;
+border-radius:25px;
+padding:35px 30px 30px;
+box-shadow:0 12px 35px rgba(0,0,0,.1);
+transition:.25s
+}
+
+.person:hover{
+transform:translateY(-5px);
+box-shadow:0 18px 40px rgba(0,0,0,.15)
+}
+
+.avatar{
+width:75px;
+height:75px;
+border-radius:50%;
+background:var(--orange);
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:auto;
+font-size:32px
+}
+
+.person h2{
+margin-top:22px;
+font-size:31px;
+font-weight:900
+}
+
+.btn{
+border:none;
+cursor:pointer;
+font-weight:800;
+border-radius:9px;
+padding:13px 18px
+}
+
+.orangebtn{
+background:var(--orange);
+color:#fff
+}
+
+.orangebtn:hover{
+background:var(--orange-dark)
+}
+
+.person .btn{
+margin-top:25px;
+width:100%;
+padding:16px;
+font-size:17px
+}
+
+#app{
+display:none;
+min-height:100vh;
+background:#fff
+}
+
+.header{
+height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+z-index:20
+}
+
+.headerRight{
+display:flex;
+align-items:center;
+gap:13px
+}
+
+.smalllogo{
+color:var(--orange);
+font-size:27px;
+font-weight:1000;
+font-style:italic
+}
+
+.exit{
+border:1px solid #ddd;
+background:#fff;
+border-radius:9px;
+padding:10px 15px;
+cursor:pointer;
+font-weight:700
+}
+
+.exit:hover{
+border-color:var(--orange);
+color:var(--orange)
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:35px 25px
+}
+
+.page{
+display:none
+}
+
+.page.active{
+display:block
+}
+
+.title{
+margin-bottom:25px
+}
+
+.title h1{
+font-size:32px;
+font-weight:900
+}
+
+.title p{
+color:var(--gray);
+margin-top:5px
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:25px
+}
+
+.stat{
+background:#fff;
+border:1px solid #eee;
+border-radius:14px;
+padding:20px
+}
+
+.stat small{
+display:block;
+color:#777;
+font-size:13px
+}
+
+.stat strong{
+display:block;
+font-size:24px;
+font-weight:900;
+margin-top:7px
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px
+}
+
+.card{
+background:#fff;
+border:1px solid #eee;
+border-radius:15px;
+padding:22px;
+display:flex;
+align-items:center;
+gap:18px;
+cursor:pointer;
+transition:.2s;
+box-shadow:0 3px 12px rgba(0,0,0,.04)
+}
+
+.card:hover{
+border-color:var(--orange);
+transform:translateY(-2px)
+}
+
+.icon{
+width:50px;
+height:50px;
+border-radius:12px;
+background:var(--orange-light);
+color:var(--orange);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+flex-shrink:0
+}
+
+.card h3{
+font-size:16px;
+margin-bottom:4px
+}
+
+.card p{
+color:#888;
+font-size:13px
+}
+
+.arrow{
+margin-left:auto;
+color:var(--orange);
+font-size:22px
+}
+
+.back{
+border:none;
+background:transparent;
+color:var(--orange);
+font-weight:800;
+cursor:pointer;
+margin-bottom:20px
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px
+}
+
+.tablebox{
+background:#fff;
+border:1px solid #eee;
+border-radius:15px;
+overflow-x:auto
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:1100px
+}
+
+th{
+background:#fafafa;
+padding:14px;
+text-align:left;
+font-size:12px;
+color:#777
+}
+
+td{
+padding:14px;
+border-top:1px solid #eee;
+font-size:13px
+}
+
+.status{
+padding:6px 10px;
+border-radius:20px;
+font-size:11px;
+font-weight:800;
+white-space:nowrap
+}
+
+.da-ordinare{
+background:#ffe2dc;
+color:#c9321c
+}
+
+.ordinato{
+background:#fff0d5;
+color:#9b6200
+}
+
+.arrivato{
+background:#def5e5;
+color:#16753d
+}
+
+.consegnato{
+background:#e0edff;
+color:#2862a8
+}
+
+.payment{
+background:var(--orange-light);
+border-left:4px solid var(--orange);
+padding:25px;
+border-radius:10px
+}
+
+.payment .big{
+font-size:32px;
+font-weight:900;
+margin:10px 0
+}
+
+.note{
+background:#f7f7f7;
+padding:18px;
+border-radius:10px;
+color:#666
+}
+
+.modal-bg{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:100;
+padding:20px
+}
+
+.modal-bg.show{
+display:flex
+}
+
+.modal{
+background:#fff;
+width:600px;
+max-width:100%;
+max-height:90vh;
+overflow-y:auto;
+border-radius:20px;
+padding:25px
+}
+
+.modal h2{
+margin-bottom:20px
+}
+
+.form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+
+.field{
+display:flex;
+flex-direction:column;
+gap:6px
+}
+
+.field.full{
+grid-column:1/-1
+}
+
+.field label{
+font-size:12px;
+font-weight:700;
+color:#666
+}
+
+.field input,
+.field select{
+border:1px solid #ddd;
+padding:11px;
+border-radius:8px;
+outline:none;
+font-size:14px
+}
+
+.field input:focus,
+.field select:focus{
+border-color:var(--orange)
+}
+
+.modal-buttons{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:25px
+}
+
+.cancel{
+border:none;
+background:#eee;
+padding:11px 18px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer
+}
+
+.save{
+border:none;
+background:var(--orange);
+color:#fff;
+padding:11px 20px;
+border-radius:8px;
+font-weight:800;
+cursor:pointer
+}
+
+@media(max-width:700px){
+
+.logo{
+font-size:60px
+}
+
+.home h1{
+font-size:25px;
+margin-top:40px
+}
+
+.people{
+grid-template-columns:1fr;
+gap:15px;
+margin-top:30px
+}
+
+.person{
+padding:25px 20px
+}
+
+.stats{
+grid-template-columns:1fr
+}
+
+.menu{
+grid-template-columns:1fr
+}
+
+.header{
+padding:0 15px
+}
+
+.container{
+padding:25px 15px
+}
+
+.form{
+grid-template-columns:1fr
+}
+
+.field.full{
+grid-column:auto
+}
+
+.top{
+align-items:flex-start;
+gap:15px;
+flex-direction:column
+}
+}
 </style>
 </head>
+
 <body>
 
 <section id="home">
-<div class="orange o1"></div><div class="orange o2"></div>
+
+<div class="orange o1"></div>
+<div class="orange o2"></div>
+
 <div class="home">
+
 <div class="logo">KTM</div>
+
 <h1>GESTIONE ORDINI</h1>
+
 <p>Seleziona la persona da gestire</p>
+
 <div class="people">
-<div class="person"><div class="avatar">👤</div><h2>ROBY</h2><button class="btn orangebtn" id="robyBtn">ENTRA</button></div>
-<div class="person"><div class="avatar">👤</div><h2>FEDE</h2><button class="btn orangebtn" id="fedeBtn">ENTRA</button></div>
+
+<div class="person">
+<div class="avatar">👤</div>
+<h2>ROBY</h2>
+<button class="btn orangebtn" id="robyBtn">ENTRA</button>
+</div>
+
+<div class="person">
+<div class="avatar">👤</div>
+<h2>FEDE</h2>
+<button class="btn orangebtn" id="fedeBtn">ENTRA</button>
+</div>
+
 </div>
 </div>
 </section>
 
 <section id="app">
+
 <header class="header">
-<div class="headerRight"><div class="smalllogo">KTM</div><strong
-{"persona":"Roby","data":"2025-01-20","quantita":1,"articolo":"47230015044","listino":130.65,"sconto":25,"netto":97.99,"totale":97.99,"soldiPersona":0,"daDareAGio":81.66,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430098050","listino":9.33,"sconto":25,"netto":7,"totale":7,"soldiPersona":0,"daDareAGio":5.83,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430098060","listino":9.33,"sconto":25,"netto":7,"totale":7,"soldiPersona":0,"daDareAGio":5.83,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50530152044","listino":217.33,"sconto":25,"netto":163,"totale":163,"soldiPersona":0,"daDareAGio":135.83,"stato":"Storico"},
-{"persona":"Roby","data":"2025-01-21","quantita":1,"articolo":"A42030018010","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":0,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-01-22","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-01-25","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-01-26","quantita":1,"articolo":"50530152044","listino":217.33,"sconto":25,"netto":163,"totale":163,"soldiPersona":0,"daDareAGio":135.83,"stato":"Storico"},
-{"persona":"Roby","data":"2025-01-29","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-02","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-06","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-17","quantita":1,"articolo":"50430006100","listino":110.67,"sconto":25,"netto":83,"totale":83,"soldiPersona":0,"daDareAGio":69.17,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50433015400","listino":136,"sconto":25,"netto":102,"totale":102,"soldiPersona":0,"daDareAGio":85,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"54834005133 - 50534005044","listino":102.67,"sconto":25,"netto":77,"totale":77,"soldiPersona":0,"daDareAGio":64.17,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-22","quantita":1,"articolo":"Vino","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":100,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-26","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-02-28","quantita":1,"articolo":"A42030035040","listino":46,"sconto":25,"netto":34.5,"totale":34.5,"soldiPersona":0,"daDareAGio":28.75,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A42030035025","listino":46,"sconto":25,"netto":34.5,"totale":34.5,"soldiPersona":0,"daDareAGio":28.75,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A42030118000","listino":581.76,"sconto":25,"netto":436.32,"totale":436.32,"soldiPersona":0,"daDareAGio":363.6,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A42030000144","listino":1034.44,"sconto":25,"netto":775.83,"totale":775.83,"soldiPersona":0,"daDareAGio":646.53,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-01","quantita":1,"articolo":"Progrip","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":225,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-04","quantita":1,"articolo":"Lezione Mantova","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":100,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-06","quantita":1,"articolo":"50532010033","listino":176,"sconto":25,"netto":132,"totale":132,"soldiPersona":0,"daDareAGio":110,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-09","quantita":1,"articolo":"Lezione","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-12","quantita":1,"articolo":"47230060100","listino":41.67,"sconto":25,"netto":31.25,"totale":31.25,"soldiPersona":0,"daDareAGio":26.04,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"47230035040","listino":23.33,"sconto":25,"netto":17.5,"totale":17.5,"soldiPersona":0,"daDareAGio":14.58,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430035050","listino":28,"sconto":25,"netto":21,"totale":21,"soldiPersona":0,"daDareAGio":17.5,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430035040","listino":28,"sconto":25,"netto":21,"totale":21,"soldiPersona":0,"daDareAGio":17.5,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430035020","listino":28,"sconto":25,"netto":21,"totale":21,"soldiPersona":0,"daDareAGio":17.5,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50530152044","listino":108.67,"sconto":25,"netto":81.5,"totale":81.5,"soldiPersona":0,"daDareAGio":67.92,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"55430006100","listino":182.67,"sconto":25,"netto":137,"totale":137,"soldiPersona":0,"daDareAGio":114.17,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"56530123200","listino":73.33,"sconto":25,"netto":55,"totale":55,"soldiPersona":0,"daDareAGio":45.83,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0625623204","listino":28.67,"sconto":25,"netto":21.5,"totale":21.5,"soldiPersona":0,"daDareAGio":17.92,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430015044","listino":158.67,"sconto":25,"netto":119,"totale":119,"soldiPersona":0,"daDareAGio":99.17,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"54830015244","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":0,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-03-26","quantita":1,"articolo":"Lezione Vercelli","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-04-02","quantita":1,"articolo":"Lezione Bellinzago","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-04-05","quantita":1,"articolo":"Lezione Fara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-04-23","quantita":1,"articolo":"Lezione Fara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-14","quantita":1,"articolo":"Lezione Fara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-15","quantita":1,"articolo":"55530038100","listino":903.23,"sconto":25,"netto":677.42,"totale":677.42,"soldiPersona":0,"daDareAGio":564.52,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-21","quantita":1,"articolo":"Lezione Bellinzago","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-21","quantita":1,"articolo":"Pistone muletto","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":200,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-27","quantita":1,"articolo":"50430098060","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430098050","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430025000","listino":16.11,"sconto":25,"netto":12.08,"totale":12.08,"soldiPersona":0,"daDareAGio":10.07,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430039000","listino":21.79,"sconto":25,"netto":16.34,"totale":16.34,"soldiPersona":0,"daDareAGio":13.62,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"00050002300 (ex 52330018288)","listino":80.59,"sconto":25,"netto":60.44,"totale":60.44,"soldiPersona":0,"daDareAGio":50.37,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50430015044","listino":158.67,"sconto":25,"netto":119,"totale":119,"soldiPersona":0,"daDareAGio":99.17,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-28","quantita":1,"articolo":"50530152044","listino":108.4,"sconto":25,"netto":81.3,"totale":81.3,"soldiPersona":0,"daDareAGio":67.75,"stato":"Storico"},
-{"persona":"Roby","data":"2025-05-29","quantita":1,"articolo":"Lezione Ottobiano","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":50,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-05","quantita":1,"articolo":"Manutenzione Moto","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-05","quantita":1,"articolo":"Lezione Bellinzago","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-11","quantita":1,"articolo":"A46030036072","listino":44.84,"sconto":25,"netto":33.63,"totale":33.63,"soldiPersona":0,"daDareAGio":28.03,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A46030035000","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A46030007000I","listino":230.58,"sconto":25,"netto":172.94,"totale":172.94,"soldiPersona":0,"daDareAGio":144.11,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-16","quantita":2,"articolo":"A46030036072","listino":44.84,"sconto":25,"netto":33.63,"totale":67.26,"soldiPersona":0,"daDareAGio":56.05,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":2,"articolo":"A46030035000","listino":9.21,"sconto":25,"netto":6.91,"totale":13.82,"soldiPersona":0,"daDareAGio":11.51,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":2,"articolo":"A46030007000I","listino":230.58,"sconto":25,"netto":172.94,"totale":345.87,"soldiPersona":0,"daDareAGio":288.23,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"50439005000","listino":319.4,"sconto":25,"netto":239.55,"totale":239.55,"soldiPersona":0,"daDareAGio":199.62,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-17","quantita":1,"articolo":"79030015144","listino":296.58,"sconto":25,"netto":222.44,"totale":222.44,"soldiPersona":0,"daDareAGio":185.36,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-18","quantita":2,"articolo":"79013090000","listino":49.96,"sconto":25,"netto":37.47,"totale":74.94,"soldiPersona":0,"daDareAGio":62.45,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-18","quantita":2,"articolo":"A46030036072","listino":44.84,"sconto":25,"netto":33.63,"totale":67.26,"soldiPersona":0,"daDareAGio":56.05,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-19","quantita":1,"articolo":"50530152044","listino":108.4,"sconto":25,"netto":81.3,"totale":81.3,"soldiPersona":0,"daDareAGio":67.75,"stato":"Storico"},
-{"persona":"Roby","data":"2025-06-20","quantita":1,"articolo":"Motore moto gara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":300,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-07-09","quantita":1,"articolo":"Lezione Fara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-07-20","quantita":1,"articolo":"A44002091000","listino":49.11,"sconto":25,"netto":36.83,"totale":36.83,"soldiPersona":0,"daDareAGio":30.69,"stato":"Storico"},
-{"persona":"Roby","data":"2025-07-21","quantita":1,"articolo":"50430015044","listino":158.66,"sconto":25,"netto":119,"totale":119,"soldiPersona":0,"daDareAGio":99.16,"stato":"Storico"},
-{"persona":"Roby","data":"2025-07-21","quantita":1,"articolo":"0625063055","listino":16.35,"sconto":25,"netto":12.26,"totale":12.26,"soldiPersona":0,"daDareAGio":10.22,"stato":"Storico"},
-{"persona":"Roby","data":"2025-07-21","quantita":1,"articolo":"50330082000","listino":56.67,"sconto":25,"netto":42.5,"totale":42.5,"soldiPersona":0,"daDareAGio":35.42,"stato":"Storico"},
-{"persona":"Roby","data":"2025-08-24","quantita":1,"articolo":"Lezione Fara","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-08-08","quantita":1,"articolo":"A46030035000","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"2025-08-08","quantita":1,"articolo":"50530152044","listino":108.4,"sconto":25,"netto":81.3,"totale":81.3,"soldiPersona":0,"daDareAGio":67.75,"stato":"Storico"},
-{"persona":"Roby","data":"2025-08-08","quantita":1,"articolo":"A42003014000","listino":43.43,"sconto":25,"netto":32.57,"totale":32.57,"soldiPersona":0,"daDareAGio":27.14,"stato":"Storico"},
-{"persona":"Roby","data":"2025-08-27","quantita":1,"articolo":"Lezione Ceriano","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-03","quantita":1,"articolo":"Lezione Casale","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-17","quantita":1,"articolo":"Lezione Cremona","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":50,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-26","quantita":1,"articolo":"A42030000244","listino":1034.44,"sconto":25,"netto":775.83,"totale":775.83,"soldiPersona":0,"daDareAGio":646.53,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-26","quantita":4,"articolo":"0835080326","listino":2.2,"sconto":25,"netto":1.65,"totale":6.6,"soldiPersona":0,"daDareAGio":5.5,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-26","quantita":4,"articolo":"51030034000","listino":15.07,"sconto":25,"netto":11.3,"totale":45.21,"soldiPersona":0,"daDareAGio":37.68,"stato":"Storico"},
-{"persona":"Roby","data":"2025-09-30","quantita":1,"articolo":"50530152044","listino":108.4,"sconto":25,"netto":81.3,"totale":81.3,"soldiPersona":0,"daDareAGio":67.75,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-01","quantita":1,"articolo":"54802031000","listino":33.43,"sconto":25,"netto":25.07,"totale":25.07,"soldiPersona":0,"daDareAGio":20.89,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-01","quantita":1,"articolo":"79230207200 II","listino":216.55,"sconto":25,"netto":162.41,"totale":162.41,"soldiPersona":0,"daDareAGio":135.34,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-01","quantita":1,"articolo":"Lezione Ottobiano","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-22","quantita":1,"articolo":"Lezione Bellinzago + moto","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":75,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-28","quantita":1,"articolo":"A42030060000","listino":50.57,"sconto":25,"netto":37.93,"totale":37.93,"soldiPersona":0,"daDareAGio":31.61,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-28","quantita":1,"articolo":"79041077044","listino":278.95,"sconto":25,"netto":209.21,"totale":209.21,"soldiPersona":0,"daDareAGio":174.34,"stato":"Storico"},
-{"persona":"Roby","data":"2025-10-28","quantita":1,"articolo":"50430015044","listino":158.66,"sconto":25,"netto":119,"totale":119,"soldiPersona":0,"daDareAGio":99.16,"stato":"Storico"},
-{"persona":"Roby","data":"2025-11-15","quantita":1,"articolo":"A42030035040","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"2025-11-15","quantita":1,"articolo":"A42030035025","listino":9.21,"sconto":25,"netto":6.91,"totale":6.91,"soldiPersona":0,"daDareAGio":5.76,"stato":"Storico"},
-{"persona":"Roby","data":"2025-11-15","quantita":1,"articolo":"47230050000","listino":45.14,"sconto":25,"netto":33.86,"totale":33.86,"soldiPersona":0,"daDareAGio":28.21,"stato":"Storico"},
-{"persona":"Roby","data":"2025-11-15","quantita":1,"articolo":"54802031000","listino":33.43,"sconto":25,"netto":25.07,"totale":25.07,"soldiPersona":0,"daDareAGio":20.89,"stato":"Storico"},
-  {"persona":"Roby","data":"2025-11-26","quantita":1,"articolo":"Lezione Ceriano","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2025-12-03","quantita":1,"articolo":"Lezione Ottobiano","listino":0,"sconto":25,"netto":0,"totale":0,"soldiPersona":40,"daDareAGio":0,"stato":"Storico"},
-{"persona":"Roby","data":"2026-01-08","quantita":1,"articolo":"45235054028","listino":16.04,"sconto":25,"netto":12.03,"totale":12.03,"soldiPersona":0,"daDareAGio":11.36,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"A40530035050","listino":7.81,"sconto":25,"netto":5.86,"totale":5.86,"soldiPersona":0,"daDareAGio":5.53,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"45233010200","listino":178.3,"sconto":25,"netto":133.73,"totale":133.73,"soldiPersona":0,"daDareAGio":126.3,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0760263561","listino":5.92,"sconto":25,"netto":4.44,"totale":4.44,"soldiPersona":0,"daDareAGio":4.19,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"45230039000","listino":18.54,"sconto":25,"netto":13.9,"totale":13.9,"soldiPersona":0,"daDareAGio":13.13,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"45230025100","listino":13.66,"sconto":25,"netto":10.25,"totale":10.25,"soldiPersona":0,"daDareAGio":9.68,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0770052020","listino":3.48,"sconto":25,"netto":2.61,"totale":2.61,"soldiPersona":0,"daDareAGio":2.47,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0770120020","listino":1.4,"sconto":25,"netto":1.05,"totale":1.05,"soldiPersona":0,"daDareAGio":0.99,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0770078020","listino":3.48,"sconto":25,"netto":2.61,"totale":2.61,"soldiPersona":0,"daDareAGio":2.47,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0760152472","listino":4.82,"sconto":25,"netto":3.62,"totale":3.62,"soldiPersona":0,"daDareAGio":3.41,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":2,"articolo":"45133028000","listino":12.81,"sconto":25,"netto":9.61,"totale":19.21,"soldiPersona":0,"daDareAGio":18.15,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0760162240","listino":4.82,"sconto":25,"netto":3.62,"totale":3.62,"soldiPersona":0,"daDareAGio":3.41,"stato":"Storico"},
-{"persona":"Roby","data":"","quantita":1,"articolo":"0760223270","listino":5.92,"sconto":25,"netto":4.  
+
+<div class="headerRight">
+<div class="smalllogo">KTM</div>
+<strong id="currentUser"></strong>
+</div>
+
+<button class="exit" id="exitBtn">← Esci</button>
+
+</header>
+
+<main class="container">
+
+<section id="dashboard" class="page active">
+
+<div class="title">
+<h1 id="hello"></h1>
+<p>Gestione ordini, prezzi e pagamenti</p>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<small>ORDINI</small>
+<strong id="count">0</strong>
+</div>
+
+<div class="stat">
+<small>TOTALE NETTO</small>
+<strong id="netTotal">€ 0,00</strong>
+</div>
+
+<div class="stat">
+<small>DA DARE A GIO</small>
+<strong id="gioTotal">€ 0,00</strong>
+</div>
+
+<div class="stat">
+<small>DA DARE ALLA PERSONA</small>
+<strong id="personTotal">€ 0,00</strong>
+</div>
+
+</div>
+
+<div class="menu">
+
+<div class="card" id="ordersCard">
+<div class="icon">📋</div>
+<div>
+<h3>I miei ordini</h3>
+<p>Visualizza tutti gli articoli</p>
+</div>
+<div class="arrow">›</div>
+</div>
+
+<div class="card" id="newCard">
+<div class="icon">➕</div>
+<div>
+<h3>Nuovo ordine</h3>
+<p>Aggiungi un nuovo articolo</p>
+</div>
+<div class="arrow">›</div>
+</div>
+
+<div class="card" id="paymentsCard">
+<div class="icon">💶</div>
+<div>
+<h3>Pagamenti</h3>
+<p>Controlla quanto deve essere versato a Gio</p>
+</div>
+<div class="arrow">›</div>
+</div>
+
+</div>
+</section>
+
+<section id="orders" class="page">
+
+<button class="back" id="backBtn">← Dashboard</button>
+
+<div class="top">
+
+<div class="title">
+<h1>Ordini di <span id="ordersPerson"></span></h1>
+<p>205 ordini storici del file Excel + nuovi inserimenti</p>
+</div>
+
+<button class="btn orangebtn" id="newOrderBtn">+ Nuovo ordine</button>
+
+</div>
+
+<div class="tablebox">
+
+<table>
+
+<thead>
+<tr>
+<th>DATA</th>
+<th>Q.TÀ</th>
+<th>ARTICOLO</th>
+<th>LISTINO</th>
+<th>SCONTO</th>
+<th>NETTO</th>
+<th>TOTALE</th>
+<th>DA DARE A PERSONA</th>
+<th>DA DARE A GIO</th>
+<th>STATO</th>
+</tr>
+</thead>
+
+<tbody id="ordersBody"></tbody>
+
+</table>
+
+</div>
+</section>
+
+<section id="payments" class="page">
+
+<button class="back" id="paymentsBack">← Dashboard</button>
+
+<div class="title">
+<h1>Pagamenti</h1>
+<p>Situazione economica di <span id="paymentName"></span></p>
+</div>
+
+<div class="payment">
+
+<div>TOTALE DA DARE A GIO</div>
+
+<div class="big" id="paymentTotal">€ 0,00</div>
+
+<p>
+Per gli ordini importati viene mantenuto il valore presente
+nel file Excel.
+</p>
+
+</div>
+
+</section>
+
+</main>
+</section>
+
+<div class="modal-bg" id="modal">
+
+<div class="modal">
+
+<h2>Nuovo ordine — <span id="modalPerson"></span></h2>
+
+<div class="form">
+
+<div class="field">
+<label>DATA</label>
+<input type="date" id="date">
+</div>
+
+<div class="field">
+<label>QUANTITÀ</label>
+<input type="number" id="qty" min="1" value="1" oninput="calc()">
+</div>
+
+<div class="field full">
+<label>CODICE / ARTICOLO</label>
+<input type="text" id="article" placeholder="Es. 1234567890">
+</div>
+
+<div class="field">
+<label>LISTINO (€)</label>
+<input type="number" id="listino" min="0" step="0.01" oninput="calc()">
+</div>
+
+<div class="field">
+<label>SCONTO (%)</label>
+<input type="number" id="sconto" min="0" max="100" step="0.01" value="25" oninput="calc()">
+</div>
+
+<div class="field">
+<label>NETTO SCONTATO</label>
+<input type="text" id="netto" readonly>
+</div>
+
+<div class="field">
+<label>DA DARE A PERSONA (€)</label>
+<input type="number" id="darePersona" min="0" step="0.01" value="0">
+</div>
+
+<div class="field">
+<label>STATO</label>
+
+<select id="status">
+<option>Da ordinare</option>
+<option>Ordinato</option>
+<option>Arrivato</option>
+<option>Consegnato</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="modal-buttons">
+
+<button class="cancel" id="cancelBtn">
+Annulla
+</button>
+
+<button class="save" id="saveBtn">
+Salva ordine
+</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+let currentPerson = "";
+let orders = JSON.parse(localStorage.getItem("ktmOrdersV2") || "[]");
+
+const ROBY_HISTORY = [
+const ROBY_HISTORY = [
+    { date: "2024-09-25", quantity: 1, article: "Pistone 125 ", listino: 0, sconto: 25, netto: 0, darePersona: 154.54, dareGio: 0, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "50430098060", listino: 0, sconto: 25, netto: 7, darePersona: 0, dareGio: 5.833333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "50430098050", listino: 0, sconto: 25, netto: 7, darePersona: 0, dareGio: 5.833333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "50430098000", listino: 0, sconto: 25, netto: 12, darePersona: 0, dareGio: 10, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "50430099000", listino: 0, sconto: 25, netto: 16, darePersona: 0, dareGio: 13.333333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034000", listino: 0, sconto: 25, netto: 58, darePersona: 0, dareGio: 48.333333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034001", listino: 0, sconto: 25, netto: 131, darePersona: 0, dareGio: 109.166667, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034002", listino: 0, sconto: 25, netto: 12, darePersona: 374, dareGio: 0, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034003", listino: 0, sconto: 25, netto: 14, darePersona: 0, dareGio: 11.666667, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034004", listino: 0, sconto: 25, netto: 209.5, darePersona: 0, dareGio: 174.583333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034005", listino: 0, sconto: 25, netto: 66.51, darePersona: 0, dareGio: 55.425, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034006", listino: 0, sconto: 25, netto: 6.084, darePersona: 0, dareGio: 5.07, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034007", listino: 0, sconto: 25, netto: 224.5, darePersona: 0, dareGio: 187.083333, status: "Consegnato" },
+    { date: "2024-10-08", quantity: 1, article: "54830034008", listino: 0, sconto: 25, netto: 27.5, darePersona: 0, dareGio: 22.916667, status: "Consegnato" },
