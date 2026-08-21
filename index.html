@@ -3,777 +3,651 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gestione Ordini KTM</title>
+<title>Gestione Ordini</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-:root{
-    --orange:#ff6600;
-    --orange-dark:#e65300;
-    --orange-light:#fff1e8;
-    --black:#111;
-    --gray:#707070;
-    --light:#f5f5f5;
-    --white:#fff;
-    --green:#16833f;
-    --red:#c62828;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f7f7f7;
+    color: #171717;
 }
 
-body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    background:#fff;
-    color:var(--black);
-    min-height:100vh;
+/* =========================
+   COLORI
+========================= */
+
+:root {
+    --arancio: #ff6600;
+    --arancio-scuro: #e95700;
+    --arancio-chiaro: #fff1e8;
+    --bianco: #ffffff;
+    --grigio: #777;
+    --verde: #168544;
+    --rosso: #d83232;
 }
 
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
-#homePage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-    padding:30px 20px;
+#home {
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-.orange-top{
-    position:absolute;
-    width:600px;
-    height:300px;
-    background:var(--orange);
-    top:-180px;
-    left:-160px;
-    transform:rotate(-12deg);
+.decorazione {
+    position: absolute;
+    background: var(--arancio);
+    z-index: 0;
 }
 
-.orange-right{
-    position:absolute;
-    width:300px;
-    height:650px;
-    background:var(--orange);
-    right:-170px;
-    top:35%;
-    transform:rotate(25deg);
+.dec1 {
+    width: 500px;
+    height: 180px;
+    top: -90px;
+    left: -120px;
+    transform: rotate(-12deg);
 }
 
-.orange-bottom{
-    position:absolute;
-    width:900px;
-    height:250px;
-    background:var(--orange);
-    bottom:-180px;
-    left:-100px;
-    transform:rotate(-8deg);
+.dec2 {
+    width: 450px;
+    height: 150px;
+    bottom: -80px;
+    right: -100px;
+    transform: rotate(-12deg);
 }
 
-.home-content{
-    position:relative;
-    z-index:2;
-    width:100%;
-    max-width:850px;
-    text-align:center;
+.home-contenuto {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
-.ktm{
-    font-size:80px;
-    font-weight:1000;
-    font-style:italic;
-    color:var(--orange);
-    letter-spacing:-7px;
+.logo {
+    color: var(--arancio);
+    font-size: 75px;
+    font-weight: 1000;
+    font-style: italic;
+    letter-spacing: -6px;
 }
 
-.racing{
-    font-size:21px;
-    font-weight:900;
-    letter-spacing:13px;
-    font-style:italic;
-    margin-left:12px;
+.titolo-home {
+    margin-top: 25px;
+    font-size: 32px;
+    font-weight: 900;
 }
 
-.home-title{
-    margin-top:50px;
-    font-size:32px;
-    font-weight:900;
+.sottotitolo {
+    color: var(--grigio);
+    margin-top: 8px;
 }
 
-.home-subtitle{
-    margin-top:10px;
-    color:var(--gray);
+.scelta-persone {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 45px;
 }
 
-.people{
-    margin-top:40px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
+.card-persona {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 25px;
+    padding: 35px 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    transition: .2s;
 }
 
-.person-card{
-    background:white;
-    border:1px solid #eee;
-    border-radius:25px;
-    padding:35px;
-    box-shadow:0 15px 40px rgba(0,0,0,.10);
+.card-persona:hover {
+    transform: translateY(-5px);
+    border-color: var(--arancio);
 }
 
-.person-icon{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:var(--orange);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:32px;
-    margin:auto;
+.icona-persona {
+    width: 75px;
+    height: 75px;
+    background: var(--arancio);
+    color: white;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
 }
 
-.person-name{
-    font-size:32px;
-    font-weight:900;
-    margin-top:20px;
+.nome-persona {
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 18px;
 }
 
-.main-button{
-    width:100%;
-    border:none;
-    background:var(--orange);
-    color:white;
-    padding:16px;
-    border-radius:10px;
-    margin-top:22px;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
+.btn-arancio {
+    width: 100%;
+    border: none;
+    background: var(--arancio);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 22px;
 }
 
-.main-button:hover{
-    background:var(--orange-dark);
+.btn-arancio:hover {
+    background: var(--arancio-scuro);
 }
 
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
-#appPage{
-    display:none;
-    min-height:100vh;
+#app {
+    display: none;
+    min-height: 100vh;
 }
 
-.topbar{
-    height:75px;
-    border-bottom:1px solid #eee;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 25px;
-    position:sticky;
-    top:0;
-    z-index:20;
+.header {
+    height: 70px;
+    background: white;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
-.logo-small{
-    color:var(--orange);
-    font-size:28px;
-    font-weight:1000;
-    font-style:italic;
+.logo-piccolo {
+    color: var(--arancio);
+    font-size: 28px;
+    font-weight: 1000;
+    font-style: italic;
 }
 
-.current-user{
-    font-size:20px;
-    font-weight:900;
+.utente-header {
+    font-weight: 900;
+    font-size: 18px;
 }
 
-.exit{
-    border:1px solid #ddd;
-    background:white;
-    padding:10px 15px;
-    border-radius:9px;
-    font-weight:700;
-    cursor:pointer;
+.btn-esci {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
 }
 
-.container{
-    max-width:1150px;
-    margin:auto;
-    padding:30px 20px;
+.contenitore {
+    max-width: 1150px;
+    margin: auto;
+    padding: 30px 20px;
 }
 
-.page-title{
-    margin-bottom:25px;
+.pagina {
+    display: none;
 }
 
-.page-title h1{
-    font-size:32px;
+.pagina.attiva {
+    display: block;
 }
 
-.page-title p{
-    color:var(--gray);
-    margin-top:5px;
+/* =========================
+   TITOLI
+========================= */
+
+.titolo-pagina {
+    margin-bottom: 25px;
 }
 
-/* =====================================================
+.titolo-pagina h1 {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.titolo-pagina p {
+    color: var(--grigio);
+    margin-top: 5px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.menu-card {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 17px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.menu-card:hover {
+    border-color: var(--arancio);
+    transform: translateY(-2px);
+}
+
+.menu-icona {
+    width: 55px;
+    height: 55px;
+    background: var(--arancio-chiaro);
+    color: var(--arancio);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.menu-testo {
+    flex: 1;
+}
+
+.menu-testo h3 {
+    font-size: 17px;
+}
+
+.menu-testo p {
+    color: #888;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.freccia {
+    color: var(--arancio);
+    font-size: 25px;
+}
+
+/* =========================
    DASHBOARD
-===================================================== */
+========================= */
 
-.menu-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
+.statistiche {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
-.menu-card{
-    background:white;
-    border:1px solid #eee;
-    border-radius:16px;
-    padding:22px;
-    display:flex;
-    align-items:center;
-    gap:18px;
-    cursor:pointer;
-    box-shadow:0 4px 15px rgba(0,0,0,.04);
-    transition:.2s;
+.statistica {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 15px;
+    padding: 18px;
 }
 
-.menu-card:hover{
-    border-color:var(--orange);
-    transform:translateY(-2px);
+.statistica-label {
+    font-size: 11px;
+    color: #777;
+    font-weight: 700;
 }
 
-.menu-icon{
-    width:52px;
-    height:52px;
-    border-radius:13px;
-    background:var(--orange-light);
-    color:var(--orange);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
+.statistica-valore {
+    font-size: 23px;
+    font-weight: 900;
+    margin-top: 7px;
 }
 
-.menu-text{
-    flex:1;
+/* =========================
+   BOTTONI
+========================= */
+
+.btn-indietro {
+    background: none;
+    border: none;
+    color: var(--arancio);
+    font-weight: 800;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 15px;
 }
 
-.menu-text h3{
-    font-size:17px;
+.intestazione-sezione {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.menu-text p{
-    color:#888;
-    font-size:13px;
-    margin-top:4px;
+.btn-nuovo {
+    border: none;
+    background: var(--arancio);
+    color: white;
+    padding: 12px 17px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 800;
 }
 
-.arrow{
-    color:var(--orange);
-    font-size:25px;
+/* =========================
+   TABELLA
+========================= */
+
+.tabella-box {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 15px;
+    overflow-x: auto;
 }
 
-/* =====================================================
-   PAGINE
-===================================================== */
-
-.section{
-    display:none;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
 }
 
-.back{
-    border:none;
-    background:none;
-    color:var(--orange);
-    font-weight:800;
-    cursor:pointer;
-    margin-bottom:20px;
-    font-size:15px;
+th {
+    background: #fafafa;
+    color: #777;
+    font-size: 11px;
+    text-align: left;
+    padding: 13px;
 }
 
-/* =====================================================
-   ORDINI
-===================================================== */
-
-.order-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
+td {
+    padding: 13px;
+    border-top: 1px solid #eee;
+    font-size: 13px;
 }
 
-.add{
-    border:none;
-    background:var(--orange);
-    color:white;
-    padding:13px 18px;
-    border-radius:9px;
-    font-weight:800;
-    cursor:pointer;
+.verde {
+    color: var(--verde);
+    font-weight: 800;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:20px;
+.rosso {
+    color: var(--rosso);
+    font-weight: 800;
 }
 
-.stat{
-    border:1px solid #eee;
-    border-radius:14px;
-    padding:18px;
-    background:white;
+/* =========================
+   STATI
+========================= */
+
+.stato {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
 }
 
-.stat-label{
-    font-size:12px;
-    color:#777;
+.stato-da-ordinare {
+    background: #ffe3dc;
+    color: #b62b18;
 }
 
-.stat-value{
-    font-size:23px;
-    font-weight:900;
-    margin-top:6px;
+.stato-ordinato {
+    background: #fff0d2;
+    color: #996100;
 }
 
-.table-box{
-    background:white;
-    border:1px solid #eee;
-    border-radius:15px;
-    overflow-x:auto;
+.stato-arrivato {
+    background: #ddf5e5;
+    color: #16743d;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1100px;
+.stato-consegnato {
+    background: #e2edff;
+    color: #2860a5;
 }
 
-th{
-    background:#fafafa;
-    padding:13px;
-    font-size:11px;
-    color:#777;
-    text-align:left;
-}
-
-td{
-    padding:13px;
-    border-top:1px solid #eee;
-    font-size:13px;
-}
-
-.money-positive{
-    color:var(--green);
-    font-weight:800;
-}
-
-.money-negative{
-    color:var(--red);
-    font-weight:800;
-}
-
-.status{
-    padding:6px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:800;
-}
-
-.da-ordinare{
-    background:#ffe2dc;
-    color:#bd2d19;
-}
-
-.ordinato{
-    background:#fff0d5;
-    color:#9b6200;
-}
-
-.arrivato{
-    background:#def5e5;
-    color:#16753d;
-}
-
-.consegnato{
-    background:#e0edff;
-    color:#2862a8;
-}
-
-/* =====================================================
-   FARIOLI
-===================================================== */
-
-.farioli-box{
-    background:#111;
-    color:white;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:25px;
-}
-
-.farioli-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:15px;
-}
-
-.farioli-title h2{
-    font-size:22px;
-}
-
-.farioli-title span{
-    background:var(--orange);
-    padding:6px 10px;
-    border-radius:6px;
-    font-size:11px;
-    font-weight:800;
-}
-
-.search-row{
-    display:flex;
-    gap:10px;
-}
-
-.search-row input{
-    flex:1;
-    border:none;
-    border-radius:9px;
-    padding:14px;
-    font-size:15px;
-    outline:none;
-}
-
-.search-farioli{
-    border:none;
-    background:var(--orange);
-    color:white;
-    padding:0 20px;
-    border-radius:9px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.farioli-note{
-    color:#bbb;
-    font-size:12px;
-    margin-top:12px;
-}
-
-.catalog{
-    margin-top:20px;
-}
-
-.catalog-title{
-    font-weight:900;
-    margin-bottom:12px;
-}
-
-.product{
-    border:1px solid #eee;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.product-info{
-    flex:1;
-}
-
-.product-code{
-    font-weight:900;
-}
-
-.product-name{
-    color:#777;
-    font-size:13px;
-    margin-top:3px;
-}
-
-.product-price{
-    font-weight:900;
-}
-
-.product-add{
-    border:none;
-    background:var(--orange);
-    color:white;
-    padding:9px 12px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:800;
-}
-
-/* =====================================================
+/* =========================
    MODALE
-===================================================== */
+========================= */
 
-.modal-bg{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.60);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    z-index:100;
+.sfondo-modale {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
 }
 
-.modal-bg.show{
-    display:flex;
+.sfondo-modale.aperta {
+    display: flex;
 }
 
-.modal{
-    width:650px;
-    max-width:100%;
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:20px;
-    padding:25px;
+.modale {
+    width: 650px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
 }
 
-.modal h2{
-    margin-bottom:20px;
+.modale h2 {
+    margin-bottom: 20px;
 }
 
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-.full{
-    grid-column:1/-1;
+.campo.completo {
+    grid-column: 1 / -1;
 }
 
-.form-group label{
-    font-size:12px;
-    font-weight:800;
-    color:#666;
+.campo label {
+    color: #666;
+    font-size: 12px;
+    font-weight: 800;
 }
 
-.form-group input,
-.form-group select{
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    outline:none;
-    font-size:14px;
+.campo input,
+.campo select {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
 }
 
-.form-group input:focus,
-.form-group select:focus{
-    border-color:var(--orange);
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--arancio);
 }
 
-.calculation{
-    background:var(--orange-light);
-    border-radius:12px;
-    padding:15px;
-    margin-top:18px;
+/* =========================
+   CALCOLI
+========================= */
+
+.calcoli {
+    background: var(--arancio-chiaro);
+    border-radius: 13px;
+    padding: 16px;
+    margin-top: 20px;
 }
 
-.calc-row{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:7px;
+.riga-calcolo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
 }
 
-.calc-row:last-child{
-    margin-bottom:0;
-    padding-top:8px;
-    border-top:1px solid #ffd2ba;
-    font-size:17px;
-    font-weight:900;
+.riga-calcolo:last-child {
+    border-top: 1px solid #ffd1b9;
+    padding-top: 10px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: 900;
 }
 
-.modal-buttons{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:22px;
+.bottoni-modale {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.cancel{
-    border:none;
-    background:#eee;
-    padding:12px 18px;
-    border-radius:8px;
-    font-weight:700;
-    cursor:pointer;
+.btn-annulla {
+    border: none;
+    background: #eee;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
-.save{
-    border:none;
-    background:var(--orange);
-    color:white;
-    padding:12px 20px;
-    border-radius:8px;
-    font-weight:800;
-    cursor:pointer;
+.btn-salva {
+    border: none;
+    background: var(--arancio);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
 }
 
-/* =====================================================
+/* =========================
    PAGAMENTO
-===================================================== */
+========================= */
 
-.payment-box{
-    background:var(--orange-light);
-    border-radius:15px;
-    padding:25px;
+.box-pagamento {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 25px;
 }
 
-.payment-total{
-    font-size:35px;
-    font-weight:1000;
-    margin-top:10px;
-    color:var(--orange);
+.importo-pagamento {
+    font-size: 40px;
+    font-weight: 1000;
+    color: var(--arancio);
+    margin-top: 10px;
 }
 
-.payment-description{
-    margin-top:10px;
-    color:#666;
+.descrizione-pagamento {
+    color: #777;
+    margin-top: 10px;
 }
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
-@media(max-width:700px){
+@media (max-width: 700px) {
 
-    .ktm{
-        font-size:60px;
+    .logo {
+        font-size: 60px;
     }
 
-    .racing{
-        font-size:15px;
-        letter-spacing:8px;
+    .titolo-home {
+        font-size: 25px;
     }
 
-    .home-title{
-        font-size:25px;
+    .scelta-persone {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .people{
-        grid-template-columns:1fr;
-        gap:15px;
+    .menu {
+        grid-template-columns: 1fr;
     }
 
-    .person-card{
-        padding:25px;
+    .statistiche {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .menu-grid{
-        grid-template-columns:1fr;
+    .intestazione-sezione {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
     }
 
-    .stats{
-        grid-template-columns:1fr 1fr;
+    .form {
+        grid-template-columns: 1fr;
     }
 
-    .order-head{
-        align-items:flex-start;
-        flex-direction:column;
+    .campo.completo {
+        grid-column: auto;
     }
-
-    .search-row{
-        flex-direction:column;
-    }
-
-    .search-farioli{
-        padding:13px;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .full{
-        grid-column:auto;
-    }
-
-    .product{
-        flex-wrap:wrap;
-    }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      HOME
 ===================================================== -->
 
-<section id="homePage">
+<section id="home">
 
-    <div class="orange-top"></div>
-    <div class="orange-right"></div>
-    <div class="orange-bottom"></div>
+    <div class="decorazione dec1"></div>
+    <div class="decorazione dec2"></div>
 
-    <div class="home-content">
+    <div class="home-contenuto">
 
-        <div class="ktm">
+        <div class="logo">
             KTM
         </div>
 
-        <div class="racing">
-            RACING
-        </div>
-
-        <h1 class="home-title">
+        <h1 class="titolo-home">
             GESTIONE ORDINI
         </h1>
 
-        <p class="home-subtitle">
-            Seleziona la persona
+        <p class="sottotitolo">
+            Seleziona la persona da gestire
         </p>
 
+        <div class="scelta-persone">
 
-        <div class="people">
+            <div class="card-persona">
 
-            <div class="person-card">
-
-                <div class="person-icon">
+                <div class="icona-persona">
                     👤
                 </div>
 
-                <div class="person-name">
+                <div class="nome-persona">
                     ROBY
                 </div>
 
                 <button
-                    class="main-button"
-                    onclick="openUser('Roby')">
+                    class="btn-arancio"
+                    onclick="entra('Roby')">
 
                     ENTRA
 
@@ -781,20 +655,19 @@ td{
 
             </div>
 
+            <div class="card-persona">
 
-            <div class="person-card">
-
-                <div class="person-icon">
+                <div class="icona-persona">
                     👤
                 </div>
 
-                <div class="person-name">
+                <div class="nome-persona">
                     FEDE
                 </div>
 
                 <button
-                    class="main-button"
-                    onclick="openUser('Fede')">
+                    class="btn-arancio"
+                    onclick="entra('Fede')">
 
                     ENTRA
 
@@ -813,29 +686,27 @@ td{
      APP
 ===================================================== -->
 
-<section id="appPage">
+<section id="app">
 
-    <header class="topbar">
+    <header class="header">
 
-        <div style="display:flex;align-items:center;gap:15px">
+        <div style="display:flex;align-items:center;gap:15px;">
 
-            <div class="logo-small">
+            <div class="logo-piccolo">
                 KTM
             </div>
 
             <div
-                class="current-user"
-                id="currentUser">
-
+                class="utente-header"
+                id="utenteHeader">
                 ROBY
-
             </div>
 
         </div>
 
         <button
-            class="exit"
-            onclick="goHome()">
+            class="btn-esci"
+            onclick="esci()">
 
             ← Esci
 
@@ -844,201 +715,41 @@ td{
     </header>
 
 
-    <main class="container">
+    <main class="contenitore">
 
 
-        <!-- =================================================
+        <!-- =========================
              DASHBOARD
-        ================================================= -->
+        ========================= -->
 
         <section
             id="dashboard"
-            class="section"
-            style="display:block">
+            class="pagina attiva">
 
-            <div class="page-title">
+            <div class="titolo-pagina">
 
-                <h1 id="welcome">
+                <h1 id="titoloDashboard">
                     Ciao Roby 👋
                 </h1>
 
                 <p>
-                    Gestione personale degli ordini KTM
+                    Gestione dei tuoi ordini
                 </p>
 
             </div>
 
 
-            <div class="menu-grid">
+            <div class="statistiche">
 
+                <div class="statistica">
 
-                <div
-                    class="menu-card"
-                    onclick="openOrders()">
-
-                    <div class="menu-icon">
-                        📋
-                    </div>
-
-                    <div class="menu-text">
-
-                        <h3>
-                            I miei ordini
-                        </h3>
-
-                        <p>
-                            Visualizza e gestisci gli ordini
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="menu-card"
-                    onclick="openNewOrder()">
-
-                    <div class="menu-icon">
-                        ➕
-                    </div>
-
-                    <div class="menu-text">
-
-                        <h3>
-                            Nuovo ordine
-                        </h3>
-
-                        <p>
-                            Cerca un articolo KTM
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="menu-card"
-                    onclick="openPayments()">
-
-                    <div class="menu-icon">
-                        €
-                    </div>
-
-                    <div class="menu-text">
-
-                        <h3>
-                            Pagamenti
-                        </h3>
-
-                        <p>
-                            Quanto devo dare a Gio
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="menu-card"
-                    onclick="openHistory()">
-
-                    <div class="menu-icon">
-                        🕘
-                    </div>
-
-                    <div class="menu-text">
-
-                        <h3>
-                            Storico
-                        </h3>
-
-                        <p>
-                            Ordini precedenti
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             ORDINI
-        ================================================= -->
-
-        <section
-            id="ordersSection"
-            class="section">
-
-            <button
-                class="back"
-                onclick="showDashboard()">
-
-                ← Torna al menu
-
-            </button>
-
-
-            <div class="order-head">
-
-                <div class="page-title">
-
-                    <h1>
-                        Ordini di
-                        <span id="orderUserName"></span>
-                    </h1>
-
-                    <p>
-                        Tutti gli articoli ordinati
-                    </p>
-
-                </div>
-
-                <button
-                    class="add"
-                    onclick="openNewOrder()">
-
-                    + Nuovo ordine
-
-                </button>
-
-            </div>
-
-
-            <div class="stats">
-
-                <div class="stat">
-
-                    <div class="stat-label">
+                    <div class="statistica-label">
                         ORDINI
                     </div>
 
                     <div
-                        class="stat-value"
-                        id="statOrders">
+                        class="statistica-valore"
+                        id="dashOrdini">
 
                         0
 
@@ -1047,15 +758,15 @@ td{
                 </div>
 
 
-                <div class="stat">
+                <div class="statistica">
 
-                    <div class="stat-label">
+                    <div class="statistica-label">
                         TOTALE NETTO
                     </div>
 
                     <div
-                        class="stat-value"
-                        id="statNetto">
+                        class="statistica-valore"
+                        id="dashNetto">
 
                         € 0,00
 
@@ -1064,32 +775,32 @@ td{
                 </div>
 
 
-                <div class="stat">
+                <div class="statistica">
 
-                    <div class="stat-label">
-                        DA DARE A <span id="statPerson"></span>
-                    </div>
-
-                    <div
-                        class="stat-value"
-                        id="statPersonMoney">
-
-                        € 0,00
-
-                    </div>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <div class="stat-label">
+                    <div class="statistica-label">
                         DA DARE A GIO
                     </div>
 
                     <div
-                        class="stat-value"
-                        id="statGio">
+                        class="statistica-valore"
+                        id="dashGio">
+
+                        € 0,00
+
+                    </div>
+
+                </div>
+
+
+                <div class="statistica">
+
+                    <div class="statistica-label">
+                        DA DARE A TE
+                    </div>
+
+                    <div
+                        class="statistica-valore"
+                        id="dashPersona">
 
                         € 0,00
 
@@ -1100,7 +811,164 @@ td{
             </div>
 
 
-            <div class="table-box">
+            <div class="menu">
+
+                <div
+                    class="menu-card"
+                    onclick="mostraPagina('ordini')">
+
+                    <div class="menu-icona">
+                        📋
+                    </div>
+
+                    <div class="menu-testo">
+
+                        <h3>
+                            I miei ordini
+                        </h3>
+
+                        <p>
+                            Visualizza tutti gli articoli
+                        </p>
+
+                    </div>
+
+                    <div class="freccia">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="menu-card"
+                    onclick="apriNuovoOrdine()">
+
+                    <div class="menu-icona">
+                        ➕
+                    </div>
+
+                    <div class="menu-testo">
+
+                        <h3>
+                            Nuovo ordine
+                        </h3>
+
+                        <p>
+                            Inserisci un nuovo articolo
+                        </p>
+
+                    </div>
+
+                    <div class="freccia">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="menu-card"
+                    onclick="mostraPagina('pagamenti')">
+
+                    <div class="menu-icona">
+                        €
+                    </div>
+
+                    <div class="menu-testo">
+
+                        <h3>
+                            Pagamenti
+                        </h3>
+
+                        <p>
+                            Situazione dei soldi
+                        </p>
+
+                    </div>
+
+                    <div class="freccia">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="menu-card"
+                    onclick="mostraPagina('storico')">
+
+                    <div class="menu-icona">
+                        🕘
+                    </div>
+
+                    <div class="menu-testo">
+
+                        <h3>
+                            Storico
+                        </h3>
+
+                        <p>
+                            Visualizza gli ordini passati
+                        </p>
+
+                    </div>
+
+                    <div class="freccia">
+                        ›
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ORDINI
+        ========================= -->
+
+        <section
+            id="ordini"
+            class="pagina">
+
+            <button
+                class="btn-indietro"
+                onclick="mostraPagina('dashboard')">
+
+                ← Torna al menu
+
+            </button>
+
+
+            <div class="intestazione-sezione">
+
+                <div class="titolo-pagina">
+
+                    <h1>
+                        Ordini di
+                        <span id="nomeOrdini"></span>
+                    </h1>
+
+                    <p>
+                        Elenco degli articoli
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn-nuovo"
+                    onclick="apriNuovoOrdine()">
+
+                    + Nuovo ordine
+
+                </button>
+
+            </div>
+
+
+            <div class="tabella-box">
 
                 <table>
 
@@ -1108,47 +976,21 @@ td{
 
                         <tr>
 
-                            <th>
-                                DATA
-                            </th>
-
-                            <th>
-                                Q.TÀ
-                            </th>
-
-                            <th>
-                                ARTICOLO
-                            </th>
-
-                            <th>
-                                LISTINO
-                            </th>
-
-                            <th>
-                                SCONTO
-                            </th>
-
-                            <th>
-                                NETTO
-                            </th>
-
-                            <th>
-                                DA DARE A PERSONA
-                            </th>
-
-                            <th>
-                                DA DARE A GIO
-                            </th>
-
-                            <th>
-                                STATO
-                            </th>
+                            <th>DATA</th>
+                            <th>Q.TÀ</th>
+                            <th>ARTICOLO</th>
+                            <th>LISTINO</th>
+                            <th>SCONTO</th>
+                            <th>NETTO</th>
+                            <th>DA DARE A PERSONA</th>
+                            <th>DA DARE A GIO</th>
+                            <th>STATO</th>
 
                         </tr>
 
                     </thead>
 
-                    <tbody id="ordersBody"></tbody>
+                    <tbody id="tabellaOrdini"></tbody>
 
                 </table>
 
@@ -1157,195 +999,24 @@ td{
         </section>
 
 
-        <!-- =================================================
-             NUOVO ORDINE
-        ================================================= -->
-
-        <section
-            id="newOrderSection"
-            class="section">
-
-            <button
-                class="back"
-                onclick="openOrders()">
-
-                ← Torna agli ordini
-
-            </button>
-
-
-            <div class="page-title">
-
-                <h1>
-                    Nuovo ordine
-                </h1>
-
-                <p>
-                    Cerca il ricambio direttamente su Farioli
-                </p>
-
-            </div>
-
-
-            <div class="farioli-box">
-
-                <div class="farioli-title">
-
-                    <h2>
-                        🔎 Ricerca Farioli KTM
-                    </h2>
-
-                    <span>
-                        FARIOLI
-                    </span>
-
-                </div>
-
-
-                <div class="search-row">
-
-                    <input
-                        type="text"
-                        id="farioliSearch"
-                        placeholder="Codice KTM o descrizione...">
-
-                    <button
-                        class="search-farioli"
-                        onclick="searchFarioli()">
-
-                        CERCA
-
-                    </button>
-
-                </div>
-
-
-                <div class="farioli-note">
-
-                    La ricerca apre il catalogo ufficiale Farioli
-                    per verificare codice, descrizione e prezzo.
-
-                </div>
-
-            </div>
-
-
-            <div class="catalog">
-
-                <div class="catalog-title">
-                    Alcuni articoli presenti nel catalogo Farioli
-                </div>
-
-
-                <div class="product">
-
-                    <div class="product-info">
-
-                        <div class="product-code">
-                            63512932100
-                        </div>
-
-                        <div class="product-name">
-                            Set di borse rigide Touring
-                        </div>
-
-                    </div>
-
-                    <div class="product-price">
-                        € 849,06
-                    </div>
-
-                    <button
-                        class="product-add"
-                        onclick="selectProduct('63512932100','Set di borse rigide Touring',849.06)">
-
-                        + ORDINA
-
-                    </button>
-
-                </div>
-
-
-                <div class="product">
-
-                    <div class="product-info">
-
-                        <div class="product-code">
-                            A46007040050EBASDV
-                        </div>
-
-                        <div class="product-name">
-                            Copertina della sella Factory Racing
-                        </div>
-
-                    </div>
-
-                    <div class="product-price">
-                        € 79,36
-                    </div>
-
-                    <button
-                        class="product-add"
-                        onclick="selectProduct('A46007040050EBASDV','Copertina della sella Factory Racing',79.36)">
-
-                        + ORDINA
-
-                    </button>
-
-                </div>
-
-
-                <div class="product">
-
-                    <div class="product-info">
-
-                        <div class="product-code">
-                            63506915144
-                        </div>
-
-                        <div class="product-name">
-                            Kit dei filtri dell'aria
-                        </div>
-
-                    </div>
-
-                    <div class="product-price">
-                        € 69,91
-                    </div>
-
-                    <button
-                        class="product-add"
-                        onclick="selectProduct('63506915144','Kit dei filtri dell aria',69.91)">
-
-                        + ORDINA
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
+        <!-- =========================
              PAGAMENTI
-        ================================================= -->
+        ========================= -->
 
         <section
-            id="paymentsSection"
-            class="section">
+            id="pagamenti"
+            class="pagina">
 
             <button
-                class="back"
-                onclick="showDashboard()">
+                class="btn-indietro"
+                onclick="mostraPagina('dashboard')">
 
                 ← Torna al menu
 
             </button>
 
 
-            <div class="page-title">
+            <div class="titolo-pagina">
 
                 <h1>
                     Pagamenti
@@ -1353,31 +1024,31 @@ td{
 
                 <p>
                     Situazione economica di
-                    <span id="paymentPerson"></span>
+                    <span id="nomePagamenti"></span>
                 </p>
 
             </div>
 
 
-            <div class="payment-box">
+            <div class="box-pagamento">
 
                 <div>
-                    TOTALE CHE DEVI DARE A GIO
+                    TOTALE DA DARE A GIO
                 </div>
 
                 <div
-                    class="payment-total"
-                    id="paymentTotal">
+                    class="importo-pagamento"
+                    id="totalePagamento">
 
                     € 0,00
 
                 </div>
 
-                <div class="payment-description">
+                <div class="descrizione-pagamento">
 
-                    Questo importo viene calcolato automaticamente
-                    dagli ordini meno gli eventuali soldi che Gio
-                    deve dare a te.
+                    Il totale viene calcolato automaticamente
+                    considerando tutti gli ordini e sottraendo
+                    gli eventuali soldi che Gio deve dare a te.
 
                 </div>
 
@@ -1386,36 +1057,37 @@ td{
         </section>
 
 
-        <!-- =================================================
+        <!-- =========================
              STORICO
-        ================================================= -->
+        ========================= -->
 
         <section
-            id="historySection"
-            class="section">
+            id="storico"
+            class="pagina">
 
             <button
-                class="back"
-                onclick="showDashboard()">
+                class="btn-indietro"
+                onclick="mostraPagina('dashboard')">
 
                 ← Torna al menu
 
             </button>
 
 
-            <div class="page-title">
+            <div class="titolo-pagina">
 
                 <h1>
                     Storico
                 </h1>
 
                 <p>
-                    Tutti gli ordini registrati
+                    Tutti gli ordini effettuati
                 </p>
 
             </div>
 
-            <div class="table-box">
+
+            <div class="tabella-box">
 
                 <table>
 
@@ -1423,34 +1095,23 @@ td{
 
                         <tr>
 
-                            <th>
-                                DATA
-                            </th>
-
-                            <th>
-                                ARTICOLO
-                            </th>
-
-                            <th>
-                                NETTO
-                            </th>
-
-                            <th>
-                                STATO
-                            </th>
+                            <th>DATA</th>
+                            <th>ARTICOLO</th>
+                            <th>NETTO</th>
+                            <th>DA DARE A GIO</th>
+                            <th>STATO</th>
 
                         </tr>
 
                     </thead>
 
-                    <tbody id="historyBody"></tbody>
+                    <tbody id="tabellaStorico"></tbody>
 
                 </table>
 
             </div>
 
         </section>
-
 
     </main>
 
@@ -1462,153 +1123,138 @@ td{
 ===================================================== -->
 
 <div
-    class="modal-bg"
-    id="orderModal">
+    class="sfondo-modale"
+    id="modaleOrdine">
 
-    <div class="modal">
+    <div class="modale">
 
         <h2>
-            Inserisci ordine
+            Nuovo ordine
         </h2>
 
 
-        <div class="form-grid">
+        <div class="form">
 
 
-            <div class="form-group">
+            <div class="campo">
 
                 <label>
-                    Data
+                    DATA
                 </label>
 
                 <input
                     type="date"
-                    id="orderDate">
+                    id="data">
 
             </div>
 
 
-            <div class="form-group">
+            <div class="campo">
 
                 <label>
-                    Quantità
+                    QUANTITÀ
                 </label>
 
                 <input
                     type="number"
-                    id="orderQuantity"
+                    id="quantita"
                     min="1"
                     value="1"
-                    oninput="calculate()">
+                    oninput="calcola()">
 
             </div>
 
 
-            <div class="form-group full">
+            <div class="campo completo">
 
                 <label>
-                    Codice KTM
+                    CODICE ARTICOLO
                 </label>
 
                 <input
                     type="text"
-                    id="orderArticle"
-                    placeholder="Codice ricambio">
+                    id="articolo"
+                    placeholder="Es. 1234567890">
 
             </div>
 
 
-            <div class="form-group full">
+            <div class="campo">
 
                 <label>
-                    Descrizione
-                </label>
-
-                <input
-                    type="text"
-                    id="orderDescription"
-                    placeholder="Descrizione articolo">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Listino €
+                    LISTINO (€)
                 </label>
 
                 <input
                     type="number"
-                    id="orderListino"
-                    step="0.01"
+                    id="listino"
                     min="0"
-                    oninput="calculate()">
+                    step="0.01"
+                    placeholder="0,00"
+                    oninput="calcola()">
 
             </div>
 
 
-            <div class="form-group">
+            <div class="campo">
 
                 <label>
-                    Sconto %
+                    SCONTO (%)
                 </label>
 
                 <input
                     type="number"
-                    id="orderSconto"
-                    value="0"
-                    step="0.01"
+                    id="sconto"
                     min="0"
                     max="100"
-                    oninput="calculate()">
+                    step="0.01"
+                    value="0"
+                    oninput="calcola()">
 
             </div>
 
 
-            <!-- QUESTO LO INSERISCI TU -->
-
-            <div class="form-group full">
+            <div class="campo completo">
 
                 <label>
-                    💵 SOLDI DA DARE A
-                    <span id="moneyPersonLabel">
+                    💰 SOLDI DA DARE A
+                    <span id="etichettaPersona">
                         ROBY
                     </span>
                 </label>
 
                 <input
                     type="number"
-                    id="orderPersonMoney"
-                    value="0"
+                    id="soldiPersona"
                     min="0"
                     step="0.01"
-                    oninput="calculate()">
+                    value="0"
+                    oninput="calcola()">
 
             </div>
 
 
-            <div class="form-group">
+            <div class="campo">
 
                 <label>
-                    Stato
+                    STATO
                 </label>
 
-                <select id="orderStatus">
+                <select id="stato">
 
-                    <option>
+                    <option value="Da ordinare">
                         Da ordinare
                     </option>
 
-                    <option>
+                    <option value="Ordinato">
                         Ordinato
                     </option>
 
-                    <option>
+                    <option value="Arrivato">
                         Arrivato
                     </option>
 
-                    <option>
+                    <option value="Consegnato">
                         Consegnato
                     </option>
 
@@ -1619,56 +1265,57 @@ td{
         </div>
 
 
-        <div class="calculation">
+        <div class="calcoli">
 
-            <div class="calc-row">
+            <div class="riga-calcolo">
 
                 <span>
                     Netto unitario
                 </span>
 
-                <strong id="calcUnit">
+                <strong id="nettoUnitario">
                     € 0,00
                 </strong>
 
             </div>
 
 
-            <div class="calc-row">
+            <div class="riga-calcolo">
 
                 <span>
                     Totale ordine
                 </span>
 
-                <strong id="calcTotal">
+                <strong id="totaleOrdine">
                     € 0,00
                 </strong>
 
             </div>
 
 
-            <div class="calc-row">
+            <div class="riga-calcolo">
 
                 <span>
-                    Da dare a <span id="calcPerson">Roby</span>
+                    Soldi da dare a
+                    <span id="personaCalcolo">
+                        Roby
+                    </span>
                 </span>
 
-                <strong id="calcPersonMoney">
+                <strong id="calcoloPersona">
                     € 0,00
                 </strong>
 
             </div>
 
 
-            <div class="calc-row">
+            <div class="riga-calcolo">
 
                 <span>
-                    <strong>
-                        DA DARE A GIO
-                    </strong>
+                    SOLDI DA DARE A GIO
                 </span>
 
-                <strong id="calcGio">
+                <strong id="calcoloGio">
                     € 0,00
                 </strong>
 
@@ -1677,19 +1324,19 @@ td{
         </div>
 
 
-        <div class="modal-buttons">
+        <div class="bottoni-modale">
 
             <button
-                class="cancel"
-                onclick="closeModal()">
+                class="btn-annulla"
+                onclick="chiudiModale()">
 
                 Annulla
 
             </button>
 
             <button
-                class="save"
-                onclick="saveOrder()">
+                class="btn-salva"
+                onclick="salvaOrdine()">
 
                 SALVA ORDINE
 
@@ -1705,74 +1352,309 @@ td{
 <script>
 
 /* =====================================================
-   DATI
+   VARIABILI
 ===================================================== */
 
-let currentUser = "";
+let personaAttuale = "";
 
-let orders =
-    JSON.parse(localStorage.getItem("ktmOrders")) || [];
+let ordini =
+    JSON.parse(localStorage.getItem("ordiniKTM")) || [];
 
 
 /* =====================================================
-   HOME → UTENTE
+   ENTRA
 ===================================================== */
 
-function openUser(user){
+function entra(persona) {
 
-    currentUser = user;
+    personaAttuale = persona;
 
-    document.getElementById("homePage").style.display="none";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("app").style.display = "block";
 
-    document.getElementById("appPage").style.display="block";
+    document.getElementById("utenteHeader").textContent =
+        persona.toUpperCase();
 
-    document.getElementById("currentUser").textContent =
-        user.toUpperCase();
+    document.getElementById("titoloDashboard").textContent =
+        "Ciao " + persona + " 👋";
 
-    document.getElementById("welcome").textContent =
-        "Ciao " + user + " 👋";
+    document.getElementById("nomeOrdini").textContent =
+        persona;
 
-    document.getElementById("orderUserName").textContent =
-        user;
+    document.getElementById("nomePagamenti").textContent =
+        persona;
 
-    document.getElementById("statPerson").textContent =
-        user.toUpperCase();
+    document.getElementById("etichettaPersona").textContent =
+        persona.toUpperCase();
 
-    document.getElementById("paymentPerson").textContent =
-        user;
+    document.getElementById("personaCalcolo").textContent =
+        persona;
 
-    document.getElementById("moneyPersonLabel").textContent =
-        user.toUpperCase();
+    aggiornaDashboard();
 
-    document.getElementById("calcPerson").textContent =
-        user;
-
-    showDashboard();
+    mostraPagina("dashboard");
 }
 
 
 /* =====================================================
-   HOME
+   ESCI
 ===================================================== */
 
-function goHome(){
+function esci() {
 
-    currentUser="";
+    personaAttuale = "";
 
-    document.getElementById("appPage").style.display="none";
-
-    document.getElementById("homePage").style.display="flex";
+    document.getElementById("app").style.display = "none";
+    document.getElementById("home").style.display = "flex";
 }
 
 
 /* =====================================================
-   NASCONDI TUTTE LE SEZIONI
+   CAMBIO PAGINA
 ===================================================== */
 
-function hideSections(){
+function mostraPagina(nome) {
 
-    document.querySelectorAll(".section").forEach(section=>{
-        section.style.display="none";
+    document.querySelectorAll(".pagina").forEach(function(pagina) {
+        pagina.classList.remove("attiva");
+    });
+
+    document.getElementById(nome).classList.add("attiva");
+
+    if (nome === "dashboard") {
+        aggiornaDashboard();
+    }
+
+    if (nome === "ordini") {
+        aggiornaOrdini();
+    }
+
+    if (nome === "pagamenti") {
+        aggiornaPagamento();
+    }
+
+    if (nome === "storico") {
+        aggiornaStorico();
+    }
+}
+
+
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
+
+function apriNuovoOrdine() {
+
+    document.getElementById("modaleOrdine")
+        .classList.add("aperta");
+
+    document.getElementById("data").value =
+        new Date().toISOString().split("T")[0];
+
+    document.getElementById("quantita").value = 1;
+    document.getElementById("listino").value = "";
+    document.getElementById("sconto").value = 0;
+    document.getElementById("soldiPersona").value = 0;
+    document.getElementById("articolo").value = "";
+    document.getElementById("stato").value = "Da ordinare";
+
+    calcola();
+}
+
+
+/* =====================================================
+   CHIUDI MODALE
+===================================================== */
+
+function chiudiModale() {
+
+    document.getElementById("modaleOrdine")
+        .classList.remove("aperta");
+}
+
+
+/* =====================================================
+   CALCOLO
+===================================================== */
+
+function calcola() {
+
+    const listino =
+        parseFloat(document.getElementById("listino").value) || 0;
+
+    const sconto =
+        parseFloat(document.getElementById("sconto").value) || 0;
+
+    const quantita =
+        parseInt(document.getElementById("quantita").value) || 1;
+
+    const soldiPersona =
+        parseFloat(document.getElementById("soldiPersona").value) || 0;
+
+
+    /*
+        LISTINO
+        - SCONTO
+        = NETTO UNITARIO
+    */
+
+    const netto =
+        listino - (listino * sconto / 100);
+
+
+    /*
+        NETTO UNITARIO
+        × QUANTITÀ
+        = TOTALE ORDINE
+    */
+
+    const totale =
+        netto * quantita;
+
+
+    /*
+        TOTALE ORDINE
+        - SOLDI DA DARE A ROBY/FEDE
+        = SOLDI DA DARE A GIO
+    */
+
+    let daDareAGio =
+        totale - soldiPersona;
+
+
+    if (daDareAGio < 0) {
+        daDareAGio = 0;
+    }
+
+
+    document.getElementById("nettoUnitario").textContent =
+        euro(netto);
+
+    document.getElementById("totaleOrdine").textContent =
+        euro(totale);
+
+    document.getElementById("calcoloPersona").textContent =
+        euro(soldiPersona);
+
+    document.getElementById("calcoloGio").textContent =
+        euro(daDareAGio);
+}
+
+
+/* =====================================================
+   SALVA ORDINE
+===================================================== */
+
+function salvaOrdine() {
+
+    const data =
+        document.getElementById("data").value;
+
+    const quantita =
+        parseInt(document.getElementById("quantita").value) || 1;
+
+    const articolo =
+        document.getElementById("articolo").value.trim();
+
+    const listino =
+        parseFloat(document.getElementById("listino").value) || 0;
+
+    const sconto =
+        parseFloat(document.getElementById("sconto").value) || 0;
+
+    const soldiPersona =
+        parseFloat(document.getElementById("soldiPersona").value) || 0;
+
+    const stato =
+        document.getElementById("stato").value;
+
+
+    if (!data) {
+        alert("Inserisci la data.");
+        return;
+    }
+
+    if (!articolo) {
+        alert("Inserisci il codice dell'articolo.");
+        return;
+    }
+
+    if (listino <= 0) {
+        alert("Inserisci il prezzo di listino.");
+        return;
+    }
+
+
+    const netto =
+        listino - (listino * sconto / 100);
+
+    const totale =
+        netto * quantita;
+
+    let daDareAGio =
+        totale - soldiPersona;
+
+
+    if (daDareAGio < 0) {
+        daDareAGio = 0;
+    }
+
+
+    const nuovoOrdine = {
+
+        id: Date.now(),
+
+        persona: personaAttuale,
+
+        data: data,
+
+        quantita: quantita,
+
+        articolo: articolo,
+
+        listino: listino,
+
+        sconto: sconto,
+
+        netto: netto,
+
+        totale: totale,
+
+        soldiPersona: soldiPersona,
+
+        daDareAGio: daDareAGio,
+
+        stato: stato
+    };
+
+
+    ordini.push(nuovoOrdine);
+
+
+    localStorage.setItem(
+        "ordiniKTM",
+        JSON.stringify(ordini)
+    );
+
+
+    chiudiModale();
+
+    aggiornaDashboard();
+
+    mostraPagina("ordini");
+}
+
+
+/* =====================================================
+   ORDINI DELLA PERSONA
+===================================================== */
+
+function ordiniPersona() {
+
+    return ordini.filter(function(ordine) {
+
+        return ordine.persona === personaAttuale;
+
     });
 
 }
@@ -1782,499 +1664,146 @@ function hideSections(){
    DASHBOARD
 ===================================================== */
 
-function showDashboard(){
+function aggiornaDashboard() {
 
-    hideSections();
+    const lista = ordiniPersona();
 
-    document.getElementById("dashboard").style.display="block";
-}
+    let netto = 0;
+    let daDareAGio = 0;
+    let daDarePersona = 0;
 
 
-/* =====================================================
-   ORDINI
-===================================================== */
+    lista.forEach(function(ordine) {
 
-function openOrders(){
-
-    hideSections();
-
-    document.getElementById("ordersSection").style.display="block";
-
-    updateOrders();
-}
-
-
-/* =====================================================
-   NUOVO ORDINE
-===================================================== */
-
-function openNewOrder(){
-
-    hideSections();
-
-    document.getElementById("newOrderSection").style.display="block";
-}
-
-
-/* =====================================================
-   PAGAMENTI
-===================================================== */
-
-function openPayments(){
-
-    hideSections();
-
-    document.getElementById("paymentsSection").style.display="block";
-
-    updatePayments();
-}
-
-
-/* =====================================================
-   STORICO
-===================================================== */
-
-function openHistory(){
-
-    hideSections();
-
-    document.getElementById("historySection").style.display="block";
-
-    updateHistory();
-}
-
-
-/* =====================================================
-   CERCA SU FARIOLI
-===================================================== */
-
-function searchFarioli(){
-
-    const search =
-        document.getElementById("farioliSearch").value.trim();
-
-    /*
-       Farioli utilizza il proprio catalogo con ricerca
-       per codice/nome.
-
-       Apriamo il catalogo ufficiale in una nuova scheda.
-    */
-
-    window.open(
-        "https://ktmfarioli.com/ricambi-ktm",
-        "_blank"
-    );
-
-}
-
-
-/* =====================================================
-   SELEZIONA PRODOTTO
-===================================================== */
-
-function selectProduct(code,name,price){
-
-    openOrderModal();
-
-    document.getElementById("orderArticle").value =
-        code;
-
-    document.getElementById("orderDescription").value =
-        name;
-
-    document.getElementById("orderListino").value =
-        price;
-
-    calculate();
-}
-
-
-/* =====================================================
-   MODALE
-===================================================== */
-
-function openOrderModal(){
-
-    document.getElementById("orderModal")
-        .classList.add("show");
-
-    document.getElementById("orderDate").value =
-        new Date().toISOString().split("T")[0];
-
-    document.getElementById("orderQuantity").value=1;
-
-    document.getElementById("orderStatus").value =
-        "Da ordinare";
-
-    calculate();
-}
-
-
-function closeModal(){
-
-    document.getElementById("orderModal")
-        .classList.remove("show");
-
-}
-
-
-/* =====================================================
-   CALCOLI
-===================================================== */
-
-function calculate(){
-
-    const listino =
-        parseFloat(
-            document.getElementById("orderListino").value
-        ) || 0;
-
-    const sconto =
-        parseFloat(
-            document.getElementById("orderSconto").value
-        ) || 0;
-
-    const quantity =
-        parseInt(
-            document.getElementById("orderQuantity").value
-        ) || 1;
-
-    const personMoney =
-        parseFloat(
-            document.getElementById("orderPersonMoney").value
-        ) || 0;
-
-
-    /* prezzo dopo sconto */
-
-    const netto =
-        listino - (listino * sconto / 100);
-
-
-    /* totale quantità */
-
-    const total =
-        netto * quantity;
-
-
-    /*
-       LOGICA CORRETTA:
-
-       totale ordine
-       -
-       soldi che Gio deve dare a Roby/Fede
-       =
-       soldi che Roby/Fede devono dare a Gio
-    */
-
-    let gio =
-        total - personMoney;
-
-
-    if(gio < 0){
-        gio = 0;
-    }
-
-
-    document.getElementById("calcUnit").textContent =
-        euro(netto);
-
-    document.getElementById("calcTotal").textContent =
-        euro(total);
-
-    document.getElementById("calcPersonMoney").textContent =
-        euro(personMoney);
-
-    document.getElementById("calcGio").textContent =
-        euro(gio);
-}
-
-
-/* =====================================================
-   SALVA ORDINE
-===================================================== */
-
-function saveOrder(){
-
-    const date =
-        document.getElementById("orderDate").value;
-
-    const quantity =
-        parseInt(
-            document.getElementById("orderQuantity").value
-        ) || 1;
-
-    const article =
-        document.getElementById("orderArticle").value.trim();
-
-    const description =
-        document.getElementById("orderDescription").value.trim();
-
-    const listino =
-        parseFloat(
-            document.getElementById("orderListino").value
-        ) || 0;
-
-    const sconto =
-        parseFloat(
-            document.getElementById("orderSconto").value
-        ) || 0;
-
-    const personMoney =
-        parseFloat(
-            document.getElementById("orderPersonMoney").value
-        ) || 0;
-
-    const status =
-        document.getElementById("orderStatus").value;
-
-
-    if(!date){
-
-        alert("Inserisci la data.");
-
-        return;
-    }
-
-
-    if(!article){
-
-        alert("Inserisci il codice KTM.");
-
-        return;
-    }
-
-
-    const netto =
-        listino - (listino * sconto / 100);
-
-
-    const total =
-        netto * quantity;
-
-
-    let gio =
-        total - personMoney;
-
-
-    if(gio < 0){
-        gio=0;
-    }
-
-
-    const order={
-
-        id:Date.now(),
-
-        person:currentUser,
-
-        date:date,
-
-        quantity:quantity,
-
-        article:article,
-
-        description:description,
-
-        listino:listino,
-
-        sconto:sconto,
-
-        netto:netto,
-
-        total:total,
-
-        personMoney:personMoney,
-
-        gioMoney:gio,
-
-        status:status
-
-    };
-
-
-    orders.push(order);
-
-
-    localStorage.setItem(
-        "ktmOrders",
-        JSON.stringify(orders)
-    );
-
-
-    closeModal();
-
-    openOrders();
-}
-
-
-/* =====================================================
-   AGGIORNA ORDINI
-===================================================== */
-
-function updateOrders(){
-
-    const userOrders =
-        orders.filter(
-            order => order.person === currentUser
-        );
-
-
-    let total=0;
-
-    let personMoney=0;
-
-    let gioMoney=0;
-
-
-    userOrders.forEach(order=>{
-
-        total += Number(order.total || 0);
-
-        personMoney +=
-            Number(order.personMoney || 0);
-
-        gioMoney +=
-            Number(order.gioMoney || 0);
+        netto += Number(ordine.totale);
+        daDareAGio += Number(ordine.daDareAGio);
+        daDarePersona += Number(ordine.soldiPersona);
 
     });
 
 
-    document.getElementById("statOrders").textContent =
-        userOrders.length;
+    document.getElementById("dashOrdini").textContent =
+        lista.length;
 
-    document.getElementById("statNetto").textContent =
-        euro(total);
+    document.getElementById("dashNetto").textContent =
+        euro(netto);
 
-    document.getElementById("statPersonMoney").textContent =
-        euro(personMoney);
+    document.getElementById("dashGio").textContent =
+        euro(daDareAGio);
 
-    document.getElementById("statGio").textContent =
-        euro(gioMoney);
-
-
-    const body =
-        document.getElementById("ordersBody");
+    document.getElementById("dashPersona").textContent =
+        euro(daDarePersona);
+}
 
 
-    if(userOrders.length===0){
+/* =====================================================
+   TABELLA ORDINI
+===================================================== */
 
-        body.innerHTML=`
+function aggiornaOrdini() {
 
+    const lista = ordiniPersona();
+
+    const corpo =
+        document.getElementById("tabellaOrdini");
+
+
+    if (lista.length === 0) {
+
+        corpo.innerHTML = `
             <tr>
-
-                <td
-                    colspan="9"
-                    style="text-align:center;padding:40px;color:#888">
-
+                <td colspan="9"
+                    style="text-align:center;padding:40px;color:#888;">
                     Nessun ordine presente.
-
                 </td>
-
             </tr>
-
         `;
 
         return;
     }
 
 
-    body.innerHTML =
-        userOrders
-        .sort((a,b)=>new Date(b.date)-new Date(a.date))
-        .map(order=>{
+    lista.sort(function(a,b) {
 
-            const statusClass =
-                statusClassName(order.status);
+        return new Date(b.data) - new Date(a.data);
+
+    });
 
 
-            return `
+    corpo.innerHTML = lista.map(function(ordine) {
 
-                <tr>
+        return `
+            <tr>
 
-                    <td>
-                        ${formatDate(order.date)}
-                    </td>
+                <td>
+                    ${dataItaliana(ordine.data)}
+                </td>
 
-                    <td>
-                        ${order.quantity}
-                    </td>
+                <td>
+                    ${ordine.quantita}
+                </td>
 
-                    <td>
+                <td>
+                    <strong>
+                        ${escapeHTML(ordine.articolo)}
+                    </strong>
+                </td>
 
-                        <strong>
-                            ${escapeHTML(order.article)}
-                        </strong>
+                <td>
+                    ${euro(ordine.listino)}
+                </td>
 
-                        <br>
+                <td>
+                    ${ordine.sconto}%
+                </td>
 
-                        <small style="color:#888">
-                            ${escapeHTML(order.description || "")}
-                        </small>
+                <td>
+                    <strong>
+                        ${euro(ordine.totale)}
+                    </strong>
+                </td>
 
-                    </td>
+                <td class="verde">
+                    ${euro(ordine.soldiPersona)}
+                </td>
 
-                    <td>
-                        ${euro(order.listino)}
-                    </td>
+                <td class="rosso">
+                    ${euro(ordine.daDareAGio)}
+                </td>
 
-                    <td>
-                        ${order.sconto}%
-                    </td>
+                <td>
+                    <span class="stato ${classeStato(ordine.stato)}">
+                        ${ordine.stato}
+                    </span>
+                </td>
 
-                    <td>
-                        <strong>
-                            ${euro(order.total)}
-                        </strong>
-                    </td>
+            </tr>
+        `;
 
-                    <td class="money-positive">
-                        ${euro(order.personMoney)}
-                    </td>
-
-                    <td class="money-negative">
-                        ${euro(order.gioMoney)}
-                    </td>
-
-                    <td>
-
-                        <span class="status ${statusClass}">
-                            ${order.status}
-                        </span>
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        })
-        .join("");
+    }).join("");
 }
 
 
 /* =====================================================
-   PAGAMENTI
+   PAGAMENTO
 ===================================================== */
 
-function updatePayments(){
+function aggiornaPagamento() {
 
-    const userOrders =
-        orders.filter(
-            order=>order.person===currentUser
-        );
+    const lista = ordiniPersona();
 
-
-    const total =
-        userOrders.reduce(
-            (sum,order)=>
-                sum + Number(order.gioMoney || 0),
-            0
-        );
+    let totale = 0;
 
 
-    document.getElementById("paymentTotal").textContent =
-        euro(total);
+    lista.forEach(function(ordine) {
+
+        totale += Number(ordine.daDareAGio);
+
+    });
+
+
+    document.getElementById("totalePagamento").textContent =
+        euro(totale);
 }
 
 
@@ -2282,126 +1811,126 @@ function updatePayments(){
    STORICO
 ===================================================== */
 
-function updateHistory(){
+function aggiornaStorico() {
 
-    const userOrders =
-        orders.filter(
-            order=>order.person===currentUser
-        );
+    const lista = ordiniPersona();
 
-
-    const body =
-        document.getElementById("historyBody");
+    const corpo =
+        document.getElementById("tabellaStorico");
 
 
-    if(userOrders.length===0){
+    if (lista.length === 0) {
 
-        body.innerHTML=`
-
+        corpo.innerHTML = `
             <tr>
-
-                <td
-                    colspan="4"
-                    style="text-align:center;padding:40px;color:#888">
-
-                    Nessun ordine.
-
+                <td colspan="5"
+                    style="text-align:center;padding:40px;color:#888;">
+                    Nessun ordine presente.
                 </td>
-
             </tr>
-
         `;
 
         return;
     }
 
 
-    body.innerHTML =
-        userOrders
-        .sort((a,b)=>new Date(b.date)-new Date(a.date))
-        .map(order=>`
+    lista.sort(function(a,b) {
 
+        return new Date(b.data) - new Date(a.data);
+
+    });
+
+
+    corpo.innerHTML = lista.map(function(ordine) {
+
+        return `
             <tr>
 
                 <td>
-                    ${formatDate(order.date)}
+                    ${dataItaliana(ordine.data)}
                 </td>
 
                 <td>
-
-                    <strong>
-                        ${escapeHTML(order.article)}
-                    </strong>
-
-                    <br>
-
-                    <small style="color:#888">
-                        ${escapeHTML(order.description || "")}
-                    </small>
-
+                    ${escapeHTML(ordine.articolo)}
                 </td>
 
                 <td>
-                    ${euro(order.total)}
+                    ${euro(ordine.totale)}
+                </td>
+
+                <td class="rosso">
+                    ${euro(ordine.daDareAGio)}
                 </td>
 
                 <td>
-                    ${order.status}
+                    <span class="stato ${classeStato(ordine.stato)}">
+                        ${ordine.stato}
+                    </span>
                 </td>
 
             </tr>
+        `;
 
-        `)
-        .join("");
+    }).join("");
 }
 
 
 /* =====================================================
-   FUNZIONI
+   FUNZIONI UTILI
 ===================================================== */
 
-function euro(value){
+function euro(numero) {
 
     return new Intl.NumberFormat(
         "it-IT",
         {
-            style:"currency",
-            currency:"EUR"
+            style: "currency",
+            currency: "EUR"
         }
-    ).format(Number(value)||0);
-
+    ).format(Number(numero) || 0);
 }
 
 
-function formatDate(date){
+function dataItaliana(data) {
 
-    if(!date) return "-";
+    if (!data) return "";
 
-    const p=date.split("-");
+    const parti = data.split("-");
 
-    return p[2]+"/"+p[1]+"/"+p[0];
-
+    return parti[2] + "/" + parti[1] + "/" + parti[0];
 }
 
 
-function statusClassName(status){
+function classeStato(stato) {
 
-    return status
-        .toLowerCase()
-        .replaceAll(" ","-");
+    if (stato === "Da ordinare") {
+        return "stato-da-ordinare";
+    }
 
+    if (stato === "Ordinato") {
+        return "stato-ordinato";
+    }
+
+    if (stato === "Arrivato") {
+        return "stato-arrivato";
+    }
+
+    if (stato === "Consegnato") {
+        return "stato-consegnato";
+    }
+
+    return "";
 }
 
 
-function escapeHTML(text){
+function escapeHTML(testo) {
 
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
+    return String(testo)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }
 
 </script>
