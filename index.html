@@ -3,650 +3,746 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Gestione Ordini KTM</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-:root {
-    --orange: #ff6600;
-    --orange-dark: #e65300;
-    --orange-light: #fff1e8;
-    --black: #111111;
-    --gray: #666;
-    --light: #f7f7f7;
-    --white: #ffffff;
+:root{
+    --orange:#ff6600;
+    --orange-dark:#e65300;
+    --orange-light:#fff1e8;
+    --black:#111;
+    --gray:#707070;
+    --light:#f5f5f5;
+    --white:#fff;
+    --green:#16833f;
+    --red:#c62828;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #ffffff;
-    color: var(--black);
-    min-height: 100vh;
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#fff;
+    color:var(--black);
+    min-height:100vh;
 }
 
-/* =========================
-   SCHERMATA INIZIALE
-========================= */
+/* =====================================================
+   HOME
+===================================================== */
 
-#homePage {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 20px;
+#homePage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    padding:30px 20px;
 }
 
-/* forme arancio */
-
-.orange-shape-top {
-    position: absolute;
-    top: -170px;
-    left: -120px;
-    width: 520px;
-    height: 300px;
-    background: var(--orange);
-    transform: rotate(-15deg);
+.orange-top{
+    position:absolute;
+    width:600px;
+    height:300px;
+    background:var(--orange);
+    top:-180px;
+    left:-160px;
+    transform:rotate(-12deg);
 }
 
-.orange-shape-right {
-    position: absolute;
-    right: -170px;
-    top: 45%;
-    width: 350px;
-    height: 550px;
-    background: var(--orange);
-    transform: rotate(28deg);
+.orange-right{
+    position:absolute;
+    width:300px;
+    height:650px;
+    background:var(--orange);
+    right:-170px;
+    top:35%;
+    transform:rotate(25deg);
 }
 
-.orange-shape-bottom {
-    position: absolute;
-    bottom: -260px;
-    left: -100px;
-    width: 900px;
-    height: 320px;
-    background: var(--orange);
-    transform: rotate(-8deg);
+.orange-bottom{
+    position:absolute;
+    width:900px;
+    height:250px;
+    background:var(--orange);
+    bottom:-180px;
+    left:-100px;
+    transform:rotate(-8deg);
 }
 
-.home-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 900px;
-    text-align: center;
+.home-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:850px;
+    text-align:center;
 }
 
-.ktm-logo {
-    font-size: 78px;
-    font-weight: 1000;
-    font-style: italic;
-    letter-spacing: -7px;
-    color: var(--orange);
-    line-height: 0.8;
-    margin-bottom: 10px;
+.ktm{
+    font-size:80px;
+    font-weight:1000;
+    font-style:italic;
+    color:var(--orange);
+    letter-spacing:-7px;
 }
 
-.racing {
-    font-size: 23px;
-    font-weight: 900;
-    letter-spacing: 13px;
-    margin-left: 12px;
-    font-style: italic;
+.racing{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:13px;
+    font-style:italic;
+    margin-left:12px;
 }
 
-.home-title {
-    margin-top: 55px;
-    font-size: 32px;
-    font-weight: 900;
+.home-title{
+    margin-top:50px;
+    font-size:32px;
+    font-weight:900;
 }
 
-.home-subtitle {
-    margin-top: 10px;
-    color: var(--gray);
-    font-size: 17px;
+.home-subtitle{
+    margin-top:10px;
+    color:var(--gray);
 }
 
-.user-selection {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-top: 45px;
+.people{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
 }
 
-.user-card {
-    background: rgba(255,255,255,0.97);
-    border: 1px solid #eee;
-    border-radius: 25px;
-    padding: 35px 30px 30px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.10);
-    transition: 0.25s;
+.person-card{
+    background:white;
+    border:1px solid #eee;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.10);
 }
 
-.user-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+.person-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:var(--orange);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    margin:auto;
 }
 
-.user-icon {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background: var(--orange);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    font-size: 32px;
+.person-name{
+    font-size:32px;
+    font-weight:900;
+    margin-top:20px;
 }
 
-.user-name {
-    margin-top: 22px;
-    font-size: 31px;
-    font-weight: 900;
+.main-button{
+    width:100%;
+    border:none;
+    background:var(--orange);
+    color:white;
+    padding:16px;
+    border-radius:10px;
+    margin-top:22px;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-.access-button {
-    margin-top: 25px;
-    width: 100%;
-    border: none;
-    background: var(--orange);
-    color: white;
-    padding: 16px;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s;
+.main-button:hover{
+    background:var(--orange-dark);
 }
 
-.access-button:hover {
-    background: var(--orange-dark);
+/* =====================================================
+   APP
+===================================================== */
+
+#appPage{
+    display:none;
+    min-height:100vh;
 }
 
-/* =========================
-   PAGINA PERSONA
-========================= */
-
-#personPage {
-    display: none;
-    min-height: 100vh;
-    background: #fff;
+.topbar{
+    height:75px;
+    border-bottom:1px solid #eee;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    position:sticky;
+    top:0;
+    z-index:20;
 }
 
-.person-header {
-    background: white;
-    border-bottom: 1px solid #eee;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
+.logo-small{
+    color:var(--orange);
+    font-size:28px;
+    font-weight:1000;
+    font-style:italic;
 }
 
-.person-brand {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+.current-user{
+    font-size:20px;
+    font-weight:900;
 }
 
-.small-logo {
-    color: var(--orange);
-    font-size: 27px;
-    font-weight: 1000;
-    font-style: italic;
+.exit{
+    border:1px solid #ddd;
+    background:white;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.person-title {
-    font-size: 21px;
-    font-weight: 900;
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:30px 20px;
 }
 
-.back-button {
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 9px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: 700;
+.page-title{
+    margin-bottom:25px;
 }
 
-.back-button:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+.page-title h1{
+    font-size:32px;
 }
 
-.person-container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 35px 25px;
+.page-title p{
+    color:var(--gray);
+    margin-top:5px;
 }
 
-.welcome {
-    margin-bottom: 30px;
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
 }
 
-.welcome h1 {
-    font-size: 32px;
-    font-weight: 900;
+.menu-card{
+    background:white;
+    border:1px solid #eee;
+    border-radius:16px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.04);
+    transition:.2s;
 }
 
-.welcome p {
-    color: var(--gray);
-    margin-top: 5px;
+.menu-card:hover{
+    border-color:var(--orange);
+    transform:translateY(-2px);
 }
 
-/* MENU */
-
-.function-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+.menu-icon{
+    width:52px;
+    height:52px;
+    border-radius:13px;
+    background:var(--orange-light);
+    color:var(--orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
 }
 
-.function-card {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    padding: 22px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+.menu-text{
+    flex:1;
 }
 
-.function-card:hover {
-    border-color: var(--orange);
-    transform: translateY(-2px);
+.menu-text h3{
+    font-size:17px;
 }
 
-.function-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-    background: var(--orange-light);
-    color: var(--orange);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    flex-shrink: 0;
+.menu-text p{
+    color:#888;
+    font-size:13px;
+    margin-top:4px;
 }
 
-.function-info {
-    flex: 1;
+.arrow{
+    color:var(--orange);
+    font-size:25px;
 }
 
-.function-info h3 {
-    font-size: 16px;
-    margin-bottom: 4px;
+/* =====================================================
+   PAGINE
+===================================================== */
+
+.section{
+    display:none;
 }
 
-.function-info p {
-    color: #888;
-    font-size: 13px;
+.back{
+    border:none;
+    background:none;
+    color:var(--orange);
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:20px;
+    font-size:15px;
 }
 
-.arrow {
-    color: var(--orange);
-    font-size: 22px;
+/* =====================================================
+   ORDINI
+===================================================== */
+
+.order-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
 }
 
-/* =========================
-   SEZIONE ORDINI
-========================= */
-
-#ordersPage {
-    display: none;
+.add{
+    border:none;
+    background:var(--orange);
+    color:white;
+    padding:13px 18px;
+    border-radius:9px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-.orders-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
 }
 
-.add-order {
-    border: none;
-    background: var(--orange);
-    color: white;
-    padding: 13px 18px;
-    border-radius: 9px;
-    font-weight: 800;
-    cursor: pointer;
+.stat{
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:18px;
+    background:white;
 }
 
-.orders-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+.stat-label{
+    font-size:12px;
+    color:#777;
 }
 
-.summary-card {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 14px;
-    padding: 20px;
+.stat-value{
+    font-size:23px;
+    font-weight:900;
+    margin-top:6px;
 }
 
-.summary-label {
-    color: #777;
-    font-size: 13px;
+.table-box{
+    background:white;
+    border:1px solid #eee;
+    border-radius:15px;
+    overflow-x:auto;
 }
 
-.summary-value {
-    font-size: 25px;
-    font-weight: 900;
-    margin-top: 7px;
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1100px;
 }
 
-.order-table {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    overflow-x: auto;
+th{
+    background:#fafafa;
+    padding:13px;
+    font-size:11px;
+    color:#777;
+    text-align:left;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 850px;
+td{
+    padding:13px;
+    border-top:1px solid #eee;
+    font-size:13px;
 }
 
-th {
-    background: #fafafa;
-    padding: 14px;
-    text-align: left;
-    font-size: 12px;
-    color: #777;
+.money-positive{
+    color:var(--green);
+    font-weight:800;
 }
 
-td {
-    padding: 14px;
-    border-top: 1px solid #eee;
-    font-size: 13px;
+.money-negative{
+    color:var(--red);
+    font-weight:800;
 }
 
-.status {
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 800;
+.status{
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
 }
 
-.status.da-ordinare {
-    background: #ffe2dc;
-    color: #c9321c;
+.da-ordinare{
+    background:#ffe2dc;
+    color:#bd2d19;
 }
 
-.status.ordinato {
-    background: #fff0d5;
-    color: #9b6200;
+.ordinato{
+    background:#fff0d5;
+    color:#9b6200;
 }
 
-.status.arrivato {
-    background: #def5e5;
-    color: #16753d;
+.arrivato{
+    background:#def5e5;
+    color:#16753d;
 }
 
-.status.consegnato {
-    background: #e0edff;
-    color: #2862a8;
+.consegnato{
+    background:#e0edff;
+    color:#2862a8;
 }
 
-.table-button {
-    border: none;
-    background: #eee;
-    border-radius: 7px;
-    padding: 7px 9px;
-    cursor: pointer;
+/* =====================================================
+   FARIOLI
+===================================================== */
+
+.farioli-box{
+    background:#111;
+    color:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
 }
 
-/* =========================
+.farioli-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.farioli-title h2{
+    font-size:22px;
+}
+
+.farioli-title span{
+    background:var(--orange);
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.search-row{
+    display:flex;
+    gap:10px;
+}
+
+.search-row input{
+    flex:1;
+    border:none;
+    border-radius:9px;
+    padding:14px;
+    font-size:15px;
+    outline:none;
+}
+
+.search-farioli{
+    border:none;
+    background:var(--orange);
+    color:white;
+    padding:0 20px;
+    border-radius:9px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.farioli-note{
+    color:#bbb;
+    font-size:12px;
+    margin-top:12px;
+}
+
+.catalog{
+    margin-top:20px;
+}
+
+.catalog-title{
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.product{
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.product-info{
+    flex:1;
+}
+
+.product-code{
+    font-weight:900;
+}
+
+.product-name{
+    color:#777;
+    font-size:13px;
+    margin-top:3px;
+}
+
+.product-price{
+    font-weight:900;
+}
+
+.product-add{
+    border:none;
+    background:var(--orange);
+    color:white;
+    padding:9px 12px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:800;
+}
+
+/* =====================================================
    MODALE
-========================= */
+===================================================== */
 
-.modal-background {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 20px;
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.60);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:100;
 }
 
-.modal-background.show {
-    display: flex;
+.modal-bg.show{
+    display:flex;
 }
 
-.modal {
-    background: white;
-    width: 600px;
-    max-width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: 20px;
-    padding: 25px;
+.modal{
+    width:650px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
 }
 
-.modal h2 {
-    margin-bottom: 20px;
+.modal h2{
+    margin-bottom:20px;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
-.form-group.full {
-    grid-column: 1 / -1;
+.full{
+    grid-column:1/-1;
 }
 
-.form-group label {
-    font-size: 12px;
-    font-weight: 700;
-    color: #666;
+.form-group label{
+    font-size:12px;
+    font-weight:800;
+    color:#666;
 }
 
 .form-group input,
-.form-group select {
-    border: 1px solid #ddd;
-    padding: 11px;
-    border-radius: 8px;
-    outline: none;
-    font-size: 14px;
+.form-group select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
 }
 
 .form-group input:focus,
-.form-group select:focus {
-    border-color: var(--orange);
+.form-group select:focus{
+    border-color:var(--orange);
 }
 
-.modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 25px;
+.calculation{
+    background:var(--orange-light);
+    border-radius:12px;
+    padding:15px;
+    margin-top:18px;
 }
 
-.cancel {
-    border: none;
-    background: #eee;
-    padding: 11px 18px;
-    border-radius: 8px;
-    font-weight: 700;
+.calc-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
 }
 
-.save {
-    border: none;
-    background: var(--orange);
-    color: white;
-    padding: 11px 20px;
-    border-radius: 8px;
-    font-weight: 800;
+.calc-row:last-child{
+    margin-bottom:0;
+    padding-top:8px;
+    border-top:1px solid #ffd2ba;
+    font-size:17px;
+    font-weight:900;
 }
 
-/* =========================
-   PAGINE INTERNE
-========================= */
-
-.internal-page {
-    display: none;
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:22px;
 }
 
-.internal-header {
-    margin-bottom: 25px;
+.cancel{
+    border:none;
+    background:#eee;
+    padding:12px 18px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.internal-header h2 {
-    font-size: 28px;
+.save{
+    border:none;
+    background:var(--orange);
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-.internal-header p {
-    color: #777;
-    margin-top: 5px;
+/* =====================================================
+   PAGAMENTO
+===================================================== */
+
+.payment-box{
+    background:var(--orange-light);
+    border-radius:15px;
+    padding:25px;
 }
 
-.info-box {
-    background: var(--orange-light);
-    border-left: 4px solid var(--orange);
-    padding: 18px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+.payment-total{
+    font-size:35px;
+    font-weight:1000;
+    margin-top:10px;
+    color:var(--orange);
 }
 
-.back-section {
-    border: none;
-    background: transparent;
-    color: var(--orange);
-    font-weight: 800;
-    cursor: pointer;
-    margin-bottom: 20px;
+.payment-description{
+    margin-top:10px;
+    color:#666;
 }
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media(max-width: 700px) {
+@media(max-width:700px){
 
-    .ktm-logo {
-        font-size: 60px;
+    .ktm{
+        font-size:60px;
     }
 
-    .racing {
-        font-size: 16px;
-        letter-spacing: 8px;
+    .racing{
+        font-size:15px;
+        letter-spacing:8px;
     }
 
-    .home-title {
-        font-size: 25px;
-        margin-top: 40px;
+    .home-title{
+        font-size:25px;
     }
 
-    .home-subtitle {
-        font-size: 15px;
+    .people{
+        grid-template-columns:1fr;
+        gap:15px;
     }
 
-    .user-selection {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        margin-top: 30px;
+    .person-card{
+        padding:25px;
     }
 
-    .user-card {
-        padding: 25px 20px;
+    .menu-grid{
+        grid-template-columns:1fr;
     }
 
-    .user-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 25px;
+    .stats{
+        grid-template-columns:1fr 1fr;
     }
 
-    .user-name {
-        font-size: 26px;
-        margin-top: 13px;
+    .order-head{
+        align-items:flex-start;
+        flex-direction:column;
     }
 
-    .access-button {
-        margin-top: 17px;
+    .search-row{
+        flex-direction:column;
     }
 
-    .function-grid {
-        grid-template-columns: 1fr;
+    .search-farioli{
+        padding:13px;
     }
 
-    .orders-summary {
-        grid-template-columns: 1fr;
+    .form-grid{
+        grid-template-columns:1fr;
     }
 
-    .person-header {
-        padding: 0 15px;
+    .full{
+        grid-column:auto;
     }
 
-    .person-title {
-        font-size: 17px;
+    .product{
+        flex-wrap:wrap;
     }
 
-    .person-container {
-        padding: 25px 15px;
-    }
-
-    .welcome h1 {
-        font-size: 27px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-group.full {
-        grid-column: auto;
-    }
 }
+
 </style>
 </head>
+
 
 <body>
 
 
-<!-- ==================================================
-     PAGINA INIZIALE
-================================================== -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
 <section id="homePage">
 
-    <div class="orange-shape-top"></div>
-    <div class="orange-shape-right"></div>
-    <div class="orange-shape-bottom"></div>
+    <div class="orange-top"></div>
+    <div class="orange-right"></div>
+    <div class="orange-bottom"></div>
 
     <div class="home-content">
 
-        <div class="ktm-logo">
+        <div class="ktm">
             KTM
         </div>
 
@@ -655,56 +751,52 @@ td {
         </div>
 
         <h1 class="home-title">
-            GESTIONE ORDINI KTM
+            GESTIONE ORDINI
         </h1>
 
         <p class="home-subtitle">
-            Seleziona l'utente per accedere
+            Seleziona la persona
         </p>
 
 
-        <div class="user-selection">
+        <div class="people">
 
-            <!-- ROBY -->
+            <div class="person-card">
 
-            <div class="user-card">
-
-                <div class="user-icon">
+                <div class="person-icon">
                     👤
                 </div>
 
-                <div class="user-name">
+                <div class="person-name">
                     ROBY
                 </div>
 
                 <button
-                    class="access-button"
-                    onclick="openPerson('Roby')">
+                    class="main-button"
+                    onclick="openUser('Roby')">
 
-                    ACCEDI
+                    ENTRA
 
                 </button>
 
             </div>
 
 
-            <!-- FEDE -->
+            <div class="person-card">
 
-            <div class="user-card">
-
-                <div class="user-icon">
+                <div class="person-icon">
                     👤
                 </div>
 
-                <div class="user-name">
+                <div class="person-name">
                     FEDE
                 </div>
 
                 <button
-                    class="access-button"
-                    onclick="openPerson('Fede')">
+                    class="main-button"
+                    onclick="openUser('Fede')">
 
-                    ACCEDI
+                    ENTRA
 
                 </button>
 
@@ -717,23 +809,23 @@ td {
 </section>
 
 
-<!-- ==================================================
-     AREA PERSONALE
-================================================== -->
+<!-- =====================================================
+     APP
+===================================================== -->
 
-<section id="personPage">
+<section id="appPage">
 
-    <header class="person-header">
+    <header class="topbar">
 
-        <div class="person-brand">
+        <div style="display:flex;align-items:center;gap:15px">
 
-            <div class="small-logo">
+            <div class="logo-small">
                 KTM
             </div>
 
             <div
-                class="person-title"
-                id="personHeaderName">
+                class="current-user"
+                id="currentUser">
 
                 ROBY
 
@@ -741,9 +833,8 @@ td {
 
         </div>
 
-
         <button
-            class="back-button"
+            class="exit"
             onclick="goHome()">
 
             ← Esci
@@ -753,76 +844,50 @@ td {
     </header>
 
 
-    <main class="person-container">
+    <main class="container">
 
 
-        <!-- MENU PRINCIPALE PERSONA -->
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
 
-        <div id="personMenu">
+        <section
+            id="dashboard"
+            class="section"
+            style="display:block">
 
-            <div class="welcome">
+            <div class="page-title">
 
-                <h1 id="welcomeTitle">
+                <h1 id="welcome">
                     Ciao Roby 👋
                 </h1>
 
                 <p>
-                    Gestisci qui i tuoi ordini KTM.
+                    Gestione personale degli ordini KTM
                 </p>
 
             </div>
 
 
-            <div class="function-grid">
+            <div class="menu-grid">
 
-
-                <!-- NUOVO ORDINE -->
 
                 <div
-                    class="function-card"
+                    class="menu-card"
                     onclick="openOrders()">
 
-                    <div class="function-icon">
-                        🛒
-                    </div>
-
-                    <div class="function-info">
-
-                        <h3>
-                            Nuovo Ordine
-                        </h3>
-
-                        <p>
-                            Inserisci un nuovo codice KTM
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <!-- ORDINI -->
-
-                <div
-                    class="function-card"
-                    onclick="openOrders()">
-
-                    <div class="function-icon">
+                    <div class="menu-icon">
                         📋
                     </div>
 
-                    <div class="function-info">
+                    <div class="menu-text">
 
                         <h3>
-                            I miei Ordini
+                            I miei ordini
                         </h3>
 
                         <p>
-                            Visualizza gli ordini effettuati
+                            Visualizza e gestisci gli ordini
                         </p>
 
                     </div>
@@ -834,24 +899,22 @@ td {
                 </div>
 
 
-                <!-- RIEPILOGO -->
-
                 <div
-                    class="function-card"
-                    onclick="openSummary()">
+                    class="menu-card"
+                    onclick="openNewOrder()">
 
-                    <div class="function-icon">
-                        📊
+                    <div class="menu-icon">
+                        ➕
                     </div>
 
-                    <div class="function-info">
+                    <div class="menu-text">
 
                         <h3>
-                            Riepilogo
+                            Nuovo ordine
                         </h3>
 
                         <p>
-                            Situazione generale degli ordini
+                            Cerca un articolo KTM
                         </p>
 
                     </div>
@@ -863,24 +926,22 @@ td {
                 </div>
 
 
-                <!-- PAGAMENTI -->
-
                 <div
-                    class="function-card"
+                    class="menu-card"
                     onclick="openPayments()">
 
-                    <div class="function-icon">
+                    <div class="menu-icon">
                         €
                     </div>
 
-                    <div class="function-info">
+                    <div class="menu-text">
 
                         <h3>
                             Pagamenti
                         </h3>
 
                         <p>
-                            Importi da versare a Gio
+                            Quanto devo dare a Gio
                         </p>
 
                     </div>
@@ -892,24 +953,22 @@ td {
                 </div>
 
 
-                <!-- STORICO -->
-
                 <div
-                    class="function-card"
+                    class="menu-card"
                     onclick="openHistory()">
 
-                    <div class="function-icon">
-                        ↶
+                    <div class="menu-icon">
+                        🕘
                     </div>
 
-                    <div class="function-info">
+                    <div class="menu-text">
 
                         <h3>
-                            Storico Ordini
+                            Storico
                         </h3>
 
                         <p>
-                            Consulta gli ordini passati
+                            Ordini precedenti
                         </p>
 
                     </div>
@@ -920,75 +979,47 @@ td {
 
                 </div>
 
-
-                <!-- IMPOSTAZIONI -->
-
-                <div
-                    class="function-card"
-                    onclick="openSettings()">
-
-                    <div class="function-icon">
-                        ⚙
-                    </div>
-
-                    <div class="function-info">
-
-                        <h3>
-                            Impostazioni
-                        </h3>
-
-                        <p>
-                            Gestisci le impostazioni
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              ORDINI
-        ================================================== -->
+        ================================================= -->
 
-        <div
-            id="ordersPage"
-            class="internal-page">
+        <section
+            id="ordersSection"
+            class="section">
 
             <button
-                class="back-section"
-                onclick="showPersonMenu()">
+                class="back"
+                onclick="showDashboard()">
 
                 ← Torna al menu
 
             </button>
 
 
-            <div class="orders-header">
+            <div class="order-head">
 
-                <div class="internal-header">
+                <div class="page-title">
 
-                    <h2>
+                    <h1>
                         Ordini di
-                        <span id="ordersPersonName"></span>
-                    </h2>
+                        <span id="orderUserName"></span>
+                    </h1>
 
                     <p>
-                        Gestione dei ricambi KTM
+                        Tutti gli articoli ordinati
                     </p>
 
                 </div>
 
                 <button
-                    class="add-order"
-                    onclick="openOrderModal()">
+                    class="add"
+                    onclick="openNewOrder()">
 
                     + Nuovo ordine
 
@@ -997,17 +1028,17 @@ td {
             </div>
 
 
-            <div class="orders-summary">
+            <div class="stats">
 
-                <div class="summary-card">
+                <div class="stat">
 
-                    <div class="summary-label">
-                        Ordini totali
+                    <div class="stat-label">
+                        ORDINI
                     </div>
 
                     <div
-                        class="summary-value"
-                        id="ordersCount">
+                        class="stat-value"
+                        id="statOrders">
 
                         0
 
@@ -1016,15 +1047,15 @@ td {
                 </div>
 
 
-                <div class="summary-card">
+                <div class="stat">
 
-                    <div class="summary-label">
-                        Totale netto
+                    <div class="stat-label">
+                        TOTALE NETTO
                     </div>
 
                     <div
-                        class="summary-value"
-                        id="ordersTotal">
+                        class="stat-value"
+                        id="statNetto">
 
                         € 0,00
 
@@ -1033,15 +1064,32 @@ td {
                 </div>
 
 
-                <div class="summary-card">
+                <div class="stat">
 
-                    <div class="summary-label">
-                        Da pagare a Gio
+                    <div class="stat-label">
+                        DA DARE A <span id="statPerson"></span>
                     </div>
 
                     <div
-                        class="summary-value"
-                        id="ordersToPay">
+                        class="stat-value"
+                        id="statPersonMoney">
+
+                        € 0,00
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        DA DARE A GIO
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="statGio">
 
                         € 0,00
 
@@ -1052,184 +1100,356 @@ td {
             </div>
 
 
-            <div class="order-table">
+            <div class="table-box">
 
                 <table>
 
                     <thead>
 
                         <tr>
-                            <th>DATA</th>
-                            <th>QUANTITÀ</th>
-                            <th>ARTICOLO</th>
-                            <th>LISTINO</th>
-                            <th>SCONTO</th>
-                            <th>NETTO</th>
-                            <th>STATO</th>
+
+                            <th>
+                                DATA
+                            </th>
+
+                            <th>
+                                Q.TÀ
+                            </th>
+
+                            <th>
+                                ARTICOLO
+                            </th>
+
+                            <th>
+                                LISTINO
+                            </th>
+
+                            <th>
+                                SCONTO
+                            </th>
+
+                            <th>
+                                NETTO
+                            </th>
+
+                            <th>
+                                DA DARE A PERSONA
+                            </th>
+
+                            <th>
+                                DA DARE A GIO
+                            </th>
+
+                            <th>
+                                STATO
+                            </th>
+
                         </tr>
 
                     </thead>
 
-                    <tbody id="ordersTableBody"></tbody>
+                    <tbody id="ordersBody"></tbody>
 
                 </table>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- ==================================================
-             RIEPILOGO
-        ================================================== -->
+        <!-- =================================================
+             NUOVO ORDINE
+        ================================================= -->
 
-        <div
-            id="summaryPage"
-            class="internal-page">
+        <section
+            id="newOrderSection"
+            class="section">
 
             <button
-                class="back-section"
-                onclick="showPersonMenu()">
+                class="back"
+                onclick="openOrders()">
 
-                ← Torna al menu
+                ← Torna agli ordini
 
             </button>
 
-            <div class="internal-header">
 
-                <h2>
-                    Riepilogo
-                </h2>
+            <div class="page-title">
+
+                <h1>
+                    Nuovo ordine
+                </h1>
 
                 <p>
-                    Situazione economica e ordini
+                    Cerca il ricambio direttamente su Farioli
                 </p>
 
             </div>
 
-            <div class="info-box">
 
-                Qui vedremo il riepilogo completo degli ordini,
-                del netto scontato e degli importi da dare a Gio.
+            <div class="farioli-box">
+
+                <div class="farioli-title">
+
+                    <h2>
+                        🔎 Ricerca Farioli KTM
+                    </h2>
+
+                    <span>
+                        FARIOLI
+                    </span>
+
+                </div>
+
+
+                <div class="search-row">
+
+                    <input
+                        type="text"
+                        id="farioliSearch"
+                        placeholder="Codice KTM o descrizione...">
+
+                    <button
+                        class="search-farioli"
+                        onclick="searchFarioli()">
+
+                        CERCA
+
+                    </button>
+
+                </div>
+
+
+                <div class="farioli-note">
+
+                    La ricerca apre il catalogo ufficiale Farioli
+                    per verificare codice, descrizione e prezzo.
+
+                </div>
 
             </div>
 
-        </div>
+
+            <div class="catalog">
+
+                <div class="catalog-title">
+                    Alcuni articoli presenti nel catalogo Farioli
+                </div>
 
 
-        <!-- ==================================================
+                <div class="product">
+
+                    <div class="product-info">
+
+                        <div class="product-code">
+                            63512932100
+                        </div>
+
+                        <div class="product-name">
+                            Set di borse rigide Touring
+                        </div>
+
+                    </div>
+
+                    <div class="product-price">
+                        € 849,06
+                    </div>
+
+                    <button
+                        class="product-add"
+                        onclick="selectProduct('63512932100','Set di borse rigide Touring',849.06)">
+
+                        + ORDINA
+
+                    </button>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-info">
+
+                        <div class="product-code">
+                            A46007040050EBASDV
+                        </div>
+
+                        <div class="product-name">
+                            Copertina della sella Factory Racing
+                        </div>
+
+                    </div>
+
+                    <div class="product-price">
+                        € 79,36
+                    </div>
+
+                    <button
+                        class="product-add"
+                        onclick="selectProduct('A46007040050EBASDV','Copertina della sella Factory Racing',79.36)">
+
+                        + ORDINA
+
+                    </button>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-info">
+
+                        <div class="product-code">
+                            63506915144
+                        </div>
+
+                        <div class="product-name">
+                            Kit dei filtri dell'aria
+                        </div>
+
+                    </div>
+
+                    <div class="product-price">
+                        € 69,91
+                    </div>
+
+                    <button
+                        class="product-add"
+                        onclick="selectProduct('63506915144','Kit dei filtri dell aria',69.91)">
+
+                        + ORDINA
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
              PAGAMENTI
-        ================================================== -->
+        ================================================= -->
 
-        <div
-            id="paymentsPage"
-            class="internal-page">
+        <section
+            id="paymentsSection"
+            class="section">
 
             <button
-                class="back-section"
-                onclick="showPersonMenu()">
+                class="back"
+                onclick="showDashboard()">
 
                 ← Torna al menu
 
             </button>
 
-            <div class="internal-header">
 
-                <h2>
+            <div class="page-title">
+
+                <h1>
                     Pagamenti
-                </h2>
+                </h1>
 
                 <p>
-                    Importi da versare a Gio
+                    Situazione economica di
+                    <span id="paymentPerson"></span>
                 </p>
 
             </div>
 
-            <div class="info-box">
 
-                Questa sezione sarà utilizzata per registrare
-                quanto Roby o Fede hanno già pagato e quanto
-                rimane da pagare.
+            <div class="payment-box">
+
+                <div>
+                    TOTALE CHE DEVI DARE A GIO
+                </div>
+
+                <div
+                    class="payment-total"
+                    id="paymentTotal">
+
+                    € 0,00
+
+                </div>
+
+                <div class="payment-description">
+
+                    Questo importo viene calcolato automaticamente
+                    dagli ordini meno gli eventuali soldi che Gio
+                    deve dare a te.
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              STORICO
-        ================================================== -->
+        ================================================= -->
 
-        <div
-            id="historyPage"
-            class="internal-page">
+        <section
+            id="historySection"
+            class="section">
 
             <button
-                class="back-section"
-                onclick="showPersonMenu()">
+                class="back"
+                onclick="showDashboard()">
 
                 ← Torna al menu
 
             </button>
 
-            <div class="internal-header">
 
-                <h2>
-                    Storico Ordini
-                </h2>
+            <div class="page-title">
+
+                <h1>
+                    Storico
+                </h1>
 
                 <p>
-                    Tutti gli ordini precedenti
+                    Tutti gli ordini registrati
                 </p>
 
             </div>
 
-            <div class="info-box">
+            <div class="table-box">
 
-                Qui inseriremo lo storico completo degli ordini
-                consegnati e pagati.
+                <table>
 
-            </div>
+                    <thead>
 
-        </div>
+                        <tr>
 
+                            <th>
+                                DATA
+                            </th>
 
-        <!-- ==================================================
-             IMPOSTAZIONI
-        ================================================== -->
+                            <th>
+                                ARTICOLO
+                            </th>
 
-        <div
-            id="settingsPage"
-            class="internal-page">
+                            <th>
+                                NETTO
+                            </th>
 
-            <button
-                class="back-section"
-                onclick="showPersonMenu()">
+                            <th>
+                                STATO
+                            </th>
 
-                ← Torna al menu
+                        </tr>
 
-            </button>
+                    </thead>
 
-            <div class="internal-header">
+                    <tbody id="historyBody"></tbody>
 
-                <h2>
-                    Impostazioni
-                </h2>
-
-                <p>
-                    Impostazioni del gestionale
-                </p>
+                </table>
 
             </div>
 
-            <div class="info-box">
-
-                Le impostazioni verranno aggiunte
-                durante lo sviluppo del software.
-
-            </div>
-
-        </div>
+        </section>
 
 
     </main>
@@ -1237,22 +1457,23 @@ td {
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MODALE NUOVO ORDINE
-================================================== -->
+===================================================== -->
 
 <div
-    class="modal-background"
+    class="modal-bg"
     id="orderModal">
 
     <div class="modal">
 
         <h2>
-            Nuovo ordine KTM
+            Inserisci ordine
         </h2>
 
 
         <div class="form-grid">
+
 
             <div class="form-group">
 
@@ -1277,7 +1498,8 @@ td {
                     type="number"
                     id="orderQuantity"
                     min="1"
-                    value="1">
+                    value="1"
+                    oninput="calculate()">
 
             </div>
 
@@ -1285,13 +1507,27 @@ td {
             <div class="form-group full">
 
                 <label>
-                    Articolo / Codice KTM
+                    Codice KTM
                 </label>
 
                 <input
                     type="text"
                     id="orderArticle"
-                    placeholder="Inserisci codice KTM">
+                    placeholder="Codice ricambio">
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Descrizione
+                </label>
+
+                <input
+                    type="text"
+                    id="orderDescription"
+                    placeholder="Descrizione articolo">
 
             </div>
 
@@ -1299,15 +1535,15 @@ td {
             <div class="form-group">
 
                 <label>
-                    Listino (€)
+                    Listino €
                 </label>
 
                 <input
                     type="number"
                     id="orderListino"
-                    min="0"
                     step="0.01"
-                    oninput="calculateOrder()">
+                    min="0"
+                    oninput="calculate()">
 
             </div>
 
@@ -1315,31 +1551,39 @@ td {
             <div class="form-group">
 
                 <label>
-                    Sconto (%)
+                    Sconto %
                 </label>
 
                 <input
                     type="number"
                     id="orderSconto"
-                    min="0"
-                    max="100"
                     value="0"
                     step="0.01"
-                    oninput="calculateOrder()">
+                    min="0"
+                    max="100"
+                    oninput="calculate()">
 
             </div>
 
 
-            <div class="form-group">
+            <!-- QUESTO LO INSERISCI TU -->
+
+            <div class="form-group full">
 
                 <label>
-                    Netto scontato
+                    💵 SOLDI DA DARE A
+                    <span id="moneyPersonLabel">
+                        ROBY
+                    </span>
                 </label>
 
                 <input
-                    type="text"
-                    id="orderNetto"
-                    readonly>
+                    type="number"
+                    id="orderPersonMoney"
+                    value="0"
+                    min="0"
+                    step="0.01"
+                    oninput="calculate()">
 
             </div>
 
@@ -1375,11 +1619,69 @@ td {
         </div>
 
 
+        <div class="calculation">
+
+            <div class="calc-row">
+
+                <span>
+                    Netto unitario
+                </span>
+
+                <strong id="calcUnit">
+                    € 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="calc-row">
+
+                <span>
+                    Totale ordine
+                </span>
+
+                <strong id="calcTotal">
+                    € 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="calc-row">
+
+                <span>
+                    Da dare a <span id="calcPerson">Roby</span>
+                </span>
+
+                <strong id="calcPersonMoney">
+                    € 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="calc-row">
+
+                <span>
+                    <strong>
+                        DA DARE A GIO
+                    </strong>
+                </span>
+
+                <strong id="calcGio">
+                    € 0,00
+                </strong>
+
+            </div>
+
+        </div>
+
+
         <div class="modal-buttons">
 
             <button
                 class="cancel"
-                onclick="closeOrderModal()">
+                onclick="closeModal()">
 
                 Annulla
 
@@ -1389,7 +1691,7 @@ td {
                 class="save"
                 onclick="saveOrder()">
 
-                Salva ordine
+                SALVA ORDINE
 
             </button>
 
@@ -1402,168 +1704,196 @@ td {
 
 <script>
 
-/* ================================================
-   VARIABILI
-================================================ */
+/* =====================================================
+   DATI
+===================================================== */
 
-let currentPerson = "";
+let currentUser = "";
 
 let orders =
     JSON.parse(localStorage.getItem("ktmOrders")) || [];
 
 
-/* ================================================
-   APERTURA PERSONA
-================================================ */
+/* =====================================================
+   HOME → UTENTE
+===================================================== */
 
-function openPerson(person) {
+function openUser(user){
 
-    currentPerson = person;
+    currentUser = user;
 
-    document.getElementById("homePage").style.display =
-        "none";
+    document.getElementById("homePage").style.display="none";
 
-    document.getElementById("personPage").style.display =
-        "block";
+    document.getElementById("appPage").style.display="block";
 
-    document.getElementById("personHeaderName").textContent =
-        person.toUpperCase();
+    document.getElementById("currentUser").textContent =
+        user.toUpperCase();
 
-    document.getElementById("welcomeTitle").textContent =
-        "Ciao " + person + " 👋";
+    document.getElementById("welcome").textContent =
+        "Ciao " + user + " 👋";
 
-    document.getElementById("ordersPersonName").textContent =
-        person;
+    document.getElementById("orderUserName").textContent =
+        user;
 
-    showPersonMenu();
+    document.getElementById("statPerson").textContent =
+        user.toUpperCase();
+
+    document.getElementById("paymentPerson").textContent =
+        user;
+
+    document.getElementById("moneyPersonLabel").textContent =
+        user.toUpperCase();
+
+    document.getElementById("calcPerson").textContent =
+        user;
+
+    showDashboard();
 }
 
 
-/* ================================================
-   TORNA HOME
-================================================ */
+/* =====================================================
+   HOME
+===================================================== */
 
-function goHome() {
+function goHome(){
 
-    document.getElementById("personPage").style.display =
-        "none";
+    currentUser="";
 
-    document.getElementById("homePage").style.display =
-        "flex";
+    document.getElementById("appPage").style.display="none";
 
-    currentPerson = "";
-
+    document.getElementById("homePage").style.display="flex";
 }
 
 
-/* ================================================
-   MENU PERSONA
-================================================ */
+/* =====================================================
+   NASCONDI TUTTE LE SEZIONI
+===================================================== */
 
-function showPersonMenu() {
+function hideSections(){
 
-    document.getElementById("personMenu").style.display =
-        "block";
-
-    document.getElementById("ordersPage").style.display =
-        "none";
-
-    document.getElementById("summaryPage").style.display =
-        "none";
-
-    document.getElementById("paymentsPage").style.display =
-        "none";
-
-    document.getElementById("historyPage").style.display =
-        "none";
-
-    document.getElementById("settingsPage").style.display =
-        "none";
+    document.querySelectorAll(".section").forEach(section=>{
+        section.style.display="none";
+    });
 
 }
 
 
-/* ================================================
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function showDashboard(){
+
+    hideSections();
+
+    document.getElementById("dashboard").style.display="block";
+}
+
+
+/* =====================================================
    ORDINI
-================================================ */
+===================================================== */
 
-function openOrders() {
+function openOrders(){
 
-    document.getElementById("personMenu").style.display =
-        "none";
+    hideSections();
 
-    document.getElementById("ordersPage").style.display =
-        "block";
+    document.getElementById("ordersSection").style.display="block";
 
     updateOrders();
 }
 
 
-/* ================================================
-   RIEPILOGO
-================================================ */
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
 
-function openSummary() {
+function openNewOrder(){
 
-    document.getElementById("personMenu").style.display =
-        "none";
+    hideSections();
 
-    document.getElementById("summaryPage").style.display =
-        "block";
-
+    document.getElementById("newOrderSection").style.display="block";
 }
 
 
-/* ================================================
+/* =====================================================
    PAGAMENTI
-================================================ */
+===================================================== */
 
-function openPayments() {
+function openPayments(){
 
-    document.getElementById("personMenu").style.display =
-        "none";
+    hideSections();
 
-    document.getElementById("paymentsPage").style.display =
-        "block";
+    document.getElementById("paymentsSection").style.display="block";
 
+    updatePayments();
 }
 
 
-/* ================================================
+/* =====================================================
    STORICO
-================================================ */
+===================================================== */
 
-function openHistory() {
+function openHistory(){
 
-    document.getElementById("personMenu").style.display =
-        "none";
+    hideSections();
 
-    document.getElementById("historyPage").style.display =
-        "block";
+    document.getElementById("historySection").style.display="block";
+
+    updateHistory();
+}
+
+
+/* =====================================================
+   CERCA SU FARIOLI
+===================================================== */
+
+function searchFarioli(){
+
+    const search =
+        document.getElementById("farioliSearch").value.trim();
+
+    /*
+       Farioli utilizza il proprio catalogo con ricerca
+       per codice/nome.
+
+       Apriamo il catalogo ufficiale in una nuova scheda.
+    */
+
+    window.open(
+        "https://ktmfarioli.com/ricambi-ktm",
+        "_blank"
+    );
 
 }
 
 
-/* ================================================
-   IMPOSTAZIONI
-================================================ */
+/* =====================================================
+   SELEZIONA PRODOTTO
+===================================================== */
 
-function openSettings() {
+function selectProduct(code,name,price){
 
-    document.getElementById("personMenu").style.display =
-        "none";
+    openOrderModal();
 
-    document.getElementById("settingsPage").style.display =
-        "block";
+    document.getElementById("orderArticle").value =
+        code;
 
+    document.getElementById("orderDescription").value =
+        name;
+
+    document.getElementById("orderListino").value =
+        price;
+
+    calculate();
 }
 
 
-/* ================================================
-   MODALE ORDINE
-================================================ */
+/* =====================================================
+   MODALE
+===================================================== */
 
-function openOrderModal() {
+function openOrderModal(){
 
     document.getElementById("orderModal")
         .classList.add("show");
@@ -1571,32 +1901,16 @@ function openOrderModal() {
     document.getElementById("orderDate").value =
         new Date().toISOString().split("T")[0];
 
-    document.getElementById("orderQuantity").value =
-        1;
-
-    document.getElementById("orderArticle").value =
-        "";
-
-    document.getElementById("orderListino").value =
-        "";
-
-    document.getElementById("orderSconto").value =
-        0;
-
-    document.getElementById("orderNetto").value =
-        "€ 0,00";
+    document.getElementById("orderQuantity").value=1;
 
     document.getElementById("orderStatus").value =
         "Da ordinare";
 
+    calculate();
 }
 
 
-/* ================================================
-   CHIUDI MODALE
-================================================ */
-
-function closeOrderModal() {
+function closeModal(){
 
     document.getElementById("orderModal")
         .classList.remove("show");
@@ -1604,11 +1918,11 @@ function closeOrderModal() {
 }
 
 
-/* ================================================
-   CALCOLO NETTO
-================================================ */
+/* =====================================================
+   CALCOLI
+===================================================== */
 
-function calculateOrder() {
+function calculate(){
 
     const listino =
         parseFloat(
@@ -1620,20 +1934,67 @@ function calculateOrder() {
             document.getElementById("orderSconto").value
         ) || 0;
 
+    const quantity =
+        parseInt(
+            document.getElementById("orderQuantity").value
+        ) || 1;
+
+    const personMoney =
+        parseFloat(
+            document.getElementById("orderPersonMoney").value
+        ) || 0;
+
+
+    /* prezzo dopo sconto */
+
     const netto =
         listino - (listino * sconto / 100);
 
-    document.getElementById("orderNetto").value =
-        formatEuro(netto);
 
+    /* totale quantità */
+
+    const total =
+        netto * quantity;
+
+
+    /*
+       LOGICA CORRETTA:
+
+       totale ordine
+       -
+       soldi che Gio deve dare a Roby/Fede
+       =
+       soldi che Roby/Fede devono dare a Gio
+    */
+
+    let gio =
+        total - personMoney;
+
+
+    if(gio < 0){
+        gio = 0;
+    }
+
+
+    document.getElementById("calcUnit").textContent =
+        euro(netto);
+
+    document.getElementById("calcTotal").textContent =
+        euro(total);
+
+    document.getElementById("calcPersonMoney").textContent =
+        euro(personMoney);
+
+    document.getElementById("calcGio").textContent =
+        euro(gio);
 }
 
 
-/* ================================================
+/* =====================================================
    SALVA ORDINE
-================================================ */
+===================================================== */
 
-function saveOrder() {
+function saveOrder(){
 
     const date =
         document.getElementById("orderDate").value;
@@ -1646,6 +2007,9 @@ function saveOrder() {
     const article =
         document.getElementById("orderArticle").value.trim();
 
+    const description =
+        document.getElementById("orderDescription").value.trim();
+
     const listino =
         parseFloat(
             document.getElementById("orderListino").value
@@ -1656,11 +2020,16 @@ function saveOrder() {
             document.getElementById("orderSconto").value
         ) || 0;
 
+    const personMoney =
+        parseFloat(
+            document.getElementById("orderPersonMoney").value
+        ) || 0;
+
     const status =
         document.getElementById("orderStatus").value;
 
 
-    if (!date) {
+    if(!date){
 
         alert("Inserisci la data.");
 
@@ -1668,7 +2037,7 @@ function saveOrder() {
     }
 
 
-    if (!article) {
+    if(!article){
 
         alert("Inserisci il codice KTM.");
 
@@ -1680,27 +2049,46 @@ function saveOrder() {
         listino - (listino * sconto / 100);
 
 
-    const order = {
+    const total =
+        netto * quantity;
 
-        id: Date.now(),
 
-        person: currentPerson,
+    let gio =
+        total - personMoney;
 
-        date: date,
 
-        quantity: quantity,
+    if(gio < 0){
+        gio=0;
+    }
 
-        article: article,
 
-        listino: listino,
+    const order={
 
-        sconto: sconto,
+        id:Date.now(),
 
-        netto: netto,
+        person:currentUser,
 
-        totale: netto * quantity,
+        date:date,
 
-        status: status
+        quantity:quantity,
+
+        article:article,
+
+        description:description,
+
+        listino:listino,
+
+        sconto:sconto,
+
+        netto:netto,
+
+        total:total,
+
+        personMoney:personMoney,
+
+        gioMoney:gio,
+
+        status:status
 
     };
 
@@ -1714,81 +2102,70 @@ function saveOrder() {
     );
 
 
-    closeOrderModal();
+    closeModal();
 
-    updateOrders();
-
+    openOrders();
 }
 
 
-/* ================================================
+/* =====================================================
    AGGIORNA ORDINI
-================================================ */
+===================================================== */
 
-function updateOrders() {
+function updateOrders(){
 
-    const personOrders =
+    const userOrders =
         orders.filter(
-            order => order.person === currentPerson
+            order => order.person === currentUser
         );
 
 
-    document.getElementById("ordersCount").textContent =
-        personOrders.length;
+    let total=0;
+
+    let personMoney=0;
+
+    let gioMoney=0;
 
 
-    const total =
-        personOrders.reduce(
-            (sum, order) =>
-                sum + Number(order.totale || 0),
-            0
-        );
+    userOrders.forEach(order=>{
+
+        total += Number(order.total || 0);
+
+        personMoney +=
+            Number(order.personMoney || 0);
+
+        gioMoney +=
+            Number(order.gioMoney || 0);
+
+    });
 
 
-    document.getElementById("ordersTotal").textContent =
-        formatEuro(total);
+    document.getElementById("statOrders").textContent =
+        userOrders.length;
+
+    document.getElementById("statNetto").textContent =
+        euro(total);
+
+    document.getElementById("statPersonMoney").textContent =
+        euro(personMoney);
+
+    document.getElementById("statGio").textContent =
+        euro(gioMoney);
 
 
-    /*
-       Per ora tutto il netto non ancora consegnato
-       viene considerato da pagare a Gio.
-       Questa logica la perfezioneremo quando
-       costruiremo la sezione Pagamenti.
-    */
-
-    const toPay =
-        personOrders
-        .filter(
-            order => order.status !== "Consegnato"
-        )
-        .reduce(
-            (sum, order) =>
-                sum + Number(order.totale || 0),
-            0
-        );
+    const body =
+        document.getElementById("ordersBody");
 
 
-    document.getElementById("ordersToPay").textContent =
-        formatEuro(toPay);
+    if(userOrders.length===0){
 
-
-    const tbody =
-        document.getElementById("ordersTableBody");
-
-
-    if (personOrders.length === 0) {
-
-        tbody.innerHTML = `
+        body.innerHTML=`
 
             <tr>
 
                 <td
-                    colspan="7"
-                    style="
-                        text-align:center;
-                        padding:40px;
-                        color:#888;
-                    ">
+                    colspan="9"
+                    style="text-align:center;padding:40px;color:#888">
 
                     Nessun ordine presente.
 
@@ -1802,19 +2179,13 @@ function updateOrders() {
     }
 
 
-    tbody.innerHTML =
-        personOrders
-        .sort(
-            (a,b) =>
-                new Date(b.date) -
-                new Date(a.date)
-        )
-        .map(order => {
+    body.innerHTML =
+        userOrders
+        .sort((a,b)=>new Date(b.date)-new Date(a.date))
+        .map(order=>{
 
             const statusClass =
-                order.status
-                .toLowerCase()
-                .replaceAll(" ", "-");
+                statusClassName(order.status);
 
 
             return `
@@ -1830,13 +2201,21 @@ function updateOrders() {
                     </td>
 
                     <td>
+
                         <strong>
                             ${escapeHTML(order.article)}
                         </strong>
+
+                        <br>
+
+                        <small style="color:#888">
+                            ${escapeHTML(order.description || "")}
+                        </small>
+
                     </td>
 
                     <td>
-                        ${formatEuro(order.listino)}
+                        ${euro(order.listino)}
                     </td>
 
                     <td>
@@ -1845,17 +2224,22 @@ function updateOrders() {
 
                     <td>
                         <strong>
-                            ${formatEuro(order.netto)}
+                            ${euro(order.total)}
                         </strong>
+                    </td>
+
+                    <td class="money-positive">
+                        ${euro(order.personMoney)}
+                    </td>
+
+                    <td class="money-negative">
+                        ${euro(order.gioMoney)}
                     </td>
 
                     <td>
 
-                        <span
-                            class="status ${statusClass}">
-
+                        <span class="status ${statusClass}">
                             ${order.status}
-
                         </span>
 
                     </td>
@@ -1866,86 +2250,159 @@ function updateOrders() {
 
         })
         .join("");
-
 }
 
 
-/* ================================================
-   FORMATO EURO
-================================================ */
+/* =====================================================
+   PAGAMENTI
+===================================================== */
 
-function formatEuro(value) {
+function updatePayments(){
+
+    const userOrders =
+        orders.filter(
+            order=>order.person===currentUser
+        );
+
+
+    const total =
+        userOrders.reduce(
+            (sum,order)=>
+                sum + Number(order.gioMoney || 0),
+            0
+        );
+
+
+    document.getElementById("paymentTotal").textContent =
+        euro(total);
+}
+
+
+/* =====================================================
+   STORICO
+===================================================== */
+
+function updateHistory(){
+
+    const userOrders =
+        orders.filter(
+            order=>order.person===currentUser
+        );
+
+
+    const body =
+        document.getElementById("historyBody");
+
+
+    if(userOrders.length===0){
+
+        body.innerHTML=`
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    style="text-align:center;padding:40px;color:#888">
+
+                    Nessun ordine.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+
+    body.innerHTML =
+        userOrders
+        .sort((a,b)=>new Date(b.date)-new Date(a.date))
+        .map(order=>`
+
+            <tr>
+
+                <td>
+                    ${formatDate(order.date)}
+                </td>
+
+                <td>
+
+                    <strong>
+                        ${escapeHTML(order.article)}
+                    </strong>
+
+                    <br>
+
+                    <small style="color:#888">
+                        ${escapeHTML(order.description || "")}
+                    </small>
+
+                </td>
+
+                <td>
+                    ${euro(order.total)}
+                </td>
+
+                <td>
+                    ${order.status}
+                </td>
+
+            </tr>
+
+        `)
+        .join("");
+}
+
+
+/* =====================================================
+   FUNZIONI
+===================================================== */
+
+function euro(value){
 
     return new Intl.NumberFormat(
         "it-IT",
         {
-            style: "currency",
-            currency: "EUR"
+            style:"currency",
+            currency:"EUR"
         }
-    ).format(Number(value) || 0);
+    ).format(Number(value)||0);
 
 }
 
 
-/* ================================================
-   FORMATO DATA
-================================================ */
+function formatDate(date){
 
-function formatDate(date) {
+    if(!date) return "-";
 
-    if (!date) return "-";
+    const p=date.split("-");
 
-    const parts =
-        date.split("-");
-
-    return (
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-    );
+    return p[2]+"/"+p[1]+"/"+p[0];
 
 }
 
 
-/* ================================================
-   PROTEZIONE HTML
-================================================ */
+function statusClassName(status){
 
-function escapeHTML(text) {
+    return status
+        .toLowerCase()
+        .replaceAll(" ","-");
+
+}
+
+
+function escapeHTML(text){
 
     return String(text)
-
-        .replaceAll("&", "&amp;")
-
-        .replaceAll("<", "&lt;")
-
-        .replaceAll(">", "&gt;")
-
-        .replaceAll('"', "&quot;")
-
-        .replaceAll("'", "&#039;");
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
-
-
-/* ================================================
-   AVVIO
-================================================ */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        document.getElementById("homePage")
-            .style.display = "flex";
-
-        document.getElementById("personPage")
-            .style.display = "none";
-
-    }
-);
 
 </script>
 
