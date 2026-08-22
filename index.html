@@ -2,736 +2,731 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Gestione Ordini KTM</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 :root{
---orange:#ff6600;
---orange-dark:#e65300;
---orange-light:#fff1e8;
---black:#111;
---gray:#777;
---border:#ddd;
---bg:#f6f6f6;
---white:#fff
+    --orange:#ff6600;
+    --orange-dark:#e65300;
+    --orange-light:#fff1e8;
+    --black:#111;
+    --gray:#666;
+    --light:#f7f7f7;
+    --white:#fff;
+    --green:#16803c;
 }
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:var(--bg);
-color:var(--black)
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#fff;
+    color:var(--black);
+    min-height:100vh;
 }
 
-button,input{
-font-family:inherit
-}
-
-button{cursor:pointer}
+/* =========================
+   HOME
+========================= */
 
 #home{
-min-height:100vh;
-background:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:25px;
-position:relative;
-overflow:hidden
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 20px;
 }
 
 .orange{
-position:absolute;
-background:var(--orange)
+    position:absolute;
+    background:var(--orange);
 }
 
 .o1{
-width:550px;
-height:170px;
-top:-90px;
-left:-150px;
-transform:rotate(-12deg)
+    top:-170px;
+    left:-120px;
+    width:520px;
+    height:300px;
+    transform:rotate(-15deg);
 }
 
 .o2{
-width:500px;
-height:160px;
-bottom:-90px;
-right:-150px;
-transform:rotate(-12deg)
+    right:-170px;
+    top:45%;
+    width:350px;
+    height:550px;
+    transform:rotate(28deg);
 }
 
 .home{
-width:100%;
-max-width:850px;
-text-align:center;
-position:relative;
-z-index:2
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
+    text-align:center;
 }
 
 .logo{
-font-size:80px;
-font-weight:900;
-font-style:italic;
-color:var(--orange)
+    font-size:78px;
+    font-weight:1000;
+    font-style:italic;
+    letter-spacing:-7px;
+    color:var(--orange);
+    line-height:.8;
 }
 
 .home h1{
-font-size:32px;
-margin-top:8px
+    margin-top:55px;
+    font-size:32px;
+    font-weight:900;
 }
 
 .home p{
-color:#777;
-margin-top:8px
+    margin-top:10px;
+    color:var(--gray);
+    font-size:17px;
 }
 
 .people{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-margin-top:45px
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin-top:45px;
 }
 
 .person{
-background:#fff;
-border:1px solid #ddd;
-border-radius:25px;
-padding:35px;
-box-shadow:0 10px 35px #00000012;
-transition:.2s
+    background:rgba(255,255,255,.97);
+    border:1px solid #eee;
+    border-radius:25px;
+    padding:35px 30px 30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
+    transition:.25s;
 }
 
 .person:hover{
-border-color:var(--orange);
-transform:translateY(-3px)
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 .avatar{
-width:75px;
-height:75px;
-margin:auto;
-border-radius:50%;
-background:var(--orange);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:32px
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:32px;
 }
 
 .person h2{
-font-size:30px;
-margin-top:18px
+    margin-top:22px;
+    font-size:31px;
+    font-weight:900;
 }
 
 .btn{
-border:0;
-border-radius:10px;
-padding:13px 20px;
-font-weight:bold
+    border:none;
+    cursor:pointer;
+    font-weight:800;
+    border-radius:9px;
+    padding:13px 18px;
 }
 
 .orangebtn{
-background:var(--orange);
-color:#fff
+    background:var(--orange);
+    color:#fff;
 }
 
 .orangebtn:hover{
-background:var(--orange-dark)
+    background:var(--orange-dark);
 }
 
 .person .btn{
-width:100%;
-margin-top:22px
+    margin-top:25px;
+    width:100%;
+    padding:16px;
+    font-size:17px;
 }
 
+/* =========================
+   APP
+========================= */
+
 #app{
-display:none;
-min-height:100vh
+    display:none;
+    min-height:100vh;
+    background:#fff;
 }
 
 .header{
-height:70px;
-background:white;
-border-bottom:1px solid var(--border);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 22px;
-position:sticky;
-top:0;
-z-index:20
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:#fff;
 }
 
 .headerRight{
-display:flex;
-align-items:center;
-gap:15px
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
 .smalllogo{
-font-size:30px;
-font-weight:900;
-font-style:italic;
-color:var(--orange)
+    color:var(--orange);
+    font-size:27px;
+    font-weight:1000;
+    font-style:italic;
 }
 
-.exit,.back{
-background:#fff;
-border:1px solid #ccc;
-border-radius:8px;
-padding:9px 14px;
-font-weight:bold
+.exit{
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:9px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:700;
 }
 
-.exit:hover,.back:hover{
-border-color:var(--orange);
-color:var(--orange)
+.exit:hover{
+    border-color:var(--orange);
+    color:var(--orange);
 }
 
 .container{
-max-width:1250px;
-margin:auto;
-padding:28px 18px
+    max-width:1150px;
+    margin:auto;
+    padding:35px 25px;
 }
 
-.page{display:none}
-.page.active{display:block}
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
 
 .title{
-margin-bottom:22px
+    margin-bottom:25px;
 }
 
 .title h1{
-font-size:31px
+    font-size:32px;
+    font-weight:900;
 }
 
 .title p{
-color:#777;
-margin-top:5px
+    color:var(--gray);
+    margin-top:5px;
 }
 
+/* =========================
+   STATS
+========================= */
+
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-bottom:22px
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
 }
 
 .stat{
-background:#fff;
-border:1px solid var(--border);
-border-radius:15px;
-padding:18px
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:20px;
 }
 
 .stat small{
-color:#777;
-font-weight:bold
+    display:block;
+    color:#777;
+    font-size:13px;
 }
 
 .stat strong{
-display:block;
-font-size:22px;
-margin-top:8px
+    display:block;
+    font-size:24px;
+    font-weight:900;
+    margin-top:7px;
 }
 
+/* =========================
+   MENU
+========================= */
+
 .menu{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
 }
 
 .card{
-background:#fff;
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
-display:flex;
-align-items:center;
-gap:15px;
-cursor:pointer;
-transition:.2s
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
 .card:hover{
-border-color:var(--orange);
-transform:translateY(-2px)
+    border-color:var(--orange);
+    transform:translateY(-2px);
 }
 
 .icon{
-width:54px;
-height:54px;
-border-radius:13px;
-background:var(--orange-light);
-color:var(--orange);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-flex-shrink:0
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:var(--orange-light);
+    color:var(--orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+.card h3{
+    font-size:16px;
+    margin-bottom:4px;
 }
 
 .card p{
-color:#888;
-font-size:13px;
-margin-top:4px
+    color:#888;
+    font-size:13px;
 }
 
 .arrow{
-margin-left:auto;
-color:var(--orange);
-font-size:25px
+    margin-left:auto;
+    color:var(--orange);
+    font-size:22px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.back{
+    border:none;
+    background:transparent;
+    color:var(--orange);
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:20px;
 }
 
 .top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
+/* =========================
+   SEARCH
+========================= */
+
 .searchbox{
-background:#fff;
-border:1px solid var(--border);
-border-radius:15px;
-padding:14px;
-margin-bottom:14px;
-display:flex;
-gap:10px;
-align-items:center;
-flex-wrap:wrap
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:20px;
+}
+
+.searchbox label{
+    display:block;
+    font-size:12px;
+    color:#777;
+    font-weight:800;
+    margin-bottom:8px;
 }
 
 .searchbox input{
-flex:1;
-min-width:220px;
-padding:12px 14px;
-border:1px solid #ccc;
-border-radius:10px;
-font-size:15px;
-outline:none
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
 }
 
 .searchbox input:focus{
-border-color:var(--orange);
-box-shadow:0 0 0 3px #ff660018
+    border-color:var(--orange);
 }
 
-.searchbox button{
-border:0;
-background:#eee;
-border-radius:10px;
-padding:12px 15px;
-font-weight:bold
-}
-
-.searchInfo{
-color:#777;
-font-size:13px
-}
+/* =========================
+   TABLE
+========================= */
 
 .tablebox{
-background:#fff;
-border:1px solid var(--border);
-border-radius:15px;
-overflow:auto
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    overflow-x:auto;
 }
 
 table{
-border-collapse:collapse;
-width:100%;
-min-width:950px
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
 }
 
 th{
-background:#fafafa;
-color:#777;
-font-size:11px;
-text-align:left;
-padding:12px
+    background:#fafafa;
+    padding:14px;
+    text-align:left;
+    font-size:12px;
+    color:#777;
 }
 
 td{
-padding:9px 10px;
-border-top:1px solid #eee;
-font-size:13px;
-vertical-align:middle
-}
-
-tbody tr:hover{
-background:#fffaf7
-}
-
-.priceInput,
-.discountInput{
-width:100px;
-padding:8px;
-border:1px solid #ccc;
-border-radius:7px;
-font-size:13px
-}
-
-.priceInput:focus,
-.discountInput:focus{
-outline:none;
-border-color:var(--orange)
-}
-
-.netCell{
-font-weight:bold
-}
-
-.totalCell{
-font-weight:bold;
-color:var(--orange)
-}
-
-.workNote{
-background:#fff7f1;
-border:1px solid #ffd9c2;
-padding:13px;
-border-radius:12px;
-margin-bottom:14px;
-color:#555
-}
-
-/* MODALE */
-
-.modalbg{
-display:none;
-position:fixed;
-inset:0;
-background:#0009;
-z-index:50;
-align-items:center;
-justify-content:center;
-padding:20px
-}
-
-.modalbg.open{
-display:flex
-}
-
-.modal{
-background:#fff;
-border-radius:20px;
-padding:24px;
-width:700px;
-max-width:100%;
-max-height:90vh;
-overflow:auto
-}
-
-.modal h2{
-margin-bottom:5px
-}
-
-.modalSub{
-color:#777;
-font-size:13px;
-margin-bottom:18px
-}
-
-.form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px
-}
-
-.field{
-display:flex;
-flex-direction:column;
-gap:5px
-}
-
-.full{
-grid-column:1/-1
-}
-
-.field label{
-font-size:11px;
-color:#666;
-font-weight:bold
-}
-
-.field input{
-padding:11px;
-border:1px solid #ccc;
-border-radius:8px
-}
-
-.field input:focus{
-outline:none;
-border-color:var(--orange)
-}
-
-/* CATALOGO */
-
-.catalogBox{
-border:1px solid #ddd;
-border-radius:12px;
-overflow:hidden;
-background:#fafafa
-}
-
-.catalogSearch{
-width:100%;
-padding:13px;
-border:0;
-border-bottom:1px solid #ddd;
-outline:none;
-font-size:15px
-}
-
-.catalogResults{
-max-height:260px;
-overflow-y:auto
-}
-
-.catalogItem{
-padding:12px 14px;
-background:white;
-border-bottom:1px solid #eee;
-cursor:pointer;
-transition:.15s
-}
-
-.catalogItem:hover{
-background:var(--orange-light)
-}
-
-.catalogCode{
-font-weight:900;
-color:var(--orange);
-font-size:13px
-}
-
-.catalogName{
-font-size:13px;
-margin-top:3px
-}
-
-.catalogEmpty{
-padding:16px;
-color:#777;
-font-size:13px
-}
-
-.selectedPart{
-display:none;
-margin-top:10px;
-background:#fff1e8;
-border:1px solid #ffd1b8;
-border-radius:10px;
-padding:11px
-}
-
-.selectedPart.show{
-display:block
-}
-
-.selectedPart strong{
-color:var(--orange)
-}
-
-.summary{
-background:#fff1e8;
-padding:14px;
-border-radius:12px;
-margin-top:18px
-}
-
-.sumrow{
-display:flex;
-justify-content:space-between;
-padding:5px 0
-}
-
-.sumtotal{
-border-top:1px solid #ffd0b8;
-margin-top:7px;
-padding-top:10px;
-font-weight:bold
-}
-
-.actions{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:18px
-}
-
-.cancel{
-background:#eee;
-border:0;
-border-radius:8px;
-padding:12px;
-font-weight:bold
-}
-
-.save{
-background:var(--orange);
-color:white;
-border:0;
-border-radius:8px;
-padding:12px 20px;
-font-weight:bold
-}
-
-.save:hover{
-background:var(--orange-dark)
-}
-
-.saveMessage{
-position:fixed;
-right:20px;
-bottom:20px;
-background:#111;
-color:white;
-padding:12px 18px;
-border-radius:10px;
-font-size:13px;
-font-weight:bold;
-opacity:0;
-transform:translateY(20px);
-pointer-events:none;
-transition:.25s;
-z-index:100
-}
-
-.saveMessage.show{
-opacity:1;
-transform:translateY(0)
+    padding:14px;
+    border-top:1px solid #eee;
+    font-size:13px;
 }
 
 .empty{
-text-align:center;
-padding:30px;
-color:#777
+    text-align:center;
+    padding:40px;
+    color:#888;
 }
 
-@media(max-width:700px){
+/* =========================
+   PAYMENT
+========================= */
 
-.logo{
-font-size:60px
+.payment{
+    background:var(--orange-light);
+    border-left:4px solid var(--orange);
+    padding:25px;
+    border-radius:10px;
 }
 
-.people,
-.menu{
-grid-template-columns:1fr
+.payment .big{
+    font-size:32px;
+    font-weight:900;
+    margin:10px 0;
 }
 
-.stats{
-grid-template-columns:1fr
+/* =========================
+   MODAL
+========================= */
+
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:20px;
+}
+
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
+    background:#fff;
+    width:650px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:20px;
+    padding:25px;
+}
+
+.modal h2{
+    margin-bottom:20px;
 }
 
 .form{
-grid-template-columns:1fr
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.full{
-grid-column:auto
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
-.top{
-align-items:flex-start;
-gap:10px;
-flex-direction:column
+.field.full{
+    grid-column:1/-1;
 }
 
-.header{
-padding:0 15px
+.field label{
+    font-size:12px;
+    font-weight:700;
+    color:#666;
 }
 
-.container{
-padding:22px 12px
+.field input,
+.field select{
+    border:1px solid #ddd;
+    padding:11px;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
 }
 
+.field input:focus,
+.field select:focus{
+    border-color:var(--orange);
 }
+
+/* =========================
+   AUTOCOMPLETE
+========================= */
+
+.code-search{
+    position:relative;
+}
+
+.suggestions{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#fff;
+    border:1px solid #ddd;
+    border-top:none;
+    border-radius:0 0 10px 10px;
+    max-height:220px;
+    overflow-y:auto;
+    z-index:200;
+    display:none;
+}
+
+.suggestion{
+    padding:12px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+}
+
+.suggestion:hover{
+    background:var(--orange-light);
+}
+
+.suggestion-code{
+    font-weight:900;
+}
+
+.suggestion-name{
+    color:#777;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.price-found{
+    background:#eef9f1 !important;
+    border-color:#b7dfc3 !important;
+}
+
+.price-info{
+    font-size:12px;
+    color:var(--green);
+    margin-top:3px;
+    min-height:15px;
+}
+
+/* =========================
+   MODAL BUTTONS
+========================= */
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:25px;
+}
+
+.cancel{
+    border:none;
+    background:#eee;
+    padding:11px 18px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.save{
+    border:none;
+    background:var(--orange);
+    color:#fff;
+    padding:11px 20px;
+    border-radius:8px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.save:hover{
+    background:var(--orange-dark);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .logo{
+        font-size:60px;
+    }
+
+    .home h1{
+        font-size:25px;
+        margin-top:40px;
+    }
+
+    .people{
+        grid-template-columns:1fr;
+        gap:15px;
+        margin-top:30px;
+    }
+
+    .person{
+        padding:25px 20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .menu{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        padding:0 15px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .top{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home">
 
-<div class="orange o1"></div>
-<div class="orange o2"></div>
+    <div class="orange o1"></div>
+    <div class="orange o2"></div>
 
-<div class="home">
+    <div class="home">
 
-<div class="logo">KTM</div>
+        <div class="logo">KTM</div>
 
-<h1>GESTIONE ORDINI</h1>
+        <h1>GESTIONE ORDINI</h1>
 
-<p>Seleziona la persona da gestire</p>
+        <p>Seleziona la persona da gestire</p>
 
-<div class="people">
+        <div class="people">
 
-<div class="person">
+            <div class="person">
 
-<div class="avatar">👤</div>
+                <div class="avatar">👤</div>
 
-<h2>ROBY</h2>
+                <h2>ROBY</h2>
 
-<button
-class="btn orangebtn"
-onclick="entra('Roby')">
+                <button
+                    class="btn orangebtn"
+                    id="robyBtn">
+                    ENTRA
+                </button>
 
-ENTRA
+            </div>
 
-</button>
+            <div class="person">
 
-</div>
+                <div class="avatar">👤</div>
 
-<div class="person">
+                <h2>FEDE</h2>
 
-<div class="avatar">👤</div>
+                <button
+                    class="btn orangebtn"
+                    id="fedeBtn">
+                    ENTRA
+                </button>
 
-<h2>FEDE</h2>
+            </div>
 
-<button
-class="btn orangebtn"
-onclick="entra('Fede')">
+        </div>
 
-ENTRA
+    </div>
 
-</button>
-
-</div>
-
-</div>
-</div>
 </section>
 
 
-<!-- APP -->
+<!-- =========================
+     APP
+========================= -->
 
 <section id="app">
 
 <header class="header">
 
-<div class="headerRight">
+    <div class="headerRight">
 
-<div class="smalllogo">KTM</div>
+        <div class="smalllogo">KTM</div>
 
-<strong id="currentUser"></strong>
+        <strong id="currentUser"></strong>
 
-</div>
+    </div>
 
-<button
-class="exit"
-onclick="esci()">
-
-← Esci
-
-</button>
+    <button
+        class="exit"
+        id="exitBtn">
+        ← Esci
+    </button>
 
 </header>
 
@@ -739,430 +734,625 @@ onclick="esci()">
 <main class="container">
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <section
-id="dashboard"
-class="page active">
+    id="dashboard"
+    class="page active">
 
-<div class="title">
+    <div class="title">
 
-<h1 id="hello"></h1>
+        <h1 id="hello"></h1>
 
-<p>
-Gestione ordini, lavori, prezzi e sconti
-</p>
+        <p>
+            Gestione ordini, prezzi e pagamenti
+        </p>
 
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<small>ORDINI</small>
-<strong id="count">0</strong>
-</div>
-
-<div class="stat">
-<small>TOTALE NETTO</small>
-<strong id="netTotal">€ 0,00</strong>
-</div>
-
-<div class="stat">
-<small>LAVORI</small>
-<strong id="workCount">0</strong>
-</div>
-
-</div>
+    </div>
 
 
-<div class="menu">
+    <div class="stats">
 
-<div
-class="card"
-onclick="showPage('orders')">
+        <div class="stat">
 
-<div class="icon">📋</div>
+            <small>ORDINI</small>
 
-<div>
-<h3>I miei ordini</h3>
-<p>Visualizza e cerca tutti gli articoli</p>
-</div>
+            <strong id="count">
+                0
+            </strong>
 
-<div class="arrow">›</div>
-
-</div>
+        </div>
 
 
-<div
-class="card"
-onclick="openModal()">
+        <div class="stat">
 
-<div class="icon">➕</div>
+            <small>TOTALE NETTO</small>
 
-<div>
-<h3>Nuovo ordine</h3>
-<p>Cerca e aggiungi un ricambio KTM</p>
-</div>
+            <strong id="netTotal">
+                € 0,00
+            </strong>
 
-<div class="arrow">›</div>
-
-</div>
+        </div>
 
 
-<div
-class="card"
-onclick="showPage('works')">
+        <div class="stat">
 
-<div class="icon">🔧</div>
+            <small>DA DARE A GIO</small>
 
-<div>
-<h3>Lavori</h3>
-<p>Gestisci le attività</p>
-</div>
+            <strong id="gioTotal">
+                € 0,00
+            </strong>
 
-<div class="arrow">›</div>
+        </div>
 
-</div>
 
-</div>
+        <div class="stat">
+
+            <small>DA DARE ALLA PERSONA</small>
+
+            <strong id="personTotal">
+                € 0,00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <div
+            class="card"
+            id="ordersCard">
+
+            <div class="icon">
+                📋
+            </div>
+
+            <div>
+
+                <h3>
+                    I miei ordini
+                </h3>
+
+                <p>
+                    Visualizza tutti gli articoli
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            id="newCard">
+
+            <div class="icon">
+                ➕
+            </div>
+
+            <div>
+
+                <h3>
+                    Nuovo ordine
+                </h3>
+
+                <p>
+                    Aggiungi un nuovo articolo
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            id="paymentsCard">
+
+            <div class="icon">
+                💶
+            </div>
+
+            <div>
+
+                <h3>
+                    Pagamenti
+                </h3>
+
+                <p>
+                    Controlla quanto deve essere versato a Gio
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            id="worksCard">
+
+            <div class="icon">
+                🔧
+            </div>
+
+            <div>
+
+                <h3>
+                    Lavori
+                </h3>
+
+                <p>
+                    Visualizza le attività
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ORDINI -->
+<!-- =========================
+     ORDINI
+========================= -->
 
 <section
-id="orders"
-class="page">
+    id="orders"
+    class="page">
 
-<button
-class="back"
-onclick="showPage('dashboard')">
-
-← Dashboard
-
-</button>
-
-<div class="top">
-
-<div class="title">
-
-<h1>
-Ordini di
-<span id="ordersPerson"></span>
-</h1>
-
-<p>
-Ricerca rapida per codice o articolo
-</p>
-
-</div>
-
-<button
-class="btn orangebtn"
-onclick="openModal()">
-
-+ Nuovo ordine
-
-</button>
-
-</div>
+    <button
+        class="back"
+        id="backBtn">
+        ← Dashboard
+    </button>
 
 
-<div class="searchbox">
+    <div class="top">
 
-<input
-id="orderSearch"
-type="search"
-placeholder="🔎 Cerca codice KTM..."
-autocomplete="off">
+        <div class="title">
 
-<button onclick="clearSearch">
-Pulisci
-</button>
+            <h1>
+                Ordini di
+                <span id="ordersPerson"></span>
+            </h1>
 
-<span
-class="searchInfo"
-id="searchInfo">
-</span>
+            <p>
+                Ricerca e gestione degli articoli
+            </p>
 
-</div>
+        </div>
 
 
-<div class="tablebox">
+        <button
+            class="btn orangebtn"
+            id="newOrderBtn">
 
-<table>
+            + Nuovo ordine
 
-<thead>
+        </button>
 
-<tr>
+    </div>
 
-<th>DATA</th>
-<th>Q.TÀ</th>
-<th>CODICE / ARTICOLO</th>
-<th>PREZZO (€)</th>
-<th>SCONTO (%)</th>
-<th>NETTO (€)</th>
-<th>TOTALE (€)</th>
 
-</tr>
+    <div class="searchbox">
 
-</thead>
+        <label>
+            RICERCA RAPIDA CODICE KTM
+        </label>
 
-<tbody id="ordersBody"></tbody>
+        <input
+            type="search"
+            id="quickSearch"
+            placeholder="Inserisci codice articolo..."
+            autocomplete="off">
 
-</table>
+    </div>
 
-</div>
+
+    <div class="tablebox">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>DATA</th>
+                    <th>Q.TÀ</th>
+                    <th>CODICE / ARTICOLO</th>
+                    <th>LISTINO</th>
+                    <th>SCONTO</th>
+                    <th>NETTO</th>
+                    <th>TOTALE</th>
+                    <th>DA DARE A PERSONA</th>
+                    <th>DA DARE A GIO</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="ordersBody"></tbody>
+
+        </table>
+
+    </div>
 
 </section>
 
 
-<!-- LAVORI -->
+<!-- =========================
+     PAGAMENTI
+========================= -->
 
 <section
-id="works"
-class="page">
+    id="payments"
+    class="page">
 
-<button
-class="back"
-onclick="showPage('dashboard')">
+    <button
+        class="back"
+        id="paymentsBack">
+        ← Dashboard
+    </button>
 
-← Dashboard
 
-</button>
+    <div class="title">
 
-<div class="top">
+        <h1>
+            Pagamenti
+        </h1>
 
-<div class="title">
+        <p>
+            Situazione economica di
+            <span id="paymentName"></span>
+        </p>
 
-<h1>
-Lavori di
-<span id="worksPerson"></span>
-</h1>
+    </div>
 
-<p>
-Attività escluse dagli ordini ricambi
-</p>
 
-</div>
+    <div class="payment">
 
-</div>
+        <div>
+            TOTALE DA DARE A GIO
+        </div>
 
-<div class="workNote">
+        <div
+            class="big"
+            id="paymentTotal">
 
-I prezzi sono inizialmente a <b>€ 0,00</b>.
-Puoi inserirli direttamente nelle righe.
-Lo sconto predefinito è <b>25%</b>.
+            € 0,00
 
-</div>
+        </div>
 
-<div class="tablebox">
+        <p>
+            Il valore viene calcolato automaticamente
+            dagli ordini salvati.
+        </p>
 
-<table>
-
-<thead>
-
-<tr>
-
-<th>DATA</th>
-<th>Q.TÀ</th>
-<th>LAVORO</th>
-<th>PREZZO (€)</th>
-<th>SCONTO (%)</th>
-<th>NETTO (€)</th>
-<th>TOTALE (€)</th>
-
-</tr>
-
-</thead>
-
-<tbody id="worksBody"></tbody>
-
-</table>
-
-</div>
+    </div>
 
 </section>
+
+
+<!-- =========================
+     LAVORI
+========================= -->
+
+<section
+    id="works"
+    class="page">
+
+    <button
+        class="back"
+        id="worksBack">
+
+        ← Dashboard
+
+    </button>
+
+
+    <div class="top">
+
+        <div class="title">
+
+            <h1>
+                Lavori di
+                <span id="worksPerson"></span>
+            </h1>
+
+            <p>
+                Attività e lavori registrati
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="note"
+         style="
+         background:#fff1e8;
+         border-left:4px solid #ff6600;
+         padding:25px;
+         border-radius:10px;
+         color:#666;
+         ">
+
+        <strong style="color:#111;">
+            Sezione Lavori
+        </strong>
+
+        <br><br>
+
+        Qui inseriremo tutti gli elementi che
+        hai escluso dagli ordini, come lezioni,
+        pista, lavaggio moto, Sardegna, vino,
+        Progrip, pistone muletto, lezione Ottobiano,
+        motore moto gara, ecc.
+
+        <br><br>
+
+        Anche qui potrai inserire i prezzi
+        successivamente.
+
+    </div>
+
+</section>
+
 
 </main>
+
 </section>
 
 
-<!-- MODALE NUOVO ORDINE -->
+<!-- =========================
+     MODAL NUOVO ORDINE
+========================= -->
 
 <div
-id="modalBg"
-class="modalbg">
+    class="modal-bg"
+    id="modal">
 
-<div class="modal">
+    <div class="modal">
 
-<h2>
-Nuovo ordine -
-<span id="modalUser"></span>
-</h2>
+        <h2>
+            Nuovo ordine —
+            <span id="modalPerson"></span>
+        </h2>
 
-<div class="modalSub">
-Cerca il ricambio nel catalogo KTM
-</div>
 
+        <div class="form">
 
-<div class="catalogBox">
 
-<input
-id="catalogSearch"
-class="catalogSearch"
-type="search"
-placeholder="🔎 Cerca codice o descrizione..."
-autocomplete="off">
+            <!-- CODICE -->
 
-<div
-id="catalogResults"
-class="catalogResults">
-</div>
+            <div
+                class="field full code-search">
 
-</div>
+                <label>
+                    CODICE KTM
+                </label>
 
+                <input
+                    type="text"
+                    id="article"
+                    placeholder="Inserisci il codice KTM..."
+                    autocomplete="off">
 
-<div
-id="selectedPart"
-class="selectedPart">
+                <div
+                    class="suggestions"
+                    id="suggestions">
+                </div>
 
-Ricambio selezionato:
-<strong id="selectedCode"></strong>
+                <div
+                    class="price-info"
+                    id="priceInfo">
+                </div>
 
-<br>
+            </div>
 
-<span id="selectedName"></span>
 
-</div>
+            <!-- ARTICOLO -->
 
+            <div class="field full">
 
-<div
-class="form"
-style="margin-top:18px">
+                <label>
+                    ARTICOLO
+                </label>
 
-<div class="field">
+                <input
+                    type="text"
+                    id="articleName"
+                    placeholder="Nome articolo">
 
-<label>DATA</label>
+            </div>
 
-<input
-type="date"
-id="dateInput">
 
-</div>
+            <!-- DATA -->
 
+            <div class="field">
 
-<div class="field">
+                <label>
+                    DATA
+                </label>
 
-<label>QUANTITÀ</label>
+                <input
+                    type="date"
+                    id="date">
 
-<input
-type="number"
-id="qtyInput"
-min="1"
-value="1">
+            </div>
 
-</div>
 
+            <!-- QUANTITA -->
 
-<div class="field full">
+            <div class="field">
 
-<label>CODICE / ARTICOLO SELEZIONATO</label>
+                <label>
+                    QUANTITÀ
+                </label>
 
-<input
-id="articleInput"
-placeholder="Seleziona un ricambio sopra">
+                <input
+                    type="number"
+                    id="qty"
+                    min="1"
+                    value="1">
 
-</div>
+            </div>
 
 
-<div class="field">
+            <!-- LISTINO -->
 
-<label>PREZZO (€)</label>
+            <div class="field">
 
-<input
-type="number"
-id="listInput"
-step="0.01"
-min="0"
-value="0">
+                <label>
+                    LISTINO (€)
+                </label>
 
-</div>
+                <input
+                    type="number"
+                    id="listino"
+                    min="0"
+                    step="0.01"
+                    placeholder="0,00">
 
+            </div>
 
-<div class="field">
 
-<label>SCONTO (%)</label>
+            <!-- SCONTO -->
 
-<input
-type="number"
-id="discountInput"
-value="25"
-step="0.01"
-min="0"
-max="100">
+            <div class="field">
 
-</div>
+                <label>
+                    SCONTO (%)
+                </label>
 
-</div>
+                <input
+                    type="number"
+                    id="sconto"
+                    min="0"
+                    max="100"
+                    step="0.01"
+                    value="25">
 
+            </div>
 
-<div class="summary">
 
-<div class="sumrow">
+            <!-- NETTO -->
 
-<span>Netto unitario</span>
+            <div class="field">
 
-<strong id="unitNet">
-€ 0,00
-</strong>
+                <label>
+                    NETTO SCONTATO (€)
+                </label>
 
-</div>
+                <input
+                    type="text"
+                    id="netto"
+                    readonly>
 
-<div class="sumrow sumtotal">
+            </div>
 
-<span>Totale ordine</span>
 
-<strong id="orderTotal">
-€ 0,00
-</strong>
+            <!-- TOTALE -->
 
-</div>
+            <div class="field">
 
-</div>
+                <label>
+                    TOTALE (€)
+                </label>
 
+                <input
+                    type="text"
+                    id="totale"
+                    readonly>
 
-<div class="actions">
+            </div>
 
-<button
-class="cancel"
-onclick="closeModal()">
 
-Annulla
+            <!-- DA PERSONA -->
 
-</button>
+            <div class="field">
 
-<button
-class="save"
-onclick="saveOrder()">
+                <label>
+                    DA DARE A PERSONA (€)
+                </label>
 
-SALVA ORDINE
+                <input
+                    type="number"
+                    id="darePersona"
+                    min="0"
+                    step="0.01"
+                    value="0">
 
-</button>
+            </div>
 
-</div>
 
-</div>
+            <!-- DA GIO -->
 
-</div>
+            <div class="field">
 
+                <label>
+                    DA DARE A GIO (€)
+                </label>
 
-<div
-id="saveMessage"
-class="saveMessage">
+                <input
+                    type="number"
+                    id="dareGio"
+                    min="0"
+                    step="0.01"
+                    value="0">
 
-✓ Salvato
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                id="cancelBtn">
+
+                Annulla
+
+            </button>
+
+
+            <button
+                class="save"
+                id="saveBtn">
+
+                Salva ordine
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -1170,419 +1360,239 @@ class="saveMessage">
 <script>
 
 /* =====================================================
-   DATABASE LOCALE
+   DATI PRINCIPALI
 ===================================================== */
 
-const STORAGE_KEY="KTM_GESTIONALE_V3";
+let currentPerson = "";
 
-let currentPerson="";
-let orders=[];
-let works=[];
+let orders =
+    JSON.parse(
+        localStorage.getItem("ktmOrdersV3") || "[]"
+    );
 
 
 /* =====================================================
-   CATALOGO RICAMBI KTM
-   Codici reali KTM già utilizzati nel tuo archivio
+   CATALOGO KTM
+   ESEMPI INIZIALI
 ===================================================== */
 
-const KTM_CATALOG=[
-
-{code:"50430098060",name:"Ricambio KTM 50430098060"},
-{code:"50430098050",name:"Ricambio KTM 50430098050"},
-{code:"50430025000",name:"Ricambio KTM 50430025000"},
-{code:"50430039000",name:"Ricambio KTM 50430039000"},
-{code:"00050002300",name:"Ricambio KTM 00050002300"},
-{code:"50430015044",name:"Ricambio KTM 50430015044"},
-{code:"A46035009000",name:"Ricambio KTM A46035009000"},
-{code:"00050000272",name:"Ricambio KTM 00050000272"},
-{code:"79430107210",name:"Ricambio KTM 79430107210"},
-{code:"79536013000",name:"Ricambio KTM 79536013000"},
-{code:"77239093000",name:"Ricambio KTM 77239093000"},
-{code:"77338005100",name:"Ricambio KTM 77338005100"},
-{code:"A42005907500",name:"Ricambio KTM A42005907500"},
-{code:"A46035909000",name:"Ricambio KTM A46035909000"},
-{code:"A46014069000",name:"Ricambio KTM A46014069000"},
-{code:"A42030060000",name:"Ricambio KTM A42030060000"},
-{code:"50403096010",name:"Ricambio KTM 50403096010"},
-{code:"77204066010",name:"Ricambio KTM 77204066010"},
-{code:"77204066044",name:"Ricambio KTM 77204066044"},
-{code:"A45041072033",name:"Ricambio KTM A45041072033"},
-{code:"79135071044",name:"Ricambio KTM 79135071044"},
-{code:"50439005000",name:"Ricambio KTM 50439005000"},
-{code:"50532054000",name:"Ricambio KTM 50532054000"},
-{code:"91010240S",name:"Ricambio KTM 91010240S"},
-{code:"50439004000",name:"Ricambio KTM 50439004000"},
-{code:"79030015144",name:"Ricambio KTM 79030015144"},
-{code:"47230015044",name:"Ricambio KTM 47230015044"},
-{code:"50530152044",name:"Ricambio KTM 50530152044"},
-{code:"A42030018010",name:"Ricambio KTM A42030018010"},
-{code:"50430006100",name:"Ricambio KTM 50430006100"},
-{code:"50433015400",name:"Ricambio KTM 50433015400"},
-{code:"54834005133",name:"Ricambio KTM 54834005133"},
-{code:"50534005044",name:"Ricambio KTM 50534005044"},
-{code:"A42030035040",name:"Ricambio KTM A42030035040"},
-{code:"A42030035025",name:"Ricambio KTM A42030035025"},
-{code:"A42030118000",name:"Ricambio KTM A42030118000"},
-{code:"A42030000144",name:"Ricambio KTM A42030000144"},
-{code:"50532010033",name:"Ricambio KTM 50532010033"},
-{code:"47230060100",name:"Ricambio KTM 47230060100"},
-{code:"47230035040",name:"Ricambio KTM 47230035040"},
-{code:"50430035050",name:"Ricambio KTM 50430035050"},
-{code:"50430035040",name:"Ricambio KTM 50430035040"},
-{code:"50430035020",name:"Ricambio KTM 50430035020"},
-{code:"55430006100",name:"Ricambio KTM 55430006100"},
-{code:"56530123200",name:"Ricambio KTM 56530123200"},
-{code:"0625623204",name:"Ricambio KTM 0625623204"},
-{code:"54830015244",name:"Ricambio KTM 54830015244"},
-{code:"55530038100",name:"Ricambio KTM 55530038100"},
-{code:"A46030036072",name:"Ricambio KTM A46030036072"},
-{code:"A46030035000",name:"Ricambio KTM A46030035000"},
-{code:"A46030007000I",name:"Ricambio KTM A46030007000I"},
-{code:"79013090000",name:"Ricambio KTM 79013090000"},
-{code:"A44002091000",name:"Ricambio KTM A44002091000"},
-{code:"0625063055",name:"Ricambio KTM 0625063055"},
-{code:"50330082000",name:"Ricambio KTM 50330082000"},
-{code:"A42003014000",name:"Ricambio KTM A42003014000"},
-{code:"A42030000244",name:"Ricambio KTM A42030000244"},
-{code:"0835080326",name:"Ricambio KTM 0835080326"},
-{code:"51030034000",name:"Ricambio KTM 51030034000"},
-{code:"54802031000",name:"Ricambio KTM 54802031000"},
-{code:"79230207200",name:"Ricambio KTM 79230207200"},
-{code:"79041077044",name:"Ricambio KTM 79041077044"},
-{code:"47230049000",name:"Ricambio KTM 47230049000"},
-{code:"47230039000",name:"Ricambio KTM 47230039000"},
-{code:"47230018188",name:"Ricambio KTM 47230018188"},
-{code:"47230025000",name:"Ricambio KTM 47230025000"},
-{code:"0625982031",name:"Ricambio KTM 0625982031"},
-{code:"0062042001400",name:"Ricambio KTM 0062042001400"},
-{code:"47234005044",name:"Ricambio KTM 47234005044"},
-{code:"47233016000",name:"Ricambio KTM 47233016000"},
-{code:"47233002000",name:"Ricambio KTM 47233002000"},
-{code:"47233015000",name:"Ricambio KTM 47233015000"},
-{code:"47233014000",name:"Ricambio KTM 47233014000"},
-{code:"47233003000",name:"Ricambio KTM 47233003000"},
-{code:"77036003200",name:"Ricambio KTM 77036003200"},
-{code:"77839093000",name:"Ricambio KTM 77839093000"},
-{code:"77036027000",name:"Ricambio KTM 77036027000"},
-{code:"A46030007010I",name:"Ricambio KTM A46030007010I"},
-{code:"A46030007000I",name:"Ricambio KTM A46030007000I"},
-{code:"A46035007000",name:"Ricambio KTM A46035007000"},
-{code:"47234012044",name:"Ricambio KTM 47234012044"},
-{code:"79234015100",name:"Ricambio KTM 79234015100"},
-{code:"47030076100",name:"Ricambio KTM 47030076100"},
-{code:"49030023000",name:"Ricambio KTM 49030023000"},
-{code:"47230049000",name:"Ricambio KTM 47230049000"},
-{code:"A46003062000",name:"Ricambio KTM A46003062000"}
-
-];
+let ktmCatalog =
+    JSON.parse(
+        localStorage.getItem("ktmCatalogV1") || "null"
+    );
 
 
-/* =====================================================
-   LAVORI
-===================================================== */
+/*
+   Se il catalogo non esiste ancora,
+   creiamo alcuni esempi.
 
-const LAVORI_ROBY=[
+   QUESTI SONO DATI DI PROVA.
+   Potremo poi sostituirli con il catalogo
+   che utilizzi realmente.
+*/
 
-"Pistone 125",
-"Motore 125",
-"Lavaggio moto",
-"Lezione",
-"Sardegna",
-"Vino",
-"Progrip",
-"Pistone muletto",
-"Lezione Ottobiano",
-"Motore moto gara"
+if(!ktmCatalog){
 
-];
+    ktmCatalog = [
 
-const LAVORI_FEDE=[];
+        {
+            code:"50430098060",
+            name:"Ricambio KTM 50430098060",
+            price:7
+        },
 
+        {
+            code:"50430098050",
+            name:"Ricambio KTM 50430098050",
+            price:7
+        },
 
-/* =====================================================
-   DATI ORDINI INIZIALI
-===================================================== */
+        {
+            code:"50430098000",
+            name:"Ricambio KTM 50430098000",
+            price:12
+        },
 
-const ORDINI_ROBY=[
+        {
+            code:"50430099000",
+            name:"Ricambio KTM 50430099000",
+            price:16
+        },
 
-["2024-10-08",1,"50430098060"],
-["2024-10-10",1,"50430098050"],
-["2024-10-10",1,"50430025000"],
-["2024-10-10",1,"50430039000"],
-["2024-10-10",1,"00050002300"],
-["2024-10-10",1,"50430015044"],
-["2024-10-09",1,"A46035009000"],
-["2024-10-12",1,"79536013000"],
-["2024-10-12",1,"77239093000"],
-["2024-10-12",1,"77338005100"],
-["2024-11-05",1,"A42005907500"],
-["2024-11-05",1,"A46035909000"],
-["2024-11-26",1,"A46014069000"],
-["2024-11-26",1,"A42030060000"],
-["2024-11-26",1,"50403096010"],
-["2024-11-26",1,"A45041072033"],
-["2024-11-26",1,"79135071044"],
-["2024-12-04",1,"50439005000"],
-["2024-12-04",1,"50532054000"],
-["2024-12-12",1,"91010240S"],
-["2024-12-19",1,"50439004000"],
-["2025-01-14",1,"79030015144"],
-["2025-01-20",1,"47230015044"],
-["2025-01-20",1,"50430098050"],
-["2025-01-20",1,"50430098060"],
-["2025-01-20",1,"50530152044"],
-["2025-01-21",1,"A42030018010"],
-["2025-02-17",1,"50430006100"],
-["2025-02-17",1,"50433015400"],
-["2025-02-28",1,"A42030035040"],
-["2025-02-28",1,"A42030035025"],
-["2025-02-28",1,"A42030118000"],
-["2025-02-28",1,"A42030000144"],
-["2025-03-06",1,"50532010033"],
-["2025-03-12",1,"47230060100"],
-["2025-03-12",1,"47230035040"],
-["2025-03-12",1,"50430035050"],
-["2025-03-12",1,"50430035040"],
-["2025-03-12",1,"50430035020"],
-["2025-03-12",1,"50530152044"],
-["2025-03-12",1,"55430006100"],
-["2025-03-12",1,"56530123200"],
-["2025-03-12",1,"0625623204"],
-["2025-03-12",1,"50430015044"],
-["2025-03-12",1,"54830015244"],
-["2025-05-15",1,"55530038100"],
-["2025-05-27",1,"50430098060"],
-["2025-05-27",1,"50430098050"],
-["2025-05-27",1,"50430025000"],
-["2025-05-27",1,"50430039000"],
-["2025-05-27",1,"50430015044"],
-["2025-05-28",1,"50530152044"],
-["2025-06-11",1,"A46030036072"],
-["2025-06-11",1,"A46030035000"],
-["2025-06-11",1,"A46030007000I"],
-["2025-06-16",2,"A46030036072"],
-["2025-06-16",2,"A46030035000"],
-["2025-06-16",2,"A46030007000I"],
-["2025-06-16",1,"50439005000"],
-["2025-06-17",1,"79030015144"],
-["2025-06-18",2,"79013090000"],
-["2025-06-18",2,"A46030036072"],
-["2025-06-19",1,"50530152044"],
-["2025-07-20",1,"A44002091000"],
-["2025-07-21",1,"50430015044"],
-["2025-07-21",1,"0625063055"],
-["2025-07-21",1,"50330082000"],
-["2025-08-08",1,"A46030035000"],
-["2025-08-08",1,"50530152044"],
-["2025-08-08",1,"A42003014000"],
-["2025-09-26",1,"A42030000244"],
-["2025-09-26",4,"0835080326"],
-["2025-09-26",4,"51030034000"],
-["2025-09-30",1,"50530152044"],
-["2025-10-01",1,"54802031000"],
-["2025-10-01",1,"79230207200"],
-["2025-10-28",1,"A42030060000"],
-["2025-10-28",1,"79041077044"],
-["2025-10-28",1,"50430015044"],
-["2025-11-15",1,"A42030035040"],
-["2025-11-15",1,"A42030035025"],
-["2025-11-15",1,"47230050000"],
-["2025-11-15",1,"54802031000"],
-["2026-01-08",1,"45235054028"],
-["2026-01-08",1,"A40530035050"],
-["2026-01-08",1,"45233010200"],
-["2026-01-08",1,"0760263561"],
-["2026-01-08",1,"45230039000"],
-["2026-01-08",1,"45230025100"],
-["2026-01-08",1,"0770052020"],
-["2026-01-08",1,"0770120020"],
-["2026-01-08",1,"0770078020"],
-["2026-01-08",1,"0760152472"],
-["2026-01-08",2,"45133028000"],
-["2026-01-08",1,"0760162240"],
-["2026-01-08",1,"0760223270"],
-["2026-01-08",1,"A46006026033"],
-["2026-01-08",1,"50330006600"],
-["2026-01-08",1,"47030034000"],
-["2026-01-27",1,"47230049000"],
-["2026-01-27",1,"47230039000"],
-["2026-01-27",1,"47230018188"],
-["2026-01-27",1,"47230025000"],
-["2026-01-27",1,"0625982031"],
-["2026-01-27",1,"0062042001400"],
-["2026-02-24",1,"47234005044"],
-["2026-02-24",1,"47233016000"],
-["2026-02-24",1,"47233002000"],
-["2026-02-24",1,"47233015000"],
-["2026-02-24",1,"47233014000"],
-["2026-02-24",1,"47233003000"],
-["2026-02-24",5,"51030034000"],
-["2026-02-24",1,"77036003200"],
-["2026-03-11",1,"77839093000"],
-["2026-03-11",4,"77036027000"],
-["2026-03-11",1,"A46030007010I"],
-["2026-03-20",2,"A46030007000I"],
-["2026-03-27",1,"A46035007000"],
-["2026-04-09",1,"47234012044"],
-["2026-04-09",1,"79234015100"],
-["2026-06-05",1,"47230039000"],
-["2026-06-05",1,"47230018188"],
-["2026-06-05",1,"47230025000"],
-["2026-06-05",1,"47030076100"],
-["2026-06-05",1,"49030023000"],
-["2026-06-05",1,"47230025000"],
-["2026-06-05",1,"47230039000"],
-["2026-06-05",1,"47230018188"],
-["2026-06-05",1,"47230015044"],
-["2026-06-05",2,"47230049000"],
-["2026-07-16",4,"A46003062000"]
+        {
+            code:"54830034000",
+            name:"Ricambio KTM 54830034000",
+            price:58
+        },
 
-];
+        {
+            code:"54830034001",
+            name:"Ricambio KTM 54830034001",
+            price:131
+        },
 
-const ORDINI_FEDE=[];
+        {
+            code:"54830034002",
+            name:"Ricambio KTM 54830034002",
+            price:12
+        },
 
+        {
+            code:"54830034003",
+            name:"Ricambio KTM 54830034003",
+            price:14
+        },
 
-/* =====================================================
-   STORAGE
-===================================================== */
+        {
+            code:"54830034004",
+            name:"Ricambio KTM 54830034004",
+            price:209.50
+        },
 
-function database(){
+        {
+            code:"54830034005",
+            name:"Ricambio KTM 54830034005",
+            price:66.51
+        },
 
-try{
-return JSON.parse(
-localStorage.getItem(STORAGE_KEY)||"{}"
-);
-}catch(e){
-return {};
-}
+        {
+            code:"54830034006",
+            name:"Ricambio KTM 54830034006",
+            price:6.084
+        },
 
-}
+        {
+            code:"54830034007",
+            name:"Ricambio KTM 54830034007",
+            price:224.50
+        },
 
-function saveStorage(){
+        {
+            code:"54830034008",
+            name:"Ricambio KTM 54830034008",
+            price:27.50
 
-const db=database();
+        }
 
-db[currentPerson]={
-orders:orders,
-works:works
-};
+    ];
 
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(db)
-);
-
-showSaved();
+    localStorage.setItem(
+        "ktmCatalogV1",
+        JSON.stringify(ktmCatalog)
+    );
 
 }
 
 
 /* =====================================================
-   PREPARAZIONE
+   ELEMENTI
 ===================================================== */
 
-function prepareOrders(base){
+const home =
+    document.getElementById("home");
 
-return base.map((x,i)=>({
+const app =
+    document.getElementById("app");
 
-id:"o_"+i+"_"+x[2]+"_"+Date.now(),
+const modal =
+    document.getElementById("modal");
 
-date:x[0],
+const articleInput =
+    document.getElementById("article");
 
-qty:Number(x[1])||1,
+const articleName =
+    document.getElementById("articleName");
 
-article:x[2],
+const listinoInput =
+    document.getElementById("listino");
 
-price:0,
+const scontoInput =
+    document.getElementById("sconto");
 
-discount:25
+const qtyInput =
+    document.getElementById("qty");
 
-}));
+const nettoInput =
+    document.getElementById("netto");
 
-}
+const totaleInput =
+    document.getElementById("totale");
 
-function prepareWorks(base){
+const darePersonaInput =
+    document.getElementById("darePersona");
 
-return base.map((name,i)=>({
+const dareGioInput =
+    document.getElementById("dareGio");
 
-id:"w_"+i+"_"+Date.now(),
+const suggestions =
+    document.getElementById("suggestions");
 
-date:"",
-
-qty:1,
-
-article:name,
-
-price:0,
-
-discount:25
-
-}));
-
-}
+const priceInfo =
+    document.getElementById("priceInfo");
 
 
 /* =====================================================
-   ENTRA
+   ENTRATA ROBY
 ===================================================== */
 
-function entra(nome){
+document
+.getElementById("robyBtn")
+.addEventListener("click",function(){
 
-currentPerson=nome;
+    enterPerson("ROBY");
 
-const db=database();
-
-if(db[nome]){
-
-orders=db[nome].orders||[];
-works=db[nome].works||[];
-
-orders.forEach(x=>{
-if(x.discount===undefined)
-x.discount=25;
 });
 
-works.forEach(x=>{
-if(x.discount===undefined)
-x.discount=25;
+
+/* =====================================================
+   ENTRATA FEDE
+===================================================== */
+
+document
+.getElementById("fedeBtn")
+.addEventListener("click",function(){
+
+    enterPerson("FEDE");
+
 });
 
-}else{
 
-if(nome==="Roby"){
+/* =====================================================
+   ENTRA PERSONA
+===================================================== */
 
-orders=prepareOrders(ORDINI_ROBY);
-works=prepareWorks(LAVORI_ROBY);
+function enterPerson(person){
 
-}else{
+    currentPerson = person;
 
-orders=prepareOrders(ORDINI_FEDE);
-works=prepareWorks(LAVORI_FEDE);
+    home.style.display = "none";
 
-}
+    app.style.display = "block";
 
-saveStorageSilent();
+    document
+    .getElementById("currentUser")
+    .textContent = person;
 
-}
+    document
+    .getElementById("hello")
+    .textContent =
+        "Ciao " + person;
 
-document.getElementById("home").style.display="none";
-document.getElementById("app").style.display="block";
+    document
+    .getElementById("ordersPerson")
+    .textContent = person;
 
-document.getElementById("currentUser").textContent=
-nome.toUpperCase();
+    document
+    .getElementById("paymentName")
+    .textContent = person;
 
-document.getElementById("hello").textContent=
-"CIAO "+nome.toUpperCase();
+    document
+    .getElementById("worksPerson")
+    .textContent = person;
 
-document.getElementById("ordersPerson").textContent=
-nome.toUpperCase();
+    showPage("dashboard");
 
-document.getElementById("worksPerson").textContent=
-nome.toUpperCase();
-
-renderAll();
-
-showPage("dashboard");
+    updateDashboard();
 
 }
 
@@ -1591,109 +1601,627 @@ showPage("dashboard");
    USCITA
 ===================================================== */
 
-function esci(){
-
-saveStorageSilent();
-
-document.getElementById("app").style.display="none";
-document.getElementById("home").style.display="flex";
-
-}
-
-
-/* =====================================================
-   STORAGE SILENZIOSO
-===================================================== */
-
-function saveStorageSilent(){
-
-const db=database();
-
-db[currentPerson]={
-orders:orders,
-works:works
-};
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(db)
-);
-
-}
-
-
-/* =====================================================
-   PAGINE
-===================================================== */
-
-function showPage(id){
-
 document
-.querySelectorAll(".page")
-.forEach(x=>x.classList.remove("active"));
+.getElementById("exitBtn")
+.addEventListener("click",function(){
 
-document
-.getElementById(id)
-.classList.add("active");
+    currentPerson = "";
 
-if(id==="orders")
-renderOrders();
+    app.style.display = "none";
 
-if(id==="works")
-renderWorks();
+    home.style.display = "flex";
 
-}
-
-
-/* =====================================================
-   EURO
-===================================================== */
-
-function euro(v){
-
-return "€ "+
-Number(v||0).toLocaleString(
-"it-IT",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
 });
 
+
+/* =====================================================
+   NAVIGAZIONE
+===================================================== */
+
+function showPage(pageId){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+    const page =
+        document.getElementById(pageId);
+
+    if(page){
+
+        page.classList.add("active");
+
+    }
+
 }
+
+
+/* =====================================================
+   ORDINI
+===================================================== */
+
+document
+.getElementById("ordersCard")
+.addEventListener("click",function(){
+
+    openOrders();
+
+});
+
+
+document
+.getElementById("newCard")
+.addEventListener("click",function(){
+
+    openModal();
+
+});
+
+
+document
+.getElementById("newOrderBtn")
+.addEventListener("click",function(){
+
+    openModal();
+
+});
+
+
+document
+.getElementById("backBtn")
+.addEventListener("click",function(){
+
+    showPage("dashboard");
+
+});
+
+
+function openOrders(){
+
+    showPage("orders");
+
+    renderOrders();
+
+}
+
+
+/* =====================================================
+   LAVORI
+===================================================== */
+
+document
+.getElementById("worksCard")
+.addEventListener("click",function(){
+
+    showPage("works");
+
+});
+
+
+document
+.getElementById("worksBack")
+.addEventListener("click",function(){
+
+    showPage("dashboard");
+
+});
+
+
+/* =====================================================
+   PAGAMENTI
+===================================================== */
+
+document
+.getElementById("paymentsCard")
+.addEventListener("click",function(){
+
+    showPage("payments");
+
+    updatePayments();
+
+});
+
+
+document
+.getElementById("paymentsBack")
+.addEventListener("click",function(){
+
+    showPage("dashboard");
+
+});
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(){
+
+    modal.classList.add("show");
+
+    document
+    .getElementById("modalPerson")
+    .textContent = currentPerson;
+
+    resetForm();
+
+}
+
+
+document
+.getElementById("cancelBtn")
+.addEventListener("click",function(){
+
+    modal.classList.remove("show");
+
+});
+
+
+modal.addEventListener("click",function(e){
+
+    if(e.target === modal){
+
+        modal.classList.remove("show");
+
+    }
+
+});
+
+
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetForm(){
+
+    document
+    .getElementById("date")
+    .value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+    articleInput.value = "";
+
+    articleName.value = "";
+
+    qtyInput.value = 1;
+
+    listinoInput.value = "";
+
+    scontoInput.value = 25;
+
+    nettoInput.value = "";
+
+    totaleInput.value = "";
+
+    darePersonaInput.value = 0;
+
+    dareGioInput.value = 0;
+
+    priceInfo.textContent = "";
+
+    articleInput.classList.remove("price-found");
+
+    suggestions.style.display = "none";
+
+}
+
+
+/* =====================================================
+   RICERCA CODICE
+===================================================== */
+
+articleInput.addEventListener(
+    "input",
+    function(){
+
+        const value =
+            this.value
+            .trim()
+            .toLowerCase();
+
+        suggestions.innerHTML = "";
+
+        if(!value){
+
+            suggestions.style.display = "none";
+
+            return;
+
+        }
+
+        const results =
+            ktmCatalog
+            .filter(function(item){
+
+                return (
+                    item.code
+                    .toLowerCase()
+                    .includes(value)
+                    ||
+                    item.name
+                    .toLowerCase()
+                    .includes(value)
+                );
+
+            })
+            .slice(0,10);
+
+
+        if(results.length === 0){
+
+            suggestions.style.display = "none";
+
+            priceInfo.textContent =
+                "Codice non presente nel catalogo interno.";
+
+            articleInput.classList.remove(
+                "price-found"
+            );
+
+            return;
+
+        }
+
+
+        results.forEach(function(item){
+
+            const div =
+                document.createElement("div");
+
+            div.className = "suggestion";
+
+            div.innerHTML =
+
+                "<div class='suggestion-code'>" +
+                item.code +
+                "</div>" +
+
+                "<div class='suggestion-name'>" +
+                item.name +
+                " — € " +
+                formatMoney(item.price) +
+                "</div>";
+
+
+            div.addEventListener(
+                "click",
+                function(){
+
+                    selectCatalogItem(item);
+
+                }
+            );
+
+
+            suggestions.appendChild(div);
+
+        });
+
+
+        suggestions.style.display = "block";
+
+    }
+);
+
+
+/* =====================================================
+   SELEZIONE ARTICOLO
+===================================================== */
+
+function selectCatalogItem(item){
+
+    articleInput.value =
+        item.code;
+
+    articleName.value =
+        item.name;
+
+    listinoInput.value =
+        item.price;
+
+    articleInput.classList.add(
+        "price-found"
+    );
+
+    priceInfo.textContent =
+        "✓ Prezzo trovato nel catalogo interno";
+
+    suggestions.style.display =
+        "none";
+
+    calculate();
+
+}
+
+
+/* =====================================================
+   INVIO DA CODICE
+===================================================== */
+
+articleInput.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key !== "Enter"){
+
+            return;
+
+        }
+
+        const code =
+            articleInput
+            .value
+            .trim()
+            .toLowerCase();
+
+        const found =
+            ktmCatalog.find(function(item){
+
+                return item.code.toLowerCase() === code;
+
+            });
+
+
+        if(found){
+
+            selectCatalogItem(found);
+
+        }
+
+    }
+);
 
 
 /* =====================================================
    CALCOLO
 ===================================================== */
 
-function calculate(price,discount,qty){
+[
+    listinoInput,
+    scontoInput,
+    qtyInput
+]
+.forEach(function(input){
 
-const p=Number(price)||0;
-const d=Number(discount)||0;
-const q=Number(qty)||1;
+    input.addEventListener(
+        "input",
+        calculate
+    );
 
-const net=p*(1-d/100);
+});
 
-return{
-net:net,
-total:net*q
-};
+
+function calculate(){
+
+    const listino =
+        parseFloat(
+            listinoInput.value
+        ) || 0;
+
+    const sconto =
+        parseFloat(
+            scontoInput.value
+        ) || 0;
+
+    const qty =
+        parseFloat(
+            qtyInput.value
+        ) || 1;
+
+
+    const netto =
+        listino *
+        (1 - sconto / 100);
+
+
+    const totale =
+        netto * qty;
+
+
+    nettoInput.value =
+        formatMoney(netto);
+
+    totaleInput.value =
+        formatMoney(totale);
 
 }
 
 
 /* =====================================================
-   ESCAPE
+   SALVA ORDINE
 ===================================================== */
 
-function esc(v){
+document
+.getElementById("saveBtn")
+.addEventListener("click",function(){
 
-return String(v)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    saveOrder();
+
+});
+
+
+function saveOrder(){
+
+    const code =
+        articleInput
+        .value
+        .trim();
+
+    const name =
+        articleName
+        .value
+        .trim();
+
+    const date =
+        document
+        .getElementById("date")
+        .value;
+
+    const qty =
+        parseFloat(qtyInput.value) || 1;
+
+    const listino =
+        parseFloat(listinoInput.value) || 0;
+
+    const sconto =
+        parseFloat(scontoInput.value) || 0;
+
+    const netto =
+        listino *
+        (1 - sconto / 100);
+
+    const totale =
+        netto * qty;
+
+    const darePersona =
+        parseFloat(
+            darePersonaInput.value
+        ) || 0;
+
+    const dareGio =
+        parseFloat(
+            dareGioInput.value
+        ) || 0;
+
+
+    if(!code){
+
+        alert(
+            "Inserisci il codice KTM."
+        );
+
+        articleInput.focus();
+
+        return;
+
+    }
+
+
+    const order = {
+
+        id:
+            Date.now(),
+
+        person:
+            currentPerson,
+
+        date:
+            date,
+
+        quantity:
+            qty,
+
+        article:
+            code,
+
+        articleName:
+            name,
+
+        listino:
+            listino,
+
+        sconto:
+            sconto,
+
+        netto:
+            netto,
+
+        totale:
+            totale,
+
+        darePersona:
+            darePersona,
+
+        dareGio:
+            dareGio
+
+    };
+
+
+    orders.push(order);
+
+
+    localStorage.setItem(
+        "ktmOrdersV3",
+        JSON.stringify(orders)
+    );
+
+
+    /*
+       Se il codice non esiste ancora nel catalogo,
+       lo aggiungiamo automaticamente con il prezzo
+       che hai appena inserito.
+    */
+
+    const existing =
+        ktmCatalog.find(function(item){
+
+            return item.code.toLowerCase() ===
+                   code.toLowerCase();
+
+        });
+
+
+    if(!existing){
+
+        ktmCatalog.push({
+
+            code:code,
+
+            name:
+                name ||
+                "Ricambio KTM " + code,
+
+            price:listino
+
+        });
+
+
+        localStorage.setItem(
+            "ktmCatalogV1",
+            JSON.stringify(ktmCatalog)
+        );
+
+    }
+    else{
+
+        /*
+           Se modifichi manualmente il prezzo
+           di un codice esistente, aggiorniamo
+           il catalogo per i NUOVI ordini.
+        */
+
+        existing.price =
+            listino;
+
+        if(name){
+
+            existing.name =
+                name;
+
+        }
+
+        localStorage.setItem(
+            "ktmCatalogV1",
+            JSON.stringify(ktmCatalog)
+        );
+
+    }
+
+
+    modal.classList.remove("show");
+
+    updateDashboard();
+
+    alert(
+        "Ordine salvato correttamente!"
+    );
 
 }
 
@@ -1704,244 +2232,166 @@ return String(v)
 
 function renderOrders(){
 
-const body=
-document.getElementById("ordersBody");
+    const body =
+        document.getElementById(
+            "ordersBody"
+        );
 
-const search=
-(document.getElementById("orderSearch").value||"")
-.toLowerCase()
-.trim();
+    const search =
+        document
+        .getElementById("quickSearch")
+        .value
+        .trim()
+        .toLowerCase();
 
-const result=
-orders.filter(x=>
-x.article.toLowerCase().includes(search)
+
+    const personOrders =
+        orders.filter(function(order){
+
+            return order.person ===
+                   currentPerson;
+
+        });
+
+
+    const filtered =
+        personOrders.filter(function(order){
+
+            if(!search){
+
+                return true;
+
+            }
+
+            return (
+
+                String(order.article)
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                String(order.articleName || "")
+                .toLowerCase()
+                .includes(search)
+
+            );
+
+        });
+
+
+    body.innerHTML = "";
+
+
+    if(filtered.length === 0){
+
+        body.innerHTML =
+
+            "<tr>" +
+
+            "<td colspan='9' class='empty'>" +
+
+            (
+                search
+                ?
+                "Nessun articolo trovato."
+                :
+                "Nessun ordine presente."
+            )
+
+            +
+
+            "</td>" +
+
+            "</tr>";
+
+        return;
+
+    }
+
+
+    filtered.forEach(function(order){
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML =
+
+            "<td>" +
+            formatDate(order.date) +
+            "</td>" +
+
+            "<td>" +
+            order.quantity +
+            "</td>" +
+
+            "<td>" +
+
+            "<strong>" +
+            escapeHtml(order.article) +
+            "</strong>" +
+
+            (
+                order.articleName
+                ?
+                "<br><small style='color:#777'>" +
+                escapeHtml(order.articleName) +
+                "</small>"
+                :
+                ""
+            )
+
+            +
+
+            "</td>" +
+
+            "<td>€ " +
+            formatMoney(order.listino) +
+            "</td>" +
+
+            "<td>" +
+            order.sconto +
+            "%</td>" +
+
+            "<td>€ " +
+            formatMoney(order.netto) +
+            "</td>" +
+
+            "<td><strong>€ " +
+            formatMoney(order.totale) +
+            "</strong></td>" +
+
+            "<td>€ " +
+            formatMoney(order.darePersona) +
+            "</td>" +
+
+            "<td>€ " +
+            formatMoney(order.dareGio) +
+            "</td>";
+
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+   RICERCA RAPIDA
+===================================================== */
+
+document
+.getElementById("quickSearch")
+.addEventListener(
+    "input",
+    function(){
+
+        renderOrders();
+
+    }
 );
-
-if(result.length===0){
-
-body.innerHTML=`
-<tr>
-<td colspan="7" class="empty">
-Nessun articolo trovato
-</td>
-</tr>
-`;
-
-}else{
-
-body.innerHTML=result.map(x=>`
-
-<tr>
-
-<td>${esc(x.date)}</td>
-
-<td>${x.qty}</td>
-
-<td>
-<b>${esc(x.article)}</b>
-</td>
-
-<td>
-
-<input
-class="priceInput"
-id="price_${esc(x.id)}"
-type="number"
-min="0"
-step="0.01"
-value="${Number(x.price||0)}"
-oninput="changePrice('${x.id}',false)">
-
-</td>
-
-<td>
-
-<input
-class="discountInput"
-id="discount_${esc(x.id)}"
-type="number"
-min="0"
-max="100"
-step="0.01"
-value="${x.discount===undefined?25:x.discount}"
-oninput="changeDiscount('${x.id}',false)">
-
-</td>
-
-<td
-class="netCell"
-id="net_${esc(x.id)}">
-€ 0,00
-</td>
-
-<td
-class="totalCell"
-id="total_${esc(x.id)}">
-€ 0,00
-</td>
-
-</tr>
-
-`).join("");
-
-}
-
-result.forEach(x=>updateRow(x));
-
-document.getElementById("searchInfo").textContent=
-search
-?result.length+" risultato/i"
-:orders.length+" articoli";
-
-updateDashboard();
-
-}
-
-
-/* =====================================================
-   RENDER LAVORI
-===================================================== */
-
-function renderWorks(){
-
-const body=
-document.getElementById("worksBody");
-
-body.innerHTML=
-works.map(x=>`
-
-<tr>
-
-<td>${esc(x.date)}</td>
-
-<td>${x.qty}</td>
-
-<td>
-<b>${esc(x.article)}</b>
-</td>
-
-<td>
-
-<input
-class="priceInput"
-id="price_${esc(x.id)}"
-type="number"
-min="0"
-step="0.01"
-value="${Number(x.price||0)}"
-oninput="changePrice('${x.id}',true)">
-
-</td>
-
-<td>
-
-<input
-class="discountInput"
-id="discount_${esc(x.id)}"
-type="number"
-min="0"
-max="100"
-step="0.01"
-value="${x.discount===undefined?25:x.discount}"
-oninput="changeDiscount('${x.id}',true)">
-
-</td>
-
-<td
-class="netCell"
-id="net_${esc(x.id)}">
-€ 0,00
-</td>
-
-<td
-class="totalCell"
-id="total_${esc(x.id)}">
-€ 0,00
-</td>
-
-</tr>
-
-`).join("");
-
-works.forEach(x=>updateRow(x));
-
-}
-
-
-/* =====================================================
-   AGGIORNA RIGA
-===================================================== */
-
-function updateRow(x){
-
-const result=
-calculate(
-x.price,
-x.discount,
-x.qty
-);
-
-const net=
-document.getElementById("net_"+x.id);
-
-const total=
-document.getElementById("total_"+x.id);
-
-if(net)
-net.textContent=euro(result.net);
-
-if(total)
-total.textContent=euro(result.total);
-
-}
-
-
-/* =====================================================
-   CAMBIO PREZZO
-===================================================== */
-
-function changePrice(id,isWork){
-
-const list=isWork?works:orders;
-
-const item=list.find(x=>x.id===id);
-
-if(!item)return;
-
-item.price=
-Number(
-document.getElementById("price_"+id).value
-)||0;
-
-updateRow(item);
-
-saveStorage();
-
-}
-
-
-/* =====================================================
-   CAMBIO SCONTO
-===================================================== */
-
-function changeDiscount(id,isWork){
-
-const list=isWork?works:orders;
-
-const item=list.find(x=>x.id===id);
-
-if(!item)return;
-
-item.discount=
-Number(
-document.getElementById("discount_"+id).value
-);
-
-updateRow(item);
-
-saveStorage();
-
-}
 
 
 /* =====================================================
@@ -1950,341 +2400,184 @@ saveStorage();
 
 function updateDashboard(){
 
-let total=0;
+    const personOrders =
+        orders.filter(function(order){
 
-orders.forEach(x=>{
+            return order.person ===
+                   currentPerson;
 
-total+=calculate(
-x.price,
-x.discount,
-x.qty
-).total;
-
-});
-
-document.getElementById("count").textContent=
-orders.length;
-
-document.getElementById("workCount").textContent=
-works.length;
-
-document.getElementById("netTotal").textContent=
-euro(total);
-
-}
+        });
 
 
-/* =====================================================
-   MODALE
-===================================================== */
+    let netTotal = 0;
 
-function openModal(){
+    let gioTotal = 0;
 
-document.getElementById("modalBg")
-.classList.add("open");
+    let personTotal = 0;
 
-document.getElementById("modalUser")
-.textContent=currentPerson.toUpperCase();
 
-document.getElementById("dateInput").value=
-new Date().toISOString().slice(0,10);
+    personOrders.forEach(function(order){
 
-document.getElementById("qtyInput").value=1;
+        netTotal +=
+            Number(order.totale) || 0;
 
-document.getElementById("articleInput").value="";
+        gioTotal +=
+            Number(order.dareGio) || 0;
 
-document.getElementById("listInput").value=0;
+        personTotal +=
+            Number(order.darePersona) || 0;
 
-/* DEFAULT 25% */
+    });
 
-document.getElementById("discountInput").value=25;
 
-document.getElementById("catalogSearch").value="";
+    document
+    .getElementById("count")
+    .textContent =
+        personOrders.length;
 
-document.getElementById("selectedPart")
-.classList.remove("show");
 
-renderCatalog();
+    document
+    .getElementById("netTotal")
+    .textContent =
+        "€ " +
+        formatMoney(netTotal);
 
-updateModal();
+
+    document
+    .getElementById("gioTotal")
+    .textContent =
+        "€ " +
+        formatMoney(gioTotal);
+
+
+    document
+    .getElementById("personTotal")
+    .textContent =
+        "€ " +
+        formatMoney(personTotal);
 
 }
 
 
 /* =====================================================
-   CATALOGO
+   PAGAMENTI
 ===================================================== */
 
-function renderCatalog(){
+function updatePayments(){
 
-const search=
-(document.getElementById("catalogSearch").value||"")
-.toLowerCase()
-.trim();
+    const personOrders =
+        orders.filter(function(order){
 
-const results=
-KTM_CATALOG
-.filter(x=>
-x.code.toLowerCase().includes(search)||
-x.name.toLowerCase().includes(search)
-)
-.slice(0,50);
+            return order.person ===
+                   currentPerson;
 
-const box=
-document.getElementById("catalogResults");
+        });
 
-if(results.length===0){
 
-box.innerHTML=`
-<div class="catalogEmpty">
-Nessun ricambio trovato.
-<br>
-Puoi comunque inserire manualmente il codice.
-</div>
-`;
+    let total = 0;
 
-return;
 
-}
+    personOrders.forEach(function(order){
 
-box.innerHTML=
-results.map(x=>`
+        total +=
+            Number(order.dareGio) || 0;
 
-<div
-class="catalogItem"
-onclick="selectPart('${x.code}','${x.name}')">
+    });
 
-<div class="catalogCode">
-${esc(x.code)}
-</div>
 
-<div class="catalogName">
-${esc(x.name)}
-</div>
-
-</div>
-
-`).join("");
+    document
+    .getElementById("paymentTotal")
+    .textContent =
+        "€ " +
+        formatMoney(total);
 
 }
 
 
 /* =====================================================
-   SELEZIONE RICAMBIO
+   FORMATTAZIONE
 ===================================================== */
 
-function selectPart(code,name){
+function formatMoney(value){
 
-document.getElementById("articleInput").value=code;
+    return Number(value || 0)
+        .toLocaleString(
+            "it-IT",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
 
-document.getElementById("selectedCode")
-.textContent=code;
+}
 
-document.getElementById("selectedName")
-.textContent=name;
 
-document.getElementById("selectedPart")
-.classList.add("show");
+function formatDate(date){
+
+    if(!date){
+
+        return "";
+
+    }
+
+    const parts =
+        date.split("-");
+
+    if(parts.length !== 3){
+
+        return date;
+
+    }
+
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
+
+}
+
+
+function escapeHtml(text){
+
+    return String(text || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
 /* =====================================================
-   RICERCA CATALOGO
+   CHIUSURA SUGGERIMENTI
 ===================================================== */
 
-document
-.getElementById("catalogSearch")
-.addEventListener(
-"input",
-renderCatalog
+document.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            !e.target.closest(".code-search")
+        ){
+
+            suggestions.style.display =
+                "none";
+
+        }
+
+    }
 );
-
-
-/* =====================================================
-   CHIUDI
-===================================================== */
-
-function closeModal(){
-
-document.getElementById("modalBg")
-.classList.remove("open");
-
-}
-
-
-/* =====================================================
-   CALCOLO MODALE
-===================================================== */
-
-function updateModal(){
-
-const result=
-calculate(
-
-document.getElementById("listInput").value,
-
-document.getElementById("discountInput").value,
-
-document.getElementById("qtyInput").value
-
-);
-
-document.getElementById("unitNet")
-.textContent=euro(result.net);
-
-document.getElementById("orderTotal")
-.textContent=euro(result.total);
-
-}
-
-
-/* =====================================================
-   INPUT CALCOLO
-===================================================== */
-
-["listInput","discountInput","qtyInput"]
-.forEach(id=>{
-
-document
-.getElementById(id)
-.addEventListener(
-"input",
-updateModal
-);
-
-});
-
-
-/* =====================================================
-   SALVA NUOVO ORDINE
-===================================================== */
-
-function saveOrder(){
-
-const article=
-document.getElementById("articleInput")
-.value.trim();
-
-if(!article){
-
-alert(
-"Seleziona un ricambio KTM oppure inserisci manualmente il codice."
-);
-
-return;
-
-}
-
-const newOrder={
-
-id:
-"new_"+Date.now()+"_"+Math.random()
-.toString(36)
-.substring(2,8),
-
-date:
-document.getElementById("dateInput").value,
-
-qty:
-Number(
-document.getElementById("qtyInput").value
-)||1,
-
-article:article,
-
-price:
-Number(
-document.getElementById("listInput").value
-)||0,
-
-discount:
-Number(
-document.getElementById("discountInput").value
-)
-
-};
-
-orders.unshift(newOrder);
-
-saveStorage();
-
-closeModal();
-
-renderOrders();
-
-showPage("orders");
-
-}
-
-
-/* =====================================================
-   RICERCA ORDINI
-===================================================== */
-
-document
-.getElementById("orderSearch")
-.addEventListener(
-"input",
-renderOrders
-);
-
-
-/* =====================================================
-   PULISCI RICERCA
-===================================================== */
-
-function clearSearch(){
-
-document.getElementById("orderSearch").value="";
-
-renderOrders();
-
-}
-
-
-/* =====================================================
-   SALVATAGGIO
-===================================================== */
-
-function showSaved(){
-
-const box=
-document.getElementById("saveMessage");
-
-box.classList.add("show");
-
-clearTimeout(window.savedTimer);
-
-window.savedTimer=setTimeout(
-()=>box.classList.remove("show"),
-1000
-);
-
-}
-
-
-/* =====================================================
-   CLICK FUORI MODALE
-===================================================== */
-
-document
-.getElementById("modalBg")
-.addEventListener(
-"click",
-function(e){
-
-if(e.target===this)
-closeModal();
-
-});
 
 
 /* =====================================================
    AVVIO
 ===================================================== */
 
-updateModal();
+updateDashboard();
 
 </script>
 
