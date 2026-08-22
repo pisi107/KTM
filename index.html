@@ -3,2196 +3,469 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestione Ordini KTM</title>
+
+<title>I miei ricambi - Roby</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
---orange:#ff6600;
---orange-dark:#e65300;
---orange-light:#fff1e8;
---black:#111;
---gray:#666;
---light:#f7f7f7;
---white:#fff;
-}
-
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:#fff;
-color:var(--black);
-min-height:100vh;
-}
-
-#home{
-min-height:100vh;
-position:relative;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px 20px;
-}
-
-.orange{
-position:absolute;
-background:var(--orange);
-}
-
-.o1{
-top:-170px;
-left:-120px;
-width:520px;
-height:300px;
-transform:rotate(-15deg);
-}
-
-.o2{
-right:-170px;
-top:45%;
-width:350px;
-height:550px;
-transform:rotate(28deg);
-}
-
-.home{
-position:relative;
-z-index:2;
-width:100%;
-max-width:900px;
-text-align:center;
-}
-
-.logo{
-font-size:78px;
-font-weight:1000;
-font-style:italic;
-letter-spacing:-7px;
-color:var(--orange);
-line-height:.8;
-}
-
-.home h1{
-margin-top:55px;
-font-size:32px;
-font-weight:900;
-}
-
-.home p{
-margin-top:10px;
-color:var(--gray);
-font-size:17px;
-}
-
-.people{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:25px;
-margin-top:45px;
-}
-
-.person{
-background:rgba(255,255,255,.97);
-border:1px solid #eee;
-border-radius:25px;
-padding:35px 30px 30px;
-box-shadow:0 12px 35px rgba(0,0,0,.1);
-transition:.25s;
-}
-
-.person:hover{
-transform:translateY(-5px);
-box-shadow:0 18px 40px rgba(0,0,0,.15);
-}
-
-.avatar{
-width:75px;
-height:75px;
-border-radius:50%;
-background:var(--orange);
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-margin:auto;
-font-size:32px;
-}
-
-.person h2{
-margin-top:22px;
-font-size:31px;
-font-weight:900;
-}
-
-.btn{
-border:none;
-cursor:pointer;
-font-weight:800;
-border-radius:9px;
-padding:13px 18px;
-}
-
-.orangebtn{
-background:var(--orange);
-color:#fff;
-}
-
-.orangebtn:hover{
-background:var(--orange-dark);
-}
-
-.person .btn{
-margin-top:25px;
-width:100%;
-padding:16px;
-font-size:17px;
-}
-
-#app{
-display:none;
-min-height:100vh;
-background:#fff;
-}
-
-.header{
-height:75px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 30px;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-z-index:20;
-background:#fff;
-}
-
-.headerRight{
-display:flex;
-align-items:center;
-gap:13px;
-}
-
-.smalllogo{
-color:var(--orange);
-font-size:27px;
-font-weight:1000;
-font-style:italic;
-}
-
-.exit{
-border:1px solid #ddd;
-background:#fff;
-border-radius:9px;
-padding:10px 15px;
-cursor:pointer;
-font-weight:700;
-}
-
-.exit:hover{
-border-color:var(--orange);
-color:var(--orange);
-}
-
-.container{
-max-width:1150px;
-margin:auto;
-padding:35px 25px;
-}
-
-.page{display:none}
-.page.active{display:block}
-
-.title{
-margin-bottom:25px;
-}
-
-.title h1{
-font-size:32px;
-font-weight:900;
-}
-
-.title p{
-color:var(--gray);
-margin-top:5px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-bottom:25px;
-}
-
-.stat{
-background:#fff;
-border:1px solid #eee;
-border-radius:14px;
-padding:20px;
-}
-
-.stat small{
-display:block;
-color:#777;
-font-size:13px;
-}
-
-.stat strong{
-display:block;
-font-size:24px;
-font-weight:900;
-margin-top:7px;
-}
-
-.menu{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:16px;
-}
-
-.card{
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-padding:22px;
-display:flex;
-align-items:center;
-gap:18px;
-cursor:pointer;
-transition:.2s;
-box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
-
-.card:hover{
-border-color:var(--orange);
-transform:translateY(-2px);
-}
-
-.icon{
-width:50px;
-height:50px;
-border-radius:12px;
-background:var(--orange-light);
-color:var(--orange);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-flex-shrink:0;
-}
-
-.card h3{
-font-size:16px;
-margin-bottom:4px;
-}
-
-.card p{
-color:#888;
-font-size:13px;
-}
-
-.arrow{
-margin-left:auto;
-color:var(--orange);
-font-size:22px;
-}
-
-.back{
-border:none;
-background:transparent;
-color:var(--orange);
-font-weight:800;
-cursor:pointer;
-margin-bottom:20px;
-}
-
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
-}
-
-.searchbox{
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-padding:18px;
-margin-bottom:20px;
-}
-
-.searchbox label{
-display:block;
-font-size:12px;
-color:#777;
-font-weight:800;
-margin-bottom:8px;
-}
-
-.searchbox input{
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:9px;
-font-size:15px;
-outline:none;
-}
-
-.searchbox input:focus{
-border-color:var(--orange);
-}
-
-.tablebox{
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-overflow-x:auto;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:900px;
-}
-
-th{
-background:#fafafa;
-padding:14px;
-text-align:left;
-font-size:12px;
-color:#777;
-}
-
-td{
-padding:14px;
-border-top:1px solid #eee;
-font-size:13px;
-}
-
-.empty{
-text-align:center;
-padding:40px;
-color:#888;
-}
-
-.modal-bg{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.55);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:100;
-padding:20px;
-}
-
-.modal-bg.show{
-display:flex;
-}
-
-.modal{
-background:#fff;
-width:650px;
-max-width:100%;
-max-height:90vh;
-overflow-y:auto;
-border-radius:20px;
-padding:25px;
-}
-
-.modal h2{
-margin-bottom:20px;
-}
-
-.form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-.field{
-display:flex;
-flex-direction:column;
-gap:6px;
-}
-
-.field.full{
-grid-column:1/-1;
-}
-
-.field label{
-font-size:12px;
-font-weight:700;
-color:#666;
-}
-
-.field input,
-.field textarea{
-border:1px solid #ddd;
-padding:11px;
-border-radius:8px;
-outline:none;
-font-size:14px;
-font-family:inherit;
-}
-
-.field textarea{
-min-height:120px;
-resize:vertical;
-}
-
-.field input:focus,
-.field textarea:focus{
-border-color:var(--orange);
-}
-
-.code-search{
-position:relative;
-}
-
-.suggestions{
-position:absolute;
-top:100%;
-left:0;
-right:0;
-background:#fff;
-border:1px solid #ddd;
-border-top:none;
-border-radius:0 0 10px 10px;
-max-height:220px;
-overflow-y:auto;
-z-index:200;
-display:none;
-}
-
-.suggestion{
-padding:12px;
-cursor:pointer;
-border-bottom:1px solid #eee;
-}
-
-.suggestion:hover{
-background:var(--orange-light);
-}
-
-.suggestion-code{
-font-weight:900;
-}
-
-.suggestion-name{
-color:#777;
-font-size:12px;
-margin-top:3px;
-}
-
-.price-info{
-font-size:12px;
-color:#16803c;
-margin-top:3px;
-min-height:15px;
-}
-
-.modal-buttons{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:25px;
-}
-
-.cancel,
-.save{
-border:none;
-border-radius:9px;
-padding:13px 18px;
-font-weight:800;
-cursor:pointer;
-}
-
-.cancel{
-background:#eee;
-color:#333;
-}
-
-.save{
-background:var(--orange);
-color:white;
-}
-
-.work-table{
-min-width:700px;
-}
-
-.work-description{
-font-weight:700;
-}
-
-.work-total{
-font-weight:900;
-color:var(--orange);
-}
-
-.modal-work{
-width:600px;
-}
-
-@media(max-width:800px){
-.work-form{
-grid-template-columns:1fr;
-}
-}
-
-@media(max-width:700px){
-
-.logo{
-font-size:60px;
-}
-
-.home h1{
-font-size:25px;
-margin-top:40px;
-}
-
-.people{
-grid-template-columns:1fr;
-gap:15px;
-margin-top:30px;
-}
-
-.person{
-padding:25px 20px;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-.menu{
-grid-template-columns:1fr;
-}
-
-.header{
-padding:0 15px;
-}
-
-.container{
-padding:25px 15px;
-}
-
-.form{
-grid-template-columns:1fr;
-}
-
-.field.full{
-grid-column:auto;
-}
-
-.top{
-align-items:flex-start;
-gap:15px;
-flex-direction:column;
-}
-}
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        color: #1f2937;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 25px;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #087f3f, #0ba85a);
+        color: white;
+        padding: 25px;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .header h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+    }
+
+    .header p {
+        margin: 0;
+        opacity: .9;
+    }
+
+    .tools {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    #search {
+        flex: 1;
+        min-width: 250px;
+        padding: 15px 18px;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        font-size: 16px;
+        outline: none;
+        background: white;
+    }
+
+    #search:focus {
+        border-color: #087f3f;
+        box-shadow: 0 0 0 3px rgba(8,127,63,.12);
+    }
+
+    .counter {
+        background: white;
+        padding: 15px 18px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .ricambi {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+    }
+
+    .ricambio {
+        background: white;
+        border-radius: 14px;
+        padding: 16px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0,0,0,.05);
+        transition: .2s;
+    }
+
+    .ricambio:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,.10);
+    }
+
+    .codice {
+        font-size: 18px;
+        font-weight: bold;
+        color: #087f3f;
+        word-break: break-word;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #6b7280;
+    }
+
+    .quantita {
+        font-weight: bold;
+        color: #111827;
+    }
+
+    .riga {
+        color: #9ca3af;
+    }
+
+    .vuoto {
+        display: none;
+        background: white;
+        border-radius: 14px;
+        padding: 30px;
+        text-align: center;
+        color: #6b7280;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 12px;
+        }
+
+        .header h1 {
+            font-size: 23px;
+        }
+
+        .ricambi {
+            grid-template-columns: 1fr;
+        }
+
+        .counter {
+            width: 100%;
+            text-align: center;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<section id="home">
+<div class="container">
 
-<div class="orange o1"></div>
-<div class="orange o2"></div>
+    <div class="header">
+        <h1>🔧 I MIEI RICAMBI – ROBY</h1>
+        <p>Tutti i codici ricambio presenti nell'elenco verificato</p>
+    </div>
 
-<div class="home">
+    <div class="tools">
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Cerca codice ricambio..."
+            oninput="cercaRicambio()"
+        >
 
-<div class="logo">KTM</div>
+        <div class="counter" id="counter">
+            Ricambi visualizzati: 0
+        </div>
+    </div>
 
-<h1>GESTIONE ORDINI</h1>
+    <div class="ricambi" id="ricambi"></div>
 
-<p>Seleziona la persona da gestire</p>
-
-<div class="people">
-
-<div class="person">
-
-<div class="avatar">👤</div>
-
-<h2>ROBY</h2>
-
-<button class="btn orangebtn" id="robyBtn">
-ENTRA
-</button>
-
-</div>
-
-<div class="person">
-
-<div class="avatar">👤</div>
-
-<h2>FEDE</h2>
-
-<button class="btn orangebtn" id="fedeBtn">
-ENTRA
-</button>
+    <div class="vuoto" id="vuoto">
+        Nessun ricambio trovato.
+    </div>
 
 </div>
-
-</div>
-
-</div>
-</section>
-
-
-<section id="app">
-
-<header class="header">
-
-<div class="headerRight">
-
-<div class="smalllogo">KTM</div>
-
-<strong id="currentUser"></strong>
-
-</div>
-
-<button class="exit" id="exitBtn">
-← Esci
-</button>
-
-</header>
-
-<main class="container">
-
-
-<section id="dashboard" class="page active">
-
-<div class="title">
-
-<h1 id="hello"></h1>
-
-<p>Gestione ordini e lavori</p>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-
-<small>RICAMBI</small>
-
-<strong id="count">0</strong>
-
-</div>
-
-<div class="stat">
-
-<small>TOTALE NETTO ORDINI</small>
-
-<strong id="netTotal">€ 0,00</strong>
-
-</div>
-
-<div class="stat">
-
-<small>TOTALE LAVORI</small>
-
-<strong id="workTotal">€ 0,00</strong>
-
-</div>
-
-</div>
-
-<div class="menu">
-
-<div class="card" id="ordersCard">
-
-<div class="icon">📋</div>
-
-<div>
-
-<h3>I miei ordini</h3>
-
-<p>Visualizza tutti i ricambi ordinati</p>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="card" id="newCard">
-
-<div class="icon">➕</div>
-
-<div>
-
-<h3>Nuovo ordine</h3>
-
-<p>Aggiungi un nuovo ricambio</p>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="card" id="worksCard">
-
-<div class="icon">🔧</div>
-
-<div>
-
-<h3>Lavori</h3>
-
-<p>Inserisci e gestisci i lavori eseguiti</p>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="orders" class="page">
-
-<button class="back" id="backBtn">
-← Dashboard
-</button>
-
-<div class="top">
-
-<div class="title">
-
-<h1>
-I miei ordini —
-<span id="ordersPerson"></span>
-</h1>
-
-<p>Tutti i ricambi presenti</p>
-
-</div>
-
-<button class="btn orangebtn" id="newOrderBtn">
-+ Nuovo ordine
-</button>
-
-</div>
-
-<div class="searchbox">
-
-<label>RICERCA RAPIDA CODICE KTM</label>
-
-<input
-type="search"
-id="quickSearch"
-placeholder="Cerca codice ricambio..."
-autocomplete="off">
-
-</div>
-
-<div class="tablebox">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>DATA</th>
-<th>Q.TÀ</th>
-<th>CODICE</th>
-<th>LISTINO</th>
-<th>SCONTO</th>
-<th>NETTO</th>
-<th>TOTALE</th>
-
-</tr>
-
-</thead>
-
-<tbody id="ordersBody"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<section id="works" class="page">
-
-<button class="back" id="worksBack">
-← Dashboard
-</button>
-
-<div class="top">
-
-<div class="title">
-
-<h1>
-Lavori di
-<span id="worksPerson"></span>
-</h1>
-
-<p>Inserisci i lavori eseguiti</p>
-
-</div>
-
-<button class="btn orangebtn" id="newWorkBtn">
-+ Aggiungi lavoro
-</button>
-
-</div>
-
-<div class="tablebox">
-
-<table class="work-table">
-
-<thead>
-
-<tr>
-
-<th>DATA</th>
-<th>LAVORO ESEGUITO</th>
-<th>PREZZO</th>
-
-</tr>
-
-</thead>
-
-<tbody id="worksBody"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-</main>
-</section>
-
-
-<div class="modal-bg" id="modal">
-
-<div class="modal">
-
-<h2>
-Nuovo ordine —
-<span id="modalPerson"></span>
-</h2>
-
-<div class="form">
-
-<div class="field full code-search">
-
-<label>CODICE KTM</label>
-
-<input
-type="text"
-id="article"
-placeholder="Inserisci il codice KTM..."
-autocomplete="off">
-
-<div class="suggestions" id="suggestions"></div>
-
-<div class="price-info" id="priceInfo"></div>
-
-</div>
-
-<div class="field">
-
-<label>DATA</label>
-
-<input type="date" id="date">
-
-</div>
-
-<div class="field">
-
-<label>QUANTITÀ</label>
-
-<input type="number" id="qty" min="1" value="1">
-
-</div>
-
-<div class="field">
-
-<label>LISTINO (€)</label>
-
-<input type="number" id="listino" min="0" step="0.01" value="0">
-
-</div>
-
-<div class="field">
-
-<label>SCONTO (%)</label>
-
-<input type="number" id="sconto" min="0" max="100" step="0.01" value="25">
-
-</div>
-
-<div class="field">
-
-<label>NETTO SCONTATO (€)</label>
-
-<input type="text" id="netto" readonly>
-
-</div>
-
-<div class="field">
-
-<label>TOTALE (€)</label>
-
-<input type="text" id="totale" readonly>
-
-</div>
-
-</div>
-
-<div class="modal-buttons">
-
-<button class="cancel" id="cancelBtn">
-Annulla
-</button>
-
-<button class="save" id="saveBtn">
-Salva ordine
-</button>
-
-</div>
-
-</div>
-</div>
-
-
-<div class="modal-bg" id="workModal">
-
-<div class="modal modal-work">
-
-<h2>
-Nuovo lavoro —
-<span id="workModalPerson"></span>
-</h2>
-
-<div class="form">
-
-<div class="field">
-
-<label>DATA</label>
-
-<input type="date" id="workDate">
-
-</div>
-
-<div class="field">
-
-<label>PREZZO (€)</label>
-
-<input
-type="number"
-id="workPrice"
-min="0"
-step="0.01"
-value="0">
-
-</div>
-
-<div class="field full">
-
-<label>LAVORO ESEGUITO</label>
-
-<textarea
-id="workDescription"
-placeholder="Descrivi il lavoro eseguito..."></textarea>
-
-</div>
-
-</div>
-
-<div class="modal-buttons">
-
-<button class="cancel" id="cancelWorkBtn">
-Annulla
-</button>
-
-<button class="save" id="saveWorkBtn">
-Salva lavoro
-</button>
-
-</div>
-
-</div>
-</div>
-
 
 <script>
 
-/* =====================================================
-   DATI
-===================================================== */
+/*
+=========================================================
+   RICAMBI DI ROBY
+   TRASCRITTI DALLE 7 IMMAGINI
+=========================================================
+*/
 
-let currentPerson = "";
+const ricambiRoby = [
 
-let orders =
-JSON.parse(
-localStorage.getItem("ktmOrdersV5") || "[]"
-);
+    { codice: "50430098060", riga: 6 },
+    { codice: "50430098050", riga: 7 },
+    { codice: "50430025000", riga: 8 },
+    { codice: "50430039000", riga: 9 },
+    { codice: "00050002300", riga: 10 },
+    { codice: "50430015044", riga: 11 },
 
-let works =
-JSON.parse(
-localStorage.getItem("ktmWorksV1") || "[]"
-);
+    { codice: "A46035009000", riga: 13 },
+    { codice: "00050000272 - 79430107210 II", riga: 14 },
+    { codice: "79536013000", riga: 15 },
+    { codice: "77239093000", riga: 16 },
+    { codice: "77338005100", riga: 17 },
+    { codice: "A42005907500", riga: 18 },
+    { codice: "A46035909000", riga: 19 },
+    { codice: "50430025000", riga: 20 },
+    { codice: "50430098060", riga: 21 },
+    { codice: "50430098050", riga: 22 },
+    { codice: "50430039000", riga: 23 },
+    { codice: "50430015044", riga: 24 },
+    { codice: "00050002300", riga: 25 },
 
+    { codice: "A46014069000", riga: 28 },
+    { codice: "A42030060000", riga: 29 },
+    { codice: "50403096010", riga: 30 },
+    { codice: "77204066010 - 77204066044", riga: 31 },
+    { codice: "A45041072033", riga: 32 },
+    { codice: "79135071044", riga: 33 },
 
-/* =====================================================
-   CATALOGO KTM
-===================================================== */
+    { codice: "00050002300", riga: 35 },
+    { codice: "50430098060", riga: 36 },
+    { codice: "50430025000", riga: 37 },
+    { codice: "50430098050", riga: 38 },
+    { codice: "50430015044", riga: 39 },
+    { codice: "50430039000", riga: 40 },
+    { codice: "50439005000", riga: 42 },
+    { codice: "50532054000", riga: 43 },
+    { codice: "79135071044", riga: 44 },
+    { codice: "A45041072033", riga: 45 },
+    { codice: "91010240S", riga: 46 },
+    { codice: "50439004000", riga: 47 },
+    { codice: "79030015144", riga: 48 },
 
-const ktmCatalog = [
+    { codice: "47230015044", riga: 53 },
+    { codice: "50430098050", riga: 54 },
+    { codice: "50430098060", riga: 55 },
+    { codice: "50530152044", riga: 56 },
+    { codice: "A42030018010", riga: 57 },
+    { codice: "50530152044", riga: 60 },
+    { codice: "50430006100", riga: 64 },
 
-{code:"50430098060",price:0},
-{code:"50430098050",price:0},
-{code:"50430098000",price:0},
-{code:"50430099000",price:0},
-{code:"54830034000",price:0},
-{code:"54830034001",price:0},
-{code:"54830034002",price:0},
-{code:"54830034003",price:0},
-{code:"54830034004",price:0},
-{code:"54830034005",price:0},
-{code:"54830034006",price:0},
-{code:"54830034007",price:0},
-{code:"54830034008",price:0}
+    { codice: "50433015400", riga: 65 },
+    { codice: "54834005133 - 50534005044", riga: 66 },
+
+    { codice: "A42030035040", riga: 70 },
+    { codice: "A42030035025", riga: 71 },
+    { codice: "A42030118000", riga: 72 },
+    { codice: "A42030000144", riga: 73 },
+    { codice: "50532010033", riga: 76 },
+
+    { codice: "47230060100", riga: 78 },
+    { codice: "47230035040", riga: 79 },
+    { codice: "50430035050", riga: 80 },
+    { codice: "50430035040", riga: 81 },
+    { codice: "50430035020", riga: 82 },
+    { codice: "50530152044", riga: 83 },
+    { codice: "55430006100", riga: 84 },
+    { codice: "56530123200", riga: 85 },
+    { codice: "0625623204", riga: 86 },
+    { codice: "50430015044", riga: 87 },
+    { codice: "54830015244", riga: 88 },
+    { codice: "55530038100", riga: 94 },
+    { codice: "50430098060", riga: 97 },
+
+    { codice: "50430098050", riga: 98 },
+    { codice: "50430025000", riga: 99 },
+    { codice: "50430039000", riga: 100 },
+    { codice: "00050002300 (ex 52330018288)", riga: 101 },
+    { codice: "50430015044", riga: 102 },
+    { codice: "50530152044", riga: 103 },
+
+    { codice: "A46030036072", riga: 111, quantita: 1 },
+    { codice: "A46030035000", riga: 112, quantita: 1 },
+    { codice: "A46030007000I", riga: 113, quantita: 1 },
+    { codice: "A46030036072", riga: 114, quantita: 2 },
+    { codice: "A46030035000", riga: 115, quantita: 2 },
+    { codice: "A46030007000I", riga: 116, quantita: 2 },
+    { codice: "50439005000", riga: 117, quantita: 1 },
+
+    { codice: "79030015144", riga: 124, quantita: 1 },
+    { codice: "79013090000", riga: 125, quantita: 2 },
+    { codice: "A46030036072", riga: 126, quantita: 2 },
+    { codice: "50530152044", riga: 127, quantita: 1 },
+
+    { codice: "A44002091000", riga: 130, quantita: 1 },
+
+    { codice: "50430015044", riga: 131, quantita: 1 },
+    { codice: "0625063055", riga: 132, quantita: 1 },
+    { codice: "50330082000", riga: 133, quantita: 1 },
+
+    { codice: "A46030035000", riga: 135, quantita: 1 },
+    { codice: "50530152044", riga: 136, quantita: 1 },
+    { codice: "A42003014000", riga: 137, quantita: 1 },
+
+    { codice: "A42030000244", riga: 141, quantita: 1 },
+    { codice: "0835080326", riga: 142, quantita: 4 },
+    { codice: "51030034000", riga: 143, quantita: 4 },
+    { codice: "50530152044", riga: 144, quantita: 1 },
+    { codice: "54802031000", riga: 145, quantita: 1 },
+    { codice: "79230207200 II", riga: 146, quantita: 1 },
+
+    { codice: "A42030060000", riga: 149, quantita: 1 },
+    { codice: "79041077044", riga: 150, quantita: 1 },
+    { codice: "50430015044", riga: 151, quantita: 1 },
+    { codice: "A42030035040", riga: 152, quantita: 1 },
+    { codice: "A42030035025", riga: 153, quantita: 1 },
+    { codice: "47230050000", riga: 154, quantita: 1 },
+    { codice: "54802031000", riga: 155, quantita: 1 },
+
+    { codice: "45235054028", riga: 158, quantita: 1 },
+    { codice: "A40530035050", riga: 159, quantita: 1 },
+    { codice: "45233010200", riga: 160, quantita: 1 },
+    { codice: "0760263561", riga: 161, quantita: 1 },
+    { codice: "45230039000", riga: 162, quantita: 1 },
+    { codice: "45230025100", riga: 163, quantita: 1 },
+
+    { codice: "0770052020", riga: 164, quantita: 1 },
+    { codice: "0770120020", riga: 165, quantita: 1 },
+    { codice: "0770078020", riga: 166, quantita: 1 },
+    { codice: "0760152472", riga: 167, quantita: 1 },
+    { codice: "45133028000", riga: 168, quantita: 2 },
+    { codice: "0760162240", riga: 169, quantita: 1 },
+    { codice: "0760223270", riga: 170, quantita: 1 },
+    { codice: "A46006026033", riga: 171, quantita: 1 },
+    { codice: "50330006600", riga: 172, quantita: 1 },
+    { codice: "47030034000", riga: 173, quantita: 1 },
+
+    { codice: "47230049000", riga: 175, quantita: 1 },
+    { codice: "47230039000", riga: 176, quantita: 1 },
+    { codice: "(ex 00050002318) 47230018188", riga: 177, quantita: 1 },
+    { codice: "47230025000", riga: 178, quantita: 1 },
+    { codice: "0625982031", riga: 179, quantita: 1 },
+    { codice: "0062042001400", riga: 180, quantita: 1 },
+
+    { codice: "47234005044", riga: 185, quantita: 1 },
+    { codice: "47233016000", riga: 186, quantita: 1 },
+    { codice: "47233002000", riga: 187, quantita: 1 },
+    { codice: "47233015000", riga: 188, quantita: 1 },
+    { codice: "47233014000", riga: 189, quantita: 1 },
+    { codice: "47233003000", riga: 190, quantita: 1 },
+    { codice: "51030034000", riga: 191, quantita: 5 },
+    { codice: "77036003200", riga: 192, quantita: 1 },
+
+    { codice: "77839093000", riga: 194, quantita: 1 },
+    { codice: "77036027000", riga: 195, quantita: 4 },
+    { codice: "A46030007010I", riga: 196, quantita: 1 },
+    { codice: "A46030007000I", riga: 197, quantita: 2 },
+
+    { codice: "A46035007000", riga: 199, quantita: 1 },
+    { codice: "47234012044", riga: 201, quantita: 1 },
+    { codice: "79234015100", riga: 202, quantita: 1 },
+
+    { codice: "47230039000", riga: 209, quantita: 1 },
+    { codice: "47230018188", riga: 210, quantita: 1 },
+    { codice: "47230025000", riga: 211, quantita: 1 },
+    { codice: "47030076100", riga: 212, quantita: 1 },
+    { codice: "49030023000", riga: 213, quantita: 1 },
+    { codice: "47230025000", riga: 214, quantita: 1 },
+    { codice: "47230039000", riga: 215, quantita: 1 },
+    { codice: "47230018188", riga: 216, quantita: 1 },
+    { codice: "47230015044", riga: 217, quantita: 1 },
+    { codice: "47230049000", riga: 218, quantita: 2 },
+    { codice: "A46003062000", riga: 219, quantita: 4 }
 
 ];
 
 
-/* =====================================================
-   SALVA CATALOGO
-===================================================== */
+/*
+=========================================================
+   VISUALIZZAZIONE
+=========================================================
+*/
 
-localStorage.setItem(
-"ktmCatalogV3",
-JSON.stringify(ktmCatalog)
-);
+function mostraRicambi(lista = ricambiRoby) {
 
+    const contenitore = document.getElementById("ricambi");
+    const vuoto = document.getElementById("vuoto");
+    const counter = document.getElementById("counter");
 
-/* =====================================================
-   CREA AUTOMATICAMENTE GLI ORDINI DI ROBY
-   SE NON SONO ANCORA PRESENTI
-===================================================== */
+    contenitore.innerHTML = "";
 
-function inizializzaRoby(){
+    counter.textContent =
+        "Ricambi visualizzati: " + lista.length;
 
-const giaPresenti =
-orders.filter(function(order){
+    if (lista.length === 0) {
+        vuoto.style.display = "block";
+        return;
+    }
 
-return order.person === "ROBY";
+    vuoto.style.display = "none";
 
-});
+    lista.forEach((ricambio) => {
 
+        const div = document.createElement("div");
 
-if(giaPresenti.length > 0){
+        div.className = "ricambio";
 
-return;
+        div.innerHTML = `
+            <div class="codice">
+                ${ricambio.codice}
+            </div>
 
+            <div class="info">
+
+                <span class="riga">
+                    Riga ${ricambio.riga}
+                </span>
+
+                ${
+                    ricambio.quantita !== undefined
+                    ?
+                    `<span class="quantita">
+                        Quantità: ${ricambio.quantita}
+                    </span>`
+                    :
+                    ""
+                }
+
+            </div>
+        `;
+
+        contenitore.appendChild(div);
+
+    });
 }
 
 
-const oggi =
-new Date()
-.toISOString()
-.split("T")[0];
+/*
+=========================================================
+   RICERCA
+=========================================================
+*/
 
+function cercaRicambio() {
 
-ktmCatalog.forEach(function(item){
+    const testo =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
 
-orders.push({
+    if (testo === "") {
+        mostraRicambi(ricambiRoby);
+        return;
+    }
 
-id:Date.now() + Math.random(),
+    const risultati = ricambiRoby.filter(ricambio =>
 
-person:"ROBY",
+        ricambio.codice
+        .toLowerCase()
+        .includes(testo)
 
-date:oggi,
+    );
 
-quantity:1,
-
-article:item.code,
-
-listino:item.price,
-
-sconto:25,
-
-netto:item.price * 0.75,
-
-totale:item.price * 0.75
-
-});
-
-});
-
-
-localStorage.setItem(
-"ktmOrdersV5",
-JSON.stringify(orders)
-);
-
+    mostraRicambi(risultati);
 }
 
 
-/* ESEGUI */
-
-inizializzaRoby();
-
-
-/* =====================================================
-   ELEMENTI
-===================================================== */
-
-const home =
-document.getElementById("home");
-
-const app =
-document.getElementById("app");
-
-const modal =
-document.getElementById("modal");
-
-const workModal =
-document.getElementById("workModal");
-
-const articleInput =
-document.getElementById("article");
-
-const listinoInput =
-document.getElementById("listino");
-
-const scontoInput =
-document.getElementById("sconto");
-
-const qtyInput =
-document.getElementById("qty");
-
-const nettoInput =
-document.getElementById("netto");
-
-const totaleInput =
-document.getElementById("totale");
-
-const suggestions =
-document.getElementById("suggestions");
-
-const priceInfo =
-document.getElementById("priceInfo");
-
-
-/* =====================================================
-   ROBY
-===================================================== */
-
-document
-.getElementById("robyBtn")
-.addEventListener("click",function(){
-
-enterPerson("ROBY");
-
-});
-
-
-/* =====================================================
-   FEDE
-===================================================== */
-
-document
-.getElementById("fedeBtn")
-.addEventListener("click",function(){
-
-enterPerson("FEDE");
-
-});
-
-
-/* =====================================================
-   ENTRA
-===================================================== */
-
-function enterPerson(person){
-
-currentPerson = person;
-
-home.style.display = "none";
-
-app.style.display = "block";
-
-document
-.getElementById("currentUser")
-.textContent = person;
-
-document
-.getElementById("hello")
-.textContent =
-"Ciao " + person;
-
-document
-.getElementById("ordersPerson")
-.textContent = person;
-
-document
-.getElementById("worksPerson")
-.textContent = person;
-
-showPage("dashboard");
-
-updateDashboard();
-
-}
-
-
-/* =====================================================
-   USCITA
-===================================================== */
-
-document
-.getElementById("exitBtn")
-.addEventListener("click",function(){
-
-currentPerson = "";
-
-app.style.display = "none";
-
-home.style.display = "flex";
-
-});
-
-
-/* =====================================================
-   PAGINE
-===================================================== */
-
-function showPage(pageId){
-
-document
-.querySelectorAll(".page")
-.forEach(function(page){
-
-page.classList.remove("active");
-
-});
-
-document
-.getElementById(pageId)
-.classList.add("active");
-
-}
-
-
-/* =====================================================
-   ORDINI
-===================================================== */
-
-document
-.getElementById("ordersCard")
-.addEventListener("click",function(){
-
-openOrders();
-
-});
-
-
-document
-.getElementById("newCard")
-.addEventListener("click",function(){
-
-openModal();
-
-});
-
-
-document
-.getElementById("newOrderBtn")
-.addEventListener("click",function(){
-
-openModal();
-
-});
-
-
-document
-.getElementById("backBtn")
-.addEventListener("click",function(){
-
-showPage("dashboard");
-
-});
-
-
-function openOrders(){
-
-showPage("orders");
-
-renderOrders();
-
-}
-
-
-/* =====================================================
-   LAVORI
-===================================================== */
-
-document
-.getElementById("worksCard")
-.addEventListener("click",function(){
-
-openWorks();
-
-});
-
-
-document
-.getElementById("worksBack")
-.addEventListener("click",function(){
-
-showPage("dashboard");
-
-});
-
-
-document
-.getElementById("newWorkBtn")
-.addEventListener("click",function(){
-
-openWorkModal();
-
-});
-
-
-function openWorks(){
-
-showPage("works");
-
-renderWorks();
-
-}
-
-
-/* =====================================================
-   MODAL ORDINE
-===================================================== */
-
-function openModal(){
-
-modal.classList.add("show");
-
-document
-.getElementById("modalPerson")
-.textContent =
-currentPerson;
-
-resetOrderForm();
-
-}
-
-
-document
-.getElementById("cancelBtn")
-.addEventListener("click",function(){
-
-modal.classList.remove("show");
-
-});
-
-
-modal.addEventListener("click",function(e){
-
-if(e.target === modal){
-
-modal.classList.remove("show");
-
-}
-
-});
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-function resetOrderForm(){
-
-document
-.getElementById("date")
-.value =
-new Date()
-.toISOString()
-.split("T")[0];
-
-articleInput.value = "";
-
-qtyInput.value = 1;
-
-listinoInput.value = 0;
-
-scontoInput.value = 25;
-
-nettoInput.value = "0,00";
-
-totaleInput.value = "0,00";
-
-priceInfo.textContent = "";
-
-suggestions.innerHTML = "";
-
-suggestions.style.display = "none";
-
-calculate();
-
-}
-
-
-/* =====================================================
-   RICERCA CODICI
-===================================================== */
-
-articleInput.addEventListener(
-"input",
-function(){
-
-const value =
-this.value
-.trim()
-.toLowerCase();
-
-suggestions.innerHTML = "";
-
-priceInfo.textContent = "";
-
-if(!value){
-
-suggestions.style.display = "none";
-
-return;
-
-}
-
-const results =
-ktmCatalog
-.filter(function(item){
-
-return item.code
-.toLowerCase()
-.includes(value);
-
-})
-.slice(0,20);
-
-
-if(results.length === 0){
-
-suggestions.style.display = "none";
-
-return;
-
-}
-
-
-results.forEach(function(item){
-
-const div =
-document.createElement("div");
-
-div.className = "suggestion";
-
-div.innerHTML =
-
-"<div class='suggestion-code'>" +
-item.code +
-"</div>" +
-
-"<div class='suggestion-name'>" +
-"Prezzo listino: € " +
-formatMoney(item.price) +
-"</div>";
-
-div.addEventListener(
-"click",
-function(){
-
-selectCatalogItem(item);
-
-}
-);
-
-suggestions.appendChild(div);
-
-});
-
-
-suggestions.style.display = "block";
-
-}
-);
-
-
-/* =====================================================
-   SELEZIONE CODICE
-===================================================== */
-
-function selectCatalogItem(item){
-
-articleInput.value =
-item.code;
-
-listinoInput.value =
-item.price;
-
-priceInfo.textContent =
-"Codice presente nel catalogo";
-
-suggestions.style.display =
-"none";
-
-calculate();
-
-}
-
-
-/* =====================================================
-   ENTER
-===================================================== */
-
-articleInput.addEventListener(
-"keydown",
-function(e){
-
-if(e.key !== "Enter"){
-
-return;
-
-}
-
-const code =
-articleInput
-.value
-.trim()
-.toLowerCase();
-
-const found =
-ktmCatalog.find(function(item){
-
-return item.code
-.toLowerCase() === code;
-
-});
-
-if(found){
-
-selectCatalogItem(found);
-
-}
-
-}
-);
-
-
-/* =====================================================
-   CALCOLO
-===================================================== */
-
-[
-listinoInput,
-scontoInput,
-qtyInput
-]
-.forEach(function(input){
-
-input.addEventListener(
-"input",
-calculate
-);
-
-});
-
-
-function calculate(){
-
-const listino =
-parseFloat(listinoInput.value) || 0;
-
-const sconto =
-parseFloat(scontoInput.value) || 0;
-
-const qty =
-parseFloat(qtyInput.value) || 1;
-
-const netto =
-listino *
-(1 - sconto / 100);
-
-const totale =
-netto * qty;
-
-nettoInput.value =
-formatMoney(netto);
-
-totaleInput.value =
-formatMoney(totale);
-
-}
-
-
-/* =====================================================
-   SALVA ORDINE
-===================================================== */
-
-document
-.getElementById("saveBtn")
-.addEventListener(
-"click",
-saveOrder
-);
-
-
-function saveOrder(){
-
-const code =
-articleInput.value.trim();
-
-if(!code){
-
-alert("Inserisci il codice KTM.");
-
-articleInput.focus();
-
-return;
-
-}
-
-
-const listino =
-parseFloat(listinoInput.value) || 0;
-
-const sconto =
-parseFloat(scontoInput.value) || 0;
-
-const quantity =
-parseFloat(qtyInput.value) || 1;
-
-const netto =
-listino *
-(1 - sconto / 100);
-
-const totale =
-netto *
-quantity;
-
-
-const order = {
-
-id:Date.now(),
-
-person:currentPerson,
-
-date:
-document
-.getElementById("date")
-.value,
-
-quantity:quantity,
-
-article:code,
-
-listino:listino,
-
-sconto:sconto,
-
-netto:netto,
-
-totale:totale
-
-};
-
-
-orders.push(order);
-
-
-localStorage.setItem(
-"ktmOrdersV5",
-JSON.stringify(orders)
-);
-
-
-modal.classList.remove("show");
-
-updateDashboard();
-
-alert("Ordine salvato correttamente!");
-
-}
-
-
-/* =====================================================
-   RENDER ORDINI
-===================================================== */
-
-function renderOrders(){
-
-const body =
-document.getElementById("ordersBody");
-
-const search =
-document
-.getElementById("quickSearch")
-.value
-.trim()
-.toLowerCase();
-
-
-const personOrders =
-orders.filter(function(order){
-
-return order.person === currentPerson;
-
-});
-
-
-const filtered =
-personOrders.filter(function(order){
-
-return (
-!search ||
-String(order.article)
-.toLowerCase()
-.includes(search)
-);
-
-});
-
-
-body.innerHTML = "";
-
-
-if(filtered.length === 0){
-
-body.innerHTML =
-
-"<tr>" +
-
-"<td colspan='7' class='empty'>" +
-
-(
-search
-?
-"Nessun codice trovato."
-:
-"Nessun ordine presente."
-)
-
-+
-
-"</td>" +
-
-"</tr>";
-
-return;
-
-}
-
-
-filtered.forEach(function(order){
-
-const tr =
-document.createElement("tr");
-
-tr.innerHTML =
-
-"<td>" +
-formatDate(order.date) +
-"</td>" +
-
-"<td>" +
-order.quantity +
-"</td>" +
-
-"<td><strong>" +
-escapeHtml(order.article) +
-"</strong></td>" +
-
-"<td>€ " +
-formatMoney(order.listino) +
-"</td>" +
-
-"<td>" +
-order.sconto +
-"%</td>" +
-
-"<td>€ " +
-formatMoney(order.netto) +
-"</td>" +
-
-"<td><strong>€ " +
-formatMoney(order.totale) +
-"</strong></td>";
-
-body.appendChild(tr);
-
-});
-
-}
-
-
-/* =====================================================
-   RICERCA RAPIDA
-===================================================== */
-
-document
-.getElementById("quickSearch")
-.addEventListener(
-"input",
-renderOrders
-);
-
-
-/* =====================================================
-   MODAL LAVORO
-===================================================== */
-
-function openWorkModal(){
-
-workModal.classList.add("show");
-
-document
-.getElementById("workModalPerson")
-.textContent =
-currentPerson;
-
-document
-.getElementById("workDate")
-.value =
-new Date()
-.toISOString()
-.split("T")[0];
-
-document
-.getElementById("workPrice")
-.value = 0;
-
-document
-.getElementById("workDescription")
-.value = "";
-
-}
-
-
-document
-.getElementById("cancelWorkBtn")
-.addEventListener(
-"click",
-function(){
-
-workModal.classList.remove("show");
-
-}
-);
-
-
-workModal.addEventListener(
-"click",
-function(e){
-
-if(e.target === workModal){
-
-workModal.classList.remove("show");
-
-}
-
-}
-);
-
-
-/* =====================================================
-   SALVA LAVORO
-===================================================== */
-
-document
-.getElementById("saveWorkBtn")
-.addEventListener(
-"click",
-function(){
-
-const date =
-document
-.getElementById("workDate")
-.value;
-
-const description =
-document
-.getElementById("workDescription")
-.value
-.trim();
-
-const price =
-parseFloat(
-document
-.getElementById("workPrice")
-.value
-) || 0;
-
-
-if(!description){
-
-alert("Inserisci il lavoro eseguito.");
-
-return;
-
-}
-
-
-works.push({
-
-id:Date.now(),
-
-person:currentPerson,
-
-date:date,
-
-description:description,
-
-price:price
-
-});
-
-
-localStorage.setItem(
-"ktmWorksV1",
-JSON.stringify(works)
-);
-
-
-workModal.classList.remove("show");
-
-renderWorks();
-
-updateDashboard();
-
-alert("Lavoro salvato correttamente!");
-
-}
-);
-
-
-/* =====================================================
-   RENDER LAVORI
-===================================================== */
-
-function renderWorks(){
-
-const body =
-document.getElementById("worksBody");
-
-const personWorks =
-works.filter(function(work){
-
-return work.person === currentPerson;
-
-});
-
-
-body.innerHTML = "";
-
-
-if(personWorks.length === 0){
-
-body.innerHTML =
-
-"<tr>" +
-
-"<td colspan='3' class='empty'>" +
-
-"Nessun lavoro inserito."
-
-+
-
-"</td>" +
-
-"</tr>";
-
-return;
-
-}
-
-
-personWorks.forEach(function(work){
-
-const tr =
-document.createElement("tr");
-
-tr.innerHTML =
-
-"<td>" +
-formatDate(work.date) +
-"</td>" +
-
-"<td class='work-description'>" +
-escapeHtml(work.description) +
-"</td>" +
-
-"<td class='work-total'>€ " +
-formatMoney(work.price) +
-"</td>";
-
-body.appendChild(tr);
-
-});
-
-}
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-function updateDashboard(){
-
-const personOrders =
-orders.filter(function(order){
-
-return order.person === currentPerson;
-
-});
-
-
-const personWorks =
-works.filter(function(work){
-
-return work.person === currentPerson;
-
-});
-
-
-let totalOrders = 0;
-
-let totalWorks = 0;
-
-
-personOrders.forEach(function(order){
-
-totalOrders +=
-Number(order.totale) || 0;
-
-});
-
-
-personWorks.forEach(function(work){
-
-totalWorks +=
-Number(work.price) || 0;
-
-});
-
-
-document
-.getElementById("count")
-.textContent =
-personOrders.length;
-
-
-document
-.getElementById("netTotal")
-.textContent =
-"€ " +
-formatMoney(totalOrders);
-
-
-document
-.getElementById("workTotal")
-.textContent =
-"€ " +
-formatMoney(totalWorks);
-
-}
-
-
-/* =====================================================
-   FORMATTAZIONE
-===================================================== */
-
-function formatMoney(value){
-
-return Number(value || 0)
-.toLocaleString(
-"it-IT",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-}
-
-
-function formatDate(date){
-
-if(!date){
-
-return "";
-
-}
-
-const parts =
-date.split("-");
-
-if(parts.length !== 3){
-
-return date;
-
-}
-
-return (
-parts[2] +
-"/" +
-parts[1] +
-"/" +
-parts[0]
-);
-
-}
-
-
-function escapeHtml(text){
-
-return String(text || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   CHIUSURA SUGGERIMENTI
-===================================================== */
-
-document.addEventListener(
-"click",
-function(e){
-
-if(
-!e.target.closest(".code-search")
-){
-
-suggestions.style.display =
-"none";
-
-}
-
-}
-);
+/*
+=========================================================
+   AVVIO
+=========================================================
+*/
+
+mostraRicambi();
 
 </script>
 
