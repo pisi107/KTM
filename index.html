@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>KTM - Gestione Ricambi</title>
+<title>Gestione Ordini KTM</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -21,8 +19,9 @@
     --black:#111;
     --gray:#666;
     --light:#f7f7f7;
-    --border:#e8e8e8;
     --white:#fff;
+    --green:#168044;
+    --blue:#2862a8;
 }
 
 body{
@@ -32,18 +31,17 @@ body{
     min-height:100vh;
 }
 
-
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
 #home{
     min-height:100vh;
     position:relative;
     overflow:hidden;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     padding:30px 20px;
 }
 
@@ -53,35 +51,36 @@ body{
 }
 
 .o1{
-    width:520px;
-    height:300px;
     top:-170px;
     left:-120px;
+    width:520px;
+    height:300px;
     transform:rotate(-15deg);
 }
 
 .o2{
-    width:350px;
-    height:550px;
     right:-170px;
     top:45%;
+    width:350px;
+    height:550px;
     transform:rotate(28deg);
 }
 
 .home{
-    width:100%;
-    max-width:900px;
     position:relative;
     z-index:2;
+    width:100%;
+    max-width:900px;
     text-align:center;
 }
 
 .logo{
-    color:var(--orange);
     font-size:78px;
     font-weight:1000;
     font-style:italic;
     letter-spacing:-7px;
+    color:var(--orange);
+    line-height:.8;
 }
 
 .home h1{
@@ -108,8 +107,8 @@ body{
     border:1px solid #eee;
     border-radius:25px;
     padding:35px 30px 30px;
-    box-shadow:0 12px 35px rgba(0,0,0,.10);
-    transition:.2s;
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
+    transition:.25s;
 }
 
 .person:hover{
@@ -120,13 +119,13 @@ body{
 .avatar{
     width:75px;
     height:75px;
-    margin:auto;
     border-radius:50%;
     background:var(--orange);
     color:#fff;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    margin:auto;
     font-size:32px;
 }
 
@@ -137,7 +136,7 @@ body{
 }
 
 .btn{
-    border:0;
+    border:none;
     cursor:pointer;
     font-weight:800;
     border-radius:9px;
@@ -154,16 +153,15 @@ body{
 }
 
 .person .btn{
-    width:100%;
     margin-top:25px;
+    width:100%;
     padding:16px;
     font-size:17px;
 }
 
-
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
 #app{
     display:none;
@@ -177,29 +175,29 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 30px;
-    border-bottom:1px solid var(--border);
-    background:#fff;
+    border-bottom:1px solid #eee;
     position:sticky;
     top:0;
     z-index:20;
+    background:#fff;
 }
 
-.headerLeft{
+.headerRight{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:13px;
 }
 
 .smalllogo{
     color:var(--orange);
-    font-size:28px;
+    font-size:27px;
     font-weight:1000;
     font-style:italic;
 }
 
 .exit{
-    background:#fff;
     border:1px solid #ddd;
+    background:#fff;
     border-radius:9px;
     padding:10px 15px;
     cursor:pointer;
@@ -207,13 +205,12 @@ body{
 }
 
 .exit:hover{
-    color:var(--orange);
     border-color:var(--orange);
+    color:var(--orange);
 }
 
 .container{
-    width:100%;
-    max-width:1100px;
+    max-width:1250px;
     margin:auto;
     padding:35px 25px;
 }
@@ -226,11 +223,6 @@ body{
     display:block;
 }
 
-
-/* =====================================================
-   TITOLI
-===================================================== */
-
 .title{
     margin-bottom:25px;
 }
@@ -241,14 +233,13 @@ body{
 }
 
 .title p{
-    margin-top:5px;
     color:var(--gray);
+    margin-top:5px;
 }
 
-
-/* =====================================================
-   STATISTICHE
-===================================================== */
+/* =========================
+   STATS
+========================= */
 
 .stats{
     display:grid;
@@ -259,7 +250,7 @@ body{
 
 .stat{
     background:#fff;
-    border:1px solid var(--border);
+    border:1px solid #eee;
     border-radius:14px;
     padding:20px;
 }
@@ -267,20 +258,19 @@ body{
 .stat small{
     display:block;
     color:#777;
-    font-size:12px;
+    font-size:13px;
 }
 
 .stat strong{
     display:block;
-    margin-top:7px;
-    font-size:23px;
+    font-size:24px;
     font-weight:900;
+    margin-top:7px;
 }
 
-
-/* =====================================================
+/* =========================
    MENU
-===================================================== */
+========================= */
 
 .menu{
     display:grid;
@@ -290,7 +280,7 @@ body{
 
 .card{
     background:#fff;
-    border:1px solid var(--border);
+    border:1px solid #eee;
     border-radius:15px;
     padding:22px;
     display:flex;
@@ -309,7 +299,6 @@ body{
 .icon{
     width:50px;
     height:50px;
-    flex-shrink:0;
     border-radius:12px;
     background:var(--orange-light);
     color:var(--orange);
@@ -317,6 +306,7 @@ body{
     align-items:center;
     justify-content:center;
     font-size:24px;
+    flex-shrink:0;
 }
 
 .card h3{
@@ -332,24 +322,15 @@ body{
 .arrow{
     margin-left:auto;
     color:var(--orange);
-    font-size:24px;
+    font-size:22px;
 }
 
-
-/* =====================================================
-   PAGINA ORDINI
-===================================================== */
-
-.top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    margin-bottom:20px;
-}
+/* =========================
+   ORDINI
+========================= */
 
 .back{
-    border:0;
+    border:none;
     background:transparent;
     color:var(--orange);
     font-weight:800;
@@ -357,55 +338,24 @@ body{
     margin-bottom:20px;
 }
 
-
-/* =====================================================
-   FILTRI
-===================================================== */
-
-.filters{
+.top{
     display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:18px;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
-
-.filter{
-    border:1px solid #ddd;
-    background:#fff;
-    padding:9px 14px;
-    border-radius:20px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:800;
-}
-
-.filter:hover{
-    border-color:var(--orange);
-    color:var(--orange);
-}
-
-.filter.active{
-    background:var(--orange);
-    border-color:var(--orange);
-    color:#fff;
-}
-
-
-/* =====================================================
-   TABELLA
-===================================================== */
 
 .tablebox{
     background:#fff;
-    border:1px solid var(--border);
+    border:1px solid #eee;
     border-radius:15px;
     overflow-x:auto;
 }
 
 table{
     width:100%;
-    min-width:1150px;
     border-collapse:collapse;
+    min-width:1150px;
 }
 
 th{
@@ -418,57 +368,90 @@ th{
 }
 
 td{
-    padding:14px;
+    padding:10px 14px;
     border-top:1px solid #eee;
     font-size:13px;
-    white-space:nowrap;
+    vertical-align:middle;
 }
 
-.empty{
-    text-align:center;
-    padding:50px !important;
-    color:#888;
+.article{
+    font-weight:700;
+    min-width:260px;
 }
 
-
-/* =====================================================
-   MENU STATO
-===================================================== */
-
-.status{
-    border:1px solid transparent;
-    border-radius:20px;
-    padding:8px 30px 8px 12px;
-    font-size:11px;
+.qty{
     font-weight:800;
-    cursor:pointer;
-    outline:none;
-    appearance:auto;
+    text-align:center;
 }
 
-.status:hover{
+.priceInput{
+    width:105px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:8px;
+    font-size:13px;
+}
+
+.priceInput:focus{
+    outline:none;
     border-color:var(--orange);
 }
 
-.status.ordinato{
+.discountInput{
+    width:80px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:8px;
+    font-size:13px;
+}
+
+.discountInput:focus{
+    outline:none;
+    border-color:var(--orange);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.statusSelect{
+    border:none;
+    border-radius:20px;
+    padding:8px 12px;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+    min-width:125px;
+    outline:none;
+}
+
+.status-da-ordinare{
+    background:#ffe2dc;
+    color:#c9321c;
+}
+
+.status-ordinato{
     background:#fff0d5;
     color:#9b6200;
 }
 
-.status.ritirare{
-    background:#e0edff;
-    color:#2862a8;
+.status-da-ritirare{
+    background:#e8ddff;
+    color:#6941a5;
 }
 
-.status.consegnato{
-    background:#e3f5e9;
+.status-consegnato{
+    background:#def5e5;
     color:#16753d;
 }
 
+.statusSelect:focus{
+    box-shadow:0 0 0 2px var(--orange-light);
+}
 
-/* =====================================================
+/* =========================
    PAGAMENTI
-===================================================== */
+========================= */
 
 .payment{
     background:var(--orange-light);
@@ -478,25 +461,32 @@ td{
 }
 
 .payment .big{
-    margin:10px 0;
-    font-size:34px;
+    font-size:32px;
     font-weight:900;
+    margin:10px 0;
 }
 
+.note{
+    background:#f7f7f7;
+    padding:18px;
+    border-radius:10px;
+    color:#666;
+    margin-top:20px;
+}
 
-/* =====================================================
+/* =========================
    MODALE
-===================================================== */
+========================= */
 
 .modal-bg{
     position:fixed;
     inset:0;
-    z-index:100;
+    background:rgba(0,0,0,.55);
     display:none;
     align-items:center;
     justify-content:center;
+    z-index:100;
     padding:20px;
-    background:rgba(0,0,0,.55);
 }
 
 .modal-bg.show{
@@ -504,11 +494,11 @@ td{
 }
 
 .modal{
+    background:#fff;
     width:600px;
     max-width:100%;
     max-height:90vh;
     overflow-y:auto;
-    background:#fff;
     border-radius:20px;
     padding:25px;
 }
@@ -539,8 +529,8 @@ td{
     color:#666;
 }
 
-.field input{
-    width:100%;
+.field input,
+.field select{
     border:1px solid #ddd;
     padding:11px;
     border-radius:8px;
@@ -548,12 +538,9 @@ td{
     font-size:14px;
 }
 
-.field input:focus{
+.field input:focus,
+.field select:focus{
     border-color:var(--orange);
-}
-
-.field input[readonly]{
-    background:#f4f4f4;
 }
 
 .modal-buttons{
@@ -564,7 +551,7 @@ td{
 }
 
 .cancel{
-    border:0;
+    border:none;
     background:#eee;
     padding:11px 18px;
     border-radius:8px;
@@ -573,7 +560,7 @@ td{
 }
 
 .save{
-    border:0;
+    border:none;
     background:var(--orange);
     color:#fff;
     padding:11px 20px;
@@ -582,10 +569,9 @@ td{
     cursor:pointer;
 }
 
-
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media(max-width:700px){
 
@@ -604,6 +590,10 @@ td{
         margin-top:30px;
     }
 
+    .person{
+        padding:25px 20px;
+    }
+
     .stats{
         grid-template-columns:1fr 1fr;
     }
@@ -620,11 +610,6 @@ td{
         padding:25px 15px;
     }
 
-    .top{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
     .form{
         grid-template-columns:1fr;
     }
@@ -632,30 +617,25 @@ td{
     .field.full{
         grid-column:auto;
     }
-}
 
-@media(max-width:450px){
-
-    .stats{
-        grid-template-columns:1fr;
+    .top{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
     }
 
-    .header{
-        height:65px;
+    .title h1{
+        font-size:26px;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      HOME
-===================================================== -->
+========================= -->
 
 <section id="home">
 
@@ -664,70 +644,123 @@ td{
 
     <div class="home">
 
-        <div class="logo">
-            KTM
-        </div>
+        <div class="logo">KTM</div>
 
-        <h1>
-            GESTIONE ORDINI
-        </h1>
+        <h1>GESTIONE ORDINI</h1>
 
-        <p>
-            Seleziona la persona da gestire
-        </p>
-
+        <p>Seleziona la persona da gestire</p>
 
         <div class="people">
 
-
-            <!-- ROBY -->
-
             <div class="person">
-
-                <div class="avatar">
-                    👤
-                </div>
-
-                <h2>
-                    ROBY
-                </h2>
-
-                <button
-                    type="button"
-                    class="btn orangebtn"
-                    id="robyBtn">
-
+                <div class="avatar">👤</div>
+                <h2>ROBY</h2>
+                <button class="btn orangebtn" id="robyBtn">
                     ENTRA
-
                 </button>
-
             </div>
 
-
-            <!-- FEDE -->
-
             <div class="person">
-
-                <div class="avatar">
-                    👤
-                </div>
-
-                <h2>
-                    FEDE
-                </h2>
-
-                <button
-                    type="button"
-                    class="btn orangebtn"
-                    id="fedeBtn">
-
+                <div class="avatar">👤</div>
+                <h2>FEDE</h2>
+                <button class="btn orangebtn" id="fedeBtn">
                     ENTRA
-
                 </button>
-
             </div>
 
+        </div>
 
+    </div>
+</section>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<section id="app">
+
+<header class="header">
+
+    <div class="headerRight">
+        <div class="smalllogo">KTM</div>
+        <strong id="currentUser"></strong>
+    </div>
+
+    <button class="exit" id="exitBtn">
+        ← Esci
+    </button>
+
+</header>
+
+
+<main class="container">
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard" class="page active">
+
+    <div class="title">
+        <h1 id="hello"></h1>
+        <p>Gestione ordini, prezzi e pagamenti</p>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <small>ARTICOLI</small>
+            <strong id="count">0</strong>
+        </div>
+
+        <div class="stat">
+            <small>TOTALE NETTO</small>
+            <strong id="netTotal">€ 0,00</strong>
+        </div>
+
+        <div class="stat">
+            <small>DA DARE A GIO</small>
+            <strong id="gioTotal">€ 0,00</strong>
+        </div>
+
+        <div class="stat">
+            <small>DA DARE ALLA PERSONA</small>
+            <strong id="personTotal">€ 0,00</strong>
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+        <div class="card" id="ordersCard">
+            <div class="icon">📋</div>
+            <div>
+                <h3>I miei ordini</h3>
+                <p>Visualizza tutti gli articoli</p>
+            </div>
+            <div class="arrow">›</div>
+        </div>
+
+
+        <div class="card" id="newCard">
+            <div class="icon">➕</div>
+            <div>
+                <h3>Nuovo ordine</h3>
+                <p>Aggiungi un nuovo articolo</p>
+            </div>
+            <div class="arrow">›</div>
+        </div>
+
+
+        <div class="card" id="paymentsCard">
+            <div class="icon">💶</div>
+            <div>
+                <h3>Pagamenti</h3>
+                <p>Controlla quanto deve essere versato a Gio</p>
+            </div>
+            <div class="arrow">›</div>
         </div>
 
     </div>
@@ -735,453 +768,123 @@ td{
 </section>
 
 
+<!-- =========================
+     ORDINI
+========================= -->
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<section id="orders" class="page">
 
-<section id="app">
+    <button class="back" id="backBtn">
+        ← Dashboard
+    </button>
 
+    <div class="top">
 
-    <header class="header">
+        <div class="title">
+            <h1>
+                Ordini di <span id="ordersPerson"></span>
+            </h1>
 
-        <div class="headerLeft">
-
-            <div class="smalllogo">
-                KTM
-            </div>
-
-            <strong id="currentUser"></strong>
-
+            <p>
+                Elenco ricambi importati dalle immagini + nuovi inserimenti
+            </p>
         </div>
 
-
-        <button
-            type="button"
-            class="exit"
-            id="exitBtn">
-
-            ← Esci
-
+        <button class="btn orangebtn" id="newOrderBtn">
+            + Nuovo ordine
         </button>
 
-    </header>
+    </div>
 
 
+    <div class="tablebox">
 
-    <main class="container">
+        <table>
 
+            <thead>
+                <tr>
+                    <th>Q.TÀ</th>
+                    <th>ARTICOLO / CODICE</th>
+                    <th>LISTINO €</th>
+                    <th>SCONTO %</th>
+                    <th>NETTO €</th>
+                    <th>DA DARE A PERSONA €</th>
+                    <th>DA DARE A GIO €</th>
+                    <th>STATO</th>
+                </tr>
+            </thead>
 
-        <!-- =================================================
-             DASHBOARD
-        ================================================== -->
+            <tbody id="ordersBody"></tbody>
 
-        <section
-            id="dashboard"
-            class="page active">
+        </table>
 
-
-            <div class="title">
-
-                <h1 id="hello">
-                    Ciao
-                </h1>
-
-                <p>
-                    Gestione ricambi e pagamenti
-                </p>
-
-            </div>
-
-
-
-            <div class="stats">
-
-
-                <div class="stat">
-
-                    <small>
-                        ORDINI
-                    </small>
-
-                    <strong id="count">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <small>
-                        TOTALE NETTO
-                    </small>
-
-                    <strong id="netTotal">
-                        € 0,00
-                    </strong>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <small>
-                        DA DARE A GIO
-                    </small>
-
-                    <strong id="gioTotal">
-                        € 0,00
-                    </strong>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <small>
-                        DA DARE ALLA PERSONA
-                    </small>
-
-                    <strong id="personTotal">
-                        € 0,00
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-
-            <div class="menu">
-
-
-                <div
-                    class="card"
-                    id="ordersCard">
-
-                    <div class="icon">
-                        📋
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            I miei ordini
-                        </h3>
-
-                        <p>
-                            Visualizza tutti i ricambi
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-
-                <div
-                    class="card"
-                    id="newCard">
-
-                    <div class="icon">
-                        ➕
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Nuovo ordine
-                        </h3>
-
-                        <p>
-                            Aggiungi un nuovo ricambio
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-
-                <div
-                    class="card"
-                    id="paymentsCard">
-
-                    <div class="icon">
-                        💶
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Pagamenti
-                        </h3>
-
-                        <p>
-                            Controlla quanto devi dare a Gio
-                        </p>
-
-                    </div>
-
-                    <div class="arrow">
-                        ›
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             ORDINI
-        ================================================== -->
-
-        <section
-            id="orders"
-            class="page">
-
-
-            <button
-                type="button"
-                class="back"
-                id="backBtn">
-
-                ← Dashboard
-
-            </button>
-
-
-
-            <div class="top">
-
-
-                <div class="title">
-
-                    <h1>
-                        Ordini di
-                        <span id="ordersPerson"></span>
-                    </h1>
-
-                    <p>
-                        Elenco dei ricambi
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="btn orangebtn"
-                    id="newOrderBtn">
-
-                    + Nuovo ordine
-
-                </button>
-
-
-            </div>
-
-
-
-            <!-- FILTRI -->
-
-            <div class="filters">
-
-
-                <button
-                    type="button"
-                    class="filter active"
-                    data-filter="TUTTI">
-
-                    TUTTI
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="filter"
-                    data-filter="Ordinato">
-
-                    ORDINATI
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="filter"
-                    data-filter="Da ritirare">
-
-                    DA RITIRARE
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="filter"
-                    data-filter="Consegnato">
-
-                    CONSEGNATI
-
-                </button>
-
-
-            </div>
-
-
-
-            <!-- TABELLA -->
-
-            <div class="tablebox">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                DATA
-                            </th>
-
-                            <th>
-                                Q.TÀ
-                            </th>
-
-                            <th>
-                                ARTICOLO
-                            </th>
-
-                            <th>
-                                LISTINO
-                            </th>
-
-                            <th>
-                                SCONTO
-                            </th>
-
-                            <th>
-                                NETTO
-                            </th>
-
-                            <th>
-                                TOTALE
-                            </th>
-
-                            <th>
-                                DA DARE A PERSONA
-                            </th>
-
-                            <th>
-                                DA DARE A GIO
-                            </th>
-
-                            <th>
-                                STATO
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="ordersBody"></tbody>
-
-                </table>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             PAGAMENTI
-        ================================================== -->
-
-        <section
-            id="payments"
-            class="page">
-
-
-            <button
-                type="button"
-                class="back"
-                id="paymentsBack">
-
-                ← Dashboard
-
-            </button>
-
-
-            <div class="title">
-
-                <h1>
-                    Pagamenti
-                </h1>
-
-                <p>
-                    Situazione economica di
-                    <span id="paymentName"></span>
-                </p>
-
-            </div>
-
-
-            <div class="payment">
-
-                <div>
-                    TOTALE DA DARE A GIO
-                </div>
-
-                <div
-                    class="big"
-                    id="paymentTotal">
-
-                    € 0,00
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-    </main>
+    </div>
 
 </section>
 
 
+<!-- =========================
+     PAGAMENTI
+========================= -->
 
-<!-- =====================================================
+<section id="payments" class="page">
+
+    <button class="back" id="paymentsBack">
+        ← Dashboard
+    </button>
+
+    <div class="title">
+
+        <h1>Pagamenti</h1>
+
+        <p>
+            Situazione economica di
+            <span id="paymentName"></span>
+        </p>
+
+    </div>
+
+
+    <div class="payment">
+
+        <div>TOTALE DA DARE A GIO</div>
+
+        <div class="big" id="paymentTotal">
+            € 0,00
+        </div>
+
+        <p>
+            I prezzi degli articoli sono impostati a 0 €.
+            Inseriscili direttamente nella tabella degli ordini.
+        </p>
+
+    </div>
+
+
+    <div class="note">
+
+        <strong>Nota:</strong><br>
+
+        Ogni modifica al prezzo, allo sconto, alla cifra da dare
+        alla persona o allo stato dell'ordine viene salvata
+        automaticamente sul dispositivo.
+
+    </div>
+
+</section>
+
+</main>
+
+</section>
+
+
+<!-- =========================
      MODALE NUOVO ORDINE
-===================================================== -->
+========================= -->
 
-<div
-    class="modal-bg"
-    id="modal">
-
+<div class="modal-bg" id="modal">
 
     <div class="modal">
-
 
         <h2>
             Nuovo ordine —
@@ -1189,76 +892,69 @@ td{
         </h2>
 
 
-
         <div class="form">
 
-
             <div class="field">
 
-                <label>
-                    DATA
-                </label>
-
-                <input
-                    type="date"
-                    id="date">
-
-            </div>
-
-
-
-            <div class="field">
-
-                <label>
-                    QUANTITÀ
-                </label>
+                <label>QUANTITÀ</label>
 
                 <input
                     type="number"
                     id="qty"
                     min="1"
-                    value="1">
+                    value="1"
+                >
 
             </div>
-
-
-
-            <div class="field full">
-
-                <label>
-                    CODICE / ARTICOLO KTM
-                </label>
-
-                <input
-                    type="text"
-                    id="article"
-                    placeholder="Es. 50430098060">
-
-            </div>
-
 
 
             <div class="field">
 
-                <label>
-                    LISTINO (€)
-                </label>
+                <label>STATO</label>
+
+                <select id="newStatus">
+
+                    <option>Da ordinare</option>
+                    <option>Ordinato</option>
+                    <option>Da ritirare</option>
+                    <option>Consegnato</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>CODICE / ARTICOLO</label>
+
+                <input
+                    type="text"
+                    id="article"
+                    placeholder="Es. 1234567890"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>LISTINO (€)</label>
 
                 <input
                     type="number"
                     id="listino"
                     min="0"
-                    step="0.01">
+                    step="0.01"
+                    value="0"
+                >
 
             </div>
 
 
-
             <div class="field">
 
-                <label>
-                    SCONTO (%)
-                </label>
+                <label>SCONTO (%)</label>
 
                 <input
                     type="number"
@@ -1266,135 +962,407 @@ td{
                     min="0"
                     max="100"
                     step="0.01"
-                    value="25">
+                    value="25"
+                >
 
             </div>
 
 
-
             <div class="field">
 
-                <label>
-                    NETTO SCONTATO (€)
-                </label>
-
-                <input
-                    type="text"
-                    id="netto"
-                    readonly>
-
-            </div>
-
-
-
-            <div class="field">
-
-                <label>
-                    SOLDI DA DARE A PERSONA (€)
-                </label>
+                <label>DA DARE A PERSONA (€)</label>
 
                 <input
                     type="number"
                     id="darePersona"
                     min="0"
                     step="0.01"
-                    value="0">
+                    value="0"
+                >
 
             </div>
-
-
-
-            <div class="field">
-
-                <label>
-                    SOLDI DA DARE A GIO (€)
-                </label>
-
-                <input
-                    type="number"
-                    id="dareGio"
-                    min="0"
-                    step="0.01"
-                    value="0">
-
-            </div>
-
 
         </div>
-
 
 
         <div class="modal-buttons">
 
-
-            <button
-                type="button"
-                class="cancel"
-                id="cancelBtn">
-
+            <button class="cancel" id="cancelBtn">
                 Annulla
-
             </button>
 
-
-            <button
-                type="button"
-                class="save"
-                id="saveBtn">
-
+            <button class="save" id="saveBtn">
                 Salva ordine
-
             </button>
-
 
         </div>
-
 
     </div>
 
 </div>
 
 
-
 <script>
+
+/* =====================================================
+   DATI
+   =====================================================
+
+   Nuova versione V3:
+   i vecchi dati V2 NON vengono caricati.
+
+   I dati qui sotto sono quelli ricavati dalle immagini
+   e filtrati secondo le esclusioni richieste.
+===================================================== */
+
+const INITIAL_ROBY = [
+
+{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"A46035009000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"00050000272 - 79430107210 II",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79536013000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"77239093000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"77338005100",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42005907500",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46035909000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"A46014069000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030060000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50403096010",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"77204066010 - 77204066044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A45041072033",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79135071044",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"50439005000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50532054000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79135071044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A45041072033",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"91010240S",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50439004000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79030015144",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47230015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030018010",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430006100",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"50433015400",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"54834005133 - 50534005044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030035040",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030035025",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030118000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030000144",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50532010033",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47230060100",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230035040",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430035050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430035040",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430035020",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"55430006100",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"56530123200",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0625623204",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"54830015244",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"55530038100",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"00050002300 (ex 52330018288)",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"Manutenzione Moto",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50439005000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"79030015144",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"79013090000",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A44002091000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0625063055",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50330082000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42003014000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"A42030000244",price:0,discount:25,status:"Da ordinare"},
+{q:4,a:"0835080326",price:0,discount:25,status:"Da ordinare"},
+{q:4,a:"51030034000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"54802031000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79230207200 II",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"A42030060000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79041077044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030035040",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A42030035025",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230050000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"54802031000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"45235054028",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A40530035050",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"45233010200",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0760263561",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"45230039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"452300295100",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"0770052020",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0770120020",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0770078020",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0760152472",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"45133028000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0760162240",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0760223270",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46006026033",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"50330006600",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47030034000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47230049000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"(ex 00050002318)47230018188",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0625982031",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"0062042001400",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47234005044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47233016000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47233002000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47233015000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47233014000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47233003000",price:0,discount:25,status:"Da ordinare"},
+{q:5,a:"51030034000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"77036003200",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"77839093000",price:0,discount:25,status:"Da ordinare"},
+{q:4,a:"77036027000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46030007010I",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"A46035007000",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47234012044",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"79234015100",price:0,discount:25,status:"Da ordinare"},
+
+{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230018188",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47030076100",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"49030023000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230018188",price:0,discount:25,status:"Da ordinare"},
+{q:1,a:"47230015044",price:0,discount:25,status:"Da ordinare"},
+{q:2,a:"47230049000",price:0,discount:25,status:"Da ordinare"},
+{q:4,a:"A46003062000",price:0,discount:25,status:"Da ordinare"}
+
+];
 
 
 /* =====================================================
-   DATABASE LOCALE
+   CONFIGURAZIONE
 ===================================================== */
 
-let orders = [];
-
-try{
-
-    orders =
-        JSON.parse(
-            localStorage.getItem("KTM_ORDERS")
-        ) || [];
-
-}catch(error){
-
-    orders = [];
-
-}
-
+const STORAGE_KEY = "ktmOrdersV3";
 
 let currentPerson = "";
-let currentFilter = "TUTTI";
+let orders = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+
+
+/*
+   Se non esistono ancora dati V3:
+   carichiamo solamente il nuovo elenco.
+*/
+if(!orders){
+
+    orders = {
+        ROBY: INITIAL_ROBY.map(item => ({
+            ...item,
+            darePersona:0
+        })),
+
+        FEDE: []
+    };
+
+    saveData();
+}
 
 
 /* =====================================================
    ELEMENTI
 ===================================================== */
 
-const home =
-    document.getElementById("home");
+const home = document.getElementById("home");
+const app = document.getElementById("app");
 
-const app =
-    document.getElementById("app");
+const dashboard = document.getElementById("dashboard");
+const ordersPage = document.getElementById("orders");
+const paymentsPage = document.getElementById("payments");
 
-const modal =
-    document.getElementById("modal");
+const modal = document.getElementById("modal");
+
+
+/* =====================================================
+   ENTRATA ROBY
+===================================================== */
+
+document.getElementById("robyBtn").addEventListener("click", () => {
+    enterPerson("ROBY");
+});
+
+
+/* =====================================================
+   ENTRATA FEDE
+===================================================== */
+
+document.getElementById("fedeBtn").addEventListener("click", () => {
+    enterPerson("FEDE");
+});
+
+
+/* =====================================================
+   ENTRA
+===================================================== */
+
+function enterPerson(person){
+
+    currentPerson = person;
+
+    home.style.display = "none";
+    app.style.display = "block";
+
+    document.getElementById("currentUser").textContent = person;
+    document.getElementById("hello").textContent =
+        "Ciao " + person;
+
+    showPage("dashboard");
+
+    updateDashboard();
+}
+
+
+/* =====================================================
+   USCITA
+===================================================== */
+
+document.getElementById("exitBtn").addEventListener("click", () => {
+
+    app.style.display = "none";
+    home.style.display = "flex";
+
+    currentPerson = "";
+
+});
+
+
+/* =====================================================
+   NAVIGAZIONE
+===================================================== */
+
+document.getElementById("ordersCard").addEventListener("click", () => {
+    openOrders();
+});
+
+document.getElementById("newCard").addEventListener("click", () => {
+    openModal();
+});
+
+document.getElementById("paymentsCard").addEventListener("click", () => {
+    openPayments();
+});
+
+document.getElementById("newOrderBtn").addEventListener("click", () => {
+    openModal();
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+    showPage("dashboard");
+    updateDashboard();
+});
+
+document.getElementById("paymentsBack").addEventListener("click", () => {
+    showPage("dashboard");
+    updateDashboard();
+});
+
+
+function showPage(page){
+
+    dashboard.classList.remove("active");
+    ordersPage.classList.remove("active");
+    paymentsPage.classList.remove("active");
+
+    if(page === "dashboard"){
+        dashboard.classList.add("active");
+    }
+
+    if(page === "orders"){
+        ordersPage.classList.add("active");
+    }
+
+    if(page === "payments"){
+        paymentsPage.classList.add("active");
+    }
+}
+
+
+function openOrders(){
+
+    showPage("orders");
+
+    document.getElementById("ordersPerson").textContent =
+        currentPerson;
+
+    renderOrders();
+
+}
+
+
+function openPayments(){
+
+    showPage("payments");
+
+    document.getElementById("paymentName").textContent =
+        currentPerson;
+
+    updatePayments();
+
+}
 
 
 /* =====================================================
@@ -1404,7 +1372,7 @@ const modal =
 function saveData(){
 
     localStorage.setItem(
-        "KTM_ORDERS",
+        STORAGE_KEY,
         JSON.stringify(orders)
     );
 
@@ -1412,203 +1380,279 @@ function saveData(){
 
 
 /* =====================================================
-   EURO
+   FORMAT EURO
 ===================================================== */
 
 function euro(value){
 
-    return Number(value || 0).toLocaleString(
-        "it-IT",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
-    );
+    return new Intl.NumberFormat("it-IT",{
+        style:"currency",
+        currency:"EUR"
+    }).format(Number(value) || 0);
 
 }
 
 
 /* =====================================================
-   DATA ODIERNA
+   NETTO
 ===================================================== */
 
-function today(){
+function calculateNet(item){
 
-    const d = new Date();
+    const price = Number(item.price) || 0;
+    const discount = Number(item.discount) || 0;
+    const qty = Number(item.q) || 1;
 
-    const year =
-        d.getFullYear();
-
-    const month =
-        String(d.getMonth()+1)
-        .padStart(2,"0");
-
-    const day =
-        String(d.getDate())
-        .padStart(2,"0");
-
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
-    );
+    return price * qty * (1 - discount / 100);
 
 }
 
 
 /* =====================================================
-   DATA ITALIANA
+   RENDER ORDINI
 ===================================================== */
 
-function italianDate(value){
+function renderOrders(){
 
-    if(!value){
-        return "";
-    }
+    const body = document.getElementById("ordersBody");
 
-    const parts =
-        value.split("-");
+    body.innerHTML = "";
 
-    if(parts.length !== 3){
-        return value;
-    }
+    const list = orders[currentPerson] || [];
 
-    return (
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-    );
+    list.forEach((item,index) => {
 
-}
+        const net = calculateNet(item);
+
+        const darePersona =
+            Number(item.darePersona) || 0;
+
+        const dareGio =
+            Math.max(0,net - darePersona);
 
 
-/* =====================================================
-   ENTRA COME ROBY / FEDE
-===================================================== */
-
-function enterPerson(person){
-
-    currentPerson = person;
-
-    currentFilter = "TUTTI";
-
-    home.style.display = "none";
-
-    app.style.display = "block";
+        const tr = document.createElement("tr");
 
 
-    document.getElementById(
-        "currentUser"
-    ).textContent = person;
+        /* QUANTITÀ */
+
+        const tdQty = document.createElement("td");
+
+        tdQty.className = "qty";
+
+        tdQty.textContent = item.q;
+
+        tr.appendChild(tdQty);
 
 
-    document.getElementById(
-        "hello"
-    ).textContent =
-        "Ciao " + person;
+        /* ARTICOLO */
+
+        const tdArticle = document.createElement("td");
+
+        tdArticle.className = "article";
+
+        tdArticle.textContent = item.a;
+
+        tr.appendChild(tdArticle);
 
 
-    document.getElementById(
-        "ordersPerson"
-    ).textContent = person;
+        /* PREZZO */
+
+        const tdPrice = document.createElement("td");
+
+        const priceInput =
+            document.createElement("input");
+
+        priceInput.type = "number";
+        priceInput.step = "0.01";
+        priceInput.min = "0";
+        priceInput.className = "priceInput";
+        priceInput.value = item.price || 0;
+
+        priceInput.addEventListener("input", () => {
+
+            item.price =
+                Number(priceInput.value) || 0;
+
+            saveData();
+            renderOrders();
+            updateDashboard();
+
+        });
+
+        tdPrice.appendChild(priceInput);
+
+        tr.appendChild(tdPrice);
 
 
-    document.getElementById(
-        "paymentName"
-    ).textContent = person;
+        /* SCONTO */
+
+        const tdDiscount =
+            document.createElement("td");
+
+        const discountInput =
+            document.createElement("input");
+
+        discountInput.type = "number";
+        discountInput.step = "0.01";
+        discountInput.min = "0";
+        discountInput.max = "100";
+        discountInput.className = "discountInput";
+        discountInput.value =
+            item.discount ?? 25;
+
+        discountInput.addEventListener("input", () => {
+
+            item.discount =
+                Number(discountInput.value) || 0;
+
+            saveData();
+            renderOrders();
+            updateDashboard();
+
+        });
+
+        tdDiscount.appendChild(discountInput);
+
+        tr.appendChild(tdDiscount);
 
 
-    document.getElementById(
-        "modalPerson"
-    ).textContent = person;
+        /* NETTO */
+
+        const tdNet = document.createElement("td");
+
+        tdNet.textContent = euro(net);
+
+        tr.appendChild(tdNet);
 
 
-    resetFilters();
+        /* DA DARE PERSONA */
 
-    showPage("dashboard");
+        const tdPerson =
+            document.createElement("td");
 
-}
+        const personInput =
+            document.createElement("input");
+
+        personInput.type = "number";
+        personInput.step = "0.01";
+        personInput.min = "0";
+        personInput.className = "priceInput";
+        personInput.value =
+            item.darePersona || 0;
+
+        personInput.addEventListener("input", () => {
+
+            item.darePersona =
+                Number(personInput.value) || 0;
+
+            saveData();
+            renderOrders();
+            updateDashboard();
+
+        });
+
+        tdPerson.appendChild(personInput);
+
+        tr.appendChild(tdPerson);
 
 
-/* =====================================================
-   ESCI
-===================================================== */
+        /* DA DARE GIO */
 
-function exitApp(){
+        const tdGio =
+            document.createElement("td");
 
-    currentPerson = "";
+        tdGio.textContent = euro(dareGio);
 
-    modal.classList.remove("show");
-
-    app.style.display = "none";
-
-    home.style.display = "flex";
-
-}
+        tr.appendChild(tdGio);
 
 
-/* =====================================================
-   CAMBIO PAGINA
-===================================================== */
+        /* STATO */
 
-function showPage(page){
+        const tdStatus =
+            document.createElement("td");
 
-    document
-        .querySelectorAll(".page")
-        .forEach(function(item){
+        const select =
+            document.createElement("select");
 
-            item.classList.remove("active");
+        select.className = "statusSelect";
+
+        const statuses = [
+            "Da ordinare",
+            "Ordinato",
+            "Da ritirare",
+            "Consegnato"
+        ];
+
+        statuses.forEach(status => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = status;
+            option.textContent = status;
+
+            if(item.status === status){
+                option.selected = true;
+            }
+
+            select.appendChild(option);
 
         });
 
 
-    const target =
-        document.getElementById(page);
-
-    if(target){
-
-        target.classList.add("active");
-
-    }
+        applyStatusClass(select,item.status);
 
 
-    if(page === "dashboard"){
-        updateDashboard();
-    }
+        select.addEventListener("change", () => {
+
+            item.status = select.value;
+
+            applyStatusClass(
+                select,
+                item.status
+            );
+
+            saveData();
+
+        });
 
 
-    if(page === "orders"){
-        updateOrders();
-    }
+        tdStatus.appendChild(select);
+
+        tr.appendChild(tdStatus);
 
 
-    if(page === "payments"){
-        updatePayments();
-    }
+        body.appendChild(tr);
+
+    });
 
 }
 
 
 /* =====================================================
-   ORDINI DELLA PERSONA
+   COLORE STATO
 ===================================================== */
 
-function getMyOrders(){
+function applyStatusClass(select,status){
 
-    return orders.filter(
-        function(order){
+    select.className = "statusSelect";
 
-            return (
-                order.person ===
-                currentPerson
-            );
+    if(status === "Da ordinare"){
+        select.classList.add("status-da-ordinare");
+    }
 
-        }
-    );
+    if(status === "Ordinato"){
+        select.classList.add("status-ordinato");
+    }
+
+    if(status === "Da ritirare"){
+        select.classList.add("status-da-ritirare");
+    }
+
+    if(status === "Consegnato"){
+        select.classList.add("status-consegnato");
+    }
 
 }
 
@@ -1620,325 +1664,41 @@ function getMyOrders(){
 function updateDashboard(){
 
     const list =
-        getMyOrders();
-
+        orders[currentPerson] || [];
 
     let netTotal = 0;
-    let gioTotal = 0;
     let personTotal = 0;
+    let gioTotal = 0;
 
+    list.forEach(item => {
 
-    list.forEach(function(order){
+        const net =
+            calculateNet(item);
 
-        netTotal +=
-            Number(order.netto || 0) *
-            Number(order.quantity || 0);
+        const person =
+            Number(item.darePersona) || 0;
 
-        gioTotal +=
-            Number(order.dareGio || 0);
+        const gio =
+            Math.max(0,net - person);
 
-        personTotal +=
-            Number(order.darePersona || 0);
+        netTotal += net;
+        personTotal += person;
+        gioTotal += gio;
 
     });
 
 
-    document.getElementById(
-        "count"
-    ).textContent =
+    document.getElementById("count").textContent =
         list.length;
 
-
-    document.getElementById(
-        "netTotal"
-    ).textContent =
+    document.getElementById("netTotal").textContent =
         euro(netTotal);
 
-
-    document.getElementById(
-        "gioTotal"
-    ).textContent =
-        euro(gioTotal);
-
-
-    document.getElementById(
-        "personTotal"
-    ).textContent =
+    document.getElementById("personTotal").textContent =
         euro(personTotal);
 
-}
-
-
-/* =====================================================
-   CLASSE COLORE STATO
-===================================================== */
-
-function statusClass(status){
-
-    if(status === "Da ritirare"){
-        return "ritirare";
-    }
-
-
-    if(status === "Consegnato"){
-        return "consegnato";
-    }
-
-
-    return "ordinato";
-
-}
-
-
-/* =====================================================
-   OPZIONI MENU STATO
-===================================================== */
-
-function statusOptions(selected){
-
-    const values = [
-        "Ordinato",
-        "Da ritirare",
-        "Consegnato"
-    ];
-
-
-    let html = "";
-
-
-    values.forEach(function(value){
-
-        html +=
-            '<option value="' +
-            value +
-            '"' +
-            (
-                value === selected
-                ? " selected"
-                : ""
-            ) +
-            '>' +
-            value +
-            '</option>';
-
-    });
-
-
-    return html;
-
-}
-
-
-/* =====================================================
-   AGGIORNA TABELLA
-===================================================== */
-
-function updateOrders(){
-
-    const body =
-        document.getElementById(
-            "ordersBody"
-        );
-
-
-    body.innerHTML = "";
-
-
-    let list =
-        getMyOrders();
-
-
-    if(currentFilter !== "TUTTI"){
-
-        list =
-            list.filter(
-                function(order){
-
-                    return (
-                        order.status ===
-                        currentFilter
-                    );
-
-                }
-            );
-
-    }
-
-
-    list.sort(
-        function(a,b){
-
-            return (
-                new Date(b.date) -
-                new Date(a.date)
-            );
-
-        }
-    );
-
-
-    if(list.length === 0){
-
-        body.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="10"
-                    class="empty">
-
-                    Nessun ordine presente.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    list.forEach(function(order){
-
-        const row =
-            document.createElement("tr");
-
-
-        const total =
-            Number(order.netto || 0) *
-            Number(order.quantity || 0);
-
-
-        row.innerHTML = `
-
-            <td>
-                ${italianDate(order.date)}
-            </td>
-
-
-            <td>
-                ${order.quantity}
-            </td>
-
-
-            <td>
-                <strong>
-                    ${escapeHTML(order.article)}
-                </strong>
-            </td>
-
-
-            <td>
-                ${euro(order.listino)}
-            </td>
-
-
-            <td>
-                ${Number(order.sconto || 0)}%
-            </td>
-
-
-            <td>
-                ${euro(order.netto)}
-            </td>
-
-
-            <td>
-                ${euro(total)}
-            </td>
-
-
-            <td>
-                ${euro(order.darePersona)}
-            </td>
-
-
-            <td>
-                ${euro(order.dareGio)}
-            </td>
-
-
-            <td>
-
-                <select
-                    class="status ${statusClass(order.status)}"
-                    data-id="${order.id}">
-
-                    ${statusOptions(order.status)}
-
-                </select>
-
-            </td>
-
-        `;
-
-
-        body.appendChild(row);
-
-    });
-
-
-    /* =================================================
-       EVENTO MENU STATO DI OGNI ARTICOLO
-    ================================================= */
-
-    body
-        .querySelectorAll(".status")
-        .forEach(function(select){
-
-            select.addEventListener(
-                "change",
-                function(){
-
-                    changeStatus(
-                        this.dataset.id,
-                        this.value
-                    );
-
-                }
-            );
-
-        });
-
-}
-
-
-/* =====================================================
-   CAMBIA STATO ARTICOLO
-===================================================== */
-
-function changeStatus(id,newStatus){
-
-    const order =
-        orders.find(
-            function(item){
-
-                return (
-                    item.id === id
-                );
-
-            }
-        );
-
-
-    if(!order){
-        return;
-    }
-
-
-    order.status =
-        newStatus;
-
-
-    saveData();
-
-    updateOrders();
-
-    updateDashboard();
-
-    updatePayments();
+    document.getElementById("gioTotal").textContent =
+        euro(gioTotal);
 
 }
 
@@ -1950,615 +1710,145 @@ function changeStatus(id,newStatus){
 function updatePayments(){
 
     const list =
-        getMyOrders();
-
+        orders[currentPerson] || [];
 
     let total = 0;
 
+    list.forEach(item => {
 
-    list.forEach(function(order){
+        const net =
+            calculateNet(item);
 
-        total +=
-            Number(order.dareGio || 0);
+        const person =
+            Number(item.darePersona) || 0;
+
+        total += Math.max(
+            0,
+            net - person
+        );
 
     });
 
 
-    document.getElementById(
-        "paymentTotal"
-    ).textContent =
-        euro(total);
+    document.getElementById("paymentTotal")
+        .textContent = euro(total);
 
 }
 
 
 /* =====================================================
-   CALCOLO NETTO
+   MODALE
 ===================================================== */
 
-function calculateNet(){
+function openModal(){
 
-    const listino =
-        Number(
-            document.getElementById(
-                "listino"
-            ).value
-        ) || 0;
+    document.getElementById("modalPerson")
+        .textContent = currentPerson;
 
+    document.getElementById("qty").value = 1;
 
-    const sconto =
-        Number(
-            document.getElementById(
-                "sconto"
-            ).value
-        ) || 0;
+    document.getElementById("article").value = "";
 
+    document.getElementById("listino").value = 0;
 
-    const netto =
-        listino -
-        (
-            listino *
-            sconto /
-            100
-        );
+    document.getElementById("sconto").value = 25;
 
+    document.getElementById("darePersona").value = 0;
 
-    document.getElementById(
-        "netto"
-    ).value =
-        euro(netto);
-
-}
-
-
-/* =====================================================
-   APRI NUOVO ORDINE
-===================================================== */
-
-function openNewOrder(){
-
-    if(!currentPerson){
-
-        alert(
-            "Seleziona prima ROBY oppure FEDE."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "date"
-    ).value =
-        today();
-
-
-    document.getElementById(
-        "qty"
-    ).value =
-        1;
-
-
-    document.getElementById(
-        "article"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "listino"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "sconto"
-    ).value =
-        25;
-
-
-    document.getElementById(
-        "netto"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "darePersona"
-    ).value =
-        0;
-
-
-    document.getElementById(
-        "dareGio"
-    ).value =
-        0;
-
-
-    document.getElementById(
-        "modalPerson"
-    ).textContent =
-        currentPerson;
-
+    document.getElementById("newStatus").value =
+        "Da ordinare";
 
     modal.classList.add("show");
 
 }
 
 
-/* =====================================================
-   CHIUDI MODALE
-===================================================== */
-
-function closeModal(){
+document.getElementById("cancelBtn")
+.addEventListener("click",() => {
 
     modal.classList.remove("show");
 
-}
+});
+
+
+modal.addEventListener("click",(e) => {
+
+    if(e.target === modal){
+
+        modal.classList.remove("show");
+
+    }
+
+});
 
 
 /* =====================================================
    SALVA NUOVO ORDINE
 ===================================================== */
 
-function saveOrder(){
-
-    const date =
-        document.getElementById(
-            "date"
-        ).value;
-
-
-    const quantity =
-        Number(
-            document.getElementById(
-                "qty"
-            ).value
-        );
-
+document.getElementById("saveBtn")
+.addEventListener("click",() => {
 
     const article =
-        document.getElementById(
-            "article"
-        ).value.trim();
-
-
-    const listino =
-        Number(
-            document.getElementById(
-                "listino"
-            ).value
-        ) || 0;
-
-
-    const sconto =
-        Number(
-            document.getElementById(
-                "sconto"
-            ).value
-        ) || 0;
-
-
-    const netto =
-        listino -
-        (
-            listino *
-            sconto /
-            100
-        );
-
-
-    const darePersona =
-        Number(
-            document.getElementById(
-                "darePersona"
-            ).value
-        ) || 0;
-
-
-    const dareGio =
-        Number(
-            document.getElementById(
-                "dareGio"
-            ).value
-        ) || 0;
-
-
-    /* VALIDAZIONI */
-
-    if(!date){
-
-        alert(
-            "Inserisci la data."
-        );
-
-        return;
-
-    }
-
-
-    if(!quantity || quantity < 1){
-
-        alert(
-            "Inserisci una quantità valida."
-        );
-
-        return;
-
-    }
-
+        document.getElementById("article")
+        .value
+        .trim();
 
     if(!article){
 
-        alert(
-            "Inserisci il codice/articolo."
-        );
+        alert("Inserisci il codice o il nome dell'articolo.");
 
         return;
-
     }
 
 
-    /* NUOVO ORDINE */
+    const item = {
 
-    const order = {
+        q:
+            Number(
+                document.getElementById("qty").value
+            ) || 1,
 
-        id:
-            Date.now().toString() +
-            "_" +
-            Math.random()
-                .toString(36)
-                .substring(2,9),
-
-        person:
-            currentPerson,
-
-        date:
-            date,
-
-        quantity:
-            quantity,
-
-        article:
+        a:
             article,
 
-        listino:
-            listino,
+        price:
+            Number(
+                document.getElementById("listino").value
+            ) || 0,
 
-        sconto:
-            sconto,
-
-        netto:
-            netto,
+        discount:
+            Number(
+                document.getElementById("sconto").value
+            ) || 0,
 
         darePersona:
-            darePersona,
-
-        dareGio:
-            dareGio,
-
-        /*
-           OGNI NUOVO ARTICOLO
-           PARTE DA ORDINATO
-        */
+            Number(
+                document.getElementById("darePersona").value
+            ) || 0,
 
         status:
-            "Ordinato"
+            document.getElementById("newStatus").value
 
     };
 
 
-    orders.push(order);
+    if(!orders[currentPerson]){
+        orders[currentPerson] = [];
+    }
+
+
+    orders[currentPerson].push(item);
 
     saveData();
 
-    closeModal();
+    modal.classList.remove("show");
+
+    openOrders();
 
     updateDashboard();
 
-    updateOrders();
-
-    updatePayments();
-
-    showPage("orders");
-
-}
-
-
-/* =====================================================
-   FILTRI
-===================================================== */
-
-function resetFilters(){
-
-    currentFilter =
-        "TUTTI";
-
-
-    document
-        .querySelectorAll(".filter")
-        .forEach(function(button){
-
-            button.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    const all =
-        document.querySelector(
-            '.filter[data-filter="TUTTI"]'
-        );
-
-
-    if(all){
-
-        all.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   PROTEZIONE TESTO
-===================================================== */
-
-function escapeHTML(text){
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        text || "";
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-   EVENTI PULSANTI HOME
-===================================================== */
-
-document
-    .getElementById("robyBtn")
-    .addEventListener(
-        "click",
-        function(){
-
-            enterPerson("ROBY");
-
-        }
-    );
-
-
-document
-    .getElementById("fedeBtn")
-    .addEventListener(
-        "click",
-        function(){
-
-            enterPerson("FEDE");
-
-        }
-    );
-
-
-/* =====================================================
-   ESCI
-===================================================== */
-
-document
-    .getElementById("exitBtn")
-    .addEventListener(
-        "click",
-        exitApp
-    );
-
-
-/* =====================================================
-   APRI ORDINI
-===================================================== */
-
-document
-    .getElementById("ordersCard")
-    .addEventListener(
-        "click",
-        function(){
-
-            showPage("orders");
-
-        }
-    );
-
-
-/* =====================================================
-   NUOVO ORDINE
-===================================================== */
-
-document
-    .getElementById("newCard")
-    .addEventListener(
-        "click",
-        openNewOrder
-    );
-
-
-document
-    .getElementById("newOrderBtn")
-    .addEventListener(
-        "click",
-        openNewOrder
-    );
-
-
-/* =====================================================
-   PAGAMENTI
-===================================================== */
-
-document
-    .getElementById("paymentsCard")
-    .addEventListener(
-        "click",
-        function(){
-
-            showPage("payments");
-
-        }
-    );
-
-
-/* =====================================================
-   BACK DASHBOARD
-===================================================== */
-
-document
-    .getElementById("backBtn")
-    .addEventListener(
-        "click",
-        function(){
-
-            showPage("dashboard");
-
-        }
-    );
-
-
-document
-    .getElementById("paymentsBack")
-    .addEventListener(
-        "click",
-        function(){
-
-            showPage("dashboard");
-
-        }
-    );
-
-
-/* =====================================================
-   ANNULLA MODALE
-===================================================== */
-
-document
-    .getElementById("cancelBtn")
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-/* =====================================================
-   SALVA
-===================================================== */
-
-document
-    .getElementById("saveBtn")
-    .addEventListener(
-        "click",
-        saveOrder
-    );
-
-
-/* =====================================================
-   CALCOLO NETTO
-===================================================== */
-
-document
-    .getElementById("listino")
-    .addEventListener(
-        "input",
-        calculateNet
-    );
-
-
-document
-    .getElementById("sconto")
-    .addEventListener(
-        "input",
-        calculateNet
-    );
-
-
-/* =====================================================
-   FILTRI
-===================================================== */
-
-document
-    .querySelectorAll(".filter")
-    .forEach(function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                document
-                    .querySelectorAll(".filter")
-                    .forEach(function(btn){
-
-                        btn.classList.remove(
-                            "active"
-                        );
-
-                    });
-
-
-                this.classList.add(
-                    "active"
-                );
-
-
-                currentFilter =
-                    this.dataset.filter;
-
-
-                updateOrders();
-
-            }
-        );
-
-    });
-
-
-/* =====================================================
-   CHIUDI MODALE CLICCANDO FUORI
-===================================================== */
-
-modal.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === modal){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   TASTO ESC
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closeModal();
-
-        }
-
-    }
-);
+});
 
 
 /* =====================================================
