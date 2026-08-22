@@ -2,697 +2,576 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KTM - Gestione Ordini</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gestionale KTM - Roby e Fede</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-:root{
-    --orange:#ff6600;
-    --orange-dark:#e65300;
-    --orange-light:#fff1e8;
-    --black:#111;
-    --gray:#666;
-    --light:#f7f7f7;
-    --white:#fff;
-    --border:#e9e9e9;
+box-sizing:border-box;
+margin:0;
+padding:0
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    background:#fff;
-    color:var(--black);
-    min-height:100vh;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#111
 }
 
-/* =========================
-   HOME
-========================= */
+button,input,select{
+font-family:inherit
+}
+
+button{
+cursor:pointer
+}
 
 #home{
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px 20px;
+min-height:100vh;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px;
+position:relative;
+overflow:hidden
 }
 
 .orange{
-    position:absolute;
-    background:var(--orange);
+position:absolute;
+background:#ff6600
 }
 
 .o1{
-    top:-170px;
-    left:-120px;
-    width:520px;
-    height:300px;
-    transform:rotate(-15deg);
+width:550px;
+height:170px;
+top:-90px;
+left:-150px;
+transform:rotate(-12deg)
 }
 
 .o2{
-    right:-170px;
-    top:45%;
-    width:350px;
-    height:550px;
-    transform:rotate(28deg);
+width:500px;
+height:160px;
+bottom:-90px;
+right:-150px;
+transform:rotate(-12deg)
 }
 
 .home{
-    position:relative;
-    z-index:2;
-    width:100%;
-    max-width:900px;
-    text-align:center;
+width:100%;
+max-width:850px;
+text-align:center;
+position:relative;
+z-index:2
 }
 
 .logo{
-    font-size:78px;
-    font-weight:1000;
-    font-style:italic;
-    letter-spacing:-7px;
-    color:var(--orange);
-    line-height:.8;
+font-size:80px;
+font-weight:900;
+font-style:italic;
+color:#ff6600
 }
 
 .home h1{
-    margin-top:55px;
-    font-size:32px;
-    font-weight:900;
+font-size:32px;
+margin-top:8px
 }
 
 .home p{
-    margin-top:10px;
-    color:var(--gray);
-    font-size:17px;
+color:#777;
+margin-top:8px
 }
 
 .people{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-    margin-top:45px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+margin-top:45px
 }
 
 .person{
-    background:rgba(255,255,255,.97);
-    border:1px solid #eee;
-    border-radius:25px;
-    padding:35px 30px 30px;
-    box-shadow:0 12px 35px rgba(0,0,0,.1);
-    transition:.25s;
+background:#fff;
+border:1px solid #ddd;
+border-radius:25px;
+padding:35px;
+box-shadow:0 10px 35px #00000012
 }
 
 .person:hover{
-    transform:translateY(-5px);
-    box-shadow:0 18px 40px rgba(0,0,0,.15);
+border-color:#ff6600;
+transform:translateY(-3px)
 }
 
 .avatar{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:var(--orange);
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
-    font-size:32px;
+width:75px;
+height:75px;
+margin:auto;
+border-radius:50%;
+background:#ff6600;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px
 }
 
 .person h2{
-    margin-top:22px;
-    font-size:31px;
-    font-weight:900;
+font-size:30px;
+margin-top:18px
 }
 
 .btn{
-    border:none;
-    cursor:pointer;
-    font-weight:800;
-    border-radius:9px;
-    padding:13px 18px;
+border:0;
+border-radius:10px;
+padding:13px 20px;
+font-weight:bold
 }
 
 .orangebtn{
-    background:var(--orange);
-    color:#fff;
-}
-
-.orangebtn:hover{
-    background:var(--orange-dark);
+background:#ff6600;
+color:white
 }
 
 .person .btn{
-    margin-top:25px;
-    width:100%;
-    padding:16px;
-    font-size:17px;
+width:100%;
+margin-top:22px
 }
 
-/* =========================
-   APP
-========================= */
-
 #app{
-    display:none;
-    min-height:100vh;
-    background:#fff;
+display:none;
+min-height:100vh
 }
 
 .header{
-    height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid #eee;
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:#fff;
-}
-
-.headerRight{
-    display:flex;
-    align-items:center;
-    gap:20px;
+height:70px;
+background:white;
+border-bottom:1px solid #ddd;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 22px
 }
 
 .smalllogo{
-    color:var(--orange);
-    font-size:30px;
-    font-weight:1000;
-    font-style:italic;
+font-size:30px;
+font-weight:900;
+font-style:italic;
+color:#ff6600
 }
 
-.exit{
-    border:1px solid #ddd;
-    background:#fff;
-    border-radius:9px;
-    padding:10px 15px;
-    cursor:pointer;
-    font-weight:700;
+.headerRight{
+display:flex;
+align-items:center;
+gap:15px
 }
 
-.exit:hover{
-    border-color:var(--orange);
-    color:var(--orange);
+.exit,
+.back{
+background:white;
+border:1px solid #ccc;
+border-radius:8px;
+padding:9px 14px;
+font-weight:bold
 }
 
 .container{
-    max-width:1150px;
-    margin:auto;
-    padding:35px 25px 70px;
+max-width:1250px;
+margin:auto;
+padding:28px 18px
 }
 
 .page{
-    display:none;
+display:none
 }
 
 .page.active{
-    display:block;
+display:block
 }
 
 .title{
-    margin-bottom:25px;
+margin-bottom:22px
 }
 
 .title h1{
-    font-size:34px;
-    font-weight:900;
+font-size:31px
 }
 
 .title p{
-    color:var(--gray);
-    margin-top:6px;
-    font-size:16px;
+color:#777;
+margin-top:5px
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
 .stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:30px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:22px
 }
 
 .stat{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:22px;
+background:white;
+border:1px solid #ddd;
+border-radius:15px;
+padding:18px
 }
 
 .stat small{
-    display:block;
-    color:#777;
-    font-size:13px;
+color:#777;
+font-weight:bold
 }
 
 .stat strong{
-    display:block;
-    font-size:29px;
-    font-weight:900;
-    margin-top:8px;
+display:block;
+font-size:22px;
+margin-top:8px
 }
 
 .menu{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:16px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px
 }
 
 .card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:25px;
-    display:flex;
-    align-items:center;
-    gap:20px;
-    cursor:pointer;
-    transition:.2s;
-    box-shadow:0 4px 15px rgba(0,0,0,.04);
+background:#fff;
+border:1px solid #ddd;
+border-radius:16px;
+padding:20px;
+display:flex;
+align-items:center;
+gap:15px;
+cursor:pointer
 }
 
 .card:hover{
-    border-color:var(--orange);
-    transform:translateY(-2px);
+border-color:#ff6600
 }
 
 .icon{
-    width:64px;
-    height:64px;
-    border-radius:15px;
-    background:var(--orange-light);
-    color:var(--orange);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:29px;
-    flex-shrink:0;
-}
-
-.card h3{
-    font-size:21px;
-    margin-bottom:5px;
+width:54px;
+height:54px;
+border-radius:13px;
+background:#fff0e8;
+color:#ff6600;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px
 }
 
 .card p{
-    color:#888;
-    font-size:16px;
+color:#888;
+font-size:13px;
+margin-top:4px
 }
 
 .arrow{
-    margin-left:auto;
-    color:var(--orange);
-    font-size:32px;
-}
-
-.back{
-    border:none;
-    background:transparent;
-    color:var(--orange);
-    font-weight:800;
-    cursor:pointer;
-    margin-bottom:20px;
-    font-size:15px;
+margin-left:auto;
+color:#ff6600;
+font-size:25px
 }
 
 .top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px
 }
 
-/* =========================
-   TABLE
-========================= */
+.searchbox{
+background:white;
+border:1px solid #ddd;
+border-radius:15px;
+padding:14px;
+margin-bottom:14px;
+display:flex;
+gap:10px;
+align-items:center;
+flex-wrap:wrap
+}
+
+.searchbox input{
+flex:1;
+min-width:220px;
+padding:12px 14px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:15px;
+outline:none
+}
+
+.searchbox input:focus{
+border-color:#ff6600;
+box-shadow:0 0 0 3px #ff660018
+}
+
+.searchbox button{
+border:0;
+background:#eee;
+border-radius:10px;
+padding:12px 15px;
+font-weight:bold
+}
+
+.searchInfo{
+color:#777;
+font-size:13px
+}
 
 .tablebox{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:18px;
-    overflow-x:auto;
+background:white;
+border:1px solid #ddd;
+border-radius:15px;
+overflow:auto
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1100px;
+border-collapse:collapse;
+width:100%;
+min-width:900px
 }
 
 th{
-    background:#fafafa;
-    padding:15px;
-    text-align:left;
-    font-size:12px;
-    color:#777;
-    position:sticky;
-    top:0;
+background:#fafafa;
+color:#777;
+font-size:11px;
+text-align:left;
+padding:12px;
+position:sticky;
+top:0
 }
 
 td{
-    padding:12px 15px;
-    border-top:1px solid #eee;
-    font-size:14px;
-    vertical-align:middle;
+padding:9px 10px;
+border-top:1px solid #eee;
+font-size:13px;
+vertical-align:middle
 }
 
-.article-cell{
-    font-weight:700;
+.priceInput,
+.discountInput{
+width:95px;
+padding:8px;
+border:1px solid #ccc;
+border-radius:7px
 }
 
-.qty{
-    width:65px;
+.netCell,
+.totalCell{
+font-weight:bold
 }
 
-.price-input,
-.discount-input,
-.gio-input{
-    width:105px;
-    padding:9px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:14px;
+.empty{
+text-align:center;
+padding:35px;
+color:#777
 }
 
-.price-input:focus,
-.discount-input:focus,
-.gio-input:focus{
-    border-color:var(--orange);
-    outline:none;
+.modalbg{
+display:none;
+position:fixed;
+inset:0;
+background:#0009;
+z-index:50;
+align-items:center;
+justify-content:center;
+padding:20px
 }
 
-.netto{
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.zero{
-    color:#aaa;
-}
-
-/* =========================
-   LAVORI
-========================= */
-
-.work-box{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:18px;
-    overflow-x:auto;
-}
-
-.work-table{
-    min-width:850px;
-}
-
-.work-name{
-    font-weight:800;
-}
-
-.work-price,
-.work-discount{
-    width:110px;
-    padding:9px;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-.work-total{
-    font-weight:900;
-}
-
-.work-actions{
-    display:flex;
-    gap:8px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-bg{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:100;
-    padding:20px;
-}
-
-.modal-bg.show{
-    display:flex;
+.modalbg.open{
+display:flex
 }
 
 .modal{
-    background:#fff;
-    width:650px;
-    max-width:100%;
-    max-height:90vh;
-    overflow-y:auto;
-    border-radius:20px;
-    padding:25px;
-}
-
-.modal h2{
-    margin-bottom:20px;
+background:white;
+border-radius:20px;
+padding:24px;
+width:650px;
+max-width:100%
 }
 
 .form{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:18px
 }
 
 .field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+display:flex;
+flex-direction:column;
+gap:5px
 }
 
-.field.full{
-    grid-column:1/-1;
+.full{
+grid-column:1/-1
 }
 
 .field label{
-    font-size:12px;
-    font-weight:700;
-    color:#666;
+font-size:11px;
+color:#666;
+font-weight:bold
 }
 
 .field input,
 .field select{
-    border:1px solid #ddd;
-    padding:11px;
-    border-radius:8px;
-    outline:none;
-    font-size:14px;
+padding:11px;
+border:1px solid #ccc;
+border-radius:8px
 }
 
-.field input:focus,
-.field select:focus{
-    border-color:var(--orange);
+.summary{
+background:#fff1e8;
+padding:14px;
+border-radius:12px;
+margin-top:18px
 }
 
-.modal-buttons{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:25px;
+.sumrow{
+display:flex;
+justify-content:space-between;
+padding:5px 0
+}
+
+.sumtotal{
+border-top:1px solid #ffd0b8;
+margin-top:7px;
+padding-top:10px;
+font-weight:bold
+}
+
+.actions{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:18px
 }
 
 .cancel{
-    border:none;
-    background:#eee;
-    padding:11px 18px;
-    border-radius:8px;
-    font-weight:700;
-    cursor:pointer;
+background:#eee;
+border:0;
+border-radius:8px;
+padding:12px;
+font-weight:bold
 }
 
-.save{
-    border:none;
-    background:var(--orange);
-    color:#fff;
-    padding:11px 20px;
-    border-radius:8px;
-    font-weight:800;
-    cursor:pointer;
+.workNote{
+background:#fff7f1;
+border:1px solid #ffd9c2;
+padding:13px;
+border-radius:12px;
+margin-bottom:14px;
+color:#555
 }
 
-/* =========================
-   MOBILE
-========================= */
+@media(max-width:700px){
 
-@media(max-width:800px){
-
-    .logo{
-        font-size:60px;
-    }
-
-    .home h1{
-        font-size:25px;
-        margin-top:40px;
-    }
-
-    .people{
-        grid-template-columns:1fr;
-        gap:15px;
-        margin-top:30px;
-    }
-
-    .person{
-        padding:25px 20px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .header{
-        padding:0 15px;
-    }
-
-    .container{
-        padding:25px 15px 60px;
-    }
-
-    .form{
-        grid-template-columns:1fr;
-    }
-
-    .field.full{
-        grid-column:auto;
-    }
-
-    .top{
-        align-items:flex-start;
-        gap:15px;
-        flex-direction:column;
-    }
-
-    .title h1{
-        font-size:28px;
-    }
-
+.logo{
+font-size:60px
 }
 
-@media(max-width:500px){
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .stat{
-        padding:18px 15px;
-    }
-
-    .stat strong{
-        font-size:23px;
-    }
-
-    .smalllogo{
-        font-size:26px;
-    }
-
-    #currentUser{
-        font-size:16px;
-    }
-
+.people,
+.menu{
+grid-template-columns:1fr
 }
 
+.stats{
+grid-template-columns:1fr
+}
+
+.form{
+grid-template-columns:1fr
+}
+
+.full{
+grid-column:auto
+}
+
+.top{
+align-items:flex-start;
+gap:10px;
+flex-direction:column
+}
+
+}
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     HOME
-===================================================== -->
-
 <section id="home">
 
-    <div class="orange o1"></div>
-    <div class="orange o2"></div>
+<div class="orange o1"></div>
+<div class="orange o2"></div>
 
-    <div class="home">
+<div class="home">
 
-        <div class="logo">KTM</div>
+<div class="logo">KTM</div>
 
-        <h1>GESTIONE ORDINI</h1>
+<h1>GESTIONE ORDINI</h1>
 
-        <p>Seleziona la persona da gestire</p>
+<p>Seleziona la persona da gestire</p>
 
-        <div class="people">
+<div class="people">
 
-            <div class="person">
+<div class="person">
 
-                <div class="avatar">👤</div>
+<div class="avatar">👤</div>
 
-                <h2>ROBY</h2>
+<h2>ROBY</h2>
 
-                <button class="btn orangebtn" onclick="enterApp('ROBY')">
-                    ENTRA
-                </button>
+<button
+class="btn orangebtn"
+onclick="entra('Roby')">
+ENTRA
+</button>
 
-            </div>
+</div>
 
-            <div class="person">
 
-                <div class="avatar">👤</div>
+<div class="person">
 
-                <h2>FEDE</h2>
+<div class="avatar">👤</div>
 
-                <button class="btn orangebtn" onclick="enterApp('FEDE')">
-                    ENTRA
-                </button>
+<h2>FEDE</h2>
 
-            </div>
+<button
+class="btn orangebtn"
+onclick="entra('Fede')">
+ENTRA
+</button>
 
-        </div>
+</div>
 
-    </div>
+</div>
+
+</div>
 
 </section>
 
-
-<!-- =====================================================
-     APP
-===================================================== -->
 
 <section id="app">
 
 <header class="header">
 
-    <div class="headerRight">
+<div class="headerRight">
 
-        <div class="smalllogo">KTM</div>
+<div class="smalllogo">
+KTM
+</div>
 
-        <strong id="currentUser"></strong>
+<strong id="currentUser"></strong>
 
-    </div>
+</div>
 
-    <button class="exit" onclick="exitApp()">
-        ← Esci
-    </button>
+<button
+class="exit"
+onclick="esci()">
+
+← Esci
+
+</button>
 
 </header>
 
@@ -700,253 +579,315 @@ td{
 <main class="container">
 
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+<section
+id="dashboard"
+class="page active">
 
-<section id="dashboard" class="page active">
+<div class="title">
 
-    <div class="title">
+<h1 id="hello"></h1>
 
-        <h1 id="hello"></h1>
+<p>
+Gestione ordini, lavori, prezzi e sconti
+</p>
 
-        <p>
-            Gestione ordini, lavori, prezzi e sconti
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="stats">
+<div class="stats">
 
-        <div class="stat">
+<div class="stat">
 
-            <small>ORDINI</small>
+<small>
+ORDINI
+</small>
 
-            <strong id="count">0</strong>
+<strong id="count">
+0
+</strong>
 
-        </div>
-
-
-        <div class="stat">
-
-            <small>TOTALE NETTO</small>
-
-            <strong id="netTotal">€ 0,00</strong>
-
-        </div>
+</div>
 
 
-        <div class="stat">
+<div class="stat">
 
-            <small>DA DARE A GIO</small>
+<small>
+TOTALE NETTO
+</small>
 
-            <strong id="gioTotal">€ 0,00</strong>
+<strong id="netTotal">
+€ 0,00
+</strong>
 
-        </div>
-
-
-        <div class="stat">
-
-            <small>LAVORI</small>
-
-            <strong id="workCount">0</strong>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="menu">
+<div class="stat">
+
+<small>
+LAVORI
+</small>
+
+<strong id="workCount">
+0
+</strong>
+
+</div>
+
+</div>
 
 
-        <div class="card" onclick="showPage('orders')">
-
-            <div class="icon">📋</div>
-
-            <div>
-
-                <h3>I miei ordini</h3>
-
-                <p>
-                    Visualizza tutti gli articoli KTM
-                </p>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </div>
+<div class="menu">
 
 
-        <div class="card" onclick="openOrderModal()">
+<div
+class="card"
+onclick="showPage('orders')">
 
-            <div class="icon">➕</div>
+<div class="icon">
+📋
+</div>
 
-            <div>
+<div>
 
-                <h3>Nuovo ordine</h3>
+<h3>
+I miei ordini
+</h3>
 
-                <p>
-                    Aggiungi un nuovo articolo
-                </p>
+<p>
+Ricerca rapida e gestione dei prezzi
+</p>
 
-            </div>
+</div>
 
-            <div class="arrow">›</div>
+<div class="arrow">
+›
+</div>
 
-        </div>
-
-
-        <div class="card" onclick="showPage('works')">
-
-            <div class="icon">🔧</div>
-
-            <div>
-
-                <h3>Lavori</h3>
-
-                <p>
-                    Gestisci lavori e relativi prezzi
-                </p>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </div>
+</div>
 
 
-    </div>
+<div
+class="card"
+onclick="openModal()">
+
+<div class="icon">
+➕
+</div>
+
+<div>
+
+<h3>
+Nuovo ordine
+</h3>
+
+<p>
+Aggiungi un nuovo articolo
+</p>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</div>
+
+
+<div
+class="card"
+onclick="showPage('works')">
+
+<div class="icon">
+🔧
+</div>
+
+<div>
+
+<h3>
+Lavori
+</h3>
+
+<p>
+Gestisci le attività escluse dagli ordini
+</p>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</div>
+
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     ORDINI
-===================================================== -->
 
-<section id="orders" class="page">
+<section
+id="orders"
+class="page">
 
-    <button class="back" onclick="showPage('dashboard')">
-        ← Dashboard
-    </button>
+<button
+class="back"
+onclick="showPage('dashboard')">
 
+← Dashboard
 
-    <div class="top">
-
-        <div class="title">
-
-            <h1>
-                Ordini di <span id="ordersPerson"></span>
-            </h1>
-
-            <p>
-                Articoli KTM
-            </p>
-
-        </div>
+</button>
 
 
-        <button class="btn orangebtn" onclick="openOrderModal()">
-            + Nuovo ordine
-        </button>
+<div class="top">
 
-    </div>
+<div class="title">
+
+<h1>
+Ordini di
+<span id="ordersPerson"></span>
+</h1>
+
+<p>
+Solo codici/articoli: i prezzi li inserisci tu
+</p>
+
+</div>
 
 
-    <div class="tablebox">
+<button
+class="btn orangebtn"
+onclick="openModal()">
 
-        <table>
++ Nuovo ordine
 
-            <thead>
+</button>
 
-                <tr>
+</div>
 
-                    <th>Q.TÀ</th>
 
-                    <th>ARTICOLO / CODICE</th>
+<div class="searchbox">
 
-                    <th>LISTINO €</th>
+<input
+id="orderSearch"
+type="search"
+placeholder="🔎 Cerca rapidamente codice o articolo..."
+autocomplete="off">
 
-                    <th>SCONTO %</th>
+<button
+onclick="
+document.getElementById('orderSearch').value='';
+renderOrders()
+">
 
-                    <th>NETTO €</th>
+Pulisci
 
-                    <th>DA DARE A GIO €</th>
+</button>
 
-                </tr>
+<span
+class="searchInfo"
+id="searchInfo">
+</span>
 
-            </thead>
+</div>
 
-            <tbody id="ordersBody"></tbody>
 
-        </table>
+<div class="tablebox">
 
-    </div>
+<table>
+
+<thead>
+
+<tr>
+
+<th>DATA</th>
+<th>Q.TÀ</th>
+<th>CODICE / ARTICOLO</th>
+<th>PREZZO (€)</th>
+<th>SCONTO (%)</th>
+<th>NETTO (€)</th>
+<th>TOTALE (€)</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersBody"></tbody>
+
+</table>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     LAVORI
-===================================================== -->
 
-<section id="works" class="page">
+<section
+id="works"
+class="page">
 
-    <button class="back" onclick="showPage('dashboard')">
-        ← Dashboard
-    </button>
+<button
+class="back"
+onclick="showPage('dashboard')">
 
+← Dashboard
 
-    <div class="top">
-
-        <div class="title">
-
-            <h1>
-                Lavori di <span id="worksPerson"></span>
-            </h1>
-
-            <p>
-                Qui sono presenti le attività escluse dagli ordini KTM.
-                Inserisci tu prezzi e sconti.
-            </p>
-
-        </div>
+</button>
 
 
-        <button class="btn orangebtn" onclick="openWorkModal()">
-            + Nuovo lavoro
-        </button>
+<div class="top">
 
-    </div>
+<div class="title">
+
+<h1>
+Lavori di
+<span id="worksPerson"></span>
+</h1>
+
+<p>
+Qui trovi tutto ciò che è stato escluso dagli ordini
+</p>
+
+</div>
+
+</div>
 
 
-    <div class="work-box">
+<div class="workNote">
 
-        <table class="work-table">
+I prezzi sono volutamente a
+<b>€ 0,00</b>:
+puoi inserirli tu direttamente nelle righe.
 
-            <thead>
+</div>
 
-                <tr>
 
-                    <th>LAVORO</th>
+<div class="tablebox">
 
-                    <th>PREZZO €</th>
+<table>
 
-                    <th>SCONTO %</th>
+<thead>
 
-                    <th>TOTALE €</th>
+<tr>
 
-                </tr>
+<th>DATA</th>
+<th>Q.TÀ</th>
+<th>LAVORO</th>
+<th>PREZZO (€)</th>
+<th>SCONTO (%)</th>
+<th>NETTO (€)</th>
+<th>TOTALE (€)</th>
 
-            </thead>
+</tr>
 
-            <tbody id="worksBody"></tbody>
+</thead>
 
-        </table>
+<tbody id="worksBody"></tbody>
 
-    </div>
+</table>
+
+</div>
 
 </section>
 
@@ -956,1191 +897,943 @@ td{
 </section>
 
 
-<!-- =====================================================
-     MODAL NUOVO ORDINE
-===================================================== -->
 
-<div class="modal-bg" id="orderModal">
+<div
+id="modalBg"
+class="modalbg">
 
-    <div class="modal">
+<div class="modal">
 
-        <h2>
-            Nuovo ordine —
-            <span id="modalPerson"></span>
-        </h2>
-
-
-        <div class="form">
+<h2>
+Nuovo ordine -
+<span id="modalUser"></span>
+</h2>
 
 
-            <div class="field">
-
-                <label>QUANTITÀ</label>
-
-                <input
-                    type="number"
-                    id="newQty"
-                    min="1"
-                    value="1"
-                >
-
-            </div>
+<div class="form">
 
 
-            <div class="field">
+<div class="field">
 
-                <label>CODICE / ARTICOLO</label>
+<label>
+DATA
+</label>
 
-                <input
-                    type="text"
-                    id="newArticle"
-                    placeholder="Es. 50430098060"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>LISTINO (€)</label>
-
-                <input
-                    type="number"
-                    id="newListino"
-                    min="0"
-                    step="0.01"
-                    placeholder="Inserisci prezzo"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>SCONTO (%)</label>
-
-                <input
-                    type="number"
-                    id="newSconto"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>DA DARE A GIO (€)</label>
-
-                <input
-                    type="number"
-                    id="newGio"
-                    min="0"
-                    step="0.01"
-                    value="0"
-                >
-
-            </div>
-
-
-        </div>
-
-
-        <div class="modal-buttons">
-
-            <button
-                class="cancel"
-                onclick="closeOrderModal()">
-                Annulla
-            </button>
-
-            <button
-                class="save"
-                onclick="saveNewOrder()">
-                Salva ordine
-            </button>
-
-        </div>
-
-    </div>
+<input
+type="date"
+id="dateInput">
 
 </div>
 
 
-<!-- =====================================================
-     MODAL NUOVO LAVORO
-===================================================== -->
+<div class="field">
 
-<div class="modal-bg" id="workModal">
+<label>
+QUANTITÀ
+</label>
 
-    <div class="modal">
-
-        <h2>
-            Nuovo lavoro —
-            <span id="workModalPerson"></span>
-        </h2>
-
-
-        <div class="form">
-
-
-            <div class="field full">
-
-                <label>DESCRIZIONE LAVORO</label>
-
-                <input
-                    type="text"
-                    id="newWork"
-                    placeholder="Es. Pistone 125"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>PREZZO (€)</label>
-
-                <input
-                    type="number"
-                    id="newWorkPrice"
-                    min="0"
-                    step="0.01"
-                    placeholder="Inserisci prezzo"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>SCONTO (%)</label>
-
-                <input
-                    type="number"
-                    id="newWorkDiscount"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value="0"
-                >
-
-            </div>
-
-
-        </div>
-
-
-        <div class="modal-buttons">
-
-            <button
-                class="cancel"
-                onclick="closeWorkModal()">
-                Annulla
-            </button>
-
-            <button
-                class="save"
-                onclick="saveNewWork()">
-                Salva lavoro
-            </button>
-
-        </div>
-
-    </div>
+<input
+type="number"
+id="qtyInput"
+min="1"
+value="1">
 
 </div>
+
+
+<div class="field full">
+
+<label>
+CODICE / ARTICOLO
+</label>
+
+<input
+id="articleInput"
+placeholder="Codice KTM">
+
+</div>
+
+
+<div class="field">
+
+<label>
+PREZZO (€)
+</label>
+
+<input
+type="number"
+id="listInput"
+step="0.01"
+min="0"
+placeholder="0,00">
+
+</div>
+
+
+<div class="field">
+
+<label>
+SCONTO (%)
+</label>
+
+<input
+type="number"
+id="discountInput"
+value="0"
+step="0.01"
+min="0">
+
+</div>
+
+</div>
+
+
+<div class="summary">
+
+<div class="sumrow">
+
+<span>
+Netto unitario
+</span>
+
+<strong id="unitNet">
+€ 0,00
+</strong>
+
+</div>
+
+
+<div class="sumrow sumtotal">
+
+<span>
+Totale ordine
+</span>
+
+<strong id="orderTotal">
+€ 0,00
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="cancel"
+onclick="closeModal()">
+
+Annulla
+
+</button>
+
+
+<button
+class="btn orangebtn"
+onclick="saveOrder()">
+
+SALVA ORDINE
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 
 <script>
 
-/* =====================================================
-   DATI BASE
-===================================================== */
+/* =========================================================
+   ORDINI ROBY
+   I PREZZI SONO VOLUTAMENTE A ZERO
+   ========================================================= */
 
-let currentPerson = "";
+const ORDINI_ROBY = [
 
+["2024-10-08",1,"50430098060"],
+["",1,"50430098050"],
+["",1,"50430025000"],
+["",1,"50430039000"],
+["",1,"00050002300"],
+["",1,"50430015044"],
 
-/*
-   IMPORTANTISSIMO:
+["2024-10-09",1,"A46035009000"],
 
-   Qui NON ci sono prezzi.
-   Qui NON ci sono importi da dare a Gio.
+["2024-10-12",1,"00050000272 - 79430107210 II"],
+["",1,"79536013000"],
+["",1,"77239093000"],
+["",1,"77338005100"],
 
-   Tutti gli articoli partono da:
-   listino = 0
-   sconto = 0
-   netto = 0
-   Gio = 0
-*/
+["2024-11-05",1,"A42005907500"],
+["",1,"A46035909000"],
 
+["2024-11-13",1,"50430025000"],
+["",1,"50430098060"],
+["",1,"50430098050"],
+["",1,"50430039000"],
+["",1,"50430015044"],
+["",1,"00050002300"],
 
-/* =====================================================
-   ARTICOLI PRESI DALLE IMMAGINI
-===================================================== */
+["2024-11-26",1,"A46014069000"],
+["",1,"A42030060000"],
+["",1,"50403096010"],
+["",1,"77204066010 - 77204066044"],
+["",1,"A45041072033"],
+["",1,"79135071044"],
 
-const BASE_ITEMS = [
+["2024-12-02",1,"00050002300"],
+["",1,"50430098060"],
+["",1,"50430025000"],
+["",1,"50430098050"],
+["",1,"50430015044"],
+["",1,"50430039000"],
 
-    "50430098060",
-    "50430098050",
-    "50430025000",
-    "50430039000",
-    "00050002300",
-    "50430015044",
-    "A46035009000",
-    "00050000272 - 79430107210 II",
-    "79536013000",
-    "77239093000",
-    "77338005100",
-    "A42005907500",
-    "A46035909000",
-    "A46014069000",
-    "A42030060000",
-    "50403096010",
-    "77204066010 - 77204066044",
-    "A45041072033",
-    "79135071044",
-    "50439005000",
-    "50532054000",
-    "91010240S",
-    "50439004000",
-    "79030015144",
-    "47230015044",
-    "50530152044",
-    "A42030018010",
-    "50430006100",
-    "50433015400",
-    "54834005133 - 50534005044",
-    "A42030035040",
-    "A42030035025",
-    "A42030118000",
-    "A42030000144",
-    "50532010033",
-    "47230060100",
-    "47230035040",
-    "50430035050",
-    "50430035020",
-    "55430006100",
-    "56530123200",
-    "0625623204",
-    "54830015244",
-    "55530038100",
-    "00050002300 (ex 52330018288)",
+["2024-12-04",1,"50439005000"],
+["",1,"50532054000"],
 
-    "A46030036072",
-    "A46030035000",
-    "A46030007000I",
-    "A46030007000I",
-    "A46030007010I",
+["2024-12-07",1,"79135071044"],
+["",1,"A45041072033"],
 
-    "79013090000",
-    "A44002091000",
-    "0625063055",
-    "50330082000",
-    "A42003014000",
-    "A42030000244",
-    "0835080326",
-    "51030034000",
-    "54802031000",
-    "79230207200 II",
-    "79041077044",
-    "47230050000",
-    "45235054028",
-    "A40530035050",
-    "45233010200",
-    "0760263561",
-    "45230039000",
-    "45230025100",
-    "0770052020",
-    "0770120020",
-    "0770078020",
-    "0760152472",
-    "45133028000",
-    "0760162240",
-    "0760223270",
-    "A46006026033",
-    "50330006600",
-    "47030034000",
-    "47230049000",
-    "47230039000",
-    "(ex 00050002318)47230018188",
-    "47230025000",
-    "0625982031",
-    "0062042001400",
-    "47234005044",
-    "47233016000",
-    "47233002000",
-    "47233015000",
-    "47233014000",
-    "47233003000",
-    "77036003200",
-    "77839093000",
-    "77036027000",
-    "A46030007010I",
-    "A46030007000I",
-    "A46035007000",
-    "47234012044",
-    "79234015100",
-    "47230018188",
-    "47030076100",
-    "49030023000",
-    "A46003062000"
+["2024-12-12",1,"91010240S"],
+
+["2024-12-19",1,"50439004000"],
+
+["2025-01-14",1,"79030015144"],
+
+["2025-01-20",1,"47230015044"],
+["",1,"50430098050"],
+["",1,"50430098060"],
+["",1,"50530152044"],
+
+["2025-01-21",1,"A42030018010"],
+
+["2025-01-26",1,"50530152044"],
+
+["2025-02-17",1,"50430006100"],
+["",1,"50433015400"],
+["",1,"54834005133 - 50534005044"],
+
+["2025-02-28",1,"A42030035040"],
+["",1,"A42030035025"],
+["",1,"A42030118000"],
+["",1,"A42030000144"],
+
+["2025-03-06",1,"50532010033"],
+
+["2025-03-12",1,"47230060100"],
+["",1,"47230035040"],
+["",1,"50430035050"],
+["",1,"50430035040"],
+["",1,"50430035020"],
+["",1,"50530152044"],
+["",1,"55430006100"],
+["",1,"56530123200"],
+["",1,"0625623204"],
+["",1,"50430015044"],
+["",1,"54830015244"],
+
+["2025-05-15",1,"55530038100"],
+
+["2025-05-27",1,"50430098060"],
+["",1,"50430098050"],
+["",1,"50430025000"],
+["",1,"50430039000"],
+["",1,"00050002300 (ex 52330018288)"],
+["",1,"50430015044"],
+
+["2025-05-28",1,"50530152044"],
+
+["2025-06-05",1,"Manutenzione Moto"],
+
+["2025-06-11",1,"A46030036072"],
+["",1,"A46030035000"],
+["",1,"A46030007000I"],
+
+["2025-06-16",2,"A46030036072"],
+["",2,"A46030035000"],
+["",2,"A46030007000I"],
+["",1,"50439005000"],
+
+["2025-06-17",1,"79030015144"],
+
+["2025-06-18",2,"79013090000"],
+["2025-06-18",2,"A46030036072"],
+
+["2025-06-19",1,"50530152044"],
+
+["2025-07-20",1,"A44002091000"],
+
+["2025-07-21",1,"50430015044"],
+["2025-07-21",1,"0625063055"],
+["2025-07-21",1,"50330082000"],
+
+["2025-08-08",1,"A46030035000"],
+["2025-08-08",1,"50530152044"],
+["2025-08-08",1,"A42003014000"],
+
+["2025-09-26",1,"A42030000244"],
+["2025-09-26",4,"0835080326"],
+["2025-09-26",4,"51030034000"],
+
+["2025-09-30",1,"50530152044"],
+
+["2025-10-01",1,"54802031000"],
+["2025-10-01",1,"79230207200 II"],
+
+["2025-10-28",1,"A42030060000"],
+["2025-10-28",1,"79041077044"],
+["2025-10-28",1,"50430015044"],
+
+["2025-11-15",1,"A42030035040"],
+["2025-11-15",1,"A42030035025"],
+["2025-11-15",1,"47230050000"],
+["2025-11-15",1,"54802031000"],
+
+["2026-01-08",1,"45235054028"],
+["",1,"A40530035050"],
+["",1,"45233010200"],
+["",1,"0760263561"],
+["",1,"45230039000"],
+["",1,"45230025100"],
+["",1,"0770052020"],
+["",1,"0770120020"],
+["",1,"0770078020"],
+["",1,"0760152472"],
+["",2,"45133028000"],
+["",1,"0760162240"],
+["",1,"0760223270"],
+["",1,"A46006026033"],
+["",1,"50330006600"],
+["",1,"47030034000"],
+
+["2026-01-27",1,"47230049000"],
+["",1,"47230039000"],
+["",1,"(ex 00050002318)47230018188"],
+["",1,"47230025000"],
+["",1,"0625982031"],
+["",1,"0062042001400"],
+
+["2026-02-24",1,"47234005044"],
+["",1,"47233016000"],
+["",1,"47233002000"],
+["",1,"47233015000"],
+["",1,"47233014000"],
+["",1,"47233003000"],
+["",5,"51030034000"],
+["",1,"77036003200"],
+
+["2026-03-11",1,"77839093000"],
+["",4,"77036027000"],
+["",1,"A46030007010I"],
+
+["2026-03-20",2,"A46030007000I"],
+
+["2026-03-27",1,"A46035007000"],
+
+["2026-04-09",1,"47234012044"],
+["",1,"79234015100"],
+
+["2026-06-05",1,"47230039000"],
+["",1,"47230018188"],
+["",1,"47230025000"],
+["",1,"47030076100"],
+["",1,"49030023000"],
+["",1,"47230025000"],
+["",1,"47230039000"],
+["",1,"47230018188"],
+["",1,"47230015044"],
+["",2,"47230049000"],
+
+["2026-07-16",4,"A46003062000"]
+
 ];
 
 
-/* =====================================================
-   QUANTITÀ SPECIFICHE VISIBILI NEL FOGLIO
-===================================================== */
+/* =========================================================
+   LAVORI ROBY
+   QUI SONO FINITI TUTTI GLI ELEMENTI ESCLUSI DAGLI ORDINI
+   ========================================================= */
 
-const QUANTITIES = {
+const LAVORI_ROBY = [
 
-    "A46030036072": 2,
-    "A46030035000": 2,
-    "A46030007000I": 2,
-    "50439005000": 2,
-    "79030015144": 1,
-    "79013090000": 2,
-    "50530152044": 1,
-    "0835080326": 4,
-    "51030034000": 4,
-    "54802031000": 1,
-    "47230049000": 2,
-    "77036027000": 4,
-    "47230015044": 1,
-    "A46003062000": 4
+["2024-09-25",1,"Pistone 125 "],
+["2024-10-08",1,"Pistone 125"],
+
+["2024-11-16",1,"Lezione"],
+["2024-11-20",1,"Lezione"],
+["2024-11-30",1,"Lezione"],
+
+["",1,"Motore 125"],
+
+["2025-01-15",1,"Lavaggio moto"],
+
+["",1,"Lezione"],
+["",1,"Sardegna"],
+
+["2025-01-19",1,"Lezione"],
+["2025-01-22",1,"Lezione"],
+["2025-01-25",1,"Lezione"],
+["2025-01-29",1,"Lezione"],
+["2025-02-02",1,"Lezione"],
+["2025-02-06",1,"Lezione"],
+
+["2025-02-22",1,"Vino"],
+
+["",1,"Lezione"],
+
+["2025-02-26",1,"Lezione"],
+
+["2025-03-01",1,"Progrip"],
+
+["2025-03-04",1,"Lezione Mantova"],
+["2025-03-09",1,"Lezione"],
+["2025-03-26",1,"Lezione Vercelli"],
+["2025-04-02",1,"Lezione Bellinzago"],
+["2025-04-05",1,"Lezione Fara"],
+["2025-04-23",1,"Lezione Fara"],
+["2025-05-14",1,"Lezione Fara"],
+["2025-05-21",1,"Lezione Bellinzago"],
+["2025-05-21",1,"Pistone muletto"],
+["2025-05-29",1,"Lezione Ottobiano"],
+
+["2025-06-05",1,"Lezione Bellinzago"],
+
+["2025-06-20",1,"Motore moto gara"],
+
+["2025-07-09",1,"Lezione Fara"],
+["2025-08-24",1,"Lezione Fara"],
+["2025-08-27",1,"Lezione Ceriano"],
+["2025-09-03",1,"Lezione Casale"],
+["2025-09-17",1,"Lezione Cremona"],
+["2025-10-01",1,"Lezione Ottobiano"],
+["2025-10-22",1,"Lezione Bellinzago + moto"],
+["2025-11-26",1,"Lezione Ceriano"],
+["2025-12-03",1,"Lezione Ottobiano"],
+["",1,"Lezione Ceriano"],
+
+["2026-01-29",1,"Lezione Chieve"],
+["2026-02-05",1,"Lezione Chieve"],
+["2026-02-07",1,"Lezione Fiume"],
+["2026-02-11",1,"Lezione Fiume"],
+["2026-02-25",1,"Lezione Ottobiano"],
+["2026-03-25",1,"Lezione Dorno"],
+["2026-04-02",1,"Lezione Bosisio"],
+["2026-04-23",1,"Lezione Ottobiano"],
+["2026-04-29",1,"Lezione Bellinzago"],
+["2026-05-06",1,"Lezione Fiume"],
+["2026-05-20",1,"Lezione Ceriano"],
+["26 e 27/05/26",1,"Lezione Arco"],
+["2026-06-03",1,"Lezione Fara"]
+
+];
+
+
+/* FEDE
+   PRONTO PER INSERIRE I SUOI DATI */
+const ORDINI_FEDE = [];
+const LAVORI_FEDE = [];
+
+
+let user = "";
+let ordini = [];
+let lavori = [];
+
+
+function euro(n){
+
+return "€ " +
+Number(n || 0).toLocaleString(
+"it-IT",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+function entra(nome){
+
+user = nome;
+
+ordini =
+nome === "Roby"
+? [...ORDINI_ROBY]
+: [...ORDINI_FEDE];
+
+lavori =
+nome === "Roby"
+? [...LAVORI_ROBY]
+: [...LAVORI_FEDE];
+
+
+document.getElementById("home").style.display="none";
+
+document.getElementById("app").style.display="block";
+
+document.getElementById("currentUser").textContent =
+nome.toUpperCase();
+
+document.getElementById("hello").textContent =
+"Ciao " + nome.toUpperCase();
+
+document.getElementById("ordersPerson").textContent =
+nome.toUpperCase();
+
+document.getElementById("worksPerson").textContent =
+nome.toUpperCase();
+
+document.getElementById("orderSearch").value="";
+
+renderAll();
+
+showPage("dashboard");
+
+}
+
+
+function esci(){
+
+document.getElementById("app").style.display="none";
+
+document.getElementById("home").style.display="flex";
+
+}
+
+
+function showPage(id){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+if(id==="orders"){
+renderOrders();
+}
+
+if(id==="works"){
+renderWorks();
+}
+
+}
+
+
+function calc(prezzo,sconto,quantita){
+
+const price =
+Number(prezzo) || 0;
+
+const disc =
+Number(sconto) || 0;
+
+const qty =
+Number(quantita) || 1;
+
+const net =
+price * (1 - disc / 100);
+
+return {
+net:net,
+total:net * qty
 };
 
-
-/* =====================================================
-   LAVORI ESCLUSI DAGLI ORDINI
-===================================================== */
-
-const WORK_ITEMS = [
-
-    "Pistone 125",
-    "Motore 125",
-    "Lavaggio moto",
-    "Sardegna",
-    "Vino",
-    "Progrip",
-    "Pistone muletto",
-    "Lezione Ottobiano",
-    "Motore moto gara",
-    "Lezione Fara",
-    "Lezione Ceriano",
-    "Lezione Casale",
-    "Lezione Cremona",
-    "Lezione Bellinzago + moto",
-    "Lezione Bellinzago",
-    "Lezione Vercelli",
-    "Lezione Mantova",
-    "Lezione Bosisio",
-    "Lezione Dorno",
-    "Lezione Chieve",
-    "Lezione Fiume",
-    "Lezione Arco"
-];
-
-
-/* =====================================================
-   CREAZIONE DATI PER PERSONA
-===================================================== */
-
-function storageKeyOrders(){
-
-    return "ktm_orders_" + currentPerson;
-
-}
-
-function storageKeyWorks(){
-
-    return "ktm_works_" + currentPerson;
-
 }
 
 
-function getOrders(){
+function rowHtml(x,i,work=false){
 
-    const saved =
-        localStorage.getItem(storageKeyOrders());
+const data =
+x[0] || "";
 
-    if(saved){
+const quantita =
+x[1] || 1;
 
-        try{
-            return JSON.parse(saved);
-        }
-        catch(e){
-            return [];
-        }
+const articolo =
+x[2] || "";
 
-    }
+const key =
+(work ? "w" : "o") + i;
 
-    /*
-       Prima apertura:
-       crea gli articoli senza prezzi.
-    */
 
-    return BASE_ITEMS.map((article,index)=>({
+return `
 
-        id:
-            "base-" +
-            currentPerson +
-            "-" +
-            index +
-            "-" +
-            Date.now(),
+<tr>
 
-        quantity:
-            QUANTITIES[article] || 1,
+<td>
+${data}
+</td>
 
-        article:article,
+<td>
+${quantita}
+</td>
 
-        listino:0,
+<td>
+<b>${escapeHtml(articolo)}</b>
+</td>
 
-        sconto:0,
+<td>
 
-        gio:0
+<input
+class="priceInput"
+id="p-${key}"
+type="number"
+min="0"
+step="0.01"
+value="0"
+oninput="updateRow('${key}',${quantita})">
 
-    }));
+</td>
+
+<td>
+
+<input
+class="discountInput"
+id="s-${key}"
+type="number"
+min="0"
+step="0.01"
+value="0"
+oninput="updateRow('${key}',${quantita})">
+
+</td>
+
+<td
+class="netCell"
+id="n-${key}">
+
+€ 0,00
+
+</td>
+
+<td
+class="totalCell"
+id="t-${key}">
+
+€ 0,00
+
+</td>
+
+</tr>
+
+`;
 
 }
 
 
-function getWorks(){
+function updateRow(key,q){
 
-    const saved =
-        localStorage.getItem(storageKeyWorks());
+const prezzo =
+document.getElementById("p-"+key);
 
-    if(saved){
+const sconto =
+document.getElementById("s-"+key);
 
-        try{
-            return JSON.parse(saved);
-        }
-        catch(e){
-            return [];
-        }
+const risultato =
+calc(
+prezzo.value,
+sconto.value,
+q
+);
 
-    }
+document.getElementById("n-"+key)
+.textContent =
+euro(risultato.net);
 
-    return WORK_ITEMS.map((name,index)=>({
+document.getElementById("t-"+key)
+.textContent =
+euro(risultato.total);
 
-        id:
-            "work-" +
-            currentPerson +
-            "-" +
-            index,
-
-        name:name,
-
-        price:0,
-
-        discount:0
-
-    }));
+updateTotals();
 
 }
 
-
-function saveOrders(data){
-
-    localStorage.setItem(
-        storageKeyOrders(),
-        JSON.stringify(data)
-    );
-
-}
-
-
-function saveWorks(data){
-
-    localStorage.setItem(
-        storageKeyWorks(),
-        JSON.stringify(data)
-    );
-
-}
-
-
-/* =====================================================
-   ENTRA
-===================================================== */
-
-function enterApp(person){
-
-    currentPerson = person;
-
-    document.getElementById("home").style.display =
-        "none";
-
-    document.getElementById("app").style.display =
-        "block";
-
-    document.getElementById("currentUser").textContent =
-        person;
-
-    document.getElementById("hello").textContent =
-        "Ciao " + person;
-
-    document.getElementById("ordersPerson").textContent =
-        person;
-
-    document.getElementById("worksPerson").textContent =
-        person;
-
-    document.getElementById("modalPerson").textContent =
-        person;
-
-    document.getElementById("workModalPerson").textContent =
-        person;
-
-    showPage("dashboard");
-
-    renderAll();
-
-}
-
-
-/* =====================================================
-   USCITA
-===================================================== */
-
-function exitApp(){
-
-    currentPerson = "";
-
-    document.getElementById("app").style.display =
-        "none";
-
-    document.getElementById("home").style.display =
-        "flex";
-
-}
-
-
-/* =====================================================
-   PAGINE
-===================================================== */
-
-function showPage(page){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(p=>{
-            p.classList.remove("active");
-        });
-
-    const target =
-        document.getElementById(page);
-
-    if(target){
-        target.classList.add("active");
-    }
-
-    renderAll();
-
-}
-
-
-/* =====================================================
-   ORDINI
-===================================================== */
 
 function renderOrders(){
 
-    const body =
-        document.getElementById("ordersBody");
+const body =
+document.getElementById("ordersBody");
 
-    if(!body) return;
-
-    const orders =
-        getOrders();
-
-    body.innerHTML = "";
-
-    orders.forEach((order,index)=>{
-
-        const listino =
-            Number(order.listino) || 0;
-
-        const sconto =
-            Number(order.sconto) || 0;
-
-        const netto =
-            listino *
-            (1 - sconto / 100) *
-            (Number(order.quantity) || 1);
-
-        const gio =
-            Number(order.gio) || 0;
+const termine =
+(
+document.getElementById("orderSearch")
+.value || ""
+)
+.trim()
+.toLowerCase();
 
 
-        const tr =
-            document.createElement("tr");
+const risultati =
+ordini.filter(
+x =>
+x[2]
+.toLowerCase()
+.includes(termine)
+);
 
 
-        tr.innerHTML = `
+body.innerHTML =
+risultati.length
 
-            <td>
+?
 
-                <input
-                    class="qty"
-                    type="number"
-                    min="1"
-                    value="${order.quantity || 1}"
-                    onchange="updateOrder(${index},'quantity',this.value)"
-                >
+risultati
+.map((x,i)=>rowHtml(x,i,false))
+.join("")
 
-            </td>
+:
 
-
-            <td class="article-cell">
-                ${escapeHTML(order.article)}
-            </td>
-
-
-            <td>
-
-                <input
-                    class="price-input"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${listino || ""}"
-                    placeholder="€"
-                    onchange="updateOrder(${index},'listino',this.value)"
-                >
-
-            </td>
+`
+<tr>
+<td colspan="7" class="empty">
+Nessun articolo trovato.
+</td>
+</tr>
+`;
 
 
-            <td>
+document.getElementById("searchInfo")
+.textContent =
+termine
+? risultati.length + " risultato/i"
+: "";
 
-                <input
-                    class="discount-input"
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value="${sconto}"
-                    onchange="updateOrder(${index},'sconto',this.value)"
-                >
-
-            </td>
-
-
-            <td class="netto">
-
-                ${
-                    netto > 0
-                    ? euro(netto)
-                    : '<span class="zero">€ 0,00</span>'
-                }
-
-            </td>
-
-
-            <td>
-
-                <input
-                    class="gio-input"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${gio || ""}"
-                    placeholder="€"
-                    onchange="updateOrder(${index},'gio',this.value)"
-                >
-
-            </td>
-
-        `;
-
-        body.appendChild(tr);
-
-    });
+updateTotals();
 
 }
 
-
-/* =====================================================
-   MODIFICA ORDINE
-===================================================== */
-
-function updateOrder(index,field,value){
-
-    const orders =
-        getOrders();
-
-    if(!orders[index]) return;
-
-    if(
-        field === "quantity" ||
-        field === "listino" ||
-        field === "sconto" ||
-        field === "gio"
-    ){
-
-        value =
-            Number(value) || 0;
-
-    }
-
-    orders[index][field] =
-        value;
-
-    saveOrders(orders);
-
-    renderAll();
-
-}
-
-
-/* =====================================================
-   NUOVO ORDINE
-===================================================== */
-
-function openOrderModal(){
-
-    document.getElementById("newQty").value =
-        1;
-
-    document.getElementById("newArticle").value =
-        "";
-
-    document.getElementById("newListino").value =
-        "";
-
-    document.getElementById("newSconto").value =
-        0;
-
-    document.getElementById("newGio").value =
-        0;
-
-    document
-        .getElementById("orderModal")
-        .classList.add("show");
-
-}
-
-
-function closeOrderModal(){
-
-    document
-        .getElementById("orderModal")
-        .classList.remove("show");
-
-}
-
-
-function saveNewOrder(){
-
-    const article =
-        document
-            .getElementById("newArticle")
-            .value
-            .trim();
-
-    if(!article){
-
-        alert("Inserisci il codice o il nome dell'articolo.");
-
-        return;
-
-    }
-
-
-    const orders =
-        getOrders();
-
-
-    orders.push({
-
-        id:
-            "new-" +
-            Date.now(),
-
-        quantity:
-            Number(
-                document.getElementById("newQty").value
-            ) || 1,
-
-        article:article,
-
-        listino:
-            Number(
-                document.getElementById("newListino").value
-            ) || 0,
-
-        sconto:
-            Number(
-                document.getElementById("newSconto").value
-            ) || 0,
-
-        gio:
-            Number(
-                document.getElementById("newGio").value
-            ) || 0
-
-    });
-
-
-    saveOrders(orders);
-
-    closeOrderModal();
-
-    renderAll();
-
-    showPage("orders");
-
-}
-
-
-/* =====================================================
-   LAVORI
-===================================================== */
 
 function renderWorks(){
 
-    const body =
-        document.getElementById("worksBody");
-
-    if(!body) return;
-
-    const works =
-        getWorks();
-
-    body.innerHTML = "";
+const body =
+document.getElementById("worksBody");
 
 
-    works.forEach((work,index)=>{
+body.innerHTML =
+lavori.length
 
-        const price =
-            Number(work.price) || 0;
+?
 
-        const discount =
-            Number(work.discount) || 0;
+lavori
+.map((x,i)=>rowHtml(x,i,true))
+.join("")
 
-        const total =
-            price *
-            (1 - discount / 100);
+:
 
-
-        const tr =
-            document.createElement("tr");
-
-
-        tr.innerHTML = `
-
-            <td class="work-name">
-                ${escapeHTML(work.name)}
-            </td>
-
-
-            <td>
-
-                <input
-                    class="work-price"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${price || ""}"
-                    placeholder="€"
-                    onchange="updateWork(${index},'price',this.value)"
-                >
-
-            </td>
-
-
-            <td>
-
-                <input
-                    class="work-discount"
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value="${discount}"
-                    onchange="updateWork(${index},'discount',this.value)"
-                >
-
-            </td>
-
-
-            <td class="work-total">
-
-                ${
-                    total > 0
-                    ? euro(total)
-                    : '<span class="zero">€ 0,00</span>'
-                }
-
-            </td>
-
-        `;
-
-
-        body.appendChild(tr);
-
-    });
+`
+<tr>
+<td colspan="7" class="empty">
+Nessun lavoro.
+</td>
+</tr>
+`;
 
 }
 
 
-/* =====================================================
-   MODIFICA LAVORO
-===================================================== */
+function updateTotals(){
 
-function updateWork(index,field,value){
-
-    const works =
-        getWorks();
-
-    if(!works[index]) return;
-
-    works[index][field] =
-        Number(value) || 0;
-
-    saveWorks(works);
-
-    renderAll();
-
-}
+let total = 0;
 
 
-/* =====================================================
-   NUOVO LAVORO
-===================================================== */
+document
+.querySelectorAll(".totalCell")
+.forEach(c=>{
 
-function openWorkModal(){
+const valore =
+parseFloat(
+c.textContent
+.replace("€","")
+.replace(/\./g,"")
+.replace(",",".")
+) || 0;
 
-    document.getElementById("newWork").value =
-        "";
+total += valore;
 
-    document.getElementById("newWorkPrice").value =
-        "";
+});
 
-    document.getElementById("newWorkDiscount").value =
-        0;
 
-    document
-        .getElementById("workModal")
-        .classList.add("show");
+document.getElementById("count")
+.textContent =
+ordini.length;
+
+
+document.getElementById("workCount")
+.textContent =
+lavori.length;
+
+
+document.getElementById("netTotal")
+.textContent =
+euro(total);
 
 }
 
-
-function closeWorkModal(){
-
-    document
-        .getElementById("workModal")
-        .classList.remove("show");
-
-}
-
-
-function saveNewWork(){
-
-    const name =
-        document
-            .getElementById("newWork")
-            .value
-            .trim();
-
-    if(!name){
-
-        alert("Inserisci il nome del lavoro.");
-
-        return;
-
-    }
-
-
-    const works =
-        getWorks();
-
-
-    works.push({
-
-        id:
-            "new-work-" +
-            Date.now(),
-
-        name:name,
-
-        price:
-            Number(
-                document.getElementById("newWorkPrice").value
-            ) || 0,
-
-        discount:
-            Number(
-                document.getElementById("newWorkDiscount").value
-            ) || 0
-
-    });
-
-
-    saveWorks(works);
-
-    closeWorkModal();
-
-    renderAll();
-
-    showPage("works");
-
-}
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-function updateDashboard(){
-
-    const orders =
-        getOrders();
-
-    const works =
-        getWorks();
-
-
-    let netTotal = 0;
-
-    let gioTotal = 0;
-
-
-    orders.forEach(order=>{
-
-        const quantity =
-            Number(order.quantity) || 1;
-
-        const listino =
-            Number(order.listino) || 0;
-
-        const sconto =
-            Number(order.sconto) || 0;
-
-        const gio =
-            Number(order.gio) || 0;
-
-
-        const netto =
-            listino *
-            (1 - sconto / 100) *
-            quantity;
-
-
-        netTotal +=
-            netto;
-
-        gioTotal +=
-            gio;
-
-    });
-
-
-    document.getElementById("count").textContent =
-        orders.length;
-
-
-    document.getElementById("netTotal").textContent =
-        euro(netTotal);
-
-
-    document.getElementById("gioTotal").textContent =
-        euro(gioTotal);
-
-
-    document.getElementById("workCount").textContent =
-        works.length;
-
-}
-
-
-/* =====================================================
-   RENDER GENERALE
-===================================================== */
 
 function renderAll(){
 
-    if(!currentPerson) return;
+renderOrders();
 
-    renderOrders();
+renderWorks();
 
-    renderWorks();
-
-    updateDashboard();
+updateTotals();
 
 }
 
 
-/* =====================================================
-   EURO
-===================================================== */
+function openModal(){
 
-function euro(value){
+document.getElementById("modalUser")
+.textContent =
+user.toUpperCase();
 
-    return new Intl.NumberFormat(
-        "it-IT",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
-    ).format(
-        Number(value) || 0
-    );
+document.getElementById("modalBg")
+.classList.add("open");
 
-}
+document.getElementById("dateInput")
+.value =
+new Date()
+.toISOString()
+.slice(0,10);
 
+document.getElementById("qtyInput")
+.value=1;
 
-/* =====================================================
-   SICUREZZA TESTO
-===================================================== */
+document.getElementById("articleInput")
+.value="";
 
-function escapeHTML(value){
+document.getElementById("listInput")
+.value="";
 
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+document.getElementById("discountInput")
+.value=0;
+
+updateModal();
 
 }
 
 
-/* =====================================================
-   CHIUSURA MODAL CLICCANDO FUORI
-===================================================== */
+function closeModal(){
 
 document
-    .getElementById("orderModal")
-    .addEventListener("click",function(e){
+.getElementById("modalBg")
+.classList.remove("open");
 
-        if(e.target === this){
+}
 
-            closeOrderModal();
 
-        }
+function updateModal(){
 
-    });
+const risultato =
+calc(
+document.getElementById("listInput").value,
+document.getElementById("discountInput").value,
+document.getElementById("qtyInput").value
+);
+
+document.getElementById("unitNet")
+.textContent =
+euro(risultato.net);
+
+document.getElementById("orderTotal")
+.textContent =
+euro(risultato.total);
+
+}
+
+
+[
+"listInput",
+"discountInput",
+"qtyInput"
+].forEach(id=>{
+
+document
+.getElementById(id)
+.addEventListener(
+"input",
+updateModal
+);
+
+});
+
+
+function saveOrder(){
+
+const articolo =
+document.getElementById("articleInput")
+.value
+.trim();
+
+
+if(!articolo){
+
+alert(
+"Inserisci un codice o un articolo."
+);
+
+return;
+
+}
+
+
+const data =
+document.getElementById("dateInput")
+.value;
+
+const quantita =
+Number(
+document.getElementById("qtyInput").value
+) || 1;
+
+
+ordini.unshift([
+data,
+quantita,
+articolo
+]);
+
+
+closeModal();
+
+showPage("orders");
+
+renderOrders();
+
+}
+
+
+function escapeHtml(v){
+
+return String(v)
+.replace(
+/[&<>'"]/g,
+m=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+"'":"&#39;",
+'"':"&quot;"
+
+}[m])
+);
+
+}
 
 
 document
-    .getElementById("workModal")
-    .addEventListener("click",function(e){
-
-        if(e.target === this){
-
-            closeWorkModal();
-
-        }
-
-    });
-
+.getElementById("orderSearch")
+.addEventListener(
+"input",
+renderOrders
+);
 
 </script>
 
