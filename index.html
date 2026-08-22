@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Gestionale KTM - Roby e Fede</title>
+<title>Gestione Ordini KTM</title>
 
 <style>
 
@@ -30,7 +30,6 @@ font-family:inherit
 button{
 cursor:pointer
 }
-
 
 /* =========================
    HOME
@@ -153,7 +152,6 @@ width:100%;
 margin-top:22px
 }
 
-
 /* =========================
    APP
 ========================= */
@@ -218,7 +216,6 @@ display:none
 display:block
 }
 
-
 /* =========================
    TITOLI
 ========================= */
@@ -235,7 +232,6 @@ font-size:31px
 color:#777;
 margin-top:5px
 }
-
 
 /* =========================
    STATISTICHE
@@ -265,7 +261,6 @@ display:block;
 font-size:22px;
 margin-top:8px
 }
-
 
 /* =========================
    MENU
@@ -319,7 +314,6 @@ color:#ff6600;
 font-size:25px
 }
 
-
 /* =========================
    TOP
 ========================= */
@@ -330,7 +324,6 @@ justify-content:space-between;
 align-items:center;
 margin-bottom:20px
 }
-
 
 /* =========================
    RICERCA
@@ -380,7 +373,6 @@ color:#777;
 font-size:13px
 }
 
-
 /* =========================
    TABELLA
 ========================= */
@@ -420,7 +412,6 @@ tbody tr:hover{
 background:#fffaf7
 }
 
-
 /* =========================
    INPUT PREZZI
 ========================= */
@@ -450,16 +441,9 @@ font-weight:bold
 color:#ff6600
 }
 
-
 /* =========================
-   MESSAGGI
+   LAVORI
 ========================= */
-
-.empty{
-text-align:center;
-padding:35px;
-color:#777
-}
 
 .workNote{
 background:#fff7f1;
@@ -469,7 +453,6 @@ border-radius:12px;
 margin-bottom:14px;
 color:#555
 }
-
 
 /* =========================
    MODALE
@@ -574,9 +557,8 @@ font-weight:bold
 background:#ddd
 }
 
-
 /* =========================
-   NOTIFICA SALVATAGGIO
+   SALVATAGGIO
 ========================= */
 
 .saveMessage{
@@ -600,7 +582,6 @@ z-index:100
 opacity:1;
 transform:translateY(0)
 }
-
 
 /* =========================
    MOBILE
@@ -645,11 +626,6 @@ padding:22px 12px
 
 }
 
-
-/* =========================
-   MOBILE TABELLA
-========================= */
-
 @media(max-width:500px){
 
 .person{
@@ -673,7 +649,6 @@ font-size:24px
 </style>
 
 </head>
-
 
 <body>
 
@@ -701,9 +676,7 @@ GESTIONE ORDINI
 Seleziona la persona da gestire
 </p>
 
-
 <div class="people">
-
 
 <div class="person">
 
@@ -726,7 +699,6 @@ ENTRA
 </div>
 
 
-
 <div class="person">
 
 <div class="avatar">
@@ -747,13 +719,11 @@ ENTRA
 
 </div>
 
-
 </div>
 
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -762,9 +732,7 @@ ENTRA
 
 <section id="app">
 
-
 <header class="header">
-
 
 <div class="headerRight">
 
@@ -776,7 +744,6 @@ KTM
 
 </div>
 
-
 <button
 class="exit"
 onclick="esci()">
@@ -785,9 +752,7 @@ onclick="esci()">
 
 </button>
 
-
 </header>
-
 
 
 <main class="container">
@@ -801,11 +766,9 @@ onclick="esci()">
 id="dashboard"
 class="page active">
 
-
 <div class="title">
 
-<h1 id="hello">
-</h1>
+<h1 id="hello"></h1>
 
 <p>
 Gestione ordini, lavori, prezzi e sconti
@@ -814,9 +777,7 @@ Gestione ordini, lavori, prezzi e sconti
 </div>
 
 
-
 <div class="stats">
-
 
 <div class="stat">
 
@@ -856,9 +817,7 @@ LAVORI
 
 </div>
 
-
 </div>
-
 
 
 <div class="menu">
@@ -891,7 +850,6 @@ Visualizza e cerca tutti gli articoli
 </div>
 
 
-
 <div
 class="card"
 onclick="openModal()">
@@ -919,7 +877,6 @@ Aggiungi un nuovo articolo
 </div>
 
 
-
 <div
 class="card"
 onclick="showPage('works')">
@@ -935,7 +892,7 @@ Lavori
 </h3>
 
 <p>
-Gestisci le attività escluse dagli ordini
+Gestisci le attività
 </p>
 
 </div>
@@ -946,12 +903,9 @@ Gestisci le attività escluse dagli ordini
 
 </div>
 
-
 </div>
 
-
 </section>
-
 
 
 <!-- =====================================================
@@ -962,7 +916,6 @@ Gestisci le attività escluse dagli ordini
 id="orders"
 class="page">
 
-
 <button
 class="back"
 onclick="showPage('dashboard')">
@@ -972,9 +925,7 @@ onclick="showPage('dashboard')">
 </button>
 
 
-
 <div class="top">
-
 
 <div class="title">
 
@@ -992,7 +943,6 @@ Prezzi e sconti modificabili e salvati automaticamente
 </div>
 
 
-
 <button
 class="btn orangebtn"
 onclick="openModal()">
@@ -1001,23 +951,16 @@ onclick="openModal()">
 
 </button>
 
-
 </div>
 
 
-
-<!-- RICERCA -->
-
 <div class="searchbox">
-
 
 <input
 id="orderSearch"
 type="search"
 placeholder="🔎 Cerca rapidamente codice o articolo..."
-autocomplete="off"
->
-
+autocomplete="off">
 
 <button
 onclick="clearSearch()">
@@ -1026,23 +969,18 @@ Pulisci
 
 </button>
 
-
 <span
 class="searchInfo"
 id="searchInfo">
 
 </span>
 
-
 </div>
-
 
 
 <div class="tablebox">
 
-
 <table>
-
 
 <thead>
 
@@ -1080,19 +1018,15 @@ TOTALE (€)
 
 </thead>
 
-
 <tbody
 id="ordersBody">
 </tbody>
-
 
 </table>
 
 </div>
 
-
 </section>
-
 
 
 <!-- =====================================================
@@ -1103,7 +1037,6 @@ id="ordersBody">
 id="works"
 class="page">
 
-
 <button
 class="back"
 onclick="showPage('dashboard')">
@@ -1113,9 +1046,7 @@ onclick="showPage('dashboard')">
 </button>
 
 
-
 <div class="top">
-
 
 <div class="title">
 
@@ -1132,9 +1063,7 @@ Attività escluse dagli ordini ricambi
 
 </div>
 
-
 </div>
-
 
 
 <div class="workNote">
@@ -1147,12 +1076,9 @@ I valori vengono salvati automaticamente.
 </div>
 
 
-
 <div class="tablebox">
 
-
 <table>
-
 
 <thead>
 
@@ -1190,38 +1116,31 @@ TOTALE (€)
 
 </thead>
 
-
 <tbody
 id="worksBody">
 </tbody>
 
-
 </table>
 
 </div>
-
 
 </section>
 
 
 </main>
 
-
 </section>
 
 
-
 <!-- =====================================================
-     MODALE NUOVO ORDINE
+     MODALE
 ===================================================== -->
 
 <div
 id="modalBg"
 class="modalbg">
 
-
 <div class="modal">
-
 
 <h2>
 
@@ -1229,7 +1148,6 @@ Nuovo ordine -
 <span id="modalUser"></span>
 
 </h2>
-
 
 
 <div class="form">
@@ -1248,7 +1166,6 @@ id="dateInput">
 </div>
 
 
-
 <div class="field">
 
 <label>
@@ -1264,7 +1181,6 @@ value="1">
 </div>
 
 
-
 <div class="field full">
 
 <label>
@@ -1276,7 +1192,6 @@ id="articleInput"
 placeholder="Inserisci codice KTM">
 
 </div>
-
 
 
 <div class="field">
@@ -1296,7 +1211,6 @@ placeholder="0,00">
 </div>
 
 
-
 <div class="field">
 
 <label>
@@ -1306,20 +1220,17 @@ SCONTO (%)
 <input
 type="number"
 id="discountInput"
-value="0"
+value="25"
 step="0.01"
 min="0"
 max="100">
 
 </div>
 
-
 </div>
 
 
-
 <div class="summary">
-
 
 <div class="sumrow">
 
@@ -1334,7 +1245,6 @@ Netto unitario
 </div>
 
 
-
 <div class="sumrow sumtotal">
 
 <span>
@@ -1347,13 +1257,10 @@ Totale ordine
 
 </div>
 
-
 </div>
 
 
-
 <div class="actions">
-
 
 <button
 class="cancel"
@@ -1364,7 +1271,6 @@ Annulla
 </button>
 
 
-
 <button
 class="btn orangebtn"
 onclick="saveOrder()">
@@ -1373,19 +1279,12 @@ SALVA ORDINE
 
 </button>
 
-
-</div>
-
-
 </div>
 
 </div>
 
+</div>
 
-
-<!-- =====================================================
-     MESSAGGIO SALVATAGGIO
-===================================================== -->
 
 <div
 id="saveMessage"
@@ -1396,20 +1295,25 @@ class="saveMessage">
 </div>
 
 
-
 <script>
 
-
 /* =========================================================
-   CHIAVE LOCAL STORAGE
+   STORAGE
 ========================================================= */
 
 const STORAGE_KEY =
-"KTM_GESTIONALE_COMPLETO_V1";
+"KTM_GESTIONALE_COMPLETO_V2";
+
+
+let currentPerson = "";
+
+let orders = [];
+
+let works = [];
 
 
 /* =========================================================
-   DATI STORICI ROBY
+   DATI ORDINI ROBY
 ========================================================= */
 
 const ORDINI_ROBY_BASE = [
@@ -1420,70 +1324,52 @@ const ORDINI_ROBY_BASE = [
 ["2024-10-10",1,"50430039000"],
 ["2024-10-10",1,"00050002300"],
 ["2024-10-10",1,"50430015044"],
-
 ["2024-10-09",1,"A46035009000"],
-
 ["2024-10-12",1,"00050000272 - 79430107210 II"],
 ["2024-10-12",1,"79536013000"],
 ["2024-10-12",1,"77239093000"],
 ["2024-10-12",1,"77338005100"],
-
 ["2024-11-05",1,"A42005907500"],
 ["2024-11-05",1,"A46035909000"],
-
 ["2024-11-13",1,"50430025000"],
 ["2024-11-13",1,"50430098060"],
 ["2024-11-13",1,"50430098050"],
 ["2024-11-13",1,"50430039000"],
 ["2024-11-13",1,"50430015044"],
 ["2024-11-13",1,"00050002300"],
-
 ["2024-11-26",1,"A46014069000"],
 ["2024-11-26",1,"A42030060000"],
 ["2024-11-26",1,"50403096010"],
 ["2024-11-26",1,"77204066010 - 77204066044"],
 ["2024-11-26",1,"A45041072033"],
 ["2024-11-26",1,"79135071044"],
-
 ["2024-12-02",1,"00050002300"],
 ["2024-12-02",1,"50430098060"],
 ["2024-12-02",1,"50430025000"],
 ["2024-12-02",1,"50430098050"],
 ["2024-12-02",1,"50430015044"],
 ["2024-12-02",1,"50430039000"],
-
 ["2024-12-04",1,"50439005000"],
 ["2024-12-04",1,"50532054000"],
-
 ["2024-12-07",1,"79135071044"],
 ["2024-12-07",1,"A45041072033"],
-
 ["2024-12-12",1,"91010240S"],
-
 ["2024-12-19",1,"50439004000"],
-
 ["2025-01-14",1,"79030015144"],
-
 ["2025-01-20",1,"47230015044"],
 ["2025-01-20",1,"50430098050"],
 ["2025-01-20",1,"50430098060"],
 ["2025-01-20",1,"50530152044"],
-
 ["2025-01-21",1,"A42030018010"],
-
 ["2025-01-26",1,"50530152044"],
-
 ["2025-02-17",1,"50430006100"],
 ["2025-02-17",1,"50433015400"],
 ["2025-02-17",1,"54834005133 - 50534005044"],
-
 ["2025-02-28",1,"A42030035040"],
 ["2025-02-28",1,"A42030035025"],
 ["2025-02-28",1,"A42030118000"],
 ["2025-02-28",1,"A42030000144"],
-
 ["2025-03-06",1,"50532010033"],
-
 ["2025-03-12",1,"47230060100"],
 ["2025-03-12",1,"47230035040"],
 ["2025-03-12",1,"50430035050"],
@@ -1495,64 +1381,45 @@ const ORDINI_ROBY_BASE = [
 ["2025-03-12",1,"0625623204"],
 ["2025-03-12",1,"50430015044"],
 ["2025-03-12",1,"54830015244"],
-
 ["2025-05-15",1,"55530038100"],
-
 ["2025-05-27",1,"50430098060"],
 ["2025-05-27",1,"50430098050"],
 ["2025-05-27",1,"50430025000"],
 ["2025-05-27",1,"50430039000"],
 ["2025-05-27",1,"00050002300 (ex 52330018288)"],
 ["2025-05-27",1,"50430015044"],
-
 ["2025-05-28",1,"50530152044"],
-
-["2025-06-05",1,"Manutenzione Moto"],
-
 ["2025-06-11",1,"A46030036072"],
 ["2025-06-11",1,"A46030035000"],
 ["2025-06-11",1,"A46030007000I"],
-
 ["2025-06-16",2,"A46030036072"],
 ["2025-06-16",2,"A46030035000"],
 ["2025-06-16",2,"A46030007000I"],
 ["2025-06-16",1,"50439005000"],
-
 ["2025-06-17",1,"79030015144"],
-
 ["2025-06-18",2,"79013090000"],
 ["2025-06-18",2,"A46030036072"],
-
 ["2025-06-19",1,"50530152044"],
-
 ["2025-07-20",1,"A44002091000"],
-
 ["2025-07-21",1,"50430015044"],
 ["2025-07-21",1,"0625063055"],
 ["2025-07-21",1,"50330082000"],
-
 ["2025-08-08",1,"A46030035000"],
 ["2025-08-08",1,"50530152044"],
 ["2025-08-08",1,"A42003014000"],
-
 ["2025-09-26",1,"A42030000244"],
 ["2025-09-26",4,"0835080326"],
 ["2025-09-26",4,"51030034000"],
-
 ["2025-09-30",1,"50530152044"],
-
 ["2025-10-01",1,"54802031000"],
 ["2025-10-01",1,"79230207200 II"],
-
 ["2025-10-28",1,"A42030060000"],
 ["2025-10-28",1,"79041077044"],
 ["2025-10-28",1,"50430015044"],
-
 ["2025-11-15",1,"A42030035040"],
 ["2025-11-15",1,"A42030035025"],
 ["2025-11-15",1,"47230050000"],
 ["2025-11-15",1,"54802031000"],
-
 ["2026-01-08",1,"45235054028"],
 ["2026-01-08",1,"A40530035050"],
 ["2026-01-08",1,"45233010200"],
@@ -1569,14 +1436,12 @@ const ORDINI_ROBY_BASE = [
 ["2026-01-08",1,"A46006026033"],
 ["2026-01-08",1,"50330006600"],
 ["2026-01-08",1,"47030034000"],
-
 ["2026-01-27",1,"47230049000"],
 ["2026-01-27",1,"47230039000"],
-["2026-01-27",1,"(ex 00050002318)47230018188"],
+["2026-01-27",1,"47230018188"],
 ["2026-01-27",1,"47230025000"],
 ["2026-01-27",1,"0625982031"],
 ["2026-01-27",1,"0062042001400"],
-
 ["2026-02-24",1,"47234005044"],
 ["2026-02-24",1,"47233016000"],
 ["2026-02-24",1,"47233002000"],
@@ -1585,18 +1450,13 @@ const ORDINI_ROBY_BASE = [
 ["2026-02-24",1,"47233003000"],
 ["2026-02-24",5,"51030034000"],
 ["2026-02-24",1,"77036003200"],
-
 ["2026-03-11",1,"77839093000"],
 ["2026-03-11",4,"77036027000"],
 ["2026-03-11",1,"A46030007010I"],
-
 ["2026-03-20",2,"A46030007000I"],
-
 ["2026-03-27",1,"A46035007000"],
-
 ["2026-04-09",1,"47234012044"],
 ["2026-04-09",1,"79234015100"],
-
 ["2026-06-05",1,"47230039000"],
 ["2026-06-05",1,"47230018188"],
 ["2026-06-05",1,"47230025000"],
@@ -1607,47 +1467,36 @@ const ORDINI_ROBY_BASE = [
 ["2026-06-05",1,"47230018188"],
 ["2026-06-05",1,"47230015044"],
 ["2026-06-05",2,"47230049000"],
-
 ["2026-07-16",4,"A46003062000"]
 
 ];
 
 
 /* =========================================================
-   LAVORI ROBY
+   LAVORI
 ========================================================= */
 
 const LAVORI_ROBY_BASE = [
 
 ["2024-09-25",1,"Pistone 125"],
 ["2024-10-08",1,"Pistone 125"],
-
 ["2024-11-16",1,"Lezione"],
 ["2024-11-20",1,"Lezione"],
 ["2024-11-30",1,"Lezione"],
-
 ["2024-12-01",1,"Motore 125"],
-
 ["2025-01-15",1,"Lavaggio moto"],
-
 ["2025-01-18",1,"Lezione"],
 ["2025-01-18",1,"Sardegna"],
-
 ["2025-01-19",1,"Lezione"],
 ["2025-01-22",1,"Lezione"],
 ["2025-01-25",1,"Lezione"],
 ["2025-01-29",1,"Lezione"],
 ["2025-02-02",1,"Lezione"],
 ["2025-02-06",1,"Lezione"],
-
 ["2025-02-22",1,"Vino"],
-
 ["2025-02-24",1,"Lezione"],
-
 ["2025-02-26",1,"Lezione"],
-
 ["2025-03-01",1,"Progrip"],
-
 ["2025-03-04",1,"Lezione Mantova"],
 ["2025-03-09",1,"Lezione"],
 ["2025-03-26",1,"Lezione Vercelli"],
@@ -1658,11 +1507,8 @@ const LAVORI_ROBY_BASE = [
 ["2025-05-21",1,"Lezione Bellinzago"],
 ["2025-05-21",1,"Pistone muletto"],
 ["2025-05-29",1,"Lezione Ottobiano"],
-
 ["2025-06-05",1,"Lezione Bellinzago"],
-
 ["2025-06-20",1,"Motore moto gara"],
-
 ["2025-07-09",1,"Lezione Fara"],
 ["2025-08-24",1,"Lezione Fara"],
 ["2025-08-27",1,"Lezione Ceriano"],
@@ -1673,7 +1519,6 @@ const LAVORI_ROBY_BASE = [
 ["2025-11-26",1,"Lezione Ceriano"],
 ["2025-12-03",1,"Lezione Ottobiano"],
 ["2025-12-10",1,"Lezione Ceriano"],
-
 ["2026-01-29",1,"Lezione Chieve"],
 ["2026-02-05",1,"Lezione Chieve"],
 ["2026-02-07",1,"Lezione Fiume"],
@@ -1691,24 +1536,8 @@ const LAVORI_ROBY_BASE = [
 ];
 
 
-/* =========================================================
-   FEDE
-========================================================= */
-
 const ORDINI_FEDE_BASE = [];
-
 const LAVORI_FEDE_BASE = [];
-
-
-/* =========================================================
-   VARIABILI
-========================================================= */
-
-let currentPerson = "";
-
-let orders = [];
-
-let works = [];
 
 
 /* =========================================================
@@ -1734,12 +1563,11 @@ return {};
 
 function saveStorage(){
 
-const database = getStorage();
+const database=getStorage();
 
-database[currentPerson] = {
+database[currentPerson]={
 
 orders:orders,
-
 works:works
 
 };
@@ -1754,8 +1582,27 @@ showSaved();
 }
 
 
+function saveStorageSilent(){
+
+const database=getStorage();
+
+database[currentPerson]={
+
+orders:orders,
+works:works
+
+};
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(database)
+);
+
+}
+
+
 /* =========================================================
-   PREPARAZIONE DATI
+   PREPARAZIONE
 ========================================================= */
 
 function prepareOrders(base){
@@ -1763,20 +1610,22 @@ function prepareOrders(base){
 return base.map((x,index)=>({
 
 id:
-"order_" +
-index +
-"_" +
-x[2],
+"order_"+index+"_"+x[2],
 
-date:x[0] || "",
+date:x[0]||"",
 
-qty:Number(x[1]) || 1,
+qty:Number(x[1])||1,
 
-article:x[2] || "",
+article:x[2]||"",
 
 price:0,
 
-discount:0
+/*
+   GLI ORDINI ESISTENTI PARTONO
+   DA 25% DI SCONTO
+*/
+
+discount:25
 
 }));
 
@@ -1788,20 +1637,17 @@ function prepareWorks(base){
 return base.map((x,index)=>({
 
 id:
-"work_" +
-index +
-"_" +
-x[2],
+"work_"+index+"_"+x[2],
 
-date:x[0] || "",
+date:x[0]||"",
 
-qty:Number(x[1]) || 1,
+qty:Number(x[1])||1,
 
-article:x[2] || "",
+article:x[2]||"",
 
 price:0,
 
-discount:0
+discount:25
 
 }));
 
@@ -1814,35 +1660,76 @@ discount:0
 
 function entra(nome){
 
-currentPerson = nome;
+currentPerson=nome;
 
-const database = getStorage();
+const database=getStorage();
+
 
 if(database[nome]){
 
-orders =
-database[nome].orders || [];
+orders=database[nome].orders||[];
+works=database[nome].works||[];
 
-works =
-database[nome].works || [];
+
+/*
+   Compatibilità con i dati vecchi:
+   se qualche articolo non ha lo sconto,
+   viene impostato al 25%.
+*/
+
+orders.forEach(order=>{
+
+if(
+order.discount === undefined ||
+order.discount === null ||
+order.discount === ""
+){
+
+order.discount=25;
+
+}
+
+});
+
+
+works.forEach(work=>{
+
+if(
+work.discount === undefined ||
+work.discount === null ||
+work.discount === ""
+){
+
+work.discount=25;
+
+}
+
+});
+
+
+saveStorageSilent();
 
 }else{
 
-if(nome === "Roby"){
+if(nome==="Roby"){
 
-orders =
-prepareOrders(ORDINI_ROBY_BASE);
+orders=prepareOrders(
+ORDINI_ROBY_BASE
+);
 
-works =
-prepareWorks(LAVORI_ROBY_BASE);
+works=prepareWorks(
+LAVORI_ROBY_BASE
+);
 
 }else{
 
-orders =
-prepareOrders(ORDINI_FEDE_BASE);
+orders=prepareOrders(
+ORDINI_FEDE_BASE
+);
 
-works =
-prepareWorks(LAVORI_FEDE_BASE);
+works=prepareWorks(
+LAVORI_FEDE_BASE
+);
 
 }
 
@@ -1859,23 +1746,21 @@ document.getElementById("app")
 
 
 document.getElementById("currentUser")
-.textContent =
-nome.toUpperCase();
+.textContent=nome.toUpperCase();
 
 
 document.getElementById("hello")
-.textContent =
-"CIAO " +
-nome.toUpperCase();
+.textContent=
+"CIAO "+nome.toUpperCase();
 
 
 document.getElementById("ordersPerson")
-.textContent =
+.textContent=
 nome.toUpperCase();
 
 
 document.getElementById("worksPerson")
-.textContent =
+.textContent=
 nome.toUpperCase();
 
 
@@ -1886,30 +1771,6 @@ document.getElementById("orderSearch")
 renderAll();
 
 showPage("dashboard");
-
-}
-
-
-/* =========================================================
-   SALVATAGGIO SILENZIOSO
-========================================================= */
-
-function saveStorageSilent(){
-
-const database = getStorage();
-
-database[currentPerson] = {
-
-orders:orders,
-
-works:works
-
-};
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(database)
-);
 
 }
 
@@ -1932,7 +1793,7 @@ document.getElementById("home")
 
 
 /* =========================================================
-   CAMBIO PAGINA
+   PAGINE
 ========================================================= */
 
 function showPage(id){
@@ -1952,16 +1813,11 @@ document
 
 
 if(id==="orders"){
-
 renderOrders();
-
 }
 
-
 if(id==="works"){
-
 renderWorks();
-
 }
 
 }
@@ -1973,8 +1829,8 @@ renderWorks();
 
 function euro(value){
 
-return "€ " +
-Number(value || 0).toLocaleString(
+return "€ "+
+Number(value||0).toLocaleString(
 "it-IT",
 {
 minimumFractionDigits:2,
@@ -1991,29 +1847,17 @@ maximumFractionDigits:2
 
 function calculate(price,discount,qty){
 
-const p =
-Number(price) || 0;
+const p=Number(price)||0;
+const d=Number(discount)||0;
+const q=Number(qty)||1;
 
-const d =
-Number(discount) || 0;
+const net=p*(1-d/100);
 
-const q =
-Number(qty) || 1;
+const total=net*q;
 
-
-const net =
-p *
-(1 - d / 100);
-
-
-const total =
-net * q;
-
-
-return {
+return{
 
 net:net,
-
 total:total
 
 };
@@ -2022,7 +1866,7 @@ total:total
 
 
 /* =========================================================
-   ESCAPE HTML
+   ESCAPE
 ========================================================= */
 
 function escapeHtml(value){
@@ -2030,10 +1874,9 @@ function escapeHtml(value){
 return String(value)
 .replace(
 /[&<>'"]/g,
-
 function(char){
 
-return {
+return{
 
 "&":"&amp;",
 "<":"&lt;",
@@ -2043,8 +1886,16 @@ return {
 
 }[char];
 
+});
+
 }
-);
+
+
+function escapeJs(value){
+
+return String(value)
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'");
 
 }
 
@@ -2055,20 +1906,21 @@ return {
 
 function renderOrders(){
 
-const body =
-document.getElementById("ordersBody");
+const body=
+document.getElementById(
+"ordersBody"
+);
 
-
-const search =
-(
-document.getElementById("orderSearch")
-.value || ""
+const search=(
+document.getElementById(
+"orderSearch"
+).value||""
 )
 .trim()
 .toLowerCase();
 
 
-const results =
+const results=
 orders.filter(order=>{
 
 return order.article
@@ -2078,9 +1930,9 @@ return order.article
 });
 
 
-if(results.length === 0){
+if(results.length===0){
 
-body.innerHTML = `
+body.innerHTML=`
 
 <tr>
 
@@ -2098,67 +1950,59 @@ Nessun articolo trovato.
 
 }else{
 
-body.innerHTML =
-results
-.map(order=>{
+body.innerHTML=
+results.map(order=>{
 
 return createRow(
 order,
 false
 );
 
-})
-.join("");
+}).join("");
 
 }
 
 
-document.getElementById("searchInfo")
-.textContent =
+document.getElementById(
+"searchInfo"
+).textContent=
+
 search
-? results.length +
-" risultato/i"
-: orders.length +
-" articoli";
+?results.length+" risultato/i"
+:orders.length+" articoli";
 
-
-/*
-   Dopo aver ridisegnato la tabella
-   ripristiniamo i valori salvati.
-*/
 
 results.forEach(order=>{
 
-const price =
+const price=
 document.getElementById(
-"price-" + order.id
+"price-"+order.id
 );
 
-const discount =
+const discount=
 document.getElementById(
-"discount-" + order.id
+"discount-"+order.id
 );
 
 
 if(price){
 
-price.value =
-order.price ?? 0;
+price.value=
+order.price??0;
 
 }
 
 
 if(discount){
 
-discount.value =
-order.discount ?? 0;
+discount.value=
+order.discount??25;
 
 }
 
 
 updateDisplayedRow(
-order,
-false
+order
 );
 
 });
@@ -2175,13 +2019,15 @@ updateDashboardTotals();
 
 function renderWorks(){
 
-const body =
-document.getElementById("worksBody");
+const body=
+document.getElementById(
+"worksBody"
+);
 
 
-if(works.length === 0){
+if(works.length===0){
 
-body.innerHTML = `
+body.innerHTML=`
 
 <tr>
 
@@ -2202,66 +2048,60 @@ return;
 }
 
 
-body.innerHTML =
-works
-.map(work=>{
+body.innerHTML=
+works.map(work=>{
 
 return createRow(
 work,
 true
 );
 
-})
-.join("");
+}).join("");
 
 
 works.forEach(work=>{
 
-const price =
+const price=
 document.getElementById(
-"price-" + work.id
+"price-"+work.id
 );
 
-const discount =
+const discount=
 document.getElementById(
-"discount-" + work.id
+"discount-"+work.id
 );
 
 
 if(price){
 
-price.value =
-work.price ?? 0;
+price.value=
+work.price??0;
 
 }
 
 
 if(discount){
 
-discount.value =
-work.discount ?? 0;
+discount.value=
+work.discount??25;
 
 }
 
 
-updateDisplayedRow(
-work,
-true
-);
+updateDisplayedRow(work);
 
 });
-
 
 }
 
 
 /* =========================================================
-   CREAZIONE RIGA
+   CREA RIGA
 ========================================================= */
 
 function createRow(item,isWork){
 
-return `
+return`
 
 <tr>
 
@@ -2293,17 +2133,15 @@ min="0"
 
 step="0.01"
 
-value="${Number(item.price || 0)}"
+value="${Number(item.price||0)}"
 
 oninput="
 changePrice(
 '${escapeJs(item.id)}',
 ${isWork}
-)
-">
+)">
 
 </td>
-
 
 <td>
 
@@ -2321,17 +2159,19 @@ max="100"
 
 step="0.01"
 
-value="${Number(item.discount || 0)}"
+value="${Number(
+item.discount===undefined
+?25
+:item.discount
+)}"
 
 oninput="
 changeDiscount(
 '${escapeJs(item.id)}',
 ${isWork}
-)
-">
+)">
 
 </td>
-
 
 <td
 
@@ -2342,7 +2182,6 @@ id="net-${escapeHtml(item.id)}">
 € 0,00
 
 </td>
-
 
 <td
 
@@ -2362,58 +2201,32 @@ id="total-${escapeHtml(item.id)}">
 
 
 /* =========================================================
-   ESCAPE JAVASCRIPT
-========================================================= */
-
-function escapeJs(value){
-
-return String(value)
-.replace(/\\/g,"\\\\")
-.replace(/'/g,"\\'");
-
-}
-
-
-/* =========================================================
    CAMBIO PREZZO
 ========================================================= */
 
 function changePrice(id,isWork){
 
-const list =
+const list=
 isWork
-? works
-: orders;
+?works
+:orders;
 
-
-const item =
+const item=
 list.find(
-x=>x.id === id
+x=>x.id===id
 );
 
+if(!item)return;
 
-if(!item){
-
-return;
-
-}
-
-
-const input =
+const input=
 document.getElementById(
-"price-" + id
+"price-"+id
 );
 
+item.price=
+Number(input.value)||0;
 
-item.price =
-Number(input.value) || 0;
-
-
-updateDisplayedRow(
-item,
-isWork
-);
-
+updateDisplayedRow(item);
 
 saveStorage();
 
@@ -2426,40 +2239,27 @@ saveStorage();
 
 function changeDiscount(id,isWork){
 
-const list =
+const list=
 isWork
-? works
-: orders;
+?works
+:orders;
 
-
-const item =
+const item=
 list.find(
-x=>x.id === id
+x=>x.id===id
 );
 
+if(!item)return;
 
-if(!item){
-
-return;
-
-}
-
-
-const input =
+const input=
 document.getElementById(
-"discount-" + id
+"discount-"+id
 );
 
+item.discount=
+Number(input.value);
 
-item.discount =
-Number(input.value) || 0;
-
-
-updateDisplayedRow(
-item,
-isWork
-);
-
+updateDisplayedRow(item);
 
 saveStorage();
 
@@ -2470,9 +2270,9 @@ saveStorage();
    AGGIORNA RIGA
 ========================================================= */
 
-function updateDisplayedRow(item,isWork){
+function updateDisplayedRow(item){
 
-const result =
+const result=
 calculate(
 item.price,
 item.discount,
@@ -2480,21 +2280,20 @@ item.qty
 );
 
 
-const net =
+const net=
 document.getElementById(
-"net-" + item.id
+"net-"+item.id
 );
 
-
-const total =
+const total=
 document.getElementById(
-"total-" + item.id
+"total-"+item.id
 );
 
 
 if(net){
 
-net.textContent =
+net.textContent=
 euro(result.net);
 
 }
@@ -2502,7 +2301,7 @@ euro(result.net);
 
 if(total){
 
-total.textContent =
+total.textContent=
 euro(result.total);
 
 }
@@ -2516,43 +2315,44 @@ euro(result.total);
 
 function updateDashboardTotals(){
 
-let total = 0;
-
+let total=0;
 
 orders.forEach(order=>{
 
-const result =
+const result=
 calculate(
 order.price,
 order.discount,
 order.qty
 );
 
-total +=
-result.total;
+total+=result.total;
 
 });
 
 
-document.getElementById("count")
-.textContent =
+document.getElementById(
+"count"
+).textContent=
 orders.length;
 
 
-document.getElementById("workCount")
-.textContent =
+document.getElementById(
+"workCount"
+).textContent=
 works.length;
 
 
-document.getElementById("netTotal")
-.textContent =
+document.getElementById(
+"netTotal"
+).textContent=
 euro(total);
 
 }
 
 
 /* =========================================================
-   RENDER ALL
+   RENDER
 ========================================================= */
 
 function renderAll(){
@@ -2572,40 +2372,47 @@ updateDashboardTotals();
 
 function openModal(){
 
-document.getElementById("modalUser")
-.textContent =
+document.getElementById(
+"modalUser"
+).textContent=
 currentPerson.toUpperCase();
 
 
-document.getElementById("modalBg")
-.classList.add("open");
+document.getElementById(
+"modalBg"
+).classList.add("open");
 
 
-document.getElementById("dateInput")
-.value =
+document.getElementById(
+"dateInput"
+).value=
 new Date()
 .toISOString()
 .slice(0,10);
 
 
-document.getElementById("qtyInput")
-.value =
-1;
+document.getElementById(
+"qtyInput"
+).value=1;
 
 
-document.getElementById("articleInput")
-.value =
-"";
+document.getElementById(
+"articleInput"
+).value="";
 
 
-document.getElementById("listInput")
-.value =
-"0";
+document.getElementById(
+"listInput"
+).value="0";
 
 
-document.getElementById("discountInput")
-.value =
-"0";
+/*
+   DEFAULT SCONTO = 25%
+*/
+
+document.getElementById(
+"discountInput"
+).value="25";
 
 
 updateModal();
@@ -2619,10 +2426,9 @@ updateModal();
 
 function closeModal(){
 
-document
-.getElementById("modalBg")
-.classList
-.remove("open");
+document.getElementById(
+"modalBg"
+).classList.remove("open");
 
 }
 
@@ -2633,35 +2439,40 @@ document
 
 function updateModal(){
 
-const result =
+const result=
 calculate(
 
-document.getElementById("listInput")
-.value,
+document.getElementById(
+"listInput"
+).value,
 
-document.getElementById("discountInput")
-.value,
+document.getElementById(
+"discountInput"
+).value,
 
-document.getElementById("qtyInput")
-.value
+document.getElementById(
+"qtyInput"
+).value
 
 );
 
 
-document.getElementById("unitNet")
-.textContent =
+document.getElementById(
+"unitNet"
+).textContent=
 euro(result.net);
 
 
-document.getElementById("orderTotal")
-.textContent =
+document.getElementById(
+"orderTotal"
+).textContent=
 euro(result.total);
 
 }
 
 
 /* =========================================================
-   EVENTI MODALE
+   EVENTI
 ========================================================= */
 
 [
@@ -2682,12 +2493,12 @@ updateModal
 
 
 /* =========================================================
-   SALVA NUOVO ORDINE
+   SALVA ORDINE
 ========================================================= */
 
 function saveOrder(){
 
-const article =
+const article=
 document.getElementById(
 "articleInput"
 )
@@ -2706,42 +2517,55 @@ return;
 }
 
 
-const date =
+const date=
 document.getElementById(
 "dateInput"
 ).value;
 
 
-const qty =
+const qty=
 Number(
 document.getElementById(
 "qtyInput"
 ).value
-) || 1;
+)||1;
 
 
-const price =
+const price=
 Number(
 document.getElementById(
 "listInput"
 ).value
-) || 0;
+)||0;
 
 
-const discount =
+const discount=
 Number(
 document.getElementById(
 "discountInput"
 ).value
-) || 0;
+);
 
 
-const newOrder = {
+/*
+   SE PER QUALSIASI MOTIVO
+   IL CAMPO È VUOTO,
+   USIAMO 25%.
+*/
+
+const finalDiscount=
+isNaN(discount)
+?25
+:discount;
+
+
+const newOrder={
 
 id:
-"order_" +
-Date.now() +
-"_" +
+"order_"+
+Date.now()+
+"_"+
+
 Math.random()
 .toString(36)
 .substring(2,8),
@@ -2754,12 +2578,14 @@ article:article,
 
 price:price,
 
-discount:discount
+discount:finalDiscount
 
 };
 
 
-orders.unshift(newOrder);
+orders.unshift(
+newOrder
+);
 
 
 /*
@@ -2771,9 +2597,7 @@ saveStorage();
 
 closeModal();
 
-
 showPage("orders");
-
 
 renderOrders();
 
@@ -2785,7 +2609,9 @@ renderOrders();
 ========================================================= */
 
 document
-.getElementById("orderSearch")
+.getElementById(
+"orderSearch"
+)
 .addEventListener(
 "input",
 function(){
@@ -2811,18 +2637,19 @@ document.getElementById(
 
 
 /* =========================================================
-   SALVATAGGIO VISIBILE
+   NOTIFICA SALVATAGGIO
 ========================================================= */
 
 function showSaved(){
 
-const message =
+const message=
 document.getElementById(
 "saveMessage"
 );
 
-
-message.classList.add("show");
+message.classList.add(
+"show"
+);
 
 
 clearTimeout(
@@ -2830,11 +2657,13 @@ window.saveMessageTimer
 );
 
 
-window.saveMessageTimer =
+window.saveMessageTimer=
 setTimeout(
 function(){
 
-message.classList.remove("show");
+message.classList.remove(
+"show"
+);
 
 },
 1000
@@ -2844,18 +2673,22 @@ message.classList.remove("show");
 
 
 /* =========================================================
-   CHIUSURA MODALE CLICCANDO FUORI
+   CLICK FUORI DAL MODALE
 ========================================================= */
 
 document
-.getElementById("modalBg")
+.getElementById(
+"modalBg"
+)
 .addEventListener(
 "click",
 function(event){
 
 if(
-event.target ===
-document.getElementById("modalBg")
+event.target===
+document.getElementById(
+"modalBg"
+)
 ){
 
 closeModal();
