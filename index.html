@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Gestione Ordini KTM</title>
 
 <style>
@@ -22,7 +21,6 @@
     --gray:#666;
     --light:#f7f7f7;
     --white:#fff;
-    --green:#16803c;
 }
 
 body{
@@ -244,7 +242,7 @@ body{
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
     margin-bottom:25px;
 }
@@ -393,7 +391,7 @@ body{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1000px;
+    min-width:900px;
 }
 
 th{
@@ -414,23 +412,6 @@ td{
     text-align:center;
     padding:40px;
     color:#888;
-}
-
-/* =========================
-   PAYMENT
-========================= */
-
-.payment{
-    background:var(--orange-light);
-    border-left:4px solid var(--orange);
-    padding:25px;
-    border-radius:10px;
-}
-
-.payment .big{
-    font-size:32px;
-    font-weight:900;
-    margin:10px 0;
 }
 
 /* =========================
@@ -489,16 +470,22 @@ td{
 }
 
 .field input,
-.field select{
+.field textarea{
     border:1px solid #ddd;
     padding:11px;
     border-radius:8px;
     outline:none;
     font-size:14px;
+    font-family:inherit;
+}
+
+.field textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
 .field input:focus,
-.field select:focus{
+.field textarea:focus{
     border-color:var(--orange);
 }
 
@@ -545,55 +532,99 @@ td{
     margin-top:3px;
 }
 
-.price-found{
-    background:#eef9f1 !important;
-    border-color:#b7dfc3 !important;
-}
-
 .price-info{
     font-size:12px;
-    color:var(--green);
+    color:#16803c;
     margin-top:3px;
     min-height:15px;
 }
 
 /* =========================
-   MODAL BUTTONS
+   LAVORI
 ========================= */
 
-.modal-buttons{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:25px;
+.work-table{
+    min-width:700px;
 }
 
-.cancel{
-    border:none;
-    background:#eee;
-    padding:11px 18px;
-    border-radius:8px;
+.work-description{
     font-weight:700;
-    cursor:pointer;
 }
 
-.save{
-    border:none;
-    background:var(--orange);
-    color:#fff;
-    padding:11px 20px;
-    border-radius:8px;
+.add-work-box{
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.add-work-box h3{
+    margin-bottom:15px;
+}
+
+.work-form{
+    display:grid;
+    grid-template-columns:180px 1fr 160px auto;
+    gap:12px;
+    align-items:end;
+}
+
+.work-field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.work-field label{
+    font-size:11px;
+    color:#777;
     font-weight:800;
-    cursor:pointer;
 }
 
-.save:hover{
-    background:var(--orange-dark);
+.work-field input,
+.work-field textarea{
+    border:1px solid #ddd;
+    padding:11px;
+    border-radius:8px;
+    font-family:inherit;
+    outline:none;
+}
+
+.work-field textarea{
+    min-height:44px;
+    resize:vertical;
+}
+
+.work-field input:focus,
+.work-field textarea:focus{
+    border-color:var(--orange);
+}
+
+.work-total{
+    font-weight:900;
+    color:var(--orange);
+}
+
+/* =========================
+   MODAL LAVORO
+========================= */
+
+.modal-work{
+    width:600px;
 }
 
 /* =========================
    MOBILE
 ========================= */
+
+@media(max-width:800px){
+
+    .work-form{
+        grid-template-columns:1fr;
+    }
+
+}
 
 @media(max-width:700px){
 
@@ -645,6 +676,7 @@ td{
         gap:15px;
         flex-direction:column;
     }
+
 }
 
 </style>
@@ -652,9 +684,10 @@ td{
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      HOME
-========================= -->
+===================================================== -->
 
 <section id="home">
 
@@ -663,19 +696,29 @@ td{
 
     <div class="home">
 
-        <div class="logo">KTM</div>
+        <div class="logo">
+            KTM
+        </div>
 
-        <h1>GESTIONE ORDINI</h1>
+        <h1>
+            GESTIONE ORDINI
+        </h1>
 
-        <p>Seleziona la persona da gestire</p>
+        <p>
+            Seleziona la persona da gestire
+        </p>
 
         <div class="people">
 
             <div class="person">
 
-                <div class="avatar">👤</div>
+                <div class="avatar">
+                    👤
+                </div>
 
-                <h2>ROBY</h2>
+                <h2>
+                    ROBY
+                </h2>
 
                 <button
                     class="btn orangebtn"
@@ -685,11 +728,16 @@ td{
 
             </div>
 
+
             <div class="person">
 
-                <div class="avatar">👤</div>
+                <div class="avatar">
+                    👤
+                </div>
 
-                <h2>FEDE</h2>
+                <h2>
+                    FEDE
+                </h2>
 
                 <button
                     class="btn orangebtn"
@@ -706,9 +754,9 @@ td{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      APP
-========================= -->
+===================================================== -->
 
 <section id="app">
 
@@ -716,7 +764,9 @@ td{
 
     <div class="headerRight">
 
-        <div class="smalllogo">KTM</div>
+        <div class="smalllogo">
+            KTM
+        </div>
 
         <strong id="currentUser"></strong>
 
@@ -734,9 +784,9 @@ td{
 <main class="container">
 
 
-<!-- =========================
+<!-- =====================================================
      DASHBOARD
-========================= -->
+===================================================== -->
 
 <section
     id="dashboard"
@@ -747,7 +797,7 @@ td{
         <h1 id="hello"></h1>
 
         <p>
-            Gestione ordini, prezzi e pagamenti
+            Gestione ordini e lavori
         </p>
 
     </div>
@@ -757,7 +807,9 @@ td{
 
         <div class="stat">
 
-            <small>ORDINI</small>
+            <small>
+                ORDINI
+            </small>
 
             <strong id="count">
                 0
@@ -768,7 +820,9 @@ td{
 
         <div class="stat">
 
-            <small>TOTALE NETTO</small>
+            <small>
+                TOTALE NETTO ORDINI
+            </small>
 
             <strong id="netTotal">
                 € 0,00
@@ -779,20 +833,11 @@ td{
 
         <div class="stat">
 
-            <small>DA DARE A GIO</small>
+            <small>
+                TOTALE LAVORI
+            </small>
 
-            <strong id="gioTotal">
-                € 0,00
-            </strong>
-
-        </div>
-
-
-        <div class="stat">
-
-            <small>DA DARE ALLA PERSONA</small>
-
-            <strong id="personTotal">
+            <strong id="workTotal">
                 € 0,00
             </strong>
 
@@ -819,7 +864,7 @@ td{
                 </h3>
 
                 <p>
-                    Visualizza tutti gli articoli
+                    Visualizza tutti i ricambi ordinati
                 </p>
 
             </div>
@@ -846,34 +891,7 @@ td{
                 </h3>
 
                 <p>
-                    Aggiungi un nuovo articolo
-                </p>
-
-            </div>
-
-            <div class="arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="card"
-            id="paymentsCard">
-
-            <div class="icon">
-                💶
-            </div>
-
-            <div>
-
-                <h3>
-                    Pagamenti
-                </h3>
-
-                <p>
-                    Controlla quanto deve essere versato a Gio
+                    Aggiungi un nuovo ricambio
                 </p>
 
             </div>
@@ -900,7 +918,7 @@ td{
                 </h3>
 
                 <p>
-                    Visualizza le attività
+                    Inserisci e gestisci i lavori eseguiti
                 </p>
 
             </div>
@@ -911,14 +929,15 @@ td{
 
         </div>
 
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      ORDINI
-========================= -->
+===================================================== -->
 
 <section
     id="orders"
@@ -927,7 +946,9 @@ td{
     <button
         class="back"
         id="backBtn">
+
         ← Dashboard
+
     </button>
 
 
@@ -941,7 +962,7 @@ td{
             </h1>
 
             <p>
-                Ricerca e gestione degli articoli
+                Tutti i ricambi inseriti
             </p>
 
         </div>
@@ -967,7 +988,7 @@ td{
         <input
             type="search"
             id="quickSearch"
-            placeholder="Inserisci codice articolo..."
+            placeholder="Cerca codice ricambio..."
             autocomplete="off">
 
     </div>
@@ -981,15 +1002,33 @@ td{
 
                 <tr>
 
-                    <th>DATA</th>
-                    <th>Q.TÀ</th>
-                    <th>CODICE / ARTICOLO</th>
-                    <th>LISTINO</th>
-                    <th>SCONTO</th>
-                    <th>NETTO</th>
-                    <th>TOTALE</th>
-                    <th>DA DARE A PERSONA</th>
-                    <th>DA DARE A GIO</th>
+                    <th>
+                        DATA
+                    </th>
+
+                    <th>
+                        Q.TÀ
+                    </th>
+
+                    <th>
+                        CODICE
+                    </th>
+
+                    <th>
+                        LISTINO
+                    </th>
+
+                    <th>
+                        SCONTO
+                    </th>
+
+                    <th>
+                        NETTO
+                    </th>
+
+                    <th>
+                        TOTALE
+                    </th>
 
                 </tr>
 
@@ -1004,62 +1043,9 @@ td{
 </section>
 
 
-<!-- =========================
-     PAGAMENTI
-========================= -->
-
-<section
-    id="payments"
-    class="page">
-
-    <button
-        class="back"
-        id="paymentsBack">
-        ← Dashboard
-    </button>
-
-
-    <div class="title">
-
-        <h1>
-            Pagamenti
-        </h1>
-
-        <p>
-            Situazione economica di
-            <span id="paymentName"></span>
-        </p>
-
-    </div>
-
-
-    <div class="payment">
-
-        <div>
-            TOTALE DA DARE A GIO
-        </div>
-
-        <div
-            class="big"
-            id="paymentTotal">
-
-            € 0,00
-
-        </div>
-
-        <p>
-            Il valore viene calcolato automaticamente
-            dagli ordini salvati.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
+<!-- =====================================================
      LAVORI
-========================= -->
+===================================================== -->
 
 <section
     id="works"
@@ -1084,39 +1070,49 @@ td{
             </h1>
 
             <p>
-                Attività e lavori registrati
+                Inserisci i lavori eseguiti e il relativo prezzo
             </p>
 
         </div>
 
+        <button
+            class="btn orangebtn"
+            id="newWorkBtn">
+
+            + Aggiungi lavoro
+
+        </button>
+
     </div>
 
 
-    <div class="note"
-         style="
-         background:#fff1e8;
-         border-left:4px solid #ff6600;
-         padding:25px;
-         border-radius:10px;
-         color:#666;
-         ">
+    <div class="tablebox">
 
-        <strong style="color:#111;">
-            Sezione Lavori
-        </strong>
+        <table class="work-table">
 
-        <br><br>
+            <thead>
 
-        Qui inseriremo tutti gli elementi che
-        hai escluso dagli ordini, come lezioni,
-        pista, lavaggio moto, Sardegna, vino,
-        Progrip, pistone muletto, lezione Ottobiano,
-        motore moto gara, ecc.
+                <tr>
 
-        <br><br>
+                    <th>
+                        DATA
+                    </th>
 
-        Anche qui potrai inserire i prezzi
-        successivamente.
+                    <th>
+                        LAVORO ESEGUITO
+                    </th>
+
+                    <th>
+                        PREZZO
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="worksBody"></tbody>
+
+        </table>
 
     </div>
 
@@ -1128,9 +1124,9 @@ td{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      MODAL NUOVO ORDINE
-========================= -->
+===================================================== -->
 
 <div
     class="modal-bg"
@@ -1171,22 +1167,6 @@ td{
                     class="price-info"
                     id="priceInfo">
                 </div>
-
-            </div>
-
-
-            <!-- ARTICOLO -->
-
-            <div class="field full">
-
-                <label>
-                    ARTICOLO
-                </label>
-
-                <input
-                    type="text"
-                    id="articleName"
-                    placeholder="Nome articolo">
 
             </div>
 
@@ -1236,7 +1216,7 @@ td{
                     id="listino"
                     min="0"
                     step="0.01"
-                    placeholder="0,00">
+                    value="0">
 
             </div>
 
@@ -1291,43 +1271,6 @@ td{
 
             </div>
 
-
-            <!-- DA PERSONA -->
-
-            <div class="field">
-
-                <label>
-                    DA DARE A PERSONA (€)
-                </label>
-
-                <input
-                    type="number"
-                    id="darePersona"
-                    min="0"
-                    step="0.01"
-                    value="0">
-
-            </div>
-
-
-            <!-- DA GIO -->
-
-            <div class="field">
-
-                <label>
-                    DA DARE A GIO (€)
-                </label>
-
-                <input
-                    type="number"
-                    id="dareGio"
-                    min="0"
-                    step="0.01"
-                    value="0">
-
-            </div>
-
-
         </div>
 
 
@@ -1340,7 +1283,6 @@ td{
                 Annulla
 
             </button>
-
 
             <button
                 class="save"
@@ -1357,39 +1299,126 @@ td{
 </div>
 
 
+<!-- =====================================================
+     MODAL NUOVO LAVORO
+===================================================== -->
+
+<div
+    class="modal-bg"
+    id="workModal">
+
+    <div class="modal modal-work">
+
+        <h2>
+            Nuovo lavoro —
+            <span id="workModalPerson"></span>
+        </h2>
+
+
+        <div class="form">
+
+
+            <div class="field">
+
+                <label>
+                    DATA
+                </label>
+
+                <input
+                    type="date"
+                    id="workDate">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    PREZZO (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="workPrice"
+                    min="0"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    LAVORO ESEGUITO
+                </label>
+
+                <textarea
+                    id="workDescription"
+                    placeholder="Descrivi il lavoro eseguito...">
+                </textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                id="cancelWorkBtn">
+
+                Annulla
+
+            </button>
+
+
+            <button
+                class="save"
+                id="saveWorkBtn">
+
+                Salva lavoro
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
 /* =====================================================
-   DATI PRINCIPALI
+   DATI
 ===================================================== */
 
 let currentPerson = "";
 
 let orders =
     JSON.parse(
-        localStorage.getItem("ktmOrdersV3") || "[]"
+        localStorage.getItem("ktmOrdersV4") || "[]"
+    );
+
+let works =
+    JSON.parse(
+        localStorage.getItem("ktmWorksV1") || "[]"
     );
 
 
 /* =====================================================
-   CATALOGO KTM
-   ESEMPI INIZIALI
+   CATALOGO
+   TUTTI I PREZZI PARTONO DA ZERO
 ===================================================== */
 
 let ktmCatalog =
     JSON.parse(
-        localStorage.getItem("ktmCatalogV1") || "null"
+        localStorage.getItem("ktmCatalogV2") || "null"
     );
 
-
-/*
-   Se il catalogo non esiste ancora,
-   creiamo alcuni esempi.
-
-   QUESTI SONO DATI DI PROVA.
-   Potremo poi sostituirli con il catalogo
-   che utilizzi realmente.
-*/
 
 if(!ktmCatalog){
 
@@ -1397,87 +1426,73 @@ if(!ktmCatalog){
 
         {
             code:"50430098060",
-            name:"Ricambio KTM 50430098060",
-            price:7
+            price:0
         },
 
         {
             code:"50430098050",
-            name:"Ricambio KTM 50430098050",
-            price:7
+            price:0
         },
 
         {
             code:"50430098000",
-            name:"Ricambio KTM 50430098000",
-            price:12
+            price:0
         },
 
         {
             code:"50430099000",
-            name:"Ricambio KTM 50430099000",
-            price:16
+            price:0
         },
 
         {
             code:"54830034000",
-            name:"Ricambio KTM 54830034000",
-            price:58
+            price:0
         },
 
         {
             code:"54830034001",
-            name:"Ricambio KTM 54830034001",
-            price:131
+            price:0
         },
 
         {
             code:"54830034002",
-            name:"Ricambio KTM 54830034002",
-            price:12
+            price:0
         },
 
         {
             code:"54830034003",
-            name:"Ricambio KTM 54830034003",
-            price:14
+            price:0
         },
 
         {
             code:"54830034004",
-            name:"Ricambio KTM 54830034004",
-            price:209.50
+            price:0
         },
 
         {
             code:"54830034005",
-            name:"Ricambio KTM 54830034005",
-            price:66.51
+            price:0
         },
 
         {
             code:"54830034006",
-            name:"Ricambio KTM 54830034006",
-            price:6.084
+            price:0
         },
 
         {
             code:"54830034007",
-            name:"Ricambio KTM 54830034007",
-            price:224.50
+            price:0
         },
 
         {
             code:"54830034008",
-            name:"Ricambio KTM 54830034008",
-            price:27.50
-
+            price:0
         }
 
     ];
 
     localStorage.setItem(
-        "ktmCatalogV1",
+        "ktmCatalogV2",
         JSON.stringify(ktmCatalog)
     );
 
@@ -1497,11 +1512,11 @@ const app =
 const modal =
     document.getElementById("modal");
 
+const workModal =
+    document.getElementById("workModal");
+
 const articleInput =
     document.getElementById("article");
-
-const articleName =
-    document.getElementById("articleName");
 
 const listinoInput =
     document.getElementById("listino");
@@ -1518,12 +1533,6 @@ const nettoInput =
 const totaleInput =
     document.getElementById("totale");
 
-const darePersonaInput =
-    document.getElementById("darePersona");
-
-const dareGioInput =
-    document.getElementById("dareGio");
-
 const suggestions =
     document.getElementById("suggestions");
 
@@ -1532,7 +1541,7 @@ const priceInfo =
 
 
 /* =====================================================
-   ENTRATA ROBY
+   ROBY
 ===================================================== */
 
 document
@@ -1545,7 +1554,7 @@ document
 
 
 /* =====================================================
-   ENTRATA FEDE
+   FEDE
 ===================================================== */
 
 document
@@ -1558,7 +1567,7 @@ document
 
 
 /* =====================================================
-   ENTRA PERSONA
+   ENTRA
 ===================================================== */
 
 function enterPerson(person){
@@ -1580,10 +1589,6 @@ function enterPerson(person){
 
     document
     .getElementById("ordersPerson")
-    .textContent = person;
-
-    document
-    .getElementById("paymentName")
     .textContent = person;
 
     document
@@ -1615,7 +1620,7 @@ document
 
 
 /* =====================================================
-   NAVIGAZIONE
+   PAGINE
 ===================================================== */
 
 function showPage(pageId){
@@ -1628,14 +1633,9 @@ function showPage(pageId){
 
     });
 
-    const page =
-        document.getElementById(pageId);
-
-    if(page){
-
-        page.classList.add("active");
-
-    }
+    document
+    .getElementById(pageId)
+    .classList.add("active");
 
 }
 
@@ -1697,7 +1697,7 @@ document
 .getElementById("worksCard")
 .addEventListener("click",function(){
 
-    showPage("works");
+    openWorks();
 
 });
 
@@ -1711,32 +1711,26 @@ document
 });
 
 
-/* =====================================================
-   PAGAMENTI
-===================================================== */
-
 document
-.getElementById("paymentsCard")
+.getElementById("newWorkBtn")
 .addEventListener("click",function(){
 
-    showPage("payments");
-
-    updatePayments();
+    openWorkModal();
 
 });
 
 
-document
-.getElementById("paymentsBack")
-.addEventListener("click",function(){
+function openWorks(){
 
-    showPage("dashboard");
+    showPage("works");
 
-});
+    renderWorks();
+
+}
 
 
 /* =====================================================
-   MODAL
+   MODAL ORDINE
 ===================================================== */
 
 function openModal(){
@@ -1745,9 +1739,10 @@ function openModal(){
 
     document
     .getElementById("modalPerson")
-    .textContent = currentPerson;
+    .textContent =
+        currentPerson;
 
-    resetForm();
+    resetOrderForm();
 
 }
 
@@ -1773,10 +1768,10 @@ modal.addEventListener("click",function(e){
 
 
 /* =====================================================
-   RESET FORM
+   RESET ORDINE
 ===================================================== */
 
-function resetForm(){
+function resetOrderForm(){
 
     document
     .getElementById("date")
@@ -1787,33 +1782,29 @@ function resetForm(){
 
     articleInput.value = "";
 
-    articleName.value = "";
-
     qtyInput.value = 1;
 
-    listinoInput.value = "";
+    listinoInput.value = 0;
 
     scontoInput.value = 25;
 
-    nettoInput.value = "";
+    nettoInput.value = "0,00";
 
-    totaleInput.value = "";
-
-    darePersonaInput.value = 0;
-
-    dareGioInput.value = 0;
+    totaleInput.value = "0,00";
 
     priceInfo.textContent = "";
 
-    articleInput.classList.remove("price-found");
+    suggestions.innerHTML = "";
 
     suggestions.style.display = "none";
+
+    calculate();
 
 }
 
 
 /* =====================================================
-   RICERCA CODICE
+   RICERCA CATALOGO
 ===================================================== */
 
 articleInput.addEventListener(
@@ -1827,27 +1818,25 @@ articleInput.addEventListener(
 
         suggestions.innerHTML = "";
 
+        priceInfo.textContent = "";
+
         if(!value){
 
-            suggestions.style.display = "none";
+            suggestions.style.display =
+                "none";
 
             return;
 
         }
 
+
         const results =
             ktmCatalog
             .filter(function(item){
 
-                return (
-                    item.code
+                return item.code
                     .toLowerCase()
-                    .includes(value)
-                    ||
-                    item.name
-                    .toLowerCase()
-                    .includes(value)
-                );
+                    .includes(value);
 
             })
             .slice(0,10);
@@ -1855,14 +1844,8 @@ articleInput.addEventListener(
 
         if(results.length === 0){
 
-            suggestions.style.display = "none";
-
-            priceInfo.textContent =
-                "Codice non presente nel catalogo interno.";
-
-            articleInput.classList.remove(
-                "price-found"
-            );
+            suggestions.style.display =
+                "none";
 
             return;
 
@@ -1874,7 +1857,8 @@ articleInput.addEventListener(
             const div =
                 document.createElement("div");
 
-            div.className = "suggestion";
+            div.className =
+                "suggestion";
 
             div.innerHTML =
 
@@ -1883,8 +1867,7 @@ articleInput.addEventListener(
                 "</div>" +
 
                 "<div class='suggestion-name'>" +
-                item.name +
-                " — € " +
+                "Prezzo listino: € " +
                 formatMoney(item.price) +
                 "</div>";
 
@@ -1904,14 +1887,15 @@ articleInput.addEventListener(
         });
 
 
-        suggestions.style.display = "block";
+        suggestions.style.display =
+            "block";
 
     }
 );
 
 
 /* =====================================================
-   SELEZIONE ARTICOLO
+   SELEZIONE CODICE
 ===================================================== */
 
 function selectCatalogItem(item){
@@ -1919,18 +1903,11 @@ function selectCatalogItem(item){
     articleInput.value =
         item.code;
 
-    articleName.value =
-        item.name;
-
     listinoInput.value =
-        item.price;
-
-    articleInput.classList.add(
-        "price-found"
-    );
+        0;
 
     priceInfo.textContent =
-        "✓ Prezzo trovato nel catalogo interno";
+        "Codice trovato nel catalogo — prezzo da inserire";
 
     suggestions.style.display =
         "none";
@@ -1941,7 +1918,7 @@ function selectCatalogItem(item){
 
 
 /* =====================================================
-   INVIO DA CODICE
+   ENTER CODICE
 ===================================================== */
 
 articleInput.addEventListener(
@@ -1963,7 +1940,8 @@ articleInput.addEventListener(
         const found =
             ktmCatalog.find(function(item){
 
-                return item.code.toLowerCase() === code;
+                return item.code
+                    .toLowerCase() === code;
 
             });
 
@@ -1979,7 +1957,7 @@ articleInput.addEventListener(
 
 
 /* =====================================================
-   CALCOLO
+   CALCOLO ORDINE
 ===================================================== */
 
 [
@@ -2053,43 +2031,6 @@ function saveOrder(){
         .value
         .trim();
 
-    const name =
-        articleName
-        .value
-        .trim();
-
-    const date =
-        document
-        .getElementById("date")
-        .value;
-
-    const qty =
-        parseFloat(qtyInput.value) || 1;
-
-    const listino =
-        parseFloat(listinoInput.value) || 0;
-
-    const sconto =
-        parseFloat(scontoInput.value) || 0;
-
-    const netto =
-        listino *
-        (1 - sconto / 100);
-
-    const totale =
-        netto * qty;
-
-    const darePersona =
-        parseFloat(
-            darePersonaInput.value
-        ) || 0;
-
-    const dareGio =
-        parseFloat(
-            dareGioInput.value
-        ) || 0;
-
-
     if(!code){
 
         alert(
@@ -2105,41 +2046,68 @@ function saveOrder(){
 
     const order = {
 
-        id:
-            Date.now(),
+        id:Date.now(),
 
         person:
             currentPerson,
 
         date:
-            date,
+            document
+            .getElementById("date")
+            .value,
 
         quantity:
-            qty,
+            parseFloat(
+                qtyInput.value
+            ) || 1,
 
         article:
             code,
 
-        articleName:
-            name,
-
         listino:
-            listino,
+            parseFloat(
+                listinoInput.value
+            ) || 0,
 
         sconto:
-            sconto,
+            parseFloat(
+                scontoInput.value
+            ) || 0,
 
         netto:
-            netto,
+            parseFloat(
+                listinoInput.value
+            ) *
+            (
+                1 -
+                (
+                    parseFloat(
+                        scontoInput.value
+                    ) || 0
+                ) / 100
+            ),
 
         totale:
-            totale,
-
-        darePersona:
-            darePersona,
-
-        dareGio:
-            dareGio
+            (
+                parseFloat(
+                    listinoInput.value
+                ) || 0
+            )
+            *
+            (
+                1 -
+                (
+                    parseFloat(
+                        scontoInput.value
+                    ) || 0
+                ) / 100
+            )
+            *
+            (
+                parseFloat(
+                    qtyInput.value
+                ) || 1
+            )
 
     };
 
@@ -2148,76 +2116,16 @@ function saveOrder(){
 
 
     localStorage.setItem(
-        "ktmOrdersV3",
+        "ktmOrdersV4",
         JSON.stringify(orders)
     );
 
 
-    /*
-       Se il codice non esiste ancora nel catalogo,
-       lo aggiungiamo automaticamente con il prezzo
-       che hai appena inserito.
-    */
-
-    const existing =
-        ktmCatalog.find(function(item){
-
-            return item.code.toLowerCase() ===
-                   code.toLowerCase();
-
-        });
-
-
-    if(!existing){
-
-        ktmCatalog.push({
-
-            code:code,
-
-            name:
-                name ||
-                "Ricambio KTM " + code,
-
-            price:listino
-
-        });
-
-
-        localStorage.setItem(
-            "ktmCatalogV1",
-            JSON.stringify(ktmCatalog)
-        );
-
-    }
-    else{
-
-        /*
-           Se modifichi manualmente il prezzo
-           di un codice esistente, aggiorniamo
-           il catalogo per i NUOVI ordini.
-        */
-
-        existing.price =
-            listino;
-
-        if(name){
-
-            existing.name =
-                name;
-
-        }
-
-        localStorage.setItem(
-            "ktmCatalogV1",
-            JSON.stringify(ktmCatalog)
-        );
-
-    }
-
-
     modal.classList.remove("show");
 
+
     updateDashboard();
+
 
     alert(
         "Ordine salvato correttamente!"
@@ -2249,7 +2157,7 @@ function renderOrders(){
         orders.filter(function(order){
 
             return order.person ===
-                   currentPerson;
+                currentPerson;
 
         });
 
@@ -2257,24 +2165,12 @@ function renderOrders(){
     const filtered =
         personOrders.filter(function(order){
 
-            if(!search){
-
-                return true;
-
-            }
-
             return (
-
+                !search
+                ||
                 String(order.article)
                 .toLowerCase()
                 .includes(search)
-
-                ||
-
-                String(order.articleName || "")
-                .toLowerCase()
-                .includes(search)
-
             );
 
         });
@@ -2289,12 +2185,12 @@ function renderOrders(){
 
             "<tr>" +
 
-            "<td colspan='9' class='empty'>" +
+            "<td colspan='7' class='empty'>" +
 
             (
                 search
                 ?
-                "Nessun articolo trovato."
+                "Nessun codice trovato."
                 :
                 "Nessun ordine presente."
             )
@@ -2332,18 +2228,6 @@ function renderOrders(){
             escapeHtml(order.article) +
             "</strong>" +
 
-            (
-                order.articleName
-                ?
-                "<br><small style='color:#777'>" +
-                escapeHtml(order.articleName) +
-                "</small>"
-                :
-                ""
-            )
-
-            +
-
             "</td>" +
 
             "<td>€ " +
@@ -2360,15 +2244,7 @@ function renderOrders(){
 
             "<td><strong>€ " +
             formatMoney(order.totale) +
-            "</strong></td>" +
-
-            "<td>€ " +
-            formatMoney(order.darePersona) +
-            "</td>" +
-
-            "<td>€ " +
-            formatMoney(order.dareGio) +
-            "</td>";
+            "</strong></td>";
 
 
         body.appendChild(tr);
@@ -2395,6 +2271,223 @@ document
 
 
 /* =====================================================
+   LAVORI - MODAL
+===================================================== */
+
+function openWorkModal(){
+
+    workModal.classList.add("show");
+
+    document
+    .getElementById("workModalPerson")
+    .textContent =
+        currentPerson;
+
+
+    document
+    .getElementById("workDate")
+    .value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document
+    .getElementById("workPrice")
+    .value = 0;
+
+
+    document
+    .getElementById("workDescription")
+    .value = "";
+
+}
+
+
+document
+.getElementById("cancelWorkBtn")
+.addEventListener("click",function(){
+
+    workModal.classList.remove("show");
+
+});
+
+
+workModal.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === workModal){
+
+            workModal.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SALVA LAVORO
+===================================================== */
+
+document
+.getElementById("saveWorkBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        const date =
+            document
+            .getElementById("workDate")
+            .value;
+
+        const description =
+            document
+            .getElementById("workDescription")
+            .value
+            .trim();
+
+        const price =
+            parseFloat(
+                document
+                .getElementById("workPrice")
+                .value
+            ) || 0;
+
+
+        if(!description){
+
+            alert(
+                "Inserisci il lavoro eseguito."
+            );
+
+            return;
+
+        }
+
+
+        const work = {
+
+            id:Date.now(),
+
+            person:
+                currentPerson,
+
+            date:
+                date,
+
+            description:
+                description,
+
+            price:
+                price
+
+        };
+
+
+        works.push(work);
+
+
+        localStorage.setItem(
+            "ktmWorksV1",
+            JSON.stringify(works)
+        );
+
+
+        workModal.classList.remove(
+            "show"
+        );
+
+
+        renderWorks();
+
+        updateDashboard();
+
+
+        alert(
+            "Lavoro salvato correttamente!"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   RENDER LAVORI
+===================================================== */
+
+function renderWorks(){
+
+    const body =
+        document.getElementById(
+            "worksBody"
+        );
+
+
+    const personWorks =
+        works.filter(function(work){
+
+            return work.person ===
+                currentPerson;
+
+        });
+
+
+    body.innerHTML = "";
+
+
+    if(personWorks.length === 0){
+
+        body.innerHTML =
+
+            "<tr>" +
+
+            "<td colspan='3' class='empty'>" +
+
+            "Nessun lavoro inserito."
+
+            +
+
+            "</td>" +
+
+            "</tr>";
+
+        return;
+
+    }
+
+
+    personWorks.forEach(function(work){
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML =
+
+            "<td>" +
+            formatDate(work.date) +
+            "</td>" +
+
+            "<td class='work-description'>" +
+            escapeHtml(work.description) +
+            "</td>" +
+
+            "<td class='work-total'>" +
+            "€ " +
+            formatMoney(work.price) +
+            "</td>";
+
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
    DASHBOARD
 ===================================================== */
 
@@ -2404,28 +2497,37 @@ function updateDashboard(){
         orders.filter(function(order){
 
             return order.person ===
-                   currentPerson;
+                currentPerson;
 
         });
 
 
-    let netTotal = 0;
+    const personWorks =
+        works.filter(function(work){
 
-    let gioTotal = 0;
+            return work.person ===
+                currentPerson;
 
-    let personTotal = 0;
+        });
+
+
+    let totalOrders = 0;
+
+    let totalWorks = 0;
 
 
     personOrders.forEach(function(order){
 
-        netTotal +=
+        totalOrders +=
             Number(order.totale) || 0;
 
-        gioTotal +=
-            Number(order.dareGio) || 0;
+    });
 
-        personTotal +=
-            Number(order.darePersona) || 0;
+
+    personWorks.forEach(function(work){
+
+        totalWorks +=
+            Number(work.price) || 0;
 
     });
 
@@ -2440,56 +2542,14 @@ function updateDashboard(){
     .getElementById("netTotal")
     .textContent =
         "€ " +
-        formatMoney(netTotal);
+        formatMoney(totalOrders);
 
 
     document
-    .getElementById("gioTotal")
+    .getElementById("workTotal")
     .textContent =
         "€ " +
-        formatMoney(gioTotal);
-
-
-    document
-    .getElementById("personTotal")
-    .textContent =
-        "€ " +
-        formatMoney(personTotal);
-
-}
-
-
-/* =====================================================
-   PAGAMENTI
-===================================================== */
-
-function updatePayments(){
-
-    const personOrders =
-        orders.filter(function(order){
-
-            return order.person ===
-                   currentPerson;
-
-        });
-
-
-    let total = 0;
-
-
-    personOrders.forEach(function(order){
-
-        total +=
-            Number(order.dareGio) || 0;
-
-    });
-
-
-    document
-    .getElementById("paymentTotal")
-    .textContent =
-        "€ " +
-        formatMoney(total);
+        formatMoney(totalWorks);
 
 }
 
@@ -2523,11 +2583,13 @@ function formatDate(date){
     const parts =
         date.split("-");
 
+
     if(parts.length !== 3){
 
         return date;
 
     }
+
 
     return (
         parts[2] +
@@ -2571,13 +2633,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =====================================================
-   AVVIO
-===================================================== */
-
-updateDashboard();
 
 </script>
 
