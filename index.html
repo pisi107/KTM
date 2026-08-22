@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>KTM - Gestione Ordini</title>
+<title>Gestione Ordini KTM</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -21,8 +19,8 @@
     --black:#111;
     --gray:#666;
     --light:#f7f7f7;
-    --border:#e9e9e9;
     --white:#fff;
+    --green:#16803c;
 }
 
 body{
@@ -179,8 +177,8 @@ body{
     border-bottom:1px solid #eee;
     position:sticky;
     top:0;
-    background:#fff;
     z-index:20;
+    background:#fff;
 }
 
 .headerRight{
@@ -224,10 +222,6 @@ body{
     display:block;
 }
 
-/* =========================
-   TITOLI
-========================= */
-
 .title{
     margin-bottom:25px;
 }
@@ -243,7 +237,7 @@ body{
 }
 
 /* =========================
-   DASHBOARD
+   STATS
 ========================= */
 
 .stats{
@@ -272,6 +266,10 @@ body{
     font-weight:900;
     margin-top:7px;
 }
+
+/* =========================
+   MENU
+========================= */
 
 .menu{
     display:grid;
@@ -337,12 +335,7 @@ body{
     font-weight:800;
     cursor:pointer;
     margin-bottom:20px;
-    font-size:15px;
 }
-
-/* =========================
-   TOP
-========================= */
 
 .top{
     display:flex;
@@ -352,7 +345,7 @@ body{
 }
 
 /* =========================
-   TABELLE
+   TABLE
 ========================= */
 
 .tablebox{
@@ -360,13 +353,12 @@ body{
     border:1px solid #eee;
     border-radius:15px;
     overflow-x:auto;
-    box-shadow:0 3px 12px rgba(0,0,0,.03);
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:850px;
+    min-width:950px;
 }
 
 th{
@@ -379,71 +371,73 @@ th{
 }
 
 td{
-    padding:10px 12px;
+    padding:14px;
     border-top:1px solid #eee;
     font-size:13px;
-    vertical-align:middle;
 }
 
-td.article{
-    font-weight:700;
-    min-width:260px;
-}
-
-.price-input,
-.qty-input{
-    width:100%;
+.priceInput{
+    width:100px;
     border:1px solid #ddd;
     border-radius:7px;
     padding:8px;
-    font-size:13px;
-    outline:none;
 }
 
-.price-input:focus,
-.qty-input:focus{
+.discountInput{
+    width:80px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:8px;
+}
+
+.priceInput:focus,
+.discountInput:focus{
+    outline:none;
     border-color:var(--orange);
 }
 
-.total-cell{
+.nettoCell{
     font-weight:900;
     color:var(--orange);
-    white-space:nowrap;
-}
-
-.delete-btn{
-    border:none;
-    background:#fff0ee;
-    color:#d93025;
-    border-radius:7px;
-    padding:8px 10px;
-    cursor:pointer;
-    font-weight:800;
-}
-
-.delete-btn:hover{
-    background:#ffdcd7;
 }
 
 /* =========================
-   LAVORI
+   WORKS
 ========================= */
 
-.work-table{
-    min-width:750px;
+.workCard{
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
-.work-name{
+.workName{
     font-weight:800;
+    font-size:16px;
 }
 
-.work-note{
-    color:#777;
-    font-size:12px;
+.workPrice{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.workPrice input{
+    width:110px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:9px;
 }
 
 /* =========================
-   PAGAMENTI
+   PAYMENT
 ========================= */
 
 .payment{
@@ -454,21 +448,13 @@ td.article{
 }
 
 .payment .big{
-    font-size:36px;
+    font-size:32px;
     font-weight:900;
     margin:10px 0;
 }
 
-.note{
-    background:#f7f7f7;
-    padding:18px;
-    border-radius:10px;
-    color:#666;
-    margin-top:20px;
-}
-
 /* =========================
-   MODALE
+   MODAL
 ========================= */
 
 .modal-bg{
@@ -488,7 +474,7 @@ td.article{
 
 .modal{
     background:#fff;
-    width:620px;
+    width:650px;
     max-width:100%;
     max-height:90vh;
     overflow-y:auto;
@@ -522,7 +508,8 @@ td.article{
     color:#666;
 }
 
-.field input{
+.field input,
+.field select{
     border:1px solid #ddd;
     padding:11px;
     border-radius:8px;
@@ -530,8 +517,14 @@ td.article{
     font-size:14px;
 }
 
-.field input:focus{
+.field input:focus,
+.field select:focus{
     border-color:var(--orange);
+}
+
+.readonly{
+    background:#f5f5f5;
+    font-weight:800;
 }
 
 .modal-buttons{
@@ -615,27 +608,19 @@ td.article{
         flex-direction:column;
     }
 
-    .title h1{
-        font-size:27px;
-    }
-
-    .smalllogo{
-        font-size:23px;
-    }
-
-    .headerRight strong{
-        font-size:14px;
+    .workCard{
+        align-items:flex-start;
+        flex-direction:column;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- =========================
      HOME
-===================================================== -->
+========================= -->
 
 <section id="home">
 
@@ -653,32 +638,19 @@ td.article{
         <div class="people">
 
             <div class="person">
-
                 <div class="avatar">👤</div>
-
                 <h2>ROBY</h2>
-
-                <button
-                    class="btn orangebtn"
-                    onclick="enterPerson('ROBY')">
+                <button class="btn orangebtn" onclick="login('ROBY')">
                     ENTRA
                 </button>
-
             </div>
 
-
             <div class="person">
-
                 <div class="avatar">👤</div>
-
                 <h2>FEDE</h2>
-
-                <button
-                    class="btn orangebtn"
-                    onclick="enterPerson('FEDE')">
+                <button class="btn orangebtn" onclick="login('FEDE')">
                     ENTRA
                 </button>
-
             </div>
 
         </div>
@@ -688,28 +660,21 @@ td.article{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      APP
-===================================================== -->
+========================= -->
 
 <section id="app">
 
 <header class="header">
 
     <div class="headerRight">
-
         <div class="smalllogo">KTM</div>
-
         <strong id="currentUser"></strong>
-
     </div>
 
-    <button
-        class="exit"
-        onclick="exitApp()">
-
+    <button class="exit" onclick="logout()">
         ← Esci
-
     </button>
 
 </header>
@@ -717,69 +682,37 @@ td.article{
 
 <main class="container">
 
-
-<!-- =====================================================
+<!-- =========================
      DASHBOARD
-===================================================== -->
+========================= -->
 
-<section
-    id="dashboard"
-    class="page active">
+<section id="dashboard" class="page active">
 
     <div class="title">
-
         <h1 id="hello"></h1>
-
-        <p>
-            Gestione ordini e lavori
-        </p>
-
+        <p>Gestione ordini, lavori, prezzi e sconti</p>
     </div>
-
 
     <div class="stats">
 
         <div class="stat">
-
             <small>ORDINI</small>
-
-            <strong id="count">
-                0
-            </strong>
-
+            <strong id="count">0</strong>
         </div>
 
-
         <div class="stat">
-
-            <small>TOTALE ORDINI</small>
-
-            <strong id="netTotal">
-                € 0,00
-            </strong>
-
+            <small>TOTALE NETTO</small>
+            <strong id="netTotal">€ 0,00</strong>
         </div>
 
+        <div class="stat">
+            <small>DA DARE A GIO</small>
+            <strong id="gioTotal">€ 0,00</strong>
+        </div>
 
         <div class="stat">
-
             <small>LAVORI</small>
-
-            <strong id="workCount">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat">
-
-            <small>TOTALE LAVORI</small>
-
-            <strong id="workTotal">
-                € 0,00
-            </strong>
-
+            <strong id="workCount">0</strong>
         </div>
 
     </div>
@@ -787,138 +720,58 @@ td.article{
 
     <div class="menu">
 
+        <div class="card" onclick="showPage('orders')">
 
-        <div
-            class="card"
-            onclick="showPage('orders')">
-
-            <div class="icon">
-                📋
-            </div>
+            <div class="icon">📋</div>
 
             <div>
-
-                <h3>
-                    I miei ordini
-                </h3>
-
-                <p>
-                    Visualizza tutti gli articoli
-                </p>
-
+                <h3>I miei ordini</h3>
+                <p>Visualizza tutti gli articoli KTM</p>
             </div>
 
-            <div class="arrow">
-                ›
-            </div>
+            <div class="arrow">›</div>
 
         </div>
 
 
-        <div
-            class="card"
-            onclick="openOrderModal()">
+        <div class="card" onclick="openOrderModal()">
 
-            <div class="icon">
-                ➕
-            </div>
+            <div class="icon">➕</div>
 
             <div>
-
-                <h3>
-                    Nuovo ordine
-                </h3>
-
-                <p>
-                    Aggiungi un nuovo articolo
-                </p>
-
+                <h3>Nuovo ordine</h3>
+                <p>Aggiungi un nuovo articolo</p>
             </div>
 
-            <div class="arrow">
-                ›
-            </div>
+            <div class="arrow">›</div>
 
         </div>
 
 
-        <div
-            class="card"
-            onclick="showPage('works')">
+        <div class="card" onclick="showPage('works')">
 
-            <div class="icon">
-                🔧
-            </div>
+            <div class="icon">🔧</div>
 
             <div>
-
-                <h3>
-                    Lavori
-                </h3>
-
-                <p>
-                    Visualizza lavori e servizi
-                </p>
-
+                <h3>Lavori</h3>
+                <p>Gestisci lavori e relativi prezzi</p>
             </div>
 
-            <div class="arrow">
-                ›
-            </div>
+            <div class="arrow">›</div>
 
         </div>
 
 
-        <div
-            class="card"
-            onclick="openWorkModal()">
+        <div class="card" onclick="showPage('payments')">
 
-            <div class="icon">
-                🛠️
-            </div>
+            <div class="icon">💶</div>
 
             <div>
-
-                <h3>
-                    Nuovo lavoro
-                </h3>
-
-                <p>
-                    Inserisci un nuovo lavoro
-                </p>
-
+                <h3>Pagamenti</h3>
+                <p>Controlla la situazione economica</p>
             </div>
 
-            <div class="arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="card"
-            onclick="showPage('payments')">
-
-            <div class="icon">
-                💶
-            </div>
-
-            <div>
-
-                <h3>
-                    Pagamenti
-                </h3>
-
-                <p>
-                    Controlla i totali
-                </p>
-
-            </div>
-
-            <div class="arrow">
-                ›
-            </div>
+            <div class="arrow">›</div>
 
         </div>
 
@@ -927,45 +780,30 @@ td.article{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      ORDINI
-===================================================== -->
+========================= -->
 
-<section
-    id="orders"
-    class="page">
+<section id="orders" class="page">
 
-    <button
-        class="back"
-        onclick="showPage('dashboard')">
-
+    <button class="back" onclick="showPage('dashboard')">
         ← Dashboard
-
     </button>
-
 
     <div class="top">
 
         <div class="title">
-
             <h1>
-                Ordini di
-                <span id="ordersPerson"></span>
+                Ordini di <span id="ordersPerson"></span>
             </h1>
 
             <p>
-                Codici ricambio caricati dal tuo elenco
+                Articoli KTM
             </p>
-
         </div>
 
-
-        <button
-            class="btn orangebtn"
-            onclick="openOrderModal()">
-
+        <button class="btn orangebtn" onclick="openOrderModal()">
             + Nuovo ordine
-
         </button>
 
     </div>
@@ -978,27 +816,14 @@ td.article{
             <thead>
 
                 <tr>
-
-                    <th>
-                        Q.TÀ
-                    </th>
-
-                    <th>
-                        CODICE / ARTICOLO
-                    </th>
-
-                    <th>
-                        PREZZO UNITARIO
-                    </th>
-
-                    <th>
-                        TOTALE
-                    </th>
-
-                    <th>
-                        AZIONI
-                    </th>
-
+                    <th>DATA</th>
+                    <th>Q.TÀ</th>
+                    <th>CODICE / ARTICOLO</th>
+                    <th>LISTINO €</th>
+                    <th>SCONTO %</th>
+                    <th>NETTO €</th>
+                    <th>DA DARE A PERSONA €</th>
+                    <th>DA DARE A GIO €</th>
                 </tr>
 
             </thead>
@@ -1012,113 +837,54 @@ td.article{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      LAVORI
-===================================================== -->
+========================= -->
 
-<section
-    id="works"
-    class="page">
+<section id="works" class="page">
 
-    <button
-        class="back"
-        onclick="showPage('dashboard')">
-
+    <button class="back" onclick="showPage('dashboard')">
         ← Dashboard
-
     </button>
-
 
     <div class="top">
 
         <div class="title">
 
             <h1>
-                Lavori di
-                <span id="worksPerson"></span>
+                Lavori di <span id="worksPerson"></span>
             </h1>
 
             <p>
-                Servizi e lavori separati dagli ordini ricambi
+                Lavori e servizi esclusi dagli ordini KTM
             </p>
 
         </div>
 
-
-        <button
-            class="btn orangebtn"
-            onclick="openWorkModal()">
-
+        <button class="btn orangebtn" onclick="openWorkModal()">
             + Nuovo lavoro
-
         </button>
 
     </div>
 
-
-    <div class="tablebox">
-
-        <table class="work-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        LAVORO
-                    </th>
-
-                    <th>
-                        Q.TÀ
-                    </th>
-
-                    <th>
-                        PREZZO
-                    </th>
-
-                    <th>
-                        TOTALE
-                    </th>
-
-                    <th>
-                        AZIONI
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="worksBody"></tbody>
-
-        </table>
-
-    </div>
+    <div id="worksBody"></div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGAMENTI
-===================================================== -->
+========================= -->
 
-<section
-    id="payments"
-    class="page">
+<section id="payments" class="page">
 
-    <button
-        class="back"
-        onclick="showPage('dashboard')">
-
+    <button class="back" onclick="showPage('dashboard')">
         ← Dashboard
-
     </button>
-
 
     <div class="title">
 
-        <h1>
-            Pagamenti
-        </h1>
+        <h1>Pagamenti</h1>
 
         <p>
             Situazione economica di
@@ -1127,115 +893,157 @@ td.article{
 
     </div>
 
-
     <div class="payment">
 
-        <div>
-            TOTALE ORDINI
-        </div>
+        <div>TOTALE DA DARE A GIO</div>
 
-        <div
-            class="big"
-            id="paymentOrders">
-
+        <div class="big" id="paymentTotal">
             € 0,00
-
         </div>
-
-
-        <div>
-            TOTALE LAVORI
-        </div>
-
-        <div
-            class="big"
-            id="paymentWorks">
-
-            € 0,00
-
-        </div>
-
-    </div>
-
-
-    <div class="note">
-
-        I prezzi degli articoli e dei lavori possono essere
-        modificati direttamente dalle relative tabelle.
 
     </div>
 
 </section>
-
 
 </main>
 
 </section>
 
 
-<!-- =====================================================
-     MODALE NUOVO ORDINE
-===================================================== -->
+<!-- =========================
+     MODAL NUOVO ORDINE
+========================= -->
 
-<div
-    class="modal-bg"
-    id="orderModal">
+<div class="modal-bg" id="orderModal">
 
     <div class="modal">
 
         <h2>
             Nuovo ordine —
-            <span id="modalOrderPerson"></span>
+            <span id="modalPerson"></span>
         </h2>
-
 
         <div class="form">
 
-
             <div class="field">
 
-                <label>
-                    QUANTITÀ
-                </label>
+                <label>DATA</label>
 
                 <input
-                    type="number"
-                    id="newQty"
-                    min="1"
-                    value="1">
+                    type="date"
+                    id="date"
+                >
 
             </div>
 
 
             <div class="field">
 
-                <label>
-                    PREZZO UNITARIO (€)
-                </label>
+                <label>QUANTITÀ</label>
 
                 <input
                     type="number"
-                    id="newPrice"
-                    min="0"
-                    step="0.01"
-                    value="0">
+                    id="qty"
+                    min="1"
+                    value="1"
+                    oninput="calculateNetto()"
+                >
 
             </div>
 
 
             <div class="field full">
 
-                <label>
-                    CODICE / ARTICOLO
-                </label>
+                <label>CODICE / ARTICOLO KTM</label>
 
                 <input
                     type="text"
-                    id="newArticle"
-                    placeholder="Es. 50430098060">
+                    id="article"
+                    placeholder="Es. 50430098060"
+                >
 
             </div>
 
+
+            <div class="field">
+
+                <label>LISTINO (€)</label>
+
+                <input
+                    type="number"
+                    id="listino"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    oninput="calculateNetto()"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 SCONTO AGGIUNTO
+            ========================= -->
+
+            <div class="field">
+
+                <label>SCONTO (%)</label>
+
+                <input
+                    type="number"
+                    id="sconto"
+                    min="0"
+                    max="100"
+                    step="0.01"
+                    value="0"
+                    oninput="calculateNetto()"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>NETTO DOPO SCONTO (€)</label>
+
+                <input
+                    type="text"
+                    id="netto"
+                    class="readonly"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>DA DARE A PERSONA (€)</label>
+
+                <input
+                    type="number"
+                    id="darePersona"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>DA DARE A GIO (€)</label>
+
+                <input
+                    type="number"
+                    id="dareGio"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
 
         </div>
 
@@ -1244,19 +1052,16 @@ td.article{
 
             <button
                 class="cancel"
-                onclick="closeOrderModal()">
-
+                onclick="closeOrderModal()"
+            >
                 Annulla
-
             </button>
-
 
             <button
                 class="save"
-                onclick="saveNewOrder()">
-
+                onclick="saveOrder()"
+            >
                 Salva ordine
-
             </button>
 
         </div>
@@ -1266,69 +1071,63 @@ td.article{
 </div>
 
 
-<!-- =====================================================
-     MODALE NUOVO LAVORO
-===================================================== -->
+<!-- =========================
+     MODAL NUOVO LAVORO
+========================= -->
 
-<div
-    class="modal-bg"
-    id="workModal">
+<div class="modal-bg" id="workModal">
 
     <div class="modal">
 
         <h2>
             Nuovo lavoro —
-            <span id="modalWorkPerson"></span>
+            <span id="workModalPerson"></span>
         </h2>
-
 
         <div class="form">
 
-
-            <div class="field">
-
-                <label>
-                    QUANTITÀ
-                </label>
-
-                <input
-                    type="number"
-                    id="newWorkQty"
-                    min="1"
-                    value="1">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    PREZZO (€)
-                </label>
-
-                <input
-                    type="number"
-                    id="newWorkPrice"
-                    min="0"
-                    step="0.01"
-                    value="0">
-
-            </div>
-
-
             <div class="field full">
 
-                <label>
-                    DESCRIZIONE LAVORO
-                </label>
+                <label>DESCRIZIONE LAVORO</label>
 
                 <input
                     type="text"
-                    id="newWorkName"
-                    placeholder="Es. Manutenzione moto">
+                    id="workName"
+                    placeholder="Es. Lezione Ottobiano"
+                >
 
             </div>
 
+
+            <div class="field">
+
+                <label>PREZZO (€)</label>
+
+                <input
+                    type="number"
+                    id="workPrice"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>SCONTO (%)</label>
+
+                <input
+                    type="number"
+                    id="workDiscount"
+                    min="0"
+                    max="100"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
 
         </div>
 
@@ -1337,19 +1136,16 @@ td.article{
 
             <button
                 class="cancel"
-                onclick="closeWorkModal()">
-
+                onclick="closeWorkModal()"
+            >
                 Annulla
-
             </button>
-
 
             <button
                 class="save"
-                onclick="saveNewWork()">
-
+                onclick="saveWork()"
+            >
                 Salva lavoro
-
             </button>
 
         </div>
@@ -1361,44 +1157,28 @@ td.article{
 
 <script>
 
-/* =====================================================
-   CONFIGURAZIONE
-===================================================== */
-
-const STORAGE_KEY = "ktm_gestione_v5";
+/* ============================================================
+   DATI
+============================================================ */
 
 let currentPerson = "";
 
-let database = JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || "{}"
-);
+let orders =
+    JSON.parse(
+        localStorage.getItem("ktmOrdersV3") || "[]"
+    );
+
+let works =
+    JSON.parse(
+        localStorage.getItem("ktmWorksV3") || "[]"
+    );
 
 
-/* =====================================================
-   CREA DATABASE PULITO
-===================================================== */
+/* ============================================================
+   ARTICOLI KTM PRESI DAL FOGLIO
+============================================================ */
 
-if(!database.ROBY){
-    database.ROBY = {
-        orders: [],
-        works: []
-    };
-}
-
-if(!database.FEDE){
-    database.FEDE = {
-        orders: [],
-        works: []
-    };
-}
-
-
-/* =====================================================
-   CODICI PRESI DALLE FOTO
-   ESCLUSE LE VOCI LAVORI
-===================================================== */
-
-const ROBY_CODES = [
+const KTM_ARTICLES = [
 
 "50430098060",
 "50430098050",
@@ -1406,7 +1186,6 @@ const ROBY_CODES = [
 "50430039000",
 "00050002300",
 "50430015044",
-
 "A46035009000",
 "00050000272 - 79430107210 II",
 "79536013000",
@@ -1414,28 +1193,24 @@ const ROBY_CODES = [
 "77338005100",
 "A42005907500",
 "A46035909000",
-
 "50430025000",
 "50430098060",
 "50430098050",
 "50430039000",
 "50430015044",
 "00050002300",
-
 "A46014069000",
 "A42030060000",
 "50403096010",
 "77204066010 - 77204066044",
 "A45041072033",
 "79135071044",
-
 "00050002300",
 "50430098060",
 "50430025000",
 "50430098050",
 "50430015044",
 "50430039000",
-
 "50439005000",
 "50532054000",
 "79135071044",
@@ -1443,7 +1218,6 @@ const ROBY_CODES = [
 "91010240S",
 "50439004000",
 "79030015144",
-
 "47230015044",
 "50430098050",
 "50430098060",
@@ -1451,15 +1225,12 @@ const ROBY_CODES = [
 "A42030018010",
 "50530152044",
 "50430006100",
-
 "50433015400",
 "54834005133 - 50534005044",
-
 "A42030035040",
 "A42030035025",
 "A42030118000",
 "A42030000144",
-
 "50532010033",
 "47230060100",
 "47230035040",
@@ -1472,9 +1243,7 @@ const ROBY_CODES = [
 "0625623204",
 "50430015044",
 "54830015244",
-
 "55530038100",
-
 "50430098060",
 "50430098050",
 "50430025000",
@@ -1482,7 +1251,6 @@ const ROBY_CODES = [
 "00050002300 (ex 52330018288)",
 "50430015044",
 "50530152044",
-
 "A46030036072",
 "A46030035000",
 "A46030007000I",
@@ -1490,28 +1258,23 @@ const ROBY_CODES = [
 "A46030035000",
 "A46030007000I",
 "50439005000",
-
 "79030015144",
 "79013090000",
 "A46030036072",
 "50530152044",
-
 "A44002091000",
 "50430015044",
 "0625063055",
 "50330082000",
-
 "A46030035000",
 "50530152044",
 "A42003014000",
-
 "A42030000244",
 "0835080326",
 "51030034000",
 "50530152044",
 "54802031000",
 "79230207200 II",
-
 "A42030060000",
 "79041077044",
 "50430015044",
@@ -1519,14 +1282,12 @@ const ROBY_CODES = [
 "A42030035025",
 "47230050000",
 "54802031000",
-
 "45235054028",
 "A40530035050",
 "45233010200",
 "0760263561",
 "45230039000",
 "45230025100",
-
 "0770052020",
 "0770120020",
 "0770078020",
@@ -1537,33 +1298,27 @@ const ROBY_CODES = [
 "A46006026033",
 "50330006600",
 "47030034000",
-
 "47230049000",
 "47230039000",
 "(ex 00050002318)47230018188",
 "47230025000",
 "0625982031",
 "0062042001400",
-
 "47234005044",
 "47233016000",
 "47233002000",
 "47233015000",
 "47233014000",
 "47233003000",
-
 "51030034000",
 "77036003200",
 "77839093000",
 "77036027000",
-
 "A46030007010I",
 "A46030007000I",
-
 "A46035007000",
 "47234012044",
 "79234015100",
-
 "47230039000",
 "47230018188",
 "47230025000",
@@ -1579,191 +1334,71 @@ const ROBY_CODES = [
 ];
 
 
-/* =====================================================
-   QUANTITÀ VISIBILI NEL FOGLIO
-===================================================== */
+/* ============================================================
+   LAVORI ESCLUSI DAGLI ORDINI
+============================================================ */
 
-const QUANTITIES = {
+const DEFAULT_WORKS = [
 
-    "A46030036072": 2,
-    "A46030035000": 2,
-    "A46030007000I": 2,
-    "79013090000": 2,
-    "0835080326": 4,
-    "51030034000": 4,
-    "47230050000": 1,
-    "45133028000": 2,
-    "51030034000": 5,
-    "77036027000": 4
-
-};
-
-
-/* =====================================================
-   LAVORI
-   TUTTE LE VOCI ESCLUSE
-===================================================== */
-
-const ROBY_WORKS = [
-
-    "Pistone 125",
-
-    "Lezione",
-    "Lezione",
-
-    "Lezione",
-    "Lezione",
-
-    "Motore 125",
-
-    "Lavaggio moto",
-
-    "Lezione",
-    "Sardegna",
-    "Lezione",
-
-    "Vino",
-
-    "Lezione",
-    "Lezione",
-
-    "Progrip",
-
-    "Lezione Mantova",
-
-    "Lezione",
-
-    "Lezione Vercelli",
-    "Lezione Bellinzago",
-
-    "Lezione Fara",
-    "Lezione Fara",
-    "Lezione Fara",
-
-    "Lezione Bellinzago",
-
-    "Pistone muletto",
-
-    "Lezione Ottobiano",
-
-    "Motore moto gara",
-
-    "Lezione Fara",
-    "Lezione Fara",
-
-    "Lezione Ceriano",
-    "Lezione Casale",
-    "Lezione Cremona",
-
-    "Lezione Ottobiano",
-
-    "Lezione Bellinzago + moto",
-
-    "Lezione Ceriano",
-    "Lezione Ottobiano",
-
-    "Lezione Dorno",
-    "Lezione Bosisio",
-    "Lezione Ottobiano",
-    "Lezione Bellinzago",
-    "Lezione Fiume",
-    "Lezione Ceriano",
-    "Lezione Arco",
-    "Lezione Fara"
+"Pistone 125",
+"Lezione",
+"Lezione",
+"Lezione",
+"Lezione",
+"Motore 125",
+"Lavaggio moto",
+"Lezione",
+"Sardegna",
+"Lezione",
+"Lezione",
+"Vino",
+"Lezione",
+"Progrip",
+"Lezione Mantova",
+"Lezione",
+"Lezione Vercelli",
+"Lezione Bellinzago",
+"Lezione Fara",
+"Lezione Fara",
+"Lezione Fara",
+"Lezione Bellinzago",
+"Pistone muletto",
+"Lezione Ottobiano",
+"Manutenzione Moto",
+"Lezione Bellinzago",
+"Motore moto gara",
+"Lezione Fara",
+"Lezione Ceriano",
+"Lezione Casale",
+"Lezione Cremona",
+"Lezione Ottobiano",
+"Lezione Bellinzago + moto",
+"Lezione Ceriano",
+"Lezione Ottobiano",
+"Lezione Dorno",
+"Lezione Bosisio",
+"Lezione Ottobiano",
+"Lezione Bellinzago",
+"Lezione Fiume",
+"Lezione Ceriano",
+"Lezione Arco",
+"Lezione Fara"
 
 ];
 
 
-/* =====================================================
-   CARICA CODICI ROBY
-   SOLO SE NON PRESENTI
-===================================================== */
+/* ============================================================
+   LOGIN
+============================================================ */
 
-if(database.ROBY.orders.length === 0){
-
-    database.ROBY.orders = ROBY_CODES.map(
-        (article,index) => ({
-
-            id:
-                "roby-" +
-                Date.now() +
-                "-" +
-                index,
-
-            article:article,
-
-            quantity:
-                QUANTITIES[article] || 1,
-
-            price:0
-
-        })
-    );
-}
-
-
-/* =====================================================
-   CARICA LAVORI ROBY
-===================================================== */
-
-if(database.ROBY.works.length === 0){
-
-    database.ROBY.works = ROBY_WORKS.map(
-        (name,index) => ({
-
-            id:
-                "work-" +
-                Date.now() +
-                "-" +
-                index,
-
-            name:name,
-
-            quantity:1,
-
-            price:0
-
-        })
-    );
-}
-
-
-/* =====================================================
-   FEDE
-   PARTE VUOTO, PUOI AGGIUNGERE I SUOI ORDINI
-===================================================== */
-
-
-/* =====================================================
-   SALVATAGGIO
-===================================================== */
-
-function saveDatabase(){
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(database)
-    );
-
-}
-
-
-/* =====================================================
-   ENTRA
-===================================================== */
-
-function enterPerson(person){
+function login(person){
 
     currentPerson = person;
 
-    document.getElementById("home").style.display =
-        "none";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("app").style.display = "block";
 
-    document.getElementById("app").style.display =
-        "block";
-
-    document.getElementById("currentUser").textContent =
-        person;
+    document.getElementById("currentUser").textContent = person;
 
     document.getElementById("hello").textContent =
         "Ciao " + person;
@@ -1777,69 +1412,69 @@ function enterPerson(person){
     document.getElementById("paymentName").textContent =
         person;
 
-    updateAll();
+    renderOrders();
+    renderWorks();
+    updateStats();
 
     showPage("dashboard");
-
 }
 
 
-/* =====================================================
-   ESCI
-===================================================== */
+/* ============================================================
+   LOGOUT
+============================================================ */
 
-function exitApp(){
+function logout(){
 
     currentPerson = "";
 
-    document.getElementById("app").style.display =
-        "none";
-
-    document.getElementById("home").style.display =
-        "flex";
+    document.getElementById("app").style.display = "none";
+    document.getElementById("home").style.display = "flex";
 
 }
 
 
-/* =====================================================
+/* ============================================================
    PAGINE
-===================================================== */
+============================================================ */
 
 function showPage(page){
 
-    document.querySelectorAll(".page").forEach(
-        p => p.classList.remove("active")
-    );
+    document
+        .querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
 
     document
         .getElementById(page)
         .classList.add("active");
 
-    updateAll();
+    if(page === "orders"){
+        renderOrders();
+    }
+
+    if(page === "works"){
+        renderWorks();
+    }
+
+    if(page === "payments"){
+        updatePayment();
+    }
 
 }
 
 
-/* =====================================================
-   FORMAT EURO
-===================================================== */
+/* ============================================================
+   ORDINI
+============================================================ */
 
-function euro(value){
+function getPersonOrders(){
 
-    return Number(value || 0).toLocaleString(
-        "it-IT",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
+    return orders.filter(
+        order => order.person === currentPerson
     );
 
 }
 
-
-/* =====================================================
-   ORDINI
-===================================================== */
 
 function renderOrders(){
 
@@ -1848,87 +1483,56 @@ function renderOrders(){
 
     body.innerHTML = "";
 
-    const orders =
-        database[currentPerson].orders;
+    const personOrders = getPersonOrders();
 
+    personOrders.forEach(order => {
 
-    orders.forEach(order => {
-
-        const tr =
-            document.createElement("tr");
-
-
-        const total =
-            Number(order.quantity || 0) *
-            Number(order.price || 0);
-
+        const tr = document.createElement("tr");
 
         tr.innerHTML = `
 
-            <td>
+            <td>${formatDate(order.date)}</td>
 
+            <td>${order.quantity}</td>
+
+            <td>
+                <strong>${escapeHTML(order.article)}</strong>
+            </td>
+
+            <td>
                 <input
-                    class="qty-input"
+                    class="priceInput"
                     type="number"
-                    min="1"
-                    value="${order.quantity}"
-                    onchange="
-                        updateOrderQuantity(
-                            '${order.id}',
-                            this.value
-                        )
-                    "
+                    step="0.01"
+                    value="${Number(order.listino || 0)}"
+                    onchange="changeOrderPrice('${order.id}', this.value)"
                 >
-
             </td>
-
-
-            <td class="article">
-
-                ${escapeHTML(order.article)}
-
-            </td>
-
 
             <td>
-
                 <input
-                    class="price-input"
+                    class="discountInput"
                     type="number"
                     min="0"
+                    max="100"
                     step="0.01"
-                    value="${order.price || ""}"
-                    placeholder="0,00"
-                    onchange="
-                        updateOrderPrice(
-                            '${order.id}',
-                            this.value
-                        )
-                    "
+                    value="${Number(order.sconto || 0)}"
+                    onchange="changeOrderDiscount('${order.id}', this.value)"
                 >
-
             </td>
 
-
-            <td class="total-cell">
-
-                ${euro(total)}
-
+            <td class="nettoCell">
+                € ${money(
+                    calculateNettoOrder(order)
+                )}
             </td>
-
 
             <td>
+                € ${money(order.darePersona || 0)}
+            </td>
 
-                <button
-                    class="delete-btn"
-                    onclick="
-                        deleteOrder('${order.id}')
-                    ">
-
-                    Elimina
-
-                </button>
-
+            <td>
+                € ${money(order.dareGio || 0)}
             </td>
 
         `;
@@ -1940,173 +1544,246 @@ function renderOrders(){
 }
 
 
-/* =====================================================
-   MODIFICA QUANTITÀ
-===================================================== */
+/* ============================================================
+   CALCOLO NETTO
+============================================================ */
 
-function updateOrderQuantity(id,value){
+function calculateNettoOrder(order){
 
-    const order =
-        database[currentPerson].orders.find(
-            o => o.id === id
-        );
+    const listino =
+        Number(order.listino || 0);
 
-    if(!order) return;
+    const sconto =
+        Number(order.sconto || 0);
 
-    order.quantity =
-        Math.max(1,Number(value) || 1);
+    const quantity =
+        Number(order.quantity || 1);
 
-    saveDatabase();
+    const prezzoScontato =
+        listino -
+        (listino * sconto / 100);
 
-    updateAll();
+    return prezzoScontato * quantity;
 
 }
 
 
-/* =====================================================
+function calculateNetto(){
+
+    const qty =
+        Number(
+            document.getElementById("qty").value || 1
+        );
+
+    const listino =
+        Number(
+            document.getElementById("listino").value || 0
+        );
+
+    const sconto =
+        Number(
+            document.getElementById("sconto").value || 0
+        );
+
+    const prezzoScontato =
+        listino -
+        (listino * sconto / 100);
+
+    const totale =
+        prezzoScontato * qty;
+
+    document.getElementById("netto").value =
+        "€ " + money(totale);
+
+}
+
+
+/* ============================================================
    MODIFICA PREZZO
-===================================================== */
+============================================================ */
 
-function updateOrderPrice(id,value){
+function changeOrderPrice(id,value){
 
     const order =
-        database[currentPerson].orders.find(
-            o => o.id === id
-        );
+        orders.find(o => o.id === id);
 
     if(!order) return;
 
-    order.price =
-        Math.max(0,Number(value) || 0);
+    order.listino =
+        Number(value || 0);
 
-    saveDatabase();
+    saveData();
 
-    updateAll();
+    renderOrders();
+    updateStats();
 
 }
 
 
-/* =====================================================
-   ELIMINA ORDINE
-===================================================== */
+/* ============================================================
+   MODIFICA SCONTO
+============================================================ */
 
-function deleteOrder(id){
+function changeOrderDiscount(id,value){
 
-    if(!confirm("Vuoi eliminare questo articolo?")){
-        return;
+    const order =
+        orders.find(o => o.id === id);
+
+    if(!order) return;
+
+    let discount =
+        Number(value || 0);
+
+    if(discount < 0){
+        discount = 0;
     }
 
-    database[currentPerson].orders =
-        database[currentPerson].orders.filter(
-            o => o.id !== id
-        );
+    if(discount > 100){
+        discount = 100;
+    }
 
-    saveDatabase();
+    order.sconto = discount;
 
-    updateAll();
+    saveData();
+
+    renderOrders();
+    updateStats();
 
 }
 
 
-/* =====================================================
+/* ============================================================
    NUOVO ORDINE
-===================================================== */
+============================================================ */
 
 function openOrderModal(){
 
-    document.getElementById(
-        "modalOrderPerson"
-    ).textContent = currentPerson;
+    document.getElementById("modalPerson")
+        .textContent = currentPerson;
 
-    document.getElementById(
-        "newArticle"
-    ).value = "";
+    document.getElementById("date").value =
+        new Date().toISOString().split("T")[0];
 
-    document.getElementById(
-        "newQty"
-    ).value = 1;
+    document.getElementById("qty").value = 1;
+    document.getElementById("article").value = "";
+    document.getElementById("listino").value = 0;
+    document.getElementById("sconto").value = 0;
+    document.getElementById("darePersona").value = 0;
+    document.getElementById("dareGio").value = 0;
 
-    document.getElementById(
-        "newPrice"
-    ).value = 0;
+    calculateNetto();
 
-    document.getElementById(
-        "orderModal"
-    ).classList.add("show");
+    document
+        .getElementById("orderModal")
+        .classList.add("show");
 
 }
 
 
 function closeOrderModal(){
 
-    document.getElementById(
-        "orderModal"
-    ).classList.remove("show");
+    document
+        .getElementById("orderModal")
+        .classList.remove("show");
 
 }
 
 
-function saveNewOrder(){
+function saveOrder(){
 
     const article =
         document
-            .getElementById("newArticle")
+            .getElementById("article")
             .value
             .trim();
-
-    const quantity =
-        Number(
-            document
-                .getElementById("newQty")
-                .value
-        ) || 1;
-
-    const price =
-        Number(
-            document
-                .getElementById("newPrice")
-                .value
-        ) || 0;
-
 
     if(!article){
 
         alert("Inserisci il codice o l'articolo.");
 
         return;
-
     }
 
 
-    database[currentPerson].orders.push({
+    const quantity =
+        Number(
+            document.getElementById("qty").value || 1
+        );
+
+    const listino =
+        Number(
+            document.getElementById("listino").value || 0
+        );
+
+    const sconto =
+        Number(
+            document.getElementById("sconto").value || 0
+        );
+
+
+    const order = {
 
         id:
-            "new-" +
-            Date.now(),
+            Date.now().toString(),
 
-        article:article,
+        person:
+            currentPerson,
 
-        quantity:quantity,
+        date:
+            document.getElementById("date").value,
 
-        price:price
+        quantity:
+            quantity,
 
-    });
+        article:
+            article,
+
+        listino:
+            listino,
+
+        sconto:
+            sconto,
+
+        darePersona:
+            Number(
+                document.getElementById("darePersona").value || 0
+            ),
+
+        dareGio:
+            Number(
+                document.getElementById("dareGio").value || 0
+            )
+
+    };
 
 
-    saveDatabase();
+    orders.push(order);
+
+    saveData();
 
     closeOrderModal();
 
     renderOrders();
 
-    updateAll();
+    updateStats();
+
+    showPage("orders");
 
 }
 
 
-/* =====================================================
+/* ============================================================
    LAVORI
-===================================================== */
+============================================================ */
+
+function getPersonWorks(){
+
+    return works.filter(
+        work => work.person === currentPerson
+    );
+
+}
+
 
 function renderWorks(){
 
@@ -2115,421 +1792,513 @@ function renderWorks(){
 
     body.innerHTML = "";
 
-    const works =
-        database[currentPerson].works;
+    const personWorks =
+        getPersonWorks();
 
 
-    works.forEach(work => {
+    personWorks.forEach(work => {
 
-        const tr =
-            document.createElement("tr");
+        const div =
+            document.createElement("div");
 
+        div.className = "workCard";
 
-        const total =
-            Number(work.quantity || 0) *
+        const prezzo =
             Number(work.price || 0);
 
+        const sconto =
+            Number(work.discount || 0);
 
-        tr.innerHTML = `
-
-            <td class="work-name">
-
-                ${escapeHTML(work.name)}
-
-            </td>
+        const netto =
+            prezzo -
+            (prezzo * sconto / 100);
 
 
-            <td>
+        div.innerHTML = `
+
+            <div>
+
+                <div class="workName">
+                    ${escapeHTML(work.name)}
+                </div>
+
+                <div style="
+                    margin-top:5px;
+                    color:#888;
+                    font-size:13px;
+                ">
+                    Sconto: ${sconto}%
+                </div>
+
+            </div>
+
+
+            <div class="workPrice">
+
+                <span>
+                    € ${money(netto)}
+                </span>
 
                 <input
-                    class="qty-input"
                     type="number"
-                    min="1"
-                    value="${work.quantity}"
-                    onchange="
-                        updateWorkQuantity(
-                            '${work.id}',
-                            this.value
-                        )
-                    "
-                >
-
-            </td>
-
-
-            <td>
-
-                <input
-                    class="price-input"
-                    type="number"
-                    min="0"
                     step="0.01"
-                    value="${work.price || ""}"
-                    placeholder="0,00"
-                    onchange="
-                        updateWorkPrice(
-                            '${work.id}',
-                            this.value
-                        )
-                    "
+                    value="${prezzo}"
+                    onchange="changeWorkPrice('${work.id}',this.value)"
                 >
-
-            </td>
-
-
-            <td class="total-cell">
-
-                ${euro(total)}
-
-            </td>
-
-
-            <td>
 
                 <button
-                    class="delete-btn"
-                    onclick="
-                        deleteWork('${work.id}')
-                    ">
-
+                    class="cancel"
+                    onclick="deleteWork('${work.id}')"
+                >
                     Elimina
-
                 </button>
 
-            </td>
+            </div>
 
         `;
 
-        body.appendChild(tr);
+        body.appendChild(div);
 
     });
 
-}
 
+    if(personWorks.length === 0){
 
-/* =====================================================
-   MODIFICA QUANTITÀ LAVORO
-===================================================== */
+        body.innerHTML = `
 
-function updateWorkQuantity(id,value){
+            <div class="note" style="
+                background:#f7f7f7;
+                padding:20px;
+                border-radius:12px;
+                color:#666;
+            ">
 
-    const work =
-        database[currentPerson].works.find(
-            w => w.id === id
-        );
+                Nessun lavoro inserito.
 
-    if(!work) return;
+            </div>
 
-    work.quantity =
-        Math.max(1,Number(value) || 1);
+        `;
 
-    saveDatabase();
-
-    updateAll();
-
-}
-
-
-/* =====================================================
-   MODIFICA PREZZO LAVORO
-===================================================== */
-
-function updateWorkPrice(id,value){
-
-    const work =
-        database[currentPerson].works.find(
-            w => w.id === id
-        );
-
-    if(!work) return;
-
-    work.price =
-        Math.max(0,Number(value) || 0);
-
-    saveDatabase();
-
-    updateAll();
-
-}
-
-
-/* =====================================================
-   ELIMINA LAVORO
-===================================================== */
-
-function deleteWork(id){
-
-    if(!confirm("Vuoi eliminare questo lavoro?")){
-        return;
     }
 
-    database[currentPerson].works =
-        database[currentPerson].works.filter(
-            w => w.id !== id
-        );
-
-    saveDatabase();
-
-    updateAll();
-
 }
 
-
-/* =====================================================
-   NUOVO LAVORO
-===================================================== */
 
 function openWorkModal(){
 
-    document.getElementById(
-        "modalWorkPerson"
-    ).textContent = currentPerson;
+    document.getElementById("workModalPerson")
+        .textContent = currentPerson;
 
-    document.getElementById(
-        "newWorkName"
-    ).value = "";
+    document.getElementById("workName").value = "";
+    document.getElementById("workPrice").value = 0;
+    document.getElementById("workDiscount").value = 0;
 
-    document.getElementById(
-        "newWorkQty"
-    ).value = 1;
-
-    document.getElementById(
-        "newWorkPrice"
-    ).value = 0;
-
-    document.getElementById(
-        "workModal"
-    ).classList.add("show");
+    document
+        .getElementById("workModal")
+        .classList.add("show");
 
 }
 
 
 function closeWorkModal(){
 
-    document.getElementById(
-        "workModal"
-    ).classList.remove("show");
+    document
+        .getElementById("workModal")
+        .classList.remove("show");
 
 }
 
 
-function saveNewWork(){
+function saveWork(){
 
     const name =
         document
-            .getElementById("newWorkName")
+            .getElementById("workName")
             .value
             .trim();
 
-    const quantity =
-        Number(
-            document
-                .getElementById("newWorkQty")
-                .value
-        ) || 1;
-
-    const price =
-        Number(
-            document
-                .getElementById("newWorkPrice")
-                .value
-        ) || 0;
-
-
     if(!name){
 
-        alert("Inserisci la descrizione del lavoro.");
+        alert("Inserisci il lavoro.");
 
         return;
-
     }
 
 
-    database[currentPerson].works.push({
+    works.push({
 
         id:
-            "work-new-" +
-            Date.now(),
+            Date.now().toString(),
 
-        name:name,
+        person:
+            currentPerson,
 
-        quantity:quantity,
+        name:
+            name,
 
-        price:price
+        price:
+            Number(
+                document.getElementById("workPrice").value || 0
+            ),
+
+        discount:
+            Number(
+                document.getElementById("workDiscount").value || 0
+            )
 
     });
 
 
-    saveDatabase();
+    saveData();
 
     closeWorkModal();
 
-    updateAll();
+    renderWorks();
+
+    updateStats();
 
 }
 
 
-/* =====================================================
-   TOTALI
-===================================================== */
+/* ============================================================
+   PREZZO LAVORO
+============================================================ */
 
-function calculateOrdersTotal(){
+function changeWorkPrice(id,value){
 
-    return database[currentPerson].orders.reduce(
+    const work =
+        works.find(w => w.id === id);
 
-        (sum,order) => {
+    if(!work) return;
 
-            return sum +
-                (
-                    Number(order.quantity || 0) *
-                    Number(order.price || 0)
-                );
+    work.price =
+        Number(value || 0);
 
-        },
-
-        0
-
-    );
-
-}
-
-
-function calculateWorksTotal(){
-
-    return database[currentPerson].works.reduce(
-
-        (sum,work) => {
-
-            return sum +
-                (
-                    Number(work.quantity || 0) *
-                    Number(work.price || 0)
-                );
-
-        },
-
-        0
-
-    );
-
-}
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-function updateDashboard(){
-
-    const orders =
-        database[currentPerson].orders;
-
-    const works =
-        database[currentPerson].works;
-
-
-    document.getElementById("count").textContent =
-        orders.length;
-
-
-    document.getElementById("netTotal").textContent =
-        euro(calculateOrdersTotal());
-
-
-    document.getElementById("workCount").textContent =
-        works.length;
-
-
-    document.getElementById("workTotal").textContent =
-        euro(calculateWorksTotal());
-
-
-    document.getElementById("paymentOrders").textContent =
-        euro(calculateOrdersTotal());
-
-
-    document.getElementById("paymentWorks").textContent =
-        euro(calculateWorksTotal());
-
-}
-
-
-/* =====================================================
-   AGGIORNA TUTTO
-===================================================== */
-
-function updateAll(){
-
-    if(!currentPerson){
-        return;
-    }
-
-    renderOrders();
+    saveData();
 
     renderWorks();
 
-    updateDashboard();
+}
+
+
+/* ============================================================
+   ELIMINA LAVORO
+============================================================ */
+
+function deleteWork(id){
+
+    if(
+        !confirm(
+            "Vuoi eliminare questo lavoro?"
+        )
+    ){
+
+        return;
+    }
+
+
+    works =
+        works.filter(
+            w => w.id !== id
+        );
+
+    saveData();
+
+    renderWorks();
+
+    updateStats();
 
 }
 
 
-/* =====================================================
-   SICUREZZA TESTO
-===================================================== */
+/* ============================================================
+   PAGAMENTI
+============================================================ */
+
+function updatePayment(){
+
+    const total =
+        getPersonOrders()
+            .reduce(
+                (sum,order) =>
+                    sum + Number(order.dareGio || 0),
+                0
+            );
+
+    document.getElementById("paymentTotal")
+        .textContent =
+            "€ " + money(total);
+
+}
+
+
+function updateStats(){
+
+    const personOrders =
+        getPersonOrders();
+
+    const personWorks =
+        getPersonWorks();
+
+
+    const totalNetto =
+        personOrders.reduce(
+            (sum,order) =>
+                sum + calculateNettoOrder(order),
+            0
+        );
+
+
+    const gioTotal =
+        personOrders.reduce(
+            (sum,order) =>
+                sum + Number(order.dareGio || 0),
+            0
+        );
+
+
+    document.getElementById("count")
+        .textContent =
+            personOrders.length;
+
+
+    document.getElementById("netTotal")
+        .textContent =
+            "€ " + money(totalNetto);
+
+
+    document.getElementById("gioTotal")
+        .textContent =
+            "€ " + money(gioTotal);
+
+
+    document.getElementById("workCount")
+        .textContent =
+            personWorks.length;
+
+}
+
+
+/* ============================================================
+   SALVATAGGIO
+============================================================ */
+
+function saveData(){
+
+    localStorage.setItem(
+        "ktmOrdersV3",
+        JSON.stringify(orders)
+    );
+
+    localStorage.setItem(
+        "ktmWorksV3",
+        JSON.stringify(works)
+    );
+
+}
+
+
+/* ============================================================
+   UTILITY
+============================================================ */
+
+function money(value){
+
+    return Number(value || 0)
+        .toLocaleString("it-IT",{
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        });
+
+}
+
+
+function formatDate(date){
+
+    if(!date){
+        return "";
+    }
+
+    const parts =
+        date.split("-");
+
+    if(parts.length !== 3){
+        return date;
+    }
+
+    return parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0];
+
+}
+
 
 function escapeHTML(text){
 
     return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================================
-   CHIUSURA MODALI CLICCANDO FUORI
-===================================================== */
+/* ============================================================
+   PRECARICA I LAVORI ESCLUSI
+============================================================ */
 
-document
-    .getElementById("orderModal")
-    .addEventListener(
-        "click",
-        function(e){
+function initializeWorks(){
 
-            if(e.target === this){
+    if(
+        localStorage.getItem("ktmWorksInitializedV3")
+    ){
 
-                closeOrderModal();
+        return;
+    }
 
-            }
 
-        }
+    const people = ["ROBY","FEDE"];
+
+    people.forEach(person => {
+
+        DEFAULT_WORKS.forEach((name,index) => {
+
+            works.push({
+
+                id:
+                    "work-" +
+                    person +
+                    "-" +
+                    index +
+                    "-" +
+                    Date.now(),
+
+                person:
+                    person,
+
+                name:
+                    name,
+
+                price:
+                    0,
+
+                discount:
+                    0
+
+            });
+
+        });
+
+    });
+
+
+    localStorage.setItem(
+        "ktmWorksV3",
+        JSON.stringify(works)
     );
 
-
-document
-    .getElementById("workModal")
-    .addEventListener(
-        "click",
-        function(e){
-
-            if(e.target === this){
-
-                closeWorkModal();
-
-            }
-
-        }
+    localStorage.setItem(
+        "ktmWorksInitializedV3",
+        "1"
     );
 
+}
 
-/* =====================================================
-   SALVATAGGIO INIZIALE
-===================================================== */
 
-saveDatabase();
+/* ============================================================
+   PRECARICA GLI ARTICOLI KTM
+============================================================ */
+
+function initializeArticles(){
+
+    if(
+        localStorage.getItem("ktmArticlesInitializedV3")
+    ){
+
+        return;
+    }
+
+
+    const people = ["ROBY","FEDE"];
+
+
+    people.forEach(person => {
+
+        KTM_ARTICLES.forEach((article,index) => {
+
+            orders.push({
+
+                id:
+                    "article-" +
+                    person +
+                    "-" +
+                    index,
+
+                person:
+                    person,
+
+                date:
+                    "",
+
+                quantity:
+                    1,
+
+                article:
+                    article,
+
+                listino:
+                    0,
+
+                sconto:
+                    0,
+
+                darePersona:
+                    0,
+
+                dareGio:
+                    0
+
+            });
+
+        });
+
+    });
+
+
+    localStorage.setItem(
+        "ktmOrdersV3",
+        JSON.stringify(orders)
+    );
+
+    localStorage.setItem(
+        "ktmArticlesInitializedV3",
+        "1"
+    );
+
+}
+
+
+/* ============================================================
+   AVVIO
+============================================================ */
+
+initializeWorks();
+initializeArticles();
+
+orders =
+    JSON.parse(
+        localStorage.getItem("ktmOrdersV3") || "[]"
+    );
+
+works =
+    JSON.parse(
+        localStorage.getItem("ktmWorksV3") || "[]"
+    );
+
 
 </script>
 
