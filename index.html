@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>Gestione Ordini KTM</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0
+:root{
+--orange:#ff6600;
+--orange-dark:#e65300;
+--orange-light:#fff1e8;
+--black:#111;
+--gray:#777;
+--border:#ddd;
+--bg:#f6f6f6;
+--white:#fff
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-color:#111
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:var(--bg);
+color:var(--black)
 }
 
-button,
-input,
-select{
+button,input{
 font-family:inherit
 }
 
-button{
-cursor:pointer
-}
-
-/* =========================
-   HOME
-========================= */
+button{cursor:pointer}
 
 #home{
 min-height:100vh;
@@ -48,7 +44,7 @@ overflow:hidden
 
 .orange{
 position:absolute;
-background:#ff6600
+background:var(--orange)
 }
 
 .o1{
@@ -79,7 +75,7 @@ z-index:2
 font-size:80px;
 font-weight:900;
 font-style:italic;
-color:#ff6600
+color:var(--orange)
 }
 
 .home h1{
@@ -109,7 +105,7 @@ transition:.2s
 }
 
 .person:hover{
-border-color:#ff6600;
+border-color:var(--orange);
 transform:translateY(-3px)
 }
 
@@ -118,7 +114,7 @@ width:75px;
 height:75px;
 margin:auto;
 border-radius:50%;
-background:#ff6600;
+background:var(--orange);
 color:white;
 display:flex;
 align-items:center;
@@ -139,22 +135,18 @@ font-weight:bold
 }
 
 .orangebtn{
-background:#ff6600;
-color:white
+background:var(--orange);
+color:#fff
 }
 
 .orangebtn:hover{
-background:#e65300
+background:var(--orange-dark)
 }
 
 .person .btn{
 width:100%;
 margin-top:22px
 }
-
-/* =========================
-   APP
-========================= */
 
 #app{
 display:none;
@@ -164,7 +156,7 @@ min-height:100vh
 .header{
 height:70px;
 background:white;
-border-bottom:1px solid #ddd;
+border-bottom:1px solid var(--border);
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -174,32 +166,30 @@ top:0;
 z-index:20
 }
 
-.smalllogo{
-font-size:30px;
-font-weight:900;
-font-style:italic;
-color:#ff6600
-}
-
 .headerRight{
 display:flex;
 align-items:center;
 gap:15px
 }
 
-.exit,
-.back{
-background:white;
+.smalllogo{
+font-size:30px;
+font-weight:900;
+font-style:italic;
+color:var(--orange)
+}
+
+.exit,.back{
+background:#fff;
 border:1px solid #ccc;
 border-radius:8px;
 padding:9px 14px;
 font-weight:bold
 }
 
-.exit:hover,
-.back:hover{
-border-color:#ff6600;
-color:#ff6600
+.exit:hover,.back:hover{
+border-color:var(--orange);
+color:var(--orange)
 }
 
 .container{
@@ -208,17 +198,8 @@ margin:auto;
 padding:28px 18px
 }
 
-.page{
-display:none
-}
-
-.page.active{
-display:block
-}
-
-/* =========================
-   TITOLI
-========================= */
+.page{display:none}
+.page.active{display:block}
 
 .title{
 margin-bottom:22px
@@ -233,10 +214,6 @@ color:#777;
 margin-top:5px
 }
 
-/* =========================
-   STATISTICHE
-========================= */
-
 .stats{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -245,8 +222,8 @@ margin-bottom:22px
 }
 
 .stat{
-background:white;
-border:1px solid #ddd;
+background:#fff;
+border:1px solid var(--border);
 border-radius:15px;
 padding:18px
 }
@@ -262,10 +239,6 @@ font-size:22px;
 margin-top:8px
 }
 
-/* =========================
-   MENU
-========================= */
-
 .menu{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -274,7 +247,7 @@ gap:16px
 
 .card{
 background:#fff;
-border:1px solid #ddd;
+border:1px solid var(--border);
 border-radius:16px;
 padding:20px;
 display:flex;
@@ -285,7 +258,7 @@ transition:.2s
 }
 
 .card:hover{
-border-color:#ff6600;
+border-color:var(--orange);
 transform:translateY(-2px)
 }
 
@@ -293,8 +266,8 @@ transform:translateY(-2px)
 width:54px;
 height:54px;
 border-radius:13px;
-background:#fff0e8;
-color:#ff6600;
+background:var(--orange-light);
+color:var(--orange);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -310,13 +283,9 @@ margin-top:4px
 
 .arrow{
 margin-left:auto;
-color:#ff6600;
+color:var(--orange);
 font-size:25px
 }
-
-/* =========================
-   TOP
-========================= */
 
 .top{
 display:flex;
@@ -325,13 +294,9 @@ align-items:center;
 margin-bottom:20px
 }
 
-/* =========================
-   RICERCA
-========================= */
-
 .searchbox{
-background:white;
-border:1px solid #ddd;
+background:#fff;
+border:1px solid var(--border);
 border-radius:15px;
 padding:14px;
 margin-bottom:14px;
@@ -352,7 +317,7 @@ outline:none
 }
 
 .searchbox input:focus{
-border-color:#ff6600;
+border-color:var(--orange);
 box-shadow:0 0 0 3px #ff660018
 }
 
@@ -364,22 +329,14 @@ padding:12px 15px;
 font-weight:bold
 }
 
-.searchbox button:hover{
-background:#ddd
-}
-
 .searchInfo{
 color:#777;
 font-size:13px
 }
 
-/* =========================
-   TABELLA
-========================= */
-
 .tablebox{
-background:white;
-border:1px solid #ddd;
+background:#fff;
+border:1px solid var(--border);
 border-radius:15px;
 overflow:auto
 }
@@ -387,7 +344,7 @@ overflow:auto
 table{
 border-collapse:collapse;
 width:100%;
-min-width:900px
+min-width:950px
 }
 
 th{
@@ -395,10 +352,7 @@ background:#fafafa;
 color:#777;
 font-size:11px;
 text-align:left;
-padding:12px;
-position:sticky;
-top:0;
-z-index:2
+padding:12px
 }
 
 td{
@@ -412,10 +366,6 @@ tbody tr:hover{
 background:#fffaf7
 }
 
-/* =========================
-   INPUT PREZZI
-========================= */
-
 .priceInput,
 .discountInput{
 width:100px;
@@ -428,22 +378,17 @@ font-size:13px
 .priceInput:focus,
 .discountInput:focus{
 outline:none;
-border-color:#ff6600;
-box-shadow:0 0 0 2px #ff660018
+border-color:var(--orange)
 }
 
-.netCell,
-.totalCell{
+.netCell{
 font-weight:bold
 }
 
 .totalCell{
-color:#ff6600
+font-weight:bold;
+color:var(--orange)
 }
-
-/* =========================
-   LAVORI
-========================= */
 
 .workNote{
 background:#fff7f1;
@@ -454,9 +399,7 @@ margin-bottom:14px;
 color:#555
 }
 
-/* =========================
-   MODALE
-========================= */
+/* MODALE */
 
 .modalbg{
 display:none;
@@ -474,20 +417,29 @@ display:flex
 }
 
 .modal{
-background:white;
+background:#fff;
 border-radius:20px;
 padding:24px;
-width:650px;
+width:700px;
 max-width:100%;
 max-height:90vh;
 overflow:auto
 }
 
+.modal h2{
+margin-bottom:5px
+}
+
+.modalSub{
+color:#777;
+font-size:13px;
+margin-bottom:18px
+}
+
 .form{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:14px;
-margin-top:18px
+gap:14px
 }
 
 .field{
@@ -506,8 +458,7 @@ color:#666;
 font-weight:bold
 }
 
-.field input,
-.field select{
+.field input{
 padding:11px;
 border:1px solid #ccc;
 border-radius:8px
@@ -515,7 +466,76 @@ border-radius:8px
 
 .field input:focus{
 outline:none;
-border-color:#ff6600
+border-color:var(--orange)
+}
+
+/* CATALOGO */
+
+.catalogBox{
+border:1px solid #ddd;
+border-radius:12px;
+overflow:hidden;
+background:#fafafa
+}
+
+.catalogSearch{
+width:100%;
+padding:13px;
+border:0;
+border-bottom:1px solid #ddd;
+outline:none;
+font-size:15px
+}
+
+.catalogResults{
+max-height:260px;
+overflow-y:auto
+}
+
+.catalogItem{
+padding:12px 14px;
+background:white;
+border-bottom:1px solid #eee;
+cursor:pointer;
+transition:.15s
+}
+
+.catalogItem:hover{
+background:var(--orange-light)
+}
+
+.catalogCode{
+font-weight:900;
+color:var(--orange);
+font-size:13px
+}
+
+.catalogName{
+font-size:13px;
+margin-top:3px
+}
+
+.catalogEmpty{
+padding:16px;
+color:#777;
+font-size:13px
+}
+
+.selectedPart{
+display:none;
+margin-top:10px;
+background:#fff1e8;
+border:1px solid #ffd1b8;
+border-radius:10px;
+padding:11px
+}
+
+.selectedPart.show{
+display:block
+}
+
+.selectedPart strong{
+color:var(--orange)
 }
 
 .summary{
@@ -553,13 +573,18 @@ padding:12px;
 font-weight:bold
 }
 
-.cancel:hover{
-background:#ddd
+.save{
+background:var(--orange);
+color:white;
+border:0;
+border-radius:8px;
+padding:12px 20px;
+font-weight:bold
 }
 
-/* =========================
-   SALVATAGGIO
-========================= */
+.save:hover{
+background:var(--orange-dark)
+}
 
 .saveMessage{
 position:fixed;
@@ -583,9 +608,11 @@ opacity:1;
 transform:translateY(0)
 }
 
-/* =========================
-   MOBILE
-========================= */
+.empty{
+text-align:center;
+padding:30px;
+color:#777
+}
 
 @media(max-width:700px){
 
@@ -625,37 +652,12 @@ padding:22px 12px
 }
 
 }
-
-@media(max-width:500px){
-
-.person{
-padding:25px 20px
-}
-
-.home h1{
-font-size:25px
-}
-
-.headerRight{
-gap:8px
-}
-
-.smalllogo{
-font-size:24px
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
-<!-- =====================================================
-     HOME
-===================================================== -->
+<!-- HOME -->
 
 <section id="home">
 
@@ -664,29 +666,19 @@ font-size:24px
 
 <div class="home">
 
-<div class="logo">
-KTM
-</div>
+<div class="logo">KTM</div>
 
-<h1>
-GESTIONE ORDINI
-</h1>
+<h1>GESTIONE ORDINI</h1>
 
-<p>
-Seleziona la persona da gestire
-</p>
+<p>Seleziona la persona da gestire</p>
 
 <div class="people">
 
 <div class="person">
 
-<div class="avatar">
-👤
-</div>
+<div class="avatar">👤</div>
 
-<h2>
-ROBY
-</h2>
+<h2>ROBY</h2>
 
 <button
 class="btn orangebtn"
@@ -698,16 +690,11 @@ ENTRA
 
 </div>
 
-
 <div class="person">
 
-<div class="avatar">
-👤
-</div>
+<div class="avatar">👤</div>
 
-<h2>
-FEDE
-</h2>
+<h2>FEDE</h2>
 
 <button
 class="btn orangebtn"
@@ -720,15 +707,11 @@ ENTRA
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<!-- APP -->
 
 <section id="app">
 
@@ -736,9 +719,7 @@ ENTRA
 
 <div class="headerRight">
 
-<div class="smalllogo">
-KTM
-</div>
+<div class="smalllogo">KTM</div>
 
 <strong id="currentUser"></strong>
 
@@ -758,9 +739,7 @@ onclick="esci()">
 <main class="container">
 
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+<!-- DASHBOARD -->
 
 <section
 id="dashboard"
@@ -776,45 +755,21 @@ Gestione ordini, lavori, prezzi e sconti
 
 </div>
 
-
 <div class="stats">
 
 <div class="stat">
-
-<small>
-ORDINI
-</small>
-
-<strong id="count">
-0
-</strong>
-
+<small>ORDINI</small>
+<strong id="count">0</strong>
 </div>
 
-
 <div class="stat">
-
-<small>
-TOTALE NETTO
-</small>
-
-<strong id="netTotal">
-€ 0,00
-</strong>
-
+<small>TOTALE NETTO</small>
+<strong id="netTotal">€ 0,00</strong>
 </div>
 
-
 <div class="stat">
-
-<small>
-LAVORI
-</small>
-
-<strong id="workCount">
-0
-</strong>
-
+<small>LAVORI</small>
+<strong id="workCount">0</strong>
 </div>
 
 </div>
@@ -822,30 +777,18 @@ LAVORI
 
 <div class="menu">
 
-
 <div
 class="card"
 onclick="showPage('orders')">
 
-<div class="icon">
-📋
-</div>
+<div class="icon">📋</div>
 
 <div>
-
-<h3>
-I miei ordini
-</h3>
-
-<p>
-Visualizza e cerca tutti gli articoli
-</p>
-
+<h3>I miei ordini</h3>
+<p>Visualizza e cerca tutti gli articoli</p>
 </div>
 
-<div class="arrow">
-›
-</div>
+<div class="arrow">›</div>
 
 </div>
 
@@ -854,25 +797,14 @@ Visualizza e cerca tutti gli articoli
 class="card"
 onclick="openModal()">
 
-<div class="icon">
-➕
-</div>
+<div class="icon">➕</div>
 
 <div>
-
-<h3>
-Nuovo ordine
-</h3>
-
-<p>
-Aggiungi un nuovo articolo
-</p>
-
+<h3>Nuovo ordine</h3>
+<p>Cerca e aggiungi un ricambio KTM</p>
 </div>
 
-<div class="arrow">
-›
-</div>
+<div class="arrow">›</div>
 
 </div>
 
@@ -881,25 +813,14 @@ Aggiungi un nuovo articolo
 class="card"
 onclick="showPage('works')">
 
-<div class="icon">
-🔧
-</div>
+<div class="icon">🔧</div>
 
 <div>
-
-<h3>
-Lavori
-</h3>
-
-<p>
-Gestisci le attività
-</p>
-
+<h3>Lavori</h3>
+<p>Gestisci le attività</p>
 </div>
 
-<div class="arrow">
-›
-</div>
+<div class="arrow">›</div>
 
 </div>
 
@@ -908,9 +829,7 @@ Gestisci le attività
 </section>
 
 
-<!-- =====================================================
-     ORDINI
-===================================================== -->
+<!-- ORDINI -->
 
 <section
 id="orders"
@@ -924,24 +843,20 @@ onclick="showPage('dashboard')">
 
 </button>
 
-
 <div class="top">
 
 <div class="title">
 
 <h1>
-
 Ordini di
 <span id="ordersPerson"></span>
-
 </h1>
 
 <p>
-Prezzi e sconti modificabili e salvati automaticamente
+Ricerca rapida per codice o articolo
 </p>
 
 </div>
-
 
 <button
 class="btn orangebtn"
@@ -959,20 +874,16 @@ onclick="openModal()">
 <input
 id="orderSearch"
 type="search"
-placeholder="🔎 Cerca rapidamente codice o articolo..."
+placeholder="🔎 Cerca codice KTM..."
 autocomplete="off">
 
-<button
-onclick="clearSearch()">
-
+<button onclick="clearSearch">
 Pulisci
-
 </button>
 
 <span
 class="searchInfo"
 id="searchInfo">
-
 </span>
 
 </div>
@@ -986,41 +897,19 @@ id="searchInfo">
 
 <tr>
 
-<th>
-DATA
-</th>
-
-<th>
-Q.TÀ
-</th>
-
-<th>
-CODICE / ARTICOLO
-</th>
-
-<th>
-PREZZO (€)
-</th>
-
-<th>
-SCONTO (%)
-</th>
-
-<th>
-NETTO (€)
-</th>
-
-<th>
-TOTALE (€)
-</th>
+<th>DATA</th>
+<th>Q.TÀ</th>
+<th>CODICE / ARTICOLO</th>
+<th>PREZZO (€)</th>
+<th>SCONTO (%)</th>
+<th>NETTO (€)</th>
+<th>TOTALE (€)</th>
 
 </tr>
 
 </thead>
 
-<tbody
-id="ordersBody">
-</tbody>
+<tbody id="ordersBody"></tbody>
 
 </table>
 
@@ -1029,9 +918,7 @@ id="ordersBody">
 </section>
 
 
-<!-- =====================================================
-     LAVORI
-===================================================== -->
+<!-- LAVORI -->
 
 <section
 id="works"
@@ -1045,16 +932,13 @@ onclick="showPage('dashboard')">
 
 </button>
 
-
 <div class="top">
 
 <div class="title">
 
 <h1>
-
 Lavori di
 <span id="worksPerson"></span>
-
 </h1>
 
 <p>
@@ -1065,16 +949,13 @@ Attività escluse dagli ordini ricambi
 
 </div>
 
-
 <div class="workNote">
 
-I prezzi sono inizialmente a
-<b>€ 0,00</b>.
+I prezzi sono inizialmente a <b>€ 0,00</b>.
 Puoi inserirli direttamente nelle righe.
-I valori vengono salvati automaticamente.
+Lo sconto predefinito è <b>25%</b>.
 
 </div>
-
 
 <div class="tablebox">
 
@@ -1084,41 +965,19 @@ I valori vengono salvati automaticamente.
 
 <tr>
 
-<th>
-DATA
-</th>
-
-<th>
-Q.TÀ
-</th>
-
-<th>
-LAVORO
-</th>
-
-<th>
-PREZZO (€)
-</th>
-
-<th>
-SCONTO (%)
-</th>
-
-<th>
-NETTO (€)
-</th>
-
-<th>
-TOTALE (€)
-</th>
+<th>DATA</th>
+<th>Q.TÀ</th>
+<th>LAVORO</th>
+<th>PREZZO (€)</th>
+<th>SCONTO (%)</th>
+<th>NETTO (€)</th>
+<th>TOTALE (€)</th>
 
 </tr>
 
 </thead>
 
-<tbody
-id="worksBody">
-</tbody>
+<tbody id="worksBody"></tbody>
 
 </table>
 
@@ -1126,15 +985,11 @@ id="worksBody">
 
 </section>
 
-
 </main>
-
 </section>
 
 
-<!-- =====================================================
-     MODALE
-===================================================== -->
+<!-- MODALE NUOVO ORDINE -->
 
 <div
 id="modalBg"
@@ -1143,21 +998,53 @@ class="modalbg">
 <div class="modal">
 
 <h2>
-
 Nuovo ordine -
 <span id="modalUser"></span>
-
 </h2>
 
+<div class="modalSub">
+Cerca il ricambio nel catalogo KTM
+</div>
 
-<div class="form">
 
+<div class="catalogBox">
+
+<input
+id="catalogSearch"
+class="catalogSearch"
+type="search"
+placeholder="🔎 Cerca codice o descrizione..."
+autocomplete="off">
+
+<div
+id="catalogResults"
+class="catalogResults">
+</div>
+
+</div>
+
+
+<div
+id="selectedPart"
+class="selectedPart">
+
+Ricambio selezionato:
+<strong id="selectedCode"></strong>
+
+<br>
+
+<span id="selectedName"></span>
+
+</div>
+
+
+<div
+class="form"
+style="margin-top:18px">
 
 <div class="field">
 
-<label>
-DATA
-</label>
+<label>DATA</label>
 
 <input
 type="date"
@@ -1168,9 +1055,7 @@ id="dateInput">
 
 <div class="field">
 
-<label>
-QUANTITÀ
-</label>
+<label>QUANTITÀ</label>
 
 <input
 type="number"
@@ -1183,39 +1068,32 @@ value="1">
 
 <div class="field full">
 
-<label>
-CODICE / ARTICOLO
-</label>
+<label>CODICE / ARTICOLO SELEZIONATO</label>
 
 <input
 id="articleInput"
-placeholder="Inserisci codice KTM">
+placeholder="Seleziona un ricambio sopra">
 
 </div>
 
 
 <div class="field">
 
-<label>
-PREZZO (€)
-</label>
+<label>PREZZO (€)</label>
 
 <input
 type="number"
 id="listInput"
 step="0.01"
 min="0"
-value="0"
-placeholder="0,00">
+value="0">
 
 </div>
 
 
 <div class="field">
 
-<label>
-SCONTO (%)
-</label>
+<label>SCONTO (%)</label>
 
 <input
 type="number"
@@ -1234,9 +1112,7 @@ max="100">
 
 <div class="sumrow">
 
-<span>
-Netto unitario
-</span>
+<span>Netto unitario</span>
 
 <strong id="unitNet">
 € 0,00
@@ -1244,12 +1120,9 @@ Netto unitario
 
 </div>
 
-
 <div class="sumrow sumtotal">
 
-<span>
-Totale ordine
-</span>
+<span>Totale ordine</span>
 
 <strong id="orderTotal">
 € 0,00
@@ -1270,9 +1143,8 @@ Annulla
 
 </button>
 
-
 <button
-class="btn orangebtn"
+class="save"
 onclick="saveOrder()">
 
 SALVA ORDINE
@@ -1297,26 +1169,141 @@ class="saveMessage">
 
 <script>
 
-/* =========================================================
-   STORAGE
-========================================================= */
+/* =====================================================
+   DATABASE LOCALE
+===================================================== */
 
-const STORAGE_KEY =
-"KTM_GESTIONALE_COMPLETO_V2";
+const STORAGE_KEY="KTM_GESTIONALE_V3";
 
-
-let currentPerson = "";
-
-let orders = [];
-
-let works = [];
+let currentPerson="";
+let orders=[];
+let works=[];
 
 
-/* =========================================================
-   DATI ORDINI ROBY
-========================================================= */
+/* =====================================================
+   CATALOGO RICAMBI KTM
+   Codici reali KTM già utilizzati nel tuo archivio
+===================================================== */
 
-const ORDINI_ROBY_BASE = [
+const KTM_CATALOG=[
+
+{code:"50430098060",name:"Ricambio KTM 50430098060"},
+{code:"50430098050",name:"Ricambio KTM 50430098050"},
+{code:"50430025000",name:"Ricambio KTM 50430025000"},
+{code:"50430039000",name:"Ricambio KTM 50430039000"},
+{code:"00050002300",name:"Ricambio KTM 00050002300"},
+{code:"50430015044",name:"Ricambio KTM 50430015044"},
+{code:"A46035009000",name:"Ricambio KTM A46035009000"},
+{code:"00050000272",name:"Ricambio KTM 00050000272"},
+{code:"79430107210",name:"Ricambio KTM 79430107210"},
+{code:"79536013000",name:"Ricambio KTM 79536013000"},
+{code:"77239093000",name:"Ricambio KTM 77239093000"},
+{code:"77338005100",name:"Ricambio KTM 77338005100"},
+{code:"A42005907500",name:"Ricambio KTM A42005907500"},
+{code:"A46035909000",name:"Ricambio KTM A46035909000"},
+{code:"A46014069000",name:"Ricambio KTM A46014069000"},
+{code:"A42030060000",name:"Ricambio KTM A42030060000"},
+{code:"50403096010",name:"Ricambio KTM 50403096010"},
+{code:"77204066010",name:"Ricambio KTM 77204066010"},
+{code:"77204066044",name:"Ricambio KTM 77204066044"},
+{code:"A45041072033",name:"Ricambio KTM A45041072033"},
+{code:"79135071044",name:"Ricambio KTM 79135071044"},
+{code:"50439005000",name:"Ricambio KTM 50439005000"},
+{code:"50532054000",name:"Ricambio KTM 50532054000"},
+{code:"91010240S",name:"Ricambio KTM 91010240S"},
+{code:"50439004000",name:"Ricambio KTM 50439004000"},
+{code:"79030015144",name:"Ricambio KTM 79030015144"},
+{code:"47230015044",name:"Ricambio KTM 47230015044"},
+{code:"50530152044",name:"Ricambio KTM 50530152044"},
+{code:"A42030018010",name:"Ricambio KTM A42030018010"},
+{code:"50430006100",name:"Ricambio KTM 50430006100"},
+{code:"50433015400",name:"Ricambio KTM 50433015400"},
+{code:"54834005133",name:"Ricambio KTM 54834005133"},
+{code:"50534005044",name:"Ricambio KTM 50534005044"},
+{code:"A42030035040",name:"Ricambio KTM A42030035040"},
+{code:"A42030035025",name:"Ricambio KTM A42030035025"},
+{code:"A42030118000",name:"Ricambio KTM A42030118000"},
+{code:"A42030000144",name:"Ricambio KTM A42030000144"},
+{code:"50532010033",name:"Ricambio KTM 50532010033"},
+{code:"47230060100",name:"Ricambio KTM 47230060100"},
+{code:"47230035040",name:"Ricambio KTM 47230035040"},
+{code:"50430035050",name:"Ricambio KTM 50430035050"},
+{code:"50430035040",name:"Ricambio KTM 50430035040"},
+{code:"50430035020",name:"Ricambio KTM 50430035020"},
+{code:"55430006100",name:"Ricambio KTM 55430006100"},
+{code:"56530123200",name:"Ricambio KTM 56530123200"},
+{code:"0625623204",name:"Ricambio KTM 0625623204"},
+{code:"54830015244",name:"Ricambio KTM 54830015244"},
+{code:"55530038100",name:"Ricambio KTM 55530038100"},
+{code:"A46030036072",name:"Ricambio KTM A46030036072"},
+{code:"A46030035000",name:"Ricambio KTM A46030035000"},
+{code:"A46030007000I",name:"Ricambio KTM A46030007000I"},
+{code:"79013090000",name:"Ricambio KTM 79013090000"},
+{code:"A44002091000",name:"Ricambio KTM A44002091000"},
+{code:"0625063055",name:"Ricambio KTM 0625063055"},
+{code:"50330082000",name:"Ricambio KTM 50330082000"},
+{code:"A42003014000",name:"Ricambio KTM A42003014000"},
+{code:"A42030000244",name:"Ricambio KTM A42030000244"},
+{code:"0835080326",name:"Ricambio KTM 0835080326"},
+{code:"51030034000",name:"Ricambio KTM 51030034000"},
+{code:"54802031000",name:"Ricambio KTM 54802031000"},
+{code:"79230207200",name:"Ricambio KTM 79230207200"},
+{code:"79041077044",name:"Ricambio KTM 79041077044"},
+{code:"47230049000",name:"Ricambio KTM 47230049000"},
+{code:"47230039000",name:"Ricambio KTM 47230039000"},
+{code:"47230018188",name:"Ricambio KTM 47230018188"},
+{code:"47230025000",name:"Ricambio KTM 47230025000"},
+{code:"0625982031",name:"Ricambio KTM 0625982031"},
+{code:"0062042001400",name:"Ricambio KTM 0062042001400"},
+{code:"47234005044",name:"Ricambio KTM 47234005044"},
+{code:"47233016000",name:"Ricambio KTM 47233016000"},
+{code:"47233002000",name:"Ricambio KTM 47233002000"},
+{code:"47233015000",name:"Ricambio KTM 47233015000"},
+{code:"47233014000",name:"Ricambio KTM 47233014000"},
+{code:"47233003000",name:"Ricambio KTM 47233003000"},
+{code:"77036003200",name:"Ricambio KTM 77036003200"},
+{code:"77839093000",name:"Ricambio KTM 77839093000"},
+{code:"77036027000",name:"Ricambio KTM 77036027000"},
+{code:"A46030007010I",name:"Ricambio KTM A46030007010I"},
+{code:"A46030007000I",name:"Ricambio KTM A46030007000I"},
+{code:"A46035007000",name:"Ricambio KTM A46035007000"},
+{code:"47234012044",name:"Ricambio KTM 47234012044"},
+{code:"79234015100",name:"Ricambio KTM 79234015100"},
+{code:"47030076100",name:"Ricambio KTM 47030076100"},
+{code:"49030023000",name:"Ricambio KTM 49030023000"},
+{code:"47230049000",name:"Ricambio KTM 47230049000"},
+{code:"A46003062000",name:"Ricambio KTM A46003062000"}
+
+];
+
+
+/* =====================================================
+   LAVORI
+===================================================== */
+
+const LAVORI_ROBY=[
+
+"Pistone 125",
+"Motore 125",
+"Lavaggio moto",
+"Lezione",
+"Sardegna",
+"Vino",
+"Progrip",
+"Pistone muletto",
+"Lezione Ottobiano",
+"Motore moto gara"
+
+];
+
+const LAVORI_FEDE=[];
+
+
+/* =====================================================
+   DATI ORDINI INIZIALI
+===================================================== */
+
+const ORDINI_ROBY=[
 
 ["2024-10-08",1,"50430098060"],
 ["2024-10-10",1,"50430098050"],
@@ -1325,34 +1312,18 @@ const ORDINI_ROBY_BASE = [
 ["2024-10-10",1,"00050002300"],
 ["2024-10-10",1,"50430015044"],
 ["2024-10-09",1,"A46035009000"],
-["2024-10-12",1,"00050000272 - 79430107210 II"],
 ["2024-10-12",1,"79536013000"],
 ["2024-10-12",1,"77239093000"],
 ["2024-10-12",1,"77338005100"],
 ["2024-11-05",1,"A42005907500"],
 ["2024-11-05",1,"A46035909000"],
-["2024-11-13",1,"50430025000"],
-["2024-11-13",1,"50430098060"],
-["2024-11-13",1,"50430098050"],
-["2024-11-13",1,"50430039000"],
-["2024-11-13",1,"50430015044"],
-["2024-11-13",1,"00050002300"],
 ["2024-11-26",1,"A46014069000"],
 ["2024-11-26",1,"A42030060000"],
 ["2024-11-26",1,"50403096010"],
-["2024-11-26",1,"77204066010 - 77204066044"],
 ["2024-11-26",1,"A45041072033"],
 ["2024-11-26",1,"79135071044"],
-["2024-12-02",1,"00050002300"],
-["2024-12-02",1,"50430098060"],
-["2024-12-02",1,"50430025000"],
-["2024-12-02",1,"50430098050"],
-["2024-12-02",1,"50430015044"],
-["2024-12-02",1,"50430039000"],
 ["2024-12-04",1,"50439005000"],
 ["2024-12-04",1,"50532054000"],
-["2024-12-07",1,"79135071044"],
-["2024-12-07",1,"A45041072033"],
 ["2024-12-12",1,"91010240S"],
 ["2024-12-19",1,"50439004000"],
 ["2025-01-14",1,"79030015144"],
@@ -1361,10 +1332,8 @@ const ORDINI_ROBY_BASE = [
 ["2025-01-20",1,"50430098060"],
 ["2025-01-20",1,"50530152044"],
 ["2025-01-21",1,"A42030018010"],
-["2025-01-26",1,"50530152044"],
 ["2025-02-17",1,"50430006100"],
 ["2025-02-17",1,"50433015400"],
-["2025-02-17",1,"54834005133 - 50534005044"],
 ["2025-02-28",1,"A42030035040"],
 ["2025-02-28",1,"A42030035025"],
 ["2025-02-28",1,"A42030118000"],
@@ -1386,7 +1355,6 @@ const ORDINI_ROBY_BASE = [
 ["2025-05-27",1,"50430098050"],
 ["2025-05-27",1,"50430025000"],
 ["2025-05-27",1,"50430039000"],
-["2025-05-27",1,"00050002300 (ex 52330018288)"],
 ["2025-05-27",1,"50430015044"],
 ["2025-05-28",1,"50530152044"],
 ["2025-06-11",1,"A46030036072"],
@@ -1412,7 +1380,7 @@ const ORDINI_ROBY_BASE = [
 ["2025-09-26",4,"51030034000"],
 ["2025-09-30",1,"50530152044"],
 ["2025-10-01",1,"54802031000"],
-["2025-10-01",1,"79230207200 II"],
+["2025-10-01",1,"79230207200"],
 ["2025-10-28",1,"A42030060000"],
 ["2025-10-28",1,"79041077044"],
 ["2025-10-28",1,"50430015044"],
@@ -1471,110 +1439,37 @@ const ORDINI_ROBY_BASE = [
 
 ];
 
-
-/* =========================================================
-   LAVORI
-========================================================= */
-
-const LAVORI_ROBY_BASE = [
-
-["2024-09-25",1,"Pistone 125"],
-["2024-10-08",1,"Pistone 125"],
-["2024-11-16",1,"Lezione"],
-["2024-11-20",1,"Lezione"],
-["2024-11-30",1,"Lezione"],
-["2024-12-01",1,"Motore 125"],
-["2025-01-15",1,"Lavaggio moto"],
-["2025-01-18",1,"Lezione"],
-["2025-01-18",1,"Sardegna"],
-["2025-01-19",1,"Lezione"],
-["2025-01-22",1,"Lezione"],
-["2025-01-25",1,"Lezione"],
-["2025-01-29",1,"Lezione"],
-["2025-02-02",1,"Lezione"],
-["2025-02-06",1,"Lezione"],
-["2025-02-22",1,"Vino"],
-["2025-02-24",1,"Lezione"],
-["2025-02-26",1,"Lezione"],
-["2025-03-01",1,"Progrip"],
-["2025-03-04",1,"Lezione Mantova"],
-["2025-03-09",1,"Lezione"],
-["2025-03-26",1,"Lezione Vercelli"],
-["2025-04-02",1,"Lezione Bellinzago"],
-["2025-04-05",1,"Lezione Fara"],
-["2025-04-23",1,"Lezione Fara"],
-["2025-05-14",1,"Lezione Fara"],
-["2025-05-21",1,"Lezione Bellinzago"],
-["2025-05-21",1,"Pistone muletto"],
-["2025-05-29",1,"Lezione Ottobiano"],
-["2025-06-05",1,"Lezione Bellinzago"],
-["2025-06-20",1,"Motore moto gara"],
-["2025-07-09",1,"Lezione Fara"],
-["2025-08-24",1,"Lezione Fara"],
-["2025-08-27",1,"Lezione Ceriano"],
-["2025-09-03",1,"Lezione Casale"],
-["2025-09-17",1,"Lezione Cremona"],
-["2025-10-01",1,"Lezione Ottobiano"],
-["2025-10-22",1,"Lezione Bellinzago + moto"],
-["2025-11-26",1,"Lezione Ceriano"],
-["2025-12-03",1,"Lezione Ottobiano"],
-["2025-12-10",1,"Lezione Ceriano"],
-["2026-01-29",1,"Lezione Chieve"],
-["2026-02-05",1,"Lezione Chieve"],
-["2026-02-07",1,"Lezione Fiume"],
-["2026-02-11",1,"Lezione Fiume"],
-["2026-02-25",1,"Lezione Ottobiano"],
-["2026-03-25",1,"Lezione Dorno"],
-["2026-04-02",1,"Lezione Bosisio"],
-["2026-04-23",1,"Lezione Ottobiano"],
-["2026-04-29",1,"Lezione Bellinzago"],
-["2026-05-06",1,"Lezione Fiume"],
-["2026-05-20",1,"Lezione Ceriano"],
-["26 e 27/05/26",1,"Lezione Arco"],
-["2026-06-03",1,"Lezione Fara"]
-
-];
+const ORDINI_FEDE=[];
 
 
-const ORDINI_FEDE_BASE = [];
-const LAVORI_FEDE_BASE = [];
-
-
-/* =========================================================
+/* =====================================================
    STORAGE
-========================================================= */
+===================================================== */
 
-function getStorage(){
+function database(){
 
 try{
-
 return JSON.parse(
-localStorage.getItem(STORAGE_KEY) || "{}"
+localStorage.getItem(STORAGE_KEY)||"{}"
 );
-
 }catch(e){
-
 return {};
-
 }
 
 }
-
 
 function saveStorage(){
 
-const database=getStorage();
+const db=database();
 
-database[currentPerson]={
-
+db[currentPerson]={
 orders:orders,
 works:works
-
 };
 
 localStorage.setItem(
 STORAGE_KEY,
-JSON.stringify(database)
+JSON.stringify(db)
 );
 
 showSaved();
@@ -1582,68 +1477,41 @@ showSaved();
 }
 
 
-function saveStorageSilent(){
-
-const database=getStorage();
-
-database[currentPerson]={
-
-orders:orders,
-works:works
-
-};
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(database)
-);
-
-}
-
-
-/* =========================================================
+/* =====================================================
    PREPARAZIONE
-========================================================= */
+===================================================== */
 
 function prepareOrders(base){
 
-return base.map((x,index)=>({
+return base.map((x,i)=>({
 
-id:
-"order_"+index+"_"+x[2],
+id:"o_"+i+"_"+x[2]+"_"+Date.now(),
 
-date:x[0]||"",
+date:x[0],
 
 qty:Number(x[1])||1,
 
-article:x[2]||"",
+article:x[2],
 
 price:0,
-
-/*
-   GLI ORDINI ESISTENTI PARTONO
-   DA 25% DI SCONTO
-*/
 
 discount:25
 
 }));
 
 }
-
 
 function prepareWorks(base){
 
-return base.map((x,index)=>({
+return base.map((name,i)=>({
 
-id:
-"work_"+index+"_"+x[2],
+id:"w_"+i+"_"+Date.now(),
 
-date:x[0]||"",
+date:"",
 
-qty:Number(x[1])||1,
+qty:1,
 
-article:x[2]||"",
+article:name,
 
 price:0,
 
@@ -1654,82 +1522,42 @@ discount:25
 }
 
 
-/* =========================================================
+/* =====================================================
    ENTRA
-========================================================= */
+===================================================== */
 
 function entra(nome){
 
 currentPerson=nome;
 
-const database=getStorage();
+const db=database();
 
+if(db[nome]){
 
-if(database[nome]){
+orders=db[nome].orders||[];
+works=db[nome].works||[];
 
-orders=database[nome].orders||[];
-works=database[nome].works||[];
-
-
-/*
-   Compatibilità con i dati vecchi:
-   se qualche articolo non ha lo sconto,
-   viene impostato al 25%.
-*/
-
-orders.forEach(order=>{
-
-if(
-order.discount === undefined ||
-order.discount === null ||
-order.discount === ""
-){
-
-order.discount=25;
-
-}
-
+orders.forEach(x=>{
+if(x.discount===undefined)
+x.discount=25;
 });
 
-
-works.forEach(work=>{
-
-if(
-work.discount === undefined ||
-work.discount === null ||
-work.discount === ""
-){
-
-work.discount=25;
-
-}
-
+works.forEach(x=>{
+if(x.discount===undefined)
+x.discount=25;
 });
-
-
-saveStorageSilent();
 
 }else{
 
 if(nome==="Roby"){
 
-orders=prepareOrders(
-ORDINI_ROBY_BASE
-);
-
-works=prepareWorks(
-LAVORI_ROBY_BASE
-);
+orders=prepareOrders(ORDINI_ROBY);
+works=prepareWorks(LAVORI_ROBY);
 
 }else{
 
-orders=prepareOrders(
-ORDINI_FEDE_BASE
-);
-
-works=prepareWorks(
-LAVORI_FEDE_BASE
-);
+orders=prepareOrders(ORDINI_FEDE);
+works=prepareWorks(LAVORI_FEDE);
 
 }
 
@@ -1737,36 +1565,20 @@ saveStorageSilent();
 
 }
 
+document.getElementById("home").style.display="none";
+document.getElementById("app").style.display="block";
 
-document.getElementById("home")
-.style.display="none";
+document.getElementById("currentUser").textContent=
+nome.toUpperCase();
 
-document.getElementById("app")
-.style.display="block";
-
-
-document.getElementById("currentUser")
-.textContent=nome.toUpperCase();
-
-
-document.getElementById("hello")
-.textContent=
+document.getElementById("hello").textContent=
 "CIAO "+nome.toUpperCase();
 
-
-document.getElementById("ordersPerson")
-.textContent=
+document.getElementById("ordersPerson").textContent=
 nome.toUpperCase();
 
-
-document.getElementById("worksPerson")
-.textContent=
+document.getElementById("worksPerson").textContent=
 nome.toUpperCase();
-
-
-document.getElementById("orderSearch")
-.value="";
-
 
 renderAll();
 
@@ -1775,75 +1587,84 @@ showPage("dashboard");
 }
 
 
-/* =========================================================
+/* =====================================================
    USCITA
-========================================================= */
+===================================================== */
 
 function esci(){
 
 saveStorageSilent();
 
-document.getElementById("app")
-.style.display="none";
-
-document.getElementById("home")
-.style.display="flex";
+document.getElementById("app").style.display="none";
+document.getElementById("home").style.display="flex";
 
 }
 
 
-/* =========================================================
-   PAGINE
-========================================================= */
+/* =====================================================
+   STORAGE SILENZIOSO
+===================================================== */
 
-function showPage(id){
+function saveStorageSilent(){
 
-document
-.querySelectorAll(".page")
-.forEach(page=>{
+const db=database();
 
-page.classList.remove("active");
+db[currentPerson]={
+orders:orders,
+works:works
+};
 
-});
-
-
-document
-.getElementById(id)
-.classList.add("active");
-
-
-if(id==="orders"){
-renderOrders();
-}
-
-if(id==="works"){
-renderWorks();
-}
-
-}
-
-
-/* =========================================================
-   EURO
-========================================================= */
-
-function euro(value){
-
-return "€ "+
-Number(value||0).toLocaleString(
-"it-IT",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(db)
 );
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   PAGINE
+===================================================== */
+
+function showPage(id){
+
+document
+.querySelectorAll(".page")
+.forEach(x=>x.classList.remove("active"));
+
+document
+.getElementById(id)
+.classList.add("active");
+
+if(id==="orders")
+renderOrders();
+
+if(id==="works")
+renderWorks();
+
+}
+
+
+/* =====================================================
+   EURO
+===================================================== */
+
+function euro(v){
+
+return "€ "+
+Number(v||0).toLocaleString(
+"it-IT",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+}
+
+
+/* =====================================================
    CALCOLO
-========================================================= */
+===================================================== */
 
 function calculate(price,discount,qty){
 
@@ -1853,634 +1674,477 @@ const q=Number(qty)||1;
 
 const net=p*(1-d/100);
 
-const total=net*q;
-
 return{
-
 net:net,
-total:total
-
+total:net*q
 };
 
 }
 
 
-/* =========================================================
+/* =====================================================
    ESCAPE
-========================================================= */
+===================================================== */
 
-function escapeHtml(value){
+function esc(v){
 
-return String(value)
-.replace(
-/[&<>'"]/g,
-function(char){
-
-return{
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-"'":"&#39;",
-'"':"&quot;"
-
-}[char];
-
-});
+return String(v)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-function escapeJs(value){
-
-return String(value)
-.replace(/\\/g,"\\\\")
-.replace(/'/g,"\\'");
-
-}
-
-
-/* =========================================================
-   ORDINI
-========================================================= */
+/* =====================================================
+   RENDER ORDINI
+===================================================== */
 
 function renderOrders(){
 
 const body=
-document.getElementById(
-"ordersBody"
+document.getElementById("ordersBody");
+
+const search=
+(document.getElementById("orderSearch").value||"")
+.toLowerCase()
+.trim();
+
+const result=
+orders.filter(x=>
+x.article.toLowerCase().includes(search)
 );
 
-const search=(
-document.getElementById(
-"orderSearch"
-).value||""
-)
-.trim()
-.toLowerCase();
-
-
-const results=
-orders.filter(order=>{
-
-return order.article
-.toLowerCase()
-.includes(search);
-
-});
-
-
-if(results.length===0){
+if(result.length===0){
 
 body.innerHTML=`
-
 <tr>
-
-<td
-colspan="7"
-class="empty">
-
-Nessun articolo trovato.
-
+<td colspan="7" class="empty">
+Nessun articolo trovato
 </td>
-
 </tr>
-
 `;
 
 }else{
 
-body.innerHTML=
-results.map(order=>{
+body.innerHTML=result.map(x=>`
 
-return createRow(
-order,
-false
-);
+<tr>
 
-}).join("");
+<td>${esc(x.date)}</td>
+
+<td>${x.qty}</td>
+
+<td>
+<b>${esc(x.article)}</b>
+</td>
+
+<td>
+
+<input
+class="priceInput"
+id="price_${esc(x.id)}"
+type="number"
+min="0"
+step="0.01"
+value="${Number(x.price||0)}"
+oninput="changePrice('${x.id}',false)">
+
+</td>
+
+<td>
+
+<input
+class="discountInput"
+id="discount_${esc(x.id)}"
+type="number"
+min="0"
+max="100"
+step="0.01"
+value="${x.discount===undefined?25:x.discount}"
+oninput="changeDiscount('${x.id}',false)">
+
+</td>
+
+<td
+class="netCell"
+id="net_${esc(x.id)}">
+€ 0,00
+</td>
+
+<td
+class="totalCell"
+id="total_${esc(x.id)}">
+€ 0,00
+</td>
+
+</tr>
+
+`).join("");
 
 }
 
+result.forEach(x=>updateRow(x));
 
-document.getElementById(
-"searchInfo"
-).textContent=
-
+document.getElementById("searchInfo").textContent=
 search
-?results.length+" risultato/i"
+?result.length+" risultato/i"
 :orders.length+" articoli";
 
-
-results.forEach(order=>{
-
-const price=
-document.getElementById(
-"price-"+order.id
-);
-
-const discount=
-document.getElementById(
-"discount-"+order.id
-);
-
-
-if(price){
-
-price.value=
-order.price??0;
+updateDashboard();
 
 }
 
 
-if(discount){
-
-discount.value=
-order.discount??25;
-
-}
-
-
-updateDisplayedRow(
-order
-);
-
-});
-
-
-updateDashboardTotals();
-
-}
-
-
-/* =========================================================
-   LAVORI
-========================================================= */
+/* =====================================================
+   RENDER LAVORI
+===================================================== */
 
 function renderWorks(){
 
 const body=
-document.getElementById(
-"worksBody"
-);
-
-
-if(works.length===0){
-
-body.innerHTML=`
-
-<tr>
-
-<td
-colspan="7"
-class="empty">
-
-Nessun lavoro presente.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
+document.getElementById("worksBody");
 
 body.innerHTML=
-works.map(work=>{
-
-return createRow(
-work,
-true
-);
-
-}).join("");
-
-
-works.forEach(work=>{
-
-const price=
-document.getElementById(
-"price-"+work.id
-);
-
-const discount=
-document.getElementById(
-"discount-"+work.id
-);
-
-
-if(price){
-
-price.value=
-work.price??0;
-
-}
-
-
-if(discount){
-
-discount.value=
-work.discount??25;
-
-}
-
-
-updateDisplayedRow(work);
-
-});
-
-}
-
-
-/* =========================================================
-   CREA RIGA
-========================================================= */
-
-function createRow(item,isWork){
-
-return`
+works.map(x=>`
 
 <tr>
 
-<td>
-${escapeHtml(item.date)}
-</td>
+<td>${esc(x.date)}</td>
+
+<td>${x.qty}</td>
 
 <td>
-${item.qty}
-</td>
-
-<td>
-<b>
-${escapeHtml(item.article)}
-</b>
+<b>${esc(x.article)}</b>
 </td>
 
 <td>
 
 <input
-
 class="priceInput"
-
-id="price-${escapeHtml(item.id)}"
-
+id="price_${esc(x.id)}"
 type="number"
-
 min="0"
-
 step="0.01"
-
-value="${Number(item.price||0)}"
-
-oninput="
-changePrice(
-'${escapeJs(item.id)}',
-${isWork}
-)">
+value="${Number(x.price||0)}"
+oninput="changePrice('${x.id}',true)">
 
 </td>
 
 <td>
 
 <input
-
 class="discountInput"
-
-id="discount-${escapeHtml(item.id)}"
-
+id="discount_${esc(x.id)}"
 type="number"
-
 min="0"
-
 max="100"
-
 step="0.01"
-
-value="${Number(
-item.discount===undefined
-?25
-:item.discount
-)}"
-
-oninput="
-changeDiscount(
-'${escapeJs(item.id)}',
-${isWork}
-)">
+value="${x.discount===undefined?25:x.discount}"
+oninput="changeDiscount('${x.id}',true)">
 
 </td>
 
 <td
-
 class="netCell"
-
-id="net-${escapeHtml(item.id)}">
-
+id="net_${esc(x.id)}">
 € 0,00
-
 </td>
 
 <td
-
 class="totalCell"
-
-id="total-${escapeHtml(item.id)}">
-
+id="total_${esc(x.id)}">
 € 0,00
-
 </td>
 
 </tr>
 
-`;
+`).join("");
+
+works.forEach(x=>updateRow(x));
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   AGGIORNA RIGA
+===================================================== */
+
+function updateRow(x){
+
+const result=
+calculate(
+x.price,
+x.discount,
+x.qty
+);
+
+const net=
+document.getElementById("net_"+x.id);
+
+const total=
+document.getElementById("total_"+x.id);
+
+if(net)
+net.textContent=euro(result.net);
+
+if(total)
+total.textContent=euro(result.total);
+
+}
+
+
+/* =====================================================
    CAMBIO PREZZO
-========================================================= */
+===================================================== */
 
 function changePrice(id,isWork){
 
-const list=
-isWork
-?works
-:orders;
+const list=isWork?works:orders;
 
-const item=
-list.find(
-x=>x.id===id
-);
+const item=list.find(x=>x.id===id);
 
 if(!item)return;
 
-const input=
-document.getElementById(
-"price-"+id
-);
-
 item.price=
-Number(input.value)||0;
+Number(
+document.getElementById("price_"+id).value
+)||0;
 
-updateDisplayedRow(item);
+updateRow(item);
 
 saveStorage();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CAMBIO SCONTO
-========================================================= */
+===================================================== */
 
 function changeDiscount(id,isWork){
 
-const list=
-isWork
-?works
-:orders;
+const list=isWork?works:orders;
 
-const item=
-list.find(
-x=>x.id===id
-);
+const item=list.find(x=>x.id===id);
 
 if(!item)return;
 
-const input=
-document.getElementById(
-"discount-"+id
+item.discount=
+Number(
+document.getElementById("discount_"+id).value
 );
 
-item.discount=
-Number(input.value);
-
-updateDisplayedRow(item);
+updateRow(item);
 
 saveStorage();
 
 }
 
 
-/* =========================================================
-   AGGIORNA RIGA
-========================================================= */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
-function updateDisplayedRow(item){
-
-const result=
-calculate(
-item.price,
-item.discount,
-item.qty
-);
-
-
-const net=
-document.getElementById(
-"net-"+item.id
-);
-
-const total=
-document.getElementById(
-"total-"+item.id
-);
-
-
-if(net){
-
-net.textContent=
-euro(result.net);
-
-}
-
-
-if(total){
-
-total.textContent=
-euro(result.total);
-
-}
-
-}
-
-
-/* =========================================================
-   TOTALI DASHBOARD
-========================================================= */
-
-function updateDashboardTotals(){
+function updateDashboard(){
 
 let total=0;
 
-orders.forEach(order=>{
+orders.forEach(x=>{
 
-const result=
-calculate(
-order.price,
-order.discount,
-order.qty
-);
-
-total+=result.total;
+total+=calculate(
+x.price,
+x.discount,
+x.qty
+).total;
 
 });
 
-
-document.getElementById(
-"count"
-).textContent=
+document.getElementById("count").textContent=
 orders.length;
 
-
-document.getElementById(
-"workCount"
-).textContent=
+document.getElementById("workCount").textContent=
 works.length;
 
-
-document.getElementById(
-"netTotal"
-).textContent=
+document.getElementById("netTotal").textContent=
 euro(total);
 
 }
 
 
-/* =========================================================
-   RENDER
-========================================================= */
-
-function renderAll(){
-
-renderOrders();
-
-renderWorks();
-
-updateDashboardTotals();
-
-}
-
-
-/* =========================================================
+/* =====================================================
    MODALE
-========================================================= */
+===================================================== */
 
 function openModal(){
 
-document.getElementById(
-"modalUser"
-).textContent=
-currentPerson.toUpperCase();
+document.getElementById("modalBg")
+.classList.add("open");
 
+document.getElementById("modalUser")
+.textContent=currentPerson.toUpperCase();
 
-document.getElementById(
-"modalBg"
-).classList.add("open");
+document.getElementById("dateInput").value=
+new Date().toISOString().slice(0,10);
 
+document.getElementById("qtyInput").value=1;
 
-document.getElementById(
-"dateInput"
-).value=
-new Date()
-.toISOString()
-.slice(0,10);
+document.getElementById("articleInput").value="";
 
+document.getElementById("listInput").value=0;
 
-document.getElementById(
-"qtyInput"
-).value=1;
+/* DEFAULT 25% */
 
+document.getElementById("discountInput").value=25;
 
-document.getElementById(
-"articleInput"
-).value="";
+document.getElementById("catalogSearch").value="";
 
+document.getElementById("selectedPart")
+.classList.remove("show");
 
-document.getElementById(
-"listInput"
-).value="0";
-
-
-/*
-   DEFAULT SCONTO = 25%
-*/
-
-document.getElementById(
-"discountInput"
-).value="25";
-
+renderCatalog();
 
 updateModal();
 
 }
 
 
-/* =========================================================
-   CHIUDI MODALE
-========================================================= */
+/* =====================================================
+   CATALOGO
+===================================================== */
 
-function closeModal(){
+function renderCatalog(){
 
-document.getElementById(
-"modalBg"
-).classList.remove("open");
+const search=
+(document.getElementById("catalogSearch").value||"")
+.toLowerCase()
+.trim();
+
+const results=
+KTM_CATALOG
+.filter(x=>
+x.code.toLowerCase().includes(search)||
+x.name.toLowerCase().includes(search)
+)
+.slice(0,50);
+
+const box=
+document.getElementById("catalogResults");
+
+if(results.length===0){
+
+box.innerHTML=`
+<div class="catalogEmpty">
+Nessun ricambio trovato.
+<br>
+Puoi comunque inserire manualmente il codice.
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML=
+results.map(x=>`
+
+<div
+class="catalogItem"
+onclick="selectPart('${x.code}','${x.name}')">
+
+<div class="catalogCode">
+${esc(x.code)}
+</div>
+
+<div class="catalogName">
+${esc(x.name)}
+</div>
+
+</div>
+
+`).join("");
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   SELEZIONE RICAMBIO
+===================================================== */
+
+function selectPart(code,name){
+
+document.getElementById("articleInput").value=code;
+
+document.getElementById("selectedCode")
+.textContent=code;
+
+document.getElementById("selectedName")
+.textContent=name;
+
+document.getElementById("selectedPart")
+.classList.add("show");
+
+}
+
+
+/* =====================================================
+   RICERCA CATALOGO
+===================================================== */
+
+document
+.getElementById("catalogSearch")
+.addEventListener(
+"input",
+renderCatalog
+);
+
+
+/* =====================================================
+   CHIUDI
+===================================================== */
+
+function closeModal(){
+
+document.getElementById("modalBg")
+.classList.remove("open");
+
+}
+
+
+/* =====================================================
    CALCOLO MODALE
-========================================================= */
+===================================================== */
 
 function updateModal(){
 
 const result=
 calculate(
 
-document.getElementById(
-"listInput"
-).value,
+document.getElementById("listInput").value,
 
-document.getElementById(
-"discountInput"
-).value,
+document.getElementById("discountInput").value,
 
-document.getElementById(
-"qtyInput"
-).value
+document.getElementById("qtyInput").value
 
 );
 
+document.getElementById("unitNet")
+.textContent=euro(result.net);
 
-document.getElementById(
-"unitNet"
-).textContent=
-euro(result.net);
-
-
-document.getElementById(
-"orderTotal"
-).textContent=
-euro(result.total);
+document.getElementById("orderTotal")
+.textContent=euro(result.total);
 
 }
 
 
-/* =========================================================
-   EVENTI
-========================================================= */
+/* =====================================================
+   INPUT CALCOLO
+===================================================== */
 
-[
-"listInput",
-"discountInput",
-"qtyInput"
-
-].forEach(id=>{
+["listInput","discountInput","qtyInput"]
+.forEach(id=>{
 
 document
 .getElementById(id)
@@ -2492,215 +2156,133 @@ updateModal
 });
 
 
-/* =========================================================
-   SALVA ORDINE
-========================================================= */
+/* =====================================================
+   SALVA NUOVO ORDINE
+===================================================== */
 
 function saveOrder(){
 
 const article=
-document.getElementById(
-"articleInput"
-)
-.value
-.trim();
-
+document.getElementById("articleInput")
+.value.trim();
 
 if(!article){
 
 alert(
-"Inserisci un codice o un articolo."
+"Seleziona un ricambio KTM oppure inserisci manualmente il codice."
 );
 
 return;
 
 }
 
-
-const date=
-document.getElementById(
-"dateInput"
-).value;
-
-
-const qty=
-Number(
-document.getElementById(
-"qtyInput"
-).value
-)||1;
-
-
-const price=
-Number(
-document.getElementById(
-"listInput"
-).value
-)||0;
-
-
-const discount=
-Number(
-document.getElementById(
-"discountInput"
-).value
-);
-
-
-/*
-   SE PER QUALSIASI MOTIVO
-   IL CAMPO È VUOTO,
-   USIAMO 25%.
-*/
-
-const finalDiscount=
-isNaN(discount)
-?25
-:discount;
-
-
 const newOrder={
 
 id:
-"order_"+
-Date.now()+
-"_"+
-
-Math.random()
+"new_"+Date.now()+"_"+Math.random()
 .toString(36)
 .substring(2,8),
 
-date:date,
+date:
+document.getElementById("dateInput").value,
 
-qty:qty,
+qty:
+Number(
+document.getElementById("qtyInput").value
+)||1,
 
 article:article,
 
-price:price,
+price:
+Number(
+document.getElementById("listInput").value
+)||0,
 
-discount:finalDiscount
+discount:
+Number(
+document.getElementById("discountInput").value
+)
 
 };
 
-
-orders.unshift(
-newOrder
-);
-
-
-/*
-   SALVATAGGIO IMMEDIATO
-*/
+orders.unshift(newOrder);
 
 saveStorage();
 
-
 closeModal();
+
+renderOrders();
 
 showPage("orders");
 
-renderOrders();
-
 }
 
 
-/* =========================================================
-   RICERCA
-========================================================= */
+/* =====================================================
+   RICERCA ORDINI
+===================================================== */
 
 document
-.getElementById(
-"orderSearch"
-)
+.getElementById("orderSearch")
 .addEventListener(
 "input",
-function(){
+renderOrders
+);
 
-renderOrders();
 
-});
-
+/* =====================================================
+   PULISCI RICERCA
+===================================================== */
 
 function clearSearch(){
 
-document.getElementById(
-"orderSearch"
-).value="";
+document.getElementById("orderSearch").value="";
 
 renderOrders();
-
-document.getElementById(
-"orderSearch"
-).focus();
 
 }
 
 
-/* =========================================================
-   NOTIFICA SALVATAGGIO
-========================================================= */
+/* =====================================================
+   SALVATAGGIO
+===================================================== */
 
 function showSaved(){
 
-const message=
-document.getElementById(
-"saveMessage"
-);
+const box=
+document.getElementById("saveMessage");
 
-message.classList.add(
-"show"
-);
+box.classList.add("show");
 
+clearTimeout(window.savedTimer);
 
-clearTimeout(
-window.saveMessageTimer
-);
-
-
-window.saveMessageTimer=
-setTimeout(
-function(){
-
-message.classList.remove(
-"show"
-);
-
-},
+window.savedTimer=setTimeout(
+()=>box.classList.remove("show"),
 1000
 );
 
 }
 
 
-/* =========================================================
-   CLICK FUORI DAL MODALE
-========================================================= */
+/* =====================================================
+   CLICK FUORI MODALE
+===================================================== */
 
 document
-.getElementById(
-"modalBg"
-)
+.getElementById("modalBg")
 .addEventListener(
 "click",
-function(event){
+function(e){
 
-if(
-event.target===
-document.getElementById(
-"modalBg"
-)
-){
-
+if(e.target===this)
 closeModal();
-
-}
 
 });
 
 
-/* =========================================================
+/* =====================================================
    AVVIO
-========================================================= */
+===================================================== */
 
 updateModal();
 
