@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KTM - Gestione Ricambi</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -31,9 +33,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    HOME
-========================= */
+===================================================== */
 
 #home{
     min-height:100vh;
@@ -102,8 +104,8 @@ body{
 }
 
 .person{
-    background:#fff;
-    border:1px solid var(--border);
+    background:rgba(255,255,255,.97);
+    border:1px solid #eee;
     border-radius:25px;
     padding:35px 30px 30px;
     box-shadow:0 12px 35px rgba(0,0,0,.10);
@@ -112,6 +114,7 @@ body{
 
 .person:hover{
     transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 .avatar{
@@ -158,13 +161,14 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    APP
-========================= */
+===================================================== */
 
 #app{
     display:none;
     min-height:100vh;
+    background:#fff;
 }
 
 .header{
@@ -177,7 +181,7 @@ body{
     background:#fff;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
 }
 
 .headerLeft{
@@ -208,6 +212,7 @@ body{
 }
 
 .container{
+    width:100%;
     max-width:1100px;
     margin:auto;
     padding:35px 25px;
@@ -222,9 +227,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    TITOLI
-========================= */
+===================================================== */
 
 .title{
     margin-bottom:25px;
@@ -241,9 +246,9 @@ body{
 }
 
 
-/* =========================
-   STAT
-========================= */
+/* =====================================================
+   STATISTICHE
+===================================================== */
 
 .stats{
     display:grid;
@@ -253,13 +258,14 @@ body{
 }
 
 .stat{
+    background:#fff;
     border:1px solid var(--border);
     border-radius:14px;
     padding:20px;
-    background:#fff;
 }
 
 .stat small{
+    display:block;
     color:#777;
     font-size:12px;
 }
@@ -268,12 +274,13 @@ body{
     display:block;
     margin-top:7px;
     font-size:23px;
+    font-weight:900;
 }
 
 
-/* =========================
+/* =====================================================
    MENU
-========================= */
+===================================================== */
 
 .menu{
     display:grid;
@@ -282,12 +289,13 @@ body{
 }
 
 .card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:22px;
     display:flex;
     align-items:center;
     gap:18px;
-    padding:22px;
-    border:1px solid var(--border);
-    border-radius:15px;
     cursor:pointer;
     transition:.2s;
     box-shadow:0 3px 12px rgba(0,0,0,.04);
@@ -328,9 +336,9 @@ body{
 }
 
 
-/* =========================
-   TOP
-========================= */
+/* =====================================================
+   PAGINA ORDINI
+===================================================== */
 
 .top{
     display:flex;
@@ -350,9 +358,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    FILTRI
-========================= */
+===================================================== */
 
 .filters{
     display:flex;
@@ -383,14 +391,15 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    TABELLA
-========================= */
+===================================================== */
 
 .tablebox{
-    overflow-x:auto;
+    background:#fff;
     border:1px solid var(--border);
     border-radius:15px;
+    overflow-x:auto;
 }
 
 table{
@@ -401,10 +410,10 @@ table{
 
 th{
     background:#fafafa;
-    color:#777;
-    text-align:left;
     padding:14px;
+    text-align:left;
     font-size:12px;
+    color:#777;
     white-space:nowrap;
 }
 
@@ -422,28 +431,28 @@ td{
 }
 
 
-/* =========================
-   STATO
-========================= */
+/* =====================================================
+   MENU STATO
+===================================================== */
 
 .status{
-    border:0;
+    border:1px solid transparent;
     border-radius:20px;
-    padding:7px 11px;
+    padding:8px 30px 8px 12px;
     font-size:11px;
     font-weight:800;
     cursor:pointer;
     outline:none;
+    appearance:auto;
+}
+
+.status:hover{
+    border-color:var(--orange);
 }
 
 .status.ordinato{
     background:#fff0d5;
     color:#9b6200;
-}
-
-.status.arrivato{
-    background:#def5e5;
-    color:#16753d;
 }
 
 .status.ritirare{
@@ -452,19 +461,19 @@ td{
 }
 
 .status.consegnato{
-    background:#e7e7e7;
-    color:#555;
+    background:#e3f5e9;
+    color:#16753d;
 }
 
 
-/* =========================
+/* =====================================================
    PAGAMENTI
-========================= */
+===================================================== */
 
 .payment{
-    padding:25px;
     background:var(--orange-light);
     border-left:4px solid var(--orange);
+    padding:25px;
     border-radius:10px;
 }
 
@@ -475,9 +484,9 @@ td{
 }
 
 
-/* =========================
+/* =====================================================
    MODALE
-========================= */
+===================================================== */
 
 .modal-bg{
     position:fixed;
@@ -498,7 +507,7 @@ td{
     width:600px;
     max-width:100%;
     max-height:90vh;
-    overflow:auto;
+    overflow-y:auto;
     background:#fff;
     border-radius:20px;
     padding:25px;
@@ -520,20 +529,20 @@ td{
     gap:6px;
 }
 
-.full{
+.field.full{
     grid-column:1/-1;
 }
 
 .field label{
-    color:#666;
     font-size:12px;
     font-weight:700;
+    color:#666;
 }
 
 .field input{
     width:100%;
-    padding:11px;
     border:1px solid #ddd;
+    padding:11px;
     border-radius:8px;
     outline:none;
     font-size:14px;
@@ -574,9 +583,9 @@ td{
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
@@ -591,6 +600,7 @@ td{
 
     .people{
         grid-template-columns:1fr;
+        gap:15px;
         margin-top:30px;
     }
 
@@ -619,7 +629,7 @@ td{
         grid-template-columns:1fr;
     }
 
-    .full{
+    .field.full{
         grid-column:auto;
     }
 }
@@ -633,6 +643,7 @@ td{
     .header{
         height:65px;
     }
+
 }
 
 </style>
@@ -642,9 +653,9 @@ td{
 <body>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HOME
-================================================== -->
+===================================================== -->
 
 <section id="home">
 
@@ -665,7 +676,11 @@ td{
             Seleziona la persona da gestire
         </p>
 
+
         <div class="people">
+
+
+            <!-- ROBY -->
 
             <div class="person">
 
@@ -689,6 +704,8 @@ td{
             </div>
 
 
+            <!-- FEDE -->
+
             <div class="person">
 
                 <div class="avatar">
@@ -710,6 +727,7 @@ td{
 
             </div>
 
+
         </div>
 
     </div>
@@ -718,11 +736,12 @@ td{
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      APP
-================================================== -->
+===================================================== -->
 
 <section id="app">
+
 
     <header class="header">
 
@@ -736,6 +755,7 @@ td{
 
         </div>
 
+
         <button
             type="button"
             class="exit"
@@ -748,14 +768,18 @@ td{
     </header>
 
 
+
     <main class="container">
 
 
-        <!-- ================= DASHBOARD ================= -->
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
 
         <section
             id="dashboard"
             class="page active">
+
 
             <div class="title">
 
@@ -770,7 +794,9 @@ td{
             </div>
 
 
+
             <div class="stats">
+
 
                 <div class="stat">
 
@@ -823,10 +849,13 @@ td{
 
                 </div>
 
+
             </div>
 
 
+
             <div class="menu">
+
 
                 <div
                     class="card"
@@ -855,6 +884,7 @@ td{
                 </div>
 
 
+
                 <div
                     class="card"
                     id="newCard">
@@ -870,7 +900,7 @@ td{
                         </h3>
 
                         <p>
-                            Inserisci un nuovo ricambio
+                            Aggiungi un nuovo ricambio
                         </p>
 
                     </div>
@@ -880,6 +910,7 @@ td{
                     </div>
 
                 </div>
+
 
 
                 <div
@@ -897,7 +928,7 @@ td{
                         </h3>
 
                         <p>
-                            Controlla i soldi da dare a Gio
+                            Controlla quanto devi dare a Gio
                         </p>
 
                     </div>
@@ -908,17 +939,21 @@ td{
 
                 </div>
 
+
             </div>
 
         </section>
 
 
 
-        <!-- ================= ORDINI ================= -->
+        <!-- =================================================
+             ORDINI
+        ================================================== -->
 
         <section
             id="orders"
             class="page">
+
 
             <button
                 type="button"
@@ -930,7 +965,9 @@ td{
             </button>
 
 
+
             <div class="top">
+
 
                 <div class="title">
 
@@ -955,10 +992,15 @@ td{
 
                 </button>
 
+
             </div>
 
 
+
+            <!-- FILTRI -->
+
             <div class="filters">
+
 
                 <button
                     type="button"
@@ -969,6 +1011,7 @@ td{
 
                 </button>
 
+
                 <button
                     type="button"
                     class="filter"
@@ -978,14 +1021,6 @@ td{
 
                 </button>
 
-                <button
-                    type="button"
-                    class="filter"
-                    data-filter="Arrivato">
-
-                    ARRIVATI
-
-                </button>
 
                 <button
                     type="button"
@@ -996,6 +1031,7 @@ td{
 
                 </button>
 
+
                 <button
                     type="button"
                     class="filter"
@@ -1005,8 +1041,12 @@ td{
 
                 </button>
 
+
             </div>
 
+
+
+            <!-- TABELLA -->
 
             <div class="tablebox">
 
@@ -1016,20 +1056,50 @@ td{
 
                         <tr>
 
-                            <th>DATA</th>
-                            <th>Q.TÀ</th>
-                            <th>ARTICOLO</th>
-                            <th>LISTINO</th>
-                            <th>SCONTO</th>
-                            <th>NETTO</th>
-                            <th>TOTALE</th>
-                            <th>DA DARE A PERSONA</th>
-                            <th>DA DARE A GIO</th>
-                            <th>STATO</th>
+                            <th>
+                                DATA
+                            </th>
+
+                            <th>
+                                Q.TÀ
+                            </th>
+
+                            <th>
+                                ARTICOLO
+                            </th>
+
+                            <th>
+                                LISTINO
+                            </th>
+
+                            <th>
+                                SCONTO
+                            </th>
+
+                            <th>
+                                NETTO
+                            </th>
+
+                            <th>
+                                TOTALE
+                            </th>
+
+                            <th>
+                                DA DARE A PERSONA
+                            </th>
+
+                            <th>
+                                DA DARE A GIO
+                            </th>
+
+                            <th>
+                                STATO
+                            </th>
 
                         </tr>
 
                     </thead>
+
 
                     <tbody id="ordersBody"></tbody>
 
@@ -1037,15 +1107,19 @@ td{
 
             </div>
 
+
         </section>
 
 
 
-        <!-- ================= PAGAMENTI ================= -->
+        <!-- =================================================
+             PAGAMENTI
+        ================================================== -->
 
         <section
             id="payments"
             class="page">
+
 
             <button
                 type="button"
@@ -1087,7 +1161,9 @@ td{
 
             </div>
 
+
         </section>
+
 
     </main>
 
@@ -1095,20 +1171,23 @@ td{
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      MODALE NUOVO ORDINE
-================================================== -->
+===================================================== -->
 
 <div
     class="modal-bg"
     id="modal">
 
+
     <div class="modal">
+
 
         <h2>
             Nuovo ordine —
             <span id="modalPerson"></span>
         </h2>
+
 
 
         <div class="form">
@@ -1127,6 +1206,7 @@ td{
             </div>
 
 
+
             <div class="field">
 
                 <label>
@@ -1142,18 +1222,20 @@ td{
             </div>
 
 
+
             <div class="field full">
 
                 <label>
-                    ARTICOLO / CODICE KTM
+                    CODICE / ARTICOLO KTM
                 </label>
 
                 <input
                     type="text"
                     id="article"
-                    placeholder="Inserisci codice ricambio">
+                    placeholder="Es. 50430098060">
 
             </div>
+
 
 
             <div class="field">
@@ -1169,6 +1251,7 @@ td{
                     step="0.01">
 
             </div>
+
 
 
             <div class="field">
@@ -1188,6 +1271,7 @@ td{
             </div>
 
 
+
             <div class="field">
 
                 <label>
@@ -1200,6 +1284,7 @@ td{
                     readonly>
 
             </div>
+
 
 
             <div class="field">
@@ -1218,6 +1303,7 @@ td{
             </div>
 
 
+
             <div class="field">
 
                 <label>
@@ -1233,10 +1319,13 @@ td{
 
             </div>
 
+
         </div>
 
 
+
         <div class="modal-buttons">
+
 
             <button
                 type="button"
@@ -1257,7 +1346,9 @@ td{
 
             </button>
 
+
         </div>
+
 
     </div>
 
@@ -1267,19 +1358,10 @@ td{
 
 <script>
 
-/* ==================================================
-   DATI
-================================================== */
 
-/*
-   IMPORTANTE:
-
-   Nessun vecchio dato di Roby.
-   Nessun dato di Fede.
-   Nessun dato di esempio.
-
-   Il database parte vuoto.
-*/
+/* =====================================================
+   DATABASE LOCALE
+===================================================== */
 
 let orders = [];
 
@@ -1301,9 +1383,9 @@ let currentPerson = "";
 let currentFilter = "TUTTI";
 
 
-/* ==================================================
+/* =====================================================
    ELEMENTI
-================================================== */
+===================================================== */
 
 const home =
     document.getElementById("home");
@@ -1315,9 +1397,9 @@ const modal =
     document.getElementById("modal");
 
 
-/* ==================================================
-   FUNZIONI BASE
-================================================== */
+/* =====================================================
+   SALVATAGGIO
+===================================================== */
 
 function saveData(){
 
@@ -1328,6 +1410,10 @@ function saveData(){
 
 }
 
+
+/* =====================================================
+   EURO
+===================================================== */
 
 function euro(value){
 
@@ -1342,13 +1428,18 @@ function euro(value){
 }
 
 
+/* =====================================================
+   DATA ODIERNA
+===================================================== */
+
 function today(){
 
     const d = new Date();
 
-    const y = d.getFullYear();
+    const year =
+        d.getFullYear();
 
-    const m =
+    const month =
         String(d.getMonth()+1)
         .padStart(2,"0");
 
@@ -1356,10 +1447,20 @@ function today(){
         String(d.getDate())
         .padStart(2,"0");
 
-    return y + "-" + m + "-" + day;
+    return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+    );
 
 }
 
+
+/* =====================================================
+   DATA ITALIANA
+===================================================== */
 
 function italianDate(value){
 
@@ -1385,9 +1486,9 @@ function italianDate(value){
 }
 
 
-/* ==================================================
-   LOGIN PERSONA
-================================================== */
+/* =====================================================
+   ENTRA COME ROBY / FEDE
+===================================================== */
 
 function enterPerson(person){
 
@@ -1396,6 +1497,7 @@ function enterPerson(person){
     currentFilter = "TUTTI";
 
     home.style.display = "none";
+
     app.style.display = "block";
 
 
@@ -1432,9 +1534,9 @@ function enterPerson(person){
 }
 
 
-/* ==================================================
-   USCITA
-================================================== */
+/* =====================================================
+   ESCI
+===================================================== */
 
 function exitApp(){
 
@@ -1443,14 +1545,15 @@ function exitApp(){
     modal.classList.remove("show");
 
     app.style.display = "none";
+
     home.style.display = "flex";
 
 }
 
 
-/* ==================================================
-   PAGINE
-================================================== */
+/* =====================================================
+   CAMBIO PAGINA
+===================================================== */
 
 function showPage(page){
 
@@ -1474,38 +1577,35 @@ function showPage(page){
 
 
     if(page === "dashboard"){
-
         updateDashboard();
-
     }
 
 
     if(page === "orders"){
-
         updateOrders();
-
     }
 
 
     if(page === "payments"){
-
         updatePayments();
-
     }
 
 }
 
 
-/* ==================================================
+/* =====================================================
    ORDINI DELLA PERSONA
-================================================== */
+===================================================== */
 
 function getMyOrders(){
 
     return orders.filter(
         function(order){
 
-            return order.person === currentPerson;
+            return (
+                order.person ===
+                currentPerson
+            );
 
         }
     );
@@ -1513,9 +1613,9 @@ function getMyOrders(){
 }
 
 
-/* ==================================================
+/* =====================================================
    DASHBOARD
-================================================== */
+===================================================== */
 
 function updateDashboard(){
 
@@ -1569,34 +1669,35 @@ function updateDashboard(){
 }
 
 
-/* ==================================================
-   STATO
-================================================== */
+/* =====================================================
+   CLASSE COLORE STATO
+===================================================== */
 
 function statusClass(status){
-
-    if(status === "Arrivato"){
-        return "arrivato";
-    }
 
     if(status === "Da ritirare"){
         return "ritirare";
     }
 
+
     if(status === "Consegnato"){
         return "consegnato";
     }
+
 
     return "ordinato";
 
 }
 
 
+/* =====================================================
+   OPZIONI MENU STATO
+===================================================== */
+
 function statusOptions(selected){
 
     const values = [
         "Ordinato",
-        "Arrivato",
         "Da ritirare",
         "Consegnato"
     ];
@@ -1611,7 +1712,11 @@ function statusOptions(selected){
             '<option value="' +
             value +
             '"' +
-            (value === selected ? " selected" : "") +
+            (
+                value === selected
+                ? " selected"
+                : ""
+            ) +
             '>' +
             value +
             '</option>';
@@ -1624,9 +1729,9 @@ function statusOptions(selected){
 }
 
 
-/* ==================================================
-   TABELLA
-================================================== */
+/* =====================================================
+   AGGIORNA TABELLA
+===================================================== */
 
 function updateOrders(){
 
@@ -1649,7 +1754,10 @@ function updateOrders(){
             list.filter(
                 function(order){
 
-                    return order.status === currentFilter;
+                    return (
+                        order.status ===
+                        currentFilter
+                    );
 
                 }
             );
@@ -1694,7 +1802,7 @@ function updateOrders(){
 
     list.forEach(function(order){
 
-        const tr =
+        const row =
             document.createElement("tr");
 
 
@@ -1703,15 +1811,17 @@ function updateOrders(){
             Number(order.quantity || 0);
 
 
-        tr.innerHTML = `
+        row.innerHTML = `
 
             <td>
                 ${italianDate(order.date)}
             </td>
 
+
             <td>
                 ${order.quantity}
             </td>
+
 
             <td>
                 <strong>
@@ -1719,29 +1829,36 @@ function updateOrders(){
                 </strong>
             </td>
 
+
             <td>
                 ${euro(order.listino)}
             </td>
+
 
             <td>
                 ${Number(order.sconto || 0)}%
             </td>
 
+
             <td>
                 ${euro(order.netto)}
             </td>
+
 
             <td>
                 ${euro(total)}
             </td>
 
+
             <td>
                 ${euro(order.darePersona)}
             </td>
 
+
             <td>
                 ${euro(order.dareGio)}
             </td>
+
 
             <td>
 
@@ -1758,10 +1875,14 @@ function updateOrders(){
         `;
 
 
-        body.appendChild(tr);
+        body.appendChild(row);
 
     });
 
+
+    /* =================================================
+       EVENTO MENU STATO DI OGNI ARTICOLO
+    ================================================= */
 
     body
         .querySelectorAll(".status")
@@ -1784,17 +1905,19 @@ function updateOrders(){
 }
 
 
-/* ==================================================
-   CAMBIO STATO
-================================================== */
+/* =====================================================
+   CAMBIA STATO ARTICOLO
+===================================================== */
 
-function changeStatus(id,status){
+function changeStatus(id,newStatus){
 
     const order =
         orders.find(
             function(item){
 
-                return item.id === id;
+                return (
+                    item.id === id
+                );
 
             }
         );
@@ -1805,7 +1928,9 @@ function changeStatus(id,status){
     }
 
 
-    order.status = status;
+    order.status =
+        newStatus;
+
 
     saveData();
 
@@ -1818,9 +1943,9 @@ function changeStatus(id,status){
 }
 
 
-/* ==================================================
+/* =====================================================
    PAGAMENTI
-================================================== */
+===================================================== */
 
 function updatePayments(){
 
@@ -1847,9 +1972,9 @@ function updatePayments(){
 }
 
 
-/* ==================================================
+/* =====================================================
    CALCOLO NETTO
-================================================== */
+===================================================== */
 
 function calculateNet(){
 
@@ -1861,7 +1986,7 @@ function calculateNet(){
         ) || 0;
 
 
-    const discount =
+    const sconto =
         Number(
             document.getElementById(
                 "sconto"
@@ -1869,11 +1994,11 @@ function calculateNet(){
         ) || 0;
 
 
-    const net =
+    const netto =
         listino -
         (
             listino *
-            discount /
+            sconto /
             100
         );
 
@@ -1881,14 +2006,14 @@ function calculateNet(){
     document.getElementById(
         "netto"
     ).value =
-        euro(net);
+        euro(netto);
 
 }
 
 
-/* ==================================================
+/* =====================================================
    APRI NUOVO ORDINE
-================================================== */
+===================================================== */
 
 function openNewOrder(){
 
@@ -1905,42 +2030,50 @@ function openNewOrder(){
 
     document.getElementById(
         "date"
-    ).value = today();
+    ).value =
+        today();
 
 
     document.getElementById(
         "qty"
-    ).value = 1;
+    ).value =
+        1;
 
 
     document.getElementById(
         "article"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "listino"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "sconto"
-    ).value = 25;
+    ).value =
+        25;
 
 
     document.getElementById(
         "netto"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "darePersona"
-    ).value = 0;
+    ).value =
+        0;
 
 
     document.getElementById(
         "dareGio"
-    ).value = 0;
+    ).value =
+        0;
 
 
     document.getElementById(
@@ -1954,9 +2087,9 @@ function openNewOrder(){
 }
 
 
-/* ==================================================
+/* =====================================================
    CHIUDI MODALE
-================================================== */
+===================================================== */
 
 function closeModal(){
 
@@ -1965,9 +2098,9 @@ function closeModal(){
 }
 
 
-/* ==================================================
-   SALVA ORDINE
-================================================== */
+/* =====================================================
+   SALVA NUOVO ORDINE
+===================================================== */
 
 function saveOrder(){
 
@@ -2032,9 +2165,13 @@ function saveOrder(){
         ) || 0;
 
 
+    /* VALIDAZIONI */
+
     if(!date){
 
-        alert("Inserisci la data.");
+        alert(
+            "Inserisci la data."
+        );
 
         return;
 
@@ -2043,7 +2180,9 @@ function saveOrder(){
 
     if(!quantity || quantity < 1){
 
-        alert("Inserisci una quantità valida.");
+        alert(
+            "Inserisci una quantità valida."
+        );
 
         return;
 
@@ -2052,20 +2191,25 @@ function saveOrder(){
 
     if(!article){
 
-        alert("Inserisci il codice/articolo.");
+        alert(
+            "Inserisci il codice/articolo."
+        );
 
         return;
 
     }
 
 
+    /* NUOVO ORDINE */
+
     const order = {
 
         id:
             Date.now().toString() +
+            "_" +
             Math.random()
                 .toString(36)
-                .substring(2),
+                .substring(2,9),
 
         person:
             currentPerson,
@@ -2095,8 +2239,8 @@ function saveOrder(){
             dareGio,
 
         /*
-           OGNI NUOVO RICAMBIO PARTE
-           COME ORDINATO.
+           OGNI NUOVO ARTICOLO
+           PARTE DA ORDINATO
         */
 
         status:
@@ -2122,20 +2266,23 @@ function saveOrder(){
 }
 
 
-/* ==================================================
+/* =====================================================
    FILTRI
-================================================== */
+===================================================== */
 
 function resetFilters(){
 
-    currentFilter = "TUTTI";
+    currentFilter =
+        "TUTTI";
 
 
     document
         .querySelectorAll(".filter")
         .forEach(function(button){
 
-            button.classList.remove("active");
+            button.classList.remove(
+                "active"
+            );
 
         });
 
@@ -2148,16 +2295,18 @@ function resetFilters(){
 
     if(all){
 
-        all.classList.add("active");
+        all.classList.add(
+            "active"
+        );
 
     }
 
 }
 
 
-/* ==================================================
-   SICUREZZA TESTO
-================================================== */
+/* =====================================================
+   PROTEZIONE TESTO
+===================================================== */
 
 function escapeHTML(text){
 
@@ -2172,12 +2321,9 @@ function escapeHTML(text){
 }
 
 
-/* ==================================================
-   EVENTI
-================================================== */
-
-
-/* ROBY */
+/* =====================================================
+   EVENTI PULSANTI HOME
+===================================================== */
 
 document
     .getElementById("robyBtn")
@@ -2191,8 +2337,6 @@ document
     );
 
 
-/* FEDE */
-
 document
     .getElementById("fedeBtn")
     .addEventListener(
@@ -2205,7 +2349,9 @@ document
     );
 
 
-/* ESCI */
+/* =====================================================
+   ESCI
+===================================================== */
 
 document
     .getElementById("exitBtn")
@@ -2215,7 +2361,9 @@ document
     );
 
 
-/* ORDINI */
+/* =====================================================
+   APRI ORDINI
+===================================================== */
 
 document
     .getElementById("ordersCard")
@@ -2229,7 +2377,9 @@ document
     );
 
 
-/* NUOVO ORDINE */
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
 
 document
     .getElementById("newCard")
@@ -2247,7 +2397,9 @@ document
     );
 
 
-/* PAGAMENTI */
+/* =====================================================
+   PAGAMENTI
+===================================================== */
 
 document
     .getElementById("paymentsCard")
@@ -2261,7 +2413,9 @@ document
     );
 
 
-/* BACK */
+/* =====================================================
+   BACK DASHBOARD
+===================================================== */
 
 document
     .getElementById("backBtn")
@@ -2287,7 +2441,9 @@ document
     );
 
 
-/* ANNULLA */
+/* =====================================================
+   ANNULLA MODALE
+===================================================== */
 
 document
     .getElementById("cancelBtn")
@@ -2297,7 +2453,9 @@ document
     );
 
 
-/* SALVA */
+/* =====================================================
+   SALVA
+===================================================== */
 
 document
     .getElementById("saveBtn")
@@ -2307,7 +2465,9 @@ document
     );
 
 
-/* LISTINO */
+/* =====================================================
+   CALCOLO NETTO
+===================================================== */
 
 document
     .getElementById("listino")
@@ -2317,8 +2477,6 @@ document
     );
 
 
-/* SCONTO */
-
 document
     .getElementById("sconto")
     .addEventListener(
@@ -2327,7 +2485,9 @@ document
     );
 
 
-/* FILTRI */
+/* =====================================================
+   FILTRI
+===================================================== */
 
 document
     .querySelectorAll(".filter")
@@ -2348,10 +2508,14 @@ document
                     });
 
 
-                this.classList.add("active");
+                this.classList.add(
+                    "active"
+                );
+
 
                 currentFilter =
                     this.dataset.filter;
+
 
                 updateOrders();
 
@@ -2361,7 +2525,9 @@ document
     });
 
 
-/* CHIUDI MODALE CLICCANDO FUORI */
+/* =====================================================
+   CHIUDI MODALE CLICCANDO FUORI
+===================================================== */
 
 modal.addEventListener(
     "click",
@@ -2377,7 +2543,9 @@ modal.addEventListener(
 );
 
 
-/* TASTO ESC */
+/* =====================================================
+   TASTO ESC
+===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -2393,9 +2561,9 @@ document.addEventListener(
 );
 
 
-/* ==================================================
+/* =====================================================
    AVVIO
-================================================== */
+===================================================== */
 
 updateDashboard();
 
