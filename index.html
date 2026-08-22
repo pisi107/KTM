@@ -6,807 +6,2454 @@
 <title>Gestione Ordini KTM</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 :root{
---orange:#ff6600;
---orange-dark:#e65300;
---orange-light:#fff1e8;
---black:#111;
---gray:#666;
---light:#f7f7f7;
---white:#fff
+    --orange:#ff6600;
+    --orange-dark:#e65300;
+    --orange-light:#fff1e8;
+    --black:#111;
+    --gray:#666;
+    --light:#f7f7f7;
+    --white:#fff;
 }
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:#fff;
-color:var(--black);
-min-height:100vh
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#fff;
+    color:var(--black);
+    min-height:100vh;
 }
 
+/* =====================================================
+   HOME
+===================================================== */
+
 #home{
-min-height:100vh;
-position:relative;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px 20px
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 20px;
 }
 
 .orange{
-position:absolute;
-background:var(--orange)
+    position:absolute;
+    background:var(--orange);
 }
 
 .o1{
-top:-170px;
-left:-120px;
-width:520px;
-height:300px;
-transform:rotate(-15deg)
+    top:-170px;
+    left:-120px;
+    width:520px;
+    height:300px;
+    transform:rotate(-15deg);
 }
 
 .o2{
-right:-170px;
-top:45%;
-width:350px;
-height:550px;
-transform:rotate(28deg)
+    right:-170px;
+    top:45%;
+    width:350px;
+    height:550px;
+    transform:rotate(28deg);
 }
 
 .home{
-position:relative;
-z-index:2;
-width:100%;
-max-width:900px;
-text-align:center
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
+    text-align:center;
 }
 
 .logo{
-font-size:78px;
-font-weight:1000;
-font-style:italic;
-letter-spacing:-7px;
-color:var(--orange);
-line-height:.8
+    font-size:78px;
+    font-weight:1000;
+    font-style:italic;
+    letter-spacing:-7px;
+    color:var(--orange);
+    line-height:.8;
 }
 
 .home h1{
-margin-top:55px;
-font-size:32px;
-font-weight:900
+    margin-top:55px;
+    font-size:32px;
+    font-weight:900;
 }
 
 .home p{
-margin-top:10px;
-color:var(--gray);
-font-size:17px
+    margin-top:10px;
+    color:var(--gray);
+    font-size:17px;
 }
 
 .people{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:25px;
-margin-top:45px
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin-top:45px;
 }
 
 .person{
-background:rgba(255,255,255,.97);
-border:1px solid #eee;
-border-radius:25px;
-padding:35px 30px 30px;
-box-shadow:0 12px 35px rgba(0,0,0,.1);
-transition:.25s
+    background:rgba(255,255,255,.97);
+    border:1px solid #eee;
+    border-radius:25px;
+    padding:35px 30px 30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
+    transition:.25s;
 }
 
 .person:hover{
-transform:translateY(-5px);
-box-shadow:0 18px 40px rgba(0,0,0,.15)
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 .avatar{
-width:75px;
-height:75px;
-border-radius:50%;
-background:var(--orange);
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-margin:auto;
-font-size:32px
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:32px;
 }
 
 .person h2{
-margin-top:22px;
-font-size:31px;
-font-weight:900
+    margin-top:22px;
+    font-size:31px;
+    font-weight:900;
 }
 
 .btn{
-border:none;
-cursor:pointer;
-font-weight:800;
-border-radius:9px;
-padding:13px 18px
+    border:none;
+    cursor:pointer;
+    font-weight:800;
+    border-radius:9px;
+    padding:13px 18px;
 }
 
 .orangebtn{
-background:var(--orange);
-color:#fff
+    background:var(--orange);
+    color:#fff;
 }
 
 .orangebtn:hover{
-background:var(--orange-dark)
+    background:var(--orange-dark);
 }
 
 .person .btn{
-margin-top:25px;
-width:100%;
-padding:16px;
-font-size:17px
+    margin-top:25px;
+    width:100%;
+    padding:16px;
+    font-size:17px;
 }
 
+/* =====================================================
+   APP
+===================================================== */
+
 #app{
-display:none;
-min-height:100vh;
-background:#fff
+    display:none;
+    min-height:100vh;
+    background:#fff;
 }
 
 .header{
-height:75px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 30px;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-z-index:20
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:#fff;
 }
 
 .headerRight{
-display:flex;
-align-items:center;
-gap:13px
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
 .smalllogo{
-color:var(--orange);
-font-size:27px;
-font-weight:1000;
-font-style:italic
+    color:var(--orange);
+    font-size:27px;
+    font-weight:1000;
+    font-style:italic;
 }
 
 .exit{
-border:1px solid #ddd;
-background:#fff;
-border-radius:9px;
-padding:10px 15px;
-cursor:pointer;
-font-weight:700
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:9px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:700;
 }
 
 .exit:hover{
-border-color:var(--orange);
-color:var(--orange)
+    border-color:var(--orange);
+    color:var(--orange);
 }
 
 .container{
-max-width:1100px;
-margin:auto;
-padding:35px 25px
+    max-width:1100px;
+    margin:auto;
+    padding:35px 25px;
 }
 
 .page{
-display:none
+    display:none;
 }
 
 .page.active{
-display:block
+    display:block;
 }
 
 .title{
-margin-bottom:25px
+    margin-bottom:25px;
 }
 
 .title h1{
-font-size:32px;
-font-weight:900
+    font-size:32px;
+    font-weight:900;
 }
 
 .title p{
-color:var(--gray);
-margin-top:5px
+    color:var(--gray);
+    margin-top:5px;
 }
 
+/* =====================================================
+   STATS
+===================================================== */
+
 .stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-bottom:25px
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
 }
 
 .stat{
-background:#fff;
-border:1px solid #eee;
-border-radius:14px;
-padding:20px
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:20px;
 }
 
 .stat small{
-display:block;
-color:#777;
-font-size:13px
+    display:block;
+    color:#777;
+    font-size:13px;
 }
 
 .stat strong{
-display:block;
-font-size:24px;
-font-weight:900;
-margin-top:7px
+    display:block;
+    font-size:24px;
+    font-weight:900;
+    margin-top:7px;
 }
 
+/* =====================================================
+   MENU
+===================================================== */
+
 .menu{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:16px
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
 }
 
 .card{
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-padding:22px;
-display:flex;
-align-items:center;
-gap:18px;
-cursor:pointer;
-transition:.2s;
-box-shadow:0 3px 12px rgba(0,0,0,.04)
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
 .card:hover{
-border-color:var(--orange);
-transform:translateY(-2px)
+    border-color:var(--orange);
+    transform:translateY(-2px);
 }
 
 .icon{
-width:50px;
-height:50px;
-border-radius:12px;
-background:var(--orange-light);
-color:var(--orange);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-flex-shrink:0
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:var(--orange-light);
+    color:var(--orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    flex-shrink:0;
 }
 
 .card h3{
-font-size:16px;
-margin-bottom:4px
+    font-size:16px;
+    margin-bottom:4px;
 }
 
 .card p{
-color:#888;
-font-size:13px
+    color:#888;
+    font-size:13px;
 }
 
 .arrow{
-margin-left:auto;
-color:var(--orange);
-font-size:22px
+    margin-left:auto;
+    color:var(--orange);
+    font-size:22px;
 }
+
+/* =====================================================
+   BACK
+===================================================== */
 
 .back{
-border:none;
-background:transparent;
-color:var(--orange);
-font-weight:800;
-cursor:pointer;
-margin-bottom:20px
+    border:none;
+    background:transparent;
+    color:var(--orange);
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:20px;
 }
+
+/* =====================================================
+   TOP
+===================================================== */
 
 .top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
+/* =====================================================
+   TABLE
+===================================================== */
+
 .tablebox{
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-overflow-x:auto
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:15px;
+    overflow-x:auto;
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-min-width:1100px
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
 }
 
 th{
-background:#fafafa;
-padding:14px;
-text-align:left;
-font-size:12px;
-color:#777
+    background:#fafafa;
+    padding:14px;
+    text-align:left;
+    font-size:12px;
+    color:#777;
 }
 
 td{
-padding:14px;
-border-top:1px solid #eee;
-font-size:13px
+    padding:14px;
+    border-top:1px solid #eee;
+    font-size:13px;
 }
+
+.empty{
+    text-align:center;
+    padding:40px !important;
+    color:#888;
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status{
-padding:6px 10px;
-border-radius:20px;
-font-size:11px;
-font-weight:800;
-white-space:nowrap
-}
-
-.da-ordinare{
-background:#ffe2dc;
-color:#c9321c
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
 }
 
 .ordinato{
-background:#fff0d5;
-color:#9b6200
+    background:#fff0d5;
+    color:#9b6200;
 }
 
 .arrivato{
-background:#def5e5;
-color:#16753d
+    background:#def5e5;
+    color:#16753d;
 }
 
 .consegnato{
-background:#e0edff;
-color:#2862a8
+    background:#e0edff;
+    color:#2862a8;
 }
 
+/* =====================================================
+   PAYMENT
+===================================================== */
+
 .payment{
-background:var(--orange-light);
-border-left:4px solid var(--orange);
-padding:25px;
-border-radius:10px
+    background:var(--orange-light);
+    border-left:4px solid var(--orange);
+    padding:25px;
+    border-radius:10px;
 }
 
 .payment .big{
-font-size:32px;
-font-weight:900;
-margin:10px 0
+    font-size:32px;
+    font-weight:900;
+    margin:10px 0;
 }
 
 .note{
-background:#f7f7f7;
-padding:18px;
-border-radius:10px;
-color:#666
+    background:#f7f7f7;
+    padding:18px;
+    border-radius:10px;
+    color:#666;
+    margin-top:15px;
 }
 
+/* =====================================================
+   MODAL
+===================================================== */
+
 .modal-bg{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.55);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:100;
-padding:20px
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:20px;
 }
 
 .modal-bg.show{
-display:flex
+    display:flex;
 }
 
 .modal{
-background:#fff;
-width:600px;
-max-width:100%;
-max-height:90vh;
-overflow-y:auto;
-border-radius:20px;
-padding:25px
+    background:#fff;
+    width:600px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:20px;
+    padding:25px;
 }
 
 .modal h2{
-margin-bottom:20px
+    margin-bottom:20px;
 }
 
 .form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
 .field{
-display:flex;
-flex-direction:column;
-gap:6px
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
 .field.full{
-grid-column:1/-1
+    grid-column:1/-1;
 }
 
 .field label{
-font-size:12px;
-font-weight:700;
-color:#666
+    font-size:12px;
+    font-weight:700;
+    color:#666;
 }
 
 .field input,
 .field select{
-border:1px solid #ddd;
-padding:11px;
-border-radius:8px;
-outline:none;
-font-size:14px
+    border:1px solid #ddd;
+    padding:11px;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
 }
 
 .field input:focus,
 .field select:focus{
-border-color:var(--orange)
+    border-color:var(--orange);
+}
+
+.field input[readonly]{
+    background:#f5f5f5;
 }
 
 .modal-buttons{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:25px
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:25px;
 }
 
 .cancel{
-border:none;
-background:#eee;
-padding:11px 18px;
-border-radius:8px;
-font-weight:700;
-cursor:pointer
+    border:none;
+    background:#eee;
+    padding:11px 18px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
 }
 
 .save{
-border:none;
-background:var(--orange);
-color:#fff;
-padding:11px 20px;
-border-radius:8px;
-font-weight:800;
-cursor:pointer
+    border:none;
+    background:var(--orange);
+    color:#fff;
+    padding:11px 20px;
+    border-radius:8px;
+    font-weight:800;
+    cursor:pointer;
 }
+
+.save:hover{
+    background:var(--orange-dark);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:700px){
 
-.logo{
-font-size:60px
+    .logo{
+        font-size:60px;
+    }
+
+    .home h1{
+        font-size:25px;
+        margin-top:40px;
+    }
+
+    .people{
+        grid-template-columns:1fr;
+        gap:15px;
+        margin-top:30px;
+    }
+
+    .person{
+        padding:25px 20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .menu{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        padding:0 15px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .top{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
 }
 
-.home h1{
-font-size:25px;
-margin-top:40px
-}
+@media(max-width:430px){
 
-.people{
-grid-template-columns:1fr;
-gap:15px;
-margin-top:30px
-}
+    .stats{
+        grid-template-columns:1fr;
+    }
 
-.person{
-padding:25px 20px
-}
+    .header{
+        height:65px;
+    }
 
-.stats{
-grid-template-columns:1fr
-}
+    .smalllogo{
+        font-size:23px;
+    }
 
-.menu{
-grid-template-columns:1fr
-}
-
-.header{
-padding:0 15px
-}
-
-.container{
-padding:25px 15px
-}
-
-.form{
-grid-template-columns:1fr
-}
-
-.field.full{
-grid-column:auto
-}
-
-.top{
-align-items:flex-start;
-gap:15px;
-flex-direction:column
-}
+    .headerRight strong{
+        font-size:14px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =====================================================
+     HOME
+===================================================== -->
+
 <section id="home">
 
-<div class="orange o1"></div>
-<div class="orange o2"></div>
+    <div class="orange o1"></div>
+    <div class="orange o2"></div>
 
-<div class="home">
+    <div class="home">
 
-<div class="logo">KTM</div>
+        <div class="logo">KTM</div>
 
-<h1>GESTIONE ORDINI</h1>
+        <h1>GESTIONE ORDINI</h1>
 
-<p>Seleziona la persona da gestire</p>
+        <p>Seleziona la persona da gestire</p>
 
-<div class="people">
+        <div class="people">
 
-<div class="person">
-<div class="avatar">👤</div>
-<h2>ROBY</h2>
-<button class="btn orangebtn" id="robyBtn">ENTRA</button>
-</div>
+            <!-- ROBY -->
 
-<div class="person">
-<div class="avatar">👤</div>
-<h2>FEDE</h2>
-<button class="btn orangebtn" id="fedeBtn">ENTRA</button>
-</div>
+            <div class="person">
 
-</div>
-</div>
+                <div class="avatar">👤</div>
+
+                <h2>ROBY</h2>
+
+                <button
+                    class="btn orangebtn"
+                    id="robyBtn">
+                    ENTRA
+                </button>
+
+            </div>
+
+
+            <!-- FEDE -->
+
+            <div class="person">
+
+                <div class="avatar">👤</div>
+
+                <h2>FEDE</h2>
+
+                <button
+                    class="btn orangebtn"
+                    id="fedeBtn">
+                    ENTRA
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <section id="app">
 
-<header class="header">
+    <header class="header">
 
-<div class="headerRight">
-<div class="smalllogo">KTM</div>
-<strong id="currentUser"></strong>
-</div>
+        <div class="headerRight">
 
-<button class="exit" id="exitBtn">← Esci</button>
+            <div class="smalllogo">
+                KTM
+            </div>
 
-</header>
+            <strong id="currentUser"></strong>
 
-<main class="container">
+        </div>
 
-<section id="dashboard" class="page active">
+        <button
+            class="exit"
+            id="exitBtn">
+            ← Esci
+        </button>
 
-<div class="title">
-<h1 id="hello"></h1>
-<p>Gestione ordini, prezzi e pagamenti</p>
-</div>
+    </header>
 
-<div class="stats">
 
-<div class="stat">
-<small>ORDINI</small>
-<strong id="count">0</strong>
-</div>
+    <main class="container">
 
-<div class="stat">
-<small>TOTALE NETTO</small>
-<strong id="netTotal">€ 0,00</strong>
-</div>
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
 
-<div class="stat">
-<small>DA DARE A GIO</small>
-<strong id="gioTotal">€ 0,00</strong>
-</div>
+        <section
+            id="dashboard"
+            class="page active">
 
-<div class="stat">
-<small>DA DARE ALLA PERSONA</small>
-<strong id="personTotal">€ 0,00</strong>
-</div>
+            <div class="title">
 
-</div>
+                <h1 id="hello"></h1>
 
-<div class="menu">
+                <p>
+                    Gestione ordini, prezzi e pagamenti
+                </p>
 
-<div class="card" id="ordersCard">
-<div class="icon">📋</div>
-<div>
-<h3>I miei ordini</h3>
-<p>Visualizza tutti gli articoli</p>
-</div>
-<div class="arrow">›</div>
-</div>
+            </div>
 
-<div class="card" id="newCard">
-<div class="icon">➕</div>
-<div>
-<h3>Nuovo ordine</h3>
-<p>Aggiungi un nuovo articolo</p>
-</div>
-<div class="arrow">›</div>
-</div>
 
-<div class="card" id="paymentsCard">
-<div class="icon">💶</div>
-<div>
-<h3>Pagamenti</h3>
-<p>Controlla quanto deve essere versato a Gio</p>
-</div>
-<div class="arrow">›</div>
-</div>
+            <div class="stats">
 
-</div>
+                <div class="stat">
+
+                    <small>
+                        ORDINI
+                    </small>
+
+                    <strong id="count">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        TOTALE NETTO
+                    </small>
+
+                    <strong id="netTotal">
+                        € 0,00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        DA DARE A GIO
+                    </small>
+
+                    <strong id="gioTotal">
+                        € 0,00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <small>
+                        DA DARE ALLA PERSONA
+                    </small>
+
+                    <strong id="personTotal">
+                        € 0,00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="menu">
+
+                <!-- ORDINI -->
+
+                <div
+                    class="card"
+                    id="ordersCard">
+
+                    <div class="icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            I miei ordini
+                        </h3>
+
+                        <p>
+                            Visualizza tutti gli articoli
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <!-- NUOVO ORDINE -->
+
+                <div
+                    class="card"
+                    id="newCard">
+
+                    <div class="icon">
+                        ➕
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Nuovo ordine
+                        </h3>
+
+                        <p>
+                            Aggiungi un nuovo articolo
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <!-- PAGAMENTI -->
+
+                <div
+                    class="card"
+                    id="paymentsCard">
+
+                    <div class="icon">
+                        💶
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pagamenti
+                        </h3>
+
+                        <p>
+                            Controlla quanto deve essere versato a Gio
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ›
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ORDINI
+        ================================================== -->
+
+        <section
+            id="orders"
+            class="page">
+
+            <button
+                class="back"
+                id="backBtn">
+                ← Dashboard
+            </button>
+
+
+            <div class="top">
+
+                <div class="title">
+
+                    <h1>
+                        Ordini di
+                        <span id="ordersPerson"></span>
+                    </h1>
+
+                    <p>
+                        Tutti gli ordini registrati
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn orangebtn"
+                    id="newOrderBtn">
+
+                    + Nuovo ordine
+
+                </button>
+
+            </div>
+
+
+            <div class="tablebox">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                DATA
+                            </th>
+
+                            <th>
+                                Q.TÀ
+                            </th>
+
+                            <th>
+                                ARTICOLO
+                            </th>
+
+                            <th>
+                                LISTINO
+                            </th>
+
+                            <th>
+                                SCONTO
+                            </th>
+
+                            <th>
+                                NETTO
+                            </th>
+
+                            <th>
+                                TOTALE
+                            </th>
+
+                            <th>
+                                DA DARE A PERSONA
+                            </th>
+
+                            <th>
+                                DA DARE A GIO
+                            </th>
+
+                            <th>
+                                STATO
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="ordersBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGAMENTI
+        ================================================== -->
+
+        <section
+            id="payments"
+            class="page">
+
+            <button
+                class="back"
+                id="paymentsBack">
+                ← Dashboard
+            </button>
+
+
+            <div class="title">
+
+                <h1>
+                    Pagamenti
+                </h1>
+
+                <p>
+                    Situazione economica di
+                    <span id="paymentName"></span>
+                </p>
+
+            </div>
+
+
+            <div class="payment">
+
+                <div>
+                    TOTALE DA DARE A GIO
+                </div>
+
+                <div
+                    class="big"
+                    id="paymentTotal">
+                    € 0,00
+                </div>
+
+                <p>
+                    Totale calcolato sugli ordini registrati.
+                </p>
+
+            </div>
+
+
+            <div class="note">
+
+                Il valore viene aggiornato automaticamente
+                quando aggiungi un nuovo ordine.
+
+            </div>
+
+        </section>
+
+    </main>
+
 </section>
 
-<section id="orders" class="page">
 
-<button class="back" id="backBtn">← Dashboard</button>
+<!-- =====================================================
+     MODALE NUOVO ORDINE
+===================================================== -->
 
-<div class="top">
+<div
+    class="modal-bg"
+    id="modal">
 
-<div class="title">
-<h1>Ordini di <span id="ordersPerson"></span></h1>
-<p>205 ordini storici del file Excel + nuovi inserimenti</p>
+    <div class="modal">
+
+        <h2>
+            Nuovo ordine —
+            <span id="modalPerson"></span>
+        </h2>
+
+
+        <div class="form">
+
+            <!-- DATA -->
+
+            <div class="field">
+
+                <label>
+                    DATA
+                </label>
+
+                <input
+                    type="date"
+                    id="date">
+
+            </div>
+
+
+            <!-- QUANTITA -->
+
+            <div class="field">
+
+                <label>
+                    QUANTITÀ
+                </label>
+
+                <input
+                    type="number"
+                    id="qty"
+                    min="1"
+                    value="1">
+
+            </div>
+
+
+            <!-- ARTICOLO -->
+
+            <div class="field full">
+
+                <label>
+                    CODICE / ARTICOLO
+                </label>
+
+                <input
+                    type="text"
+                    id="article"
+                    placeholder="Es. 1234567890">
+
+            </div>
+
+
+            <!-- LISTINO -->
+
+            <div class="field">
+
+                <label>
+                    LISTINO (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="listino"
+                    min="0"
+                    step="0.01"
+                    placeholder="0,00">
+
+            </div>
+
+
+            <!-- SCONTO -->
+
+            <div class="field">
+
+                <label>
+                    SCONTO (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="sconto"
+                    min="0"
+                    max="100"
+                    step="0.01"
+                    value="25">
+
+            </div>
+
+
+            <!-- NETTO -->
+
+            <div class="field">
+
+                <label>
+                    NETTO SCONTATO (€)
+                </label>
+
+                <input
+                    type="text"
+                    id="netto"
+                    readonly
+                    placeholder="€ 0,00">
+
+            </div>
+
+
+            <!-- SOLDI PERSONA -->
+
+            <div class="field">
+
+                <label>
+                    DA DARE A PERSONA (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="darePersona"
+                    min="0"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+
+            <!-- SOLDI GIO -->
+
+            <div class="field">
+
+                <label>
+                    DA DARE A GIO (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="dareGio"
+                    min="0"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                id="cancelBtn">
+
+                Annulla
+
+            </button>
+
+
+            <button
+                class="save"
+                id="saveBtn">
+
+                Salva ordine
+
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
-<button class="btn orangebtn" id="newOrderBtn">+ Nuovo ordine</button>
-
-</div>
-
-<div class="tablebox">
-
-<table>
-
-<thead>
-<tr>
-<th>DATA</th>
-<th>Q.TÀ</th>
-<th>ARTICOLO</th>
-<th>LISTINO</th>
-<th>SCONTO</th>
-<th>NETTO</th>
-<th>TOTALE</th>
-<th>DA DARE A PERSONA</th>
-<th>DA DARE A GIO</th>
-<th>STATO</th>
-</tr>
-</thead>
-
-<tbody id="ordersBody"></tbody>
-
-</table>
-
-</div>
-</section>
-
-<section id="payments" class="page">
-
-<button class="back" id="paymentsBack">← Dashboard</button>
-
-<div class="title">
-<h1>Pagamenti</h1>
-<p>Situazione economica di <span id="paymentName"></span></p>
-</div>
-
-<div class="payment">
-
-<div>TOTALE DA DARE A GIO</div>
-
-<div class="big" id="paymentTotal">€ 0,00</div>
-
-<p>
-Per gli ordini importati viene mantenuto il valore presente
-nel file Excel.
-</p>
-
-</div>
-
-</section>
-
-</main>
-</section>
-
-<div class="modal-bg" id="modal">
-
-<div class="modal">
-
-<h2>Nuovo ordine — <span id="modalPerson"></span></h2>
-
-<div class="form">
-
-<div class="field">
-<label>DATA</label>
-<input type="date" id="date">
-</div>
-
-<div class="field">
-<label>QUANTITÀ</label>
-<input type="number" id="qty" min="1" value="1" oninput="calc()">
-</div>
-
-<div class="field full">
-<label>CODICE / ARTICOLO</label>
-<input type="text" id="article" placeholder="Es. 1234567890">
-</div>
-
-<div class="field">
-<label>LISTINO (€)</label>
-<input type="number" id="listino" min="0" step="0.01" oninput="calc()">
-</div>
-
-<div class="field">
-<label>SCONTO (%)</label>
-<input type="number" id="sconto" min="0" max="100" step="0.01" value="25" oninput="calc()">
-</div>
-
-<div class="field">
-<label>NETTO SCONTATO</label>
-<input type="text" id="netto" readonly>
-</div>
-
-<div class="field">
-<label>DA DARE A PERSONA (€)</label>
-<input type="number" id="darePersona" min="0" step="0.01" value="0">
-</div>
-
-<div class="field">
-<label>STATO</label>
-
-<select id="status">
-<option>Da ordinare</option>
-<option>Ordinato</option>
-<option>Arrivato</option>
-<option>Consegnato</option>
-</select>
-
-</div>
-
-</div>
-
-<div class="modal-buttons">
-
-<button class="cancel" id="cancelBtn">
-Annulla
-</button>
-
-<button class="save" id="saveBtn">
-Salva ordine
-</button>
-
-</div>
-
-</div>
-</div>
 
 <script>
 
+/* =====================================================
+   DATI
+===================================================== */
+
 let currentPerson = "";
-let orders = JSON.parse(localStorage.getItem("ktmOrdersV2") || "[]");
+
+
+/*
+    Tutti gli ordini vengono salvati nel browser.
+    Ogni ordine ha anche il campo "person"
+    per distinguere ROBY e FEDE.
+*/
+
+let orders = JSON.parse(
+    localStorage.getItem("ktmOrdersV3") || "[]"
+);
+
+
+/* =====================================================
+   STORICO ROBY
+===================================================== */
 
 const ROBY_HISTORY = [
-const ROBY_HISTORY = [
-    { date: "2024-09-25", quantity: 1, article: "Pistone 125 ", listino: 0, sconto: 25, netto: 0, darePersona: 154.54, dareGio: 0, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "50430098060", listino: 0, sconto: 25, netto: 7, darePersona: 0, dareGio: 5.833333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "50430098050", listino: 0, sconto: 25, netto: 7, darePersona: 0, dareGio: 5.833333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "50430098000", listino: 0, sconto: 25, netto: 12, darePersona: 0, dareGio: 10, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "50430099000", listino: 0, sconto: 25, netto: 16, darePersona: 0, dareGio: 13.333333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034000", listino: 0, sconto: 25, netto: 58, darePersona: 0, dareGio: 48.333333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034001", listino: 0, sconto: 25, netto: 131, darePersona: 0, dareGio: 109.166667, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034002", listino: 0, sconto: 25, netto: 12, darePersona: 374, dareGio: 0, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034003", listino: 0, sconto: 25, netto: 14, darePersona: 0, dareGio: 11.666667, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034004", listino: 0, sconto: 25, netto: 209.5, darePersona: 0, dareGio: 174.583333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034005", listino: 0, sconto: 25, netto: 66.51, darePersona: 0, dareGio: 55.425, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034006", listino: 0, sconto: 25, netto: 6.084, darePersona: 0, dareGio: 5.07, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034007", listino: 0, sconto: 25, netto: 224.5, darePersona: 0, dareGio: 187.083333, status: "Consegnato" },
-    { date: "2024-10-08", quantity: 1, article: "54830034008", listino: 0, sconto: 25, netto: 27.5, darePersona: 0, dareGio: 22.916667, status: "Consegnato" },
+
+    {
+        date:"2024-09-25",
+        quantity:1,
+        article:"Pistone 125",
+        listino:0,
+        sconto:25,
+        netto:0,
+        darePersona:154.54,
+        dareGio:0,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"50430098060",
+        listino:0,
+        sconto:25,
+        netto:7,
+        darePersona:0,
+        dareGio:5.833333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"50430098050",
+        listino:0,
+        sconto:25,
+        netto:7,
+        darePersona:0,
+        dareGio:5.833333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"50430098000",
+        listino:0,
+        sconto:25,
+        netto:12,
+        darePersona:0,
+        dareGio:10,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"50430099000",
+        listino:0,
+        sconto:25,
+        netto:16,
+        darePersona:0,
+        dareGio:13.333333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034000",
+        listino:0,
+        sconto:25,
+        netto:58,
+        darePersona:0,
+        dareGio:48.333333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034001",
+        listino:0,
+        sconto:25,
+        netto:131,
+        darePersona:0,
+        dareGio:109.166667,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034002",
+        listino:0,
+        sconto:25,
+        netto:12,
+        darePersona:374,
+        dareGio:0,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034003",
+        listino:0,
+        sconto:25,
+        netto:14,
+        darePersona:0,
+        dareGio:11.666667,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034004",
+        listino:0,
+        sconto:25,
+        netto:209.5,
+        darePersona:0,
+        dareGio:174.583333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034005",
+        listino:0,
+        sconto:25,
+        netto:66.51,
+        darePersona:0,
+        dareGio:55.425,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034006",
+        listino:0,
+        sconto:25,
+        netto:6.084,
+        darePersona:0,
+        dareGio:5.07,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034007",
+        listino:0,
+        sconto:25,
+        netto:224.5,
+        darePersona:0,
+        dareGio:187.083333,
+        status:"Consegnato"
+    },
+
+    {
+        date:"2024-10-08",
+        quantity:1,
+        article:"54830034008",
+        listino:0,
+        sconto:25,
+        netto:27.5,
+        darePersona:0,
+        dareGio:22.916667,
+        status:"Consegnato"
+    }
+
+];
+
+
+/* =====================================================
+   INIZIALIZZAZIONE STORICO
+===================================================== */
+
+/*
+    Inseriamo lo storico solo se non è già stato importato.
+*/
+
+function importaStorico(){
+
+    const giaImportato =
+        localStorage.getItem("ktmHistoryImportedV3");
+
+    if(giaImportato === "yes"){
+        return;
+    }
+
+    ROBY_HISTORY.forEach(order => {
+
+        orders.push({
+
+            ...order,
+
+            person:"ROBY",
+
+            id:
+                "history_" +
+                Date.now() +
+                "_" +
+                Math.random()
+                .toString(36)
+                .substring(2)
+
+        });
+
+    });
+
+    localStorage.setItem(
+        "ktmOrdersV3",
+        JSON.stringify(orders)
+    );
+
+    localStorage.setItem(
+        "ktmHistoryImportedV3",
+        "yes"
+    );
+
+}
+
+
+/* =====================================================
+   ELEMENTI
+===================================================== */
+
+const home =
+    document.getElementById("home");
+
+const app =
+    document.getElementById("app");
+
+const robyBtn =
+    document.getElementById("robyBtn");
+
+const fedeBtn =
+    document.getElementById("fedeBtn");
+
+const exitBtn =
+    document.getElementById("exitBtn");
+
+const ordersCard =
+    document.getElementById("ordersCard");
+
+const newCard =
+    document.getElementById("newCard");
+
+const paymentsCard =
+    document.getElementById("paymentsCard");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+const paymentsBack =
+    document.getElementById("paymentsBack");
+
+const newOrderBtn =
+    document.getElementById("newOrderBtn");
+
+const modal =
+    document.getElementById("modal");
+
+const cancelBtn =
+    document.getElementById("cancelBtn");
+
+const saveBtn =
+    document.getElementById("saveBtn");
+
+
+/* =====================================================
+   FUNZIONI DI SUPPORTO
+===================================================== */
+
+function euro(value){
+
+    return Number(value || 0).toLocaleString(
+        "it-IT",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    );
+
+}
+
+
+function dataIt(data){
+
+    if(!data){
+        return "";
+    }
+
+    const parts =
+        data.split("-");
+
+    if(parts.length !== 3){
+        return data;
+    }
+
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
+
+}
+
+
+function today(){
+
+    const d = new Date();
+
+    const month =
+        String(d.getMonth()+1)
+        .padStart(2,"0");
+
+    const day =
+        String(d.getDate())
+        .padStart(2,"0");
+
+    return (
+        d.getFullYear() +
+        "-" +
+        month +
+        "-" +
+        day
+    );
+
+}
+
+
+function salvaOrdini(){
+
+    localStorage.setItem(
+        "ktmOrdersV3",
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* =====================================================
+   ENTRA
+===================================================== */
+
+function entra(persona){
+
+    currentPerson = persona;
+
+    home.style.display = "none";
+
+    app.style.display = "block";
+
+    document.getElementById(
+        "currentUser"
+    ).textContent = persona;
+
+    document.getElementById(
+        "hello"
+    ).textContent =
+        "Ciao " + persona;
+
+    document.getElementById(
+        "ordersPerson"
+    ).textContent =
+        persona;
+
+    document.getElementById(
+        "paymentName"
+    ).textContent =
+        persona;
+
+    document.getElementById(
+        "modalPerson"
+    ).textContent =
+        persona;
+
+    mostraPagina("dashboard");
+
+    aggiornaDashboard();
+
+}
+
+
+/* =====================================================
+   USCITA
+===================================================== */
+
+function esci(){
+
+    currentPerson = "";
+
+    app.style.display = "none";
+
+    home.style.display = "flex";
+
+    chiudiModal();
+
+}
+
+
+/* =====================================================
+   PAGINE
+===================================================== */
+
+function mostraPagina(id){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    const pagina =
+        document.getElementById(id);
+
+    if(pagina){
+
+        pagina.classList.add("active");
+
+    }
+
+
+    if(id === "dashboard"){
+
+        aggiornaDashboard();
+
+    }
+
+
+    if(id === "orders"){
+
+        aggiornaOrdini();
+
+    }
+
+
+    if(id === "payments"){
+
+        aggiornaPagamenti();
+
+    }
+
+}
+
+
+/* =====================================================
+   ORDINI PERSONA
+===================================================== */
+
+function ordiniPersona(){
+
+    return orders.filter(
+        order =>
+            order.person === currentPerson
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function aggiornaDashboard(){
+
+    const mieiOrdini =
+        ordiniPersona();
+
+
+    document.getElementById(
+        "count"
+    ).textContent =
+        mieiOrdini.length;
+
+
+    let netto = 0;
+
+    let gio = 0;
+
+    let persona = 0;
+
+
+    mieiOrdini.forEach(order => {
+
+        const quantity =
+            Number(order.quantity || 0);
+
+        netto +=
+            Number(order.netto || 0)
+            * quantity;
+
+        gio +=
+            Number(order.dareGio || 0);
+
+        persona +=
+            Number(order.darePersona || 0);
+
+    });
+
+
+    document.getElementById(
+        "netTotal"
+    ).textContent =
+        euro(netto);
+
+
+    document.getElementById(
+        "gioTotal"
+    ).textContent =
+        euro(gio);
+
+
+    document.getElementById(
+        "personTotal"
+    ).textContent =
+        euro(persona);
+
+}
+
+
+/* =====================================================
+   TABELLA ORDINI
+===================================================== */
+
+function aggiornaOrdini(){
+
+    const body =
+        document.getElementById(
+            "ordersBody"
+        );
+
+
+    body.innerHTML = "";
+
+
+    const mieiOrdini =
+        ordiniPersona();
+
+
+    if(mieiOrdini.length === 0){
+
+        body.innerHTML = `
+            <tr>
+                <td
+                    colspan="10"
+                    class="empty">
+                    Nessun ordine registrato.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    mieiOrdini.forEach(order => {
+
+        const tr =
+            document.createElement("tr");
+
+
+        const totale =
+            Number(order.netto || 0)
+            * Number(order.quantity || 0);
+
+
+        let classeStatus =
+            "ordinato";
+
+
+        if(order.status === "Arrivato"){
+            classeStatus = "arrivato";
+        }
+
+        if(order.status === "Consegnato"){
+            classeStatus = "consegnato";
+        }
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${dataIt(order.date)}
+            </td>
+
+            <td>
+                ${order.quantity}
+            </td>
+
+            <td>
+                <strong>
+                    ${escapeHtml(order.article)}
+                </strong>
+            </td>
+
+            <td>
+                ${euro(order.listino)}
+            </td>
+
+            <td>
+                ${Number(order.sconto || 0)}%
+            </td>
+
+            <td>
+                ${euro(order.netto)}
+            </td>
+
+            <td>
+                ${euro(totale)}
+            </td>
+
+            <td>
+                ${euro(order.darePersona)}
+            </td>
+
+            <td>
+                ${euro(order.dareGio)}
+            </td>
+
+            <td>
+                <span class="status ${classeStatus}">
+                    ${order.status || "Ordinato"}
+                </span>
+            </td>
+
+        `;
+
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+   PAGAMENTI
+===================================================== */
+
+function aggiornaPagamenti(){
+
+    const mieiOrdini =
+        ordiniPersona();
+
+
+    let totale = 0;
+
+
+    mieiOrdini.forEach(order => {
+
+        totale +=
+            Number(order.dareGio || 0);
+
+    });
+
+
+    document.getElementById(
+        "paymentTotal"
+    ).textContent =
+        euro(totale);
+
+}
+
+
+/* =====================================================
+   CALCOLO NETTO
+===================================================== */
+
+function calcolaNetto(){
+
+    const listino =
+        Number(
+            document.getElementById(
+                "listino"
+            ).value
+        ) || 0;
+
+
+    const sconto =
+        Number(
+            document.getElementById(
+                "sconto"
+            ).value
+        ) || 0;
+
+
+    const netto =
+        listino -
+        (
+            listino *
+            sconto /
+            100
+        );
+
+
+    document.getElementById(
+        "netto"
+    ).value =
+        euro(netto);
+
+}
+
+
+/* =====================================================
+   APRI MODALE
+===================================================== */
+
+function apriNuovoOrdine(){
+
+    if(!currentPerson){
+        return;
+    }
+
+
+    document.getElementById(
+        "date"
+    ).value =
+        today();
+
+
+    document.getElementById(
+        "qty"
+    ).value =
+        1;
+
+
+    document.getElementById(
+        "article"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "listino"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "sconto"
+    ).value =
+        25;
+
+
+    document.getElementById(
+        "netto"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "darePersona"
+    ).value =
+        0;
+
+
+    document.getElementById(
+        "dareGio"
+    ).value =
+        0;
+
+
+    document.getElementById(
+        "modalPerson"
+    ).textContent =
+        currentPerson;
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* =====================================================
+   CHIUDI MODALE
+===================================================== */
+
+function chiudiModal(){
+
+    modal.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   SALVA NUOVO ORDINE
+===================================================== */
+
+function salvaNuovoOrdine(){
+
+    const date =
+        document.getElementById(
+            "date"
+        ).value;
+
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "qty"
+            ).value
+        );
+
+
+    const article =
+        document.getElementById(
+            "article"
+        ).value.trim();
+
+
+    const listino =
+        Number(
+            document.getElementById(
+                "listino"
+            ).value
+        ) || 0;
+
+
+    const sconto =
+        Number(
+            document.getElementById(
+                "sconto"
+            ).value
+        ) || 0;
+
+
+    const netto =
+        listino -
+        (
+            listino *
+            sconto /
+            100
+        );
+
+
+    const darePersona =
+        Number(
+            document.getElementById(
+                "darePersona"
+            ).value
+        ) || 0;
+
+
+    const dareGio =
+        Number(
+            document.getElementById(
+                "dareGio"
+            ).value
+        ) || 0;
+
+
+    if(!date){
+
+        alert(
+            "Inserisci la data."
+        );
+
+        return;
+
+    }
+
+
+    if(!quantity || quantity < 1){
+
+        alert(
+            "Inserisci una quantità valida."
+        );
+
+        return;
+
+    }
+
+
+    if(!article){
+
+        alert(
+            "Inserisci il codice articolo."
+        );
+
+        return;
+
+    }
+
+
+    const nuovoOrdine = {
+
+        id:
+            Date.now() +
+            "_" +
+            Math.random()
+            .toString(36)
+            .substring(2),
+
+        person:
+            currentPerson,
+
+        date:
+            date,
+
+        quantity:
+            quantity,
+
+        article:
+            article,
+
+        listino:
+            listino,
+
+        sconto:
+            sconto,
+
+        netto:
+            netto,
+
+        darePersona:
+            darePersona,
+
+        dareGio:
+            dareGio,
+
+        /*
+            Tutto quello che inserisci
+            è già un ordine.
+        */
+
+        status:
+            "Ordinato"
+
+    };
+
+
+    orders.push(
+        nuovoOrdine
+    );
+
+
+    salvaOrdini();
+
+
+    chiudiModal();
+
+
+    aggiornaDashboard();
+
+    aggiornaOrdini();
+
+    aggiornaPagamenti();
+
+
+    alert(
+        "Ordine salvato correttamente!"
+    );
+
+
+    mostraPagina(
+        "orders"
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text || "";
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   EVENTI ROBY / FEDE
+===================================================== */
+
+robyBtn.addEventListener(
+    "click",
+    function(){
+
+        entra("ROBY");
+
+    }
+);
+
+
+fedeBtn.addEventListener(
+    "click",
+    function(){
+
+        entra("FEDE");
+
+    }
+);
+
+
+/* =====================================================
+   USCITA
+===================================================== */
+
+exitBtn.addEventListener(
+    "click",
+    function(){
+
+        esci();
+
+    }
+);
+
+
+/* =====================================================
+   DASHBOARD → ORDINI
+===================================================== */
+
+ordersCard.addEventListener(
+    "click",
+    function(){
+
+        mostraPagina(
+            "orders"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   DASHBOARD → NUOVO
+===================================================== */
+
+newCard.addEventListener(
+    "click",
+    function(){
+
+        apriNuovoOrdine();
+
+    }
+);
+
+
+/* =====================================================
+   DASHBOARD → PAGAMENTI
+===================================================== */
+
+paymentsCard.addEventListener(
+    "click",
+    function(){
+
+        mostraPagina(
+            "payments"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   BACK DASHBOARD
+===================================================== */
+
+backBtn.addEventListener(
+    "click",
+    function(){
+
+        mostraPagina(
+            "dashboard"
+        );
+
+    }
+);
+
+
+paymentsBack.addEventListener(
+    "click",
+    function(){
+
+        mostraPagina(
+            "dashboard"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NUOVO ORDINE DALLA PAGINA ORDINI
+===================================================== */
+
+newOrderBtn.addEventListener(
+    "click",
+    function(){
+
+        apriNuovoOrdine();
+
+    }
+);
+
+
+/* =====================================================
+   ANNULLA
+===================================================== */
+
+cancelBtn.addEventListener(
+    "click",
+    function(){
+
+        chiudiModal();
+
+    }
+);
+
+
+/* =====================================================
+   SALVA
+===================================================== */
+
+saveBtn.addEventListener(
+    "click",
+    function(){
+
+        salvaNuovoOrdine();
+
+    }
+);
+
+
+/* =====================================================
+   CALCOLO AUTOMATICO
+===================================================== */
+
+document.getElementById(
+    "listino"
+).addEventListener(
+    "input",
+    calcolaNetto
+);
+
+
+document.getElementById(
+    "sconto"
+).addEventListener(
+    "input",
+    calcolaNetto
+);
+
+
+/* =====================================================
+   CHIUSURA MODALE CLICCANDO FUORI
+===================================================== */
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === modal){
+
+            chiudiModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESC DA TASTIERA
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            chiudiModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AVVIO
+===================================================== */
+
+importaStorico();
+
+</script>
+
+</body>
+</html>
