@@ -6,7 +6,6 @@
 <title>Gestione Ordini KTM</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -29,10 +28,6 @@ body{
     color:var(--black);
     min-height:100vh;
 }
-
-/* =========================
-   HOME
-========================= */
 
 #home{
     min-height:100vh;
@@ -158,10 +153,6 @@ body{
     font-size:17px;
 }
 
-/* =========================
-   APP
-========================= */
-
 #app{
     display:none;
     min-height:100vh;
@@ -236,10 +227,6 @@ body{
     margin-top:5px;
 }
 
-/* =========================
-   STATS
-========================= */
-
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -266,10 +253,6 @@ body{
     font-weight:900;
     margin-top:7px;
 }
-
-/* =========================
-   MENU
-========================= */
 
 .menu{
     display:grid;
@@ -324,10 +307,6 @@ body{
     font-size:22px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .back{
     border:none;
     background:transparent;
@@ -343,10 +322,6 @@ body{
     align-items:center;
     margin-bottom:25px;
 }
-
-/* =========================
-   SEARCH
-========================= */
 
 .searchbox{
     background:#fff;
@@ -376,10 +351,6 @@ body{
 .searchbox input:focus{
     border-color:var(--orange);
 }
-
-/* =========================
-   TABLE
-========================= */
 
 .tablebox{
     background:#fff;
@@ -413,10 +384,6 @@ td{
     padding:40px;
     color:#888;
 }
-
-/* =========================
-   MODAL
-========================= */
 
 .modal-bg{
     position:fixed;
@@ -489,10 +456,6 @@ td{
     border-color:var(--orange);
 }
 
-/* =========================
-   AUTOCOMPLETE
-========================= */
-
 .code-search{
     position:relative;
 }
@@ -506,7 +469,7 @@ td{
     border:1px solid #ddd;
     border-top:none;
     border-radius:0 0 10px 10px;
-    max-height:220px;
+    max-height:300px;
     overflow-y:auto;
     z-index:200;
     display:none;
@@ -539,9 +502,35 @@ td{
     min-height:15px;
 }
 
-/* =========================
-   LAVORI
-========================= */
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:22px;
+}
+
+.cancel{
+    border:none;
+    background:#eee;
+    border-radius:9px;
+    padding:12px 18px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.save{
+    border:none;
+    background:var(--orange);
+    color:#fff;
+    border-radius:9px;
+    padding:12px 18px;
+    cursor:pointer;
+    font-weight:800;
+}
+
+.save:hover{
+    background:var(--orange-dark);
+}
 
 .work-table{
     min-width:700px;
@@ -551,76 +540,14 @@ td{
     font-weight:700;
 }
 
-.add-work-box{
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.add-work-box h3{
-    margin-bottom:15px;
-}
-
-.work-form{
-    display:grid;
-    grid-template-columns:180px 1fr 160px auto;
-    gap:12px;
-    align-items:end;
-}
-
-.work-field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.work-field label{
-    font-size:11px;
-    color:#777;
-    font-weight:800;
-}
-
-.work-field input,
-.work-field textarea{
-    border:1px solid #ddd;
-    padding:11px;
-    border-radius:8px;
-    font-family:inherit;
-    outline:none;
-}
-
-.work-field textarea{
-    min-height:44px;
-    resize:vertical;
-}
-
-.work-field input:focus,
-.work-field textarea:focus{
-    border-color:var(--orange);
-}
-
 .work-total{
     font-weight:900;
     color:var(--orange);
 }
 
-/* =========================
-   MODAL LAVORO
-========================= */
-
-.modal-work{
-    width:600px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:800px){
 
-    .work-form{
+    .people{
         grid-template-columns:1fr;
     }
 
@@ -678,16 +605,10 @@ td{
     }
 
 }
-
 </style>
 </head>
 
 <body>
-
-
-<!-- =====================================================
-     HOME
-===================================================== -->
 
 <section id="home">
 
@@ -728,7 +649,6 @@ td{
 
             </div>
 
-
             <div class="person">
 
                 <div class="avatar">
@@ -753,11 +673,6 @@ td{
 
 </section>
 
-
-<!-- =====================================================
-     APP
-===================================================== -->
-
 <section id="app">
 
 <header class="header">
@@ -780,13 +695,7 @@ td{
 
 </header>
 
-
 <main class="container">
-
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
 
 <section
     id="dashboard"
@@ -802,7 +711,6 @@ td{
 
     </div>
 
-
     <div class="stats">
 
         <div class="stat">
@@ -817,11 +725,10 @@ td{
 
         </div>
 
-
         <div class="stat">
 
             <small>
-                TOTALE NETTO ORDINI
+                TOTALE ORDINI
             </small>
 
             <strong id="netTotal">
@@ -829,7 +736,6 @@ td{
             </strong>
 
         </div>
-
 
         <div class="stat">
 
@@ -845,9 +751,7 @@ td{
 
     </div>
 
-
     <div class="menu">
-
 
         <div
             class="card"
@@ -875,7 +779,6 @@ td{
 
         </div>
 
-
         <div
             class="card"
             id="newCard">
@@ -901,7 +804,6 @@ td{
             </div>
 
         </div>
-
 
         <div
             class="card"
@@ -929,15 +831,9 @@ td{
 
         </div>
 
-
     </div>
 
 </section>
-
-
-<!-- =====================================================
-     ORDINI
-===================================================== -->
 
 <section
     id="orders"
@@ -946,27 +842,23 @@ td{
     <button
         class="back"
         id="backBtn">
-
         ← Dashboard
-
     </button>
-
 
     <div class="top">
 
         <div class="title">
 
             <h1>
-                Ordini di
+                I miei ordini —
                 <span id="ordersPerson"></span>
             </h1>
 
             <p>
-                Tutti i ricambi inseriti
+                Tutti i ricambi presenti
             </p>
 
         </div>
-
 
         <button
             class="btn orangebtn"
@@ -977,7 +869,6 @@ td{
         </button>
 
     </div>
-
 
     <div class="searchbox">
 
@@ -992,7 +883,6 @@ td{
             autocomplete="off">
 
     </div>
-
 
     <div class="tablebox">
 
@@ -1042,11 +932,6 @@ td{
 
 </section>
 
-
-<!-- =====================================================
-     LAVORI
-===================================================== -->
-
 <section
     id="works"
     class="page">
@@ -1058,7 +943,6 @@ td{
         ← Dashboard
 
     </button>
-
 
     <div class="top">
 
@@ -1084,7 +968,6 @@ td{
         </button>
 
     </div>
-
 
     <div class="tablebox">
 
@@ -1118,15 +1001,9 @@ td{
 
 </section>
 
-
 </main>
 
 </section>
-
-
-<!-- =====================================================
-     MODAL NUOVO ORDINE
-===================================================== -->
 
 <div
     class="modal-bg"
@@ -1139,11 +1016,7 @@ td{
             <span id="modalPerson"></span>
         </h2>
 
-
         <div class="form">
-
-
-            <!-- CODICE -->
 
             <div
                 class="field full code-search">
@@ -1170,9 +1043,6 @@ td{
 
             </div>
 
-
-            <!-- DATA -->
-
             <div class="field">
 
                 <label>
@@ -1184,9 +1054,6 @@ td{
                     id="date">
 
             </div>
-
-
-            <!-- QUANTITA -->
 
             <div class="field">
 
@@ -1202,9 +1069,6 @@ td{
 
             </div>
 
-
-            <!-- LISTINO -->
-
             <div class="field">
 
                 <label>
@@ -1219,9 +1083,6 @@ td{
                     value="0">
 
             </div>
-
-
-            <!-- SCONTO -->
 
             <div class="field">
 
@@ -1239,9 +1100,6 @@ td{
 
             </div>
 
-
-            <!-- NETTO -->
-
             <div class="field">
 
                 <label>
@@ -1254,9 +1112,6 @@ td{
                     readonly>
 
             </div>
-
-
-            <!-- TOTALE -->
 
             <div class="field">
 
@@ -1272,7 +1127,6 @@ td{
             </div>
 
         </div>
-
 
         <div class="modal-buttons">
 
@@ -1298,25 +1152,18 @@ td{
 
 </div>
 
-
-<!-- =====================================================
-     MODAL NUOVO LAVORO
-===================================================== -->
-
 <div
     class="modal-bg"
     id="workModal">
 
-    <div class="modal modal-work">
+    <div class="modal">
 
         <h2>
             Nuovo lavoro —
             <span id="workModalPerson"></span>
         </h2>
 
-
         <div class="form">
-
 
             <div class="field">
 
@@ -1329,7 +1176,6 @@ td{
                     id="workDate">
 
             </div>
-
 
             <div class="field">
 
@@ -1346,7 +1192,6 @@ td{
 
             </div>
 
-
             <div class="field full">
 
                 <label>
@@ -1355,14 +1200,11 @@ td{
 
                 <textarea
                     id="workDescription"
-                    placeholder="Descrivi il lavoro eseguito...">
-                </textarea>
+                    placeholder="Descrivi il lavoro eseguito..."></textarea>
 
             </div>
 
-
         </div>
-
 
         <div class="modal-buttons">
 
@@ -1373,7 +1215,6 @@ td{
                 Annulla
 
             </button>
-
 
             <button
                 class="save"
@@ -1389,7 +1230,6 @@ td{
 
 </div>
 
-
 <script>
 
 /* =====================================================
@@ -1400,103 +1240,144 @@ let currentPerson = "";
 
 let orders =
     JSON.parse(
-        localStorage.getItem("ktmOrdersV4") || "[]"
+        localStorage.getItem("ktmOrdersV5") || "[]"
     );
 
 let works =
     JSON.parse(
-        localStorage.getItem("ktmWorksV1") || "[]"
+        localStorage.getItem("ktmWorksV2") || "[]"
     );
 
 
 /* =====================================================
-   CATALOGO
-   TUTTI I PREZZI PARTONO DA ZERO
+   CATALOGO ROBY
+   CODICI RICAVATI DALL'ELENCO FORNITO
 ===================================================== */
 
-let ktmCatalog =
-    JSON.parse(
-        localStorage.getItem("ktmCatalogV2") || "null"
-    );
+const robyCatalog = [
+
+    "50430098060",
+    "50430098050",
+    "50430025000",
+    "50430039000",
+    "00050002300",
+    "50430015044",
+    "A46035009000",
+    "00050000272",
+    "79430107210",
+    "79536013000",
+    "77239093000",
+    "77338005100",
+    "A42005907500",
+    "A46035909000",
+    "A46014069000",
+    "A42030060000",
+    "50403096010",
+    "77204066010",
+    "77204066044",
+    "A45041072033",
+    "79135071044",
+    "50439005000",
+    "50532054000",
+    "91010240S",
+    "50439004000",
+    "79030015144",
+    "47230015044",
+    "50530152044",
+    "A42030018010",
+    "50430006100",
+    "50433015400",
+    "54834005133",
+    "50534005044",
+    "A42030035040",
+    "A42030035025",
+    "A42030118000",
+    "A42030000144",
+    "50532010033",
+    "47230060100",
+    "47230035040",
+    "50430035050",
+    "50430035040",
+    "50430035020",
+    "55430006100",
+    "56530123200",
+    "0625623204",
+    "8830015244",
+    "55530038100",
+    "A46030036072",
+    "A46030035000",
+    "A46030007000",
+    "79013090000",
+    "0625063055",
+    "50330082000",
+    "A42003014000",
+    "A42030000244",
+    "0835080326",
+    "51030034000",
+    "79230207200",
+    "79041077044",
+    "47230050000",
+    "54802031000",
+    "45235054028",
+    "A40530035050",
+    "45233010200",
+    "0760263561",
+    "45230039000",
+    "452300295100",
+    "0770052020",
+    "0770120020",
+    "0770078020",
+    "0760152472",
+    "45133028000",
+    "0760162240",
+    "0760223270",
+    "A46006026033",
+    "50330006600",
+    "47030034000",
+    "47230049000",
+    "47230018188",
+    "47230025000",
+    "0625982031",
+    "0062042001400",
+    "47234005044",
+    "47233016000",
+    "47233002000",
+    "47233015000",
+    "47233014000",
+    "47233003000",
+    "77036003200",
+    "77839093000",
+    "77036027000",
+    "A46030007010",
+    "A46030007000",
+    "A46035007000",
+    "47234012044",
+    "79234015100"
+
+];
 
 
-if(!ktmCatalog){
+/* =====================================================
+   CATALOGO FEDE
+===================================================== */
 
-    ktmCatalog = [
+const fedeCatalog = [
 
-        {
-            code:"50430098060",
-            price:0
-        },
+    "50430098060",
+    "50430098050",
+    "50430098000",
+    "50430099000",
+    "54830034000",
+    "54830034001",
+    "54830034002",
+    "54830034003",
+    "54830034004",
+    "54830034005",
+    "54830034006",
+    "54830034007",
+    "54830034008"
 
-        {
-            code:"50430098050",
-            price:0
-        },
-
-        {
-            code:"50430098000",
-            price:0
-        },
-
-        {
-            code:"50430099000",
-            price:0
-        },
-
-        {
-            code:"54830034000",
-            price:0
-        },
-
-        {
-            code:"54830034001",
-            price:0
-        },
-
-        {
-            code:"54830034002",
-            price:0
-        },
-
-        {
-            code:"54830034003",
-            price:0
-        },
-
-        {
-            code:"54830034004",
-            price:0
-        },
-
-        {
-            code:"54830034005",
-            price:0
-        },
-
-        {
-            code:"54830034006",
-            price:0
-        },
-
-        {
-            code:"54830034007",
-            price:0
-        },
-
-        {
-            code:"54830034008",
-            price:0
-        }
-
-    ];
-
-    localStorage.setItem(
-        "ktmCatalogV2",
-        JSON.stringify(ktmCatalog)
-    );
-
-}
+];
 
 
 /* =====================================================
@@ -1541,7 +1422,24 @@ const priceInfo =
 
 
 /* =====================================================
-   ROBY
+   CATALOGO ATTUALE
+===================================================== */
+
+function getCurrentCatalog(){
+
+    if(currentPerson === "ROBY"){
+
+        return robyCatalog;
+
+    }
+
+    return fedeCatalog;
+
+}
+
+
+/* =====================================================
+   ENTRA ROBY
 ===================================================== */
 
 document
@@ -1554,7 +1452,7 @@ document
 
 
 /* =====================================================
-   FEDE
+   ENTRA FEDE
 ===================================================== */
 
 document
@@ -1829,17 +1727,19 @@ articleInput.addEventListener(
 
         }
 
+        const catalog =
+            getCurrentCatalog();
 
         const results =
-            ktmCatalog
-            .filter(function(item){
+            catalog
+            .filter(function(code){
 
-                return item.code
+                return code
                     .toLowerCase()
                     .includes(value);
 
             })
-            .slice(0,10);
+            .slice(0,30);
 
 
         if(results.length === 0){
@@ -1852,7 +1752,7 @@ articleInput.addEventListener(
         }
 
 
-        results.forEach(function(item){
+        results.forEach(function(code){
 
             const div =
                 document.createElement("div");
@@ -1863,12 +1763,12 @@ articleInput.addEventListener(
             div.innerHTML =
 
                 "<div class='suggestion-code'>" +
-                item.code +
+                escapeHtml(code) +
                 "</div>" +
 
                 "<div class='suggestion-name'>" +
-                "Prezzo listino: € " +
-                formatMoney(item.price) +
+                "Codice presente nel catalogo di " +
+                currentPerson +
                 "</div>";
 
 
@@ -1876,7 +1776,7 @@ articleInput.addEventListener(
                 "click",
                 function(){
 
-                    selectCatalogItem(item);
+                    selectCatalogItem(code);
 
                 }
             );
@@ -1898,16 +1798,18 @@ articleInput.addEventListener(
    SELEZIONE CODICE
 ===================================================== */
 
-function selectCatalogItem(item){
+function selectCatalogItem(code){
 
     articleInput.value =
-        item.code;
+        code;
 
     listinoInput.value =
         0;
 
     priceInfo.textContent =
-        "Codice trovato nel catalogo — prezzo da inserire";
+        "Codice presente nel catalogo di " +
+        currentPerson +
+        " — prezzo da inserire";
 
     suggestions.style.display =
         "none";
@@ -1937,10 +1839,13 @@ articleInput.addEventListener(
             .trim()
             .toLowerCase();
 
-        const found =
-            ktmCatalog.find(function(item){
+        const catalog =
+            getCurrentCatalog();
 
-                return item.code
+        const found =
+            catalog.find(function(item){
+
+                return item
                     .toLowerCase() === code;
 
             });
@@ -2075,9 +1980,12 @@ function saveOrder(){
             ) || 0,
 
         netto:
-            parseFloat(
-                listinoInput.value
-            ) *
+            (
+                parseFloat(
+                    listinoInput.value
+                ) || 0
+            )
+            *
             (
                 1 -
                 (
@@ -2116,7 +2024,7 @@ function saveOrder(){
 
 
     localStorage.setItem(
-        "ktmOrdersV4",
+        "ktmOrdersV5",
         JSON.stringify(orders)
     );
 
@@ -2125,6 +2033,17 @@ function saveOrder(){
 
 
     updateDashboard();
+
+
+    if(
+        document
+        .getElementById("orders")
+        .classList.contains("active")
+    ){
+
+        renderOrders();
+
+    }
 
 
     alert(
@@ -2390,7 +2309,7 @@ document
 
 
         localStorage.setItem(
-            "ktmWorksV1",
+            "ktmWorksV2",
             JSON.stringify(works)
         );
 
