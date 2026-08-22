@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestione Ordini KTM</title>
+
+<title>KTM - Gestione Ordini</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -19,9 +21,8 @@
     --black:#111;
     --gray:#666;
     --light:#f7f7f7;
+    --border:#e9e9e9;
     --white:#fff;
-    --green:#168044;
-    --blue:#2862a8;
 }
 
 body{
@@ -178,8 +179,8 @@ body{
     border-bottom:1px solid #eee;
     position:sticky;
     top:0;
-    z-index:20;
     background:#fff;
+    z-index:20;
 }
 
 .headerRight{
@@ -210,7 +211,7 @@ body{
 }
 
 .container{
-    max-width:1250px;
+    max-width:1200px;
     margin:auto;
     padding:35px 25px;
 }
@@ -222,6 +223,10 @@ body{
 .page.active{
     display:block;
 }
+
+/* =========================
+   TITOLI
+========================= */
 
 .title{
     margin-bottom:25px;
@@ -238,7 +243,7 @@ body{
 }
 
 /* =========================
-   STATS
+   DASHBOARD
 ========================= */
 
 .stats{
@@ -267,10 +272,6 @@ body{
     font-weight:900;
     margin-top:7px;
 }
-
-/* =========================
-   MENU
-========================= */
 
 .menu{
     display:grid;
@@ -326,7 +327,7 @@ body{
 }
 
 /* =========================
-   ORDINI
+   BACK
 ========================= */
 
 .back{
@@ -336,7 +337,12 @@ body{
     font-weight:800;
     cursor:pointer;
     margin-bottom:20px;
+    font-size:15px;
 }
+
+/* =========================
+   TOP
+========================= */
 
 .top{
     display:flex;
@@ -345,17 +351,22 @@ body{
     margin-bottom:25px;
 }
 
+/* =========================
+   TABELLE
+========================= */
+
 .tablebox{
     background:#fff;
     border:1px solid #eee;
     border-radius:15px;
     overflow-x:auto;
+    box-shadow:0 3px 12px rgba(0,0,0,.03);
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1150px;
+    min-width:850px;
 }
 
 th{
@@ -368,85 +379,67 @@ th{
 }
 
 td{
-    padding:10px 14px;
+    padding:10px 12px;
     border-top:1px solid #eee;
     font-size:13px;
     vertical-align:middle;
 }
 
-.article{
+td.article{
     font-weight:700;
     min-width:260px;
 }
 
-.qty{
+.price-input,
+.qty-input{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:8px;
+    font-size:13px;
+    outline:none;
+}
+
+.price-input:focus,
+.qty-input:focus{
+    border-color:var(--orange);
+}
+
+.total-cell{
+    font-weight:900;
+    color:var(--orange);
+    white-space:nowrap;
+}
+
+.delete-btn{
+    border:none;
+    background:#fff0ee;
+    color:#d93025;
+    border-radius:7px;
+    padding:8px 10px;
+    cursor:pointer;
     font-weight:800;
-    text-align:center;
 }
 
-.priceInput{
-    width:105px;
-    border:1px solid #ddd;
-    border-radius:7px;
-    padding:8px;
-    font-size:13px;
-}
-
-.priceInput:focus{
-    outline:none;
-    border-color:var(--orange);
-}
-
-.discountInput{
-    width:80px;
-    border:1px solid #ddd;
-    border-radius:7px;
-    padding:8px;
-    font-size:13px;
-}
-
-.discountInput:focus{
-    outline:none;
-    border-color:var(--orange);
+.delete-btn:hover{
+    background:#ffdcd7;
 }
 
 /* =========================
-   STATUS
+   LAVORI
 ========================= */
 
-.statusSelect{
-    border:none;
-    border-radius:20px;
-    padding:8px 12px;
-    font-size:12px;
+.work-table{
+    min-width:750px;
+}
+
+.work-name{
     font-weight:800;
-    cursor:pointer;
-    min-width:125px;
-    outline:none;
 }
 
-.status-da-ordinare{
-    background:#ffe2dc;
-    color:#c9321c;
-}
-
-.status-ordinato{
-    background:#fff0d5;
-    color:#9b6200;
-}
-
-.status-da-ritirare{
-    background:#e8ddff;
-    color:#6941a5;
-}
-
-.status-consegnato{
-    background:#def5e5;
-    color:#16753d;
-}
-
-.statusSelect:focus{
-    box-shadow:0 0 0 2px var(--orange-light);
+.work-note{
+    color:#777;
+    font-size:12px;
 }
 
 /* =========================
@@ -461,7 +454,7 @@ td{
 }
 
 .payment .big{
-    font-size:32px;
+    font-size:36px;
     font-weight:900;
     margin:10px 0;
 }
@@ -495,7 +488,7 @@ td{
 
 .modal{
     background:#fff;
-    width:600px;
+    width:620px;
     max-width:100%;
     max-height:90vh;
     overflow-y:auto;
@@ -529,8 +522,7 @@ td{
     color:#666;
 }
 
-.field input,
-.field select{
+.field input{
     border:1px solid #ddd;
     padding:11px;
     border-radius:8px;
@@ -538,8 +530,7 @@ td{
     font-size:14px;
 }
 
-.field input:focus,
-.field select:focus{
+.field input:focus{
     border-color:var(--orange);
 }
 
@@ -625,17 +616,26 @@ td{
     }
 
     .title h1{
-        font-size:26px;
+        font-size:27px;
+    }
+
+    .smalllogo{
+        font-size:23px;
+    }
+
+    .headerRight strong{
+        font-size:14px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
+<!-- =====================================================
      HOME
-========================= -->
+===================================================== -->
 
 <section id="home">
 
@@ -653,42 +653,63 @@ td{
         <div class="people">
 
             <div class="person">
+
                 <div class="avatar">👤</div>
+
                 <h2>ROBY</h2>
-                <button class="btn orangebtn" id="robyBtn">
+
+                <button
+                    class="btn orangebtn"
+                    onclick="enterPerson('ROBY')">
                     ENTRA
                 </button>
+
             </div>
 
+
             <div class="person">
+
                 <div class="avatar">👤</div>
+
                 <h2>FEDE</h2>
-                <button class="btn orangebtn" id="fedeBtn">
+
+                <button
+                    class="btn orangebtn"
+                    onclick="enterPerson('FEDE')">
                     ENTRA
                 </button>
+
             </div>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      APP
-========================= -->
+===================================================== -->
 
 <section id="app">
 
 <header class="header">
 
     <div class="headerRight">
+
         <div class="smalllogo">KTM</div>
+
         <strong id="currentUser"></strong>
+
     </div>
 
-    <button class="exit" id="exitBtn">
+    <button
+        class="exit"
+        onclick="exitApp()">
+
         ← Esci
+
     </button>
 
 </header>
@@ -696,37 +717,69 @@ td{
 
 <main class="container">
 
-<!-- =========================
-     DASHBOARD
-========================= -->
 
-<section id="dashboard" class="page active">
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="page active">
 
     <div class="title">
+
         <h1 id="hello"></h1>
-        <p>Gestione ordini, prezzi e pagamenti</p>
+
+        <p>
+            Gestione ordini e lavori
+        </p>
+
     </div>
+
 
     <div class="stats">
 
         <div class="stat">
-            <small>ARTICOLI</small>
-            <strong id="count">0</strong>
+
+            <small>ORDINI</small>
+
+            <strong id="count">
+                0
+            </strong>
+
         </div>
 
-        <div class="stat">
-            <small>TOTALE NETTO</small>
-            <strong id="netTotal">€ 0,00</strong>
-        </div>
 
         <div class="stat">
-            <small>DA DARE A GIO</small>
-            <strong id="gioTotal">€ 0,00</strong>
+
+            <small>TOTALE ORDINI</small>
+
+            <strong id="netTotal">
+                € 0,00
+            </strong>
+
         </div>
 
+
         <div class="stat">
-            <small>DA DARE ALLA PERSONA</small>
-            <strong id="personTotal">€ 0,00</strong>
+
+            <small>LAVORI</small>
+
+            <strong id="workCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <small>TOTALE LAVORI</small>
+
+            <strong id="workTotal">
+                € 0,00
+            </strong>
+
         </div>
 
     </div>
@@ -734,33 +787,139 @@ td{
 
     <div class="menu">
 
-        <div class="card" id="ordersCard">
-            <div class="icon">📋</div>
-            <div>
-                <h3>I miei ordini</h3>
-                <p>Visualizza tutti gli articoli</p>
+
+        <div
+            class="card"
+            onclick="showPage('orders')">
+
+            <div class="icon">
+                📋
             </div>
-            <div class="arrow">›</div>
+
+            <div>
+
+                <h3>
+                    I miei ordini
+                </h3>
+
+                <p>
+                    Visualizza tutti gli articoli
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
         </div>
 
 
-        <div class="card" id="newCard">
-            <div class="icon">➕</div>
-            <div>
-                <h3>Nuovo ordine</h3>
-                <p>Aggiungi un nuovo articolo</p>
+        <div
+            class="card"
+            onclick="openOrderModal()">
+
+            <div class="icon">
+                ➕
             </div>
-            <div class="arrow">›</div>
+
+            <div>
+
+                <h3>
+                    Nuovo ordine
+                </h3>
+
+                <p>
+                    Aggiungi un nuovo articolo
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
         </div>
 
 
-        <div class="card" id="paymentsCard">
-            <div class="icon">💶</div>
-            <div>
-                <h3>Pagamenti</h3>
-                <p>Controlla quanto deve essere versato a Gio</p>
+        <div
+            class="card"
+            onclick="showPage('works')">
+
+            <div class="icon">
+                🔧
             </div>
-            <div class="arrow">›</div>
+
+            <div>
+
+                <h3>
+                    Lavori
+                </h3>
+
+                <p>
+                    Visualizza lavori e servizi
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="openWorkModal()">
+
+            <div class="icon">
+                🛠️
+            </div>
+
+            <div>
+
+                <h3>
+                    Nuovo lavoro
+                </h3>
+
+                <p>
+                    Inserisci un nuovo lavoro
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('payments')">
+
+            <div class="icon">
+                💶
+            </div>
+
+            <div>
+
+                <h3>
+                    Pagamenti
+                </h3>
+
+                <p>
+                    Controlla i totali
+                </p>
+
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
         </div>
 
     </div>
@@ -768,30 +927,45 @@ td{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      ORDINI
-========================= -->
+===================================================== -->
 
-<section id="orders" class="page">
+<section
+    id="orders"
+    class="page">
 
-    <button class="back" id="backBtn">
+    <button
+        class="back"
+        onclick="showPage('dashboard')">
+
         ← Dashboard
+
     </button>
+
 
     <div class="top">
 
         <div class="title">
+
             <h1>
-                Ordini di <span id="ordersPerson"></span>
+                Ordini di
+                <span id="ordersPerson"></span>
             </h1>
 
             <p>
-                Elenco ricambi importati dalle immagini + nuovi inserimenti
+                Codici ricambio caricati dal tuo elenco
             </p>
+
         </div>
 
-        <button class="btn orangebtn" id="newOrderBtn">
+
+        <button
+            class="btn orangebtn"
+            onclick="openOrderModal()">
+
             + Nuovo ordine
+
         </button>
 
     </div>
@@ -802,16 +976,31 @@ td{
         <table>
 
             <thead>
+
                 <tr>
-                    <th>Q.TÀ</th>
-                    <th>ARTICOLO / CODICE</th>
-                    <th>LISTINO €</th>
-                    <th>SCONTO %</th>
-                    <th>NETTO €</th>
-                    <th>DA DARE A PERSONA €</th>
-                    <th>DA DARE A GIO €</th>
-                    <th>STATO</th>
+
+                    <th>
+                        Q.TÀ
+                    </th>
+
+                    <th>
+                        CODICE / ARTICOLO
+                    </th>
+
+                    <th>
+                        PREZZO UNITARIO
+                    </th>
+
+                    <th>
+                        TOTALE
+                    </th>
+
+                    <th>
+                        AZIONI
+                    </th>
+
                 </tr>
+
             </thead>
 
             <tbody id="ordersBody"></tbody>
@@ -823,19 +1012,113 @@ td{
 </section>
 
 
-<!-- =========================
-     PAGAMENTI
-========================= -->
+<!-- =====================================================
+     LAVORI
+===================================================== -->
 
-<section id="payments" class="page">
+<section
+    id="works"
+    class="page">
 
-    <button class="back" id="paymentsBack">
+    <button
+        class="back"
+        onclick="showPage('dashboard')">
+
         ← Dashboard
+
     </button>
+
+
+    <div class="top">
+
+        <div class="title">
+
+            <h1>
+                Lavori di
+                <span id="worksPerson"></span>
+            </h1>
+
+            <p>
+                Servizi e lavori separati dagli ordini ricambi
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn orangebtn"
+            onclick="openWorkModal()">
+
+            + Nuovo lavoro
+
+        </button>
+
+    </div>
+
+
+    <div class="tablebox">
+
+        <table class="work-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        LAVORO
+                    </th>
+
+                    <th>
+                        Q.TÀ
+                    </th>
+
+                    <th>
+                        PREZZO
+                    </th>
+
+                    <th>
+                        TOTALE
+                    </th>
+
+                    <th>
+                        AZIONI
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="worksBody"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGAMENTI
+===================================================== -->
+
+<section
+    id="payments"
+    class="page">
+
+    <button
+        class="back"
+        onclick="showPage('dashboard')">
+
+        ← Dashboard
+
+    </button>
+
 
     <div class="title">
 
-        <h1>Pagamenti</h1>
+        <h1>
+            Pagamenti
+        </h1>
 
         <p>
             Situazione economica di
@@ -847,152 +1130,226 @@ td{
 
     <div class="payment">
 
-        <div>TOTALE DA DARE A GIO</div>
-
-        <div class="big" id="paymentTotal">
-            € 0,00
+        <div>
+            TOTALE ORDINI
         </div>
 
-        <p>
-            I prezzi degli articoli sono impostati a 0 €.
-            Inseriscili direttamente nella tabella degli ordini.
-        </p>
+        <div
+            class="big"
+            id="paymentOrders">
+
+            € 0,00
+
+        </div>
+
+
+        <div>
+            TOTALE LAVORI
+        </div>
+
+        <div
+            class="big"
+            id="paymentWorks">
+
+            € 0,00
+
+        </div>
 
     </div>
 
 
     <div class="note">
 
-        <strong>Nota:</strong><br>
-
-        Ogni modifica al prezzo, allo sconto, alla cifra da dare
-        alla persona o allo stato dell'ordine viene salvata
-        automaticamente sul dispositivo.
+        I prezzi degli articoli e dei lavori possono essere
+        modificati direttamente dalle relative tabelle.
 
     </div>
 
 </section>
+
 
 </main>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      MODALE NUOVO ORDINE
-========================= -->
+===================================================== -->
 
-<div class="modal-bg" id="modal">
+<div
+    class="modal-bg"
+    id="orderModal">
 
     <div class="modal">
 
         <h2>
             Nuovo ordine —
-            <span id="modalPerson"></span>
+            <span id="modalOrderPerson"></span>
         </h2>
 
 
         <div class="form">
 
+
             <div class="field">
 
-                <label>QUANTITÀ</label>
+                <label>
+                    QUANTITÀ
+                </label>
 
                 <input
                     type="number"
-                    id="qty"
+                    id="newQty"
                     min="1"
-                    value="1"
-                >
+                    value="1">
 
             </div>
 
 
             <div class="field">
 
-                <label>STATO</label>
+                <label>
+                    PREZZO UNITARIO (€)
+                </label>
 
-                <select id="newStatus">
-
-                    <option>Da ordinare</option>
-                    <option>Ordinato</option>
-                    <option>Da ritirare</option>
-                    <option>Consegnato</option>
-
-                </select>
+                <input
+                    type="number"
+                    id="newPrice"
+                    min="0"
+                    step="0.01"
+                    value="0">
 
             </div>
 
 
             <div class="field full">
 
-                <label>CODICE / ARTICOLO</label>
+                <label>
+                    CODICE / ARTICOLO
+                </label>
 
                 <input
                     type="text"
-                    id="article"
-                    placeholder="Es. 1234567890"
-                >
+                    id="newArticle"
+                    placeholder="Es. 50430098060">
 
             </div>
 
-
-            <div class="field">
-
-                <label>LISTINO (€)</label>
-
-                <input
-                    type="number"
-                    id="listino"
-                    min="0"
-                    step="0.01"
-                    value="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>SCONTO (%)</label>
-
-                <input
-                    type="number"
-                    id="sconto"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value="25"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>DA DARE A PERSONA (€)</label>
-
-                <input
-                    type="number"
-                    id="darePersona"
-                    min="0"
-                    step="0.01"
-                    value="0"
-                >
-
-            </div>
 
         </div>
 
 
         <div class="modal-buttons">
 
-            <button class="cancel" id="cancelBtn">
+            <button
+                class="cancel"
+                onclick="closeOrderModal()">
+
                 Annulla
+
             </button>
 
-            <button class="save" id="saveBtn">
+
+            <button
+                class="save"
+                onclick="saveNewOrder()">
+
                 Salva ordine
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODALE NUOVO LAVORO
+===================================================== -->
+
+<div
+    class="modal-bg"
+    id="workModal">
+
+    <div class="modal">
+
+        <h2>
+            Nuovo lavoro —
+            <span id="modalWorkPerson"></span>
+        </h2>
+
+
+        <div class="form">
+
+
+            <div class="field">
+
+                <label>
+                    QUANTITÀ
+                </label>
+
+                <input
+                    type="number"
+                    id="newWorkQty"
+                    min="1"
+                    value="1">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    PREZZO (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="newWorkPrice"
+                    min="0"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    DESCRIZIONE LAVORO
+                </label>
+
+                <input
+                    type="text"
+                    id="newWorkName"
+                    placeholder="Es. Manutenzione moto">
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                onclick="closeWorkModal()">
+
+                Annulla
+
+            </button>
+
+
+            <button
+                class="save"
+                onclick="saveNewWork()">
+
+                Salva lavoro
+
             </button>
 
         </div>
@@ -1005,254 +1362,390 @@ td{
 <script>
 
 /* =====================================================
-   DATI
-   =====================================================
-
-   Nuova versione V3:
-   i vecchi dati V2 NON vengono caricati.
-
-   I dati qui sotto sono quelli ricavati dalle immagini
-   e filtrati secondo le esclusioni richieste.
+   CONFIGURAZIONE
 ===================================================== */
 
-const INITIAL_ROBY = [
+const STORAGE_KEY = "ktm_gestione_v5";
 
-{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
+let currentPerson = "";
 
-{q:1,a:"A46035009000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"00050000272 - 79430107210 II",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79536013000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"77239093000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"77338005100",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42005907500",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46035909000",price:0,discount:25,status:"Da ordinare"},
+let database = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "{}"
+);
 
-{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
 
-{q:1,a:"A46014069000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030060000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50403096010",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"77204066010 - 77204066044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A45041072033",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79135071044",price:0,discount:25,status:"Da ordinare"},
+/* =====================================================
+   CREA DATABASE PULITO
+===================================================== */
 
-{q:1,a:"00050002300",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
+if(!database.ROBY){
+    database.ROBY = {
+        orders: [],
+        works: []
+    };
+}
 
-{q:1,a:"50439005000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50532054000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79135071044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A45041072033",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"91010240S",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50439004000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79030015144",price:0,discount:25,status:"Da ordinare"},
+if(!database.FEDE){
+    database.FEDE = {
+        orders: [],
+        works: []
+    };
+}
 
-{q:1,a:"47230015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030018010",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430006100",price:0,discount:25,status:"Da ordinare"},
 
-{q:1,a:"50433015400",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"54834005133 - 50534005044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030035040",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030035025",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030118000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030000144",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50532010033",price:0,discount:25,status:"Da ordinare"},
+/* =====================================================
+   CODICI PRESI DALLE FOTO
+   ESCLUSE LE VOCI LAVORI
+===================================================== */
 
-{q:1,a:"47230060100",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230035040",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430035050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430035040",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430035020",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"55430006100",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"56530123200",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0625623204",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"54830015244",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"55530038100",price:0,discount:25,status:"Da ordinare"},
+const ROBY_CODES = [
 
-{q:1,a:"50430098060",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430098050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"00050002300 (ex 52330018288)",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
+"50430098060",
+"50430098050",
+"50430025000",
+"50430039000",
+"00050002300",
+"50430015044",
 
-{q:1,a:"Manutenzione Moto",price:0,discount:25,status:"Da ordinare"},
+"A46035009000",
+"00050000272 - 79430107210 II",
+"79536013000",
+"77239093000",
+"77338005100",
+"A42005907500",
+"A46035909000",
 
-{q:1,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50439005000",price:0,discount:25,status:"Da ordinare"},
+"50430025000",
+"50430098060",
+"50430098050",
+"50430039000",
+"50430015044",
+"00050002300",
 
-{q:1,a:"79030015144",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"79013090000",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"A46030036072",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A44002091000",price:0,discount:25,status:"Da ordinare"},
+"A46014069000",
+"A42030060000",
+"50403096010",
+"77204066010 - 77204066044",
+"A45041072033",
+"79135071044",
 
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0625063055",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50330082000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46030035000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42003014000",price:0,discount:25,status:"Da ordinare"},
+"00050002300",
+"50430098060",
+"50430025000",
+"50430098050",
+"50430015044",
+"50430039000",
 
-{q:1,a:"A42030000244",price:0,discount:25,status:"Da ordinare"},
-{q:4,a:"0835080326",price:0,discount:25,status:"Da ordinare"},
-{q:4,a:"51030034000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50530152044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"54802031000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79230207200 II",price:0,discount:25,status:"Da ordinare"},
+"50439005000",
+"50532054000",
+"79135071044",
+"A45041072033",
+"91010240S",
+"50439004000",
+"79030015144",
 
-{q:1,a:"A42030060000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79041077044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50430015044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030035040",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A42030035025",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230050000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"54802031000",price:0,discount:25,status:"Da ordinare"},
+"47230015044",
+"50430098050",
+"50430098060",
+"50530152044",
+"A42030018010",
+"50530152044",
+"50430006100",
 
-{q:1,a:"45235054028",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A40530035050",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"45233010200",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0760263561",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"45230039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"452300295100",price:0,discount:25,status:"Da ordinare"},
+"50433015400",
+"54834005133 - 50534005044",
 
-{q:1,a:"0770052020",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0770120020",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0770078020",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0760152472",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"45133028000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0760162240",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0760223270",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46006026033",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"50330006600",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47030034000",price:0,discount:25,status:"Da ordinare"},
+"A42030035040",
+"A42030035025",
+"A42030118000",
+"A42030000144",
 
-{q:1,a:"47230049000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"(ex 00050002318)47230018188",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0625982031",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"0062042001400",price:0,discount:25,status:"Da ordinare"},
+"50532010033",
+"47230060100",
+"47230035040",
+"50430035050",
+"50430035040",
+"50430035020",
+"50530152044",
+"55430006100",
+"56530123200",
+"0625623204",
+"50430015044",
+"54830015244",
 
-{q:1,a:"47234005044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47233016000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47233002000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47233015000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47233014000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47233003000",price:0,discount:25,status:"Da ordinare"},
-{q:5,a:"51030034000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"77036003200",price:0,discount:25,status:"Da ordinare"},
+"55530038100",
 
-{q:1,a:"77839093000",price:0,discount:25,status:"Da ordinare"},
-{q:4,a:"77036027000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46030007010I",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"A46030007000I",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"A46035007000",price:0,discount:25,status:"Da ordinare"},
+"50430098060",
+"50430098050",
+"50430025000",
+"50430039000",
+"00050002300 (ex 52330018288)",
+"50430015044",
+"50530152044",
 
-{q:1,a:"47234012044",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"79234015100",price:0,discount:25,status:"Da ordinare"},
+"A46030036072",
+"A46030035000",
+"A46030007000I",
+"A46030036072",
+"A46030035000",
+"A46030007000I",
+"50439005000",
 
-{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230018188",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47030076100",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"49030023000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230025000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230039000",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230018188",price:0,discount:25,status:"Da ordinare"},
-{q:1,a:"47230015044",price:0,discount:25,status:"Da ordinare"},
-{q:2,a:"47230049000",price:0,discount:25,status:"Da ordinare"},
-{q:4,a:"A46003062000",price:0,discount:25,status:"Da ordinare"}
+"79030015144",
+"79013090000",
+"A46030036072",
+"50530152044",
+
+"A44002091000",
+"50430015044",
+"0625063055",
+"50330082000",
+
+"A46030035000",
+"50530152044",
+"A42003014000",
+
+"A42030000244",
+"0835080326",
+"51030034000",
+"50530152044",
+"54802031000",
+"79230207200 II",
+
+"A42030060000",
+"79041077044",
+"50430015044",
+"A42030035040",
+"A42030035025",
+"47230050000",
+"54802031000",
+
+"45235054028",
+"A40530035050",
+"45233010200",
+"0760263561",
+"45230039000",
+"45230025100",
+
+"0770052020",
+"0770120020",
+"0770078020",
+"0760152472",
+"45133028000",
+"0760162240",
+"0760223270",
+"A46006026033",
+"50330006600",
+"47030034000",
+
+"47230049000",
+"47230039000",
+"(ex 00050002318)47230018188",
+"47230025000",
+"0625982031",
+"0062042001400",
+
+"47234005044",
+"47233016000",
+"47233002000",
+"47233015000",
+"47233014000",
+"47233003000",
+
+"51030034000",
+"77036003200",
+"77839093000",
+"77036027000",
+
+"A46030007010I",
+"A46030007000I",
+
+"A46035007000",
+"47234012044",
+"79234015100",
+
+"47230039000",
+"47230018188",
+"47230025000",
+"47030076100",
+"49030023000",
+"47230025000",
+"47230039000",
+"47230018188",
+"47230015044",
+"47230049000",
+"A46003062000"
 
 ];
 
 
 /* =====================================================
-   CONFIGURAZIONE
+   QUANTITÀ VISIBILI NEL FOGLIO
 ===================================================== */
 
-const STORAGE_KEY = "ktmOrdersV3";
+const QUANTITIES = {
 
-let currentPerson = "";
-let orders = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    "A46030036072": 2,
+    "A46030035000": 2,
+    "A46030007000I": 2,
+    "79013090000": 2,
+    "0835080326": 4,
+    "51030034000": 4,
+    "47230050000": 1,
+    "45133028000": 2,
+    "51030034000": 5,
+    "77036027000": 4
+
+};
 
 
-/*
-   Se non esistono ancora dati V3:
-   carichiamo solamente il nuovo elenco.
-*/
-if(!orders){
+/* =====================================================
+   LAVORI
+   TUTTE LE VOCI ESCLUSE
+===================================================== */
 
-    orders = {
-        ROBY: INITIAL_ROBY.map(item => ({
-            ...item,
-            darePersona:0
-        })),
+const ROBY_WORKS = [
 
-        FEDE: []
-    };
+    "Pistone 125",
 
-    saveData();
+    "Lezione",
+    "Lezione",
+
+    "Lezione",
+    "Lezione",
+
+    "Motore 125",
+
+    "Lavaggio moto",
+
+    "Lezione",
+    "Sardegna",
+    "Lezione",
+
+    "Vino",
+
+    "Lezione",
+    "Lezione",
+
+    "Progrip",
+
+    "Lezione Mantova",
+
+    "Lezione",
+
+    "Lezione Vercelli",
+    "Lezione Bellinzago",
+
+    "Lezione Fara",
+    "Lezione Fara",
+    "Lezione Fara",
+
+    "Lezione Bellinzago",
+
+    "Pistone muletto",
+
+    "Lezione Ottobiano",
+
+    "Motore moto gara",
+
+    "Lezione Fara",
+    "Lezione Fara",
+
+    "Lezione Ceriano",
+    "Lezione Casale",
+    "Lezione Cremona",
+
+    "Lezione Ottobiano",
+
+    "Lezione Bellinzago + moto",
+
+    "Lezione Ceriano",
+    "Lezione Ottobiano",
+
+    "Lezione Dorno",
+    "Lezione Bosisio",
+    "Lezione Ottobiano",
+    "Lezione Bellinzago",
+    "Lezione Fiume",
+    "Lezione Ceriano",
+    "Lezione Arco",
+    "Lezione Fara"
+
+];
+
+
+/* =====================================================
+   CARICA CODICI ROBY
+   SOLO SE NON PRESENTI
+===================================================== */
+
+if(database.ROBY.orders.length === 0){
+
+    database.ROBY.orders = ROBY_CODES.map(
+        (article,index) => ({
+
+            id:
+                "roby-" +
+                Date.now() +
+                "-" +
+                index,
+
+            article:article,
+
+            quantity:
+                QUANTITIES[article] || 1,
+
+            price:0
+
+        })
+    );
 }
 
 
 /* =====================================================
-   ELEMENTI
+   CARICA LAVORI ROBY
 ===================================================== */
 
-const home = document.getElementById("home");
-const app = document.getElementById("app");
+if(database.ROBY.works.length === 0){
 
-const dashboard = document.getElementById("dashboard");
-const ordersPage = document.getElementById("orders");
-const paymentsPage = document.getElementById("payments");
+    database.ROBY.works = ROBY_WORKS.map(
+        (name,index) => ({
 
-const modal = document.getElementById("modal");
+            id:
+                "work-" +
+                Date.now() +
+                "-" +
+                index,
+
+            name:name,
+
+            quantity:1,
+
+            price:0
+
+        })
+    );
+}
 
 
 /* =====================================================
-   ENTRATA ROBY
+   FEDE
+   PARTE VUOTO, PUOI AGGIUNGERE I SUOI ORDINI
 ===================================================== */
-
-document.getElementById("robyBtn").addEventListener("click", () => {
-    enterPerson("ROBY");
-});
 
 
 /* =====================================================
-   ENTRATA FEDE
+   SALVATAGGIO
 ===================================================== */
 
-document.getElementById("fedeBtn").addEventListener("click", () => {
-    enterPerson("FEDE");
-});
+function saveDatabase(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(database)
+    );
+
+}
 
 
 /* =====================================================
@@ -1263,118 +1756,66 @@ function enterPerson(person){
 
     currentPerson = person;
 
-    home.style.display = "none";
-    app.style.display = "block";
+    document.getElementById("home").style.display =
+        "none";
 
-    document.getElementById("currentUser").textContent = person;
+    document.getElementById("app").style.display =
+        "block";
+
+    document.getElementById("currentUser").textContent =
+        person;
+
     document.getElementById("hello").textContent =
         "Ciao " + person;
 
+    document.getElementById("ordersPerson").textContent =
+        person;
+
+    document.getElementById("worksPerson").textContent =
+        person;
+
+    document.getElementById("paymentName").textContent =
+        person;
+
+    updateAll();
+
     showPage("dashboard");
 
-    updateDashboard();
 }
 
 
 /* =====================================================
-   USCITA
+   ESCI
 ===================================================== */
 
-document.getElementById("exitBtn").addEventListener("click", () => {
-
-    app.style.display = "none";
-    home.style.display = "flex";
+function exitApp(){
 
     currentPerson = "";
 
-});
+    document.getElementById("app").style.display =
+        "none";
+
+    document.getElementById("home").style.display =
+        "flex";
+
+}
 
 
 /* =====================================================
-   NAVIGAZIONE
+   PAGINE
 ===================================================== */
-
-document.getElementById("ordersCard").addEventListener("click", () => {
-    openOrders();
-});
-
-document.getElementById("newCard").addEventListener("click", () => {
-    openModal();
-});
-
-document.getElementById("paymentsCard").addEventListener("click", () => {
-    openPayments();
-});
-
-document.getElementById("newOrderBtn").addEventListener("click", () => {
-    openModal();
-});
-
-document.getElementById("backBtn").addEventListener("click", () => {
-    showPage("dashboard");
-    updateDashboard();
-});
-
-document.getElementById("paymentsBack").addEventListener("click", () => {
-    showPage("dashboard");
-    updateDashboard();
-});
-
 
 function showPage(page){
 
-    dashboard.classList.remove("active");
-    ordersPage.classList.remove("active");
-    paymentsPage.classList.remove("active");
-
-    if(page === "dashboard"){
-        dashboard.classList.add("active");
-    }
-
-    if(page === "orders"){
-        ordersPage.classList.add("active");
-    }
-
-    if(page === "payments"){
-        paymentsPage.classList.add("active");
-    }
-}
-
-
-function openOrders(){
-
-    showPage("orders");
-
-    document.getElementById("ordersPerson").textContent =
-        currentPerson;
-
-    renderOrders();
-
-}
-
-
-function openPayments(){
-
-    showPage("payments");
-
-    document.getElementById("paymentName").textContent =
-        currentPerson;
-
-    updatePayments();
-
-}
-
-
-/* =====================================================
-   SALVATAGGIO
-===================================================== */
-
-function saveData(){
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(orders)
+    document.querySelectorAll(".page").forEach(
+        p => p.classList.remove("active")
     );
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+    updateAll();
 
 }
 
@@ -1385,243 +1826,112 @@ function saveData(){
 
 function euro(value){
 
-    return new Intl.NumberFormat("it-IT",{
-        style:"currency",
-        currency:"EUR"
-    }).format(Number(value) || 0);
+    return Number(value || 0).toLocaleString(
+        "it-IT",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    );
 
 }
 
 
 /* =====================================================
-   NETTO
-===================================================== */
-
-function calculateNet(item){
-
-    const price = Number(item.price) || 0;
-    const discount = Number(item.discount) || 0;
-    const qty = Number(item.q) || 1;
-
-    return price * qty * (1 - discount / 100);
-
-}
-
-
-/* =====================================================
-   RENDER ORDINI
+   ORDINI
 ===================================================== */
 
 function renderOrders(){
 
-    const body = document.getElementById("ordersBody");
+    const body =
+        document.getElementById("ordersBody");
 
     body.innerHTML = "";
 
-    const list = orders[currentPerson] || [];
+    const orders =
+        database[currentPerson].orders;
 
-    list.forEach((item,index) => {
 
-        const net = calculateNet(item);
+    orders.forEach(order => {
 
-        const darePersona =
-            Number(item.darePersona) || 0;
+        const tr =
+            document.createElement("tr");
 
-        const dareGio =
-            Math.max(0,net - darePersona);
 
+        const total =
+            Number(order.quantity || 0) *
+            Number(order.price || 0);
 
-        const tr = document.createElement("tr");
 
+        tr.innerHTML = `
 
-        /* QUANTITÀ */
+            <td>
 
-        const tdQty = document.createElement("td");
+                <input
+                    class="qty-input"
+                    type="number"
+                    min="1"
+                    value="${order.quantity}"
+                    onchange="
+                        updateOrderQuantity(
+                            '${order.id}',
+                            this.value
+                        )
+                    "
+                >
 
-        tdQty.className = "qty";
+            </td>
 
-        tdQty.textContent = item.q;
 
-        tr.appendChild(tdQty);
+            <td class="article">
 
+                ${escapeHTML(order.article)}
 
-        /* ARTICOLO */
+            </td>
 
-        const tdArticle = document.createElement("td");
 
-        tdArticle.className = "article";
+            <td>
 
-        tdArticle.textContent = item.a;
+                <input
+                    class="price-input"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="${order.price || ""}"
+                    placeholder="0,00"
+                    onchange="
+                        updateOrderPrice(
+                            '${order.id}',
+                            this.value
+                        )
+                    "
+                >
 
-        tr.appendChild(tdArticle);
+            </td>
 
 
-        /* PREZZO */
+            <td class="total-cell">
 
-        const tdPrice = document.createElement("td");
+                ${euro(total)}
 
-        const priceInput =
-            document.createElement("input");
+            </td>
 
-        priceInput.type = "number";
-        priceInput.step = "0.01";
-        priceInput.min = "0";
-        priceInput.className = "priceInput";
-        priceInput.value = item.price || 0;
 
-        priceInput.addEventListener("input", () => {
+            <td>
 
-            item.price =
-                Number(priceInput.value) || 0;
+                <button
+                    class="delete-btn"
+                    onclick="
+                        deleteOrder('${order.id}')
+                    ">
 
-            saveData();
-            renderOrders();
-            updateDashboard();
+                    Elimina
 
-        });
+                </button>
 
-        tdPrice.appendChild(priceInput);
+            </td>
 
-        tr.appendChild(tdPrice);
-
-
-        /* SCONTO */
-
-        const tdDiscount =
-            document.createElement("td");
-
-        const discountInput =
-            document.createElement("input");
-
-        discountInput.type = "number";
-        discountInput.step = "0.01";
-        discountInput.min = "0";
-        discountInput.max = "100";
-        discountInput.className = "discountInput";
-        discountInput.value =
-            item.discount ?? 25;
-
-        discountInput.addEventListener("input", () => {
-
-            item.discount =
-                Number(discountInput.value) || 0;
-
-            saveData();
-            renderOrders();
-            updateDashboard();
-
-        });
-
-        tdDiscount.appendChild(discountInput);
-
-        tr.appendChild(tdDiscount);
-
-
-        /* NETTO */
-
-        const tdNet = document.createElement("td");
-
-        tdNet.textContent = euro(net);
-
-        tr.appendChild(tdNet);
-
-
-        /* DA DARE PERSONA */
-
-        const tdPerson =
-            document.createElement("td");
-
-        const personInput =
-            document.createElement("input");
-
-        personInput.type = "number";
-        personInput.step = "0.01";
-        personInput.min = "0";
-        personInput.className = "priceInput";
-        personInput.value =
-            item.darePersona || 0;
-
-        personInput.addEventListener("input", () => {
-
-            item.darePersona =
-                Number(personInput.value) || 0;
-
-            saveData();
-            renderOrders();
-            updateDashboard();
-
-        });
-
-        tdPerson.appendChild(personInput);
-
-        tr.appendChild(tdPerson);
-
-
-        /* DA DARE GIO */
-
-        const tdGio =
-            document.createElement("td");
-
-        tdGio.textContent = euro(dareGio);
-
-        tr.appendChild(tdGio);
-
-
-        /* STATO */
-
-        const tdStatus =
-            document.createElement("td");
-
-        const select =
-            document.createElement("select");
-
-        select.className = "statusSelect";
-
-        const statuses = [
-            "Da ordinare",
-            "Ordinato",
-            "Da ritirare",
-            "Consegnato"
-        ];
-
-        statuses.forEach(status => {
-
-            const option =
-                document.createElement("option");
-
-            option.value = status;
-            option.textContent = status;
-
-            if(item.status === status){
-                option.selected = true;
-            }
-
-            select.appendChild(option);
-
-        });
-
-
-        applyStatusClass(select,item.status);
-
-
-        select.addEventListener("change", () => {
-
-            item.status = select.value;
-
-            applyStatusClass(
-                select,
-                item.status
-            );
-
-            saveData();
-
-        });
-
-
-        tdStatus.appendChild(select);
-
-        tr.appendChild(tdStatus);
-
+        `;
 
         body.appendChild(tr);
 
@@ -1631,28 +1941,476 @@ function renderOrders(){
 
 
 /* =====================================================
-   COLORE STATO
+   MODIFICA QUANTITÀ
 ===================================================== */
 
-function applyStatusClass(select,status){
+function updateOrderQuantity(id,value){
 
-    select.className = "statusSelect";
+    const order =
+        database[currentPerson].orders.find(
+            o => o.id === id
+        );
 
-    if(status === "Da ordinare"){
-        select.classList.add("status-da-ordinare");
+    if(!order) return;
+
+    order.quantity =
+        Math.max(1,Number(value) || 1);
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   MODIFICA PREZZO
+===================================================== */
+
+function updateOrderPrice(id,value){
+
+    const order =
+        database[currentPerson].orders.find(
+            o => o.id === id
+        );
+
+    if(!order) return;
+
+    order.price =
+        Math.max(0,Number(value) || 0);
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   ELIMINA ORDINE
+===================================================== */
+
+function deleteOrder(id){
+
+    if(!confirm("Vuoi eliminare questo articolo?")){
+        return;
     }
 
-    if(status === "Ordinato"){
-        select.classList.add("status-ordinato");
+    database[currentPerson].orders =
+        database[currentPerson].orders.filter(
+            o => o.id !== id
+        );
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
+
+function openOrderModal(){
+
+    document.getElementById(
+        "modalOrderPerson"
+    ).textContent = currentPerson;
+
+    document.getElementById(
+        "newArticle"
+    ).value = "";
+
+    document.getElementById(
+        "newQty"
+    ).value = 1;
+
+    document.getElementById(
+        "newPrice"
+    ).value = 0;
+
+    document.getElementById(
+        "orderModal"
+    ).classList.add("show");
+
+}
+
+
+function closeOrderModal(){
+
+    document.getElementById(
+        "orderModal"
+    ).classList.remove("show");
+
+}
+
+
+function saveNewOrder(){
+
+    const article =
+        document
+            .getElementById("newArticle")
+            .value
+            .trim();
+
+    const quantity =
+        Number(
+            document
+                .getElementById("newQty")
+                .value
+        ) || 1;
+
+    const price =
+        Number(
+            document
+                .getElementById("newPrice")
+                .value
+        ) || 0;
+
+
+    if(!article){
+
+        alert("Inserisci il codice o l'articolo.");
+
+        return;
+
     }
 
-    if(status === "Da ritirare"){
-        select.classList.add("status-da-ritirare");
+
+    database[currentPerson].orders.push({
+
+        id:
+            "new-" +
+            Date.now(),
+
+        article:article,
+
+        quantity:quantity,
+
+        price:price
+
+    });
+
+
+    saveDatabase();
+
+    closeOrderModal();
+
+    renderOrders();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   LAVORI
+===================================================== */
+
+function renderWorks(){
+
+    const body =
+        document.getElementById("worksBody");
+
+    body.innerHTML = "";
+
+    const works =
+        database[currentPerson].works;
+
+
+    works.forEach(work => {
+
+        const tr =
+            document.createElement("tr");
+
+
+        const total =
+            Number(work.quantity || 0) *
+            Number(work.price || 0);
+
+
+        tr.innerHTML = `
+
+            <td class="work-name">
+
+                ${escapeHTML(work.name)}
+
+            </td>
+
+
+            <td>
+
+                <input
+                    class="qty-input"
+                    type="number"
+                    min="1"
+                    value="${work.quantity}"
+                    onchange="
+                        updateWorkQuantity(
+                            '${work.id}',
+                            this.value
+                        )
+                    "
+                >
+
+            </td>
+
+
+            <td>
+
+                <input
+                    class="price-input"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="${work.price || ""}"
+                    placeholder="0,00"
+                    onchange="
+                        updateWorkPrice(
+                            '${work.id}',
+                            this.value
+                        )
+                    "
+                >
+
+            </td>
+
+
+            <td class="total-cell">
+
+                ${euro(total)}
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="delete-btn"
+                    onclick="
+                        deleteWork('${work.id}')
+                    ">
+
+                    Elimina
+
+                </button>
+
+            </td>
+
+        `;
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+   MODIFICA QUANTITÀ LAVORO
+===================================================== */
+
+function updateWorkQuantity(id,value){
+
+    const work =
+        database[currentPerson].works.find(
+            w => w.id === id
+        );
+
+    if(!work) return;
+
+    work.quantity =
+        Math.max(1,Number(value) || 1);
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   MODIFICA PREZZO LAVORO
+===================================================== */
+
+function updateWorkPrice(id,value){
+
+    const work =
+        database[currentPerson].works.find(
+            w => w.id === id
+        );
+
+    if(!work) return;
+
+    work.price =
+        Math.max(0,Number(value) || 0);
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   ELIMINA LAVORO
+===================================================== */
+
+function deleteWork(id){
+
+    if(!confirm("Vuoi eliminare questo lavoro?")){
+        return;
     }
 
-    if(status === "Consegnato"){
-        select.classList.add("status-consegnato");
+    database[currentPerson].works =
+        database[currentPerson].works.filter(
+            w => w.id !== id
+        );
+
+    saveDatabase();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   NUOVO LAVORO
+===================================================== */
+
+function openWorkModal(){
+
+    document.getElementById(
+        "modalWorkPerson"
+    ).textContent = currentPerson;
+
+    document.getElementById(
+        "newWorkName"
+    ).value = "";
+
+    document.getElementById(
+        "newWorkQty"
+    ).value = 1;
+
+    document.getElementById(
+        "newWorkPrice"
+    ).value = 0;
+
+    document.getElementById(
+        "workModal"
+    ).classList.add("show");
+
+}
+
+
+function closeWorkModal(){
+
+    document.getElementById(
+        "workModal"
+    ).classList.remove("show");
+
+}
+
+
+function saveNewWork(){
+
+    const name =
+        document
+            .getElementById("newWorkName")
+            .value
+            .trim();
+
+    const quantity =
+        Number(
+            document
+                .getElementById("newWorkQty")
+                .value
+        ) || 1;
+
+    const price =
+        Number(
+            document
+                .getElementById("newWorkPrice")
+                .value
+        ) || 0;
+
+
+    if(!name){
+
+        alert("Inserisci la descrizione del lavoro.");
+
+        return;
+
     }
+
+
+    database[currentPerson].works.push({
+
+        id:
+            "work-new-" +
+            Date.now(),
+
+        name:name,
+
+        quantity:quantity,
+
+        price:price
+
+    });
+
+
+    saveDatabase();
+
+    closeWorkModal();
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   TOTALI
+===================================================== */
+
+function calculateOrdersTotal(){
+
+    return database[currentPerson].orders.reduce(
+
+        (sum,order) => {
+
+            return sum +
+                (
+                    Number(order.quantity || 0) *
+                    Number(order.price || 0)
+                );
+
+        },
+
+        0
+
+    );
+
+}
+
+
+function calculateWorksTotal(){
+
+    return database[currentPerson].works.reduce(
+
+        (sum,work) => {
+
+            return sum +
+                (
+                    Number(work.quantity || 0) *
+                    Number(work.price || 0)
+                );
+
+        },
+
+        0
+
+    );
 
 }
 
@@ -1663,199 +2421,115 @@ function applyStatusClass(select,status){
 
 function updateDashboard(){
 
-    const list =
-        orders[currentPerson] || [];
+    const orders =
+        database[currentPerson].orders;
 
-    let netTotal = 0;
-    let personTotal = 0;
-    let gioTotal = 0;
-
-    list.forEach(item => {
-
-        const net =
-            calculateNet(item);
-
-        const person =
-            Number(item.darePersona) || 0;
-
-        const gio =
-            Math.max(0,net - person);
-
-        netTotal += net;
-        personTotal += person;
-        gioTotal += gio;
-
-    });
+    const works =
+        database[currentPerson].works;
 
 
     document.getElementById("count").textContent =
-        list.length;
+        orders.length;
+
 
     document.getElementById("netTotal").textContent =
-        euro(netTotal);
-
-    document.getElementById("personTotal").textContent =
-        euro(personTotal);
-
-    document.getElementById("gioTotal").textContent =
-        euro(gioTotal);
-
-}
+        euro(calculateOrdersTotal());
 
 
-/* =====================================================
-   PAGAMENTI
-===================================================== */
-
-function updatePayments(){
-
-    const list =
-        orders[currentPerson] || [];
-
-    let total = 0;
-
-    list.forEach(item => {
-
-        const net =
-            calculateNet(item);
-
-        const person =
-            Number(item.darePersona) || 0;
-
-        total += Math.max(
-            0,
-            net - person
-        );
-
-    });
+    document.getElementById("workCount").textContent =
+        works.length;
 
 
-    document.getElementById("paymentTotal")
-        .textContent = euro(total);
+    document.getElementById("workTotal").textContent =
+        euro(calculateWorksTotal());
+
+
+    document.getElementById("paymentOrders").textContent =
+        euro(calculateOrdersTotal());
+
+
+    document.getElementById("paymentWorks").textContent =
+        euro(calculateWorksTotal());
 
 }
 
 
 /* =====================================================
-   MODALE
+   AGGIORNA TUTTO
 ===================================================== */
 
-function openModal(){
+function updateAll(){
 
-    document.getElementById("modalPerson")
-        .textContent = currentPerson;
-
-    document.getElementById("qty").value = 1;
-
-    document.getElementById("article").value = "";
-
-    document.getElementById("listino").value = 0;
-
-    document.getElementById("sconto").value = 25;
-
-    document.getElementById("darePersona").value = 0;
-
-    document.getElementById("newStatus").value =
-        "Da ordinare";
-
-    modal.classList.add("show");
-
-}
-
-
-document.getElementById("cancelBtn")
-.addEventListener("click",() => {
-
-    modal.classList.remove("show");
-
-});
-
-
-modal.addEventListener("click",(e) => {
-
-    if(e.target === modal){
-
-        modal.classList.remove("show");
-
-    }
-
-});
-
-
-/* =====================================================
-   SALVA NUOVO ORDINE
-===================================================== */
-
-document.getElementById("saveBtn")
-.addEventListener("click",() => {
-
-    const article =
-        document.getElementById("article")
-        .value
-        .trim();
-
-    if(!article){
-
-        alert("Inserisci il codice o il nome dell'articolo.");
-
+    if(!currentPerson){
         return;
     }
 
+    renderOrders();
 
-    const item = {
-
-        q:
-            Number(
-                document.getElementById("qty").value
-            ) || 1,
-
-        a:
-            article,
-
-        price:
-            Number(
-                document.getElementById("listino").value
-            ) || 0,
-
-        discount:
-            Number(
-                document.getElementById("sconto").value
-            ) || 0,
-
-        darePersona:
-            Number(
-                document.getElementById("darePersona").value
-            ) || 0,
-
-        status:
-            document.getElementById("newStatus").value
-
-    };
-
-
-    if(!orders[currentPerson]){
-        orders[currentPerson] = [];
-    }
-
-
-    orders[currentPerson].push(item);
-
-    saveData();
-
-    modal.classList.remove("show");
-
-    openOrders();
+    renderWorks();
 
     updateDashboard();
 
-});
+}
 
 
 /* =====================================================
-   AVVIO
+   SICUREZZA TESTO
 ===================================================== */
 
-updateDashboard();
+function escapeHTML(text){
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   CHIUSURA MODALI CLICCANDO FUORI
+===================================================== */
+
+document
+    .getElementById("orderModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+
+                closeOrderModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("workModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+
+                closeWorkModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   SALVATAGGIO INIZIALE
+===================================================== */
+
+saveDatabase();
 
 </script>
 
