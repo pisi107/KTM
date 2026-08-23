@@ -7,18 +7,6 @@
 <title>Gestione Ricambi KTM</title>
 
 <style>
-:root {
-    --ktm-orange: #ff6600;
-    --ktm-orange-dark: #d94f00;
-    --black: #111111;
-    --dark: #1b1b1b;
-    --dark2: #252525;
-    --light: #f3f3f3;
-    --white: #ffffff;
-    --border: #dddddd;
-    --text: #202124;
-    --muted: #777777;
-}
 
 * {
     box-sizing: border-box;
@@ -28,13 +16,26 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--light);
-    color: var(--text);
+    background: #f3f4f6;
+    color: #202124;
 }
 
-/* =========================================================
+/* =========================
+   COLORI KTM
+========================= */
+
+:root {
+    --ktm-orange: #ff6600;
+    --ktm-orange-dark: #d94f00;
+    --ktm-black: #111111;
+    --ktm-dark: #1c1c1c;
+    --ktm-grey: #f3f4f6;
+    --white: #ffffff;
+}
+
+/* =========================
    SCELTA PERSONA
-========================================================= */
+========================= */
 
 #selezionePersona {
     min-height: 100vh;
@@ -42,55 +43,30 @@ body {
     align-items: center;
     justify-content: center;
     background:
-        linear-gradient(135deg, #0b0b0b 0%, #191919 65%, #252525 100%);
+        linear-gradient(
+            135deg,
+            #111111 0%,
+            #222222 55%,
+            #ff6600 100%
+        );
     padding: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-#selezionePersona::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: var(--ktm-orange);
-    opacity: 0.08;
-    transform: rotate(35deg);
-    right: -250px;
-    top: -250px;
-}
-
-#selezionePersona::after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: var(--ktm-orange);
-    opacity: 0.05;
-    transform: rotate(35deg);
-    left: -220px;
-    bottom: -220px;
 }
 
 .selezione-box {
-    position: relative;
-    z-index: 2;
     background: white;
     width: 100%;
-    max-width: 700px;
+    max-width: 720px;
     padding: 45px;
-    border-radius: 20px;
+    border-radius: 22px;
     text-align: center;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
-    border-top: 6px solid var(--ktm-orange);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.4);
 }
 
 .logo {
     font-size: 44px;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 10px;
-    color: #111;
 }
 
 .logo span {
@@ -111,37 +87,35 @@ body {
 
 .persona-btn {
     flex: 1;
-    border: 3px solid var(--black);
-    padding: 30px 20px;
+    border: none;
+    padding: 32px 20px;
     border-radius: 15px;
-    background: var(--black);
+    background: var(--ktm-black);
     color: white;
     cursor: pointer;
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 25px;
+    font-weight: bold;
     transition: 0.2s;
-    letter-spacing: 1px;
 }
 
 .persona-btn:hover {
     background: var(--ktm-orange);
-    border-color: var(--ktm-orange);
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(255,102,0,0.3);
+    box-shadow: 0 10px 25px rgba(255,102,0,0.35);
 }
 
-/* =========================================================
+/* =========================
    APP
-========================================================= */
+========================= */
 
 #app {
     display: none;
     min-height: 100vh;
 }
 
-/* =========================================================
+/* =========================
    SIDEBAR
-========================================================= */
+========================= */
 
 .sidebar {
     position: fixed;
@@ -149,11 +123,15 @@ body {
     top: 0;
     bottom: 0;
     width: 240px;
-    background: linear-gradient(180deg, #0d0d0d 0%, #171717 100%);
+    background: linear-gradient(
+        180deg,
+        #111111 0%,
+        #191919 70%,
+        #252525 100%
+    );
     color: white;
     padding: 25px 15px;
-    border-right: 3px solid var(--ktm-orange);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.08);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
 }
 
 .sidebar-logo {
@@ -169,12 +147,12 @@ body {
 }
 
 .utente {
-    background: #252525;
+    background: #292929;
+    border-left: 4px solid var(--ktm-orange);
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 25px;
     text-align: center;
-    border-left: 4px solid var(--ktm-orange);
 }
 
 .utente small {
@@ -202,11 +180,15 @@ body {
     transition: 0.2s;
 }
 
-.menu-btn:hover,
+.menu-btn:hover {
+    background: #292929;
+    color: white;
+}
+
 .menu-btn.active {
     background: var(--ktm-orange);
     color: white;
-    transform: translateX(2px);
+    box-shadow: 0 5px 15px rgba(255,102,0,0.25);
 }
 
 .cambia-persona {
@@ -215,7 +197,7 @@ body {
     left: 15px;
     right: 15px;
     background: #333;
-    border: 1px solid #444;
+    border: none;
     color: white;
     padding: 12px;
     border-radius: 8px;
@@ -225,12 +207,11 @@ body {
 
 .cambia-persona:hover {
     background: var(--ktm-orange);
-    border-color: var(--ktm-orange);
 }
 
-/* =========================================================
+/* =========================
    CONTENUTO
-========================================================= */
+========================= */
 
 .main {
     margin-left: 240px;
@@ -242,27 +223,23 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    border-bottom: 3px solid var(--ktm-orange);
-    padding-bottom: 15px;
 }
 
 .topbar h1 {
     font-size: 30px;
-    font-weight: 900;
 }
 
 .badge {
-    background: var(--black);
+    background: var(--ktm-orange);
     color: white;
-    padding: 8px 18px;
+    padding: 8px 15px;
     border-radius: 20px;
     font-weight: bold;
-    border: 2px solid var(--ktm-orange);
 }
 
-/* =========================================================
+/* =========================
    CARDS
-========================================================= */
+========================= */
 
 .cards {
     display: grid;
@@ -275,31 +252,24 @@ body {
     background: white;
     padding: 22px;
     border-radius: 14px;
+    border-top: 4px solid var(--ktm-orange);
     box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-    border-left: 5px solid var(--ktm-orange);
-    transition: 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
 }
 
 .card-title {
-    color: var(--muted);
+    color: #777;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
 .card-value {
     font-size: 30px;
-    font-weight: 900;
-    color: var(--black);
+    font-weight: bold;
 }
 
-/* =========================================================
+/* =========================
    SEZIONI
-========================================================= */
+========================= */
 
 .sezione {
     display: none;
@@ -314,18 +284,16 @@ body {
     border-radius: 14px;
     padding: 25px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-    border-top: 3px solid #222;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
 }
 
 .box h2 {
     margin-bottom: 20px;
-    font-weight: 900;
 }
 
-/* =========================================================
+/* =========================
    FORM
-========================================================= */
+========================= */
 
 .form-grid {
     display: grid;
@@ -349,13 +317,12 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    transition: 0.2s;
 }
 
 .campo input:focus {
     outline: none;
     border-color: var(--ktm-orange);
-    box-shadow: 0 0 0 3px rgba(255,102,0,0.10);
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.12);
 }
 
 .campo-full {
@@ -364,7 +331,6 @@ body {
 
 .automatico {
     background: #f0f0f0;
-    font-weight: bold;
 }
 
 .azioni {
@@ -390,7 +356,6 @@ body {
 
 .btn-primary:hover {
     background: var(--ktm-orange-dark);
-    transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -407,9 +372,9 @@ body {
     color: white;
 }
 
-/* =========================================================
-   RICERCA
-========================================================= */
+/* =========================
+   TABELLA
+========================= */
 
 .barra-ricerca {
     display: flex;
@@ -431,10 +396,6 @@ body {
     border-color: var(--ktm-orange);
 }
 
-/* =========================================================
-   TABELLA
-========================================================= */
-
 .tabella-container {
     overflow-x: auto;
 }
@@ -446,12 +407,11 @@ table {
 }
 
 th {
-    background: var(--black);
+    background: #111;
     color: white;
     padding: 13px 10px;
     text-align: left;
     font-size: 13px;
-    border-bottom: 3px solid var(--ktm-orange);
 }
 
 td {
@@ -461,7 +421,7 @@ td {
 }
 
 tr:hover td {
-    background: #fff7f1;
+    background: #fff7f2;
 }
 
 .azioni-tabella button {
@@ -470,7 +430,6 @@ tr:hover td {
     border-radius: 5px;
     cursor: pointer;
     margin-right: 4px;
-    font-weight: bold;
 }
 
 .modifica {
@@ -496,27 +455,9 @@ tr:hover td {
     color: #888;
 }
 
-/* =========================================================
-   ORDINI / TESTO
-========================================================= */
-
-#ordinati .box {
-    border-top-color: var(--ktm-orange);
-}
-
-#ordinati h2 {
-    color: var(--black);
-}
-
-#ordinati p,
-#storico p {
-    color: #666;
-    line-height: 1.6;
-}
-
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
 @media(max-width: 900px) {
 
@@ -531,6 +472,7 @@ tr:hover td {
     .cards {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media(max-width: 650px) {
@@ -547,8 +489,6 @@ tr:hover td {
         position: relative;
         width: 100%;
         height: auto;
-        border-right: none;
-        border-bottom: 3px solid var(--ktm-orange);
     }
 
     .cambia-persona {
@@ -576,20 +516,16 @@ tr:hover td {
         grid-column: auto;
     }
 
-    .topbar {
-        align-items: flex-start;
-        gap: 15px;
-        flex-direction: column;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     SCELTA PERSONA
-========================================================= -->
+<!-- ========================= -->
+<!-- SCELTA PERSONA -->
+<!-- ========================= -->
 
 <div id="selezionePersona">
 
@@ -605,11 +541,15 @@ tr:hover td {
 
         <div class="persone">
 
-            <button class="persona-btn" onclick="entra('ROBY')">
+            <button
+                class="persona-btn"
+                onclick="entra('ROBY')">
                 ROBY
             </button>
 
-            <button class="persona-btn" onclick="entra('FEDE')">
+            <button
+                class="persona-btn"
+                onclick="entra('FEDE')">
                 FEDE
             </button>
 
@@ -619,10 +559,9 @@ tr:hover td {
 
 </div>
 
-
-<!-- =========================================================
-     APPLICAZIONE
-========================================================= -->
+<!-- ========================= -->
+<!-- APPLICAZIONE -->
+<!-- ========================= -->
 
 <div id="app">
 
@@ -635,55 +574,65 @@ tr:hover td {
         </div>
 
         <div class="utente">
+
             <small>Stai gestendo</small>
-            <strong id="nomeUtente">ROBY</strong>
+
+            <strong id="nomeUtente">
+                ROBY
+            </strong>
+
         </div>
 
-        <button class="menu-btn active"
-                onclick="mostraSezione('dashboard', this)">
+        <button
+            class="menu-btn active"
+            onclick="mostraSezione('dashboard', this)">
             🏠 Dashboard
         </button>
 
-        <button class="menu-btn"
-                onclick="mostraSezione('nuovo', this)">
+        <button
+            class="menu-btn"
+            onclick="mostraSezione('nuovo', this)">
             ➕ Nuovo ricambio
         </button>
 
-        <button class="menu-btn"
-                onclick="mostraSezione('ricambi', this)">
+        <button
+            class="menu-btn"
+            onclick="mostraSezione('ricambi', this)">
             📦 Ricambi da ordinare
         </button>
 
-        <button class="menu-btn"
-                onclick="mostraSezione('ordinati', this)">
+        <button
+            class="menu-btn"
+            onclick="mostraSezione('ordinati', this)">
             📋 Ordini inviati
         </button>
 
-        <button class="menu-btn"
-                onclick="mostraSezione('contabilita', this)">
+        <button
+            class="menu-btn"
+            onclick="mostraSezione('contabilita', this)">
             💰 Contabilità
         </button>
 
-        <button class="menu-btn"
-                onclick="mostraSezione('storico', this)">
+        <button
+            class="menu-btn"
+            onclick="mostraSezione('storico', this)">
             📚 Storico
         </button>
 
-        <button class="cambia-persona"
-                onclick="cambiaPersona()">
+        <button
+            class="cambia-persona"
+            onclick="cambiaPersona()">
             ↩ Cambia persona
         </button>
 
     </aside>
 
-
     <!-- MAIN -->
 
     <main class="main">
-
-        <!-- =================================================
-             DASHBOARD
-        ================================================= -->
+                <!-- ========================= -->
+        <!-- DASHBOARD -->
+        <!-- ========================= -->
 
         <section id="dashboard" class="sezione active">
 
@@ -697,6 +646,7 @@ tr:hover td {
 
             </div>
 
+
             <div class="cards">
 
                 <div class="card">
@@ -705,7 +655,9 @@ tr:hover td {
                         Ricambi totali
                     </div>
 
-                    <div class="card-value" id="totRicambi">
+                    <div
+                        class="card-value"
+                        id="totRicambi">
                         0
                     </div>
 
@@ -718,7 +670,9 @@ tr:hover td {
                         Pezzi totali
                     </div>
 
-                    <div class="card-value" id="totPezzi">
+                    <div
+                        class="card-value"
+                        id="totPezzi">
                         0
                     </div>
 
@@ -731,7 +685,9 @@ tr:hover td {
                         Valore netto
                     </div>
 
-                    <div class="card-value" id="totNetto">
+                    <div
+                        class="card-value"
+                        id="totNetto">
                         € 0,00
                     </div>
 
@@ -744,7 +700,9 @@ tr:hover td {
                         Da dare a Gio
                     </div>
 
-                    <div class="card-value" id="totGio">
+                    <div
+                        class="card-value"
+                        id="totGio">
                         € 0,00
                     </div>
 
@@ -755,7 +713,9 @@ tr:hover td {
 
             <div class="box">
 
-                <h2>Ultimi ricambi inseriti</h2>
+                <h2>
+                    Ultimi ricambi inseriti
+                </h2>
 
                 <div class="tabella-container">
 
@@ -764,11 +724,27 @@ tr:hover td {
                         <thead>
 
                             <tr>
-                                <th>Data</th>
-                                <th>Articolo</th>
-                                <th>Quantità</th>
-                                <th>Netto</th>
-                                <th>Stato</th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Articolo
+                                </th>
+
+                                <th>
+                                    Quantità
+                                </th>
+
+                                <th>
+                                    Netto
+                                </th>
+
+                                <th>
+                                    Stato
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -785,27 +761,42 @@ tr:hover td {
         </section>
 
 
-        <!-- =================================================
-             NUOVO RICAMBIO
-        ================================================= -->
+        <!-- ========================= -->
+        <!-- NUOVO RICAMBIO -->
+        <!-- ========================= -->
 
-        <section id="nuovo" class="sezione">
+        <section
+            id="nuovo"
+            class="sezione">
 
             <div class="topbar">
-                <h1>Nuovo ricambio</h1>
+
+                <h1>
+                    Nuovo ricambio
+                </h1>
+
             </div>
+
 
             <div class="box">
 
-                <h2>Inserisci ricambio</h2>
+                <h2>
+                    Inserisci ricambio
+                </h2>
+
 
                 <form id="formRicambio">
 
                     <div class="form-grid">
 
+
+                        <!-- DATA -->
+
                         <div class="campo">
 
-                            <label>Data</label>
+                            <label>
+                                Data
+                            </label>
 
                             <input
                                 type="date"
@@ -816,9 +807,13 @@ tr:hover td {
                         </div>
 
 
+                        <!-- QUANTITÀ -->
+
                         <div class="campo">
 
-                            <label>Quantità</label>
+                            <label>
+                                Quantità
+                            </label>
 
                             <input
                                 type="number"
@@ -830,6 +825,8 @@ tr:hover td {
 
                         </div>
 
+
+                        <!-- ARTICOLO -->
 
                         <div class="campo campo-full">
 
@@ -847,25 +844,32 @@ tr:hover td {
                         </div>
 
 
+                        <!-- LISTINO -->
+
                         <div class="campo">
 
-                            <label>Listino (€)</label>
+                            <label>
+                                Listino (€)
+                            </label>
 
                             <input
                                 type="number"
                                 id="listino"
                                 step="0.01"
                                 min="0"
-                                placeholder="0.00"
-                                required
+                                placeholder="Inserisci prezzo"
                             >
 
                         </div>
 
 
+                        <!-- SCONTO -->
+
                         <div class="campo">
 
-                            <label>Sconto (%)</label>
+                            <label>
+                                Sconto (%)
+                            </label>
 
                             <input
                                 type="number"
@@ -874,15 +878,18 @@ tr:hover td {
                                 min="0"
                                 max="100"
                                 value="0"
-                                placeholder="0"
                             >
 
                         </div>
 
 
+                        <!-- NETTO -->
+
                         <div class="campo">
 
-                            <label>Netto scontato (€)</label>
+                            <label>
+                                Netto scontato (€)
+                            </label>
 
                             <input
                                 type="number"
@@ -893,6 +900,8 @@ tr:hover td {
 
                         </div>
 
+
+                        <!-- GIO -->
 
                         <div class="campo">
 
@@ -910,6 +919,8 @@ tr:hover td {
 
                         </div>
 
+
+                        <!-- ROBY -->
 
                         <div class="campo">
 
@@ -935,14 +946,19 @@ tr:hover td {
                         <button
                             type="submit"
                             class="btn btn-primary">
+
                             💾 Salva ricambio
+
                         </button>
+
 
                         <button
                             type="button"
                             class="btn btn-secondary"
                             onclick="resetForm()">
+
                             Annulla
+
                         </button>
 
                     </div>
@@ -954,17 +970,25 @@ tr:hover td {
         </section>
 
 
-        <!-- =================================================
-             RICAMBI
-        ================================================= -->
+        <!-- ========================= -->
+        <!-- RICAMBI DA ORDINARE -->
+        <!-- ========================= -->
 
-        <section id="ricambi" class="sezione">
+        <section
+            id="ricambi"
+            class="sezione">
 
             <div class="topbar">
-                <h1>Ricambi da ordinare</h1>
+
+                <h1>
+                    Ricambi da ordinare
+                </h1>
+
             </div>
 
+
             <div class="box">
+
 
                 <div class="barra-ricerca">
 
@@ -972,13 +996,15 @@ tr:hover td {
                         type="text"
                         id="ricerca"
                         placeholder="🔍 Cerca codice articolo..."
-                        oninput="aggiornaTabella()"
                     >
+
 
                     <button
                         class="btn btn-primary"
                         onclick="mostraSezione('nuovo')">
+
                         + Nuovo ricambio
+
                     </button>
 
                 </div>
@@ -991,18 +1017,47 @@ tr:hover td {
                         <thead>
 
                             <tr>
-                                <th>Data</th>
-                                <th>Quantità</th>
-                                <th>Articolo</th>
-                                <th>Da Gio</th>
-                                <th>Da Roby</th>
-                                <th>Netto</th>
-                                <th>Listino</th>
-                                <th>Sconto</th>
-                                <th>Azioni</th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Quantità
+                                </th>
+
+                                <th>
+                                    Articolo
+                                </th>
+
+                                <th>
+                                    Da Gio
+                                </th>
+
+                                <th>
+                                    Da Roby
+                                </th>
+
+                                <th>
+                                    Netto
+                                </th>
+
+                                <th>
+                                    Listino
+                                </th>
+
+                                <th>
+                                    Sconto
+                                </th>
+
+                                <th>
+                                    Azioni
+                                </th>
+
                             </tr>
 
                         </thead>
+
 
                         <tbody id="tabellaRicambi">
                         </tbody>
@@ -1016,23 +1071,33 @@ tr:hover td {
         </section>
 
 
-        <!-- =================================================
-             ORDINATI
-        ================================================= -->
+        <!-- ========================= -->
+        <!-- ORDINI INVIATI -->
+        <!-- ========================= -->
 
-        <section id="ordinati" class="sezione">
+        <section
+            id="ordinati"
+            class="sezione">
 
             <div class="topbar">
-                <h1>Ordini inviati a KTM</h1>
+
+                <h1>
+                    Ordini inviati a KTM
+                </h1>
+
             </div>
+
 
             <div class="box">
 
-                <h2>Questa sezione la svilupperemo dopo</h2>
+                <h2>
+                    Ordini inviati
+                </h2>
 
                 <p>
                     Qui potremo gestire gli ordini inviati a KTM,
-                    raggruppare i ricambi e segnare quali sono stati ordinati.
+                    raggruppare i ricambi e segnare quali sono stati
+                    ordinati.
                 </p>
 
             </div>
@@ -1040,17 +1105,25 @@ tr:hover td {
         </section>
 
 
-        <!-- =================================================
-             CONTABILITA
-        ================================================= -->
+        <!-- ========================= -->
+        <!-- CONTABILITÀ -->
+        <!-- ========================= -->
 
-        <section id="contabilita" class="sezione">
+        <section
+            id="contabilita"
+            class="sezione">
 
             <div class="topbar">
-                <h1>Contabilità</h1>
+
+                <h1>
+                    Contabilità
+                </h1>
+
             </div>
 
+
             <div class="cards">
+
 
                 <div class="card">
 
@@ -1058,8 +1131,12 @@ tr:hover td {
                         Totale da dare a Gio
                     </div>
 
-                    <div class="card-value" id="contGio">
+                    <div
+                        class="card-value"
+                        id="contGio">
+
                         € 0,00
+
                     </div>
 
                 </div>
@@ -1071,30 +1148,44 @@ tr:hover td {
                         Totale da dare a Roby
                     </div>
 
-                    <div class="card-value" id="contRoby">
+                    <div
+                        class="card-value"
+                        id="contRoby">
+
                         € 0,00
+
                     </div>
 
                 </div>
+
 
             </div>
 
         </section>
 
 
-        <!-- =================================================
-             STORICO
-        ================================================= -->
+        <!-- ========================= -->
+        <!-- STORICO -->
+        <!-- ========================= -->
 
-        <section id="storico" class="sezione">
+        <section
+            id="storico"
+            class="sezione">
 
             <div class="topbar">
-                <h1>Storico</h1>
+
+                <h1>
+                    Storico
+                </h1>
+
             </div>
+
 
             <div class="box">
 
-                <h2>Storico ricambi</h2>
+                <h2>
+                    Storico ricambi
+                </h2>
 
                 <p>
                     Qui successivamente potremo vedere tutti gli ordini
@@ -1106,23 +1197,18 @@ tr:hover td {
         </section>
 
     </main>
+    
 
 </div>
-
-
-<script>
-
-/* =========================================================
-   VARIABILI
-========================================================= */
+    <script>
 
 let personaCorrente = "";
 let indiceModifica = null;
 
 
-/* =========================================================
+/* =========================
    STORAGE
-========================================================= */
+========================= */
 
 function chiaveStorage() {
 
@@ -1133,13 +1219,28 @@ function chiaveStorage() {
 
 function caricaDati() {
 
-    const dati = localStorage.getItem(chiaveStorage());
+    const dati = localStorage.getItem(
+        chiaveStorage()
+    );
 
     if (!dati) {
         return [];
     }
 
-    return JSON.parse(dati);
+    try {
+
+        return JSON.parse(dati);
+
+    } catch (errore) {
+
+        console.error(
+            "Errore lettura dati:",
+            errore
+        );
+
+        return [];
+
+    }
 
 }
 
@@ -1154,264 +1255,555 @@ function salvaDati(dati) {
 }
 
 
-/* =========================================================
+/* =========================
+   DATA ODIERNA
+========================= */
+
+function dataOggi() {
+
+    const oggi = new Date();
+
+    const anno = oggi.getFullYear();
+
+    const mese = String(
+        oggi.getMonth() + 1
+    ).padStart(2, "0");
+
+    const giorno = String(
+        oggi.getDate()
+    ).padStart(2, "0");
+
+    return `${anno}-${mese}-${giorno}`;
+
+}
+
+
+/* =========================
    ENTRA
-========================================================= */
+========================= */
 
 function entra(persona) {
 
     personaCorrente = persona;
 
-    document.getElementById("selezionePersona").style.display =
-        "none";
+    document.getElementById(
+        "selezionePersona"
+    ).style.display = "none";
 
-    document.getElementById("app").style.display =
-        "block";
 
-    document.getElementById("nomeUtente").textContent =
-        persona;
+    document.getElementById(
+        "app"
+    ).style.display = "block";
 
-    document.getElementById("badgeUtente").textContent =
-        persona;
 
-    document.getElementById("data").value =
-        new Date().toISOString().split("T")[0];
+    document.getElementById(
+        "nomeUtente"
+    ).textContent = persona;
+
+
+    document.getElementById(
+        "badgeUtente"
+    ).textContent = persona;
+
+
+    document.getElementById(
+        "data"
+    ).value = dataOggi();
+
+
+    indiceModifica = null;
+
 
     aggiornaTutto();
 
 }
 
 
-/* =========================================================
+/* =========================
    CAMBIA PERSONA
-========================================================= */
+========================= */
 
 function cambiaPersona() {
 
     personaCorrente = "";
 
-    document.getElementById("app").style.display =
-        "none";
+    indiceModifica = null;
 
-    document.getElementById("selezionePersona").style.display =
-        "flex";
+
+    document.getElementById(
+        "app"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "selezionePersona"
+    ).style.display = "flex";
 
 }
 
 
-/* =========================================================
+/* =========================
    MENU
-========================================================= */
+========================= */
 
-function mostraSezione(id, bottone = null) {
+function mostraSezione(
+    id,
+    bottone = null
+) {
 
-    document.querySelectorAll(".sezione").forEach(
-        sezione => {
-            sezione.classList.remove("active");
-        }
-    );
+    document
+        .querySelectorAll(".sezione")
+        .forEach(sezione => {
+
+            sezione.classList.remove(
+                "active"
+            );
+
+        });
+
 
     const sezione =
         document.getElementById(id);
 
+
     if (sezione) {
-        sezione.classList.add("active");
+
+        sezione.classList.add(
+            "active"
+        );
+
     }
 
-    document.querySelectorAll(".menu-btn").forEach(
-        btn => {
-            btn.classList.remove("active");
-        }
-    );
+
+    document
+        .querySelectorAll(".menu-btn")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
 
     if (bottone) {
-        bottone.classList.add("active");
+
+        bottone.classList.add(
+            "active"
+        );
+
+    } else {
+
+        document
+            .querySelectorAll(".menu-btn")
+            .forEach(btn => {
+
+                const testo =
+                    btn.getAttribute(
+                        "onclick"
+                    ) || "";
+
+                if (
+                    testo.includes(
+                        `'${id}'`
+                    )
+                ) {
+
+                    btn.classList.add(
+                        "active"
+                    );
+
+                }
+
+            });
+
     }
 
+
     if (id === "ricambi") {
+
         aggiornaTabella();
+
     }
 
 }
 
 
-/* =========================================================
+/* =========================
    CALCOLO NETTO
-========================================================= */
+========================= */
 
 function calcolaNetto() {
 
     const listino =
         parseFloat(
-            document.getElementById("listino").value
+            document.getElementById(
+                "listino"
+            ).value
         ) || 0;
+
 
     const sconto =
         parseFloat(
-            document.getElementById("sconto").value
+            document.getElementById(
+                "sconto"
+            ).value
         ) || 0;
 
-    const netto =
-        listino - (listino * sconto / 100);
 
-    document.getElementById("netto").value =
-        netto.toFixed(2);
+    const netto =
+        listino -
+        (
+            listino *
+            sconto /
+            100
+        );
+
+
+    document.getElementById(
+        "netto"
+    ).value = netto.toFixed(2);
 
 }
 
 
-document.getElementById("listino").addEventListener(
+/* =========================
+   EVENTI PREZZI
+========================= */
+
+document.getElementById(
+    "listino"
+).addEventListener(
     "input",
     calcolaNetto
 );
 
-document.getElementById("sconto").addEventListener(
+
+document.getElementById(
+    "sconto"
+).addEventListener(
     "input",
     calcolaNetto
 );
 
 
-/* =========================================================
+/* =========================
    SALVA RICAMBIO
-========================================================= */
+========================= */
 
-document.getElementById("formRicambio").addEventListener(
-    "submit",
-    function(event) {
+document
+    .getElementById(
+        "formRicambio"
+    )
+    .addEventListener(
+        "submit",
+        function(event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        const dati = caricaDati();
 
-        const ricambio = {
+            if (!personaCorrente) {
 
-            data:
-                document.getElementById("data").value,
+                alert(
+                    "Seleziona prima ROBY o FEDE."
+                );
 
-            quantita:
+                return;
+
+            }
+
+
+            const articolo =
+                document.getElementById(
+                    "articolo"
+                ).value.trim();
+
+
+            if (!articolo) {
+
+                alert(
+                    "Inserisci il codice dell'articolo."
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                document.getElementById(
+                    "data"
+                ).value;
+
+
+            if (!data) {
+
+                alert(
+                    "Inserisci la data."
+                );
+
+                return;
+
+            }
+
+
+            const quantita =
                 Number(
-                    document.getElementById("quantita").value
-                ),
-
-            articolo:
-                document.getElementById("articolo").value.trim(),
-
-            soldiGio:
-                Number(
-                    document.getElementById("soldiGio").value
-                ) || 0,
-
-            soldiRoby:
-                Number(
-                    document.getElementById("soldiRoby").value
-                ) || 0,
-
-            netto:
-                Number(
-                    document.getElementById("netto").value
-                ) || 0,
-
-            listino:
-                Number(
-                    document.getElementById("listino").value
-                ) || 0,
-
-            sconto:
-                Number(
-                    document.getElementById("sconto").value
-                ) || 0,
-
-            stato:
-                "Da ordinare"
-
-        };
+                    document.getElementById(
+                        "quantita"
+                    ).value
+                );
 
 
-        if (indiceModifica !== null) {
+            if (
+                !Number.isFinite(quantita) ||
+                quantita < 1
+            ) {
 
-            dati[indiceModifica] =
-                ricambio;
+                alert(
+                    "Inserisci una quantità valida."
+                );
 
-            indiceModifica = null;
+                return;
 
-        } else {
+            }
 
-            dati.push(ricambio);
+
+            const dati =
+                caricaDati();
+
+
+            const ricambio = {
+
+                id:
+                    Date.now(),
+
+                data:
+                    data,
+
+                quantita:
+                    quantita,
+
+                articolo:
+                    articolo,
+
+                soldiGio:
+                    Number(
+                        document.getElementById(
+                            "soldiGio"
+                        ).value
+                    ) || 0,
+
+                soldiRoby:
+                    Number(
+                        document.getElementById(
+                            "soldiRoby"
+                        ).value
+                    ) || 0,
+
+                netto:
+                    Number(
+                        document.getElementById(
+                            "netto"
+                        ).value
+                    ) || 0,
+
+                listino:
+                    Number(
+                        document.getElementById(
+                            "listino"
+                        ).value
+                    ) || 0,
+
+                sconto:
+                    Number(
+                        document.getElementById(
+                            "sconto"
+                        ).value
+                    ) || 0,
+
+                stato:
+                    "Da ordinare"
+
+            };
+
+
+            if (
+                indiceModifica !== null
+            ) {
+
+                dati[
+                    indiceModifica
+                ] = ricambio;
+
+
+                indiceModifica = null;
+
+
+                alert(
+                    "Ricambio modificato correttamente!"
+                );
+
+            } else {
+
+                dati.push(
+                    ricambio
+                );
+
+
+                alert(
+                    "Ricambio salvato correttamente!"
+                );
+
+            }
+
+
+            salvaDati(dati);
+
+
+            resetForm();
+
+
+            aggiornaTutto();
+
+
+            mostraSezione(
+                "ricambi"
+            );
 
         }
+    );
 
 
-        salvaDati(dati);
-
-        alert("Ricambio salvato correttamente!");
-
-        resetForm();
-
-        aggiornaTutto();
-
-        mostraSezione("ricambi");
-
-    }
-);
-
-
-/* =========================================================
-   RESET
-========================================================= */
+/* =========================
+   RESET FORM
+========================= */
 
 function resetForm() {
 
-    document.getElementById("formRicambio").reset();
+    document
+        .getElementById(
+            "formRicambio"
+        )
+        .reset();
 
-    document.getElementById("data").value =
-        new Date().toISOString().split("T")[0];
 
-    document.getElementById("quantita").value =
-        1;
+    document.getElementById(
+        "data"
+    ).value = dataOggi();
 
-    document.getElementById("netto").value =
-        "";
+
+    document.getElementById(
+        "quantita"
+    ).value = 1;
+
+
+    document.getElementById(
+        "sconto"
+    ).value = 0;
+
+
+    document.getElementById(
+        "soldiGio"
+    ).value = 0;
+
+
+    document.getElementById(
+        "soldiRoby"
+    ).value = 0;
+
+
+    document.getElementById(
+        "netto"
+    ).value = "";
+
 
     indiceModifica = null;
 
 }
 
 
-/* =========================================================
-   TABELLA
-========================================================= */
+/* =========================
+   RICERCA
+========================= */
+
+document
+    .getElementById(
+        "ricerca"
+    )
+    .addEventListener(
+        "input",
+        aggiornaTabella
+    );
+
+
+/* =========================
+   TABELLA RICAMBI
+========================= */
 
 function aggiornaTabella() {
 
-    const dati = caricaDati();
+    const dati =
+        caricaDati();
+
+
+    const campoRicerca =
+        document.getElementById(
+            "ricerca"
+        );
+
 
     const ricerca =
         (
-            document.getElementById("ricerca")?.value ||
-            ""
-        ).toLowerCase();
+            campoRicerca
+            ? campoRicerca.value
+            : ""
+        )
+        .trim()
+        .toLowerCase();
+
 
     const filtrati =
-        dati.filter(r =>
-            r.articolo
-                .toLowerCase()
-                .includes(ricerca)
-        );
+        dati.filter(r => {
+
+            return String(
+                r.articolo || ""
+            )
+            .toLowerCase()
+            .includes(
+                ricerca
+            );
+
+        });
+
 
     const tbody =
-        document.getElementById("tabellaRicambi");
+        document.getElementById(
+            "tabellaRicambi"
+        );
+
 
     tbody.innerHTML = "";
 
 
-    if (filtrati.length === 0) {
+    if (
+        filtrati.length === 0
+    ) {
 
         tbody.innerHTML = `
+
             <tr>
-                <td colspan="9" class="vuoto">
+
+                <td
+                    colspan="9"
+                    class="vuoto">
+
                     Nessun ricambio trovato
+
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -1424,18 +1816,27 @@ function aggiornaTabella() {
         const indice =
             dati.indexOf(r);
 
+
         const tr =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
         tr.innerHTML = `
 
-            <td>${formattaData(r.data)}</td>
-
-            <td>${r.quantita}</td>
+            <td>
+                ${formattaData(r.data)}
+            </td>
 
             <td>
-                <strong>${r.articolo}</strong>
+                ${r.quantita}
+            </td>
+
+            <td>
+                <strong>
+                    ${escapeHTML(r.articolo)}
+                </strong>
             </td>
 
             <td>
@@ -1455,7 +1856,7 @@ function aggiornaTabella() {
             </td>
 
             <td>
-                ${r.sconto}%
+                ${formattaEuro(r.sconto)}%
             </td>
 
             <td class="azioni-tabella">
@@ -1463,18 +1864,24 @@ function aggiornaTabella() {
                 <button
                     class="modifica"
                     onclick="modificaRicambio(${indice})">
+
                     Modifica
+
                 </button>
+
 
                 <button
                     class="elimina"
                     onclick="eliminaRicambio(${indice})">
+
                     Elimina
+
                 </button>
 
             </td>
 
         `;
+
 
         tbody.appendChild(tr);
 
@@ -1483,133 +1890,238 @@ function aggiornaTabella() {
 }
 
 
-/* =========================================================
+/* =========================
    MODIFICA
-========================================================= */
+========================= */
 
-function modificaRicambio(indice) {
+function modificaRicambio(
+    indice
+) {
 
     const dati =
         caricaDati();
+
+
+    if (
+        !dati[indice]
+    ) {
+
+        alert(
+            "Ricambio non trovato."
+        );
+
+        return;
+
+    }
+
 
     const r =
         dati[indice];
 
-    document.getElementById("data").value =
-        r.data;
 
-    document.getElementById("quantita").value =
-        r.quantita;
+    document.getElementById(
+        "data"
+    ).value =
+        r.data || dataOggi();
 
-    document.getElementById("articolo").value =
-        r.articolo;
 
-    document.getElementById("soldiGio").value =
-        r.soldiGio;
+    document.getElementById(
+        "quantita"
+    ).value =
+        r.quantita || 1;
 
-    document.getElementById("soldiRoby").value =
-        r.soldiRoby;
 
-    document.getElementById("listino").value =
-        r.listino;
+    document.getElementById(
+        "articolo"
+    ).value =
+        r.articolo || "";
 
-    document.getElementById("sconto").value =
-        r.sconto;
+
+    document.getElementById(
+        "soldiGio"
+    ).value =
+        r.soldiGio || 0;
+
+
+    document.getElementById(
+        "soldiRoby"
+    ).value =
+        r.soldiRoby || 0;
+
+
+    document.getElementById(
+        "listino"
+    ).value =
+        r.listino || 0;
+
+
+    document.getElementById(
+        "sconto"
+    ).value =
+        r.sconto || 0;
+
 
     calcolaNetto();
+
 
     indiceModifica =
         indice;
 
-    mostraSezione("nuovo");
+
+    mostraSezione(
+        "nuovo"
+    );
 
 }
 
 
-/* =========================================================
+/* =========================
    ELIMINA
-========================================================= */
+========================= */
 
-function eliminaRicambio(indice) {
+function eliminaRicambio(
+    indice
+) {
 
-    if (!confirm(
-        "Vuoi davvero eliminare questo ricambio?"
-    )) {
+    if (
+        !confirm(
+            "Vuoi davvero eliminare questo ricambio?"
+        )
+    ) {
+
         return;
+
     }
+
 
     const dati =
         caricaDati();
 
-    dati.splice(indice, 1);
 
-    salvaDati(dati);
+    dati.splice(
+        indice,
+        1
+    );
+
+
+    salvaDati(
+        dati
+    );
+
 
     aggiornaTutto();
 
 }
 
 
-/* =========================================================
+/* =========================
    DASHBOARD
-========================================================= */
+========================= */
 
 function aggiornaDashboard() {
 
     const dati =
         caricaDati();
 
+
     let pezzi = 0;
+
     let netto = 0;
+
     let gio = 0;
 
 
     dati.forEach(r => {
 
-        pezzi += r.quantita;
+        pezzi +=
+            Number(
+                r.quantita
+            ) || 0;
+
 
         netto +=
-            r.netto * r.quantita;
+            (
+                Number(
+                    r.netto
+                ) || 0
+            ) *
+            (
+                Number(
+                    r.quantita
+                ) || 0
+            );
+
 
         gio +=
-            r.soldiGio;
+            Number(
+                r.soldiGio
+            ) || 0;
 
     });
 
 
-    document.getElementById("totRicambi").textContent =
+    document.getElementById(
+        "totRicambi"
+    ).textContent =
         dati.length;
 
-    document.getElementById("totPezzi").textContent =
+
+    document.getElementById(
+        "totPezzi"
+    ).textContent =
         pezzi;
 
-    document.getElementById("totNetto").textContent =
-        "€ " + formattaEuro(netto);
 
-    document.getElementById("totGio").textContent =
-        "€ " + formattaEuro(gio);
+    document.getElementById(
+        "totNetto"
+    ).textContent =
+        "€ " +
+        formattaEuro(netto);
+
+
+    document.getElementById(
+        "totGio"
+    ).textContent =
+        "€ " +
+        formattaEuro(gio);
 
 
     const tbody =
-        document.getElementById("tabellaDashboard");
+        document.getElementById(
+            "tabellaDashboard"
+        );
+
 
     tbody.innerHTML = "";
 
 
     const ultimi =
         [...dati]
-            .reverse()
-            .slice(0, 5);
+        .reverse()
+        .slice(
+            0,
+            5
+        );
 
 
-    if (ultimi.length === 0) {
+    if (
+        ultimi.length === 0
+    ) {
 
         tbody.innerHTML = `
+
             <tr>
-                <td colspan="5" class="vuoto">
+
+                <td
+                    colspan="5"
+                    class="vuoto">
+
                     Nessun ricambio inserito
+
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -1628,7 +2140,9 @@ function aggiornaDashboard() {
                 </td>
 
                 <td>
-                    <strong>${r.articolo}</strong>
+                    <strong>
+                        ${escapeHTML(r.articolo)}
+                    </strong>
                 </td>
 
                 <td>
@@ -1640,7 +2154,7 @@ function aggiornaDashboard() {
                 </td>
 
                 <td>
-                    ${r.stato}
+                    ${escapeHTML(r.stato)}
                 </td>
 
             </tr>
@@ -1652,40 +2166,56 @@ function aggiornaDashboard() {
 }
 
 
-/* =========================================================
-   CONTABILITA
-========================================================= */
+/* =========================
+   CONTABILITÀ
+========================= */
 
 function aggiornaContabilita() {
 
     const dati =
         caricaDati();
 
+
     let gio = 0;
+
     let roby = 0;
 
 
     dati.forEach(r => {
 
-        gio += r.soldiGio;
+        gio +=
+            Number(
+                r.soldiGio
+            ) || 0;
 
-        roby += r.soldiRoby;
+
+        roby +=
+            Number(
+                r.soldiRoby
+            ) || 0;
 
     });
 
 
-    document.getElementById("contGio").textContent =
-        "€ " + formattaEuro(gio);
+    document.getElementById(
+        "contGio"
+    ).textContent =
+        "€ " +
+        formattaEuro(gio);
 
-    document.getElementById("contRoby").textContent =
-        "€ " + formattaEuro(roby);
+
+    document.getElementById(
+        "contRoby"
+    ).textContent =
+        "€ " +
+        formattaEuro(roby);
 
 }
 
 
-/* =========================================================
+/* =========================
    AGGIORNA TUTTO
-========================================================= */
+========================= */
 
 function aggiornaTutto() {
 
@@ -1698,13 +2228,17 @@ function aggiornaTutto() {
 }
 
 
-/* =========================================================
-   FORMATTAZIONE EURO
-========================================================= */
+/* =========================
+   FORMATTA EURO
+========================= */
 
-function formattaEuro(numero) {
+function formattaEuro(
+    numero
+) {
 
-    return Number(numero).toLocaleString(
+    return Number(
+        numero || 0
+    ).toLocaleString(
         "it-IT",
         {
             minimumFractionDigits: 2,
@@ -1715,22 +2249,31 @@ function formattaEuro(numero) {
 }
 
 
-/* =========================================================
-   FORMATTAZIONE DATA
-========================================================= */
+/* =========================
+   FORMATTA DATA
+========================= */
 
-function formattaData(data) {
+function formattaData(
+    data
+) {
 
     if (!data) {
         return "";
     }
 
-    const parti =
-        data.split("-");
 
-    if (parti.length !== 3) {
+    const parti =
+        String(data).split("-");
+
+
+    if (
+        parti.length !== 3
+    ) {
+
         return data;
+
     }
+
 
     return (
         parti[2] +
@@ -1741,6 +2284,114 @@ function formattaData(data) {
     );
 
 }
+
+
+/* =========================
+   SICUREZZA TESTO
+========================= */
+
+function escapeHTML(
+    testo
+) {
+
+    return String(
+        testo ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+</script>
+    /* =========================
+   INIZIALIZZAZIONE
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+       Imposta automaticamente la data odierna
+       quando viene aperta la schermata.
+    */
+
+    const campoData =
+        document.getElementById("data");
+
+    if (campoData) {
+        campoData.value = dataOggi();
+    }
+
+
+    /*
+       Calcolo iniziale del netto
+    */
+
+    calcolaNetto();
+
+
+    /*
+       Controllo ricerca.
+       Se il campo esiste, aggiorna la tabella
+       mentre viene digitato.
+    */
+
+    const ricerca =
+        document.getElementById("ricerca");
+
+    if (ricerca) {
+
+        ricerca.addEventListener(
+            "input",
+            function () {
+
+                aggiornaTabella();
+
+            }
+        );
+
+    }
+
+});
+
+
+/* =========================
+   PROTEZIONE ERRORI
+========================= */
+
+window.addEventListener(
+    "error",
+    function (evento) {
+
+        console.error(
+            "Errore nel programma:",
+            evento.error
+        );
+
+    }
+);
+
+
+/* =========================
+   FINE PROGRAMMA
+========================= */
 
 </script>
 
