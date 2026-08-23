@@ -277,6 +277,16 @@ button{
     color:#fff;
 }
 
+.notification-button{
+    padding:10px 14px;
+    background:#ff6600;
+    color:#fff;
+}
+
+.notification-active{
+    background:#16a34a!important;
+}
+
 .app-content{
     max-width:1400px;
     margin:auto;
@@ -648,6 +658,16 @@ button{
         display:none;
     }
 
+    .top-right{
+        gap:7px;
+    }
+
+    .notification-button,
+    .logout{
+        padding:9px 10px;
+        font-size:11px;
+    }
+
     .panel-header{
         flex-direction:column;
         align-items:stretch;
@@ -841,6 +861,12 @@ APP
                     class="top-user">
                 GIO
             </strong>
+
+            <button id="notificationButton"
+                    class="notification-button"
+                    onclick="activateNotifications()">
+                🔔 ATTIVA NOTIFICHE
+            </button>
 
             <button class="logout"
                     onclick="logout()">
@@ -1138,12 +1164,14 @@ import {
     orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 import {
     getMessaging,
     getToken,
     onMessage
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
+
 
 /* =====================================================
 CONFIG FIREBASE
@@ -1177,9 +1205,15 @@ const app =
 
 const db =
     getFirestore(app);
-const messaging = getMessaging(app);
 
-const VAPID_KEY = "BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";    
+const messaging =
+    getMessaging(app);
+
+
+const VAPID_KEY =
+    "BM8lpUTpngWInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+
+
 /* =====================================================
 VARIABILI
 ===================================================== */
@@ -1205,10 +1239,12 @@ const USERS = {
 
 };
 
+
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
 let unsubscribeOrders = null;
+let notificationListenerActive = false;
 
 
 /* =====================================================
@@ -1240,7 +1276,10 @@ window.selectUser = function(user){
         .style.display = "flex";
 
     setTimeout(()=>{
-        document.getElementById("loginCode").focus();
+
+        document.getElementById("loginCode")
+            .focus();
+
     },100);
 
 };
@@ -1280,6 +1319,7 @@ window.login = function(){
     const error =
         document.getElementById("loginError");
 
+
     if(entered !== realCode){
 
         error.textContent =
@@ -1288,15 +1328,12 @@ window.login = function(){
         error.style.display = "block";
 
         return;
+
     }
+
 
     error.style.display = "none";
 
-    /*
-       Se è il primo accesso,
-       obblighiamo l'utente a cambiare
-       il codice 123456.
-    */
 
     if(!saved){
 
@@ -1307,11 +1344,9 @@ window.login = function(){
             .style.display = "flex";
 
         return;
+
     }
 
-    /*
-       Accesso normale
-    */
 
     loggedUser = selectedUser;
 
@@ -1347,6 +1382,7 @@ window.changeCode = function(){
         error.style.display = "block";
 
         return;
+
     }
 
 
@@ -1358,6 +1394,7 @@ window.changeCode = function(){
         error.style.display = "block";
 
         return;
+
     }
 
 
@@ -1369,6 +1406,7 @@ window.changeCode = function(){
         error.style.display = "block";
 
         return;
+
     }
 
 
@@ -1377,12 +1415,15 @@ window.changeCode = function(){
         newCode
     );
 
+
     loggedUser = selectedUser;
+
 
     localStorage.setItem(
         "ktm_logged_user",
         loggedUser
     );
+
 
     openApp();
 
@@ -1432,6 +1473,10 @@ function openApp(){
             .textContent =
             "Tutti gli ordini";
 
+        document.getElementById(
+            "notificationButton"
+        ).style.display = "inline-block";
+
     }else{
 
         document.getElementById("welcomeText")
@@ -1445,30 +1490,53 @@ function openApp(){
             .textContent =
             "I miei ordini";
 
+        document.getElementById(
+            "notificationButton"
+        ).style.display = "none";
+
     }
 
 
     listenOrders();
 
+
+    if(loggedUser === "Gio"){
+
+        setupNotifications();
+
+    }
+
 }
 
+
+/* =====================================================
+LOGOUT
+===================================================== */
 
 window.logout = function(){
 
     if(unsubscribeOrders){
+
         unsubscribeOrders();
+
         unsubscribeOrders = null;
+
     }
+
 
     loggedUser = null;
     selectedUser = null;
+    notificationListenerActive = false;
+
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
 
+
     document.getElementById("appPage")
         .style.display = "none";
+
 
     document.getElementById("loginPage")
         .style.display = "flex";
@@ -1483,11 +1551,15 @@ FIRESTORE - ASCOLTO ORDINI
 function listenOrders(){
 
     if(unsubscribeOrders){
+
         unsubscribeOrders();
+
     }
+
 
     const ordersRef =
         collection(db,"ordini");
+
 
     const q =
         query(
@@ -1498,22 +1570,30 @@ function listenOrders(){
 
     unsubscribeOrders =
         onSnapshot(
+
             q,
+
             snapshot => {
 
                 let orders = [];
 
+
                 snapshot.forEach(docSnap => {
 
                     orders.push({
+
                         id:docSnap.id,
+
                         ...docSnap.data()
+
                     });
 
                 });
 
 
-                if(!USERS[loggedUser].admin){
+                if(
+                    !USERS[loggedUser].admin
+                ){
 
                     orders =
                         orders.filter(
@@ -1528,9 +1608,11 @@ function listenOrders(){
 
             },
 
+
             error => {
 
                 console.error(error);
+
 
                 document.getElementById(
                     "ordersList"
@@ -1580,6 +1662,7 @@ function renderOrders(orders){
         `;
 
         return;
+
     }
 
 
@@ -1591,7 +1674,9 @@ function renderOrders(orders){
         const div =
             document.createElement("div");
 
-        div.className = "order";
+
+        div.className =
+            "order";
 
 
         const codes =
@@ -1614,22 +1699,37 @@ function renderOrders(orders){
                 <div>
 
                     <div class="order-number">
-                        ${escapeHtml(order.number || "ORDINE")}
+                        ${escapeHtml(
+                            order.number ||
+                            "ORDINE"
+                        )}
                     </div>
 
                     <div class="order-info">
 
-                        ${escapeHtml(order.person || "")}
+                        ${escapeHtml(
+                            order.person || ""
+                        )}
+
                         ·
-                        ${formatDate(order.date)}
+
+                        ${formatDate(
+                            order.date
+                        )}
 
                     </div>
 
                 </div>
 
-                <span class="status ${order.status || "daordinare"}">
 
-                    ${statusLabel(order.status)}
+                <span class="status ${
+                    order.status ||
+                    "daordinare"
+                }">
+
+                    ${statusLabel(
+                        order.status
+                    )}
 
                 </span>
 
@@ -1638,7 +1738,10 @@ function renderOrders(orders){
 
             <div class="order-codes">
 
-                ${codes || "Nessun articolo"}
+                ${
+                    codes ||
+                    "Nessun articolo"
+                }
 
             </div>
 
@@ -1674,50 +1777,61 @@ window.openNewOrder = function(){
 
     editingOrderId = null;
 
-    document.getElementById("modalTitle")
-        .textContent =
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
         "Nuovo ordine";
 
 
-    document.getElementById("orderPerson")
-        .value =
+    document.getElementById(
+        "orderPerson"
+    ).value =
         loggedUser;
 
 
-    document.getElementById("orderPerson")
-        .disabled =
+    document.getElementById(
+        "orderPerson"
+    ).disabled =
         !USERS[loggedUser].admin;
 
 
-    document.getElementById("orderDate")
-        .value =
+    document.getElementById(
+        "orderDate"
+    ).value =
         new Date()
         .toISOString()
         .split("T")[0];
 
 
-    document.getElementById("orderStatus")
-        .value =
+    document.getElementById(
+        "orderStatus"
+    ).value =
         "daordinare";
 
 
-    document.getElementById("articles")
-        .innerHTML = "";
+    document.getElementById(
+        "articles"
+    ).innerHTML = "";
 
 
     addArticle();
 
 
-    document.getElementById("orderModal")
-        .style.display = "block";
+    document.getElementById(
+        "orderModal"
+    ).style.display =
+        "block";
 
 };
 
 
 window.closeModal = function(){
 
-    document.getElementById("orderModal")
-        .style.display = "none";
+    document.getElementById(
+        "orderModal"
+    ).style.display =
+        "none";
 
 };
 
@@ -1726,14 +1840,21 @@ window.closeModal = function(){
 ARTICOLI
 ===================================================== */
 
-window.addArticle = function(article=null){
+window.addArticle = function(
+    article=null
+){
 
     const container =
-        document.getElementById("articles");
+        document.getElementById(
+            "articles"
+        );
 
 
     const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     row.className =
         "article-row";
@@ -1753,7 +1874,15 @@ window.addArticle = function(article=null){
                     class="article-code"
                     type="text"
                     placeholder="Codice"
-                    value="${article ? escapeAttr(article.code) : ""}"
+                    value="${
+                        article
+                        ?
+                        escapeAttr(
+                            article.code
+                        )
+                        :
+                        ""
+                    }"
                 >
 
             </div>
@@ -1769,8 +1898,16 @@ window.addArticle = function(article=null){
                     class="article-qty"
                     type="number"
                     min="1"
-                    value="${article ? article.qty : 1}"
-                    oninput="calculateOrderTotal()"
+                    value="${
+                        article
+                        ?
+                        article.qty
+                        :
+                        1
+                    }"
+                    oninput="
+                        calculateOrderTotal()
+                    "
                 >
 
             </div>
@@ -1787,8 +1924,16 @@ window.addArticle = function(article=null){
                     type="number"
                     min="0"
                     step="0.01"
-                    value="${article ? article.price : ""}"
-                    oninput="calculateOrderTotal()"
+                    value="${
+                        article
+                        ?
+                        article.price
+                        :
+                        ""
+                    }"
+                    oninput="
+                        calculateOrderTotal()
+                    "
                 >
 
             </div>
@@ -1805,8 +1950,16 @@ window.addArticle = function(article=null){
                     type="number"
                     min="0"
                     max="100"
-                    value="${article ? article.discount : 25}"
-                    oninput="calculateOrderTotal()"
+                    value="${
+                        article
+                        ?
+                        article.discount
+                        :
+                        25
+                    }"
+                    oninput="
+                        calculateOrderTotal()
+                    "
                 >
 
             </div>
@@ -1815,7 +1968,12 @@ window.addArticle = function(article=null){
             <button
                 class="remove"
                 type="button"
-                onclick="this.closest('.article-row').remove();calculateOrderTotal();">
+                onclick="
+                    this.closest('.article-row')
+                    .remove();
+                    calculateOrderTotal();
+                "
+            >
 
                 ×
 
@@ -1828,97 +1986,132 @@ window.addArticle = function(article=null){
 
     container.appendChild(row);
 
+
     calculateOrderTotal();
 
 };
 
 
-window.calculateOrderTotal = function(){
+/* =====================================================
+CALCOLO TOTALE
+===================================================== */
+
+window.calculateOrderTotal =
+function(){
 
     let total = 0;
 
 
     document
-        .querySelectorAll(".article-row")
+        .querySelectorAll(
+            ".article-row"
+        )
         .forEach(row => {
 
             const qty =
                 Number(
-                    row.querySelector(".article-qty").value
+                    row.querySelector(
+                        ".article-qty"
+                    ).value
                 ) || 0;
+
 
             const price =
                 Number(
-                    row.querySelector(".article-price").value
+                    row.querySelector(
+                        ".article-price"
+                    ).value
                 ) || 0;
+
 
             const discount =
                 Number(
-                    row.querySelector(".article-discount").value
+                    row.querySelector(
+                        ".article-discount"
+                    ).value
                 ) || 0;
 
 
             total +=
                 qty *
                 price *
-                (1 - discount / 100);
+                (
+                    1 -
+                    discount / 100
+                );
 
         });
 
 
-    document.getElementById("orderTotal")
-        .textContent =
+    document.getElementById(
+        "orderTotal"
+    ).textContent =
         euro(total);
 
 };
 
 
 /* =====================================================
-SALVA ORDINE SU FIRESTORE
+SALVA ORDINE
 ===================================================== */
 
-window.saveOrder = async function(){
+window.saveOrder =
+async function(){
 
     const person =
-        document.getElementById("orderPerson")
-        .value;
+        document.getElementById(
+            "orderPerson"
+        ).value;
+
 
     const date =
-        document.getElementById("orderDate")
-        .value;
+        document.getElementById(
+            "orderDate"
+        ).value;
+
 
     const status =
-        document.getElementById("orderStatus")
-        .value;
+        document.getElementById(
+            "orderStatus"
+        ).value;
 
 
     const articles = [];
 
 
     document
-        .querySelectorAll(".article-row")
+        .querySelectorAll(
+            ".article-row"
+        )
         .forEach(row => {
 
             const code =
-                row.querySelector(".article-code")
-                .value.trim();
+                row.querySelector(
+                    ".article-code"
+                ).value.trim();
+
 
             const qty =
                 Number(
-                    row.querySelector(".article-qty")
-                    .value
+                    row.querySelector(
+                        ".article-qty"
+                    ).value
                 ) || 0;
+
 
             const price =
                 Number(
-                    row.querySelector(".article-price")
-                    .value
+                    row.querySelector(
+                        ".article-price"
+                    ).value
                 ) || 0;
+
 
             const discount =
                 Number(
-                    row.querySelector(".article-discount")
-                    .value
+                    row.querySelector(
+                        ".article-discount"
+                    ).value
                 ) || 0;
 
 
@@ -1943,7 +2136,9 @@ window.saveOrder = async function(){
 
     if(!date){
 
-        alert("Inserisci la data.");
+        alert(
+            "Inserisci la data."
+        );
 
         return;
 
@@ -1960,11 +2155,6 @@ window.saveOrder = async function(){
 
     }
 
-
-    /*
-       ROBY e FEDE possono creare
-       solamente ordini per se stessi.
-    */
 
     if(
         !USERS[loggedUser].admin &&
@@ -2012,19 +2202,30 @@ window.saveOrder = async function(){
 
             const existing =
                 await getDocs(
-                    collection(db,"ordini")
+                    collection(
+                        db,
+                        "ordini"
+                    )
                 );
 
 
             const number =
                 "KTM-" +
-                String(existing.size + 1)
-                .padStart(4,"0");
+                String(
+                    existing.size + 1
+                )
+                .padStart(
+                    4,
+                    "0"
+                );
 
 
             await addDoc(
 
-                collection(db,"ordini"),
+                collection(
+                    db,
+                    "ordini"
+                ),
 
                 {
 
@@ -2056,6 +2257,7 @@ window.saveOrder = async function(){
 
         console.error(error);
 
+
         alert(
             "Non è stato possibile salvare l'ordine.\n\n" +
             "Controlla le Rules di Firestore."
@@ -2084,7 +2286,10 @@ function showOrder(order){
 
         const net =
             article.price *
-            (1 - article.discount / 100);
+            (
+                1 -
+                article.discount / 100
+            );
 
 
         const line =
@@ -2097,7 +2302,9 @@ function showOrder(order){
             <tr>
 
                 <td>
-                    ${escapeHtml(article.code)}
+                    ${escapeHtml(
+                        article.code
+                    )}
                 </td>
 
                 <td>
@@ -2105,7 +2312,9 @@ function showOrder(order){
                 </td>
 
                 <td>
-                    ${euro(article.price)}
+                    ${euro(
+                        article.price
+                    )}
                 </td>
 
                 <td>
@@ -2123,8 +2332,9 @@ function showOrder(order){
     });
 
 
-    document.getElementById("detailContent")
-        .innerHTML = `
+    document.getElementById(
+        "detailContent"
+    ).innerHTML = `
 
         <div class="detail">
 
@@ -2134,17 +2344,31 @@ function showOrder(order){
 
                     <div class="detail-number">
 
-                        ${escapeHtml(
-                            order.number || "ORDINE"
-                        )}
+                        ${
+                            escapeHtml(
+                                order.number ||
+                                "ORDINE"
+                            )
+                        }
 
                     </div>
 
                     <div class="detail-date">
 
-                        ${escapeHtml(order.person || "")}
+                        ${
+                            escapeHtml(
+                                order.person ||
+                                ""
+                            )
+                        }
+
                         ·
-                        ${formatDate(order.date)}
+
+                        ${
+                            formatDate(
+                                order.date
+                            )
+                        }
 
                     </div>
 
@@ -2153,9 +2377,16 @@ function showOrder(order){
 
                 <div>
 
-                    <span class="status ${order.status}">
+                    <span class="
+                        status
+                        ${order.status}
+                    ">
 
-                        ${statusLabel(order.status)}
+                        ${
+                            statusLabel(
+                                order.status
+                            )
+                        }
 
                     </span>
 
@@ -2218,7 +2449,10 @@ function showOrder(order){
 
                 <button
                     class="edit"
-                    onclick="editOrder('${order.id}')">
+                    onclick="
+                        editOrder('${order.id}')
+                    "
+                >
 
                     MODIFICA
 
@@ -2227,7 +2461,10 @@ function showOrder(order){
 
                 <button
                     class="delete"
-                    onclick="deleteOrder('${order.id}')">
+                    onclick="
+                        deleteOrder('${order.id}')
+                    "
+                >
 
                     ELIMINA
 
@@ -2236,7 +2473,10 @@ function showOrder(order){
 
                 <button
                     class="cancel"
-                    onclick="closeDetail()">
+                    onclick="
+                        closeDetail()
+                    "
+                >
 
                     CHIUDI
 
@@ -2249,16 +2489,21 @@ function showOrder(order){
     `;
 
 
-    document.getElementById("detailModal")
-        .style.display = "block";
+    document.getElementById(
+        "detailModal"
+    ).style.display =
+        "block";
 
 }
 
 
-window.closeDetail = function(){
+window.closeDetail =
+function(){
 
-    document.getElementById("detailModal")
-        .style.display = "none";
+    document.getElementById(
+        "detailModal"
+    ).style.display =
+        "none";
 
 };
 
@@ -2267,17 +2512,22 @@ window.closeDetail = function(){
 MODIFICA
 ===================================================== */
 
-window.editOrder = async function(id){
+window.editOrder =
+async function(id){
 
     try{
 
         const snapshot =
             await getDocs(
-                collection(db,"ordini")
+                collection(
+                    db,
+                    "ordini"
+                )
             );
 
 
         let order = null;
+
 
         snapshot.forEach(
             d => {
@@ -2285,8 +2535,11 @@ window.editOrder = async function(id){
                 if(d.id === id){
 
                     order = {
+
                         id:d.id,
+
                         ...d.data()
+
                     };
 
                 }
@@ -2295,7 +2548,8 @@ window.editOrder = async function(id){
         );
 
 
-        if(!order) return;
+        if(!order)
+            return;
 
 
         if(
@@ -2315,33 +2569,40 @@ window.editOrder = async function(id){
         editingOrderId = id;
 
 
-        document.getElementById("modalTitle")
-            .textContent =
-            "Modifica " + order.number;
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Modifica " +
+            order.number;
 
 
-        document.getElementById("orderPerson")
-            .value =
+        document.getElementById(
+            "orderPerson"
+        ).value =
             order.person;
 
 
-        document.getElementById("orderPerson")
-            .disabled =
+        document.getElementById(
+            "orderPerson"
+        ).disabled =
             !USERS[loggedUser].admin;
 
 
-        document.getElementById("orderDate")
-            .value =
+        document.getElementById(
+            "orderDate"
+        ).value =
             order.date;
 
 
-        document.getElementById("orderStatus")
-            .value =
+        document.getElementById(
+            "orderStatus"
+        ).value =
             order.status;
 
 
-        document.getElementById("articles")
-            .innerHTML = "";
+        document.getElementById(
+            "articles"
+        ).innerHTML = "";
 
 
         (order.articles || [])
@@ -2351,17 +2612,22 @@ window.editOrder = async function(id){
         );
 
 
-        document.getElementById("detailModal")
-            .style.display = "none";
+        document.getElementById(
+            "detailModal"
+        ).style.display =
+            "none";
 
 
-        document.getElementById("orderModal")
-            .style.display = "block";
+        document.getElementById(
+            "orderModal"
+        ).style.display =
+            "block";
 
 
     }catch(error){
 
         console.error(error);
+
 
         alert(
             "Errore nel caricamento dell'ordine."
@@ -2376,7 +2642,8 @@ window.editOrder = async function(id){
 ELIMINA
 ===================================================== */
 
-window.deleteOrder = async function(id){
+window.deleteOrder =
+async function(id){
 
     if(
         !confirm(
@@ -2393,11 +2660,15 @@ window.deleteOrder = async function(id){
 
         const snapshot =
             await getDocs(
-                collection(db,"ordini")
+                collection(
+                    db,
+                    "ordini"
+                )
             );
 
 
         let order = null;
+
 
         snapshot.forEach(
             d => {
@@ -2405,8 +2676,11 @@ window.deleteOrder = async function(id){
                 if(d.id === id){
 
                     order = {
+
                         id:d.id,
+
                         ...d.data()
+
                     };
 
                 }
@@ -2415,7 +2689,8 @@ window.deleteOrder = async function(id){
         );
 
 
-        if(!order) return;
+        if(!order)
+            return;
 
 
         if(
@@ -2433,11 +2708,13 @@ window.deleteOrder = async function(id){
 
 
         await deleteDoc(
+
             doc(
                 db,
                 "ordini",
                 id
             )
+
         );
 
 
@@ -2447,6 +2724,7 @@ window.deleteOrder = async function(id){
     }catch(error){
 
         console.error(error);
+
 
         alert(
             "Errore durante l'eliminazione."
@@ -2477,10 +2755,14 @@ function calculateTotal(order){
                 const discount =
                     Number(a.discount) || 0;
 
+
                 return total +
                     price *
                     qty *
-                    (1 - discount / 100);
+                    (
+                        1 -
+                        discount / 100
+                    );
 
             },
 
@@ -2499,20 +2781,26 @@ function euro(value){
             style:"currency",
             currency:"EUR"
         }
-    ).format(value || 0);
+    ).format(
+        value || 0
+    );
 
 }
 
 
 function formatDate(date){
 
-    if(!date) return "";
+    if(!date)
+        return "";
+
 
     const p =
         date.split("-");
 
+
     if(p.length !== 3)
         return date;
+
 
     return p[2] +
         "/" +
@@ -2540,7 +2828,8 @@ function statusLabel(status){
             return "Consegnato";
 
         default:
-            return status || "Da ordinare";
+            return status ||
+                "Da ordinare";
 
     }
 
@@ -2549,12 +2838,29 @@ function statusLabel(status){
 
 function escapeHtml(value){
 
-    return String(value || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    return String(
+        value || ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
 
 }
 
@@ -2570,13 +2876,17 @@ function escapeAttr(value){
 ORDINI
 ===================================================== */
 
-window.loadOrders = function(){
+window.loadOrders =
+function(){
 
     listenOrders();
 
-if(loggedUser === "Gio"){
-    setupNotifications();
-}
+
+    if(loggedUser === "Gio"){
+
+        setupNotifications();
+
+    }
 
 };
 
@@ -2587,69 +2897,251 @@ NOTIFICHE
 
 async function setupNotifications(){
 
-    // Le notifiche vengono attivate solamente per GIO
     if(loggedUser !== "Gio"){
         return;
     }
 
-    // Controllo supporto notifiche
+
     if(!("Notification" in window)){
-        console.log("Notifiche non supportate.");
+
+        console.log(
+            "Notifiche non supportate."
+        );
+
         return;
+
     }
+
 
     try{
 
-        // Chiede il permesso all'utente
         const permission =
-            await Notification.requestPermission();
+            Notification.permission;
 
-        if(permission !== "granted"){
+
+        console.log(
+            "Stato notifiche:",
+            permission
+        );
+
+
+        if(permission === "granted"){
+
+            await registerNotifications();
+
+            return;
+
+        }
+
+
+        if(permission === "denied"){
 
             console.log(
-                "Permesso notifiche non concesso."
+                "Le notifiche sono state bloccate."
             );
 
             return;
-        }
-
-
-        // Registra il Service Worker
-        const registration =
-            await navigator.serviceWorker.register(
-                "./firebase-messaging-sw.js"
-            );
-
-
-        // Recupera il token Firebase
-        const token =
-            await getToken(
-                messaging,
-                {
-                    vapidKey: VAPID_KEY,
-                    serviceWorkerRegistration:
-                        registration
-                }
-            );
-
-
-        if(token){
-
-            console.log(
-                "Token notifiche GIO:",
-                token
-            );
-
-            // Salviamo il token sul dispositivo
-            localStorage.setItem(
-                "ktm_gio_notification_token",
-                token
-            );
 
         }
 
+    }catch(error){
 
-        // Notifiche quando GIO ha l'app aperta
+        console.error(
+            "Errore setup notifiche:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+ATTIVA NOTIFICHE
+===================================================== */
+
+window.activateNotifications =
+async function(){
+
+    if(loggedUser !== "Gio"){
+        return;
+    }
+
+
+    if(!("Notification" in window)){
+
+        alert(
+            "Questo browser non supporta le notifiche."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const permission =
+            await Notification.requestPermission();
+
+
+        console.log(
+            "Permesso notifiche:",
+            permission
+        );
+
+
+        if(permission !== "granted"){
+
+            if(permission === "denied"){
+
+                alert(
+                    "Le notifiche sono state bloccate.\n\n" +
+                    "Devi abilitarle dalle impostazioni di Safari/iPhone."
+                );
+
+            }else{
+
+                alert(
+                    "Permesso notifiche non concesso."
+                );
+
+            }
+
+            return;
+
+        }
+
+
+        await registerNotifications();
+
+
+    }catch(error){
+
+        console.error(
+            "Errore attivazione notifiche:",
+            error
+        );
+
+
+        alert(
+            "Errore durante l'attivazione delle notifiche.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+REGISTRAZIONE NOTIFICHE
+===================================================== */
+
+async function registerNotifications(){
+
+    console.log(
+        "Registrazione Service Worker..."
+    );
+
+
+    if(
+        !("serviceWorker" in navigator)
+    ){
+
+        alert(
+            "Il browser non supporta i Service Worker."
+        );
+
+        return;
+
+    }
+
+
+    const registration =
+        await navigator.serviceWorker.register(
+            "./firebase-messaging-sw.js"
+        );
+
+
+    console.log(
+        "Service Worker registrato:",
+        registration
+    );
+
+
+    await navigator.serviceWorker.ready;
+
+
+    console.log(
+        "Service Worker pronto."
+    );
+
+
+    const token =
+        await getToken(
+            messaging,
+            {
+
+                vapidKey:
+                    VAPID_KEY,
+
+                serviceWorkerRegistration:
+                    registration
+
+            }
+        );
+
+
+    if(!token){
+
+        console.error(
+            "Firebase non ha restituito il token."
+        );
+
+
+        alert(
+            "Notifiche autorizzate, ma Firebase non ha restituito il token."
+        );
+
+
+        return;
+
+    }
+
+
+    console.log(
+        "TOKEN NOTIFICHE GIO:",
+        token
+    );
+
+
+    localStorage.setItem(
+        "ktm_gio_notification_token",
+        token
+    );
+
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    if(button){
+
+        button.textContent =
+            "🔔 NOTIFICHE ATTIVE";
+
+        button.classList.add(
+            "notification-active"
+        );
+
+    }
+
+
+    if(!notificationListenerActive){
+
         onMessage(
             messaging,
             payload => {
@@ -2676,11 +3168,18 @@ async function setupNotifications(){
                 ){
 
                     new Notification(
+
                         title,
+
                         {
+
                             body:body,
-                            icon:"./icon-192.png"
+
+                            icon:
+                                "./icon-192.png"
+
                         }
+
                     );
 
                 }
@@ -2689,19 +3188,15 @@ async function setupNotifications(){
         );
 
 
-        console.log(
-            "Notifiche GIO configurate correttamente."
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "Errore configurazione notifiche:",
-            error
-        );
+        notificationListenerActive =
+            true;
 
     }
+
+
+    console.log(
+        "NOTIFICHE GIO CONFIGURATE CORRETTAMENTE."
+    );
 
 }
 
@@ -2716,22 +3211,29 @@ const savedUser =
     );
 
 
-if(savedUser && USERS[savedUser]){
+if(
+    savedUser &&
+    USERS[savedUser]
+){
 
-    loggedUser = savedUser;
+    loggedUser =
+        savedUser;
+
 
     openApp();
 
 }else{
 
-    document.getElementById("loginPage")
-        .style.display = "flex";
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "flex";
 
 }
 
 
 /* =====================================================
-CHIUSURA MODAL CLICCANDO FUORI
+CHIUSURA MODAL
 ===================================================== */
 
 window.addEventListener(
@@ -2739,20 +3241,31 @@ window.addEventListener(
     function(event){
 
         const orderModal =
-            document.getElementById("orderModal");
+            document.getElementById(
+                "orderModal"
+            );
+
 
         const detailModal =
-            document.getElementById("detailModal");
+            document.getElementById(
+                "detailModal"
+            );
 
 
-        if(event.target === orderModal){
+        if(
+            event.target ===
+            orderModal
+        ){
 
             closeModal();
 
         }
 
 
-        if(event.target === detailModal){
+        if(
+            event.target ===
+            detailModal
+        ){
 
             closeDetail();
 
