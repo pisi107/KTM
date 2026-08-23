@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gestione Ricambi KTM</title>
+<title>Gestione Ordini KTM</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,278 +16,381 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f3f4f6;
-    color: #202124;
+    color: #1f2937;
 }
 
 /* =========================
-   COLORI KTM
+   HEADER
 ========================= */
 
-:root {
-    --ktm-orange: #ff6600;
-    --ktm-orange-dark: #d94f00;
-    --ktm-black: #111111;
-    --ktm-dark: #1c1c1c;
-    --ktm-grey: #f3f4f6;
-    --white: #ffffff;
-}
-
-/* =========================
-   SCELTA PERSONA
-========================= */
-
-#selezionePersona {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        linear-gradient(
-            135deg,
-            #111111 0%,
-            #222222 55%,
-            #ff6600 100%
-        );
-    padding: 20px;
-}
-
-.selezione-box {
-    background: white;
-    width: 100%;
-    max-width: 720px;
-    padding: 45px;
-    border-radius: 22px;
-    text-align: center;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.4);
-}
-
-.logo {
-    font-size: 44px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.logo span {
-    color: var(--ktm-orange);
-}
-
-.sottotitolo {
-    color: #777;
-    margin-bottom: 40px;
-    font-size: 17px;
-}
-
-.persone {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.persona-btn {
-    flex: 1;
-    border: none;
-    padding: 32px 20px;
-    border-radius: 15px;
-    background: var(--ktm-black);
+header {
+    background: #111827;
     color: white;
-    cursor: pointer;
-    font-size: 25px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.persona-btn:hover {
-    background: var(--ktm-orange);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(255,102,0,0.35);
-}
-
-/* =========================
-   APP
-========================= */
-
-#app {
-    display: none;
-    min-height: 100vh;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 240px;
-    background: linear-gradient(
-        180deg,
-        #111111 0%,
-        #191919 70%,
-        #252525 100%
-    );
-    color: white;
-    padding: 25px 15px;
-    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
-}
-
-.sidebar-logo {
-    text-align: center;
-    font-size: 23px;
-    font-weight: 900;
-    margin-bottom: 35px;
-    letter-spacing: 1px;
-}
-
-.sidebar-logo span {
-    color: var(--ktm-orange);
-}
-
-.utente {
-    background: #292929;
-    border-left: 4px solid var(--ktm-orange);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.utente small {
-    display: block;
-    color: #aaa;
-    margin-bottom: 5px;
-}
-
-.utente strong {
-    font-size: 20px;
-    color: white;
-}
-
-.menu-btn {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: #ddd;
-    padding: 14px;
-    text-align: left;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 5px;
-    transition: 0.2s;
-}
-
-.menu-btn:hover {
-    background: #292929;
-    color: white;
-}
-
-.menu-btn.active {
-    background: var(--ktm-orange);
-    color: white;
-    box-shadow: 0 5px 15px rgba(255,102,0,0.25);
-}
-
-.cambia-persona {
-    position: absolute;
-    bottom: 25px;
-    left: 15px;
-    right: 15px;
-    background: #333;
-    border: none;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.cambia-persona:hover {
-    background: var(--ktm-orange);
-}
-
-/* =========================
-   CONTENUTO
-========================= */
-
-.main {
-    margin-left: 240px;
-    padding: 30px;
-}
-
-.topbar {
+    padding: 22px 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-.topbar h1 {
-    font-size: 30px;
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-.badge {
-    background: var(--ktm-orange);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
+.logo span {
+    color: #ff6600;
+}
+
+.header-subtitle {
+    font-size: 13px;
+    color: #cbd5e1;
 }
 
 /* =========================
-   CARDS
+   MAIN
 ========================= */
 
-.cards {
+main {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px;
+}
+
+.page-title {
+    margin-bottom: 25px;
+}
+
+.page-title h1 {
+    font-size: 30px;
+}
+
+.page-title p {
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.people-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
     margin-bottom: 30px;
 }
 
-.card {
+.person-card {
     background: white;
-    padding: 22px;
-    border-radius: 14px;
-    border-top: 4px solid var(--ktm-orange);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    border-top: 5px solid #ff6600;
 }
 
-.card-title {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 10px;
+.person-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
 }
 
-.card-value {
-    font-size: 30px;
-    font-weight: bold;
+.person-name {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.person-icon {
+    width: 48px;
+    height: 48px;
+    background: #fff1e8;
+    color: #ff6600;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.person-buttons {
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 9px;
+    padding: 11px 16px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.btn-orange {
+    background: #ff6600;
+    color: white;
+}
+
+.btn-dark {
+    background: #111827;
+    color: white;
+}
+
+.btn-gray {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.btn-red {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-green {
+    background: #dcfce7;
+    color: #166534;
 }
 
 /* =========================
-   SEZIONI
+   GENERAL DASHBOARD
 ========================= */
 
-.sezione {
+.general-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.general-card h2 {
+    margin-bottom: 20px;
+}
+
+.general-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.general-item {
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.general-item span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.general-item strong {
+    font-size: 23px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
     display: none;
 }
 
-.sezione.active {
+.section.active {
     display: block;
 }
 
-.box {
-    background: white;
-    border-radius: 14px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
 }
 
-.box h2 {
+.back-btn {
     margin-bottom: 20px;
+}
+
+/* =========================
+   ORDERS
+========================= */
+
+.order-list {
+    display: grid;
+    gap: 15px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.order-number {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.order-date {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.order-total {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.order-info {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.info-box {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.info-box small {
+    display: block;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.info-box strong {
+    font-size: 15px;
+}
+
+.order-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.status {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.status-daordinare {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-ordinato {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-ritirare {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+.status-consegnato {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 30px 15px;
+}
+
+.modal-overlay.active {
+    display: block;
+}
+
+.modal {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.close {
+    font-size: 28px;
+    background: transparent;
+    color: #64748b;
 }
 
 /* =========================
@@ -298,2102 +400,425 @@ body {
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 15px;
 }
 
-.campo {
-    display: flex;
-    flex-direction: column;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.campo label {
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 7px;
-}
-
-.campo input {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-.campo input:focus {
-    outline: none;
-    border-color: var(--ktm-orange);
-    box-shadow: 0 0 0 2px rgba(255,102,0,0.12);
-}
-
-.campo-full {
+.form-group.full {
     grid-column: 1 / -1;
 }
 
-.automatico {
-    background: #f0f0f0;
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
 }
 
-.azioni {
-    margin-top: 25px;
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
     font-size: 15px;
-    transition: 0.2s;
-}
-
-.btn-primary {
-    background: var(--ktm-orange);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--ktm-orange-dark);
-}
-
-.btn-secondary {
-    background: #ddd;
-    color: #222;
-}
-
-.btn-secondary:hover {
-    background: #ccc;
-}
-
-.btn-danger {
-    background: #222;
-    color: white;
 }
 
 /* =========================
-   TABELLA
+   ARTICLES
 ========================= */
 
-.barra-ricerca {
+.articles-header {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin: 25px 0 12px;
 }
 
-.barra-ricerca input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
+.article-row {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
 }
 
-.barra-ricerca input:focus {
-    outline: none;
-    border-color: var(--ktm-orange);
+.article-grid {
+    display: grid;
+    grid-template-columns: 2fr 0.7fr 1fr 0.8fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: end;
 }
 
-.tabella-container {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 1000px;
-}
-
-th {
-    background: #111;
-    color: white;
-    padding: 13px 10px;
-    text-align: left;
+.article-result {
+    margin-top: 8px;
     font-size: 13px;
+    color: #475569;
 }
 
-td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
+.article-result strong {
+    color: #111827;
 }
 
-tr:hover td {
-    background: #fff7f2;
+.remove-article {
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
-.azioni-tabella button {
-    border: none;
-    padding: 7px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 4px;
+/* =========================
+   MODAL FOOTER
+========================= */
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
 }
 
-.modifica {
-    background: #ddd;
-}
-
-.modifica:hover {
-    background: #ccc;
-}
-
-.elimina {
-    background: var(--ktm-orange);
+.total-box {
+    margin-top: 20px;
+    background: #111827;
     color: white;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.elimina:hover {
-    background: var(--ktm-orange-dark);
+.total-box strong {
+    font-size: 24px;
 }
 
-.vuoto {
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    background: white;
+    border-radius: 15px;
+    padding: 45px;
     text-align: center;
-    padding: 40px;
-    color: #888;
+    color: #64748b;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media(max-width: 900px) {
+@media (max-width: 900px) {
 
-    .sidebar {
-        width: 200px;
+    .people-grid {
+        grid-template-columns: 1fr;
     }
 
-    .main {
-        margin-left: 200px;
+    .general-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cards {
+    .order-info {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media(max-width: 650px) {
+@media (max-width: 600px) {
 
-    .selezione-box {
-        padding: 30px 20px;
+    header {
+        padding: 18px;
     }
 
-    .persone {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-    }
-
-    .cambia-persona {
-        position: relative;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        margin-top: 20px;
-    }
-
-    .main {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
+    main {
+        padding: 18px;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .campo-full {
-        grid-column: auto;
+    .order-top {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-}
+    .order-info {
+        grid-template-columns: 1fr;
+    }
 
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- SCELTA PERSONA -->
-<!-- ========================= -->
+<header>
 
-<div id="selezionePersona">
-
-    <div class="selezione-box">
-
+    <div>
         <div class="logo">
-            KTM <span>RICAMBI</span>
+            KTM <span>ORDINI</span>
         </div>
 
-        <div class="sottotitolo">
-            Seleziona la persona per cui vuoi gestire gli ordini
+        <div class="header-subtitle">
+            Gestione ordini ricambi
+        </div>
+    </div>
+
+    <button class="btn-orange" onclick="openNewOrder()">
+        + Nuovo ordine
+    </button>
+
+</header>
+
+
+<main>
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section id="homeSection" class="section active">
+
+    <div class="page-title">
+        <h1>Dashboard</h1>
+        <p>Situazione generale degli ordini KTM</p>
+    </div>
+
+
+    <div class="people-grid">
+
+        <!-- ROBY -->
+
+        <div class="person-card">
+
+            <div class="person-header">
+
+                <div class="person-name">
+                    ROBY
+                </div>
+
+                <div class="person-icon">
+                    R
+                </div>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordini totali
+                    </div>
+                    <div class="stat-value" id="robyOrders">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ordinare
+                    </div>
+                    <div class="stat-value" id="robyDaOrdinare">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordinati
+                    </div>
+                    <div class="stat-value" id="robyOrdinati">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ritirare
+                    </div>
+                    <div class="stat-value" id="robyRitirare">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Consegnati
+                    </div>
+                    <div class="stat-value" id="robyConsegnati">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Totale ordini
+                    </div>
+                    <div class="stat-value" id="robyTotale">
+                        €0,00
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="person-buttons">
+
+                <button
+                    class="btn-orange"
+                    onclick="openPerson('Roby')">
+
+                    Apri ordini Roby →
+
+                </button>
+
+            </div>
+
         </div>
 
-        <div class="persone">
 
-            <button
-                class="persona-btn"
-                onclick="entra('ROBY')">
-                ROBY
-            </button>
+        <!-- FEDE -->
 
-            <button
-                class="persona-btn"
-                onclick="entra('FEDE')">
-                FEDE
-            </button>
+        <div class="person-card">
+
+            <div class="person-header">
+
+                <div class="person-name">
+                    FEDE
+                </div>
+
+                <div class="person-icon">
+                    F
+                </div>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordini totali
+                    </div>
+                    <div class="stat-value" id="fedeOrders">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ordinare
+                    </div>
+                    <div class="stat-value" id="fedeDaOrdinare">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordinati
+                    </div>
+                    <div class="stat-value" id="fedeOrdinati">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ritirare
+                    </div>
+                    <div class="stat-value" id="fedeRitirare">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Consegnati
+                    </div>
+                    <div class="stat-value" id="fedeConsegnati">
+                        0
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Totale ordini
+                    </div>
+                    <div class="stat-value" id="fedeTotale">
+                        €0,00
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="person-buttons">
+
+                <button
+                    class="btn-orange"
+                    onclick="openPerson('Fede')">
+
+                    Apri ordini Fede →
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
-<!-- ========================= -->
-<!-- APPLICAZIONE -->
-<!-- ========================= -->
+    <!-- RIEPILOGO GENERALE -->
 
-<div id="app">
+    <div class="general-card">
 
-    <!-- SIDEBAR -->
+        <h2>
+            Situazione generale
+        </h2>
 
-    <aside class="sidebar">
+        <div class="general-grid">
 
-        <div class="sidebar-logo">
-            KTM <span>RICAMBI</span>
-        </div>
+            <div class="general-item">
 
-        <div class="utente">
+                <span>
+                    Ordini complessivi
+                </span>
 
-            <small>Stai gestendo</small>
-
-            <strong id="nomeUtente">
-                ROBY
-            </strong>
-
-        </div>
-
-        <button
-            class="menu-btn active"
-            onclick="mostraSezione('dashboard', this)">
-            🏠 Dashboard
-        </button>
-
-        <button
-            class="menu-btn"
-            onclick="mostraSezione('nuovo', this)">
-            ➕ Nuovo ricambio
-        </button>
-
-        <button
-            class="menu-btn"
-            onclick="mostraSezione('ricambi', this)">
-            📦 Ricambi da ordinare
-        </button>
-
-        <button
-            class="menu-btn"
-            onclick="mostraSezione('ordinati', this)">
-            📋 Ordini inviati
-        </button>
-
-        <button
-            class="menu-btn"
-            onclick="mostraSezione('contabilita', this)">
-            💰 Contabilità
-        </button>
-
-        <button
-            class="menu-btn"
-            onclick="mostraSezione('storico', this)">
-            📚 Storico
-        </button>
-
-        <button
-            class="cambia-persona"
-            onclick="cambiaPersona()">
-            ↩ Cambia persona
-        </button>
-
-    </aside>
-
-    <!-- MAIN -->
-
-    <main class="main">
-                <!-- ========================= -->
-        <!-- DASHBOARD -->
-        <!-- ========================= -->
-
-        <section id="dashboard" class="sezione active">
-
-            <div class="topbar">
-
-                <h1>Dashboard</h1>
-
-                <div class="badge" id="badgeUtente">
-                    ROBY
-                </div>
-
-            </div>
-
-
-            <div class="cards">
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Ricambi totali
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="totRicambi">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Pezzi totali
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="totPezzi">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Valore netto
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="totNetto">
-                        € 0,00
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Da dare a Gio
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="totGio">
-                        € 0,00
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="box">
-
-                <h2>
-                    Ultimi ricambi inseriti
-                </h2>
-
-                <div class="tabella-container">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Data
-                                </th>
-
-                                <th>
-                                    Articolo
-                                </th>
-
-                                <th>
-                                    Quantità
-                                </th>
-
-                                <th>
-                                    Netto
-                                </th>
-
-                                <th>
-                                    Stato
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tabellaDashboard">
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- NUOVO RICAMBIO -->
-        <!-- ========================= -->
-
-        <section
-            id="nuovo"
-            class="sezione">
-
-            <div class="topbar">
-
-                <h1>
-                    Nuovo ricambio
-                </h1>
-
-            </div>
-
-
-            <div class="box">
-
-                <h2>
-                    Inserisci ricambio
-                </h2>
-
-
-                <form id="formRicambio">
-
-                    <div class="form-grid">
-
-
-                        <!-- DATA -->
-
-                        <div class="campo">
-
-                            <label>
-                                Data
-                            </label>
-
-                            <input
-                                type="date"
-                                id="data"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- QUANTITÀ -->
-
-                        <div class="campo">
-
-                            <label>
-                                Quantità
-                            </label>
-
-                            <input
-                                type="number"
-                                id="quantita"
-                                min="1"
-                                value="1"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- ARTICOLO -->
-
-                        <div class="campo campo-full">
-
-                            <label>
-                                Articolo / Codice KTM
-                            </label>
-
-                            <input
-                                type="text"
-                                id="articolo"
-                                placeholder="Inserisci codice articolo"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- LISTINO -->
-
-                        <div class="campo">
-
-                            <label>
-                                Listino (€)
-                            </label>
-
-                            <input
-                                type="number"
-                                id="listino"
-                                step="0.01"
-                                min="0"
-                                placeholder="Inserisci prezzo"
-                            >
-
-                        </div>
-
-
-                        <!-- SCONTO -->
-
-                        <div class="campo">
-
-                            <label>
-                                Sconto (%)
-                            </label>
-
-                            <input
-                                type="number"
-                                id="sconto"
-                                step="0.01"
-                                min="0"
-                                max="100"
-                                value="0"
-                            >
-
-                        </div>
-
-
-                        <!-- NETTO -->
-
-                        <div class="campo">
-
-                            <label>
-                                Netto scontato (€)
-                            </label>
-
-                            <input
-                                type="number"
-                                id="netto"
-                                class="automatico"
-                                readonly
-                            >
-
-                        </div>
-
-
-                        <!-- GIO -->
-
-                        <div class="campo">
-
-                            <label>
-                                Soldi da dare a Gio (€)
-                            </label>
-
-                            <input
-                                type="number"
-                                id="soldiGio"
-                                step="0.01"
-                                min="0"
-                                value="0"
-                            >
-
-                        </div>
-
-
-                        <!-- ROBY -->
-
-                        <div class="campo">
-
-                            <label>
-                                Soldi da dare a Roby (€)
-                            </label>
-
-                            <input
-                                type="number"
-                                id="soldiRoby"
-                                step="0.01"
-                                min="0"
-                                value="0"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="azioni">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary">
-
-                            💾 Salva ricambio
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            onclick="resetForm()">
-
-                            Annulla
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- RICAMBI DA ORDINARE -->
-        <!-- ========================= -->
-
-        <section
-            id="ricambi"
-            class="sezione">
-
-            <div class="topbar">
-
-                <h1>
-                    Ricambi da ordinare
-                </h1>
-
-            </div>
-
-
-            <div class="box">
-
-
-                <div class="barra-ricerca">
-
-                    <input
-                        type="text"
-                        id="ricerca"
-                        placeholder="🔍 Cerca codice articolo..."
-                    >
-
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="mostraSezione('nuovo')">
-
-                        + Nuovo ricambio
-
-                    </button>
-
-                </div>
-
-
-                <div class="tabella-container">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Data
-                                </th>
-
-                                <th>
-                                    Quantità
-                                </th>
-
-                                <th>
-                                    Articolo
-                                </th>
-
-                                <th>
-                                    Da Gio
-                                </th>
-
-                                <th>
-                                    Da Roby
-                                </th>
-
-                                <th>
-                                    Netto
-                                </th>
-
-                                <th>
-                                    Listino
-                                </th>
-
-                                <th>
-                                    Sconto
-                                </th>
-
-                                <th>
-                                    Azioni
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="tabellaRicambi">
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- ORDINI INVIATI -->
-        <!-- ========================= -->
-
-        <section
-            id="ordinati"
-            class="sezione">
-
-            <div class="topbar">
-
-                <h1>
-                    Ordini inviati a KTM
-                </h1>
-
-            </div>
-
-
-            <div class="box">
-
-                <h2>
-                    Ordini inviati
-                </h2>
-
-                <p>
-                    Qui potremo gestire gli ordini inviati a KTM,
-                    raggruppare i ricambi e segnare quali sono stati
-                    ordinati.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- CONTABILITÀ -->
-        <!-- ========================= -->
-
-        <section
-            id="contabilita"
-            class="sezione">
-
-            <div class="topbar">
-
-                <h1>
-                    Contabilità
-                </h1>
-
-            </div>
-
-
-            <div class="cards">
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Totale da dare a Gio
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="contGio">
-
-                        € 0,00
-
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        Totale da dare a Roby
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="contRoby">
-
-                        € 0,00
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- STORICO -->
-        <!-- ========================= -->
-
-        <section
-            id="storico"
-            class="sezione">
-
-            <div class="topbar">
-
-                <h1>
-                    Storico
-                </h1>
-
-            </div>
-
-
-            <div class="box">
-
-                <h2>
-                    Storico ricambi
-                </h2>
-
-                <p>
-                    Qui successivamente potremo vedere tutti gli ordini
-                    passati, filtrare per data, persona, codice e importo.
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-    
-
-</div>
-    <script>
-
-let personaCorrente = "";
-let indiceModifica = null;
-
-
-/* =========================
-   STORAGE
-========================= */
-
-function chiaveStorage() {
-
-    return "ricambiKTM_" + personaCorrente;
-
-}
-
-
-function caricaDati() {
-
-    const dati = localStorage.getItem(
-        chiaveStorage()
-    );
-
-    if (!dati) {
-        return [];
-    }
-
-    try {
-
-        return JSON.parse(dati);
-
-    } catch (errore) {
-
-        console.error(
-            "Errore lettura dati:",
-            errore
-        );
-
-        return [];
-
-    }
-
-}
-
-
-function salvaDati(dati) {
-
-    localStorage.setItem(
-        chiaveStorage(),
-        JSON.stringify(dati)
-    );
-
-}
-
-
-/* =========================
-   DATA ODIERNA
-========================= */
-
-function dataOggi() {
-
-    const oggi = new Date();
-
-    const anno = oggi.getFullYear();
-
-    const mese = String(
-        oggi.getMonth() + 1
-    ).padStart(2, "0");
-
-    const giorno = String(
-        oggi.getDate()
-    ).padStart(2, "0");
-
-    return `${anno}-${mese}-${giorno}`;
-
-}
-
-
-/* =========================
-   ENTRA
-========================= */
-
-function entra(persona) {
-
-    personaCorrente = persona;
-
-    document.getElementById(
-        "selezionePersona"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "app"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "nomeUtente"
-    ).textContent = persona;
-
-
-    document.getElementById(
-        "badgeUtente"
-    ).textContent = persona;
-
-
-    document.getElementById(
-        "data"
-    ).value = dataOggi();
-
-
-    indiceModifica = null;
-
-
-    aggiornaTutto();
-
-}
-
-
-/* =========================
-   CAMBIA PERSONA
-========================= */
-
-function cambiaPersona() {
-
-    personaCorrente = "";
-
-    indiceModifica = null;
-
-
-    document.getElementById(
-        "app"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "selezionePersona"
-    ).style.display = "flex";
-
-}
-
-
-/* =========================
-   MENU
-========================= */
-
-function mostraSezione(
-    id,
-    bottone = null
-) {
-
-    document
-        .querySelectorAll(".sezione")
-        .forEach(sezione => {
-
-            sezione.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    const sezione =
-        document.getElementById(id);
-
-
-    if (sezione) {
-
-        sezione.classList.add(
-            "active"
-        );
-
-    }
-
-
-    document
-        .querySelectorAll(".menu-btn")
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    if (bottone) {
-
-        bottone.classList.add(
-            "active"
-        );
-
-    } else {
-
-        document
-            .querySelectorAll(".menu-btn")
-            .forEach(btn => {
-
-                const testo =
-                    btn.getAttribute(
-                        "onclick"
-                    ) || "";
-
-                if (
-                    testo.includes(
-                        `'${id}'`
-                    )
-                ) {
-
-                    btn.classList.add(
-                        "active"
-                    );
-
-                }
-
-            });
-
-    }
-
-
-    if (id === "ricambi") {
-
-        aggiornaTabella();
-
-    }
-
-}
-
-
-/* =========================
-   CALCOLO NETTO
-========================= */
-
-function calcolaNetto() {
-
-    const listino =
-        parseFloat(
-            document.getElementById(
-                "listino"
-            ).value
-        ) || 0;
-
-
-    const sconto =
-        parseFloat(
-            document.getElementById(
-                "sconto"
-            ).value
-        ) || 0;
-
-
-    const netto =
-        listino -
-        (
-            listino *
-            sconto /
-            100
-        );
-
-
-    document.getElementById(
-        "netto"
-    ).value = netto.toFixed(2);
-
-}
-
-
-/* =========================
-   EVENTI PREZZI
-========================= */
-
-document.getElementById(
-    "listino"
-).addEventListener(
-    "input",
-    calcolaNetto
-);
-
-
-document.getElementById(
-    "sconto"
-).addEventListener(
-    "input",
-    calcolaNetto
-);
-
-
-/* =========================
-   SALVA RICAMBIO
-========================= */
-
-document
-    .getElementById(
-        "formRicambio"
-    )
-    .addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-
-            if (!personaCorrente) {
-
-                alert(
-                    "Seleziona prima ROBY o FEDE."
-                );
-
-                return;
-
-            }
-
-
-            const articolo =
-                document.getElementById(
-                    "articolo"
-                ).value.trim();
-
-
-            if (!articolo) {
-
-                alert(
-                    "Inserisci il codice dell'articolo."
-                );
-
-                return;
-
-            }
-
-
-            const data =
-                document.getElementById(
-                    "data"
-                ).value;
-
-
-            if (!data) {
-
-                alert(
-                    "Inserisci la data."
-                );
-
-                return;
-
-            }
-
-
-            const quantita =
-                Number(
-                    document.getElementById(
-                        "quantita"
-                    ).value
-                );
-
-
-            if (
-                !Number.isFinite(quantita) ||
-                quantita < 1
-            ) {
-
-                alert(
-                    "Inserisci una quantità valida."
-                );
-
-                return;
-
-            }
-
-
-            const dati =
-                caricaDati();
-
-
-            const ricambio = {
-
-                id:
-                    Date.now(),
-
-                data:
-                    data,
-
-                quantita:
-                    quantita,
-
-                articolo:
-                    articolo,
-
-                soldiGio:
-                    Number(
-                        document.getElementById(
-                            "soldiGio"
-                        ).value
-                    ) || 0,
-
-                soldiRoby:
-                    Number(
-                        document.getElementById(
-                            "soldiRoby"
-                        ).value
-                    ) || 0,
-
-                netto:
-                    Number(
-                        document.getElementById(
-                            "netto"
-                        ).value
-                    ) || 0,
-
-                listino:
-                    Number(
-                        document.getElementById(
-                            "listino"
-                        ).value
-                    ) || 0,
-
-                sconto:
-                    Number(
-                        document.getElementById(
-                            "sconto"
-                        ).value
-                    ) || 0,
-
-                stato:
-                    "Da ordinare"
-
-            };
-
-
-            if (
-                indiceModifica !== null
-            ) {
-
-                dati[
-                    indiceModifica
-                ] = ricambio;
-
-
-                indiceModifica = null;
-
-
-                alert(
-                    "Ricambio modificato correttamente!"
-                );
-
-            } else {
-
-                dati.push(
-                    ricambio
-                );
-
-
-                alert(
-                    "Ricambio salvato correttamente!"
-                );
-
-            }
-
-
-            salvaDati(dati);
-
-
-            resetForm();
-
-
-            aggiornaTutto();
-
-
-            mostraSezione(
-                "ricambi"
-            );
-
-        }
-    );
-
-
-/* =========================
-   RESET FORM
-========================= */
-
-function resetForm() {
-
-    document
-        .getElementById(
-            "formRicambio"
-        )
-        .reset();
-
-
-    document.getElementById(
-        "data"
-    ).value = dataOggi();
-
-
-    document.getElementById(
-        "quantita"
-    ).value = 1;
-
-
-    document.getElementById(
-        "sconto"
-    ).value = 0;
-
-
-    document.getElementById(
-        "soldiGio"
-    ).value = 0;
-
-
-    document.getElementById(
-        "soldiRoby"
-    ).value = 0;
-
-
-    document.getElementById(
-        "netto"
-    ).value = "";
-
-
-    indiceModifica = null;
-
-}
-
-
-/* =========================
-   RICERCA
-========================= */
-
-document
-    .getElementById(
-        "ricerca"
-    )
-    .addEventListener(
-        "input",
-        aggiornaTabella
-    );
-
-
-/* =========================
-   TABELLA RICAMBI
-========================= */
-
-function aggiornaTabella() {
-
-    const dati =
-        caricaDati();
-
-
-    const campoRicerca =
-        document.getElementById(
-            "ricerca"
-        );
-
-
-    const ricerca =
-        (
-            campoRicerca
-            ? campoRicerca.value
-            : ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const filtrati =
-        dati.filter(r => {
-
-            return String(
-                r.articolo || ""
-            )
-            .toLowerCase()
-            .includes(
-                ricerca
-            );
-
-        });
-
-
-    const tbody =
-        document.getElementById(
-            "tabellaRicambi"
-        );
-
-
-    tbody.innerHTML = "";
-
-
-    if (
-        filtrati.length === 0
-    ) {
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="9"
-                    class="vuoto">
-
-                    Nessun ricambio trovato
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    filtrati.forEach(r => {
-
-        const indice =
-            dati.indexOf(r);
-
-
-        const tr =
-            document.createElement(
-                "tr"
-            );
-
-
-        tr.innerHTML = `
-
-            <td>
-                ${formattaData(r.data)}
-            </td>
-
-            <td>
-                ${r.quantita}
-            </td>
-
-            <td>
-                <strong>
-                    ${escapeHTML(r.articolo)}
+                <strong id="totalOrders">
+                    0
                 </strong>
-            </td>
 
-            <td>
-                € ${formattaEuro(r.soldiGio)}
-            </td>
+            </div>
 
-            <td>
-                € ${formattaEuro(r.soldiRoby)}
-            </td>
+            <div class="general-item">
 
-            <td>
-                € ${formattaEuro(r.netto)}
-            </td>
+                <span>
+                    Totale listino
+                </span>
 
-            <td>
-                € ${formattaEuro(r.listino)}
-            </td>
+                <strong id="totalListino">
+                    €0,00
+                </strong>
 
-            <td>
-                ${formattaEuro(r.sconto)}%
-            </td>
+            </div>
 
-            <td class="azioni-tabella">
+            <div class="general-item">
 
-                <button
-                    class="modifica"
-                    onclick="modificaRicambio(${indice})">
+                <span>
+                    Totale dopo sconti
+                </span>
 
-                    Modifica
-
-                </button>
-
-
-                <button
-                    class="elimina"
-                    onclick="eliminaRicambio(${indice})">
-
-                    Elimina
-
-                </button>
-
-            </td>
-
-        `;
-
-
-        tbody.appendChild(tr);
-
-    });
-
-}
-
-
-/* =========================
-   MODIFICA
-========================= */
-
-function modificaRicambio(
-    indice
-) {
-
-    const dati =
-        caricaDati();
-
-
-    if (
-        !dati[indice]
-    ) {
-
-        alert(
-            "Ricambio non trovato."
-        );
-
-        return;
-
-    }
-
-
-    const r =
-        dati[indice];
-
-
-    document.getElementById(
-        "data"
-    ).value =
-        r.data || dataOggi();
-
-
-    document.getElementById(
-        "quantita"
-    ).value =
-        r.quantita || 1;
-
-
-    document.getElementById(
-        "articolo"
-    ).value =
-        r.articolo || "";
-
-
-    document.getElementById(
-        "soldiGio"
-    ).value =
-        r.soldiGio || 0;
-
-
-    document.getElementById(
-        "soldiRoby"
-    ).value =
-        r.soldiRoby || 0;
-
-
-    document.getElementById(
-        "listino"
-    ).value =
-        r.listino || 0;
-
-
-    document.getElementById(
-        "sconto"
-    ).value =
-        r.sconto || 0;
-
-
-    calcolaNetto();
-
-
-    indiceModifica =
-        indice;
-
-
-    mostraSezione(
-        "nuovo"
-    );
-
-}
-
-
-/* =========================
-   ELIMINA
-========================= */
-
-function eliminaRicambio(
-    indice
-) {
-
-    if (
-        !confirm(
-            "Vuoi davvero eliminare questo ricambio?"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const dati =
-        caricaDati();
-
-
-    dati.splice(
-        indice,
-        1
-    );
-
-
-    salvaDati(
-        dati
-    );
-
-
-    aggiornaTutto();
-
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function aggiornaDashboard() {
-
-    const dati =
-        caricaDati();
-
-
-    let pezzi = 0;
-
-    let netto = 0;
-
-    let gio = 0;
-
-
-    dati.forEach(r => {
-
-        pezzi +=
-            Number(
-                r.quantita
-            ) || 0;
-
-
-        netto +=
-            (
-                Number(
-                    r.netto
-                ) || 0
-            ) *
-            (
-                Number(
-                    r.quantita
-                ) || 0
-            );
-
-
-        gio +=
-            Number(
-                r.soldiGio
-            ) || 0;
-
-    });
-
-
-    document.getElementById(
-        "totRicambi"
-    ).textContent =
-        dati.length;
-
-
-    document.getElementById(
-        "totPezzi"
-    ).textContent =
-        pezzi;
-
-
-    document.getElementById(
-        "totNetto"
-    ).textContent =
-        "€ " +
-        formattaEuro(netto);
-
-
-    document.getElementById(
-        "totGio"
-    ).textContent =
-        "€ " +
-        formattaEuro(gio);
-
-
-    const tbody =
-        document.getElementById(
-            "tabellaDashboard"
-        );
-
-
-    tbody.innerHTML = "";
-
-
-    const ultimi =
-        [...dati]
-        .reverse()
-        .slice(
-            0,
-            5
-        );
-
-
-    if (
-        ultimi.length === 0
-    ) {
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="5"
-                    class="vuoto">
-
-                    Nessun ricambio inserito
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    ultimi.forEach(r => {
-
-        tbody.innerHTML += `
-
-            <tr>
-
-                <td>
-                    ${formattaData(r.data)}
-                </td>
-
-                <td>
-                    <strong>
-                        ${escapeHTML(r.articolo)}
-                    </strong>
-                </td>
-
-                <td>
-                    ${r.quantita}
-                </td>
-
-                <td>
-                    € ${formattaEuro(r.netto)}
-                </td>
-
-                <td>
-                    ${escapeHTML(r.stato)}
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-}
-
-
-/* =========================
-   CONTABILITÀ
-========================= */
-
-function aggiornaContabilita() {
-
-    const dati =
-        caricaDati();
-
-
-    let gio = 0;
-
-    let roby = 0;
-
-
-    dati.forEach(r => {
-
-        gio +=
-            Number(
-                r.soldiGio
-            ) || 0;
-
-
-        roby +=
-            Number(
-                r.soldiRoby
-            ) || 0;
-
-    });
-
-
-    document.getElementById(
-        "contGio"
-    ).textContent =
-        "€ " +
-        formattaEuro(gio);
-
-
-    document.getElementById(
-        "contRoby"
-    ).textContent =
-        "€ " +
-        formattaEuro(roby);
-
-}
-
-
-/* =========================
-   AGGIORNA TUTTO
-========================= */
-
-function aggiornaTutto() {
-
-    aggiornaDashboard();
-
-    aggiornaTabella();
-
-    aggiornaContabilita();
-
-}
-
-
-/* =========================
-   FORMATTA EURO
-========================= */
-
-function formattaEuro(
-    numero
-) {
-
-    return Number(
-        numero || 0
-    ).toLocaleString(
-        "it-IT",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    );
-
-}
-
-
-/* =========================
-   FORMATTA DATA
-========================= */
-
-function formattaData(
-    data
-) {
-
-    if (!data) {
-        return "";
-    }
-
-
-    const parti =
-        String(data).split("-");
-
-
-    if (
-        parti.length !== 3
-    ) {
-
-        return data;
-
-    }
-
-
-    return (
-        parti[2] +
-        "/" +
-        parti[1] +
-        "/" +
-        parti[0]
-    );
-
-}
-
-
-/* =========================
-   SICUREZZA TESTO
-========================= */
-
-function escapeHTML(
-    testo
-) {
-
-    return String(
-        testo ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-</script>
-    /* =========================
-   INIZIALIZZAZIONE
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    /*
-       Imposta automaticamente la data odierna
-       quando viene aperta la schermata.
-    */
-
-    const campoData =
-        document.getElementById("data");
-
-    if (campoData) {
-        campoData.value = dataOggi();
-    }
-
-
-    /*
-       Calcolo iniziale del netto
-    */
-
-    calcolaNetto();
-
-
-    /*
-       Controllo ricerca.
-       Se il campo esiste, aggiorna la tabella
-       mentre viene digitato.
-    */
-
-    const ricerca =
-        document.getElementById("ricerca");
-
-    if (ricerca) {
-
-        ricerca.addEventListener(
-            "input",
-            function () {
-
-                aggiornaTabella();
-
-            }
-        );
-
-    }
-
-});
-
-
-/* =========================
-   PROTEZIONE ERRORI
-========================= */
-
-window.addEventListener(
-    "error",
-    function (evento) {
-
-        console.error(
-            "Errore nel programma:",
-            evento.error
-        );
-
-    }
-);
-
-
-/* =========================
-   FINE PROGRAMMA
-========================= */
-
-</script>
-
-</body>
-</html>
+                <strong id="totalScontato">
+                    €
