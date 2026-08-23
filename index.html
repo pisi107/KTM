@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gestione Ordini KTM</title>
+<title>Ordini KTM</title>
 
 <style>
 * {
@@ -19,38 +19,33 @@ body {
     color: #1f2937;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
     background: #111827;
     color: white;
-    padding: 22px 35px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 800;
-    letter-spacing: 1px;
 }
 
 .logo span {
     color: #ff6600;
 }
 
-.header-subtitle {
+.subtitle {
+    color: #9ca3af;
     font-size: 13px;
-    color: #cbd5e1;
+    margin-top: 4px;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 main {
     max-width: 1400px;
@@ -71,82 +66,14 @@ main {
     margin-top: 6px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
-.people-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-bottom: 30px;
-}
-
-.person-card {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-    border-top: 5px solid #ff6600;
-}
-
-.person-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
-}
-
-.person-name {
-    font-size: 25px;
-    font-weight: 800;
-}
-
-.person-icon {
-    width: 48px;
-    height: 48px;
-    background: #fff1e8;
-    color: #ff6600;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.stat {
-    background: #f8fafc;
-    padding: 14px;
-    border-radius: 12px;
-}
-
-.stat-label {
-    color: #64748b;
-    font-size: 12px;
-    margin-bottom: 6px;
-}
-
-.stat-value {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.person-buttons {
-    margin-top: 20px;
-}
+/* BUTTONS */
 
 button {
     border: none;
     cursor: pointer;
     border-radius: 9px;
     padding: 11px 16px;
-    font-weight: 700;
+    font-weight: bold;
     transition: 0.2s;
 }
 
@@ -174,14 +101,76 @@ button:hover {
     color: #b91c1c;
 }
 
-.btn-green {
-    background: #dcfce7;
-    color: #166534;
+/* HOME */
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
-/* =========================
-   GENERAL DASHBOARD
-========================= */
+.person-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    border-top: 5px solid #ff6600;
+}
+
+.person-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.person-name {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.person-icon {
+    width: 48px;
+    height: 48px;
+    background: #fff1e8;
+    color: #ff6600;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.person-buttons {
+    margin-top: 20px;
+}
+
+/* GENERAL */
 
 .general-card {
     background: white;
@@ -201,9 +190,9 @@ button:hover {
 }
 
 .general-item {
-    padding: 18px;
     background: #f8fafc;
     border-radius: 12px;
+    padding: 18px;
 }
 
 .general-item span {
@@ -217,9 +206,7 @@ button:hover {
     font-size: 23px;
 }
 
-/* =========================
-   SECTION
-========================= */
+/* SECTIONS */
 
 .section {
     display: none;
@@ -234,16 +221,27 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    gap: 15px;
 }
 
 .back-btn {
     margin-bottom: 20px;
 }
 
-/* =========================
-   ORDERS
-========================= */
+/* SEARCH */
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+/* ORDERS */
 
 .order-list {
     display: grid;
@@ -299,10 +297,6 @@ button:hover {
     margin-bottom: 5px;
 }
 
-.info-box strong {
-    font-size: 15px;
-}
-
 .order-actions {
     display: flex;
     gap: 8px;
@@ -311,11 +305,10 @@ button:hover {
 }
 
 .status {
-    display: inline-block;
     padding: 7px 11px;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: bold;
 }
 
 .status-daordinare {
@@ -338,25 +331,17 @@ button:hover {
     color: #166534;
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* EMPTY */
 
-.search-box {
-    margin-bottom: 20px;
+.empty {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    text-align: center;
+    color: #64748b;
 }
 
-.search-box input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 15px;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal-overlay {
     display: none;
@@ -388,18 +373,16 @@ button:hover {
 }
 
 .close {
-    font-size: 28px;
     background: transparent;
+    font-size: 28px;
     color: #64748b;
 }
 
-/* =========================
-   FORM
-========================= */
+/* FORM */
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
@@ -407,14 +390,10 @@ button:hover {
     margin-bottom: 15px;
 }
 
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
 label {
     display: block;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: bold;
     margin-bottom: 7px;
 }
 
@@ -427,9 +406,7 @@ select {
     font-size: 15px;
 }
 
-/* =========================
-   ARTICLES
-========================= */
+/* ARTICLES */
 
 .articles-header {
     display: flex;
@@ -455,28 +432,13 @@ select {
 
 .article-result {
     margin-top: 8px;
-    font-size: 13px;
     color: #475569;
-}
-
-.article-result strong {
-    color: #111827;
+    font-size: 13px;
 }
 
 .remove-article {
     background: #fee2e2;
     color: #b91c1c;
-}
-
-/* =========================
-   MODAL FOOTER
-========================= */
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 25px;
 }
 
 .total-box {
@@ -494,23 +456,16 @@ select {
     font-size: 24px;
 }
 
-/* =========================
-   EMPTY
-========================= */
-
-.empty {
-    background: white;
-    border-radius: 15px;
-    padding: 45px;
-    text-align: center;
-    color: #64748b;
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
-@media (max-width: 900px) {
+@media(max-width:900px) {
 
     .people-grid {
         grid-template-columns: 1fr;
@@ -521,26 +476,30 @@ select {
     }
 
     .order-info {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .article-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 600px) {
-
-    header {
-        padding: 18px;
-    }
+@media(max-width:600px) {
 
     main {
         padding: 18px;
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
+    header {
+        padding: 18px;
+    }
+
+    .header-button {
+        display: none;
     }
 
     .order-top {
@@ -555,10 +514,6 @@ select {
     .article-grid {
         grid-template-columns: 1fr;
     }
-
-    .stats {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 </style>
 </head>
@@ -572,13 +527,17 @@ select {
             KTM <span>ORDINI</span>
         </div>
 
-        <div class="header-subtitle">
+        <div class="subtitle">
             Gestione ordini ricambi
         </div>
     </div>
 
-    <button class="btn-orange" onclick="openNewOrder()">
+    <button
+        class="btn-orange header-button"
+        onclick="openNewOrder()">
+
         + Nuovo ordine
+
     </button>
 
 </header>
@@ -586,15 +545,24 @@ select {
 
 <main>
 
-<!-- =====================================================
+<!-- =========================
      HOME
-===================================================== -->
+========================= -->
 
-<section id="homeSection" class="section active">
+<section
+    id="homeSection"
+    class="section active">
 
     <div class="page-title">
-        <h1>Dashboard</h1>
-        <p>Situazione generale degli ordini KTM</p>
+
+        <h1>
+            Dashboard
+        </h1>
+
+        <p>
+            Situazione generale degli ordini KTM
+        </p>
+
     </div>
 
 
@@ -616,63 +584,100 @@ select {
 
             </div>
 
+
             <div class="stats">
 
                 <div class="stat">
                     <div class="stat-label">
                         Ordini totali
                     </div>
-                    <div class="stat-value" id="robyOrders">
+
+                    <div
+                        class="stat-value"
+                        id="robyOrders">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Da ordinare
                     </div>
-                    <div class="stat-value" id="robyDaOrdinare">
+
+                    <div
+                        class="stat-value"
+                        id="robyDaOrdinare">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Ordinati
                     </div>
-                    <div class="stat-value" id="robyOrdinati">
+
+                    <div
+                        class="stat-value"
+                        id="robyOrdinati">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Da ritirare
                     </div>
-                    <div class="stat-value" id="robyRitirare">
+
+                    <div
+                        class="stat-value"
+                        id="robyRitirare">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Consegnati
                     </div>
-                    <div class="stat-value" id="robyConsegnati">
+
+                    <div
+                        class="stat-value"
+                        id="robyConsegnati">
+
                         0
+
                     </div>
                 </div>
 
+
                 <div class="stat">
                     <div class="stat-label">
-                        Totale ordini
+                        Totale
                     </div>
-                    <div class="stat-value" id="robyTotale">
+
+                    <div
+                        class="stat-value"
+                        id="robyTotale">
+
                         €0,00
+
                     </div>
                 </div>
 
             </div>
+
 
             <div class="person-buttons">
 
@@ -705,63 +710,100 @@ select {
 
             </div>
 
+
             <div class="stats">
 
                 <div class="stat">
                     <div class="stat-label">
                         Ordini totali
                     </div>
-                    <div class="stat-value" id="fedeOrders">
+
+                    <div
+                        class="stat-value"
+                        id="fedeOrders">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Da ordinare
                     </div>
-                    <div class="stat-value" id="fedeDaOrdinare">
+
+                    <div
+                        class="stat-value"
+                        id="fedeDaOrdinare">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Ordinati
                     </div>
-                    <div class="stat-value" id="fedeOrdinati">
+
+                    <div
+                        class="stat-value"
+                        id="fedeOrdinati">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Da ritirare
                     </div>
-                    <div class="stat-value" id="fedeRitirare">
+
+                    <div
+                        class="stat-value"
+                        id="fedeRitirare">
+
                         0
+
                     </div>
                 </div>
+
 
                 <div class="stat">
                     <div class="stat-label">
                         Consegnati
                     </div>
-                    <div class="stat-value" id="fedeConsegnati">
+
+                    <div
+                        class="stat-value"
+                        id="fedeConsegnati">
+
                         0
+
                     </div>
                 </div>
 
+
                 <div class="stat">
                     <div class="stat-label">
-                        Totale ordini
+                        Totale
                     </div>
-                    <div class="stat-value" id="fedeTotale">
+
+                    <div
+                        class="stat-value"
+                        id="fedeTotale">
+
                         €0,00
+
                     </div>
                 </div>
 
             </div>
+
 
             <div class="person-buttons">
 
@@ -779,8 +821,6 @@ select {
 
     </div>
 
-
-    <!-- RIEPILOGO GENERALE -->
 
     <div class="general-card">
 
@@ -802,6 +842,7 @@ select {
 
             </div>
 
+
             <div class="general-item">
 
                 <span>
@@ -814,6 +855,7 @@ select {
 
             </div>
 
+
             <div class="general-item">
 
                 <span>
@@ -821,4 +863,1455 @@ select {
                 </span>
 
                 <strong id="totalScontato">
-                    €
+                    €0,00
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ORDINI PERSONA
+========================= -->
+
+<section
+    id="personSection"
+    class="section">
+
+    <button
+        class="btn-gray back-btn"
+        onclick="goHome()">
+
+        ← Torna alla Home
+
+    </button>
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h1 id="personTitle">
+                Ordini
+            </h1>
+
+            <p id="personSubtitle">
+                Tutti gli ordini
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn-orange"
+            onclick="openNewOrder(currentPerson)">
+
+            + Nuovo ordine
+
+        </button>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Cerca ordine o articolo..."
+            oninput="renderPersonOrders()">
+
+    </div>
+
+
+    <div
+        id="personOrders"
+        class="order-list">
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     MODALE ORDINE
+========================= -->
+
+<div
+    id="orderModal"
+    class="modal-overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Nuovo ordine
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Cliente
+                </label>
+
+                <select id="orderPerson">
+
+                    <option value="Roby">
+                        Roby
+                    </option>
+
+                    <option value="Fede">
+                        Fede
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Data
+                </label>
+
+                <input
+                    id="orderDate"
+                    type="date">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Stato
+                </label>
+
+                <select id="orderStatus">
+
+                    <option value="daordinare">
+                        Da ordinare
+                    </option>
+
+                    <option value="ordinato">
+                        Ordinato
+                    </option>
+
+                    <option value="ritirare">
+                        Da ritirare
+                    </option>
+
+                    <option value="consegnato">
+                        Consegnato
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="articles-header">
+
+            <h3>
+                Articoli
+            </h3>
+
+            <button
+                class="btn-dark"
+                onclick="addArticle()">
+
+                + Aggiungi articolo
+
+            </button>
+
+        </div>
+
+
+        <div id="articlesContainer"></div>
+
+
+        <div class="total-box">
+
+            <span>
+                Totale ordine
+            </span>
+
+            <strong id="orderTotal">
+                €0,00
+            </strong>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn-gray"
+                onclick="closeModal()">
+
+                Annulla
+
+            </button>
+
+            <button
+                class="btn-orange"
+                onclick="saveOrder()">
+
+                Salva ordine
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   VARIABILI
+===================================================== */
+
+let orders =
+    JSON.parse(
+        localStorage.getItem("ktmOrders")
+    ) || [];
+
+let currentPerson = null;
+let editingOrderId = null;
+
+
+/* =====================================================
+   EURO
+===================================================== */
+
+function euro(value) {
+
+    return new Intl.NumberFormat(
+        "it-IT",
+        {
+            style: "currency",
+            currency: "EUR"
+        }
+    ).format(value || 0);
+
+}
+
+
+/* =====================================================
+   SALVATAGGIO
+===================================================== */
+
+function saveData() {
+
+    localStorage.setItem(
+        "ktmOrders",
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* =====================================================
+   APRI ROBY / FEDE
+===================================================== */
+
+function openPerson(person) {
+
+    currentPerson = person;
+
+    document
+        .getElementById("homeSection")
+        .classList.remove("active");
+
+    document
+        .getElementById("personSection")
+        .classList.add("active");
+
+    document
+        .getElementById("personTitle")
+        .textContent =
+        "Ordini " + person;
+
+    document
+        .getElementById("personSubtitle")
+        .textContent =
+        "Tutti gli ordini di " + person;
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+    renderPersonOrders();
+
+}
+
+
+/* =====================================================
+   TORNA HOME
+===================================================== */
+
+function goHome() {
+
+    document
+        .getElementById("personSection")
+        .classList.remove("active");
+
+    document
+        .getElementById("homeSection")
+        .classList.add("active");
+
+    currentPerson = null;
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
+
+function openNewOrder(person = null) {
+
+    editingOrderId = null;
+
+    document
+        .getElementById("modalTitle")
+        .textContent =
+        "Nuovo ordine";
+
+    document
+        .getElementById("orderPerson")
+        .value =
+        person || "Roby";
+
+    document
+        .getElementById("orderDate")
+        .value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+    document
+        .getElementById("orderStatus")
+        .value =
+        "daordinare";
+
+    document
+        .getElementById("articlesContainer")
+        .innerHTML = "";
+
+    addArticle();
+
+    document
+        .getElementById("orderModal")
+        .classList.add("active");
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("orderModal")
+        .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   ARTICOLI
+===================================================== */
+
+function addArticle(article = null) {
+
+    const container =
+        document.getElementById(
+            "articlesContainer"
+        );
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "article-row";
+
+    row.innerHTML = `
+
+        <div class="article-grid">
+
+            <div>
+                <label>Articolo</label>
+
+                <input
+                    type="text"
+                    class="article-name"
+                    placeholder="Nome articolo"
+                    value="${article ? article.name : ""}">
+            </div>
+
+
+            <div>
+                <label>Quantità</label>
+
+                <input
+                    type="number"
+                    class="article-qty"
+                    min="1"
+                    value="${article ? article.qty : 1}"
+                    oninput="calculateOrderTotal()">
+            </div>
+
+
+            <div>
+                <label>Listino €</label>
+
+                <input
+                    type="number"
+                    class="article-price"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    value="${article ? article.price : ""}"
+                    oninput="calculateOrderTotal()">
+            </div>
+
+
+            <div>
+                <label>Sconto %</label>
+
+                <input
+                    type="number"
+                    class="article-discount"
+                    min="0"
+                    max="100"
+                    value="${article ? article.discount : 25}"
+                    oninput="calculateOrderTotal()">
+            </div>
+
+
+            <div>
+                <label>Prezzo netto</label>
+
+                <input
+                    class="article-final"
+                    type="text"
+                    readonly
+                    value="€0,00">
+            </div>
+
+
+            <div>
+                <label>Totale</label>
+
+                <input
+                    class="article-total"
+                    type="text"
+                    readonly
+                    value="€0,00">
+            </div>
+
+
+            <button
+                class="remove-article"
+                type="button"
+                onclick="removeArticle(this)">
+
+                ×
+
+            </button>
+
+        </div>
+
+    `;
+
+    container.appendChild(row);
+
+    calculateOrderTotal();
+
+}
+
+
+function removeArticle(button) {
+
+    button
+        .closest(".article-row")
+        .remove();
+
+    calculateOrderTotal();
+
+}
+
+
+/* =====================================================
+   CALCOLO
+===================================================== */
+
+function calculateOrderTotal() {
+
+    const rows =
+        document.querySelectorAll(
+            ".article-row"
+        );
+
+    let total = 0;
+
+    rows.forEach(row => {
+
+        const qty =
+            parseFloat(
+                row.querySelector(
+                    ".article-qty"
+                ).value
+            ) || 0;
+
+        const price =
+            parseFloat(
+                row.querySelector(
+                    ".article-price"
+                ).value
+            ) || 0;
+
+        const discount =
+            parseFloat(
+                row.querySelector(
+                    ".article-discount"
+                ).value
+            );
+
+        const actualDiscount =
+            isNaN(discount)
+            ? 25
+            : discount;
+
+        const net =
+            price *
+            (1 - actualDiscount / 100);
+
+        const lineTotal =
+            net * qty;
+
+        total += lineTotal;
+
+        row.querySelector(
+            ".article-final"
+        ).value =
+        euro(net);
+
+        row.querySelector(
+            ".article-total"
+        ).value =
+        euro(lineTotal);
+
+    });
+
+    document
+        .getElementById("orderTotal")
+        .textContent =
+        euro(total);
+
+}
+
+
+/* =====================================================
+   SALVA ORDINE
+===================================================== */
+
+function saveOrder() {
+
+    const person =
+        document.getElementById(
+            "orderPerson"
+        ).value;
+
+    const date =
+        document.getElementById(
+            "orderDate"
+        ).value;
+
+    const status =
+        document.getElementById(
+            "orderStatus"
+        ).value;
+
+    const rows =
+        document.querySelectorAll(
+            ".article-row"
+        );
+
+    const articles = [];
+
+    rows.forEach(row => {
+
+        const name =
+            row.querySelector(
+                ".article-name"
+            ).value.trim();
+
+        const qty =
+            parseFloat(
+                row.querySelector(
+                    ".article-qty"
+                ).value
+            ) || 0;
+
+        const price =
+            parseFloat(
+                row.querySelector(
+                    ".article-price"
+                ).value
+            ) || 0;
+
+        const discount =
+            parseFloat(
+                row.querySelector(
+                    ".article-discount"
+                ).value
+            );
+
+        if (name && qty > 0) {
+
+            articles.push({
+
+                name: name,
+
+                qty: qty,
+
+                price: price,
+
+                discount:
+                    isNaN(discount)
+                    ? 25
+                    : discount
+
+            });
+
+        }
+
+    });
+
+
+    if (!date) {
+
+        alert(
+            "Inserisci la data."
+        );
+
+        return;
+
+    }
+
+
+    if (articles.length === 0) {
+
+        alert(
+            "Inserisci almeno un articolo."
+        );
+
+        return;
+
+    }
+
+
+    if (editingOrderId) {
+
+        const order =
+            orders.find(
+                o =>
+                    o.id ===
+                    editingOrderId
+            );
+
+        if (order) {
+
+            order.person =
+                person;
+
+            order.date =
+                date;
+
+            order.status =
+                status;
+
+            order.articles =
+                articles;
+
+        }
+
+    } else {
+
+        orders.unshift({
+
+            id:
+                Date.now(),
+
+            number:
+                generateOrderNumber(),
+
+            person:
+                person,
+
+            date:
+                date,
+
+            status:
+                status,
+
+            articles:
+                articles
+
+        });
+
+    }
+
+
+    saveData();
+
+    closeModal();
+
+    updateDashboard();
+
+    if (currentPerson) {
+
+        renderPersonOrders();
+
+    }
+
+}
+
+
+/* =====================================================
+   NUMERO ORDINE
+===================================================== */
+
+function generateOrderNumber() {
+
+    let max = 0;
+
+    orders.forEach(order => {
+
+        const match =
+            order.number.match(
+                /KTM-(\d+)/
+            );
+
+        if (match) {
+
+            max =
+                Math.max(
+                    max,
+                    parseInt(match[1])
+                );
+
+        }
+
+    });
+
+    return "KTM-" +
+        String(max + 1)
+        .padStart(4, "0");
+
+}
+
+
+/* =====================================================
+   RENDER ORDINI
+===================================================== */
+
+function renderPersonOrders() {
+
+    const container =
+        document.getElementById(
+            "personOrders"
+        );
+
+    if (!currentPerson) {
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        orders.filter(
+            order =>
+                order.person ===
+                currentPerson
+        );
+
+
+    if (search) {
+
+        filtered =
+            filtered.filter(order => {
+
+                const articles =
+                    order.articles
+                    .map(
+                        a => a.name
+                    )
+                    .join(" ")
+                    .toLowerCase();
+
+                return (
+
+                    order.number
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    articles
+                    .includes(search)
+
+                );
+
+            });
+
+    }
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    Nessun ordine
+                </h3>
+
+                <p style="margin-top:8px;">
+                    Non ci sono ancora ordini per ${currentPerson}.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        filtered
+        .map(
+            order =>
+                orderHTML(order)
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   HTML ORDINE
+===================================================== */
+
+function orderHTML(order) {
+
+    const total =
+        calculateOrderValue(order);
+
+    const listino =
+        calculateListino(order);
+
+    const articleNames =
+        order.articles
+        .map(
+            a =>
+                a.qty +
+                " × " +
+                a.name
+        )
+        .join(", ");
+
+
+    return `
+
+        <div class="order-card">
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+                        ${order.number}
+                    </div>
+
+                    <div class="order-date">
+                        ${formatDate(order.date)}
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="status ${statusClass(order.status)}">
+
+                    ${statusLabel(order.status)}
+
+                </span>
+
+
+                <div class="order-total">
+                    ${euro(total)}
+                </div>
+
+            </div>
+
+
+            <div style="margin-top:15px;color:#475569;">
+
+                ${articleNames}
+
+            </div>
+
+
+            <div class="order-info">
+
+                <div class="info-box">
+
+                    <small>
+                        Articoli
+                    </small>
+
+                    <strong>
+                        ${order.articles.length}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Totale listino
+                    </small>
+
+                    <strong>
+                        ${euro(listino)}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Totale scontato
+                    </small>
+
+                    <strong>
+                        ${euro(total)}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Stato
+                    </small>
+
+                    <strong>
+                        ${statusLabel(order.status)}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-actions">
+
+                <button
+                    class="btn-dark"
+                    onclick="editOrder(${order.id})">
+
+                    Modifica
+
+                </button>
+
+
+                <button
+                    class="btn-gray"
+                    onclick="changeStatus(${order.id})">
+
+                    Cambia stato
+
+                </button>
+
+
+                <button
+                    class="btn-red"
+                    onclick="deleteOrder(${order.id})">
+
+                    Elimina
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CALCOLI
+===================================================== */
+
+function calculateOrderValue(order) {
+
+    return order.articles.reduce(
+        (total, article) => {
+
+            const net =
+                article.price *
+                (
+                    1 -
+                    article.discount / 100
+                );
+
+            return total +
+                net * article.qty;
+
+        },
+        0
+    );
+
+}
+
+
+function calculateListino(order) {
+
+    return order.articles.reduce(
+        (total, article) => {
+
+            return total +
+                article.price *
+                article.qty;
+
+        },
+        0
+    );
+
+}
+
+
+/* =====================================================
+   MODIFICA
+===================================================== */
+
+function editOrder(id) {
+
+    const order =
+        orders.find(
+            o => o.id === id
+        );
+
+    if (!order)
+        return;
+
+    editingOrderId = id;
+
+    document
+        .getElementById("modalTitle")
+        .textContent =
+        "Modifica " +
+        order.number;
+
+    document
+        .getElementById("orderPerson")
+        .value =
+        order.person;
+
+    document
+        .getElementById("orderDate")
+        .value =
+        order.date;
+
+    document
+        .getElementById("orderStatus")
+        .value =
+        order.status;
+
+    document
+        .getElementById("articlesContainer")
+        .innerHTML = "";
+
+    order.articles.forEach(
+        article =>
+            addArticle(article)
+    );
+
+    document
+        .getElementById("orderModal")
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   ELIMINA
+===================================================== */
+
+function deleteOrder(id) {
+
+    const order =
+        orders.find(
+            o => o.id === id
+        );
+
+    if (!order)
+        return;
+
+
+    if (
+        !confirm(
+            "Vuoi eliminare " +
+            order.number +
+            "?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    orders =
+        orders.filter(
+            o => o.id !== id
+        );
+
+    saveData();
+
+    updateDashboard();
+
+    renderPersonOrders();
+
+}
+
+
+/* =====================================================
+   CAMBIO STATO
+===================================================== */
+
+function changeStatus(id) {
+
+    const order =
+        orders.find(
+            o => o.id === id
+        );
+
+    if (!order)
+        return;
+
+
+    const states = [
+
+        "daordinare",
+        "ordinato",
+        "ritirare",
+        "consegnato"
+
+    ];
+
+
+    let index =
+        states.indexOf(
+            order.status
+        );
+
+
+    index++;
+
+    if (
+        index >=
+        states.length
+    ) {
+
+        index = 0;
+
+    }
+
+
+    order.status =
+        states[index];
+
+
+    saveData();
+
+    updateDashboard();
+
+    renderPersonOrders();
+
+}
+
+
+/* =====================================================
+   STATI
+===================================================== */
+
+function statusLabel(status) {
+
+    if (status === "daordinare")
+        return "Da ordinare";
+
+    if (status === "ordinato")
+        return "Ordinato";
+
+    if (status === "ritirare")
+        return "Da ritirare";
+
+    if (status === "consegnato")
+        return "Consegnato";
+
+    return status;
+
+}
+
+
+function statusClass(status) {
+
+    return "status-" + status;
+
+}
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+function formatDate(date) {
+
+    if (!date)
+        return "";
+
+    const parts =
+        date.split("-");
+
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    updatePerson(
+        "Roby",
+        "roby"
+    );
+
+    updatePerson(
+        "Fede",
+        "fede"
+    );
+
+
+    let totalListino = 0;
+    let totalScontato = 0;
+
+
+    orders.forEach(order => {
+
+        totalListino +=
+            calculateListino(order);
+
+        totalScontato +=
+            calculateOrderValue(order);
+
+    });
+
+
+    document
+        .getElementById("totalOrders")
+        .textContent =
+        orders.length;
+
+
+    document
+        .getElementById("totalListino")
+        .textContent =
+        euro(totalListino);
+
+
+    document
+        .getElementById("totalScontato")
+        .textContent =
+        euro(totalScontato);
+
+}
+
+
+function updatePerson(person, prefix) {
+
+    const list =
+        orders.filter(
+            o =>
+                o.person ===
+                person
+        );
+
+
+    document
+        .getElementById(
+            prefix + "Orders"
+        )
+        .textContent =
+        list.length;
+
+
+    document
+        .getElementById(
+            prefix + "DaOrdinare"
+        )
+        .textContent =
+        list.filter(
+            o =>
+                o.status ===
+                "daordinare"
+        ).length;
+
+
+    document
+        .getElementById(
+            prefix + "Ordinati"
+        )
+        .textContent =
+        list.filter(
+            o =>
+                o.status ===
+                "ordinato"
+        ).length;
+
+
+    document
+        .getElementById(
+            prefix + "Ritirare"
+        )
+        .textContent =
+        list.filter(
+            o =>
+                o.status ===
+                "ritirare"
+        ).length;
+
+
+    document
+        .getElementById(
+            prefix + "Consegnati"
+        )
+        .textContent =
+        list.filter(
+            o =>
+                o.status ===
+                "consegnato"
+        ).length;
+
+
+    const total =
+        list.reduce(
+            (sum, order) =>
+                sum +
+                calculateOrderValue(order),
+            0
+        );
+
+
+    document
+        .getElementById(
+            prefix + "Totale"
+        )
+        .textContent =
+        euro(total);
+
+}
+
+
+/* =====================================================
+   CHIUDI MODALE CLICCANDO FUORI
+===================================================== */
+
+document
+    .getElementById("orderModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   AVVIO
+===================================================== */
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
