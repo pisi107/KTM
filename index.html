@@ -6,7 +6,11 @@
 <title>KTM ORDINI</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
     font-family:Arial,Helvetica,sans-serif;
@@ -567,6 +571,7 @@ button{
     align-items:center;
     border-bottom:1px solid #e5e7eb;
     padding-bottom:20px;
+    gap:20px;
 }
 
 .detail-number{
@@ -641,7 +646,6 @@ button{
     .article-grid{
         grid-template-columns:1fr 1fr;
     }
-
 }
 
 @media(max-width:600px){
@@ -682,12 +686,15 @@ button{
     .article-grid{
         grid-template-columns:1fr;
     }
-
 }
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     LOGIN
+========================= -->
 
 <div id="loginPage">
 
@@ -709,23 +716,30 @@ button{
 
             <button class="user-button"
                     onclick="selectUser('Roby')">
+
                 <span class="user-icon">R</span>
                 ROBY
+
             </button>
 
             <button class="user-button"
                     onclick="selectUser('Fede')">
+
                 <span class="user-icon">F</span>
                 FEDE
+
             </button>
 
             <button class="user-button admin-user"
                     onclick="selectUser('Gio')">
+
                 <span class="user-icon">G</span>
                 GIO
+
                 <small style="color:#ff6600;margin-left:5px;">
                     AMMINISTRATORE
                 </small>
+
             </button>
 
         </div>
@@ -734,6 +748,10 @@ button{
 
 </div>
 
+
+<!-- =========================
+     CODICE
+========================= -->
 
 <div id="codePage">
 
@@ -779,6 +797,10 @@ button{
 </div>
 
 
+<!-- =========================
+     CAMBIO CODICE
+========================= -->
+
 <div id="changeCodePage">
 
     <div class="change-box">
@@ -793,26 +815,40 @@ button{
         </div>
 
         <div class="warning">
+
             <strong>Devi cambiare il codice.</strong>
+
             <br><br>
-            Il codice iniziale è <strong>123456</strong>.
+
+            Il codice iniziale è
+            <strong>123456</strong>.
+
+            <br><br>
+
             Scegli ora il tuo codice personale.
+
         </div>
 
         <div class="form-group">
+
             <label>Nuovo codice</label>
+
             <input id="newCode"
                    type="password"
                    inputmode="numeric"
                    placeholder="Nuovo codice">
+
         </div>
 
         <div class="form-group">
+
             <label>Conferma nuovo codice</label>
+
             <input id="confirmCode"
                    type="password"
                    inputmode="numeric"
                    placeholder="Ripeti il codice">
+
         </div>
 
         <div id="changeError"
@@ -821,13 +857,19 @@ button{
 
         <button class="orange-button"
                 onclick="changeCode()">
+
             SALVA NUOVO CODICE
+
         </button>
 
     </div>
 
 </div>
 
+
+<!-- =========================
+     APP
+========================= -->
 
 <div id="appPage">
 
@@ -847,12 +889,16 @@ button{
             <button id="notificationButton"
                     class="notification-button"
                     onclick="activateNotifications()">
+
                 🔔 ATTIVA NOTIFICHE
+
             </button>
 
             <button class="logout"
                     onclick="logout()">
+
                 Esci
+
             </button>
 
         </div>
@@ -957,7 +1003,9 @@ button{
 
                 <button class="new-order"
                         onclick="openNewOrder()">
+
                     + Nuovo ordine
+
                 </button>
 
             </div>
@@ -977,6 +1025,10 @@ button{
 
 </div>
 
+
+<!-- =========================
+     NUOVO ORDINE
+========================= -->
 
 <div id="orderModal"
      class="modal">
@@ -1065,7 +1117,9 @@ button{
 
         <button class="add-article"
                 onclick="addArticle()">
+
             + Aggiungi articolo
+
         </button>
 
 
@@ -1089,12 +1143,16 @@ button{
 
             <button class="cancel"
                     onclick="closeModal()">
+
                 Annulla
+
             </button>
 
             <button class="save"
                     onclick="saveOrder()">
+
                 SALVA ORDINE
+
             </button>
 
         </div>
@@ -1103,6 +1161,10 @@ button{
 
 </div>
 
+
+<!-- =========================
+     DETTAGLIO
+========================= -->
 
 <div id="detailModal"
      class="modal">
@@ -1129,9 +1191,12 @@ import {
     doc,
     updateDoc,
     deleteDoc,
+    setDoc,
+    getDoc,
     onSnapshot,
     query,
-    orderBy
+    orderBy,
+    serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -1144,7 +1209,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
 
 
 /* =====================================================
-CONFIG FIREBASE
+   FIREBASE
 ===================================================== */
 
 const firebaseConfig = {
@@ -1181,48 +1246,28 @@ const messaging =
 
 
 /* =====================================================
-VAPID
+   VAPID
 ===================================================== */
 
 const VAPID_KEY =
 "BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
 
 
-/*
-    Questa funzione non cambia la tua chiave.
-
-    Controlla che sia una vera chiave
-    pubblica EC P-256 da 65 byte e la
-    normalizza nel formato Base64URL.
-*/
-
 function normalizeVapidKey(key){
 
     if(typeof key !== "string"){
-
         throw new Error(
             "La VAPID_KEY non è una stringa."
         );
-
     }
 
-
-    const clean =
-        key.trim();
-
+    const clean = key.trim();
 
     if(!clean){
-
         throw new Error(
             "La VAPID_KEY è vuota."
         );
-
     }
-
-
-    /*
-        Base64URL → Base64
-    */
 
     const base64 =
         clean
@@ -1233,14 +1278,11 @@ function normalizeVapidKey(key){
             "="
         );
 
-
     let binary;
-
 
     try{
 
-        binary =
-            atob(base64);
+        binary = atob(base64);
 
     }catch(error){
 
@@ -1249,13 +1291,6 @@ function normalizeVapidKey(key){
         );
 
     }
-
-
-    /*
-        Una public key P-256 non compressa
-        deve essere esattamente 65 byte
-        e iniziare con 0x04.
-    */
 
     if(
         binary.length !== 65 ||
@@ -1271,11 +1306,6 @@ function normalizeVapidKey(key){
 
     }
 
-
-    /*
-        Ricreiamo la Base64URL in forma canonica.
-    */
-
     return btoa(binary)
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
@@ -1286,21 +1316,13 @@ function normalizeVapidKey(key){
 
 let NORMALIZED_VAPID_KEY = null;
 
-
 try{
 
     NORMALIZED_VAPID_KEY =
-        normalizeVapidKey(
-            VAPID_KEY
-        );
+        normalizeVapidKey(VAPID_KEY);
 
     console.log(
         "VAPID verificata correttamente."
-    );
-
-    console.log(
-        "Lunghezza VAPID:",
-        NORMALIZED_VAPID_KEY.length
     );
 
 }catch(error){
@@ -1314,7 +1336,7 @@ try{
 
 
 /* =====================================================
-VARIABILI
+   UTENTI
 ===================================================== */
 
 const DEFAULT_CODE = "123456";
@@ -1347,7 +1369,7 @@ let notificationListenerActive = false;
 
 
 /* =====================================================
-LOGIN
+   LOGIN
 ===================================================== */
 
 window.selectUser = function(user){
@@ -1424,14 +1446,16 @@ window.login = function(){
         error.textContent =
             "Codice non corretto.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
         return;
 
     }
 
 
-    error.style.display = "none";
+    error.style.display =
+        "none";
 
 
     if(!saved){
@@ -1447,7 +1471,8 @@ window.login = function(){
     }
 
 
-    loggedUser = selectedUser;
+    loggedUser =
+        selectedUser;
 
     localStorage.setItem(
         "ktm_logged_user",
@@ -1478,7 +1503,8 @@ window.changeCode = function(){
         error.textContent =
             "Il codice deve avere almeno 4 caratteri.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
         return;
 
@@ -1490,7 +1516,8 @@ window.changeCode = function(){
         error.textContent =
             "I codici non coincidono.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
         return;
 
@@ -1502,7 +1529,8 @@ window.changeCode = function(){
         error.textContent =
             "Scegli un codice diverso da 123456.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
         return;
 
@@ -1515,7 +1543,8 @@ window.changeCode = function(){
     );
 
 
-    loggedUser = selectedUser;
+    loggedUser =
+        selectedUser;
 
 
     localStorage.setItem(
@@ -1530,7 +1559,7 @@ window.changeCode = function(){
 
 
 /* =====================================================
-APP
+   APP
 ===================================================== */
 
 function openApp(){
@@ -1574,7 +1603,8 @@ function openApp(){
 
         document.getElementById(
             "notificationButton"
-        ).style.display = "inline-block";
+        ).style.display =
+            "inline-block";
 
     }else{
 
@@ -1583,7 +1613,8 @@ function openApp(){
             "Gestisci i tuoi ordini KTM.";
 
         document.getElementById("adminCard")
-            .style.display = "none";
+            .style.display =
+            "none";
 
         document.getElementById("ordersTitle")
             .textContent =
@@ -1591,7 +1622,8 @@ function openApp(){
 
         document.getElementById(
             "notificationButton"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
     }
 
@@ -1609,7 +1641,7 @@ function openApp(){
 
 
 /* =====================================================
-LOGOUT
+   LOGOUT
 ===================================================== */
 
 window.logout = function(){
@@ -1622,20 +1654,17 @@ window.logout = function(){
 
     }
 
-
     loggedUser = null;
     selectedUser = null;
-    notificationListenerActive = false;
 
+    notificationListenerActive = false;
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
 
-
     document.getElementById("appPage")
         .style.display = "none";
-
 
     document.getElementById("loginPage")
         .style.display = "flex";
@@ -1644,7 +1673,7 @@ window.logout = function(){
 
 
 /* =====================================================
-FIRESTORE
+   FIRESTORE ORDINI
 ===================================================== */
 
 function listenOrders(){
@@ -1707,11 +1736,9 @@ function listenOrders(){
 
             },
 
-
             error => {
 
                 console.error(error);
-
 
                 document.getElementById(
                     "ordersList"
@@ -1720,7 +1747,7 @@ function listenOrders(){
                     <div class="empty-orders">
 
                         <strong>
-                        Errore collegamento Firebase
+                            Errore collegamento Firebase
                         </strong>
 
                         <br><br>
@@ -1739,7 +1766,7 @@ function listenOrders(){
 
 
 /* =====================================================
-VISUALIZZA ORDINI
+   RENDER ORDINI
 ===================================================== */
 
 function renderOrders(orders){
@@ -1753,9 +1780,7 @@ function renderOrders(orders){
         list.innerHTML = `
 
             <div class="empty-orders">
-
                 Nessun ordine presente.
-
             </div>
 
         `;
@@ -1798,10 +1823,12 @@ function renderOrders(orders){
                 <div>
 
                     <div class="order-number">
+
                         ${escapeHtml(
                             order.number ||
                             "ORDINE"
                         )}
+
                     </div>
 
                     <div class="order-info">
@@ -1812,9 +1839,7 @@ function renderOrders(orders){
 
                         ·
 
-                        ${formatDate(
-                            order.date
-                        )}
+                        ${formatDate(order.date)}
 
                     </div>
 
@@ -1869,7 +1894,7 @@ function renderOrders(orders){
 
 
 /* =====================================================
-NUOVO ORDINE
+   NUOVO ORDINE
 ===================================================== */
 
 window.openNewOrder = function(){
@@ -1936,7 +1961,7 @@ window.closeModal = function(){
 
 
 /* =====================================================
-ARTICOLI
+   ARTICOLI
 ===================================================== */
 
 window.addArticle = function(article=null){
@@ -1948,9 +1973,7 @@ window.addArticle = function(article=null){
 
 
     const row =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     row.className =
@@ -1974,9 +1997,7 @@ window.addArticle = function(article=null){
                     value="${
                         article
                         ?
-                        escapeAttr(
-                            article.code
-                        )
+                        escapeAttr(article.code)
                         :
                         ""
                     }"
@@ -2080,14 +2101,13 @@ window.addArticle = function(article=null){
 
     container.appendChild(row);
 
-
     calculateOrderTotal();
 
 };
 
 
 /* =====================================================
-CALCOLO
+   CALCOLO
 ===================================================== */
 
 window.calculateOrderTotal = function(){
@@ -2096,9 +2116,7 @@ window.calculateOrderTotal = function(){
 
 
     document
-        .querySelectorAll(
-            ".article-row"
-        )
+        .querySelectorAll(".article-row")
         .forEach(row => {
 
             const qty =
@@ -2145,7 +2163,7 @@ window.calculateOrderTotal = function(){
 
 
 /* =====================================================
-SALVA ORDINE
+   SALVA ORDINE
 ===================================================== */
 
 window.saveOrder = async function(){
@@ -2172,9 +2190,7 @@ window.saveOrder = async function(){
 
 
     document
-        .querySelectorAll(
-            ".article-row"
-        )
+        .querySelectorAll(".article-row")
         .forEach(row => {
 
             const code =
@@ -2299,10 +2315,26 @@ window.saveOrder = async function(){
                 String(
                     existing.size + 1
                 )
-                .padStart(
-                    4,
-                    "0"
-                );
+                .padStart(4,"0");
+
+
+            const newOrder = {
+
+                number:number,
+
+                person:person,
+
+                date:date,
+
+                status:status,
+
+                articles:articles,
+
+                createdAt:Date.now(),
+
+                createdBy:loggedUser
+
+            };
 
 
             await addDoc(
@@ -2312,18 +2344,13 @@ window.saveOrder = async function(){
                     "ordini"
                 ),
 
-                {
+                newOrder
 
-                    number:number,
-                    person:person,
-                    date:date,
-                    status:status,
-                    articles:articles,
-                    createdAt:Date.now(),
-                    createdBy:loggedUser
+            );
 
-                }
-
+            console.log(
+                "Nuovo ordine creato:",
+                number
             );
 
         }
@@ -2348,7 +2375,7 @@ window.saveOrder = async function(){
 
 
 /* =====================================================
-DETTAGLIO
+   DETTAGLIO
 ===================================================== */
 
 function showOrder(order){
@@ -2391,9 +2418,7 @@ function showOrder(order){
                 </td>
 
                 <td>
-                    ${euro(
-                        article.price
-                    )}
+                    ${euro(article.price)}
                 </td>
 
                 <td>
@@ -2423,31 +2448,25 @@ function showOrder(order){
 
                     <div class="detail-number">
 
-                        ${
-                            escapeHtml(
-                                order.number ||
-                                "ORDINE"
-                            )
-                        }
+                        ${escapeHtml(
+                            order.number ||
+                            "ORDINE"
+                        )}
 
                     </div>
 
                     <div class="detail-date">
 
-                        ${
-                            escapeHtml(
-                                order.person ||
-                                ""
-                            )
-                        }
+                        ${escapeHtml(
+                            order.person ||
+                            ""
+                        )}
 
                         ·
 
-                        ${
-                            formatDate(
-                                order.date
-                            )
-                        }
+                        ${formatDate(
+                            order.date
+                        )}
 
                     </div>
 
@@ -2461,11 +2480,9 @@ function showOrder(order){
                         ${order.status}
                     ">
 
-                        ${
-                            statusLabel(
-                                order.status
-                            )
-                        }
+                        ${statusLabel(
+                            order.status
+                        )}
 
                     </span>
 
@@ -2567,7 +2584,7 @@ window.closeDetail = function(){
 
 
 /* =====================================================
-MODIFICA
+   MODIFICA
 ===================================================== */
 
 window.editOrder = async function(id){
@@ -2695,7 +2712,7 @@ window.editOrder = async function(id){
 
 
 /* =====================================================
-ELIMINA
+   ELIMINA
 ===================================================== */
 
 window.deleteOrder = async function(id){
@@ -2790,7 +2807,7 @@ window.deleteOrder = async function(id){
 
 
 /* =====================================================
-UTILITÀ
+   UTILITÀ
 ===================================================== */
 
 function calculateTotal(order){
@@ -2892,14 +2909,12 @@ function statusLabel(status){
 
 function escapeHtml(value){
 
-    return String(
-        value || ""
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
@@ -2912,13 +2927,12 @@ function escapeAttr(value){
 
 
 /* =====================================================
-ORDINI
+   AGGIORNA ORDINI
 ===================================================== */
 
 window.loadOrders = function(){
 
     listenOrders();
-
 
     if(loggedUser === "Gio"){
 
@@ -2930,7 +2944,7 @@ window.loadOrders = function(){
 
 
 /* =====================================================
-NOTIFICHE
+   NOTIFICHE
 ===================================================== */
 
 async function setupNotifications(){
@@ -2967,19 +2981,6 @@ async function setupNotifications(){
 
             await registerNotifications();
 
-            return;
-
-        }
-
-
-        if(permission === "denied"){
-
-            console.log(
-                "Le notifiche sono state bloccate."
-            );
-
-            return;
-
         }
 
     }catch(error){
@@ -2995,7 +2996,7 @@ async function setupNotifications(){
 
 
 /* =====================================================
-ATTIVA NOTIFICHE
+   ATTIVA NOTIFICHE
 ===================================================== */
 
 window.activateNotifications =
@@ -3035,13 +3036,7 @@ async function(){
 
                 alert(
                     "Le notifiche sono state bloccate.\n\n" +
-                    "Devi abilitarle dalle impostazioni di Safari/iPhone."
-                );
-
-            }else{
-
-                alert(
-                    "Permesso notifiche non concesso."
+                    "Abilitale dalle impostazioni dell'iPhone."
                 );
 
             }
@@ -3073,13 +3068,21 @@ async function(){
 
 
 /* =====================================================
-REGISTRAZIONE NOTIFICHE
+   REGISTRAZIONE FCM
 ===================================================== */
 
 async function registerNotifications(){
 
     console.log(
-        "=== AVVIO REGISTRAZIONE NOTIFICHE ==="
+        "================================"
+    );
+
+    console.log(
+        "AVVIO REGISTRAZIONE NOTIFICHE"
+    );
+
+    console.log(
+        "================================"
     );
 
 
@@ -3096,15 +3099,11 @@ async function registerNotifications(){
     }
 
 
-    /*
-        Controlliamo prima la VAPID.
-    */
-
     if(!NORMALIZED_VAPID_KEY){
 
         alert(
             "La chiave VAPID non è valida.\n\n" +
-            "Controlla la console del browser."
+            "Controlla la console."
         );
 
         return;
@@ -3112,28 +3111,46 @@ async function registerNotifications(){
     }
 
 
-    console.log(
-        "VAPID valida e normalizzata."
-    );
+    /* =========================
+       SERVICE WORKER
+    ========================= */
+
+    let registration;
 
 
-    /*
-        Registriamo il Service Worker.
-    */
+    try{
 
-    const registration =
-        await navigator.serviceWorker.register(
-            "./firebase-messaging-sw.js",
-            {
-                scope:"./"
-            }
+        registration =
+            await navigator.serviceWorker.register(
+                "./firebase-messaging-sw.js",
+                {
+                    scope:"./"
+                }
+            );
+
+
+        console.log(
+            "Service Worker registrato:",
+            registration.scope
         );
 
 
-    console.log(
-        "Service Worker registrato:",
-        registration.scope
-    );
+    }catch(error){
+
+        console.error(
+            "Errore Service Worker:",
+            error
+        );
+
+
+        alert(
+            "Impossibile registrare il Service Worker.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
 
 
     await navigator.serviceWorker.ready;
@@ -3144,20 +3161,9 @@ async function registerNotifications(){
     );
 
 
-    /*
-        Controlliamo che il Service Worker
-        abbia effettivamente preso il controllo.
-    */
-
-    console.log(
-        "Controller:",
-        navigator.serviceWorker.controller
-    );
-
-
-    /*
-        Richiediamo il token FCM.
-    */
+    /* =========================
+       TOKEN FCM
+    ========================= */
 
     let token;
 
@@ -3176,6 +3182,7 @@ async function registerNotifications(){
                 }
             );
 
+
     }catch(error){
 
         console.error(
@@ -3184,23 +3191,10 @@ async function registerNotifications(){
         );
 
 
-        console.error(
-            "VAPID originale:",
-            VAPID_KEY
-        );
-
-
-        console.error(
-            "VAPID normalizzata:",
-            NORMALIZED_VAPID_KEY
-        );
-
-
         alert(
-            "Firebase ha rifiutato la chiave VAPID.\n\n" +
+            "Firebase ha rifiutato la richiesta del token.\n\n" +
             error.message
         );
-
 
         return;
 
@@ -3209,15 +3203,9 @@ async function registerNotifications(){
 
     if(!token){
 
-        console.error(
+        alert(
             "Firebase non ha restituito il token."
         );
-
-
-        alert(
-            "Notifiche autorizzate, ma Firebase non ha restituito il token."
-        );
-
 
         return;
 
@@ -3225,16 +3213,93 @@ async function registerNotifications(){
 
 
     console.log(
-        "TOKEN NOTIFICHE GIO:",
+        "TOKEN FCM GIO:",
         token
     );
 
+
+    /* =========================
+       LOCAL STORAGE
+    ========================= */
 
     localStorage.setItem(
         "ktm_gio_notification_token",
         token
     );
 
+
+    /* =========================
+       FIRESTORE
+    ========================= */
+
+    try{
+
+        await setDoc(
+
+            doc(
+                db,
+                "notificationTokens",
+                token
+            ),
+
+            {
+
+                token:token,
+
+                user:"Gio",
+
+                active:true,
+
+                platform:
+                    /iPhone|iPad|iPod/i.test(
+                        navigator.userAgent
+                    )
+                    ?
+                    "iOS"
+                    :
+                    "browser",
+
+                userAgent:
+                    navigator.userAgent,
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        console.log(
+            "TOKEN SALVATO IN FIRESTORE."
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Errore salvataggio token Firestore:",
+            error
+        );
+
+
+        alert(
+            "Il token è stato creato ma non è stato possibile salvarlo in Firebase.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       PULSANTE VERDE
+    ========================= */
 
     const button =
         document.getElementById(
@@ -3254,10 +3319,9 @@ async function registerNotifications(){
     }
 
 
-    /*
-        Messaggi ricevuti mentre la pagina
-        è aperta.
-    */
+    /* =========================
+       NOTIFICHE IN FOREGROUND
+    ========================= */
 
     if(!notificationListenerActive){
 
@@ -3273,11 +3337,13 @@ async function registerNotifications(){
 
                 const title =
                     payload.notification?.title ||
+                    payload.data?.title ||
                     "KTM ORDINI";
 
 
                 const body =
                     payload.notification?.body ||
+                    payload.data?.body ||
                     "È arrivato un nuovo ordine.";
 
 
@@ -3287,14 +3353,11 @@ async function registerNotifications(){
                 ){
 
                     new Notification(
-
                         title,
-
                         {
                             body:body,
                             icon:"./icon-192.png"
                         }
-
                     );
 
                 }
@@ -3314,7 +3377,11 @@ async function registerNotifications(){
     );
 
     console.log(
-        "NOTIFICHE GIO CONFIGURATE CORRETTAMENTE"
+        "NOTIFICHE CONFIGURATE"
+    );
+
+    console.log(
+        "TOKEN SALVATO IN FIRESTORE"
     );
 
     console.log(
@@ -3325,7 +3392,7 @@ async function registerNotifications(){
 
 
 /* =====================================================
-AVVIO
+   AVVIO
 ===================================================== */
 
 const savedUser =
@@ -3342,7 +3409,6 @@ if(
     loggedUser =
         savedUser;
 
-
     openApp();
 
 }else{
@@ -3356,7 +3422,7 @@ if(
 
 
 /* =====================================================
-CHIUSURA MODAL
+   CHIUSURA MODAL
 ===================================================== */
 
 window.addEventListener(
@@ -3376,8 +3442,7 @@ window.addEventListener(
 
 
         if(
-            event.target ===
-            orderModal
+            event.target === orderModal
         ){
 
             closeModal();
@@ -3386,8 +3451,7 @@ window.addEventListener(
 
 
         if(
-            event.target ===
-            detailModal
+            event.target === detailModal
         ){
 
             closeDetail();
