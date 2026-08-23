@@ -86,12 +86,9 @@ main {
 button {
     border: none;
     cursor: pointer;
-
     border-radius: 9px;
     padding: 11px 16px;
-
     font-weight: 700;
-
     transition: 0.2s;
 }
 
@@ -137,12 +134,14 @@ button:hover {
 }
 
 /* =========================================================
-   HOME - ROBY / FEDE
+   HOME
 ========================================================= */
 
 .people-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 25px;
 
@@ -164,7 +163,9 @@ button:hover {
 
 .person-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 22px;
@@ -172,6 +173,7 @@ button:hover {
 
 .person-name {
     font-size: 26px;
+
     font-weight: 800;
 }
 
@@ -180,22 +182,27 @@ button:hover {
     height: 48px;
 
     background: #fff1e8;
+
     color: #ff6600;
 
     border-radius: 50%;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     font-size: 20px;
+
     font-weight: 800;
 }
 
 .stats {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 12px;
 }
@@ -218,6 +225,7 @@ button:hover {
 
 .stat-value {
     font-size: 20px;
+
     font-weight: 800;
 }
 
@@ -247,7 +255,8 @@ button:hover {
 .general-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 15px;
 }
@@ -284,7 +293,9 @@ button:hover {
 
 .section-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 20px;
@@ -296,6 +307,7 @@ button:hover {
 
 .section-header p {
     color: #64748b;
+
     margin-top: 5px;
 }
 
@@ -326,7 +338,7 @@ button:hover {
 }
 
 /* =========================================================
-   COMPACT ORDER LIST
+   ORDER LIST
 ========================================================= */
 
 .order-list {
@@ -394,11 +406,13 @@ button:hover {
 
 .order-number {
     font-weight: 800;
+
     color: #111827;
 }
 
 .order-date {
     color: #64748b;
+
     font-size: 13px;
 }
 
@@ -446,21 +460,25 @@ button:hover {
 
 .status-daordinare {
     background: #fef3c7;
+
     color: #92400e;
 }
 
 .status-ordinato {
     background: #dbeafe;
+
     color: #1d4ed8;
 }
 
 .status-ritirare {
     background: #ffedd5;
+
     color: #c2410c;
 }
 
 .status-consegnato {
     background: #dcfce7;
+
     color: #166534;
 }
 
@@ -501,7 +519,9 @@ button:hover {
 
 .detail-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     gap: 20px;
@@ -538,7 +558,7 @@ button:hover {
 }
 
 /* =========================================================
-   DETAIL ARTICLES TABLE
+   DETAIL TABLE
 ========================================================= */
 
 .detail-table {
@@ -579,7 +599,8 @@ button:hover {
 .detail-summary {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 15px;
 
@@ -681,7 +702,8 @@ button:hover {
 .form-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 15px;
 }
@@ -805,6 +827,15 @@ select:focus {
    RESPONSIVE
 ========================================================= */
 
+@media(max-width: 1100px) {
+
+    .people-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
 @media(max-width: 950px) {
 
     .people-grid {
@@ -820,12 +851,14 @@ select:focus {
     }
 
     .article-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .detail-summary {
         grid-template-columns: 1fr;
     }
+
 }
 
 @media(max-width: 700px) {
@@ -866,6 +899,7 @@ select:focus {
 
     .order-arrow {
         grid-column: 2;
+
         grid-row: 1 / 5;
     }
 
@@ -891,6 +925,7 @@ select:focus {
     .article-grid {
         grid-template-columns: 1fr;
     }
+
 }
 
 </style>
@@ -964,7 +999,6 @@ select:focus {
 
         <div class="person-card">
 
-
             <div class="person-header">
 
                 <div class="person-name">
@@ -980,9 +1014,7 @@ select:focus {
 
             <div class="stats">
 
-
                 <div class="stat">
-
                     <div class="stat-label">
                         Ordini totali
                     </div>
@@ -990,16 +1022,12 @@ select:focus {
                     <div
                         id="robyOrders"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Da ordinare
                     </div>
@@ -1007,16 +1035,12 @@ select:focus {
                     <div
                         id="robyDaOrdinare"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Ordinati
                     </div>
@@ -1024,16 +1048,12 @@ select:focus {
                     <div
                         id="robyOrdinati"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Da ritirare
                     </div>
@@ -1041,16 +1061,12 @@ select:focus {
                     <div
                         id="robyRitirare"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Consegnati
                     </div>
@@ -1058,16 +1074,12 @@ select:focus {
                     <div
                         id="robyConsegnati"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Totale
                     </div>
@@ -1075,13 +1087,9 @@ select:focus {
                     <div
                         id="robyTotale"
                         class="stat-value">
-
                         €0,00
-
                     </div>
-
                 </div>
-
 
             </div>
 
@@ -1098,7 +1106,6 @@ select:focus {
 
             </div>
 
-
         </div>
 
 
@@ -1107,7 +1114,6 @@ select:focus {
         ================================================== -->
 
         <div class="person-card">
-
 
             <div class="person-header">
 
@@ -1124,9 +1130,7 @@ select:focus {
 
             <div class="stats">
 
-
                 <div class="stat">
-
                     <div class="stat-label">
                         Ordini totali
                     </div>
@@ -1134,16 +1138,12 @@ select:focus {
                     <div
                         id="fedeOrders"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Da ordinare
                     </div>
@@ -1151,16 +1151,12 @@ select:focus {
                     <div
                         id="fedeDaOrdinare"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Ordinati
                     </div>
@@ -1168,16 +1164,12 @@ select:focus {
                     <div
                         id="fedeOrdinati"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Da ritirare
                     </div>
@@ -1185,16 +1177,12 @@ select:focus {
                     <div
                         id="fedeRitirare"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Consegnati
                     </div>
@@ -1202,16 +1190,12 @@ select:focus {
                     <div
                         id="fedeConsegnati"
                         class="stat-value">
-
                         0
-
                     </div>
-
                 </div>
 
 
                 <div class="stat">
-
                     <div class="stat-label">
                         Totale
                     </div>
@@ -1219,13 +1203,9 @@ select:focus {
                     <div
                         id="fedeTotale"
                         class="stat-value">
-
                         €0,00
-
                     </div>
-
                 </div>
-
 
             </div>
 
@@ -1242,6 +1222,121 @@ select:focus {
 
             </div>
 
+        </div>
+
+
+        <!-- =================================================
+             GIO
+        ================================================== -->
+
+        <div class="person-card">
+
+            <div class="person-header">
+
+                <div class="person-name">
+                    GIO
+                </div>
+
+                <div class="person-icon">
+                    G
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordini totali
+                    </div>
+
+                    <div
+                        id="gioOrders"
+                        class="stat-value">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ordinare
+                    </div>
+
+                    <div
+                        id="gioDaOrdinare"
+                        class="stat-value">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Ordinati
+                    </div>
+
+                    <div
+                        id="gioOrdinati"
+                        class="stat-value">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Da ritirare
+                    </div>
+
+                    <div
+                        id="gioRitirare"
+                        class="stat-value">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Consegnati
+                    </div>
+
+                    <div
+                        id="gioConsegnati"
+                        class="stat-value">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Totale
+                    </div>
+
+                    <div
+                        id="gioTotale"
+                        class="stat-value">
+                        €0,00
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="person-buttons">
+
+                <button
+                    class="btn-orange"
+                    onclick="openPerson('Gio')">
+
+                    Apri ordini Gio →
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -1261,7 +1356,6 @@ select:focus {
 
 
         <div class="general-grid">
-
 
             <div class="general-item">
 
@@ -1301,14 +1395,12 @@ select:focus {
 
             </div>
 
-
         </div>
 
     </div>
 
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1331,7 +1423,6 @@ select:focus {
 
     <div class="section-header">
 
-
         <div>
 
             <h1 id="personTitle">
@@ -1353,7 +1444,6 @@ select:focus {
 
         </button>
 
-
     </div>
 
 
@@ -1362,7 +1452,7 @@ select:focus {
         <input
             id="searchInput"
             type="text"
-            placeholder="Cerca numero ordine o articolo..."
+            placeholder="Cerca numero ordine o codice articolo..."
             oninput="renderPersonOrders()">
 
     </div>
@@ -1370,9 +1460,7 @@ select:focus {
 
     <div id="personOrders"></div>
 
-
 </section>
-
 
 
 <!-- =========================================================
@@ -1395,12 +1483,10 @@ select:focus {
 
     <div id="orderDetail"></div>
 
-
 </section>
 
 
 </main>
-
 
 
 <!-- =========================================================
@@ -1450,6 +1536,10 @@ select:focus {
 
                     <option value="Fede">
                         Fede
+                    </option>
+
+                    <option value="Gio">
+                        Gio
                     </option>
 
                 </select>
@@ -1502,7 +1592,9 @@ select:focus {
         </div>
 
 
-        <!-- ARTICOLI -->
+        <!-- =================================================
+             ARTICOLI
+        ================================================== -->
 
         <div class="articles-header">
 
@@ -1563,7 +1655,6 @@ select:focus {
     </div>
 
 </div>
-
 
 
 <script>
@@ -1800,13 +1891,13 @@ function addArticle(article = null) {
             <div>
 
                 <label>
-                    Articolo
+                    Codice articolo
                 </label>
 
                 <input
                     type="text"
                     class="article-name"
-                    placeholder="Nome articolo"
+                    placeholder="Inserisci codice articolo"
                     value="${article ? escapeHTML(article.name) : ""}">
 
             </div>
@@ -1950,7 +2041,6 @@ function calculateOrderTotal() {
 
     rows.forEach(row => {
 
-
         const qty =
             parseFloat(
                 row.querySelector(
@@ -2007,7 +2097,6 @@ function calculateOrderTotal() {
         ).value =
         euro(totalLine);
 
-
     });
 
 
@@ -2024,7 +2113,6 @@ function calculateOrderTotal() {
 ========================================================= */
 
 function saveOrder() {
-
 
     const person =
         document
@@ -2054,7 +2142,6 @@ function saveOrder() {
 
 
     rows.forEach(row => {
-
 
         const name =
             row.querySelector(
@@ -2127,7 +2214,7 @@ function saveOrder() {
     if (articles.length === 0) {
 
         alert(
-            "Inserisci almeno un articolo."
+            "Inserisci almeno un codice articolo."
         );
 
         return;
@@ -2138,7 +2225,6 @@ function saveOrder() {
     /* MODIFICA */
 
     if (editingOrderId) {
-
 
         const order =
             orders.find(
@@ -2164,13 +2250,12 @@ function saveOrder() {
 
         }
 
-
     }
+
 
     /* NUOVO */
 
     else {
-
 
         const newOrder = {
 
@@ -2204,9 +2289,7 @@ function saveOrder() {
 
     saveData();
 
-
     closeModal();
-
 
     updateDashboard();
 
@@ -2240,7 +2323,6 @@ function generateOrderNumber() {
 
     orders.forEach(order => {
 
-
         const match =
             order.number.match(
                 /KTM-(\d+)/
@@ -2270,11 +2352,10 @@ function generateOrderNumber() {
 
 
 /* =========================================================
-   LISTA COMPATTA ORDINI
+   LISTA ORDINI
 ========================================================= */
 
 function renderPersonOrders() {
-
 
     const container =
         document.getElementById(
@@ -2309,11 +2390,9 @@ function renderPersonOrders() {
 
     if (search) {
 
-
         filtered =
             filtered.filter(
                 order => {
-
 
                     const articleText =
                         order.articles
@@ -2350,7 +2429,6 @@ function renderPersonOrders() {
 
     if (filtered.length === 0) {
 
-
         container.innerHTML = `
 
             <div class="empty">
@@ -2360,7 +2438,7 @@ function renderPersonOrders() {
                 </h3>
 
                 <p>
-                    Non ci sono ancora ordini per ${currentPerson}.
+                    Non ci sono ancora ordini per ${escapeHTML(currentPerson)}.
                 </p>
 
             </div>
@@ -2377,7 +2455,6 @@ function renderPersonOrders() {
 
         <div class="order-list">
 
-
             <div class="order-list-header">
 
                 <div>
@@ -2389,7 +2466,7 @@ function renderPersonOrders() {
                 </div>
 
                 <div>
-                    Articoli
+                    Codici articolo
                 </div>
 
                 <div>
@@ -2406,7 +2483,6 @@ function renderPersonOrders() {
 
 
     filtered.forEach(order => {
-
 
         const total =
             calculateOrderValue(
@@ -2431,10 +2507,9 @@ function renderPersonOrders() {
                 class="order-row"
                 onclick="showOrderDetail(${order.id})">
 
-
                 <div class="order-number">
 
-                    ${order.number}
+                    ${escapeHTML(order.number)}
 
                 </div>
 
@@ -2471,7 +2546,6 @@ function renderPersonOrders() {
 
                 </div>
 
-
             </div>
 
         `;
@@ -2497,7 +2571,6 @@ function renderPersonOrders() {
 ========================================================= */
 
 function showOrderDetail(id) {
-
 
     const order =
         orders.find(
@@ -2543,7 +2616,6 @@ function showOrderDetail(id) {
 
 function renderOrderDetail(order) {
 
-
     const container =
         document.getElementById(
             "orderDetail"
@@ -2573,7 +2645,6 @@ function renderOrderDetail(order) {
     order.articles.forEach(
         article => {
 
-
             const net =
                 article.price *
                 (
@@ -2592,18 +2663,15 @@ function renderOrderDetail(order) {
 
                 <tr>
 
-
                     <td>
                         ${escapeHTML(
                             article.name
                         )}
                     </td>
 
-
                     <td>
                         ${article.qty}
                     </td>
-
 
                     <td>
                         ${euro(
@@ -2611,11 +2679,9 @@ function renderOrderDetail(order) {
                         )}
                     </td>
 
-
                     <td>
                         ${article.discount}%
                     </td>
-
 
                     <td>
                         ${euro(
@@ -2623,13 +2689,11 @@ function renderOrderDetail(order) {
                         )}
                     </td>
 
-
                     <td>
                         ${euro(
                             lineTotal
                         )}
                     </td>
-
 
                 </tr>
 
@@ -2651,7 +2715,7 @@ function renderOrderDetail(order) {
 
                     <div class="detail-number">
 
-                        ${order.number}
+                        ${escapeHTML(order.number)}
 
                     </div>
 
@@ -2660,7 +2724,7 @@ function renderOrderDetail(order) {
 
                         ${formatDate(order.date)}
                         ·
-                        ${order.person}
+                        ${escapeHTML(order.person)}
 
                     </div>
 
@@ -2706,7 +2770,7 @@ function renderOrderDetail(order) {
                             <tr>
 
                                 <th>
-                                    Articolo
+                                    Codice articolo
                                 </th>
 
                                 <th>
@@ -2840,7 +2904,6 @@ function renderOrderDetail(order) {
 
 function editOrder(id) {
 
-
     const order =
         orders.find(
             o =>
@@ -2920,7 +2983,6 @@ function editOrder(id) {
 
 function changeStatus(id) {
 
-
     const order =
         orders.find(
             o =>
@@ -2970,7 +3032,6 @@ function changeStatus(id) {
 
     saveData();
 
-
     updateDashboard();
 
 
@@ -2995,7 +3056,6 @@ function changeStatus(id) {
 ========================================================= */
 
 function deleteOrder(id) {
-
 
     const order =
         orders.find(
@@ -3028,7 +3088,6 @@ function deleteOrder(id) {
 
 
     saveData();
-
 
     updateDashboard();
 
@@ -3063,7 +3122,6 @@ function deleteOrder(id) {
 ========================================================= */
 
 function getStatusLabel(status) {
-
 
     if (
         status ===
@@ -3128,14 +3186,12 @@ function getStatusClass(status) {
 
 function calculateOrderValue(order) {
 
-
     return order.articles.reduce(
 
         (
             total,
             article
         ) => {
-
 
             const net =
                 article.price *
@@ -3167,14 +3223,12 @@ function calculateOrderValue(order) {
 
 function calculateListino(order) {
 
-
     return order.articles.reduce(
 
         (
             total,
             article
         ) => {
-
 
             return total +
                 (
@@ -3196,7 +3250,6 @@ function calculateListino(order) {
 ========================================================= */
 
 function formatDate(date) {
-
 
     if (!date)
         return "";
@@ -3223,7 +3276,6 @@ function formatDate(date) {
 
 function updateDashboard() {
 
-
     updatePersonStats(
         "Roby",
         "roby"
@@ -3233,6 +3285,12 @@ function updateDashboard() {
     updatePersonStats(
         "Fede",
         "fede"
+    );
+
+
+    updatePersonStats(
+        "Gio",
+        "gio"
     );
 
 
@@ -3246,7 +3304,6 @@ function updateDashboard() {
 
     orders.forEach(
         order => {
-
 
             totalListino +=
                 calculateListino(
@@ -3301,7 +3358,6 @@ function updatePersonStats(
     person,
     prefix
 ) {
-
 
     const personOrders =
         orders.filter(
@@ -3403,7 +3459,6 @@ function updatePersonStats(
 
 function escapeHTML(text) {
 
-
     const div =
         document.createElement(
             "div"
@@ -3430,7 +3485,6 @@ document
     .addEventListener(
         "click",
         function(event) {
-
 
             if (
                 event.target ===
