@@ -689,10 +689,6 @@ button{
 
 <body>
 
-<!-- =====================================================
-LOGIN
-===================================================== -->
-
 <div id="loginPage">
 
     <div class="login-box">
@@ -739,10 +735,6 @@ LOGIN
 </div>
 
 
-<!-- =====================================================
-CODICE
-===================================================== -->
-
 <div id="codePage">
 
     <div class="code-box">
@@ -787,10 +779,6 @@ CODICE
 </div>
 
 
-<!-- =====================================================
-CAMBIO CODICE
-===================================================== -->
-
 <div id="changeCodePage">
 
     <div class="change-box">
@@ -800,9 +788,7 @@ CAMBIO CODICE
             KTM <span>ORDINI</span>
         </div>
 
-        <div style="text-align:center;
-                    color:#777;
-                    margin-top:5px;">
+        <div style="text-align:center;color:#777;margin-top:5px;">
             Primo accesso
         </div>
 
@@ -842,10 +828,6 @@ CAMBIO CODICE
 
 </div>
 
-
-<!-- =====================================================
-APP
-===================================================== -->
 
 <div id="appPage">
 
@@ -996,10 +978,6 @@ APP
 </div>
 
 
-<!-- =====================================================
-MODAL ORDINE
-===================================================== -->
-
 <div id="orderModal"
      class="modal">
 
@@ -1126,10 +1104,6 @@ MODAL ORDINE
 </div>
 
 
-<!-- =====================================================
-MODAL DETTAGLIO
-===================================================== -->
-
 <div id="detailModal"
      class="modal">
 
@@ -1141,10 +1115,6 @@ MODAL DETTAGLIO
 
 </div>
 
-
-<!-- =====================================================
-FIREBASE
-===================================================== -->
 
 <script type="module">
 
@@ -1210,8 +1180,137 @@ const messaging =
     getMessaging(app);
 
 
+/* =====================================================
+VAPID
+===================================================== */
+
 const VAPID_KEY =
-    "BM8lpUTpngWInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+"BM8lpUTpngWInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+
+
+/*
+    Questa funzione non cambia la tua chiave.
+
+    Controlla che sia una vera chiave
+    pubblica EC P-256 da 65 byte e la
+    normalizza nel formato Base64URL.
+*/
+
+function normalizeVapidKey(key){
+
+    if(typeof key !== "string"){
+
+        throw new Error(
+            "La VAPID_KEY non è una stringa."
+        );
+
+    }
+
+
+    const clean =
+        key.trim();
+
+
+    if(!clean){
+
+        throw new Error(
+            "La VAPID_KEY è vuota."
+        );
+
+    }
+
+
+    /*
+        Base64URL → Base64
+    */
+
+    const base64 =
+        clean
+        .replace(/-/g, "+")
+        .replace(/_/g, "/")
+        .padEnd(
+            Math.ceil(clean.length / 4) * 4,
+            "="
+        );
+
+
+    let binary;
+
+
+    try{
+
+        binary =
+            atob(base64);
+
+    }catch(error){
+
+        throw new Error(
+            "La VAPID_KEY non è una Base64URL valida."
+        );
+
+    }
+
+
+    /*
+        Una public key P-256 non compressa
+        deve essere esattamente 65 byte
+        e iniziare con 0x04.
+    */
+
+    if(
+        binary.length !== 65 ||
+        binary.charCodeAt(0) !== 4
+    ){
+
+        throw new Error(
+            "La VAPID_KEY non è una public key P-256 valida. " +
+            "Lunghezza ricevuta: " +
+            binary.length +
+            " byte."
+        );
+
+    }
+
+
+    /*
+        Ricreiamo la Base64URL in forma canonica.
+    */
+
+    return btoa(binary)
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/g, "");
+
+}
+
+
+let NORMALIZED_VAPID_KEY = null;
+
+
+try{
+
+    NORMALIZED_VAPID_KEY =
+        normalizeVapidKey(
+            VAPID_KEY
+        );
+
+    console.log(
+        "VAPID verificata correttamente."
+    );
+
+    console.log(
+        "Lunghezza VAPID:",
+        NORMALIZED_VAPID_KEY.length
+    );
+
+}catch(error){
+
+    console.error(
+        "ERRORE VAPID:",
+        error
+    );
+
+}
 
 
 /* =====================================================
@@ -1545,7 +1644,7 @@ window.logout = function(){
 
 
 /* =====================================================
-FIRESTORE - ASCOLTO ORDINI
+FIRESTORE
 ===================================================== */
 
 function listenOrders(){
@@ -1840,9 +1939,7 @@ window.closeModal = function(){
 ARTICOLI
 ===================================================== */
 
-window.addArticle = function(
-    article=null
-){
+window.addArticle = function(article=null){
 
     const container =
         document.getElementById(
@@ -1969,14 +2066,11 @@ window.addArticle = function(
                 class="remove"
                 type="button"
                 onclick="
-                    this.closest('.article-row')
-                    .remove();
+                    this.closest('.article-row').remove();
                     calculateOrderTotal();
                 "
             >
-
                 ×
-
             </button>
 
         </div>
@@ -1993,11 +2087,10 @@ window.addArticle = function(
 
 
 /* =====================================================
-CALCOLO TOTALE
+CALCOLO
 ===================================================== */
 
-window.calculateOrderTotal =
-function(){
+window.calculateOrderTotal = function(){
 
     let total = 0;
 
@@ -2055,8 +2148,7 @@ function(){
 SALVA ORDINE
 ===================================================== */
 
-window.saveOrder =
-async function(){
+window.saveOrder = async function(){
 
     const person =
         document.getElementById(
@@ -2120,11 +2212,8 @@ async function(){
                 articles.push({
 
                     code:code,
-
                     qty:qty,
-
                     price:price,
-
                     discount:discount
 
                 });
@@ -2185,13 +2274,9 @@ async function(){
                 {
 
                     person:person,
-
                     date:date,
-
                     status:status,
-
                     articles:articles,
-
                     updatedAt:Date.now()
 
                 }
@@ -2230,17 +2315,11 @@ async function(){
                 {
 
                     number:number,
-
                     person:person,
-
                     date:date,
-
                     status:status,
-
                     articles:articles,
-
                     createdAt:Date.now(),
-
                     createdBy:loggedUser
 
                 }
@@ -2410,25 +2489,11 @@ function showOrder(order){
 
                         <tr>
 
-                            <th>
-                                Codice articolo
-                            </th>
-
-                            <th>
-                                Q.tà
-                            </th>
-
-                            <th>
-                                Prezzo
-                            </th>
-
-                            <th>
-                                Sconto
-                            </th>
-
-                            <th>
-                                Totale
-                            </th>
+                            <th>Codice articolo</th>
+                            <th>Q.tà</th>
+                            <th>Prezzo</th>
+                            <th>Sconto</th>
+                            <th>Totale</th>
 
                         </tr>
 
@@ -2453,9 +2518,7 @@ function showOrder(order){
                         editOrder('${order.id}')
                     "
                 >
-
                     MODIFICA
-
                 </button>
 
 
@@ -2465,9 +2528,7 @@ function showOrder(order){
                         deleteOrder('${order.id}')
                     "
                 >
-
                     ELIMINA
-
                 </button>
 
 
@@ -2477,9 +2538,7 @@ function showOrder(order){
                         closeDetail()
                     "
                 >
-
                     CHIUDI
-
                 </button>
 
             </div>
@@ -2497,8 +2556,7 @@ function showOrder(order){
 }
 
 
-window.closeDetail =
-function(){
+window.closeDetail = function(){
 
     document.getElementById(
         "detailModal"
@@ -2512,8 +2570,7 @@ function(){
 MODIFICA
 ===================================================== */
 
-window.editOrder =
-async function(id){
+window.editOrder = async function(id){
 
     try{
 
@@ -2537,7 +2594,6 @@ async function(id){
                     order = {
 
                         id:d.id,
-
                         ...d.data()
 
                     };
@@ -2642,8 +2698,7 @@ async function(id){
 ELIMINA
 ===================================================== */
 
-window.deleteOrder =
-async function(id){
+window.deleteOrder = async function(id){
 
     if(
         !confirm(
@@ -2678,7 +2733,6 @@ async function(id){
                     order = {
 
                         id:d.id,
-
                         ...d.data()
 
                     };
@@ -2841,26 +2895,11 @@ function escapeHtml(value){
     return String(
         value || ""
     )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
@@ -2876,8 +2915,7 @@ function escapeAttr(value){
 ORDINI
 ===================================================== */
 
-window.loadOrders =
-function(){
+window.loadOrders = function(){
 
     listenOrders();
 
@@ -3041,7 +3079,7 @@ REGISTRAZIONE NOTIFICHE
 async function registerNotifications(){
 
     console.log(
-        "Registrazione Service Worker..."
+        "=== AVVIO REGISTRAZIONE NOTIFICHE ==="
     );
 
 
@@ -3058,15 +3096,43 @@ async function registerNotifications(){
     }
 
 
+    /*
+        Controlliamo prima la VAPID.
+    */
+
+    if(!NORMALIZED_VAPID_KEY){
+
+        alert(
+            "La chiave VAPID non è valida.\n\n" +
+            "Controlla la console del browser."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "VAPID valida e normalizzata."
+    );
+
+
+    /*
+        Registriamo il Service Worker.
+    */
+
     const registration =
         await navigator.serviceWorker.register(
-            "./firebase-messaging-sw.js"
+            "./firebase-messaging-sw.js",
+            {
+                scope:"./"
+            }
         );
 
 
     console.log(
         "Service Worker registrato:",
-        registration
+        registration.scope
     );
 
 
@@ -3078,15 +3144,67 @@ async function registerNotifications(){
     );
 
 
-    const token =
-    await getToken(
-        messaging,
-        {
-            vapidKey: VAPID_KEY,
-            serviceWorkerRegistration:
-                registration
-        }
+    /*
+        Controlliamo che il Service Worker
+        abbia effettivamente preso il controllo.
+    */
+
+    console.log(
+        "Controller:",
+        navigator.serviceWorker.controller
     );
+
+
+    /*
+        Richiediamo il token FCM.
+    */
+
+    let token;
+
+
+    try{
+
+        token =
+            await getToken(
+                messaging,
+                {
+                    vapidKey:
+                        NORMALIZED_VAPID_KEY,
+
+                    serviceWorkerRegistration:
+                        registration
+                }
+            );
+
+    }catch(error){
+
+        console.error(
+            "ERRORE getToken():",
+            error
+        );
+
+
+        console.error(
+            "VAPID originale:",
+            VAPID_KEY
+        );
+
+
+        console.error(
+            "VAPID normalizzata:",
+            NORMALIZED_VAPID_KEY
+        );
+
+
+        alert(
+            "Firebase ha rifiutato la chiave VAPID.\n\n" +
+            error.message
+        );
+
+
+        return;
+
+    }
 
 
     if(!token){
@@ -3136,6 +3254,11 @@ async function registerNotifications(){
     }
 
 
+    /*
+        Messaggi ricevuti mentre la pagina
+        è aperta.
+    */
+
     if(!notificationListenerActive){
 
         onMessage(
@@ -3168,12 +3291,8 @@ async function registerNotifications(){
                         title,
 
                         {
-
                             body:body,
-
-                            icon:
-                                "./icon-192.png"
-
+                            icon:"./icon-192.png"
                         }
 
                     );
@@ -3191,7 +3310,15 @@ async function registerNotifications(){
 
 
     console.log(
-        "NOTIFICHE GIO CONFIGURATE CORRETTAMENTE."
+        "================================"
+    );
+
+    console.log(
+        "NOTIFICHE GIO CONFIGURATE CORRETTAMENTE"
+    );
+
+    console.log(
+        "================================"
     );
 
 }
