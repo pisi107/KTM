@@ -3,462 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>KTM ORDINI</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f4f6;
+    color:#171717;
+    min-height:100vh;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f3f4f6;
-    color: #171717;
-    min-height: 100vh;
+button{
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+    font-weight:800;
+}
+
+.hidden{
+    display:none!important;
 }
 
 /* =========================
    LOGIN
 ========================= */
 
-#loginPage {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background:
-        radial-gradient(circle at top, #333 0%, #111 45%, #050505 100%);
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(145deg,#050505,#222,#050505);
 }
 
-.login-box {
-    width: 100%;
-    max-width: 430px;
-    background: white;
-    border-radius: 24px;
-    padding: 35px 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-    text-align: center;
+.login-box,
+.code-box,
+.change-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:24px;
+    padding:32px 25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+    text-align:center;
 }
 
-.logo {
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+.logo{
+    font-size:34px;
+    font-weight:900;
 }
 
-.logo span {
-    color: #ff6600;
+.logo span{
+    color:#ff6600;
 }
 
-.login-subtitle {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 35px;
+.subtitle{
+    color:#777;
+    margin-top:5px;
+    margin-bottom:30px;
 }
 
-.login-title {
-    font-size: 22px;
-    margin-bottom: 20px;
+.login-title{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:20px;
 }
 
-.user-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.user-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-.user-button {
-    width: 100%;
-    padding: 17px;
-    border: 2px solid #e5e5e5;
-    background: white;
-    border-radius: 13px;
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s;
+.user-button{
+    width:100%;
+    padding:17px;
+    background:#fff;
+    border:2px solid #e5e7eb;
+    font-size:17px;
+    transition:.2s;
 }
 
-.user-button:hover {
-    border-color: #ff6600;
-    background: #fff7f1;
-    transform: translateY(-1px);
+.user-button:hover{
+    border-color:#ff6600;
+    background:#fff7f0;
 }
 
-.user-button.admin {
-    border-color: #ff6600;
+.user-icon{
+    display:inline-flex;
+    width:36px;
+    height:36px;
+    align-items:center;
+    justify-content:center;
+    background:#ff6600;
+    color:white;
+    border-radius:50%;
+    margin-right:10px;
 }
 
-.user-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    background: #ff6600;
-    color: white;
-    border-radius: 50%;
-    margin-right: 10px;
+.admin-user{
+    border-color:#ff6600;
 }
 
 /* =========================
    CODICE
 ========================= */
 
-#codePage {
-    display: none;
+#codePage{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(145deg,#050505,#222,#050505);
 }
 
-.code-box {
-    width: 100%;
-    max-width: 430px;
-    background: white;
-    border-radius: 24px;
-    padding: 35px 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-    text-align: center;
+.selected-user{
+    width:75px;
+    height:75px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ff6600;
+    color:#fff;
+    font-size:28px;
+    font-weight:900;
 }
 
-.selected-user {
-    width: 75px;
-    height: 75px;
-    background: #ff6600;
-    color: white;
-    border-radius: 50%;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 27px;
-    font-weight: 900;
+.code-title{
+    font-size:25px;
+    font-weight:900;
 }
 
-.code-title {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 8px;
+.code-subtitle{
+    color:#777;
+    margin:7px 0 25px;
 }
 
-.code-subtitle {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 25px;
+.code-input{
+    width:100%;
+    padding:16px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    text-align:center;
+    font-size:23px;
+    letter-spacing:7px;
+    outline:none;
 }
 
-.code-input {
-    width: 100%;
-    padding: 17px;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    font-size: 25px;
-    text-align: center;
-    letter-spacing: 8px;
-    outline: none;
+.code-input:focus{
+    border-color:#ff6600;
 }
 
-.code-input:focus {
-    border-color: #ff6600;
+.orange-button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    background:#ff6600;
+    color:white;
+    font-size:16px;
 }
 
-.main-button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 16px;
-    border: none;
-    border-radius: 12px;
-    background: #ff6600;
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
-    cursor: pointer;
+.gray-button{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    background:#e5e7eb;
+    color:#222;
 }
 
-.main-button:hover {
-    background: #e85b00;
-}
-
-.back-button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 13px;
-    border: none;
-    border-radius: 12px;
-    background: #eee;
-    color: #333;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.error-message {
-    display: none;
-    background: #fee2e2;
-    color: #b91c1c;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: 700;
+.error{
+    display:none;
+    margin-top:14px;
+    padding:11px;
+    border-radius:9px;
+    background:#fee2e2;
+    color:#b91c1c;
+    font-size:13px;
+    font-weight:800;
 }
 
 /* =========================
    CAMBIO CODICE
 ========================= */
 
-#changeCodePage {
-    display: none;
+#changeCodePage{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(145deg,#050505,#222,#050505);
 }
 
-.change-box {
-    width: 100%;
-    max-width: 430px;
-    background: white;
-    border-radius: 24px;
-    padding: 35px 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+.warning{
+    background:#fff7ed;
+    color:#9a3412;
+    padding:15px;
+    border-radius:12px;
+    margin:20px 0;
+    line-height:1.5;
 }
 
-.warning {
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    color: #9a3412;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 25px;
-    font-size: 14px;
-    line-height: 1.5;
+.form-group{
+    text-align:left;
+    margin-bottom:15px;
 }
 
-.form-group {
-    margin-bottom: 17px;
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:800;
+    font-size:13px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 800;
-    font-size: 14px;
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 17px;
-    outline: none;
-}
-
-.form-group input:focus {
-    border-color: #ff6600;
-}
-
-.change-error {
-    display: none;
-    color: #b91c1c;
-    background: #fee2e2;
-    border-radius: 10px;
-    padding: 11px;
-    margin-bottom: 15px;
-    font-size: 13px;
-    font-weight: 700;
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#ff6600;
 }
 
 /* =========================
    APP
 ========================= */
 
-#appPage {
-    display: none;
-    min-height: 100vh;
+#appPage{
+    display:none;
+    min-height:100vh;
 }
 
-.topbar {
-    height: 75px;
-    background: #111827;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+.topbar{
+    background:#111827;
+    color:white;
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 25px;
 }
 
-.topbar-logo {
-    font-size: 23px;
-    font-weight: 900;
+.top-logo{
+    font-size:24px;
+    font-weight:900;
 }
 
-.topbar-logo span {
-    color: #ff6600;
+.top-logo span{
+    color:#ff6600;
 }
 
-.topbar-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.topbar-user-name {
-    font-weight: 800;
+.logout{
+    padding:10px 14px;
+    background:#374151;
+    color:#fff;
 }
 
-.logout-button {
-    background: #374151;
-    color: white;
-    border: none;
-    border-radius: 9px;
-    padding: 10px 14px;
-    font-weight: 700;
-    cursor: pointer;
+.app-content{
+    max-width:1400px;
+    margin:auto;
+    padding:30px;
 }
 
-.logout-button:hover {
-    background: #4b5563;
+.welcome{
+    margin-bottom:25px;
 }
 
-.app-content {
-    max-width: 1300px;
-    margin: auto;
-    padding: 30px;
+.welcome h1{
+    font-size:30px;
+    margin-bottom:6px;
 }
 
-.welcome {
-    margin-bottom: 25px;
+.welcome p{
+    color:#6b7280;
 }
 
-.welcome h1 {
-    font-size: 30px;
-    margin-bottom: 7px;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:25px;
 }
 
-.welcome p {
-    color: #6b7280;
+.card{
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.card-icon{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:#fff1e8;
+    color:#ff6600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:15px;
 }
 
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+.card h2{
+    margin-bottom:8px;
 }
 
-.card-icon {
-    width: 48px;
-    height: 48px;
-    background: #fff1e8;
-    color: #ff6600;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
-    margin-bottom: 15px;
+.card p{
+    color:#6b7280;
+    line-height:1.5;
+    font-size:14px;
 }
 
-.card h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
-}
-
-.card p {
-    color: #6b7280;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.card-button {
-    margin-top: 18px;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 9px;
-    background: #ff6600;
-    color: white;
-    font-weight: 800;
-    cursor: pointer;
+.card button{
+    margin-top:18px;
+    padding:12px 15px;
+    background:#ff6600;
+    color:#fff;
 }
 
 /* =========================
    ORDINI
 ========================= */
 
-.orders-section {
-    margin-top: 25px;
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+.orders-panel{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.orders-section h2 {
-    margin-bottom: 15px;
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
 }
 
-.empty-orders {
-    padding: 30px;
-    text-align: center;
-    color: #777;
-    background: #f8fafc;
-    border-radius: 12px;
+.panel-header h2{
+    font-size:23px;
+}
+
+.new-order{
+    padding:12px 16px;
+    background:#ff6600;
+    color:#fff;
+}
+
+.orders-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.order{
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:17px;
+    cursor:pointer;
+}
+
+.order:hover{
+    background:#fff8f3;
+}
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.order-number{
+    font-size:18px;
+    font-weight:900;
+}
+
+.order-info{
+    color:#64748b;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.order-codes{
+    margin-top:12px;
+    color:#374151;
+    font-size:14px;
+}
+
+.status{
+    display:inline-block;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.daordinare{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.ordinato{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.ritirare{
+    background:#ffedd5;
+    color:#c2410c;
+}
+
+.consegnato{
+    background:#dcfce7;
+    color:#166534;
 }
 
 /* =========================
-   ADMIN
+   MODAL
 ========================= */
 
-.admin-badge {
-    display: inline-block;
-    background: #fff1e8;
-    color: #c2410c;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 900;
-    margin-left: 5px;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:1000;
+    overflow:auto;
+    padding:25px 15px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    background:none;
+    font-size:28px;
+    color:#666;
+}
+
+.article-row{
+    background:#f8fafc;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+}
+
+.article-grid{
+    display:grid;
+    grid-template-columns:2fr .7fr 1fr .8fr auto;
+    gap:10px;
+    align-items:end;
+}
+
+.article-grid input{
+    width:100%;
+    padding:11px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+}
+
+.remove{
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:11px;
+}
+
+.add-article{
+    background:#111827;
+    color:#fff;
+    padding:11px 14px;
+    margin-bottom:15px;
+}
+
+.total{
+    margin-top:20px;
+    background:#111827;
+    color:#fff;
+    padding:18px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.total strong{
+    font-size:22px;
+}
+
+.modal-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:20px;
+}
+
+.modal-footer button{
+    padding:12px 16px;
+}
+
+.cancel{
+    background:#e5e7eb;
+}
+
+.save{
+    background:#ff6600;
+    color:#fff;
+}
+
+/* =========================
+   DETTAGLIO
+========================= */
+
+.detail{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+}
+
+.detail-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e5e7eb;
+    padding-bottom:20px;
+}
+
+.detail-number{
+    font-size:28px;
+    font-weight:900;
+}
+
+.detail-date{
+    color:#64748b;
+    margin-top:5px;
+}
+
+.detail-total{
+    font-size:28px;
+    font-weight:900;
+}
+
+.detail-table-wrap{
+    overflow-x:auto;
+    margin-top:20px;
+}
+
+.detail-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.detail-table th{
+    text-align:left;
+    background:#f8fafc;
+    color:#64748b;
+    font-size:12px;
+    padding:12px;
+}
+
+.detail-table td{
+    padding:13px 12px;
+    border-top:1px solid #e5e7eb;
+}
+
+.detail-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.detail-actions button{
+    padding:12px 15px;
+}
+
+.delete{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.edit{
+    background:#111827;
+    color:#fff;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 800px) {
+@media(max-width:900px){
 
-    .cards {
-        grid-template-columns: 1fr;
+    .cards{
+        grid-template-columns:1fr;
     }
 
-    .app-content {
-        padding: 20px;
-    }
-
-    .topbar {
-        padding: 0 15px;
-    }
-
-    .topbar-user-name {
-        display: none;
+    .article-grid{
+        grid-template-columns:1fr 1fr;
     }
 
 }
 
+@media(max-width:600px){
+
+    .app-content{
+        padding:18px;
+    }
+
+    .topbar{
+        padding:12px 15px;
+    }
+
+    .top-user{
+        display:none;
+    }
+
+    .panel-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .detail-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .article-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 </head>
 
 <body>
 
 <!-- =====================================================
-     PAGINA LOGIN
+LOGIN
 ===================================================== -->
 
 <div id="loginPage">
@@ -469,7 +681,7 @@ body {
             KTM <span>ORDINI</span>
         </div>
 
-        <div class="login-subtitle">
+        <div class="subtitle">
             Accesso privato
         </div>
 
@@ -479,34 +691,25 @@ body {
 
         <div class="user-buttons">
 
-            <button
-                class="user-button"
-                onclick="selectUser('Roby')">
-
+            <button class="user-button"
+                    onclick="selectUser('Roby')">
                 <span class="user-icon">R</span>
                 ROBY
-
             </button>
 
-            <button
-                class="user-button"
-                onclick="selectUser('Fede')">
-
+            <button class="user-button"
+                    onclick="selectUser('Fede')">
                 <span class="user-icon">F</span>
                 FEDE
-
             </button>
 
-            <button
-                class="user-button admin"
-                onclick="selectUser('Gio')">
-
+            <button class="user-button admin-user"
+                    onclick="selectUser('Gio')">
                 <span class="user-icon">G</span>
                 GIO
-                <span style="font-size:11px;color:#ff6600;">
+                <small style="color:#ff6600;margin-left:5px;">
                     AMMINISTRATORE
-                </span>
-
+                </small>
             </button>
 
         </div>
@@ -517,50 +720,45 @@ body {
 
 
 <!-- =====================================================
-     PAGINA CODICE
+CODICE
 ===================================================== -->
 
 <div id="codePage">
 
     <div class="code-box">
 
-        <div id="selectedUserCircle"
+        <div id="userCircle"
              class="selected-user">
             G
         </div>
 
         <div class="code-title">
+            Inserisci il codice
+        </div>
+
+        <div id="codeSubtitle"
+             class="code-subtitle">
             Accesso
         </div>
 
-        <div class="code-subtitle"
-             id="selectedUserText">
-            Inserisci il tuo codice
-        </div>
+        <input id="loginCode"
+               class="code-input"
+               type="password"
+               inputmode="numeric"
+               placeholder="••••••">
 
-        <input
-            id="loginCode"
-            class="code-input"
-            type="password"
-            inputmode="numeric"
-            maxlength="20"
-            placeholder="••••••">
-
-        <button
-            class="main-button"
-            onclick="login()">
+        <button class="orange-button"
+                onclick="login()">
             ACCEDI
         </button>
 
-        <button
-            class="back-button"
-            onclick="backToUsers()">
+        <button class="gray-button"
+                onclick="backUsers()">
             ← Cambia utente
         </button>
 
-        <div
-            id="loginError"
-            class="error-message">
+        <div id="loginError"
+             class="error">
             Codice non corretto.
         </div>
 
@@ -570,76 +768,54 @@ body {
 
 
 <!-- =====================================================
-     PAGINA CAMBIO CODICE
+CAMBIO CODICE
 ===================================================== -->
 
 <div id="changeCodePage">
 
     <div class="change-box">
 
-        <div class="logo" style="text-align:center;">
+        <div class="logo"
+             style="text-align:center;">
             KTM <span>ORDINI</span>
         </div>
 
-        <div
-            style="text-align:center;margin-top:7px;margin-bottom:25px;color:#777;">
+        <div style="text-align:center;
+                    color:#777;
+                    margin-top:5px;">
             Primo accesso
         </div>
 
         <div class="warning">
-
-            🔐 <strong>Devi cambiare il codice.</strong>
-
+            <strong>Devi cambiare il codice.</strong>
             <br><br>
-
-            Il codice iniziale è stato utilizzato solo
-            per il primo accesso.
-
+            Il codice iniziale è <strong>123456</strong>.
             Scegli ora il tuo codice personale.
-
         </div>
 
         <div class="form-group">
-
-            <label>
-                Nuovo codice
-            </label>
-
-            <input
-                id="newCode"
-                type="password"
-                inputmode="numeric"
-                maxlength="20"
-                placeholder="Nuovo codice">
-
+            <label>Nuovo codice</label>
+            <input id="newCode"
+                   type="password"
+                   inputmode="numeric"
+                   placeholder="Nuovo codice">
         </div>
 
         <div class="form-group">
-
-            <label>
-                Conferma nuovo codice
-            </label>
-
-            <input
-                id="confirmCode"
-                type="password"
-                inputmode="numeric"
-                maxlength="20"
-                placeholder="Ripeti il codice">
-
+            <label>Conferma nuovo codice</label>
+            <input id="confirmCode"
+                   type="password"
+                   inputmode="numeric"
+                   placeholder="Ripeti il codice">
         </div>
 
-        <div
-            id="changeError"
-            class="change-error">
+        <div id="changeError"
+             class="error">
         </div>
 
-        <button
-            class="main-button"
-            onclick="changeCode()">
-
+        <button class="orange-button"
+                onclick="changeCode()">
             SALVA NUOVO CODICE
-
         </button>
 
     </div>
@@ -648,28 +824,26 @@ body {
 
 
 <!-- =====================================================
-     APP
+APP
 ===================================================== -->
 
 <div id="appPage">
 
     <div class="topbar">
 
-        <div class="topbar-logo">
+        <div class="top-logo">
             KTM <span>ORDINI</span>
         </div>
 
-        <div class="topbar-user">
+        <div class="top-right">
 
-            <div
-                id="loggedUserName"
-                class="topbar-user-name">
+            <strong id="loggedName"
+                    class="top-user">
                 GIO
-            </div>
+            </strong>
 
-            <button
-                class="logout-button"
-                onclick="logout()">
+            <button class="logout"
+                    onclick="logout()">
                 Esci
             </button>
 
@@ -695,8 +869,6 @@ body {
 
         <div class="cards">
 
-            <!-- NUOVO ORDINE -->
-
             <div class="card">
 
                 <div class="card-icon">
@@ -708,22 +880,16 @@ body {
                 </h2>
 
                 <p>
-                    Inserisci un nuovo ordine KTM
-                    utilizzando i codici articolo.
+                    Inserisci un nuovo ordine
+                    con i codici degli articoli.
                 </p>
 
-                <button
-                    class="card-button"
-                    onclick="newOrder()">
-
+                <button onclick="openNewOrder()">
                     NUOVO ORDINE
-
                 </button>
 
             </div>
 
-
-            <!-- ORDINI -->
 
             <div class="card">
 
@@ -732,31 +898,24 @@ body {
                 </div>
 
                 <h2>
-                    I miei ordini
+                    Ordini
                 </h2>
 
                 <p>
-                    Visualizza gli ordini già inseriti
-                    e il loro stato.
+                    Visualizza gli ordini disponibili
+                    nel tuo account.
                 </p>
 
-                <button
-                    class="card-button"
-                    onclick="showOrders()">
-
-                    VISUALIZZA ORDINI
-
+                <button onclick="loadOrders()">
+                    AGGIORNA ORDINI
                 </button>
 
             </div>
 
 
-            <!-- AMMINISTRATORE -->
-
-            <div
-                id="adminCard"
-                class="card"
-                style="display:none;">
+            <div id="adminCard"
+                 class="card"
+                 style="display:none;">
 
                 <div class="card-icon">
                     👑
@@ -764,22 +923,15 @@ body {
 
                 <h2>
                     Amministrazione
-                    <span class="admin-badge">
-                        ADMIN
-                    </span>
                 </h2>
 
                 <p>
-                    Visualizza e gestisci gli ordini
-                    di Roby, Fede e Gio.
+                    GIO può visualizzare tutti
+                    gli ordini di Roby e Fede.
                 </p>
 
-                <button
-                    class="card-button"
-                    onclick="showAllOrders()">
-
+                <button onclick="loadOrders()">
                     TUTTI GLI ORDINI
-
                 </button>
 
             </div>
@@ -787,22 +939,27 @@ body {
         </div>
 
 
-        <div class="orders-section">
+        <div class="orders-panel">
 
-            <h2>
-                Ultime attività
-            </h2>
+            <div class="panel-header">
 
-            <div
-                id="ordersContent"
-                class="empty-orders">
+                <h2 id="ordersTitle">
+                    Ordini
+                </h2>
 
-                Nessun ordine visualizzato.
+                <button class="new-order"
+                        onclick="openNewOrder()">
+                    + Nuovo ordine
+                </button>
 
-                <br><br>
+            </div>
 
-                Quando collegheremo Firebase,
-                qui compariranno gli ordini online.
+            <div id="ordersList"
+                 class="orders-list">
+
+                <div class="empty-orders">
+                    Caricamento ordini...
+                </div>
 
             </div>
 
@@ -813,236 +970,331 @@ body {
 </div>
 
 
-<script>
+<!-- =====================================================
+MODAL ORDINE
+===================================================== -->
+
+<div id="orderModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Nuovo ordine
+            </h2>
+
+            <button class="close"
+                    onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Cliente
+            </label>
+
+            <select id="orderPerson">
+
+                <option value="Roby">
+                    Roby
+                </option>
+
+                <option value="Fede">
+                    Fede
+                </option>
+
+                <option value="Gio">
+                    Gio
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Data ordine
+            </label>
+
+            <input id="orderDate"
+                   type="date">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Stato
+            </label>
+
+            <select id="orderStatus">
+
+                <option value="daordinare">
+                    Da ordinare
+                </option>
+
+                <option value="ordinato">
+                    Ordinato
+                </option>
+
+                <option value="ritirare">
+                    Da ritirare
+                </option>
+
+                <option value="consegnato">
+                    Consegnato
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button class="add-article"
+                onclick="addArticle()">
+            + Aggiungi articolo
+        </button>
+
+
+        <div id="articles"></div>
+
+
+        <div class="total">
+
+            <span>
+                Totale ordine
+            </span>
+
+            <strong id="orderTotal">
+                €0,00
+            </strong>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="cancel"
+                    onclick="closeModal()">
+                Annulla
+            </button>
+
+            <button class="save"
+                    onclick="saveOrder()">
+                SALVA ORDINE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+MODAL DETTAGLIO
+===================================================== -->
+
+<div id="detailModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <div id="detailContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc,
+    onSnapshot,
+    query,
+    orderBy
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 /* =====================================================
-   CONFIGURAZIONE UTENTI
+CONFIG FIREBASE
 ===================================================== */
 
-/*
-    Per tutti il codice iniziale è:
+const firebaseConfig = {
 
-    123456
+    apiKey:
+    "AIzaSyAnu-kly4oALndRaeCl2dvQjWefJSHWZvc",
 
-    Al primo accesso viene richiesto
-    di cambiarlo.
-*/
+    authDomain:
+    "ktm-ordini.firebaseapp.com",
+
+    projectId:
+    "ktm-ordini",
+
+    storageBucket:
+    "ktm-ordini.firebasestorage.app",
+
+    messagingSenderId:
+    "1031736748386",
+
+    appId:
+    "1:1031736748386:web:b1070dcf67563b84c4643b"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+VARIABILI
+===================================================== */
 
 const DEFAULT_CODE = "123456";
 
 const USERS = {
 
-    Roby: {
-        name: "Roby",
-        admin: false
+    Roby:{
+        name:"Roby",
+        admin:false
     },
 
-    Fede: {
-        name: "Fede",
-        admin: false
+    Fede:{
+        name:"Fede",
+        admin:false
     },
 
-    Gio: {
-        name: "Gio",
-        admin: true
+    Gio:{
+        name:"Gio",
+        admin:true
     }
 
 };
 
-
-/* =====================================================
-   STATO
-===================================================== */
-
 let selectedUser = null;
 let loggedUser = null;
+let editingOrderId = null;
+let unsubscribeOrders = null;
 
 
 /* =====================================================
-   AVVIO
+LOGIN
 ===================================================== */
 
-window.addEventListener("load", function() {
-
-    /*
-        Se l'utente era già entrato,
-        controlliamo se esiste una sessione.
-    */
-
-    const savedUser =
-        localStorage.getItem("ktm_logged_user");
-
-    if (savedUser && USERS[savedUser]) {
-
-        loggedUser = savedUser;
-
-        openApp();
-
-    } else {
-
-        showLogin();
-
-    }
-
-});
-
-
-/* =====================================================
-   SELEZIONE UTENTE
-===================================================== */
-
-function selectUser(user) {
+window.selectUser = function(user){
 
     selectedUser = user;
 
-    document.getElementById(
-        "selectedUserCircle"
-    ).textContent =
-        user.charAt(0).toUpperCase();
+    document.getElementById("userCircle")
+        .textContent =
+        user.charAt(0);
 
-    document.getElementById(
-        "selectedUserText"
-    ).textContent =
+    document.getElementById("codeSubtitle")
+        .textContent =
         "Inserisci il codice di " + user;
 
-    document.getElementById(
-        "loginCode"
-    ).value = "";
+    document.getElementById("loginCode")
+        .value = "";
 
-    document.getElementById(
-        "loginError"
-    ).style.display = "none";
+    document.getElementById("loginError")
+        .style.display = "none";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "codePage"
-    ).style.display = "flex";
+    document.getElementById("codePage")
+        .style.display = "flex";
 
-    document.getElementById(
-        "codePage"
-    ).style.minHeight = "100vh";
+    setTimeout(()=>{
+        document.getElementById("loginCode").focus();
+    },100);
 
-    document.getElementById(
-        "codePage"
-    ).style.justifyContent = "center";
-
-    document.getElementById(
-        "codePage"
-    ).style.alignItems = "center";
-
-    setTimeout(function() {
-
-        document.getElementById(
-            "loginCode"
-        ).focus();
-
-    }, 100);
-
-}
+};
 
 
-/* =====================================================
-   TORNA ALLA SCELTA UTENTE
-===================================================== */
-
-function backToUsers() {
+window.backUsers = function(){
 
     selectedUser = null;
 
-    document.getElementById(
-        "codePage"
-    ).style.display = "none";
+    document.getElementById("codePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
+    document.getElementById("loginPage")
+        .style.display = "flex";
 
-}
+};
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
+window.login = function(){
 
-function login() {
+    if(!selectedUser) return;
 
-    if (!selectedUser) {
-        return;
-    }
+    const entered =
+        document.getElementById("loginCode")
+        .value.trim();
 
-    const enteredCode =
-        document.getElementById(
-            "loginCode"
-        ).value.trim();
-
-    const savedCode =
+    const saved =
         localStorage.getItem(
             "ktm_code_" + selectedUser
         );
 
-    /*
-        Se non esiste ancora un codice personale,
-        quello iniziale è 123456.
-    */
-
     const realCode =
-        savedCode || DEFAULT_CODE;
+        saved || DEFAULT_CODE;
 
 
-    if (enteredCode !== realCode) {
+    if(entered !== realCode){
 
-        document.getElementById(
-            "loginError"
-        ).textContent =
+        const error =
+            document.getElementById("loginError");
+
+        error.textContent =
             "Codice non corretto.";
 
-        document.getElementById(
-            "loginError"
-        ).style.display = "block";
+        error.style.display = "block";
 
         return;
-
     }
 
 
-    /*
-        Se usa ancora 123456,
-        deve cambiare il codice.
-    */
+    if(!saved){
 
-    if (!savedCode) {
+        document.getElementById("codePage")
+            .style.display = "none";
 
-        document.getElementById(
-            "codePage"
-        ).style.display = "none";
-
-        document.getElementById(
-            "changeCodePage"
-        ).style.display = "flex";
-
-        document.getElementById(
-            "changeCodePage"
-        ).style.minHeight = "100vh";
-
-        document.getElementById(
-            "changeCodePage"
-        ).style.justifyContent = "center";
-
-        document.getElementById(
-            "changeCodePage"
-        ).style.alignItems = "center";
+        document.getElementById("changeCodePage")
+            .style.display = "flex";
 
         return;
-
     }
 
-
-    /*
-        Accesso normale
-    */
 
     loggedUser = selectedUser;
 
@@ -1053,92 +1305,61 @@ function login() {
 
     openApp();
 
-}
+};
 
 
-/* =====================================================
-   CAMBIO CODICE
-===================================================== */
-
-function changeCode() {
+window.changeCode = function(){
 
     const newCode =
-        document.getElementById(
-            "newCode"
-        ).value.trim();
+        document.getElementById("newCode")
+        .value.trim();
 
-    const confirmCode =
-        document.getElementById(
-            "confirmCode"
-        ).value.trim();
+    const confirm =
+        document.getElementById("confirmCode")
+        .value.trim();
 
     const error =
-        document.getElementById(
-            "changeError"
-        );
+        document.getElementById("changeError");
 
 
-    error.style.display = "none";
-
-
-    if (!newCode || !confirmCode) {
+    if(newCode.length < 4){
 
         error.textContent =
-            "Compila entrambi i campi.";
+            "Il codice deve avere almeno 4 caratteri.";
 
         error.style.display = "block";
 
         return;
-
     }
 
 
-    if (newCode.length < 4) {
+    if(newCode !== confirm){
 
         error.textContent =
-            "Il codice deve contenere almeno 4 caratteri.";
+            "I codici non coincidono.";
 
         error.style.display = "block";
 
         return;
-
     }
 
 
-    if (newCode !== confirmCode) {
+    if(newCode === DEFAULT_CODE){
 
         error.textContent =
-            "I due codici non coincidono.";
+            "Scegli un codice diverso da 123456.";
 
         error.style.display = "block";
 
         return;
-
     }
 
-
-    if (newCode === DEFAULT_CODE) {
-
-        error.textContent =
-            "Devi scegliere un codice diverso da 123456.";
-
-        error.style.display = "block";
-
-        return;
-
-    }
-
-
-    /*
-        Salviamo il nuovo codice.
-    */
 
     localStorage.setItem(
         "ktm_code_" + selectedUser,
         newCode
     );
 
-
     loggedUser = selectedUser;
 
     localStorage.setItem(
@@ -1146,173 +1367,576 @@ function changeCode() {
         loggedUser
     );
 
-
-    document.getElementById(
-        "newCode"
-    ).value = "";
-
-    document.getElementById(
-        "confirmCode"
-    ).value = "";
-
-
     openApp();
 
-}
+};
 
 
 /* =====================================================
-   APERTURA APP
+APP
 ===================================================== */
 
-function openApp() {
+function openApp(){
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "codePage"
-    ).style.display = "none";
+    document.getElementById("codePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "changeCodePage"
-    ).style.display = "none";
+    document.getElementById("changeCodePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "appPage"
-    ).style.display = "block";
+    document.getElementById("appPage")
+        .style.display = "block";
 
 
-    document.getElementById(
-        "loggedUserName"
-    ).textContent =
-        USERS[loggedUser].name.toUpperCase();
+    document.getElementById("loggedName")
+        .textContent =
+        loggedUser.toUpperCase();
 
 
-    document.getElementById(
-        "welcomeTitle"
-    ).textContent =
+    document.getElementById("welcomeTitle")
+        .textContent =
         "Benvenuto " +
-        USERS[loggedUser].name.toUpperCase();
+        loggedUser.toUpperCase();
 
 
-    if (USERS[loggedUser].admin) {
+    if(USERS[loggedUser].admin){
 
-        document.getElementById(
-            "welcomeText"
-        ).textContent =
+        document.getElementById("welcomeText")
+            .textContent =
             "Sei entrato come amministratore.";
 
-        document.getElementById(
-            "adminCard"
-        ).style.display = "block";
+        document.getElementById("adminCard")
+            .style.display = "block";
 
-    } else {
+        document.getElementById("ordersTitle")
+            .textContent =
+            "Tutti gli ordini";
 
-        document.getElementById(
-            "welcomeText"
-        ).textContent =
+    }else{
+
+        document.getElementById("welcomeText")
+            .textContent =
             "Gestisci i tuoi ordini KTM.";
 
-        document.getElementById(
-            "adminCard"
-        ).style.display = "none";
+        document.getElementById("adminCard")
+            .style.display = "none";
+
+        document.getElementById("ordersTitle")
+            .textContent =
+            "I miei ordini";
 
     }
 
+
+    listenOrders();
+
 }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+window.logout = function(){
 
-function logout() {
+    if(unsubscribeOrders){
+        unsubscribeOrders();
+        unsubscribeOrders = null;
+    }
+
+    loggedUser = null;
+    selectedUser = null;
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
 
-    loggedUser = null;
-    selectedUser = null;
+    document.getElementById("appPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "appPage"
-    ).style.display = "none";
+    document.getElementById("loginPage")
+        .style.display = "flex";
 
-    showLogin();
-
-}
+};
 
 
 /* =====================================================
-   MOSTRA LOGIN
+FIRESTORE - ASCOLTO ORDINI
 ===================================================== */
 
-function showLogin() {
+function listenOrders(){
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
+    if(unsubscribeOrders){
+        unsubscribeOrders();
+    }
 
-    document.getElementById(
-        "codePage"
-    ).style.display = "none";
+    const ordersRef =
+        collection(db,"ordini");
 
-    document.getElementById(
-        "changeCodePage"
-    ).style.display = "none";
-
-}
-
-
-/* =====================================================
-   FUNZIONI ORDINI
-===================================================== */
-
-function newOrder() {
-
-    alert(
-        "La schermata per creare l'ordine KTM verrà collegata qui.\n\n" +
-        "Potremo inserire:\n\n" +
-        "• Codice articolo\n" +
-        "• Quantità\n" +
-        "• Prezzo\n" +
-        "• Sconto\n\n" +
-        "e salvare tutto su Firebase."
-    );
-
-}
-
-
-function showOrders() {
-
-    const content =
-        document.getElementById(
-            "ordersContent"
+    const q =
+        query(
+            ordersRef,
+            orderBy("createdAt","desc")
         );
 
-    content.innerHTML =
-        "<strong>Ordini di " +
-        loggedUser.toUpperCase() +
-        "</strong>" +
-        "<br><br>" +
-        "Qui collegheremo Firestore.";
 
+    unsubscribeOrders =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                let orders = [];
+
+                snapshot.forEach(docSnap => {
+
+                    orders.push({
+                        id:docSnap.id,
+                        ...docSnap.data()
+                    });
+
+                });
+
+
+                if(!USERS[loggedUser].admin){
+
+                    orders =
+                        orders.filter(
+                            o =>
+                            o.person === loggedUser
+                        );
+
+                }
+
+
+                renderOrders(orders);
+
+            },
+
+            error => {
+
+                console.error(error);
+
+                document.getElementById(
+                    "ordersList"
+                ).innerHTML = `
+
+                    <div class="empty-orders">
+
+                        <strong>
+                        Errore collegamento Firebase
+                        </strong>
+
+                        <br><br>
+
+                        Controlla le Firestore Rules.
+
+                    </div>
+
+                `;
+
+            }
+
+        );
 
 }
 
 
-function showAllOrders() {
+/* =====================================================
+VISUALIZZA ORDINI
+===================================================== */
 
-    if (
-        !loggedUser ||
-        !USERS[loggedUser].admin
-    ) {
+function renderOrders(orders){
+
+    const list =
+        document.getElementById("ordersList");
+
+
+    if(!orders.length){
+
+        list.innerHTML = `
+
+            <div class="empty-orders">
+
+                Nessun ordine presente.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML = "";
+
+
+    orders.forEach(order => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "order";
+
+
+        const codes =
+            (order.articles || [])
+            .map(
+                a =>
+                `${a.qty} × ${escapeHtml(a.code)}`
+            )
+            .join(", ");
+
+
+        const total =
+            calculateTotal(order);
+
+
+        div.innerHTML = `
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+                        ${escapeHtml(order.number || "ORDINE")}
+                    </div>
+
+                    <div class="order-info">
+
+                        ${escapeHtml(order.person || "")}
+                        ·
+                        ${formatDate(order.date)}
+
+                    </div>
+
+                </div>
+
+                <span class="status ${order.status || "daordinare"}">
+
+                    ${statusLabel(order.status)}
+
+                </span>
+
+            </div>
+
+
+            <div class="order-codes">
+
+                ${codes || "Nessun articolo"}
+
+            </div>
+
+
+            <div style="
+                margin-top:10px;
+                font-weight:900;
+            ">
+
+                ${euro(total)}
+
+            </div>
+
+        `;
+
+
+        div.onclick =
+            () => showOrder(order);
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+NUOVO ORDINE
+===================================================== */
+
+window.openNewOrder = function(){
+
+    editingOrderId = null;
+
+    document.getElementById("modalTitle")
+        .textContent =
+        "Nuovo ordine";
+
+
+    document.getElementById("orderPerson")
+        .value =
+        loggedUser;
+
+
+    document.getElementById("orderPerson")
+        .disabled =
+        !USERS[loggedUser].admin;
+
+
+    document.getElementById("orderDate")
+        .value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document.getElementById("orderStatus")
+        .value =
+        "daordinare";
+
+
+    document.getElementById("articles")
+        .innerHTML = "";
+
+
+    addArticle();
+
+
+    document.getElementById("orderModal")
+        .style.display = "block";
+
+};
+
+
+window.closeModal = function(){
+
+    document.getElementById("orderModal")
+        .style.display = "none";
+
+};
+
+
+/* =====================================================
+ARTICOLI
+===================================================== */
+
+window.addArticle = function(article=null){
+
+    const container =
+        document.getElementById("articles");
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "article-row";
+
+
+    row.innerHTML = `
+
+        <div class="article-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Codice articolo
+                </label>
+
+                <input
+                    class="article-code"
+                    type="text"
+                    placeholder="Codice"
+                    value="${article ? escapeAttr(article.code) : ""}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Quantità
+                </label>
+
+                <input
+                    class="article-qty"
+                    type="number"
+                    min="1"
+                    value="${article ? article.qty : 1}"
+                    oninput="calculateOrderTotal()"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Prezzo €
+                </label>
+
+                <input
+                    class="article-price"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="${article ? article.price : ""}"
+                    oninput="calculateOrderTotal()"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sconto %
+                </label>
+
+                <input
+                    class="article-discount"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="${article ? article.discount : 25}"
+                    oninput="calculateOrderTotal()"
+                >
+
+            </div>
+
+
+            <button
+                class="remove"
+                type="button"
+                onclick="this.closest('.article-row').remove();calculateOrderTotal();">
+
+                ×
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(row);
+
+    calculateOrderTotal();
+
+};
+
+
+window.calculateOrderTotal = function(){
+
+    let total = 0;
+
+
+    document
+        .querySelectorAll(".article-row")
+        .forEach(row => {
+
+            const qty =
+                Number(
+                    row.querySelector(".article-qty").value
+                ) || 0;
+
+            const price =
+                Number(
+                    row.querySelector(".article-price").value
+                ) || 0;
+
+            const discount =
+                Number(
+                    row.querySelector(".article-discount").value
+                ) || 0;
+
+
+            total +=
+                qty *
+                price *
+                (1 - discount / 100);
+
+        });
+
+
+    document.getElementById("orderTotal")
+        .textContent =
+        euro(total);
+
+};
+
+
+/* =====================================================
+SALVA ORDINE SU FIRESTORE
+===================================================== */
+
+window.saveOrder = async function(){
+
+    const person =
+        document.getElementById("orderPerson")
+        .value;
+
+    const date =
+        document.getElementById("orderDate")
+        .value;
+
+    const status =
+        document.getElementById("orderStatus")
+        .value;
+
+
+    const articles = [];
+
+
+    document
+        .querySelectorAll(".article-row")
+        .forEach(row => {
+
+            const code =
+                row.querySelector(".article-code")
+                .value.trim();
+
+            const qty =
+                Number(
+                    row.querySelector(".article-qty")
+                    .value
+                ) || 0;
+
+            const price =
+                Number(
+                    row.querySelector(".article-price")
+                    .value
+                ) || 0;
+
+            const discount =
+                Number(
+                    row.querySelector(".article-discount")
+                    .value
+                ) || 0;
+
+
+            if(code){
+
+                articles.push({
+
+                    code:code,
+
+                    qty:qty,
+
+                    price:price,
+
+                    discount:discount
+
+                });
+
+            }
+
+        });
+
+
+    if(!date){
+
+        alert("Inserisci la data.");
+
+        return;
+
+    }
+
+
+    if(!articles.length){
 
         alert(
-            "Accesso riservato all'amministratore."
+            "Inserisci almeno un codice articolo."
         );
 
         return;
@@ -1320,14 +1944,676 @@ function showAllOrders() {
     }
 
 
-    document.getElementById(
-        "ordersContent"
-    ).innerHTML =
-        "<strong>Tutti gli ordini</strong>" +
-        "<br><br>" +
-        "GIO potrà vedere qui gli ordini di Roby, Fede e Gio.";
+    /*
+       ROBY e FEDE possono creare
+       solamente ordini per se stessi.
+    */
+
+    if(
+        !USERS[loggedUser].admin &&
+        person !== loggedUser
+    ){
+
+        alert(
+            "Non puoi creare un ordine per un altro utente."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        if(editingOrderId){
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "ordini",
+                    editingOrderId
+                ),
+
+                {
+
+                    person:person,
+
+                    date:date,
+
+                    status:status,
+
+                    articles:articles,
+
+                    updatedAt:Date.now()
+
+                }
+
+            );
+
+        }else{
+
+            const existing =
+                await getDocs(
+                    collection(db,"ordini")
+                );
+
+
+            const number =
+                "KTM-" +
+                String(existing.size + 1)
+                .padStart(4,"0");
+
+
+            await addDoc(
+
+                collection(db,"ordini"),
+
+                {
+
+                    number:number,
+
+                    person:person,
+
+                    date:date,
+
+                    status:status,
+
+                    articles:articles,
+
+                    createdAt:Date.now(),
+
+                    createdBy:loggedUser
+
+                }
+
+            );
+
+        }
+
+
+        closeModal();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Non è stato possibile salvare l'ordine.\n\n" +
+            "Controlla le Rules di Firestore."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+DETTAGLIO
+===================================================== */
+
+function showOrder(order){
+
+    const total =
+        calculateTotal(order);
+
+
+    let rows = "";
+
+
+    (order.articles || [])
+    .forEach(article => {
+
+        const net =
+            article.price *
+            (1 - article.discount / 100);
+
+
+        const line =
+            net *
+            article.qty;
+
+
+        rows += `
+
+            <tr>
+
+                <td>
+                    ${escapeHtml(article.code)}
+                </td>
+
+                <td>
+                    ${article.qty}
+                </td>
+
+                <td>
+                    ${euro(article.price)}
+                </td>
+
+                <td>
+                    ${article.discount}%
+                </td>
+
+                <td>
+                    ${euro(line)}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    document.getElementById("detailContent")
+        .innerHTML = `
+
+        <div class="detail">
+
+            <div class="detail-header">
+
+                <div>
+
+                    <div class="detail-number">
+
+                        ${escapeHtml(
+                            order.number || "ORDINE"
+                        )}
+
+                    </div>
+
+                    <div class="detail-date">
+
+                        ${escapeHtml(order.person || "")}
+                        ·
+                        ${formatDate(order.date)}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="status ${order.status}">
+
+                        ${statusLabel(order.status)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="detail-total">
+
+                    ${euro(total)}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-table-wrap">
+
+                <table class="detail-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Codice articolo
+                            </th>
+
+                            <th>
+                                Q.tà
+                            </th>
+
+                            <th>
+                                Prezzo
+                            </th>
+
+                            <th>
+                                Sconto
+                            </th>
+
+                            <th>
+                                Totale
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${rows}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="detail-actions">
+
+                <button
+                    class="edit"
+                    onclick="editOrder('${order.id}')">
+
+                    MODIFICA
+
+                </button>
+
+
+                <button
+                    class="delete"
+                    onclick="deleteOrder('${order.id}')">
+
+                    ELIMINA
+
+                </button>
+
+
+                <button
+                    class="cancel"
+                    onclick="closeDetail()">
+
+                    CHIUDI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById("detailModal")
+        .style.display = "block";
 
 }
+
+
+window.closeDetail = function(){
+
+    document.getElementById("detailModal")
+        .style.display = "none";
+
+};
+
+
+/* =====================================================
+MODIFICA
+===================================================== */
+
+window.editOrder = async function(id){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"ordini")
+            );
+
+
+        let order = null;
+
+        snapshot.forEach(
+            d => {
+
+                if(d.id === id){
+
+                    order = {
+                        id:d.id,
+                        ...d.data()
+                    };
+
+                }
+
+            }
+        );
+
+
+        if(!order) return;
+
+
+        if(
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ){
+
+            alert(
+                "Non puoi modificare questo ordine."
+            );
+
+            return;
+
+        }
+
+
+        editingOrderId = id;
+
+
+        document.getElementById("modalTitle")
+            .textContent =
+            "Modifica " + order.number;
+
+
+        document.getElementById("orderPerson")
+            .value =
+            order.person;
+
+
+        document.getElementById("orderPerson")
+            .disabled =
+            !USERS[loggedUser].admin;
+
+
+        document.getElementById("orderDate")
+            .value =
+            order.date;
+
+
+        document.getElementById("orderStatus")
+            .value =
+            order.status;
+
+
+        document.getElementById("articles")
+            .innerHTML = "";
+
+
+        (order.articles || [])
+        .forEach(
+            article =>
+            addArticle(article)
+        );
+
+
+        document.getElementById("detailModal")
+            .style.display = "none";
+
+
+        document.getElementById("orderModal")
+            .style.display = "block";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Errore nel caricamento dell'ordine."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+ELIMINA
+===================================================== */
+
+window.deleteOrder = async function(id){
+
+    if(
+        !confirm(
+            "Vuoi davvero eliminare questo ordine?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"ordini")
+            );
+
+
+        let order = null;
+
+        snapshot.forEach(
+            d => {
+
+                if(d.id === id){
+
+                    order = {
+                        id:d.id,
+                        ...d.data()
+                    };
+
+                }
+
+            }
+        );
+
+
+        if(!order) return;
+
+
+        if(
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ){
+
+            alert(
+                "Non puoi eliminare questo ordine."
+            );
+
+            return;
+
+        }
+
+
+        await deleteDoc(
+            doc(
+                db,
+                "ordini",
+                id
+            )
+        );
+
+
+        closeDetail();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Errore durante l'eliminazione."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+UTILITÀ
+===================================================== */
+
+function calculateTotal(order){
+
+    return (order.articles || [])
+        .reduce(
+
+            (total,a) => {
+
+                const price =
+                    Number(a.price) || 0;
+
+                const qty =
+                    Number(a.qty) || 0;
+
+                const discount =
+                    Number(a.discount) || 0;
+
+                return total +
+                    price *
+                    qty *
+                    (1 - discount / 100);
+
+            },
+
+            0
+
+        );
+
+}
+
+
+function euro(value){
+
+    return new Intl.NumberFormat(
+        "it-IT",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    ).format(value || 0);
+
+}
+
+
+function formatDate(date){
+
+    if(!date) return "";
+
+    const p =
+        date.split("-");
+
+    if(p.length !== 3)
+        return date;
+
+    return p[2] +
+        "/" +
+        p[1] +
+        "/" +
+        p[0];
+
+}
+
+
+function statusLabel(status){
+
+    switch(status){
+
+        case "daordinare":
+            return "Da ordinare";
+
+        case "ordinato":
+            return "Ordinato";
+
+        case "ritirare":
+            return "Da ritirare";
+
+        case "consegnato":
+            return "Consegnato";
+
+        default:
+            return status || "Da ordinare";
+
+    }
+
+}
+
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+    return escapeHtml(value);
+
+}
+
+
+/* =====================================================
+ORDINI
+===================================================== */
+
+window.loadOrders = function(){
+
+    listenOrders();
+
+};
+
+
+/* =====================================================
+AVVIO
+===================================================== */
+
+const savedUser =
+    localStorage.getItem(
+        "ktm_logged_user"
+    );
+
+
+if(savedUser && USERS[savedUser]){
+
+    loggedUser = savedUser;
+
+    openApp();
+
+}else{
+
+    document.getElementById("loginPage")
+        .style.display = "flex";
+
+}
+
+
+/* =====================================================
+CHIUSURA MODAL CLICCANDO FUORI
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function(event){
+
+        const orderModal =
+            document.getElementById("orderModal");
+
+        const detailModal =
+            document.getElementById("detailModal");
+
+
+        if(event.target === orderModal){
+
+            closeModal();
+
+        }
+
+
+        if(event.target === detailModal){
+
+            closeDetail();
+
+        }
+
+    }
+);
 
 </script>
 
