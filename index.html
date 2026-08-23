@@ -1138,7 +1138,12 @@ import {
     orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
+import {
+    getMessaging,
+    getToken,
+    onMessage
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
 
 /* =====================================================
 CONFIG FIREBASE
@@ -1172,8 +1177,9 @@ const app =
 
 const db =
     getFirestore(app);
+const messaging = getMessaging(app);
 
-
+const VAPID_KEY = "BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";    
 /* =====================================================
 VARIABILI
 ===================================================== */
@@ -2555,9 +2561,11 @@ ORDINI
 
 window.loadOrders = function(){
 
-    listenOrders();
+listenOrders();
 
-};
+if(loggedUser === "Gio"){
+    setupNotifications();
+}
 
 
 /* =====================================================
