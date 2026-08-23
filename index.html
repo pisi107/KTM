@@ -3295,71 +3295,94 @@ async function registerNotifications(){
        read/write sulla raccolta utenti.
     ================================================= */
 
-    try{
+    try {
 
-        await setDoc(
+    await setDoc(
 
-            doc(
-                db,
-                "utenti",
-                "Gio"
-            ),
+        doc(
+            db,
+            "utenti",
+            "Gio"
+        ),
 
-            {
+        {
+            notificationToken: token,
 
-                notificationToken:token,
+            notificationActive: true,
 
-                notificationActive:true,
+            notificationPlatform:
+                /iPhone|iPad|iPod/i.test(
+                    navigator.userAgent
+                )
+                ? "iOS"
+                : "browser",
 
-                notificationPlatform:
-                    /iPhone|iPad|iPod/i.test(
-                        navigator.userAgent
-                    )
-                    ?
-                    "iOS"
-                    :
-                    "browser",
+            notificationUserAgent:
+                navigator.userAgent,
 
-                notificationUserAgent:
-                    navigator.userAgent,
+            notificationUpdatedAt:
+                serverTimestamp()
+        },
 
-                notificationUpdatedAt:
-                    serverTimestamp()
+        {
+            merge: true
+        }
 
-            },
+    );
 
-            {
-                merge:true
-            }
+    console.log(
+        "================================"
+    );
 
-        );
+    console.log(
+        "TOKEN SALVATO CORRETTAMENTE"
+    );
 
+    console.log(
+        "Percorso: utenti/Gio"
+    );
 
-        console.log(
-            "TOKEN SALVATO IN FIRESTORE:"
-        );
+    console.log(
+        "Token:",
+        token
+    );
 
-        console.log(
-            "utenti/Gio"
-        );
+    console.log(
+        "================================"
+    );
 
+    alert(
+        "✅ NOTIFICHE ATTIVE!\n\n" +
+        "Il token è stato salvato correttamente.\n\n" +
+        "Firebase: utenti/Gio"
+    );
 
-    }catch(error){
+} catch (error) {
 
-        console.error(
-            "Errore salvataggio token Firestore:",
-            error
-        );
+    console.error(
+        "================================"
+    );
 
+    console.error(
+        "ERRORE SALVATAGGIO TOKEN"
+    );
 
-        alert(
-            "Il token è stato creato ma non è stato possibile salvarlo in Firebase.\n\n" +
-            error.message
-        );
+    console.error(
+        error
+    );
 
-        return;
+    console.error(
+        "================================"
+    );
 
-    }
+    alert(
+        "❌ ERRORE SALVATAGGIO TOKEN\n\n" +
+        error.message
+    );
+
+    return;
+
+}
 
 
     /* =========================
