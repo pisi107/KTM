@@ -3079,18 +3079,14 @@ async function registerNotifications(){
 
 
     const token =
-        await getToken(
-            messaging,
-            {
-
-                vapidKey:
-                    VAPID_KEY,
-
-                serviceWorkerRegistration:
-                    registration
-
-            }
-        );
+    await getToken(
+        messaging,
+        {
+            vapidKey: VAPID_KEY,
+            serviceWorkerRegistration:
+                registration
+        }
+    );
 
 
     if(!token){
