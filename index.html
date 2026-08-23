@@ -692,10 +692,6 @@ button{
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
-
 <div id="loginPage">
 
     <div class="login-box">
@@ -749,10 +745,6 @@ button{
 </div>
 
 
-<!-- =========================
-     CODICE
-========================= -->
-
 <div id="codePage">
 
     <div class="code-box">
@@ -796,10 +788,6 @@ button{
 
 </div>
 
-
-<!-- =========================
-     CAMBIO CODICE
-========================= -->
 
 <div id="changeCodePage">
 
@@ -866,10 +854,6 @@ button{
 
 </div>
 
-
-<!-- =========================
-     APP
-========================= -->
 
 <div id="appPage">
 
@@ -1026,10 +1010,6 @@ button{
 </div>
 
 
-<!-- =========================
-     NUOVO ORDINE
-========================= -->
-
 <div id="orderModal"
      class="modal">
 
@@ -1162,10 +1142,6 @@ button{
 </div>
 
 
-<!-- =========================
-     DETTAGLIO
-========================= -->
-
 <div id="detailModal"
      class="modal">
 
@@ -1192,7 +1168,6 @@ import {
     updateDoc,
     deleteDoc,
     setDoc,
-    getDoc,
     onSnapshot,
     query,
     orderBy,
@@ -1605,6 +1580,8 @@ function openApp(){
             "notificationButton"
         ).style.display =
             "inline-block";
+
+        updateNotificationButtonState();
 
     }else{
 
@@ -2348,11 +2325,6 @@ window.saveOrder = async function(){
 
             );
 
-            console.log(
-                "Nuovo ordine creato:",
-                number
-            );
-
         }
 
 
@@ -2366,7 +2338,7 @@ window.saveOrder = async function(){
 
         alert(
             "Non è stato possibile salvare l'ordine.\n\n" +
-            "Controlla le Rules di Firestore."
+            error.message
         );
 
     }
@@ -2965,6 +2937,9 @@ async function setupNotifications(){
     }
 
 
+    updateNotificationButtonState();
+
+
     try{
 
         const permission =
@@ -2979,7 +2954,17 @@ async function setupNotifications(){
 
         if(permission === "granted"){
 
-            await registerNotifications();
+            const savedToken =
+                localStorage.getItem(
+                    "ktm_gio_notification_token"
+                );
+
+
+            if(savedToken){
+
+                setNotificationButtonActive();
+
+            }
 
         }
 
@@ -2988,6 +2973,74 @@ async function setupNotifications(){
         console.error(
             "Errore setup notifiche:",
             error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   STATO PULSANTE NOTIFICHE
+===================================================== */
+
+function setNotificationButtonActive(){
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    if(!button){
+        return;
+    }
+
+
+    button.textContent =
+        "🔔 NOTIFICHE ATTIVE";
+
+    button.classList.add(
+        "notification-active"
+    );
+
+}
+
+
+function updateNotificationButtonState(){
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    if(!button){
+        return;
+    }
+
+
+    const savedToken =
+        localStorage.getItem(
+            "ktm_gio_notification_token"
+        );
+
+
+    if(
+        savedToken &&
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ){
+
+        setNotificationButtonActive();
+
+    }else{
+
+        button.textContent =
+            "🔔 ATTIVA NOTIFICHE";
+
+        button.classList.remove(
+            "notification-active"
         );
 
     }
@@ -3036,7 +3089,7 @@ async function(){
 
                 alert(
                     "Le notifiche sono state bloccate.\n\n" +
-                    "Abilitale dalle impostazioni dell'iPhone."
+                    "Abilita le notifiche dalle impostazioni del dispositivo."
                 );
 
             }
@@ -3228,9 +3281,19 @@ async function registerNotifications(){
     );
 
 
-    /* =========================
+    /* =================================================
        FIRESTORE
-    ========================= */
+       
+       IMPORTANTE:
+       NON salviamo più in notificationTokens.
+       
+       Salviamo invece in:
+       
+       utenti / Gio
+       
+       perché le tue Rules consentono già
+       read/write sulla raccolta utenti.
+    ================================================= */
 
     try{
 
@@ -3238,19 +3301,17 @@ async function registerNotifications(){
 
             doc(
                 db,
-                "notificationTokens",
-                token
+                "utenti",
+                "Gio"
             ),
 
             {
 
-                token:token,
+                notificationToken:token,
 
-                user:"Gio",
+                notificationActive:true,
 
-                active:true,
-
-                platform:
+                notificationPlatform:
                     /iPhone|iPad|iPod/i.test(
                         navigator.userAgent
                     )
@@ -3259,10 +3320,10 @@ async function registerNotifications(){
                     :
                     "browser",
 
-                userAgent:
+                notificationUserAgent:
                     navigator.userAgent,
 
-                updatedAt:
+                notificationUpdatedAt:
                     serverTimestamp()
 
             },
@@ -3275,7 +3336,11 @@ async function registerNotifications(){
 
 
         console.log(
-            "TOKEN SALVATO IN FIRESTORE."
+            "TOKEN SALVATO IN FIRESTORE:"
+        );
+
+        console.log(
+            "utenti/Gio"
         );
 
 
@@ -3301,26 +3366,11 @@ async function registerNotifications(){
        PULSANTE VERDE
     ========================= */
 
-    const button =
-        document.getElementById(
-            "notificationButton"
-        );
-
-
-    if(button){
-
-        button.textContent =
-            "🔔 NOTIFICHE ATTIVE";
-
-        button.classList.add(
-            "notification-active"
-        );
-
-    }
+    setNotificationButtonActive();
 
 
     /* =========================
-       NOTIFICHE IN FOREGROUND
+       NOTIFICHE FOREGROUND
     ========================= */
 
     if(!notificationListenerActive){
@@ -3381,7 +3431,7 @@ async function registerNotifications(){
     );
 
     console.log(
-        "TOKEN SALVATO IN FIRESTORE"
+        "TOKEN SALVATO IN UTENTI/GIO"
     );
 
     console.log(
