@@ -1261,7 +1261,9 @@ window.backUsers = function(){
 
 window.login = function(){
 
-    if(!selectedUser) return;
+    if(!selectedUser){
+        return;
+    }
 
     const entered =
         document.getElementById("loginCode")
@@ -1275,11 +1277,10 @@ window.login = function(){
     const realCode =
         saved || DEFAULT_CODE;
 
+    const error =
+        document.getElementById("loginError");
 
     if(entered !== realCode){
-
-        const error =
-            document.getElementById("loginError");
 
         error.textContent =
             "Codice non corretto.";
@@ -1289,6 +1290,13 @@ window.login = function(){
         return;
     }
 
+    error.style.display = "none";
+
+    /*
+       Se è il primo accesso,
+       obblighiamo l'utente a cambiare
+       il codice 123456.
+    */
 
     if(!saved){
 
@@ -1301,6 +1309,9 @@ window.login = function(){
         return;
     }
 
+    /*
+       Accesso normale
+    */
 
     loggedUser = selectedUser;
 
