@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KTM ORDINI</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -451,6 +453,12 @@ button{
     color:#166534;
 }
 
+.empty-orders{
+    padding:25px;
+    text-align:center;
+    color:#64748b;
+}
+
 /* =========================
    MODAL
 ========================= */
@@ -687,10 +695,15 @@ button{
         grid-template-columns:1fr;
     }
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="loginPage">
 
@@ -710,24 +723,30 @@ button{
 
         <div class="user-buttons">
 
-            <button class="user-button"
-                    onclick="selectUser('Roby')">
+            <button
+                type="button"
+                class="user-button"
+                onclick="selectUser('Roby')">
 
                 <span class="user-icon">R</span>
                 ROBY
 
             </button>
 
-            <button class="user-button"
-                    onclick="selectUser('Fede')">
+            <button
+                type="button"
+                class="user-button"
+                onclick="selectUser('Fede')">
 
                 <span class="user-icon">F</span>
                 FEDE
 
             </button>
 
-            <button class="user-button admin-user"
-                    onclick="selectUser('Gio')">
+            <button
+                type="button"
+                class="user-button admin-user"
+                onclick="selectUser('Gio')">
 
                 <span class="user-icon">G</span>
                 GIO
@@ -745,12 +764,15 @@ button{
 </div>
 
 
+<!-- =====================================================
+     CODICE
+===================================================== -->
+
 <div id="codePage">
 
     <div class="code-box">
 
-        <div id="userCircle"
-             class="selected-user">
+        <div id="userCircle" class="selected-user">
             G
         </div>
 
@@ -758,29 +780,36 @@ button{
             Inserisci il codice
         </div>
 
-        <div id="codeSubtitle"
-             class="code-subtitle">
+        <div id="codeSubtitle" class="code-subtitle">
             Accesso
         </div>
 
-        <input id="loginCode"
-               class="code-input"
-               type="password"
-               inputmode="numeric"
-               placeholder="••••••">
+        <input
+            id="loginCode"
+            class="code-input"
+            type="password"
+            inputmode="numeric"
+            placeholder="••••••">
 
-        <button class="orange-button"
-                onclick="login()">
+        <button
+            type="button"
+            class="orange-button"
+            onclick="login()">
+
             ACCEDI
+
         </button>
 
-        <button class="gray-button"
-                onclick="backUsers()">
+        <button
+            type="button"
+            class="gray-button"
+            onclick="backUsers()">
+
             ← Cambia utente
+
         </button>
 
-        <div id="loginError"
-             class="error">
+        <div id="loginError" class="error">
             Codice non corretto.
         </div>
 
@@ -789,12 +818,15 @@ button{
 </div>
 
 
+<!-- =====================================================
+     CAMBIO CODICE
+===================================================== -->
+
 <div id="changeCodePage">
 
     <div class="change-box">
 
-        <div class="logo"
-             style="text-align:center;">
+        <div class="logo" style="text-align:center;">
             KTM <span>ORDINI</span>
         </div>
 
@@ -821,10 +853,11 @@ button{
 
             <label>Nuovo codice</label>
 
-            <input id="newCode"
-                   type="password"
-                   inputmode="numeric"
-                   placeholder="Nuovo codice">
+            <input
+                id="newCode"
+                type="password"
+                inputmode="numeric"
+                placeholder="Nuovo codice">
 
         </div>
 
@@ -832,19 +865,20 @@ button{
 
             <label>Conferma nuovo codice</label>
 
-            <input id="confirmCode"
-                   type="password"
-                   inputmode="numeric"
-                   placeholder="Ripeti il codice">
+            <input
+                id="confirmCode"
+                type="password"
+                inputmode="numeric"
+                placeholder="Ripeti il codice">
 
         </div>
 
-        <div id="changeError"
-             class="error">
-        </div>
+        <div id="changeError" class="error"></div>
 
-        <button class="orange-button"
-                onclick="changeCode()">
+        <button
+            type="button"
+            class="orange-button"
+            onclick="changeCode()">
 
             SALVA NUOVO CODICE
 
@@ -854,6 +888,10 @@ button{
 
 </div>
 
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div id="appPage">
 
@@ -865,21 +903,24 @@ button{
 
         <div class="top-right">
 
-            <strong id="loggedName"
-                    class="top-user">
+            <strong id="loggedName" class="top-user">
                 GIO
             </strong>
 
-            <button id="notificationButton"
-                    class="notification-button"
-                    onclick="activateNotifications()">
+            <button
+                id="notificationButton"
+                type="button"
+                class="notification-button"
+                onclick="activateNotifications()">
 
                 🔔 ATTIVA NOTIFICHE
 
             </button>
 
-            <button class="logout"
-                    onclick="logout()">
+            <button
+                type="button"
+                class="logout"
+                onclick="logout()">
 
                 Esci
 
@@ -922,8 +963,12 @@ button{
                     con i codici degli articoli.
                 </p>
 
-                <button onclick="openNewOrder()">
+                <button
+                    type="button"
+                    onclick="openNewOrder()">
+
                     NUOVO ORDINE
+
                 </button>
 
             </div>
@@ -944,16 +989,21 @@ button{
                     nel tuo account.
                 </p>
 
-                <button onclick="loadOrders()">
+                <button
+                    type="button"
+                    onclick="loadOrders()">
+
                     AGGIORNA ORDINI
+
                 </button>
 
             </div>
 
 
-            <div id="adminCard"
-                 class="card"
-                 style="display:none;">
+            <div
+                id="adminCard"
+                class="card"
+                style="display:none;">
 
                 <div class="card-icon">
                     👑
@@ -968,8 +1018,12 @@ button{
                     gli ordini di Roby e Fede.
                 </p>
 
-                <button onclick="loadOrders()">
+                <button
+                    type="button"
+                    onclick="loadOrders()">
+
                     TUTTI GLI ORDINI
+
                 </button>
 
             </div>
@@ -985,8 +1039,10 @@ button{
                     Ordini
                 </h2>
 
-                <button class="new-order"
-                        onclick="openNewOrder()">
+                <button
+                    type="button"
+                    class="new-order"
+                    onclick="openNewOrder()">
 
                     + Nuovo ordine
 
@@ -994,8 +1050,9 @@ button{
 
             </div>
 
-            <div id="ordersList"
-                 class="orders-list">
+            <div
+                id="ordersList"
+                class="orders-list">
 
                 <div class="empty-orders">
                     Caricamento ordini...
@@ -1010,8 +1067,11 @@ button{
 </div>
 
 
-<div id="orderModal"
-     class="modal">
+<!-- =====================================================
+     MODALE ORDINE
+===================================================== -->
+
+<div id="orderModal" class="modal">
 
     <div class="modal-box">
 
@@ -1021,9 +1081,13 @@ button{
                 Nuovo ordine
             </h2>
 
-            <button class="close"
-                    onclick="closeModal()">
+            <button
+                type="button"
+                class="close"
+                onclick="closeModal()">
+
                 ×
+
             </button>
 
         </div>
@@ -1060,8 +1124,9 @@ button{
                 Data ordine
             </label>
 
-            <input id="orderDate"
-                   type="date">
+            <input
+                id="orderDate"
+                type="date">
 
         </div>
 
@@ -1095,8 +1160,10 @@ button{
         </div>
 
 
-        <button class="add-article"
-                onclick="addArticle()">
+        <button
+            type="button"
+            class="add-article"
+            onclick="addArticle()">
 
             + Aggiungi articolo
 
@@ -1121,15 +1188,19 @@ button{
 
         <div class="modal-footer">
 
-            <button class="cancel"
-                    onclick="closeModal()">
+            <button
+                type="button"
+                class="cancel"
+                onclick="closeModal()">
 
                 Annulla
 
             </button>
 
-            <button class="save"
-                    onclick="saveOrder()">
+            <button
+                type="button"
+                class="save"
+                onclick="saveOrder()">
 
                 SALVA ORDINE
 
@@ -1142,8 +1213,11 @@ button{
 </div>
 
 
-<div id="detailModal"
-     class="modal">
+<!-- =====================================================
+     DETTAGLIO ORDINE
+===================================================== -->
+
+<div id="detailModal" class="modal">
 
     <div class="modal-box">
 
@@ -1155,6 +1229,10 @@ button{
 
 
 <script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
@@ -1178,14 +1256,11 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import {
     getMessaging,
     getToken,
-    onMessage
+    onMessage,
+    isSupported
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
 
-
-/* =====================================================
-   FIREBASE
-===================================================== */
 
 const firebaseConfig = {
 
@@ -1216,8 +1291,45 @@ const app =
 const db =
     getFirestore(app);
 
-const messaging =
-    getMessaging(app);
+
+/* =====================================================
+   FIREBASE MESSAGING
+   NON DEVE BLOCCARE IL SITO
+===================================================== */
+
+let messaging = null;
+let messagingSupported = false;
+
+try{
+
+    messagingSupported =
+        await isSupported();
+
+    if(messagingSupported){
+
+        messaging =
+            getMessaging(app);
+
+        console.log(
+            "Firebase Messaging supportato."
+        );
+
+    }else{
+
+        console.warn(
+            "Firebase Messaging non supportato da questo browser."
+        );
+
+    }
+
+}catch(error){
+
+    console.warn(
+        "Firebase Messaging non disponibile:",
+        error
+    );
+
+}
 
 
 /* =====================================================
@@ -1273,10 +1385,7 @@ function normalizeVapidKey(key){
     ){
 
         throw new Error(
-            "La VAPID_KEY non è una public key P-256 valida. " +
-            "Lunghezza ricevuta: " +
-            binary.length +
-            " byte."
+            "La VAPID_KEY non è una public key P-256 valida."
         );
 
     }
@@ -1371,7 +1480,7 @@ window.selectUser = function(user){
     document.getElementById("codePage")
         .style.display = "flex";
 
-    setTimeout(()=>{
+    setTimeout(function(){
 
         document.getElementById("loginCode")
             .focus();
@@ -1465,7 +1574,7 @@ window.changeCode = function(){
         document.getElementById("newCode")
         .value.trim();
 
-    const confirm =
+    const confirmCode =
         document.getElementById("confirmCode")
         .value.trim();
 
@@ -1486,7 +1595,7 @@ window.changeCode = function(){
     }
 
 
-    if(newCode !== confirm){
+    if(newCode !== confirmCode){
 
         error.textContent =
             "I codici non coincidono.";
@@ -1563,6 +1672,12 @@ function openApp(){
         loggedUser.toUpperCase();
 
 
+    const notificationButton =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
     if(USERS[loggedUser].admin){
 
         document.getElementById("welcomeText")
@@ -1576,9 +1691,7 @@ function openApp(){
             .textContent =
             "Tutti gli ordini";
 
-        document.getElementById(
-            "notificationButton"
-        ).style.display =
+        notificationButton.style.display =
             "inline-block";
 
         updateNotificationButtonState();
@@ -1597,9 +1710,7 @@ function openApp(){
             .textContent =
             "I miei ordini";
 
-        document.getElementById(
-            "notificationButton"
-        ).style.display =
+        notificationButton.style.display =
             "none";
 
     }
@@ -1715,7 +1826,10 @@ function listenOrders(){
 
             error => {
 
-                console.error(error);
+                console.error(
+                    "Errore Firestore:",
+                    error
+                );
 
                 document.getElementById(
                     "ordersList"
@@ -1729,7 +1843,10 @@ function listenOrders(){
 
                         <br><br>
 
-                        Controlla le Firestore Rules.
+                        ${escapeHtml(
+                            error.message ||
+                            "Errore sconosciuto"
+                        )}
 
                     </div>
 
@@ -1784,7 +1901,7 @@ function renderOrders(orders){
             (order.articles || [])
             .map(
                 a =>
-                `${a.qty} × ${escapeHtml(a.code)}`
+                `${escapeHtml(a.qty)} × ${escapeHtml(a.code)}`
             )
             .join(", ");
 
@@ -1824,8 +1941,10 @@ function renderOrders(orders){
 
 
                 <span class="status ${
-                    order.status ||
-                    "daordinare"
+                    escapeAttr(
+                        order.status ||
+                        "daordinare"
+                    )
                 }">
 
                     ${statusLabel(
@@ -1859,8 +1978,14 @@ function renderOrders(orders){
         `;
 
 
-        div.onclick =
-            () => showOrder(order);
+        div.addEventListener(
+            "click",
+            function(){
+
+                showOrder(order);
+
+            }
+        );
 
 
         list.appendChild(div);
@@ -1875,6 +2000,15 @@ function renderOrders(orders){
 ===================================================== */
 
 window.openNewOrder = function(){
+
+    if(!loggedUser){
+
+        alert("Devi prima effettuare l'accesso.");
+
+        return;
+
+    }
+
 
     editingOrderId = null;
 
@@ -1944,9 +2078,7 @@ window.closeModal = function(){
 window.addArticle = function(article=null){
 
     const container =
-        document.getElementById(
-            "articles"
-        );
+        document.getElementById("articles");
 
 
     const row =
@@ -1977,8 +2109,7 @@ window.addArticle = function(article=null){
                         escapeAttr(article.code)
                         :
                         ""
-                    }"
-                >
+                    }">
 
             </div>
 
@@ -1996,14 +2127,10 @@ window.addArticle = function(article=null){
                     value="${
                         article
                         ?
-                        article.qty
+                        Number(article.qty) || 1
                         :
                         1
-                    }"
-                    oninput="
-                        calculateOrderTotal()
-                    "
-                >
+                    }">
 
             </div>
 
@@ -2022,14 +2149,10 @@ window.addArticle = function(article=null){
                     value="${
                         article
                         ?
-                        article.price
+                        Number(article.price) || 0
                         :
                         ""
-                    }"
-                    oninput="
-                        calculateOrderTotal()
-                    "
-                >
+                    }">
 
             </div>
 
@@ -2048,32 +2171,74 @@ window.addArticle = function(article=null){
                     value="${
                         article
                         ?
-                        article.discount
+                        Number(article.discount) || 0
                         :
                         25
-                    }"
-                    oninput="
-                        calculateOrderTotal()
-                    "
-                >
+                    }">
 
             </div>
 
 
             <button
-                class="remove"
                 type="button"
-                onclick="
-                    this.closest('.article-row').remove();
-                    calculateOrderTotal();
-                "
-            >
+                class="remove">
+
                 ×
+
             </button>
 
         </div>
 
     `;
+
+
+    const qty =
+        row.querySelector(
+            ".article-qty"
+        );
+
+    const price =
+        row.querySelector(
+            ".article-price"
+        );
+
+    const discount =
+        row.querySelector(
+            ".article-discount"
+        );
+
+    const remove =
+        row.querySelector(
+            ".remove"
+        );
+
+
+    qty.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+    price.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+    discount.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+
+    remove.addEventListener(
+        "click",
+        function(){
+
+            row.remove();
+
+            calculateOrderTotal();
+
+        }
+    );
 
 
     container.appendChild(row);
@@ -2205,8 +2370,11 @@ window.saveOrder = async function(){
                 articles.push({
 
                     code:code,
+
                     qty:qty,
+
                     price:price,
+
                     discount:discount
 
                 });
@@ -2267,9 +2435,13 @@ window.saveOrder = async function(){
                 {
 
                     person:person,
+
                     date:date,
+
                     status:status,
+
                     articles:articles,
+
                     updatedAt:Date.now()
 
                 }
@@ -2333,7 +2505,10 @@ window.saveOrder = async function(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Errore salvataggio ordine:",
+            error
+        );
 
 
         alert(
@@ -2362,17 +2537,27 @@ function showOrder(order){
     (order.articles || [])
     .forEach(article => {
 
+        const price =
+            Number(article.price) || 0;
+
+        const qty =
+            Number(article.qty) || 0;
+
+        const discount =
+            Number(article.discount) || 0;
+
+
         const net =
-            article.price *
+            price *
             (
                 1 -
-                article.discount / 100
+                discount / 100
             );
 
 
         const line =
             net *
-            article.qty;
+            qty;
 
 
         rows += `
@@ -2380,21 +2565,19 @@ function showOrder(order){
             <tr>
 
                 <td>
-                    ${escapeHtml(
-                        article.code
-                    )}
+                    ${escapeHtml(article.code)}
                 </td>
 
                 <td>
-                    ${article.qty}
+                    ${qty}
                 </td>
 
                 <td>
-                    ${euro(article.price)}
+                    ${euro(price)}
                 </td>
 
                 <td>
-                    ${article.discount}%
+                    ${discount}%
                 </td>
 
                 <td>
@@ -2436,9 +2619,7 @@ function showOrder(order){
 
                         ·
 
-                        ${formatDate(
-                            order.date
-                        )}
+                        ${formatDate(order.date)}
 
                     </div>
 
@@ -2449,7 +2630,10 @@ function showOrder(order){
 
                     <span class="
                         status
-                        ${order.status}
+                        ${escapeAttr(
+                            order.status ||
+                            "daordinare"
+                        )}
                     ">
 
                         ${statusLabel(
@@ -2502,32 +2686,32 @@ function showOrder(order){
             <div class="detail-actions">
 
                 <button
+                    type="button"
                     class="edit"
-                    onclick="
-                        editOrder('${order.id}')
-                    "
-                >
+                    id="editOrderButton">
+
                     MODIFICA
+
                 </button>
 
 
                 <button
+                    type="button"
                     class="delete"
-                    onclick="
-                        deleteOrder('${order.id}')
-                    "
-                >
+                    id="deleteOrderButton">
+
                     ELIMINA
+
                 </button>
 
 
                 <button
+                    type="button"
                     class="cancel"
-                    onclick="
-                        closeDetail()
-                    "
-                >
+                    onclick="closeDetail()">
+
                     CHIUDI
+
                 </button>
 
             </div>
@@ -2535,6 +2719,30 @@ function showOrder(order){
         </div>
 
     `;
+
+
+    document.getElementById(
+        "editOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
+
+            editOrder(order.id);
+
+        }
+    );
+
+
+    document.getElementById(
+        "deleteOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
+
+            deleteOrder(order.id);
+
+        }
+    );
 
 
     document.getElementById(
@@ -2563,6 +2771,14 @@ window.editOrder = async function(id){
 
     try{
 
+        const orderRef =
+            doc(
+                db,
+                "ordini",
+                id
+            );
+
+
         const snapshot =
             await getDocs(
                 collection(
@@ -2583,6 +2799,7 @@ window.editOrder = async function(id){
                     order = {
 
                         id:d.id,
+
                         ...d.data()
 
                     };
@@ -2593,8 +2810,15 @@ window.editOrder = async function(id){
         );
 
 
-        if(!order)
+        if(!order){
+
+            alert(
+                "Ordine non trovato."
+            );
+
             return;
+
+        }
 
 
         if(
@@ -2636,13 +2860,14 @@ window.editOrder = async function(id){
         document.getElementById(
             "orderDate"
         ).value =
-            order.date;
+            order.date || "";
 
 
         document.getElementById(
             "orderStatus"
         ).value =
-            order.status;
+            order.status ||
+            "daordinare";
 
 
         document.getElementById(
@@ -2669,13 +2894,19 @@ window.editOrder = async function(id){
             "block";
 
 
+        calculateOrderTotal();
+
+
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         alert(
-            "Errore nel caricamento dell'ordine."
+            "Errore nel caricamento dell'ordine.\n\n" +
+            error.message
         );
 
     }
@@ -2722,6 +2953,7 @@ window.deleteOrder = async function(id){
                     order = {
 
                         id:d.id,
+
                         ...d.data()
 
                     };
@@ -2766,11 +2998,14 @@ window.deleteOrder = async function(id){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         alert(
-            "Errore durante l'eliminazione."
+            "Errore durante l'eliminazione.\n\n" +
+            error.message
         );
 
     }
@@ -2825,7 +3060,7 @@ function euro(value){
             currency:"EUR"
         }
     ).format(
-        value || 0
+        Number(value) || 0
     );
 
 }
@@ -2838,7 +3073,7 @@ function formatDate(date){
 
 
     const p =
-        date.split("-");
+        String(date).split("-");
 
 
     if(p.length !== 3)
@@ -2881,7 +3116,7 @@ function statusLabel(status){
 
 function escapeHtml(value){
 
-    return String(value || "")
+    return String(value ?? "")
         .replaceAll("&","&amp;")
         .replaceAll("<","&lt;")
         .replaceAll(">","&gt;")
@@ -2904,13 +3139,13 @@ function escapeAttr(value){
 
 window.loadOrders = function(){
 
-    listenOrders();
+    if(!loggedUser){
 
-    if(loggedUser === "Gio"){
-
-        setupNotifications();
+        return;
 
     }
+
+    listenOrders();
 
 };
 
@@ -2929,7 +3164,7 @@ async function setupNotifications(){
     if(!("Notification" in window)){
 
         console.log(
-            "Notifiche non supportate."
+            "Notifiche browser non supportate."
         );
 
         return;
@@ -2942,17 +3177,10 @@ async function setupNotifications(){
 
     try{
 
-        const permission =
-            Notification.permission;
-
-
-        console.log(
-            "Stato notifiche:",
-            permission
-        );
-
-
-        if(permission === "granted"){
+        if(
+            Notification.permission ===
+            "granted"
+        ){
 
             const savedToken =
                 localStorage.getItem(
@@ -3071,6 +3299,18 @@ async function(){
     }
 
 
+    if(!messagingSupported || !messaging){
+
+        alert(
+            "Firebase Messaging non è supportato da questo browser.\n\n" +
+            "Il resto del sito continua comunque a funzionare."
+        );
+
+        return;
+
+    }
+
+
     try{
 
         const permission =
@@ -3139,9 +3379,7 @@ async function registerNotifications(){
     );
 
 
-    if(
-        !("serviceWorker" in navigator)
-    ){
+    if(!("serviceWorker" in navigator)){
 
         alert(
             "Il browser non supporta i Service Worker."
@@ -3152,11 +3390,21 @@ async function registerNotifications(){
     }
 
 
+    if(!messaging){
+
+        alert(
+            "Firebase Messaging non è disponibile."
+        );
+
+        return;
+
+    }
+
+
     if(!NORMALIZED_VAPID_KEY){
 
         alert(
-            "La chiave VAPID non è valida.\n\n" +
-            "Controlla la console."
+            "La chiave VAPID non è valida."
         );
 
         return;
@@ -3271,129 +3519,95 @@ async function registerNotifications(){
     );
 
 
-    /* =========================
-       LOCAL STORAGE
-    ========================= */
-
     localStorage.setItem(
         "ktm_gio_notification_token",
         token
     );
 
 
-    /* =================================================
-       FIRESTORE
-       
-       IMPORTANTE:
-       NON salviamo più in notificationTokens.
-       
-       Salviamo invece in:
-       
-       utenti / Gio
-       
-       perché le tue Rules consentono già
-       read/write sulla raccolta utenti.
-    ================================================= */
-
-    try {
-
-    await setDoc(
-
-        doc(
-            db,
-            "utenti",
-            "Gio"
-        ),
-
-        {
-            notificationToken: token,
-
-            notificationActive: true,
-
-            notificationPlatform:
-                /iPhone|iPad|iPod/i.test(
-                    navigator.userAgent
-                )
-                ? "iOS"
-                : "browser",
-
-            notificationUserAgent:
-                navigator.userAgent,
-
-            notificationUpdatedAt:
-                serverTimestamp()
-        },
-
-        {
-            merge: true
-        }
-
-    );
-
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "TOKEN SALVATO CORRETTAMENTE"
-    );
-
-    console.log(
-        "Percorso: utenti/Gio"
-    );
-
-    console.log(
-        "Token:",
-        token
-    );
-
-    console.log(
-        "================================"
-    );
-
-    alert(
-        "✅ NOTIFICHE ATTIVE!\n\n" +
-        "Il token è stato salvato correttamente.\n\n" +
-        "Firebase: utenti/Gio"
-    );
-
-} catch (error) {
-
-    console.error(
-        "================================"
-    );
-
-    console.error(
-        "ERRORE SALVATAGGIO TOKEN"
-    );
-
-    console.error(
-        error
-    );
-
-    console.error(
-        "================================"
-    );
-
-    alert(
-        "❌ ERRORE SALVATAGGIO TOKEN\n\n" +
-        error.message
-    );
-
-    return;
-
-}
-
-
     /* =========================
-       PULSANTE VERDE
+       FIRESTORE
     ========================= */
+
+    try{
+
+        await setDoc(
+
+            doc(
+                db,
+                "utenti",
+                "Gio"
+            ),
+
+            {
+
+                notificationToken:
+                    token,
+
+                notificationActive:
+                    true,
+
+                notificationPlatform:
+                    /iPhone|iPad|iPod/i.test(
+                        navigator.userAgent
+                    )
+                    ? "iOS"
+                    : "browser",
+
+                notificationUserAgent:
+                    navigator.userAgent,
+
+                notificationUpdatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        console.log(
+            "TOKEN SALVATO CORRETTAMENTE"
+        );
+
+        console.log(
+            "Percorso: utenti/Gio"
+        );
+
+
+        alert(
+            "✅ NOTIFICHE ATTIVE!\n\n" +
+            "Il token è stato salvato correttamente.\n\n" +
+            "Firebase: utenti/Gio"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "ERRORE SALVATAGGIO TOKEN:",
+            error
+        );
+
+
+        alert(
+            "❌ ERRORE SALVATAGGIO TOKEN\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
 
     setNotificationButtonActive();
 
 
     /* =========================
-       NOTIFICHE FOREGROUND
+       FOREGROUND
     ========================= */
 
     if(!notificationListenerActive){
@@ -3446,19 +3660,7 @@ async function registerNotifications(){
 
 
     console.log(
-        "================================"
-    );
-
-    console.log(
         "NOTIFICHE CONFIGURATE"
-    );
-
-    console.log(
-        "TOKEN SALVATO IN UTENTI/GIO"
-    );
-
-    console.log(
-        "================================"
     );
 
 }
@@ -3528,6 +3730,26 @@ window.addEventListener(
         ){
 
             closeDetail();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INVIO CON ENTER NEL LOGIN
+===================================================== */
+
+document.getElementById(
+    "loginCode"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            login();
 
         }
 
