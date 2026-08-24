@@ -2,7 +2,7 @@ name: KTM ORDINI - Notifiche
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "2-59/5 * * * *"
 
   workflow_dispatch:
 
@@ -28,4 +28,4 @@ jobs:
       - name: Check new orders
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: node send-notification.js
+        run: node send-notification.cjs
