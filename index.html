@@ -3137,15 +3137,46 @@ function escapeAttr(value){
    AGGIORNA ORDINI
 ===================================================== */
 
-window.loadOrders = function(){
+window.showAllOrders = function(){
 
-    if(!loggedUser){
+    console.log("TUTTI GLI ORDINI premuto");
 
+    if(loggedUser !== "Gio"){
+        alert("Questa funzione è disponibile solo per Gio.");
         return;
-
     }
 
+    document.getElementById("ordersTitle")
+        .textContent = "Tutti gli ordini";
+
+    document.getElementById("ordersList")
+        .innerHTML = `
+            <div class="empty-orders">
+                🔄 Caricamento di tutti gli ordini...
+            </div>
+        `;
+
     listenOrders();
+
+};
+    window.loadOrders = function(){
+
+    console.log("AGGIORNA ORDINI premuto");
+
+    const list =
+        document.getElementById("ordersList");
+
+    list.innerHTML = `
+        <div class="empty-orders">
+            🔄 Aggiornamento ordini...
+        </div>
+    `;
+
+    listenOrders();
+
+    if(loggedUser === "Gio"){
+        setupNotifications();
+    }
 
 };
 
