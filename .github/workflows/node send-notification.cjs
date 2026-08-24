@@ -49,4 +49,4 @@ jobs:
 
         run:
 
-          node send-notification.js
+          node send-notification.cjs
