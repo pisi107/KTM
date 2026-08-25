@@ -654,6 +654,17 @@ button{
     color:#dc2626;
 }
 
+.scale-actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.scale-actions button{
+    padding:8px 12px;
+    font-size:12px;
+}
+
 /* =========================
    MODAL
 ========================= */
@@ -2351,6 +2362,7 @@ const USERS = {
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
+let editingScaleId = null;
 
 let unsubscribeOrders = null;
 let unsubscribeJobs = null;
@@ -5058,6 +5070,15 @@ function renderScales(){
         const div = document.createElement("div");
         div.className = "scale-item";
 
+        const isAdmin = USERS[loggedUser].admin;
+
+        const actionsHtml = isAdmin ? `
+            <div class="scale-actions">
+                <button type="button" class="edit" onclick="editScale('${scale.id}')">Modifica</button>
+                <button type="button" class="delete" onclick="deleteScale('${scale.id}')">Elimina</button>
+            </div>
+        ` : '';
+
         div.innerHTML = `
             <div>
                 <div class="scale-name">
@@ -5070,8 +5091,11 @@ function renderScales(){
                     ${formatDate(scale.date)}
                 </div>
             </div>
-            <div class="scale-price">
-                - ${euro(scale.price)}
+            <div style="display:flex; align-items:center; gap:20px;">
+                <div class="scale-price">
+                    - ${euro(scale.price)}
+                </div>
+                ${actionsHtml}
             </div>
         `;
 
@@ -5087,6 +5111,8 @@ window.openScaleModal = function(){
         return;
     }
 
+    editingScaleId = null;
+    document.querySelector("#scaleModal h2").textContent = "💸 Scala soldi";
     document.getElementById("scalePerson").value = "Roby";
     document.getElementById("scaleDescription").value = "Scala soldi";
     document.getElementById("scalePrice").value = "";
@@ -5094,6 +5120,37 @@ window.openScaleModal = function(){
 
     document.getElementById("scaleModal").style.display = "block";
 
+};
+
+window.editScale = function(id){
+    if(loggedUser !== "Gio") return;
+
+    const scale = allScales.find(s => s.id === id);
+    if(!scale) return;
+
+    editingScaleId = id;
+    document.querySelector("#scaleModal h2").textContent = "Modifica importo scalato";
+    document.getElementById("scalePerson").value = scale.person;
+    document.getElementById("scaleDescription").value = scale.description || "";
+    document.getElementById("scalePrice").value = scale.price || "";
+    document.getElementById("scaleDate").value = scale.date || getToday();
+
+    document.getElementById("scaleModal").style.display = "block";
+};
+
+window.deleteScale = async function(id){
+    if(loggedUser !== "Gio") return;
+
+    if(!confirm("Vuoi davvero eliminare questo importo scalato?")){
+        return;
+    }
+
+    try{
+        await deleteDoc(doc(db, "scala_soldi", id));
+    }catch(error){
+        console.error(error);
+        alert("Errore durante l'eliminazione: " + error.message);
+    }
 };
 
 window.closeScaleModal = function(){
@@ -5126,33 +5183,35 @@ window.saveScaleMoney = async function(){
 
     try{
 
-        await addDoc(
-
-            collection(
-                db,
-                "scala_soldi"
-            ),
-
-            {
-
+        if(editingScaleId){
+            await updateDoc(doc(db, "scala_soldi", editingScaleId), {
                 person: person,
-
                 description: description,
-
                 price: price,
-
                 date: date,
-
-                createdAt: Date.now(),
-
-                createdBy: "Gio"
-
-            }
-
-        );
+                updatedAt: Date.now()
+            });
+            editingScaleId = null;
+            alert("Modifica salvata con successo!");
+        } else {
+            await addDoc(
+                collection(
+                    db,
+                    "scala_soldi"
+                ),
+                {
+                    person: person,
+                    description: description,
+                    price: price,
+                    date: date,
+                    createdAt: Date.now(),
+                    createdBy: "Gio"
+                }
+            );
+            alert("Importo scalato con successo!");
+        }
 
         closeScaleModal();
-        alert("Importo scalato con successo!");
 
     }catch(error){
 
