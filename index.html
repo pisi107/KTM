@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,19 +28,13 @@ button{
     font-weight:800;
 }
 
-input,
-select{
-    font-family:inherit;
-}
-
 .hidden{
     display:none!important;
 }
 
-
-/* =====================================================
+/* =========================
    LOGIN
-===================================================== */
+========================= */
 
 #loginPage{
     min-height:100vh;
@@ -121,10 +114,9 @@ select{
     border-color:#ff6600;
 }
 
-
-/* =====================================================
+/* =========================
    CODICE
-===================================================== */
+========================= */
 
 #codePage{
     display:none;
@@ -202,10 +194,9 @@ select{
     font-weight:800;
 }
 
-
-/* =====================================================
+/* =========================
    CAMBIO CODICE
-===================================================== */
+========================= */
 
 #changeCodePage{
     display:none;
@@ -252,10 +243,9 @@ select{
     border-color:#ff6600;
 }
 
-
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
 #appPage{
     display:none;
@@ -366,163 +356,71 @@ select{
     color:#fff;
 }
 
-
-/* =====================================================
+/* =========================
    CONTO
-===================================================== */
+========================= */
 
 .account-card{
     background:#111827;
-    color:#fff;
+    color:white;
     border-radius:18px;
     padding:25px;
     margin-bottom:25px;
     box-shadow:0 5px 20px rgba(0,0,0,.10);
 }
 
-.account-title{
-    color:#cbd5e1;
+.account-card h2{
     font-size:15px;
-    font-weight:800;
+    color:#9ca3af;
     text-transform:uppercase;
     margin-bottom:8px;
 }
 
 .account-total{
-    font-size:38px;
+    font-size:36px;
     font-weight:900;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
-.account-grid{
+.account-summary{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
 }
 
 .account-box{
-    background:rgba(255,255,255,.08);
-    border-radius:13px;
-    padding:16px;
+    background:#1f2937;
+    padding:15px;
+    border-radius:12px;
 }
 
 .account-box span{
     display:block;
-    color:#cbd5e1;
+    color:#9ca3af;
     font-size:12px;
-    margin-bottom:6px;
+    margin-bottom:5px;
 }
 
 .account-box strong{
-    font-size:21px;
+    font-size:20px;
 }
 
-.account-box.paid strong{
+.account-due strong{
+    color:#fbbf24;
+}
+
+.account-paid strong{
     color:#4ade80;
 }
 
-.account-box.unpaid strong{
-    color:#fb923c;
-}
-
 .account-button{
-    margin-top:18px;
+    margin-top:18px!important;
     background:#16a34a!important;
 }
 
-
-/* =====================================================
-   LAVORI GIO
-===================================================== */
-
-.work-panel{
-    background:#fff;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-}
-
-.work-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.work-header h2{
-    font-size:23px;
-}
-
-.work-add{
-    background:#ff6600;
-    color:#fff;
-    padding:12px 16px;
-}
-
-.work-total{
-    background:#111827;
-    color:white;
-    border-radius:13px;
-    padding:18px;
-    margin-bottom:15px;
-}
-
-.work-total span{
-    color:#cbd5e1;
-    font-size:13px;
-}
-
-.work-total strong{
-    display:block;
-    font-size:27px;
-    margin-top:5px;
-}
-
-.work-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.work-item{
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-}
-
-.work-name{
-    font-size:17px;
-    font-weight:900;
-}
-
-.work-person{
-    color:#64748b;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.work-price{
-    font-size:20px;
-    font-weight:900;
-    white-space:nowrap;
-}
-
-.work-delete{
-    background:#fee2e2;
-    color:#b91c1c;
-    padding:9px 11px;
-}
-
-
-/* =====================================================
+/* =========================
    ORDINI
-===================================================== */
+========================= */
 
 .orders-panel{
     background:#fff;
@@ -589,16 +487,6 @@ select{
     font-size:14px;
 }
 
-.order-money{
-    margin-top:10px;
-    font-weight:900;
-    font-size:17px;
-}
-
-.price-missing{
-    color:#c2410c;
-}
-
 .status{
     display:inline-block;
     padding:7px 10px;
@@ -627,14 +515,14 @@ select{
     color:#166534;
 }
 
-.paid-status{
+.pagato{
     background:#dcfce7;
     color:#166534;
 }
 
-.unpaid-status{
-    background:#fff7ed;
-    color:#c2410c;
+.dapagare{
+    background:#fee2e2;
+    color:#b91c1c;
 }
 
 .empty-orders{
@@ -643,10 +531,74 @@ select{
     color:#64748b;
 }
 
+/* =========================
+   LAVORI
+========================= */
 
-/* =====================================================
-   MODALI
-===================================================== */
+.jobs-panel{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
+
+.job{
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:17px;
+    margin-bottom:12px;
+}
+
+.job:last-child{
+    margin-bottom:0;
+}
+
+.job-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.job-name{
+    font-size:18px;
+    font-weight:900;
+}
+
+.job-description{
+    color:#64748b;
+    margin-top:7px;
+}
+
+.job-price{
+    font-size:20px;
+    font-weight:900;
+}
+
+.job-date{
+    color:#94a3b8;
+    font-size:12px;
+    margin-top:8px;
+}
+
+.job-actions{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+}
+
+.job-actions button{
+    padding:9px 12px;
+}
+
+.job-delete{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     display:none;
@@ -680,11 +632,6 @@ select{
     color:#666;
 }
 
-
-/* =====================================================
-   ARTICOLI
-===================================================== */
-
 .article-row{
     background:#f8fafc;
     padding:15px;
@@ -694,7 +641,7 @@ select{
 
 .article-grid{
     display:grid;
-    grid-template-columns:2fr .7fr 1fr .8fr auto auto;
+    grid-template-columns:2fr .7fr 1fr .8fr auto;
     gap:10px;
     align-items:end;
 }
@@ -712,32 +659,19 @@ select{
     padding:11px;
 }
 
-.add-article-inline{
-    background:#111827;
-    color:#fff;
-    padding:11px 13px;
-}
-
-.add-article-main{
+.add-article{
     background:#111827;
     color:#fff;
     padding:11px 14px;
     margin-bottom:15px;
 }
 
-.price-disabled{
-    background:#e5e7eb!important;
-    color:#9ca3af!important;
-    cursor:not-allowed;
-}
-
-.price-note{
+.price-notice{
     background:#fff7ed;
     color:#9a3412;
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:15px;
-    font-size:13px;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
     font-weight:700;
 }
 
@@ -775,19 +709,9 @@ select{
     color:#fff;
 }
 
-
-/* =====================================================
-   LAVORO MODALE
-===================================================== */
-
-.work-form-box{
-    max-width:600px;
-}
-
-
-/* =====================================================
+/* =========================
    DETTAGLIO
-===================================================== */
+========================= */
 
 .detail{
     background:#fff;
@@ -819,6 +743,37 @@ select{
     font-weight:900;
 }
 
+.payment-panel{
+    margin-top:20px;
+    background:#f8fafc;
+    border-radius:12px;
+    padding:18px;
+}
+
+.payment-panel h3{
+    margin-bottom:12px;
+}
+
+.payment-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.payment-button{
+    padding:11px 15px;
+}
+
+.payment-button.active-paid{
+    background:#16a34a;
+    color:#fff;
+}
+
+.payment-button.active-due{
+    background:#dc2626;
+    color:#fff;
+}
+
 .detail-table-wrap{
     overflow-x:auto;
     margin-top:20px;
@@ -842,18 +797,6 @@ select{
     border-top:1px solid #e5e7eb;
 }
 
-.detail-paid{
-    margin-top:20px;
-    padding:16px;
-    border-radius:12px;
-    background:#f8fafc;
-}
-
-.detail-paid strong{
-    display:block;
-    margin-bottom:10px;
-}
-
 .detail-actions{
     display:flex;
     gap:10px;
@@ -875,118 +818,92 @@ select{
     color:#fff;
 }
 
-.paid-button{
-    background:#16a34a;
-    color:#fff;
-}
-
-.unpaid-button{
-    background:#f97316;
-    color:#fff;
-}
-
-
-/* =====================================================
+/* =========================
    CONTO MODALE
-===================================================== */
+========================= */
 
-.account-modal-box{
-    max-width:850px;
+.account-modal-total{
+    background:#111827;
+    color:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:18px;
 }
 
-.account-modal-summary{
-    background:#111827;
-    color:#fff;
-    border-radius:15px;
-    padding:22px;
+.account-modal-name{
+    color:#cbd5e1;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.account-modal-total strong{
+    font-size:42px;
+}
+
+.account-modal-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
     margin-bottom:20px;
 }
 
-.account-modal-summary-title{
-    color:#cbd5e1;
+.account-modal-box{
+    padding:18px;
+    border-radius:14px;
+    background:#f8fafc;
+}
+
+.account-modal-box span{
+    display:block;
+    color:#64748b;
     font-size:13px;
-    text-transform:uppercase;
-    font-weight:800;
+    margin-bottom:5px;
 }
 
-.account-modal-summary-total{
-    font-size:35px;
-    font-weight:900;
-    margin-top:5px;
-}
-
-.account-summary-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:15px;
-}
-
-.account-summary-box{
-    background:rgba(255,255,255,.08);
-    padding:14px;
-    border-radius:10px;
-}
-
-.account-summary-box span{
-    display:block;
-    color:#cbd5e1;
-    font-size:12px;
-}
-
-.account-summary-box strong{
-    display:block;
-    font-size:20px;
-    margin-top:5px;
-}
-
-.account-summary-box.paid strong{
-    color:#4ade80;
-}
-
-.account-summary-box.unpaid strong{
-    color:#fb923c;
+.account-modal-box strong{
+    font-size:24px;
 }
 
 .account-order{
     border:1px solid #e5e7eb;
-    border-radius:13px;
-    padding:17px;
+    border-radius:12px;
+    padding:16px;
     margin-bottom:10px;
-    cursor:pointer;
-}
-
-.account-order:hover{
-    background:#f8fafc;
-}
-
-.account-order-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
+    gap:15px;
 }
 
-.account-order-name{
-    font-size:18px;
+.account-order-number{
     font-weight:900;
+    font-size:17px;
 }
 
 .account-order-date{
     color:#64748b;
     font-size:13px;
-    margin-top:4px;
+    margin-top:5px;
 }
 
-.account-order-money{
-    font-size:19px;
+.account-order-right{
+    text-align:right;
+}
+
+.account-order-price{
+    font-weight:900;
+    font-size:18px;
+}
+
+.account-order-payment{
+    margin-top:6px;
+    font-size:11px;
     font-weight:900;
 }
 
-
-/* =====================================================
+/* =========================
    RESPONSIVE
-===================================================== */
+========================= */
 
 @media(max-width:900px){
 
@@ -997,11 +914,6 @@ select{
     .article-grid{
         grid-template-columns:1fr 1fr;
     }
-
-    .account-grid{
-        grid-template-columns:1fr;
-    }
-
 }
 
 @media(max-width:600px){
@@ -1028,8 +940,7 @@ select{
         font-size:11px;
     }
 
-    .panel-header,
-    .work-header{
+    .panel-header{
         flex-direction:column;
         align-items:stretch;
     }
@@ -1044,31 +955,44 @@ select{
         grid-template-columns:1fr;
     }
 
-    .account-grid{
+    .account-summary{
         grid-template-columns:1fr;
     }
 
-    .account-summary-grid{
+    .account-modal-grid{
         grid-template-columns:1fr;
     }
 
-    .work-item{
-        flex-direction:column;
+    .account-order{
         align-items:flex-start;
+        flex-direction:column;
     }
 
-    .work-price{
-        width:100%;
+    .account-order-right{
+        text-align:left;
     }
+}
 
+/* =========================
+   DATA CENTRATA
+========================= */
+
+#orderDate{
+    text-align:center;
+    text-align-last:center;
+    -webkit-appearance:none;
+    appearance:none;
+}
+
+#orderDate::-webkit-date-and-time-value{
+    text-align:center;
+    margin:0 auto;
 }
 
 </style>
-
 </head>
 
 <body>
-
 
 <!-- =====================================================
      LOGIN
@@ -1315,9 +1239,9 @@ select{
         </div>
 
 
-        <!-- =================================================
+        <!-- =========================
              CARDS
-        ================================================== -->
+        ========================= -->
 
         <div class="cards">
 
@@ -1389,8 +1313,9 @@ select{
                 </h2>
 
                 <p>
-                    Visualizza il totale degli ordini,
-                    quanto hai pagato e quanto devi ancora pagare.
+                    Visualizza quanto hai speso,
+                    quanto hai già pagato e quanto
+                    devi ancora pagare.
                 </p>
 
                 <button
@@ -1438,12 +1363,12 @@ select{
             <!-- LAVORI -->
 
             <div
-                id="workCard"
+                id="jobsCard"
                 class="card"
                 style="display:none;">
 
                 <div class="card-icon">
-                    🛠️
+                    🔧
                 </div>
 
                 <h2>
@@ -1451,13 +1376,14 @@ select{
                 </h2>
 
                 <p>
-                    Inserisci i lavori pagati da Gio
-                    per Roby o Fede.
+                    Inserisci i lavori fatti per
+                    Roby o Fede. Questi importi
+                    sono separati dagli ordini.
                 </p>
 
                 <button
                     type="button"
-                    onclick="openWorkModal()">
+                    onclick="openJobModal()">
 
                     GESTISCI LAVORI
 
@@ -1468,61 +1394,49 @@ select{
         </div>
 
 
-        <!-- =================================================
-             CONTO RAPIDO ROBY / FEDE
-        ================================================== -->
+        <!-- =========================
+             CONTO
+        ========================= -->
 
         <div
-            id="accountQuick"
+            id="accountSummary"
             class="account-card"
             style="display:none;">
 
-            <div class="account-title">
-                Il mio conto
-            </div>
+            <h2>
+                Totale complessivo ordini
+            </h2>
 
             <div
-                id="accountQuickTotal"
+                id="accountTotal"
                 class="account-total">
 
                 €0,00
 
             </div>
 
-            <div class="account-grid">
+            <div class="account-summary">
 
-                <div class="account-box paid">
+                <div class="account-box account-paid">
 
                     <span>
                         PAGATO
                     </span>
 
-                    <strong id="accountQuickPaid">
+                    <strong id="accountPaid">
                         €0,00
                     </strong>
 
                 </div>
 
-                <div class="account-box unpaid">
+                <div class="account-box account-due">
 
                     <span>
                         DA PAGARE
                     </span>
 
-                    <strong id="accountQuickUnpaid">
+                    <strong id="accountDue">
                         €0,00
-                    </strong>
-
-                </div>
-
-                <div class="account-box">
-
-                    <span>
-                        ORDINI
-                    </span>
-
-                    <strong id="accountQuickOrders">
-                        0
                     </strong>
 
                 </div>
@@ -1531,7 +1445,7 @@ select{
 
             <button
                 type="button"
-                class="account-button"
+                class="card account-button"
                 onclick="openAccount()">
 
                 DETTAGLIO CONTO
@@ -1541,25 +1455,25 @@ select{
         </div>
 
 
-        <!-- =================================================
-             LAVORI RAPIDI GIO
-        ================================================== -->
+        <!-- =========================
+             LAVORI GIO
+        ========================= -->
 
         <div
-            id="workPanel"
-            class="work-panel"
+            id="jobsPanel"
+            class="jobs-panel"
             style="display:none;">
 
-            <div class="work-header">
+            <div class="panel-header">
 
                 <h2>
-                    🛠️ Lavori
+                    Lavori
                 </h2>
 
                 <button
                     type="button"
-                    class="work-add"
-                    onclick="openWorkModal()">
+                    class="new-order"
+                    onclick="openJobModal()">
 
                     + Nuovo lavoro
 
@@ -1567,24 +1481,10 @@ select{
 
             </div>
 
-            <div class="work-total">
-
-                <span>
-                    TOTALE LAVORI PAGATI DA GIO
-                </span>
-
-                <strong id="workTotal">
-                    €0,00
-                </strong>
-
-            </div>
-
-            <div
-                id="workList"
-                class="work-list">
+            <div id="jobsList">
 
                 <div class="empty-orders">
-                    Caricamento lavori...
+                    Nessun lavoro presente.
                 </div>
 
             </div>
@@ -1592,16 +1492,16 @@ select{
         </div>
 
 
-        <!-- =================================================
+        <!-- =========================
              ORDINI
-        ================================================== -->
+        ========================= -->
 
         <div class="orders-panel">
 
             <div class="panel-header">
 
                 <h2 id="ordersTitle">
-                    I miei ordini
+                    Ordini
                 </h2>
 
                 <button
@@ -1674,6 +1574,10 @@ select{
                     Fede
                 </option>
 
+                <option value="Gio">
+                    Gio
+                </option>
+
             </select>
 
         </div>
@@ -1681,23 +1585,16 @@ select{
 
         <div class="form-group">
 
-            <label style="text-align:center;">
+            <label>
                 Data ordine
             </label>
 
             <input
                 id="orderDate"
-                type="date"
-                style="
-                    text-align:center;
-                    display:block;
-                    margin:auto;
-                ">
+                type="date">
 
         </div>
 
-
-        <!-- STATO NON MODIFICABILE NELLA CREAZIONE -->
 
         <div class="form-group">
 
@@ -1705,23 +1602,10 @@ select{
                 Stato
             </label>
 
-            <select
-                id="orderStatus">
+            <select id="orderStatus">
 
                 <option value="daordinare">
                     Da ordinare
-                </option>
-
-                <option value="ordinato">
-                    Ordinato
-                </option>
-
-                <option value="ritirare">
-                    Da ritirare
-                </option>
-
-                <option value="consegnato">
-                    Consegnato
                 </option>
 
             </select>
@@ -1730,13 +1614,23 @@ select{
 
 
         <div
-            id="priceNote"
-            class="price-note">
+            id="priceNotice"
+            class="price-notice">
 
             💡 Il prezzo e lo sconto verranno inseriti
             successivamente da Gio.
 
         </div>
+
+
+        <button
+            type="button"
+            class="add-article"
+            onclick="addArticle()">
+
+            + Aggiungi articolo
+
+        </button>
 
 
         <div id="articles"></div>
@@ -1783,6 +1677,123 @@ select{
 
 
 <!-- =====================================================
+     MODALE LAVORO
+===================================================== -->
+
+<div id="jobModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Nuovo lavoro
+            </h2>
+
+            <button
+                type="button"
+                class="close"
+                onclick="closeJobModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Per chi?
+            </label>
+
+            <select id="jobPerson">
+
+                <option value="Roby">
+                    Roby
+                </option>
+
+                <option value="Fede">
+                    Fede
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Descrizione lavoro
+            </label>
+
+            <input
+                id="jobDescription"
+                type="text"
+                placeholder="Descrizione del lavoro">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Prezzo €
+            </label>
+
+            <input
+                id="jobPrice"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0,00">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Data
+            </label>
+
+            <input
+                id="jobDate"
+                type="date">
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="cancel"
+                onclick="closeJobModal()">
+
+                Annulla
+
+            </button>
+
+            <button
+                type="button"
+                class="save"
+                onclick="saveJob()">
+
+                SALVA LAVORO
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      DETTAGLIO ORDINE
 ===================================================== -->
 
@@ -1803,7 +1814,7 @@ select{
 
 <div id="accountModal" class="modal">
 
-    <div class="modal-box account-modal-box">
+    <div class="modal-box">
 
         <div class="modal-header">
 
@@ -1822,176 +1833,7 @@ select{
 
         </div>
 
-
-        <div class="account-modal-summary">
-
-            <div class="account-modal-summary-title">
-                Totale ordini
-            </div>
-
-            <div
-                id="accountModalTotal"
-                class="account-modal-summary-total">
-
-                €0,00
-
-            </div>
-
-
-            <div class="account-summary-grid">
-
-                <div class="account-summary-box paid">
-
-                    <span>
-                        PAGATO
-                    </span>
-
-                    <strong id="accountModalPaid">
-                        €0,00
-                    </strong>
-
-                </div>
-
-                <div class="account-summary-box unpaid">
-
-                    <span>
-                        DA PAGARE
-                    </span>
-
-                    <strong id="accountModalUnpaid">
-                        €0,00
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="accountOrders"
-            class="account-orders">
-
-        </div>
-
-
-        <div class="modal-footer">
-
-            <button
-                type="button"
-                class="cancel"
-                onclick="closeAccount()">
-
-                CHIUDI
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODALE LAVORO
-===================================================== -->
-
-<div id="workModal" class="modal">
-
-    <div class="modal-box work-form-box">
-
-        <div class="modal-header">
-
-            <h2>
-                🛠️ Nuovo lavoro
-            </h2>
-
-            <button
-                type="button"
-                class="close"
-                onclick="closeWorkModal()">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Per chi?
-            </label>
-
-            <select id="workPerson">
-
-                <option value="Roby">
-                    Roby
-                </option>
-
-                <option value="Fede">
-                    Fede
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Lavoro
-            </label>
-
-            <input
-                id="workDescription"
-                type="text"
-                placeholder="Descrizione del lavoro">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Prezzo pagato da Gio
-            </label>
-
-            <input
-                id="workPrice"
-                type="number"
-                min="0"
-                step="0.01"
-                placeholder="0,00">
-
-        </div>
-
-
-        <div class="modal-footer">
-
-            <button
-                type="button"
-                class="cancel"
-                onclick="closeWorkModal()">
-
-                ANNULLA
-
-            </button>
-
-            <button
-                type="button"
-                class="save"
-                onclick="saveWork()">
-
-                SALVA LAVORO
-
-            </button>
-
-        </div>
+        <div id="accountContent"></div>
 
     </div>
 
@@ -2000,16 +1842,12 @@ select{
 
 <script type="module">
 
-
 /* =====================================================
    FIREBASE
 ===================================================== */
 
-import {
-    initializeApp
-}
+import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
 
 import {
     getFirestore,
@@ -2026,7 +1864,6 @@ import {
     serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 
 import {
     getMessaging,
@@ -2112,21 +1949,18 @@ function normalizeVapidKey(key){
         );
     }
 
-    const clean =
-        key.trim();
+    const clean = key.trim();
 
     if(!clean){
-
         throw new Error(
             "La VAPID_KEY è vuota."
         );
-
     }
 
     const base64 =
         clean
-        .replace(/-/g,"+")
-        .replace(/_/g,"/")
+        .replace(/-/g, "+")
+        .replace(/_/g, "/")
         .padEnd(
             Math.ceil(clean.length / 4) * 4,
             "="
@@ -2136,13 +1970,12 @@ function normalizeVapidKey(key){
 
     try{
 
-        binary =
-            atob(base64);
+        binary = atob(base64);
 
     }catch(error){
 
         throw new Error(
-            "La VAPID_KEY non è valida."
+            "La VAPID_KEY non è una Base64URL valida."
         );
 
     }
@@ -2159,9 +1992,9 @@ function normalizeVapidKey(key){
     }
 
     return btoa(binary)
-        .replace(/\+/g,"-")
-        .replace(/\//g,"_")
-        .replace(/=+$/g,"");
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/g, "");
 
 }
 
@@ -2187,9 +2020,7 @@ try{
    UTENTI
 ===================================================== */
 
-const DEFAULT_CODE =
-    "123456";
-
+const DEFAULT_CODE = "123456";
 
 const USERS = {
 
@@ -2215,7 +2046,7 @@ let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
 let unsubscribeOrders = null;
-let unsubscribeWorks = null;
+let unsubscribeJobs = null;
 let notificationListenerActive = false;
 
 
@@ -2223,100 +2054,73 @@ let notificationListenerActive = false;
    LOGIN
 ===================================================== */
 
-window.selectUser =
-function(user){
+window.selectUser = function(user){
 
-    selectedUser =
-        user;
+    selectedUser = user;
 
-    document.getElementById(
-        "userCircle"
-    ).textContent =
+    document.getElementById("userCircle")
+        .textContent =
         user.charAt(0);
 
-    document.getElementById(
-        "codeSubtitle"
-    ).textContent =
-        "Inserisci il codice di " +
-        user;
+    document.getElementById("codeSubtitle")
+        .textContent =
+        "Inserisci il codice di " + user;
 
-    document.getElementById(
-        "loginCode"
-    ).value = "";
+    document.getElementById("loginCode")
+        .value = "";
 
-    document.getElementById(
-        "loginError"
-    ).style.display =
-        "none";
+    document.getElementById("loginError")
+        .style.display = "none";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display =
-        "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "codePage"
-    ).style.display =
-        "flex";
+    document.getElementById("codePage")
+        .style.display = "flex";
 
-    setTimeout(
-        function(){
+    setTimeout(function(){
 
-            document.getElementById(
-                "loginCode"
-            ).focus();
+        document.getElementById("loginCode")
+            .focus();
 
-        },
-        100
-    );
+    },100);
 
 };
 
 
-window.backUsers =
-function(){
+window.backUsers = function(){
 
-    selectedUser =
-        null;
+    selectedUser = null;
 
-    document.getElementById(
-        "codePage"
-    ).style.display =
-        "none";
+    document.getElementById("codePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display =
-        "flex";
+    document.getElementById("loginPage")
+        .style.display = "flex";
 
 };
 
 
-window.login =
-function(){
+window.login = function(){
 
-    if(!selectedUser)
+    if(!selectedUser){
         return;
+    }
 
     const entered =
-        document.getElementById(
-            "loginCode"
-        ).value.trim();
+        document.getElementById("loginCode")
+        .value.trim();
 
     const saved =
         localStorage.getItem(
-            "ktm_code_" +
-            selectedUser
+            "ktm_code_" + selectedUser
         );
 
     const realCode =
-        saved ||
-        DEFAULT_CODE;
+        saved || DEFAULT_CODE;
 
     const error =
-        document.getElementById(
-            "loginError"
-        );
+        document.getElementById("loginError");
 
 
     if(entered !== realCode){
@@ -2338,15 +2142,11 @@ function(){
 
     if(!saved){
 
-        document.getElementById(
-            "codePage"
-        ).style.display =
-            "none";
+        document.getElementById("codePage")
+            .style.display = "none";
 
-        document.getElementById(
-            "changeCodePage"
-        ).style.display =
-            "flex";
+        document.getElementById("changeCodePage")
+            .style.display = "flex";
 
         return;
 
@@ -2366,23 +2166,18 @@ function(){
 };
 
 
-window.changeCode =
-function(){
+window.changeCode = function(){
 
     const newCode =
-        document.getElementById(
-            "newCode"
-        ).value.trim();
+        document.getElementById("newCode")
+        .value.trim();
 
     const confirmCode =
-        document.getElementById(
-            "confirmCode"
-        ).value.trim();
+        document.getElementById("confirmCode")
+        .value.trim();
 
     const error =
-        document.getElementById(
-            "changeError"
-        );
+        document.getElementById("changeError");
 
 
     if(newCode.length < 4){
@@ -2425,8 +2220,7 @@ function(){
 
 
     localStorage.setItem(
-        "ktm_code_" +
-        selectedUser,
+        "ktm_code_" + selectedUser,
         newCode
     );
 
@@ -2447,41 +2241,31 @@ function(){
 
 
 /* =====================================================
-   APERTURA APP
+   APP
 ===================================================== */
 
 function openApp(){
 
-    document.getElementById(
-        "loginPage"
-    ).style.display =
-        "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "codePage"
-    ).style.display =
-        "none";
+    document.getElementById("codePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "changeCodePage"
-    ).style.display =
-        "none";
+    document.getElementById("changeCodePage")
+        .style.display = "none";
 
-    document.getElementById(
-        "appPage"
-    ).style.display =
-        "block";
+    document.getElementById("appPage")
+        .style.display = "block";
 
 
-    document.getElementById(
-        "loggedName"
-    ).textContent =
+    document.getElementById("loggedName")
+        .textContent =
         loggedUser.toUpperCase();
 
 
-    document.getElementById(
-        "welcomeTitle"
-    ).textContent =
+    document.getElementById("welcomeTitle")
+        .textContent =
         "Benvenuto " +
         loggedUser.toUpperCase();
 
@@ -2492,41 +2276,55 @@ function openApp(){
         );
 
 
-    if(USERS[loggedUser].admin){
-
-        document.getElementById(
-            "welcomeText"
-        ).textContent =
-            "Sei entrato come amministratore.";
-
-        document.getElementById(
-            "adminCard"
-        ).style.display =
-            "block";
-
-        document.getElementById(
-            "workCard"
-        ).style.display =
-            "block";
-
-        document.getElementById(
-            "workPanel"
-        ).style.display =
-            "block";
-
+    const accountCard =
         document.getElementById(
             "accountCard"
-        ).style.display =
+        );
+
+    const accountSummary =
+        document.getElementById(
+            "accountSummary"
+        );
+
+    const adminCard =
+        document.getElementById(
+            "adminCard"
+        );
+
+    const jobsCard =
+        document.getElementById(
+            "jobsCard"
+        );
+
+    const jobsPanel =
+        document.getElementById(
+            "jobsPanel"
+        );
+
+
+    if(USERS[loggedUser].admin){
+
+        document.getElementById("welcomeText")
+            .textContent =
+            "Sei entrato come amministratore.";
+
+        adminCard.style.display =
+            "block";
+
+        jobsCard.style.display =
+            "block";
+
+        jobsPanel.style.display =
+            "block";
+
+        accountCard.style.display =
             "none";
 
-        document.getElementById(
-            "accountQuick"
-        ).style.display =
+        accountSummary.style.display =
             "none";
 
-        document.getElementById(
-            "ordersTitle"
-        ).textContent =
+        document.getElementById("ordersTitle")
+            .textContent =
             "Tutti gli ordini";
 
         notificationButton.style.display =
@@ -2534,43 +2332,33 @@ function openApp(){
 
         updateNotificationButtonState();
 
-        listenWorks();
+        listenJobs();
+
+        setupNotifications();
 
     }else{
 
-        document.getElementById(
-            "welcomeText"
-        ).textContent =
+        document.getElementById("welcomeText")
+            .textContent =
             "Gestisci i tuoi ordini KTM.";
 
-        document.getElementById(
-            "adminCard"
-        ).style.display =
+        adminCard.style.display =
             "none";
 
-        document.getElementById(
-            "workCard"
-        ).style.display =
+        jobsCard.style.display =
             "none";
 
-        document.getElementById(
-            "workPanel"
-        ).style.display =
+        jobsPanel.style.display =
             "none";
 
-        document.getElementById(
-            "accountCard"
-        ).style.display =
+        accountCard.style.display =
             "block";
 
-        document.getElementById(
-            "accountQuick"
-        ).style.display =
+        accountSummary.style.display =
             "block";
 
-        document.getElementById(
-            "ordersTitle"
-        ).textContent =
+        document.getElementById("ordersTitle")
+            .textContent =
             "I miei ordini";
 
         notificationButton.style.display =
@@ -2581,13 +2369,6 @@ function openApp(){
 
     listenOrders();
 
-
-    if(loggedUser === "Gio"){
-
-        setupNotifications();
-
-    }
-
 }
 
 
@@ -2595,53 +2376,44 @@ function openApp(){
    LOGOUT
 ===================================================== */
 
-window.logout =
-function(){
+window.logout = function(){
 
     if(unsubscribeOrders){
 
         unsubscribeOrders();
+
         unsubscribeOrders = null;
 
     }
 
+    if(unsubscribeJobs){
 
-    if(unsubscribeWorks){
+        unsubscribeJobs();
 
-        unsubscribeWorks();
-        unsubscribeWorks = null;
+        unsubscribeJobs = null;
 
     }
-
 
     loggedUser = null;
     selectedUser = null;
 
-    notificationListenerActive =
-        false;
-
+    notificationListenerActive = false;
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
 
+    document.getElementById("appPage")
+        .style.display = "none";
 
-    document.getElementById(
-        "appPage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "loginPage"
-    ).style.display =
-        "flex";
+    document.getElementById("loginPage")
+        .style.display = "flex";
 
 };
 
 
 /* =====================================================
-   ORDINI FIRESTORE
+   FIRESTORE ORDINI
 ===================================================== */
 
 function listenOrders(){
@@ -2654,19 +2426,13 @@ function listenOrders(){
 
 
     const ordersRef =
-        collection(
-            db,
-            "ordini"
-        );
+        collection(db,"ordini");
 
 
     const q =
         query(
             ordersRef,
-            orderBy(
-                "createdAt",
-                "desc"
-            )
+            orderBy("createdAt","desc")
         );
 
 
@@ -2680,52 +2446,40 @@ function listenOrders(){
                 let orders = [];
 
 
-                snapshot.forEach(
-                    docSnap => {
+                snapshot.forEach(docSnap => {
 
-                        orders.push({
+                    orders.push({
 
-                            id:
-                                docSnap.id,
+                        id:docSnap.id,
 
-                            ...docSnap.data()
+                        ...docSnap.data()
 
-                        });
+                    });
 
-                    }
-                );
+                });
 
 
                 if(
-                    loggedUser !== "Gio"
+                    !USERS[loggedUser].admin
                 ){
 
                     orders =
                         orders.filter(
                             o =>
-                            o.person ===
-                            loggedUser
+                            o.person === loggedUser
                         );
 
                 }
 
 
-                window.currentOrders =
-                    orders;
-
-
-                renderOrders(
-                    orders
-                );
-
+                renderOrders(orders);
 
                 if(
-                    loggedUser !== "Gio"
+                    loggedUser === "Roby" ||
+                    loggedUser === "Fede"
                 ){
 
-                    renderAccountQuick(
-                        orders
-                    );
+                    renderAccountSummary(orders);
 
                 }
 
@@ -2770,14 +2524,10 @@ function listenOrders(){
    RENDER ORDINI
 ===================================================== */
 
-function renderOrders(
-    orders
-){
+function renderOrders(orders){
 
     const list =
-        document.getElementById(
-            "ordersList"
-        );
+        document.getElementById("ordersList");
 
 
     if(!orders.length){
@@ -2798,160 +2548,140 @@ function renderOrders(
     list.innerHTML = "";
 
 
-    orders.forEach(
-        order => {
+    orders.forEach(order => {
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+        const div =
+            document.createElement("div");
 
 
-            div.className =
-                "order";
+        div.className =
+            "order";
 
 
-            const codes =
-                (order.articles || [])
-                .map(
-                    a =>
-                    `${escapeHtml(a.qty)} × ${escapeHtml(a.code)}`
-                )
-                .join(", ");
+        const codes =
+            (order.articles || [])
+            .map(
+                a =>
+                `${escapeHtml(a.qty)} × ${escapeHtml(a.code)}`
+            )
+            .join(", ");
 
 
-            const total =
-                calculateTotal(
-                    order
-                );
+        const total =
+            calculateTotal(order);
 
 
-            const hasPrice =
-                hasOrderPrice(
-                    order
-                );
+        let paymentHtml = "";
 
 
-            div.innerHTML = `
+        if(loggedUser === "Gio"){
 
-                <div class="order-top">
-
-                    <div>
-
-                        <div class="order-number">
-
-                            ${escapeHtml(
-                                order.number ||
-                                "ORDINE"
-                            )}
-
-                        </div>
-
-                        <div class="order-info">
-
-                            ${escapeHtml(
-                                order.person ||
-                                ""
-                            )}
-
-                            ·
-
-                            ${formatDate(
-                                order.date
-                            )}
-
-                        </div>
-
-                    </div>
+            const paid =
+                order.paymentStatus === "pagato";
 
 
-                    <div style="
-                        display:flex;
-                        flex-direction:column;
-                        align-items:flex-end;
-                        gap:6px;
-                    ">
+            paymentHtml = `
 
-                        <span class="status ${
-                            escapeAttr(
-                                order.status ||
-                                "daordinare"
-                            )
-                        }">
-
-                            ${statusLabel(
-                                order.status
-                            )}
-
-                        </span>
-
-                        <span class="status ${
-                            order.paid
-                            ? "paid-status"
-                            : "unpaid-status"
-                        }">
-
-                            ${
-                                order.paid
-                                ? "Pagato"
-                                : "Da pagare"
-                            }
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="order-codes">
-
-                    ${
-                        codes ||
-                        "Nessun articolo"
-                    }
-
-                </div>
-
-
-                <div class="
-                    order-money
-                    ${
-                        hasPrice
-                        ? ""
-                        : "price-missing"
-                    }
+                <div style="
+                    margin-top:10px;
+                    font-size:12px;
+                    font-weight:900;
                 ">
 
-                    ${
-                        hasPrice
-                        ? euro(total)
-                        : "Prezzo da definire"
-                    }
+                    ${paid
+                        ? "🟢 PAGATO"
+                        : "🔴 DA PAGARE"}
 
                 </div>
 
             `;
 
-
-            div.addEventListener(
-                "click",
-                function(){
-
-                    showOrder(
-                        order
-                    );
-
-                }
-            );
-
-
-            list.appendChild(
-                div
-            );
-
         }
-    );
+
+
+        div.innerHTML = `
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+
+                        ${escapeHtml(
+                            order.number ||
+                            "ORDINE"
+                        )}
+
+                    </div>
+
+                    <div class="order-info">
+
+                        ${escapeHtml(
+                            order.person || ""
+                        )}
+
+                        ·
+
+                        ${formatDate(order.date)}
+
+                    </div>
+
+                </div>
+
+
+                <span class="status ${
+                    escapeAttr(
+                        order.status ||
+                        "daordinare"
+                    )
+                }">
+
+                    ${statusLabel(
+                        order.status
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="order-codes">
+
+                ${
+                    codes ||
+                    "Nessun articolo"
+                }
+
+            </div>
+
+
+            <div style="
+                margin-top:10px;
+                font-weight:900;
+            ">
+
+                ${euro(total)}
+
+            </div>
+
+            ${paymentHtml}
+
+        `;
+
+
+        div.addEventListener(
+            "click",
+            function(){
+
+                showOrder(order);
+
+            }
+        );
+
+
+        list.appendChild(div);
+
+    });
 
 }
 
@@ -2960,22 +2690,18 @@ function renderOrders(
    NUOVO ORDINE
 ===================================================== */
 
-window.openNewOrder =
-function(){
+window.openNewOrder = function(){
 
     if(!loggedUser){
 
-        alert(
-            "Devi prima effettuare l'accesso."
-        );
+        alert("Devi prima effettuare l'accesso.");
 
         return;
 
     }
 
 
-    editingOrderId =
-        null;
+    editingOrderId = null;
 
 
     document.getElementById(
@@ -2995,13 +2721,15 @@ function(){
     document.getElementById(
         "orderPerson"
     ).disabled =
-        loggedUser !== "Gio";
+        !USERS[loggedUser].admin;
 
 
     document.getElementById(
         "orderDate"
     ).value =
-        localDateInput();
+        new Date()
+        .toISOString()
+        .split("T")[0];
 
 
     document.getElementById(
@@ -3010,28 +2738,22 @@ function(){
         "daordinare";
 
 
-    /*
-       NUOVO ORDINE:
-       LO STATO È SEMPRE DA ORDINARE.
-       PER ROBY/FEDE PREZZO E SCONTO NON SONO MODIFICABILI.
-    */
-
-    document.getElementById(
-        "orderStatus"
-    ).disabled =
-        true;
-
-
     document.getElementById(
         "articles"
-    ).innerHTML =
-        "";
+    ).innerHTML = "";
+
+
+    const priceNotice =
+        document.getElementById(
+            "priceNotice"
+        );
+
+
+    priceNotice.style.display =
+        "block";
 
 
     addArticle();
-
-
-    updatePriceFields();
 
 
     document.getElementById(
@@ -3042,12 +2764,7 @@ function(){
 };
 
 
-/* =====================================================
-   CHIUDI MODALE
-===================================================== */
-
-window.closeModal =
-function(){
+window.closeModal = function(){
 
     document.getElementById(
         "orderModal"
@@ -3058,22 +2775,17 @@ function(){
 
 
 /* =====================================================
-   AGGIUNGI ARTICOLO
+   ARTICOLI
 ===================================================== */
 
-window.addArticle =
-function(article=null){
+window.addArticle = function(article=null){
 
     const container =
-        document.getElementById(
-            "articles"
-        );
+        document.getElementById("articles");
 
 
     const row =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     row.className =
@@ -3101,9 +2813,7 @@ function(article=null){
                     value="${
                         article
                         ?
-                        escapeAttr(
-                            article.code
-                        )
+                        escapeAttr(article.code)
                         :
                         ""
                     }">
@@ -3132,77 +2842,58 @@ function(article=null){
             </div>
 
 
-            <div
-                class="form-group price-group"
-                style="
-                    display:${
-                        isGio
-                        ? "block"
-                        : "none"
-                    };
-                ">
+            ${
+                isGio
+                ?
+                `
 
-                <label>
-                    Prezzo €
-                </label>
+                <div class="form-group">
 
-                <input
-                    class="article-price"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value="${
-                        article &&
-                        article.price !== null &&
-                        article.price !== undefined
-                        ?
-                        Number(article.price)
-                        :
-                        ""
-                    }">
+                    <label>
+                        Prezzo €
+                    </label>
 
-            </div>
+                    <input
+                        class="article-price"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value="${
+                            article
+                            ?
+                            Number(article.price) || 0
+                            :
+                            ""
+                        }">
+
+                </div>
 
 
-            <div
-                class="form-group discount-group"
-                style="
-                    display:${
-                        isGio
-                        ? "block"
-                        : "none"
-                    };
-                ">
+                <div class="form-group">
 
-                <label>
-                    Sconto %
-                </label>
+                    <label>
+                        Sconto %
+                    </label>
 
-                <input
-                    class="article-discount"
-                    type="number"
-                    min="0"
-                    max="100"
-                    value="${
-                        article &&
-                        article.discount !== null &&
-                        article.discount !== undefined
-                        ?
-                        Number(article.discount)
-                        :
-                        25
-                    }">
+                    <input
+                        class="article-discount"
+                        type="number"
+                        min="0"
+                        max="100"
+                        value="${
+                            article
+                            ?
+                            Number(article.discount) || 0
+                            :
+                            25
+                        }">
 
-            </div>
+                </div>
 
-
-            <button
-                type="button"
-                class="add-article-inline">
-
-                +
-
-            </button>
+                `
+                :
+                ""
+            }
 
 
             <button
@@ -3239,12 +2930,6 @@ function(article=null){
     const remove =
         row.querySelector(
             ".remove"
-        );
-
-
-    const add =
-        row.querySelector(
-            ".add-article-inline"
         );
 
 
@@ -3286,20 +2971,7 @@ function(article=null){
     );
 
 
-    add.addEventListener(
-        "click",
-        function(){
-
-            addArticle();
-
-        }
-    );
-
-
-    container.appendChild(
-        row
-    );
-
+    container.appendChild(row);
 
     calculateOrderTotal();
 
@@ -3307,72 +2979,63 @@ function(article=null){
 
 
 /* =====================================================
-   CALCOLO TOTALE
+   CALCOLO ORDINE
 ===================================================== */
 
-window.calculateOrderTotal =
-function(){
+window.calculateOrderTotal = function(){
 
     let total = 0;
 
 
     document
-        .querySelectorAll(
-            ".article-row"
-        )
-        .forEach(
-            row => {
+        .querySelectorAll(".article-row")
+        .forEach(row => {
 
-                const qty =
-                    Number(
-                        row.querySelector(
-                            ".article-qty"
-                        ).value
-                    ) || 0;
-
-
-                const priceElement =
+            const qty =
+                Number(
                     row.querySelector(
-                        ".article-price"
-                    );
+                        ".article-qty"
+                    ).value
+                ) || 0;
 
 
-                const discountElement =
-                    row.querySelector(
-                        ".article-discount"
-                    );
+            const priceElement =
+                row.querySelector(
+                    ".article-price"
+                );
 
 
-                const price =
-                    priceElement
-                    ?
-                    Number(
-                        priceElement.value
-                    ) || 0
-                    :
-                    0;
+            const discountElement =
+                row.querySelector(
+                    ".article-discount"
+                );
 
 
-                const discount =
-                    discountElement
-                    ?
-                    Number(
-                        discountElement.value
-                    ) || 0
-                    :
-                    0;
+            const price =
+                priceElement
+                ?
+                Number(priceElement.value) || 0
+                :
+                0;
 
 
-                total +=
-                    qty *
-                    price *
-                    (
-                        1 -
-                        discount / 100
-                    );
+            const discount =
+                discountElement
+                ?
+                Number(discountElement.value) || 0
+                :
+                0;
 
-            }
-        );
+
+            total +=
+                qty *
+                price *
+                (
+                    1 -
+                    discount / 100
+                );
+
+        });
 
 
     document.getElementById(
@@ -3384,47 +3047,10 @@ function(){
 
 
 /* =====================================================
-   ABILITA / DISABILITA PREZZO
-===================================================== */
-
-function updatePriceFields(){
-
-    const isGio =
-        loggedUser === "Gio";
-
-
-    document
-        .querySelectorAll(
-            ".price-group,.discount-group"
-        )
-        .forEach(
-            el => {
-
-                el.style.display =
-                    isGio
-                    ? "block"
-                    : "none";
-
-            }
-        );
-
-
-    document.getElementById(
-        "priceNote"
-    ).style.display =
-        isGio
-        ? "none"
-        : "block";
-
-}
-
-
-/* =====================================================
    SALVA ORDINE
 ===================================================== */
 
-window.saveOrder =
-async function(){
+window.saveOrder = async function(){
 
     const person =
         document.getElementById(
@@ -3438,18 +3064,9 @@ async function(){
         ).value;
 
 
-    /*
-       SE È UN NUOVO ORDINE,
-       LO STATO È SEMPRE DA ORDINARE.
-    */
+    /* STATO SEMPRE DA ORDINARE */
 
     const status =
-        editingOrderId
-        ?
-        document.getElementById(
-            "orderStatus"
-        ).value
-        :
         "daordinare";
 
 
@@ -3457,94 +3074,68 @@ async function(){
 
 
     document
-        .querySelectorAll(
-            ".article-row"
-        )
-        .forEach(
-            row => {
+        .querySelectorAll(".article-row")
+        .forEach(row => {
 
-                const code =
+            const code =
+                row.querySelector(
+                    ".article-code"
+                ).value.trim();
+
+
+            const qty =
+                Number(
                     row.querySelector(
-                        ".article-code"
-                    ).value.trim();
+                        ".article-qty"
+                    ).value
+                ) || 0;
 
 
-                const qty =
-                    Number(
-                        row.querySelector(
-                            ".article-qty"
-                        ).value
-                    ) || 0;
+            const priceElement =
+                row.querySelector(
+                    ".article-price"
+                );
 
 
-                const priceElement =
-                    row.querySelector(
-                        ".article-price"
-                    );
+            const discountElement =
+                row.querySelector(
+                    ".article-discount"
+                );
 
 
-                const discountElement =
-                    row.querySelector(
-                        ".article-discount"
-                    );
+            const price =
+                priceElement
+                ?
+                Number(priceElement.value) || 0
+                :
+                0;
 
 
-                let price =
-                    null;
-
-                let discount =
-                    null;
-
-
-                /*
-                   SOLO GIO PUÒ SALVARE
-                   PREZZO E SCONTO.
-                */
-
-                if(loggedUser === "Gio"){
-
-                    price =
-                        priceElement &&
-                        priceElement.value !== ""
-                        ?
-                        Number(
-                            priceElement.value
-                        )
-                        :
-                        null;
+            const discount =
+                discountElement
+                ?
+                Number(discountElement.value) || 0
+                :
+                0;
 
 
-                    discount =
-                        discountElement &&
-                        discountElement.value !== ""
-                        ?
-                        Number(
-                            discountElement.value
-                        )
-                        :
-                        25;
+            if(code){
 
-                }
+                articles.push({
 
+                    code:code,
 
-                if(code){
+                    qty:qty,
 
-                    articles.push({
+                    price:price,
 
-                        code:code,
+                    discount:discount
 
-                        qty:qty,
-
-                        price:price,
-
-                        discount:discount
-
-                    });
-
-                }
+                });
 
             }
-        );
+
+        });
 
 
     if(!date){
@@ -3570,7 +3161,7 @@ async function(){
 
 
     if(
-        loggedUser !== "Gio" &&
+        !USERS[loggedUser].admin &&
         person !== loggedUser
     ){
 
@@ -3587,7 +3178,7 @@ async function(){
 
         if(editingOrderId){
 
-            const oldSnapshot =
+            const existingSnapshot =
                 await getDocs(
                     collection(
                         db,
@@ -3596,85 +3187,26 @@ async function(){
                 );
 
 
-            let oldOrder =
-                null;
+            let oldOrder = null;
 
 
-            oldSnapshot.forEach(
+            existingSnapshot.forEach(
                 d => {
 
                     if(d.id === editingOrderId){
 
                         oldOrder = {
+
                             id:d.id,
+
                             ...d.data()
+
                         };
 
                     }
 
                 }
             );
-
-
-            if(!oldOrder){
-
-                alert(
-                    "Ordine non trovato."
-                );
-
-                return;
-
-            }
-
-
-            /*
-               ROBY E FEDE NON POSSONO
-               MODIFICARE PREZZO E SCONTO.
-
-               Manteniamo quindi quelli già
-               eventualmente inseriti da Gio.
-            */
-
-            if(loggedUser !== "Gio"){
-
-                articles.forEach(
-                    (newArticle,index) => {
-
-                        const oldArticle =
-                            oldOrder.articles?.[index];
-
-
-                        if(oldArticle){
-
-                            newArticle.price =
-                                oldArticle.price ??
-                                null;
-
-                            newArticle.discount =
-                                oldArticle.discount ??
-                                null;
-
-                        }
-
-                    }
-                );
-
-            }
-
-
-            const data = {
-
-                person:person,
-
-                date:date,
-
-                status:status,
-
-                articles:articles,
-
-                updatedAt:Date.now()
-
-            };
 
 
             await updateDoc(
@@ -3685,7 +3217,28 @@ async function(){
                     editingOrderId
                 ),
 
-                data
+                {
+
+                    person:person,
+
+                    date:date,
+
+                    status:
+                        loggedUser === "Gio"
+                        ?
+                        status
+                        :
+                        "daordinare",
+
+                    articles:articles,
+
+                    paymentStatus:
+                        oldOrder?.paymentStatus ||
+                        "da_pagare",
+
+                    updatedAt:Date.now()
+
+                }
 
             );
 
@@ -3705,10 +3258,7 @@ async function(){
                 String(
                     existing.size + 1
                 )
-                .padStart(
-                    4,
-                    "0"
-                );
+                .padStart(4,"0");
 
 
             const newOrder = {
@@ -3719,18 +3269,15 @@ async function(){
 
                 date:date,
 
-                status:
-                    "daordinare",
+                status:"daordinare",
 
                 articles:articles,
 
-                paid:false,
+                paymentStatus:"da_pagare",
 
-                createdAt:
-                    Date.now(),
+                createdAt:Date.now(),
 
-                createdBy:
-                    loggedUser
+                createdBy:loggedUser
 
             };
 
@@ -3774,113 +3321,138 @@ async function(){
    DETTAGLIO ORDINE
 ===================================================== */
 
-function showOrder(
-    order
-){
+function showOrder(order){
 
     const total =
-        calculateTotal(
-            order
-        );
-
-
-    const hasPrice =
-        hasOrderPrice(
-            order
-        );
+        calculateTotal(order);
 
 
     let rows = "";
 
 
     (order.articles || [])
-    .forEach(
-        article => {
+    .forEach(article => {
 
-            const price =
-                Number(
-                    article.price
-                ) || 0;
+        const price =
+            Number(article.price) || 0;
 
+        const qty =
+            Number(article.qty) || 0;
 
-            const qty =
-                Number(
-                    article.qty
-                ) || 0;
+        const discount =
+            Number(article.discount) || 0;
 
 
-            const discount =
-                Number(
-                    article.discount
-                ) || 0;
+        const net =
+            price *
+            (
+                1 -
+                discount / 100
+            );
 
 
-            const net =
-                price *
-                (
-                    1 -
-                    discount / 100
-                );
+        const line =
+            net *
+            qty;
 
 
-            const line =
-                net *
-                qty;
+        rows += `
 
+            <tr>
 
-            rows += `
+                <td>
+                    ${escapeHtml(article.code)}
+                </td>
 
-                <tr>
+                <td>
+                    ${qty}
+                </td>
+
+                ${
+                    loggedUser === "Gio"
+                    ?
+                    `
 
                     <td>
-                        ${escapeHtml(
-                            article.code
-                        )}
+                        ${euro(price)}
                     </td>
 
                     <td>
-                        ${qty}
+                        ${discount}%
                     </td>
 
-                    <td>
-                        ${
-                            article.price === null ||
-                            article.price === undefined
-                            ?
-                            "Da definire"
-                            :
-                            euro(price)
-                        }
-                    </td>
+                    `
+                    :
+                    ""
+                }
 
-                    <td>
-                        ${
-                            article.discount === null ||
-                            article.discount === undefined
-                            ?
-                            "-"
-                            :
-                            discount + "%"
-                        }
-                    </td>
 
-                    <td>
-                        ${
-                            article.price === null ||
-                            article.price === undefined
-                            ?
-                            "-"
-                            :
-                            euro(line)
-                        }
-                    </td>
+                <td>
+                    ${euro(line)}
+                </td>
 
-                </tr>
+            </tr>
 
-            `;
+        `;
 
-        }
-    );
+    });
+
+
+    const paid =
+        order.paymentStatus === "pagato";
+
+
+    const paymentPanel =
+        loggedUser === "Gio"
+        ?
+        `
+
+        <div class="payment-panel">
+
+            <h3>
+                Stato pagamento
+            </h3>
+
+            <div class="payment-buttons">
+
+                <button
+                    type="button"
+                    class="payment-button ${
+                        paid
+                        ?
+                        "active-paid"
+                        :
+                        ""
+                    }"
+                    onclick="setPaymentStatus('${order.id}','pagato')">
+
+                    🟢 PAGATO
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="payment-button ${
+                        !paid
+                        ?
+                        "active-due"
+                        :
+                        ""
+                    }"
+                    onclick="setPaymentStatus('${order.id}','da_pagare')">
+
+                    🔴 DA PAGARE
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `
+        :
+        "";
 
 
     document.getElementById(
@@ -3911,9 +3483,7 @@ function showOrder(
 
                         ·
 
-                        ${formatDate(
-                            order.date
-                        )}
+                        ${formatDate(order.date)}
 
                     </div>
 
@@ -3941,15 +3511,14 @@ function showOrder(
 
                 <div class="detail-total">
 
-                    ${
-                        hasPrice
-                        ? euro(total)
-                        : "Da definire"
-                    }
+                    ${euro(total)}
 
                 </div>
 
             </div>
+
+
+            ${paymentPanel}
 
 
             <div class="detail-table-wrap">
@@ -3968,13 +3537,21 @@ function showOrder(
                                 Q.tà
                             </th>
 
-                            <th>
-                                Prezzo
-                            </th>
+                            ${
+                                loggedUser === "Gio"
+                                ?
+                                `
+                                <th>
+                                    Prezzo
+                                </th>
 
-                            <th>
-                                Sconto
-                            </th>
+                                <th>
+                                    Sconto
+                                </th>
+                                `
+                                :
+                                ""
+                            }
 
                             <th>
                                 Totale
@@ -3995,108 +3572,26 @@ function showOrder(
             </div>
 
 
-            <div class="detail-paid">
-
-                <strong>
-                    Stato pagamento
-                </strong>
-
-                <span class="
-                    status
-                    ${
-                        order.paid
-                        ? "paid-status"
-                        : "unpaid-status"
-                    }
-                ">
-
-                    ${
-                        order.paid
-                        ? "Pagato"
-                        : "Da pagare"
-                    }
-
-                </span>
-
-                ${
-                    loggedUser === "Gio"
-                    ?
-                    `
-                    <div style="
-                        margin-top:12px;
-                        display:flex;
-                        gap:10px;
-                        flex-wrap:wrap;
-                    ">
-
-                        <button
-                            type="button"
-                            class="${
-                                order.paid
-                                ? "unpaid-button"
-                                : "paid-button"
-                            }"
-                            id="togglePaidButton">
-
-                            ${
-                                order.paid
-                                ? "IMPOSTA DA PAGARE"
-                                : "SEGNA COME PAGATO"
-                            }
-
-                        </button>
-
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-
             <div class="detail-actions">
 
-                ${
-                    (
-                        loggedUser === "Gio" ||
-                        order.person === loggedUser
-                    )
-                    ?
-                    `
-                    <button
-                        type="button"
-                        class="edit"
-                        id="editOrderButton">
+                <button
+                    type="button"
+                    class="edit"
+                    id="editOrderButton">
 
-                        MODIFICA
+                    MODIFICA
 
-                    </button>
-                    `
-                    :
-                    ""
-                }
+                </button>
 
 
-                ${
-                    (
-                        loggedUser === "Gio" ||
-                        order.person === loggedUser
-                    )
-                    ?
-                    `
-                    <button
-                        type="button"
-                        class="delete"
-                        id="deleteOrderButton">
+                <button
+                    type="button"
+                    class="delete"
+                    id="deleteOrderButton">
 
-                        ELIMINA
+                    ELIMINA
 
-                    </button>
-                    `
-                    :
-                    ""
-                }
+                </button>
 
 
                 <button
@@ -4115,71 +3610,28 @@ function showOrder(
     `;
 
 
-    const editButton =
-        document.getElementById(
-            "editOrderButton"
-        );
+    document.getElementById(
+        "editOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
+
+            editOrder(order.id);
+
+        }
+    );
 
 
-    if(editButton){
+    document.getElementById(
+        "deleteOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
 
-        editButton.addEventListener(
-            "click",
-            function(){
+            deleteOrder(order.id);
 
-                editOrder(
-                    order.id
-                );
-
-            }
-        );
-
-    }
-
-
-    const deleteButton =
-        document.getElementById(
-            "deleteOrderButton"
-        );
-
-
-    if(deleteButton){
-
-        deleteButton.addEventListener(
-            "click",
-            function(){
-
-                deleteOrder(
-                    order.id
-                );
-
-            }
-        );
-
-    }
-
-
-    const paidButton =
-        document.getElementById(
-            "togglePaidButton"
-        );
-
-
-    if(paidButton){
-
-        paidButton.addEventListener(
-            "click",
-            function(){
-
-                togglePaid(
-                    order.id,
-                    !order.paid
-                );
-
-            }
-        );
-
-    }
+        }
+    );
 
 
     document.getElementById(
@@ -4190,8 +3642,7 @@ function showOrder(
 }
 
 
-window.closeDetail =
-function(){
+window.closeDetail = function(){
 
     document.getElementById(
         "detailModal"
@@ -4205,10 +3656,9 @@ function(){
    PAGAMENTO
 ===================================================== */
 
-window.togglePaid =
-async function(
+window.setPaymentStatus = async function(
     id,
-    paid
+    status
 ){
 
     if(loggedUser !== "Gio"){
@@ -4234,8 +3684,8 @@ async function(
 
             {
 
-                paid:
-                    paid,
+                paymentStatus:
+                    status,
 
                 paymentUpdatedAt:
                     Date.now(),
@@ -4250,16 +3700,14 @@ async function(
 
         closeDetail();
 
-
     }catch(error){
 
         console.error(
             error
         );
 
-
         alert(
-            "Errore durante l'aggiornamento del pagamento.\n\n" +
+            "Errore aggiornamento pagamento.\n\n" +
             error.message
         );
 
@@ -4272,8 +3720,7 @@ async function(
    MODIFICA ORDINE
 ===================================================== */
 
-window.editOrder =
-async function(id){
+window.editOrder = async function(id){
 
     try{
 
@@ -4286,8 +3733,7 @@ async function(id){
             );
 
 
-        let order =
-            null;
+        let order = null;
 
 
         snapshot.forEach(
@@ -4321,7 +3767,7 @@ async function(id){
 
 
         if(
-            loggedUser !== "Gio" &&
+            !USERS[loggedUser].admin &&
             order.person !== loggedUser
         ){
 
@@ -4334,8 +3780,7 @@ async function(id){
         }
 
 
-        editingOrderId =
-            id;
+        editingOrderId = id;
 
 
         document.getElementById(
@@ -4354,7 +3799,7 @@ async function(id){
         document.getElementById(
             "orderPerson"
         ).disabled =
-            loggedUser !== "Gio";
+            !USERS[loggedUser].admin;
 
 
         document.getElementById(
@@ -4366,37 +3811,29 @@ async function(id){
         document.getElementById(
             "orderStatus"
         ).value =
-            order.status ||
             "daordinare";
-
-
-        /*
-           SOLO GIO PUÒ MODIFICARE
-           LO STATO.
-        */
-
-        document.getElementById(
-            "orderStatus"
-        ).disabled =
-            loggedUser !== "Gio";
 
 
         document.getElementById(
             "articles"
-        ).innerHTML =
-            "";
+        ).innerHTML = "";
+
+
+        document.getElementById(
+            "priceNotice"
+        ).style.display =
+            loggedUser === "Gio"
+            ?
+            "none"
+            :
+            "block";
 
 
         (order.articles || [])
         .forEach(
             article =>
-            addArticle(
-                article
-            )
+            addArticle(article)
         );
-
-
-        updatePriceFields();
 
 
         document.getElementById(
@@ -4435,8 +3872,7 @@ async function(id){
    ELIMINA ORDINE
 ===================================================== */
 
-window.deleteOrder =
-async function(id){
+window.deleteOrder = async function(id){
 
     if(
         !confirm(
@@ -4460,8 +3896,7 @@ async function(id){
             );
 
 
-        let order =
-            null;
+        let order = null;
 
 
         snapshot.forEach(
@@ -4488,7 +3923,7 @@ async function(id){
 
 
         if(
-            loggedUser !== "Gio" &&
+            !USERS[loggedUser].admin &&
             order.person !== loggedUser
         ){
 
@@ -4536,111 +3971,79 @@ async function(id){
    CONTO
 ===================================================== */
 
-function calculateAccount(
-    orders
-){
+function getAccountData(orders){
 
-    let total =
-        0;
-
-    let paid =
-        0;
-
-    let unpaid =
-        0;
+    let total = 0;
+    let paid = 0;
+    let due = 0;
 
 
-    orders.forEach(
-        order => {
+    orders.forEach(order => {
 
-            if(
-                !hasOrderPrice(
-                    order
-                )
-            ){
-
-                return;
-
-            }
+        const amount =
+            calculateTotal(order);
 
 
-            const value =
-                calculateTotal(
-                    order
-                );
+        total += amount;
 
 
-            total +=
-                value;
+        if(order.paymentStatus === "pagato"){
 
+            paid += amount;
 
-            if(order.paid){
+        }else{
 
-                paid +=
-                    value;
-
-            }else{
-
-                unpaid +=
-                    value;
-
-            }
+            due += amount;
 
         }
-    );
+
+    });
 
 
     return {
-        total,
-        paid,
-        unpaid
+
+        total:total,
+
+        paid:paid,
+
+        due:due
+
     };
 
 }
 
 
-function renderAccountQuick(
-    orders
-){
+function renderAccountSummary(orders){
 
-    const account =
-        calculateAccount(
-            orders
-        );
+    const data =
+        getAccountData(orders);
 
 
     document.getElementById(
-        "accountQuickTotal"
+        "accountTotal"
     ).textContent =
-        euro(account.total);
+        euro(data.total);
 
 
     document.getElementById(
-        "accountQuickPaid"
+        "accountPaid"
     ).textContent =
-        euro(account.paid);
+        euro(data.paid);
 
 
     document.getElementById(
-        "accountQuickUnpaid"
+        "accountDue"
     ).textContent =
-        euro(account.unpaid);
-
-
-    document.getElementById(
-        "accountQuickOrders"
-    ).textContent =
-        orders.length;
+        euro(data.due);
 
 }
 
 
-window.openAccount =
-function(){
+window.openAccount = async function(){
 
     if(
-        !loggedUser ||
-        loggedUser === "Gio"
+        loggedUser !== "Roby" &&
+        loggedUser !== "Fede"
     ){
 
         return;
@@ -4648,204 +4051,226 @@ function(){
     }
 
 
-    const orders =
-        window.currentOrders ||
-        [];
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "ordini"
+                )
+            );
 
 
-    const account =
-        calculateAccount(
-            orders
+        let orders = [];
+
+
+        snapshot.forEach(
+            d => {
+
+                const order = {
+
+                    id:d.id,
+
+                    ...d.data()
+
+                };
+
+
+                if(
+                    order.person === loggedUser
+                ){
+
+                    orders.push(order);
+
+                }
+
+            }
         );
 
 
-    document.getElementById(
-        "accountModalTotal"
-    ).textContent =
-        euro(account.total);
-
-
-    document.getElementById(
-        "accountModalPaid"
-    ).textContent =
-        euro(account.paid);
-
-
-    document.getElementById(
-        "accountModalUnpaid"
-    ).textContent =
-        euro(account.unpaid);
-
-
-    const container =
-        document.getElementById(
-            "accountOrders"
+        orders.sort(
+            (a,b) =>
+            Number(b.createdAt || 0) -
+            Number(a.createdAt || 0)
         );
 
 
-    if(!orders.length){
-
-        container.innerHTML = `
-
-            <div class="empty-orders">
-                Nessun ordine presente.
-            </div>
-
-        `;
-
-    }else{
-
-        container.innerHTML =
-            orders.map(
-                order => {
-
-                    const total =
-                        calculateTotal(
-                            order
-                        );
-
-                    const hasPrice =
-                        hasOrderPrice(
-                            order
-                        );
+        const data =
+            getAccountData(orders);
 
 
-                    return `
-
-                        <div
-                            class="account-order"
-                            data-order-id="${escapeAttr(
-                                order.id
-                            )}">
-
-                            <div class="
-                                account-order-top
-                            ">
-
-                                <div>
-
-                                    <div class="
-                                        account-order-name
-                                    ">
-
-                                        ${escapeHtml(
-                                            order.number
-                                        )}
-
-                                    </div>
-
-                                    <div class="
-                                        account-order-date
-                                    ">
-
-                                        ${formatDate(
-                                            order.date
-                                        )}
-
-                                    </div>
-
-                                </div>
+        let orderHtml = "";
 
 
-                                <div style="
-                                    text-align:right;
-                                ">
+        if(!orders.length){
 
-                                    <div class="
-                                        account-order-money
-                                    ">
+            orderHtml = `
 
-                                        ${
-                                            hasPrice
-                                            ? euro(total)
-                                            : "Da definire"
-                                        }
+                <div class="empty-orders">
+                    Nessun ordine presente.
+                </div>
 
-                                    </div>
+            `;
 
-                                    <div style="
-                                        margin-top:6px;
-                                    ">
+        }else{
 
-                                        <span class="
-                                            status
-                                            ${
-                                                order.paid
-                                                ? "paid-status"
-                                                : "unpaid-status"
-                                            }
-                                        ">
+            orders.forEach(order => {
 
-                                            ${
-                                                order.paid
-                                                ? "Pagato"
-                                                : "Da pagare"
-                                            }
+                const amount =
+                    calculateTotal(order);
 
-                                        </span>
 
-                                    </div>
+                const paid =
+                    order.paymentStatus === "pagato";
 
-                                </div>
+
+                orderHtml += `
+
+                    <div class="account-order">
+
+                        <div>
+
+                            <div class="account-order-number">
+
+                                ${escapeHtml(
+                                    order.number ||
+                                    "ORDINE"
+                                )}
+
+                            </div>
+
+                            <div class="account-order-date">
+
+                                ${formatDate(order.date)}
 
                             </div>
 
                         </div>
 
-                    `;
 
-                }
-            ).join("");
+                        <div class="account-order-right">
+
+                            <div class="account-order-price">
+
+                                ${euro(amount)}
+
+                            </div>
+
+                            <div class="
+                                account-order-payment
+                                ${
+                                    paid
+                                    ?
+                                    "pagato"
+                                    :
+                                    "dapagare"
+                                }
+                            ">
+
+                                ${
+                                    paid
+                                    ?
+                                    "🟢 PAGATO"
+                                    :
+                                    "🔴 DA PAGARE"
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
 
 
-        container
-        .querySelectorAll(
-            ".account-order"
-        )
-        .forEach(
-            element => {
+        document.getElementById(
+            "accountContent"
+        ).innerHTML = `
 
-                element.addEventListener(
-                    "click",
-                    function(){
+            <div class="account-modal-total">
 
-                        const order =
-                            orders.find(
-                                o =>
-                                o.id ===
-                                element.dataset.orderId
-                            );
+                <div class="account-modal-name">
+
+                    ${escapeHtml(loggedUser)}
+
+                </div>
+
+                <strong>
+                    ${euro(data.total)}
+                </strong>
+
+            </div>
 
 
-                        if(order){
+            <div class="account-modal-grid">
 
-                            closeAccount();
+                <div class="account-modal-box">
 
-                            showOrder(
-                                order
-                            );
+                    <span>
+                        PAGATO
+                    </span>
 
-                        }
+                    <strong style="color:#16a34a;">
+                        ${euro(data.paid)}
+                    </strong>
 
-                    }
-                );
+                </div>
 
-            }
+
+                <div class="account-modal-box">
+
+                    <span>
+                        DA PAGARE
+                    </span>
+
+                    <strong style="color:#dc2626;">
+                        ${euro(data.due)}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <h3 style="margin-bottom:12px;">
+                Dettaglio ordini
+            </h3>
+
+
+            ${orderHtml}
+
+        `;
+
+
+        document.getElementById(
+            "accountModal"
+        ).style.display =
+            "block";
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Errore caricamento conto.\n\n" +
+            error.message
         );
 
     }
 
-
-    document.getElementById(
-        "accountModal"
-    ).style.display =
-        "block";
-
 };
 
 
-window.closeAccount =
-function(){
+window.closeAccount = function(){
 
     document.getElementById(
         "accountModal"
@@ -4859,20 +4284,16 @@ function(){
    LAVORI
 ===================================================== */
 
-function listenWorks(){
+function listenJobs(){
 
-    if(loggedUser !== "Gio")
-        return;
+    if(unsubscribeJobs){
 
-
-    if(unsubscribeWorks){
-
-        unsubscribeWorks();
+        unsubscribeJobs();
 
     }
 
 
-    const worksRef =
+    const jobsRef =
         collection(
             db,
             "lavori"
@@ -4881,7 +4302,7 @@ function listenWorks(){
 
     const q =
         query(
-            worksRef,
+            jobsRef,
             orderBy(
                 "createdAt",
                 "desc"
@@ -4889,25 +4310,24 @@ function listenWorks(){
         );
 
 
-    unsubscribeWorks =
+    unsubscribeJobs =
         onSnapshot(
 
             q,
 
             snapshot => {
 
-                const works = [];
+                const jobs = [];
 
 
                 snapshot.forEach(
-                    docSnap => {
+                    d => {
 
-                        works.push({
+                        jobs.push({
 
-                            id:
-                                docSnap.id,
+                            id:d.id,
 
-                            ...docSnap.data()
+                            ...d.data()
 
                         });
 
@@ -4915,9 +4335,7 @@ function listenWorks(){
                 );
 
 
-                renderWorks(
-                    works
-                );
+                renderJobs(jobs);
 
             },
 
@@ -4928,16 +4346,6 @@ function listenWorks(){
                     error
                 );
 
-                document.getElementById(
-                    "workList"
-                ).innerHTML = `
-
-                    <div class="empty-orders">
-                        Errore caricamento lavori.
-                    </div>
-
-                `;
-
             }
 
         );
@@ -4945,44 +4353,20 @@ function listenWorks(){
 }
 
 
-function renderWorks(
-    works
-){
+function renderJobs(jobs){
 
     const list =
         document.getElementById(
-            "workList"
+            "jobsList"
         );
 
 
-    let total =
-        0;
-
-
-    works.forEach(
-        work => {
-
-            total +=
-                Number(
-                    work.price
-                ) || 0;
-
-        }
-    );
-
-
-    document.getElementById(
-        "workTotal"
-    ).textContent =
-        euro(total);
-
-
-    if(!works.length){
+    if(!jobs.length){
 
         list.innerHTML = `
 
             <div class="empty-orders">
-                Nessun lavoro inserito.
+                Nessun lavoro presente.
             </div>
 
         `;
@@ -4992,111 +4376,91 @@ function renderWorks(
     }
 
 
-    list.innerHTML =
-        works.map(
-            work => `
+    list.innerHTML = "";
 
-                <div class="work-item">
 
-                    <div>
+    jobs.forEach(job => {
 
-                        <div class="work-name">
+        const div =
+            document.createElement(
+                "div"
+            );
 
-                            ${escapeHtml(
-                                work.description
-                            )}
 
-                        </div>
+        div.className =
+            "job";
 
-                        <div class="work-person">
 
-                            Per:
-                            <strong>
-                                ${escapeHtml(
-                                    work.person
-                                )}
-                            </strong>
+        div.innerHTML = `
 
-                            ·
+            <div class="job-top">
 
-                            ${formatDate(
-                                work.date
-                            )}
+                <div>
 
-                        </div>
+                    <div class="job-name">
+
+                        ${escapeHtml(
+                            job.person
+                        )}
 
                     </div>
 
+                    <div class="job-description">
 
-                    <div style="
-                        display:flex;
-                        align-items:center;
-                        gap:10px;
-                    ">
+                        ${escapeHtml(
+                            job.description
+                        )}
 
-                        <div class="work-price">
+                    </div>
 
-                            ${euro(
-                                work.price
-                            )}
+                    <div class="job-date">
 
-                        </div>
-
-                        <button
-                            type="button"
-                            class="work-delete"
-                            data-work-id="${
-                                escapeAttr(
-                                    work.id
-                                )
-                            }">
-
-                            ×
-
-                        </button>
+                        ${formatDate(
+                            job.date
+                        )}
 
                     </div>
 
                 </div>
 
-            `
-        ).join("");
+
+                <div class="job-price">
+
+                    ${euro(
+                        job.price
+                    )}
+
+                </div>
+
+            </div>
 
 
-    list
-    .querySelectorAll(
-        ".work-delete"
-    )
-    .forEach(
-        button => {
+            <div class="job-actions">
 
-            button.addEventListener(
-                "click",
-                function(event){
+                <button
+                    type="button"
+                    class="job-delete"
+                    onclick="deleteJob('${job.id}')">
 
-                    event.stopPropagation();
+                    ELIMINA
 
-                    deleteWork(
-                        button.dataset.workId
-                    );
+                </button>
 
-                }
-            );
+            </div>
 
-        }
-    );
+        `;
+
+
+        list.appendChild(div);
+
+    });
 
 }
 
 
-window.openWorkModal =
-function(){
+window.openJobModal = function(){
 
     if(loggedUser !== "Gio"){
-
-        alert(
-            "Solo Gio può gestire i lavori."
-        );
 
         return;
 
@@ -5104,44 +4468,50 @@ function(){
 
 
     document.getElementById(
-        "workPerson"
+        "jobPerson"
     ).value =
         "Roby";
 
 
     document.getElementById(
-        "workDescription"
+        "jobDescription"
     ).value =
         "";
 
 
     document.getElementById(
-        "workPrice"
+        "jobPrice"
     ).value =
         "";
 
 
     document.getElementById(
-        "workModal"
+        "jobDate"
+    ).value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document.getElementById(
+        "jobModal"
     ).style.display =
         "block";
 
 };
 
 
-window.closeWorkModal =
-function(){
+window.closeJobModal = function(){
 
     document.getElementById(
-        "workModal"
+        "jobModal"
     ).style.display =
         "none";
 
 };
 
 
-window.saveWork =
-async function(){
+window.saveJob = async function(){
 
     if(loggedUser !== "Gio"){
 
@@ -5152,22 +4522,28 @@ async function(){
 
     const person =
         document.getElementById(
-            "workPerson"
+            "jobPerson"
         ).value;
 
 
     const description =
         document.getElementById(
-            "workDescription"
+            "jobDescription"
         ).value.trim();
 
 
     const price =
         Number(
             document.getElementById(
-                "workPrice"
+                "jobPrice"
             ).value
-        );
+        ) || 0;
+
+
+    const date =
+        document.getElementById(
+            "jobDate"
+        ).value;
 
 
     if(!description){
@@ -5181,13 +4557,21 @@ async function(){
     }
 
 
-    if(
-        !Number.isFinite(price) ||
-        price < 0
-    ){
+    if(price <= 0){
 
         alert(
             "Inserisci un prezzo valido."
+        );
+
+        return;
+
+    }
+
+
+    if(!date){
+
+        alert(
+            "Inserisci la data."
         );
 
         return;
@@ -5206,31 +4590,24 @@ async function(){
 
             {
 
-                person:
-                    person,
+                person:person,
 
-                description:
-                    description,
+                description:description,
 
-                price:
-                    price,
+                price:price,
 
-                date:
-                    localDateInput(),
+                date:date,
 
-                createdAt:
-                    Date.now(),
+                createdAt:Date.now(),
 
-                createdBy:
-                    "Gio"
+                createdBy:"Gio"
 
             }
 
         );
 
 
-        closeWorkModal();
-
+        closeJobModal();
 
     }catch(error){
 
@@ -5249,8 +4626,7 @@ async function(){
 };
 
 
-window.deleteWork =
-async function(id){
+window.deleteJob = async function(id){
 
     if(loggedUser !== "Gio"){
 
@@ -5303,42 +4679,21 @@ async function(id){
    UTILITÀ
 ===================================================== */
 
-function calculateTotal(
-    order
-){
+function calculateTotal(order){
 
     return (order.articles || [])
         .reduce(
 
             (total,a) => {
 
-                if(
-                    a.price === null ||
-                    a.price === undefined ||
-                    a.price === ""
-                ){
-
-                    return total;
-
-                }
-
-
                 const price =
-                    Number(
-                        a.price
-                    ) || 0;
-
+                    Number(a.price) || 0;
 
                 const qty =
-                    Number(
-                        a.qty
-                    ) || 0;
-
+                    Number(a.qty) || 0;
 
                 const discount =
-                    Number(
-                        a.discount
-                    ) || 0;
+                    Number(a.discount) || 0;
 
 
                 return total +
@@ -5358,24 +4713,7 @@ function calculateTotal(
 }
 
 
-function hasOrderPrice(
-    order
-){
-
-    return (order.articles || [])
-        .some(
-            a =>
-            a.price !== null &&
-            a.price !== undefined &&
-            a.price !== ""
-        );
-
-}
-
-
-function euro(
-    value
-){
+function euro(value){
 
     return new Intl.NumberFormat(
         "it-IT",
@@ -5390,57 +4728,14 @@ function euro(
 }
 
 
-/*
-   Questa funzione evita il problema
-   del fuso orario di toISOString()
-   sulla data dell'ordine.
-*/
-
-function localDateInput(){
-
-    const now =
-        new Date();
-
-
-    const year =
-        now.getFullYear();
-
-
-    const month =
-        String(
-            now.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const day =
-        String(
-            now.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    return `${year}-${month}-${day}`;
-
-}
-
-
-function formatDate(
-    date
-){
+function formatDate(date){
 
     if(!date)
         return "";
 
 
     const p =
-        String(
-            date
-        ).split("-");
+        String(date).split("-");
 
 
     if(p.length !== 3)
@@ -5456,9 +4751,7 @@ function formatDate(
 }
 
 
-function statusLabel(
-    status
-){
+function statusLabel(status){
 
     switch(status){
 
@@ -5475,52 +4768,28 @@ function statusLabel(
             return "Consegnato";
 
         default:
-            return status ||
-                "Da ordinare";
+            return "Da ordinare";
 
     }
 
 }
 
 
-function escapeHtml(
-    value
-){
+function escapeHtml(value){
 
-    return String(
-        value ?? ""
-    )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
 
-function escapeAttr(
-    value
-){
+function escapeAttr(value){
 
-    return escapeHtml(
-        value
-    );
+    return escapeHtml(value);
 
 }
 
@@ -5529,8 +4798,7 @@ function escapeAttr(
    TUTTI GLI ORDINI
 ===================================================== */
 
-window.showAllOrders =
-function(){
+window.showAllOrders = function(){
 
     if(loggedUser !== "Gio"){
 
@@ -5569,12 +4837,15 @@ function(){
    AGGIORNA ORDINI
 ===================================================== */
 
-window.loadOrders =
-function(){
+window.loadOrders = function(){
 
-    document.getElementById(
-        "ordersList"
-    ).innerHTML = `
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    list.innerHTML = `
 
         <div class="empty-orders">
             🔄 Aggiornamento ordini...
@@ -5601,14 +4872,13 @@ function(){
 
 async function setupNotifications(){
 
-    if(loggedUser !== "Gio")
+    if(loggedUser !== "Gio"){
         return;
+    }
 
 
     if(!("Notification" in window)){
-
         return;
-
     }
 
 
@@ -5639,6 +4909,7 @@ async function setupNotifications(){
     }catch(error){
 
         console.error(
+            "Errore setup notifiche:",
             error
         );
 
@@ -5648,7 +4919,7 @@ async function setupNotifications(){
 
 
 /* =====================================================
-   STATO NOTIFICHE
+   STATO PULSANTE NOTIFICHE
 ===================================================== */
 
 function setNotificationButtonActive(){
@@ -5659,13 +4930,13 @@ function setNotificationButtonActive(){
         );
 
 
-    if(!button)
+    if(!button){
         return;
+    }
 
 
     button.textContent =
         "🔔 NOTIFICHE ATTIVE";
-
 
     button.classList.add(
         "notification-active"
@@ -5682,8 +4953,9 @@ function updateNotificationButtonState(){
         );
 
 
-    if(!button)
+    if(!button){
         return;
+    }
 
 
     const savedToken =
@@ -5695,8 +4967,7 @@ function updateNotificationButtonState(){
     if(
         savedToken &&
         "Notification" in window &&
-        Notification.permission ===
-        "granted"
+        Notification.permission === "granted"
     ){
 
         setNotificationButtonActive();
@@ -5722,8 +4993,9 @@ function updateNotificationButtonState(){
 window.activateNotifications =
 async function(){
 
-    if(loggedUser !== "Gio")
+    if(loggedUser !== "Gio"){
         return;
+    }
 
 
     if(!("Notification" in window)){
@@ -5737,10 +5009,7 @@ async function(){
     }
 
 
-    if(
-        !messagingSupported ||
-        !messaging
-    ){
+    if(!messagingSupported || !messaging){
 
         alert(
             "Firebase Messaging non è supportato da questo browser."
@@ -5757,18 +5026,13 @@ async function(){
             await Notification.requestPermission();
 
 
-        if(
-            permission !==
-            "granted"
-        ){
+        if(permission !== "granted"){
 
-            if(
-                permission ===
-                "denied"
-            ){
+            if(permission === "denied"){
 
                 alert(
-                    "Le notifiche sono state bloccate."
+                    "Le notifiche sono state bloccate.\n\n" +
+                    "Abilita le notifiche dalle impostazioni del dispositivo."
                 );
 
             }
@@ -5784,6 +5048,7 @@ async function(){
     }catch(error){
 
         console.error(
+            "Errore attivazione notifiche:",
             error
         );
 
@@ -5804,9 +5069,7 @@ async function(){
 
 async function registerNotifications(){
 
-    if(
-        !("serviceWorker" in navigator)
-    ){
+    if(!("serviceWorker" in navigator)){
 
         alert(
             "Il browser non supporta i Service Worker."
@@ -5855,6 +5118,7 @@ async function registerNotifications(){
     }catch(error){
 
         console.error(
+            "Errore Service Worker:",
             error
         );
 
@@ -5881,19 +5145,19 @@ async function registerNotifications(){
             await getToken(
                 messaging,
                 {
-
                     vapidKey:
                         NORMALIZED_VAPID_KEY,
 
                     serviceWorkerRegistration:
                         registration
-
                 }
             );
+
 
     }catch(error){
 
         console.error(
+            "ERRORE getToken():",
             error
         );
 
@@ -5947,10 +5211,8 @@ async function registerNotifications(){
                     /iPhone|iPad|iPod/i.test(
                         navigator.userAgent
                     )
-                    ?
-                    "iOS"
-                    :
-                    "browser",
+                    ? "iOS"
+                    : "browser",
 
                 notificationUserAgent:
                     navigator.userAgent,
@@ -5977,6 +5239,7 @@ async function registerNotifications(){
     }catch(error){
 
         console.error(
+            "ERRORE SALVATAGGIO TOKEN:",
             error
         );
 
@@ -5999,12 +5262,6 @@ async function registerNotifications(){
         onMessage(
             messaging,
             payload => {
-
-                console.log(
-                    "Messaggio Firebase ricevuto:",
-                    payload
-                );
-
 
                 const title =
                     payload.notification?.title ||
@@ -6046,11 +5303,99 @@ async function registerNotifications(){
 
 
 /* =====================================================
-   AVVIO
+   CHIUSURA MODAL
 ===================================================== */
 
-window.currentOrders = [];
+window.addEventListener(
+    "click",
+    function(event){
 
+        const orderModal =
+            document.getElementById(
+                "orderModal"
+            );
+
+
+        const detailModal =
+            document.getElementById(
+                "detailModal"
+            );
+
+
+        const accountModal =
+            document.getElementById(
+                "accountModal"
+            );
+
+
+        const jobModal =
+            document.getElementById(
+                "jobModal"
+            );
+
+
+        if(
+            event.target === orderModal
+        ){
+
+            closeModal();
+
+        }
+
+
+        if(
+            event.target === detailModal
+        ){
+
+            closeDetail();
+
+        }
+
+
+        if(
+            event.target === accountModal
+        ){
+
+            closeAccount();
+
+        }
+
+
+        if(
+            event.target === jobModal
+        ){
+
+            closeJobModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ENTER LOGIN
+===================================================== */
+
+document.getElementById(
+    "loginCode"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AVVIO
+===================================================== */
 
 const savedUser =
     localStorage.getItem(
@@ -6076,104 +5421,6 @@ if(
         "flex";
 
 }
-
-
-/* =====================================================
-   CHIUSURA MODALI CLICCANDO FUORI
-===================================================== */
-
-window.addEventListener(
-    "click",
-    function(event){
-
-        const orderModal =
-            document.getElementById(
-                "orderModal"
-            );
-
-
-        const detailModal =
-            document.getElementById(
-                "detailModal"
-            );
-
-
-        const accountModal =
-            document.getElementById(
-                "accountModal"
-            );
-
-
-        const workModal =
-            document.getElementById(
-                "workModal"
-            );
-
-
-        if(
-            event.target ===
-            orderModal
-        ){
-
-            closeModal();
-
-        }
-
-
-        if(
-            event.target ===
-            detailModal
-        ){
-
-            closeDetail();
-
-        }
-
-
-        if(
-            event.target ===
-            accountModal
-        ){
-
-            closeAccount();
-
-        }
-
-
-        if(
-            event.target ===
-            workModal
-        ){
-
-            closeWorkModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ENTER LOGIN
-===================================================== */
-
-document.getElementById(
-    "loginCode"
-).addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key ===
-            "Enter"
-        ){
-
-            login();
-
-        }
-
-    }
-);
 
 </script>
 
