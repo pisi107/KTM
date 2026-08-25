@@ -183,6 +183,15 @@ button{
     color:#222;
 }
 
+.biometric-button{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    background:#111827;
+    color:#fff;
+    display:none;
+}
+
 .error{
     display:none;
     margin-top:14px;
@@ -1220,7 +1229,7 @@ button{
             class="code-input"
             type="password"
             inputmode="numeric"
-            placeholder="••••••">
+            placeholder="••••">
 
         <button
             type="button"
@@ -1228,6 +1237,16 @@ button{
             onclick="login()">
 
             ACCEDI
+
+        </button>
+
+        <button
+            type="button"
+            id="biometricBtn"
+            class="biometric-button"
+            onclick="loginWithBiometrics()">
+
+            🔒 Accedi con Face ID / Impronta
 
         </button>
 
@@ -1271,11 +1290,11 @@ button{
             <br><br>
 
             Il codice iniziale è
-            <strong>123456</strong>.
+            <strong>1234</strong>.
 
             <br><br>
 
-            Scegli ora il tuo codice personale.
+            Scegli ora il tuo codice personale di almeno 4 cifre.
 
         </div>
 
@@ -2338,7 +2357,7 @@ try{
    UTENTI
 ===================================================== */
 
-const DEFAULT_CODE = "123456";
+const DEFAULT_CODE = "1234";
 
 const USERS = {
 
@@ -2375,10 +2394,10 @@ let allJobs = [];
 let allScales = [];
 
 /* =====================================================
-   LOGIN
+   LOGIN & BIOMETRIA
 ===================================================== */
 
-window.selectUser = function(user){
+window.selectUser = async function(user){
 
     selectedUser = user;
 
@@ -2402,11 +2421,20 @@ window.selectUser = function(user){
     document.getElementById("codePage")
         .style.display = "flex";
 
-    setTimeout(function(){
+    // Gestione pulsante Biometria (Face ID / Impronta)
+    const bioBtn = document.getElementById("biometricBtn");
+    const hasSavedCode = localStorage.getItem("ktm_code_" + selectedUser);
+    const hasBioRegistered = localStorage.getItem("ktm_bio_" + selectedUser) === "true";
 
+    if (hasSavedCode && hasSavedCode !== DEFAULT_CODE && hasBioRegistered && window.PublicKeyCredential) {
+        bioBtn.style.display = "block";
+    } else {
+        bioBtn.style.display = "none";
+    }
+
+    setTimeout(function(){
         document.getElementById("loginCode")
             .focus();
-
     },100);
 
 };
@@ -2459,7 +2487,8 @@ window.login = function(){
     error.style.display =
         "none";
 
-    if(!saved){
+    // Se non ha ancora salvato un codice personalizzato (quindi usa 1234), obbliga al cambio
+    if(!saved || saved === DEFAULT_CODE){
 
         document.getElementById("codePage")
             .style.display = "none";
@@ -2479,8 +2508,59 @@ window.login = function(){
         loggedUser
     );
 
+    // Chiedi se vuole registrare la biometria per i prossimi accessi (se supportata)
+    offerBiometricRegistration();
+
     openApp();
 
+};
+
+// Funzioni per WebAuthn (Face ID / Impronta Digitale)
+async function offerBiometricRegistration() {
+    if (!window.PublicKeyCredential) return;
+    const isBioRegistered = localStorage.getItem("ktm_bio_" + selectedUser) === "true";
+    if (!isBioRegistered) {
+        if (confirm("Vuoi abilitare il Face ID o l'impronta digitale per i prossimi accessi rapidi?")) {
+            try {
+                const publicKey = {
+                    challenge: new Uint8Array(32),
+                    rp: { name: "KTM Ordini" },
+                    user: {
+                        id: Uint8Array.from(selectedUser, c => c.charCodeAt(0)),
+                        name: selectedUser,
+                        displayName: selectedUser
+                    },
+                    pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+                    authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
+                    timeout: 60000
+                };
+                await navigator.credentials.create({ publicKey });
+                localStorage.setItem("ktm_bio_" + selectedUser, "true");
+                alert("Face ID / Impronta registrata con successo!");
+            } catch (e) {
+                console.log("Registrazione biometrica saltata o non riuscita", e);
+            }
+        }
+    }
+}
+
+window.loginWithBiometrics = async function() {
+    if (!selectedUser) return;
+    try {
+        const publicKey = {
+            challenge: new Uint8Array(32),
+            userVerification: "required"
+        };
+        const assertion = await navigator.credentials.get({ publicKey });
+        if (assertion) {
+            loggedUser = selectedUser;
+            localStorage.setItem("ktm_logged_user", loggedUser);
+            openApp();
+        }
+    } catch (error) {
+        console.error("Accesso biometrico fallito", error);
+        alert("Autenticazione biometrica non riuscita.");
+    }
 };
 
 window.changeCode = function(){
@@ -2499,7 +2579,7 @@ window.changeCode = function(){
     if(newCode.length < 4){
 
         error.textContent =
-            "Il codice deve avere almeno 4 caratteri.";
+            "Il codice deve avere almeno 4 cifre.";
 
         error.style.display =
             "block";
@@ -2523,7 +2603,7 @@ window.changeCode = function(){
     if(newCode === DEFAULT_CODE){
 
         error.textContent =
-            "Scegli un codice diverso da 123456.";
+            "Scegli un codice diverso da 1234.";
 
         error.style.display =
             "block";
@@ -2545,6 +2625,7 @@ window.changeCode = function(){
         loggedUser
     );
 
+    offerBiometricRegistration();
     openApp();
 
 };
