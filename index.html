@@ -1084,7 +1084,6 @@ button{
 
 <body>
 
-
 <!-- =====================================================
      LOGIN
 ===================================================== -->
@@ -1147,7 +1146,6 @@ button{
 
 </div>
 
-
 <!-- =====================================================
      CODICE
 ===================================================== -->
@@ -1200,7 +1198,6 @@ button{
     </div>
 
 </div>
-
 
 <!-- =====================================================
      CAMBIO CODICE
@@ -1272,7 +1269,6 @@ button{
 
 </div>
 
-
 <!-- =====================================================
      APP
 ===================================================== -->
@@ -1314,7 +1310,6 @@ button{
 
     </div>
 
-
     <div class="app-content">
 
         <div class="welcome">
@@ -1328,7 +1323,6 @@ button{
             </p>
 
         </div>
-
 
         <!-- =========================
              CARDS
@@ -1361,7 +1355,6 @@ button{
 
             </div>
 
-
             <div class="card">
 
                 <div class="card-icon">
@@ -1386,7 +1379,6 @@ button{
                 </button>
 
             </div>
-
 
             <!-- CONTO ROBY/FEDE -->
 
@@ -1419,7 +1411,6 @@ button{
 
             </div>
 
-
             <!-- LAVORI GIO -->
 
             <div
@@ -1450,7 +1441,6 @@ button{
                 </button>
 
             </div>
-
 
             <!-- ADMIN -->
 
@@ -1483,7 +1473,6 @@ button{
             </div>
 
         </div>
-
 
         <!-- =========================
              CONTO ROBY / FEDE
@@ -1543,7 +1532,6 @@ button{
 
         </div>
 
-
         <!-- =========================
              LAVORI GIO
         ========================= -->
@@ -1581,7 +1569,6 @@ button{
             </div>
 
         </div>
-
 
         <!-- =========================
              ORDINI
@@ -1622,7 +1609,6 @@ button{
 
 </div>
 
-
 <!-- =====================================================
      MODALE ORDINE
 ===================================================== -->
@@ -1648,7 +1634,6 @@ button{
 
         </div>
 
-
         <div class="form-group">
 
             <label>
@@ -1656,8 +1641,7 @@ button{
             </label>
 
             <select
-                id="orderPerson"
-                class="fixed-field">
+                id="orderPerson">
 
                 <option value="Roby">
                     Roby
@@ -1675,7 +1659,6 @@ button{
 
         </div>
 
-
         <div class="form-group">
 
             <label style="text-align:center;">
@@ -1684,11 +1667,10 @@ button{
 
             <input
                 id="orderDate"
-                class="date-field fixed-field"
+                class="date-field"
                 type="date">
 
         </div>
-
 
         <div class="form-group">
 
@@ -1697,25 +1679,33 @@ button{
             </label>
 
             <select
-                id="orderStatus"
-                class="fixed-field">
+                id="orderStatus">
 
                 <option value="daordinare">
                     Da ordinare
+                </option>
+
+                <option value="ordinato">
+                    Ordinato
+                </option>
+
+                <option value="ritirare">
+                    Da ritirare
+                </option>
+
+                <option value="consegnato">
+                    Consegnato
                 </option>
 
             </select>
 
         </div>
 
-
         <div class="info-box">
 
-            💡 Il prezzo e lo sconto verranno inseriti
-            successivamente da Gio.
+            💡 Il prezzo e lo sconto possono essere inseriti o modificati da Gio.
 
         </div>
-
 
         <div class="article-header-actions">
 
@@ -1740,9 +1730,7 @@ button{
 
         </div>
 
-
         <div id="articles"></div>
-
 
         <div class="total">
 
@@ -1755,7 +1743,6 @@ button{
             </strong>
 
         </div>
-
 
         <div class="modal-footer">
 
@@ -1783,7 +1770,6 @@ button{
 
 </div>
 
-
 <!-- =====================================================
      DETTAGLIO ORDINE
 ===================================================== -->
@@ -1797,7 +1783,6 @@ button{
     </div>
 
 </div>
-
 
 <!-- =====================================================
      MODALE CONTO
@@ -1830,7 +1815,6 @@ button{
 
 </div>
 
-
 <!-- =====================================================
      MODALE LAVORO
 ===================================================== -->
@@ -1856,7 +1840,6 @@ button{
 
         </div>
 
-
         <div class="form-group">
 
             <label>
@@ -1877,7 +1860,6 @@ button{
 
         </div>
 
-
         <div class="form-group">
 
             <label>
@@ -1890,7 +1872,6 @@ button{
                 placeholder="Descrizione del lavoro">
 
         </div>
-
 
         <div class="form-group">
 
@@ -1907,7 +1888,6 @@ button{
 
         </div>
 
-
         <div class="form-group">
 
             <label>
@@ -1920,7 +1900,6 @@ button{
                 type="date">
 
         </div>
-
 
         <div class="modal-footer">
 
@@ -1947,7 +1926,6 @@ button{
     </div>
 
 </div>
-
 
 <script type="module">
 
@@ -1982,7 +1960,6 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
 
-
 const firebaseConfig = {
 
     apiKey:
@@ -2005,13 +1982,11 @@ const firebaseConfig = {
 
 };
 
-
 const app =
     initializeApp(firebaseConfig);
 
 const db =
     getFirestore(app);
-
 
 /* =====================================================
    FIREBASE MESSAGING
@@ -2045,14 +2020,12 @@ try{
 
 }
 
-
 /* =====================================================
    VAPID
 ===================================================== */
 
 const VAPID_KEY =
 "BM8lpUTpngWnKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
-
 
 function normalizeVapidKey(key){
 
@@ -2113,7 +2086,6 @@ function normalizeVapidKey(key){
 
 }
 
-
 let NORMALIZED_VAPID_KEY = null;
 
 try{
@@ -2129,7 +2101,6 @@ try{
     );
 
 }
-
 
 /* =====================================================
    UTENTI
@@ -2156,7 +2127,6 @@ const USERS = {
 
 };
 
-
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
@@ -2168,7 +2138,6 @@ let notificationListenerActive = false;
 
 let allOrders = [];
 let allJobs = [];
-
 
 /* =====================================================
    LOGIN
@@ -2207,7 +2176,6 @@ window.selectUser = function(user){
 
 };
 
-
 window.backUsers = function(){
 
     selectedUser = null;
@@ -2219,7 +2187,6 @@ window.backUsers = function(){
         .style.display = "flex";
 
 };
-
 
 window.login = function(){
 
@@ -2242,7 +2209,6 @@ window.login = function(){
     const error =
         document.getElementById("loginError");
 
-
     if(entered !== realCode){
 
         error.textContent =
@@ -2255,10 +2221,8 @@ window.login = function(){
 
     }
 
-
     error.style.display =
         "none";
-
 
     if(!saved){
 
@@ -2272,21 +2236,17 @@ window.login = function(){
 
     }
 
-
     loggedUser =
         selectedUser;
-
 
     localStorage.setItem(
         "ktm_logged_user",
         loggedUser
     );
 
-
     openApp();
 
 };
-
 
 window.changeCode = function(){
 
@@ -2301,7 +2261,6 @@ window.changeCode = function(){
     const error =
         document.getElementById("changeError");
 
-
     if(newCode.length < 4){
 
         error.textContent =
@@ -2313,7 +2272,6 @@ window.changeCode = function(){
         return;
 
     }
-
 
     if(newCode !== confirmCode){
 
@@ -2327,7 +2285,6 @@ window.changeCode = function(){
 
     }
 
-
     if(newCode === DEFAULT_CODE){
 
         error.textContent =
@@ -2340,27 +2297,22 @@ window.changeCode = function(){
 
     }
 
-
     localStorage.setItem(
         "ktm_code_" + selectedUser,
         newCode
     );
 
-
     loggedUser =
         selectedUser;
-
 
     localStorage.setItem(
         "ktm_logged_user",
         loggedUser
     );
 
-
     openApp();
 
 };
-
 
 /* =====================================================
    APP
@@ -2380,47 +2332,39 @@ function openApp(){
     document.getElementById("appPage")
         .style.display = "block";
 
-
     document.getElementById("loggedName")
         .textContent =
         loggedUser.toUpperCase();
-
 
     document.getElementById("welcomeTitle")
         .textContent =
         "Benvenuto " +
         loggedUser.toUpperCase();
 
-
     const notificationButton =
         document.getElementById(
             "notificationButton"
         );
-
 
     const accountCard =
         document.getElementById(
             "accountCard"
         );
 
-
     const accountSummary =
         document.getElementById(
             "accountSummary"
         );
-
 
     const jobsCard =
         document.getElementById(
             "jobsCard"
         );
 
-
     const jobsPanel =
         document.getElementById(
             "jobsPanel"
         );
-
 
     if(USERS[loggedUser].admin){
 
@@ -2491,9 +2435,7 @@ function openApp(){
 
     }
 
-
     listenOrders();
-
 
     if(loggedUser === "Gio"){
 
@@ -2515,7 +2457,6 @@ function openApp(){
 
 }
 
-
 /* =====================================================
    LOGOUT
 ===================================================== */
@@ -2530,7 +2471,6 @@ window.logout = function(){
 
     }
 
-
     if(unsubscribeJobs){
 
         unsubscribeJobs();
@@ -2538,7 +2478,6 @@ window.logout = function(){
         unsubscribeJobs = null;
 
     }
-
 
     loggedUser = null;
     selectedUser = null;
@@ -2548,11 +2487,9 @@ window.logout = function(){
 
     notificationListenerActive = false;
 
-
     localStorage.removeItem(
         "ktm_logged_user"
     );
-
 
     document.getElementById("appPage")
         .style.display = "none";
@@ -2561,7 +2498,6 @@ window.logout = function(){
         .style.display = "flex";
 
 };
-
 
 /* =====================================================
    FIRESTORE ORDINI
@@ -2575,13 +2511,11 @@ function listenOrders(){
 
     }
 
-
     const ordersRef =
         collection(
             db,
             "ordini"
         );
-
 
     const q =
         query(
@@ -2592,7 +2526,6 @@ function listenOrders(){
             )
         );
 
-
     unsubscribeOrders =
         onSnapshot(
 
@@ -2601,7 +2534,6 @@ function listenOrders(){
             snapshot => {
 
                 allOrders = [];
-
 
                 snapshot.forEach(
                     docSnap => {
@@ -2617,7 +2549,6 @@ function listenOrders(){
                     }
                 );
 
-
                 renderOrders();
 
                 updateAccountSummary();
@@ -2630,7 +2561,6 @@ function listenOrders(){
                     "Errore Firestore:",
                     error
                 );
-
 
                 document.getElementById(
                     "ordersList"
@@ -2659,7 +2589,6 @@ function listenOrders(){
 
 }
 
-
 /* =====================================================
    ORDINI VISIBILI
 ===================================================== */
@@ -2670,13 +2599,11 @@ function getVisibleOrders(){
         return [];
     }
 
-
     if(USERS[loggedUser].admin){
 
         return allOrders;
 
     }
-
 
     return allOrders.filter(
         order =>
@@ -2684,7 +2611,6 @@ function getVisibleOrders(){
     );
 
 }
-
 
 /* =====================================================
    RENDER ORDINI
@@ -2697,10 +2623,8 @@ function renderOrders(){
             "ordersList"
         );
 
-
     const orders =
         getVisibleOrders();
-
 
     if(!orders.length){
 
@@ -2716,19 +2640,15 @@ function renderOrders(){
 
     }
 
-
     list.innerHTML = "";
-
 
     orders.forEach(order => {
 
         const div =
             document.createElement("div");
 
-
         div.className =
             "order";
-
 
         const codes =
             (order.articles || [])
@@ -2738,15 +2658,12 @@ function renderOrders(){
             )
             .join(", ");
 
-
         const total =
             calculateTotal(order);
-
 
         const payment =
             order.paymentStatus ||
             "da_pagare";
-
 
         div.innerHTML = `
 
@@ -2777,7 +2694,6 @@ function renderOrders(){
 
                 </div>
 
-
                 <span class="status ${
                     escapeAttr(
                         order.status ||
@@ -2793,7 +2709,6 @@ function renderOrders(){
 
             </div>
 
-
             <div class="order-codes">
 
                 ${
@@ -2803,7 +2718,6 @@ function renderOrders(){
 
             </div>
 
-
             <div class="order-bottom">
 
                 <div class="order-price">
@@ -2811,7 +2725,6 @@ function renderOrders(){
                     ${euro(total)}
 
                 </div>
-
 
                 <span class="payment-status ${
                     payment === "pagato"
@@ -2835,7 +2748,6 @@ function renderOrders(){
 
         `;
 
-
         div.addEventListener(
             "click",
             function(){
@@ -2845,13 +2757,11 @@ function renderOrders(){
             }
         );
 
-
         list.appendChild(div);
 
     });
 
 }
-
 
 /* =====================================================
    NUOVO ORDINE
@@ -2869,15 +2779,12 @@ window.openNewOrder = function(){
 
     }
 
-
     editingOrderId = null;
-
 
     document.getElementById(
         "modalTitle"
     ).textContent =
         "Nuovo ordine";
-
 
     document.getElementById(
         "orderPerson"
@@ -2888,37 +2795,30 @@ window.openNewOrder = function(){
         :
         loggedUser;
 
-
     document.getElementById(
         "orderDate"
     ).value =
         getToday();
-
 
     document.getElementById(
         "orderStatus"
     ).value =
         "daordinare";
 
-
     document.getElementById(
         "articles"
     ).innerHTML = "";
 
-
     addArticle();
-
 
     document.getElementById(
         "orderModal"
     ).style.display =
         "block";
 
-
     applyOrderPermissions();
 
 };
-
 
 window.closeModal = function(){
 
@@ -2929,7 +2829,6 @@ window.closeModal = function(){
 
 };
 
-
 /* =====================================================
    PERMESSI MODALE ORDINE
 ===================================================== */
@@ -2939,24 +2838,23 @@ function applyOrderPermissions(){
     const isAdmin =
         loggedUser === "Gio";
 
-
     document.getElementById(
         "orderPerson"
     ).disabled =
         !isAdmin;
 
-
-    document.getElementById(
-        "orderStatus"
-    ).disabled =
-        true;
-
+    const statusSelect = document.getElementById("orderStatus");
+    statusSelect.disabled = !isAdmin;
+    if(isAdmin){
+        statusSelect.classList.remove("fixed-field");
+    } else {
+        statusSelect.classList.add("fixed-field");
+    }
 
     document.getElementById(
         "orderDate"
     ).disabled =
-        true;
-
+        !isAdmin;
 
     document
         .querySelectorAll(
@@ -2964,13 +2862,14 @@ function applyOrderPermissions(){
         )
         .forEach(
             input => {
-
-                input.disabled =
-                    !isAdmin;
-
+                input.disabled = !isAdmin;
+                if(isAdmin){
+                    input.classList.remove("fixed-field");
+                } else {
+                    input.classList.add("fixed-field");
+                }
             }
         );
-
 
     document
         .querySelectorAll(
@@ -2978,15 +2877,16 @@ function applyOrderPermissions(){
         )
         .forEach(
             input => {
-
-                input.disabled =
-                    !isAdmin;
-
+                input.disabled = !isAdmin;
+                if(isAdmin){
+                    input.classList.remove("fixed-field");
+                } else {
+                    input.classList.add("fixed-field");
+                }
             }
         );
 
 }
-
 
 /* =====================================================
    ARTICOLI
@@ -2999,14 +2899,11 @@ window.addArticle = function(article=null){
             "articles"
         );
 
-
     const row =
         document.createElement("div");
 
-
     row.className =
         "article-row";
-
 
     const price =
         article &&
@@ -3016,7 +2913,6 @@ window.addArticle = function(article=null){
         :
         0;
 
-
     const discount =
         article &&
         article.discount !== undefined
@@ -3024,7 +2920,6 @@ window.addArticle = function(article=null){
         Number(article.discount)
         :
         25;
-
 
     row.innerHTML = `
 
@@ -3050,7 +2945,6 @@ window.addArticle = function(article=null){
 
             </div>
 
-
             <div class="form-group">
 
                 <label>
@@ -3071,7 +2965,6 @@ window.addArticle = function(article=null){
 
             </div>
 
-
             <div class="form-group">
 
                 <label>
@@ -3079,7 +2972,7 @@ window.addArticle = function(article=null){
                 </label>
 
                 <input
-                    class="article-price fixed-field"
+                    class="article-price"
                     type="number"
                     min="0"
                     step="0.01"
@@ -3091,10 +2984,9 @@ window.addArticle = function(article=null){
                         :
                         ""
                     }"
-                    placeholder="Inserisce Gio">
+                    placeholder="0,00">
 
             </div>
-
 
             <div class="form-group">
 
@@ -3103,7 +2995,7 @@ window.addArticle = function(article=null){
                 </label>
 
                 <input
-                    class="article-discount fixed-field"
+                    class="article-discount"
                     type="number"
                     min="0"
                     max="100"
@@ -3116,7 +3008,6 @@ window.addArticle = function(article=null){
                     }">
 
             </div>
-
 
             <div class="article-actions">
 
@@ -3135,48 +3026,40 @@ window.addArticle = function(article=null){
 
     `;
 
-
     const qty =
         row.querySelector(
             ".article-qty"
         );
-
 
     const priceInput =
         row.querySelector(
             ".article-price"
         );
 
-
     const discountInput =
         row.querySelector(
             ".article-discount"
         );
-
 
     const remove =
         row.querySelector(
             ".remove"
         );
 
-
     qty.addEventListener(
         "input",
         calculateOrderTotal
     );
-
 
     priceInput.addEventListener(
         "input",
         calculateOrderTotal
     );
 
-
     discountInput.addEventListener(
         "input",
         calculateOrderTotal
     );
-
 
     remove.addEventListener(
         "click",
@@ -3189,16 +3072,13 @@ window.addArticle = function(article=null){
         }
     );
 
-
     container.appendChild(row);
-
 
     applyOrderPermissions();
 
     calculateOrderTotal();
 
 };
-
 
 window.removeLastArticle = function(){
 
@@ -3207,20 +3087,16 @@ window.removeLastArticle = function(){
             ".article-row"
         );
 
-
     if(!rows.length){
         return;
     }
 
-
     rows[rows.length - 1]
         .remove();
-
 
     calculateOrderTotal();
 
 };
-
 
 /* =====================================================
    CALCOLO ORDINE
@@ -3229,7 +3105,6 @@ window.removeLastArticle = function(){
 window.calculateOrderTotal = function(){
 
     let total = 0;
-
 
     document
         .querySelectorAll(
@@ -3245,7 +3120,6 @@ window.calculateOrderTotal = function(){
                         ).value
                     ) || 0;
 
-
                 const price =
                     Number(
                         row.querySelector(
@@ -3253,14 +3127,12 @@ window.calculateOrderTotal = function(){
                         ).value
                     ) || 0;
 
-
                 const discount =
                     Number(
                         row.querySelector(
                             ".article-discount"
                         ).value
                     ) || 0;
-
 
                 total +=
                     qty *
@@ -3273,14 +3145,12 @@ window.calculateOrderTotal = function(){
             }
         );
 
-
     document.getElementById(
         "orderTotal"
     ).textContent =
         euro(total);
 
 };
-
 
 /* =====================================================
    SALVA ORDINE
@@ -3293,15 +3163,17 @@ window.saveOrder = async function(){
             "orderPerson"
         ).value;
 
-
     const date =
         document.getElementById(
             "orderDate"
         ).value;
 
+    const status =
+        document.getElementById(
+            "orderStatus"
+        ).value;
 
     const articles = [];
-
 
     document
         .querySelectorAll(
@@ -3315,14 +3187,12 @@ window.saveOrder = async function(){
                         ".article-code"
                     ).value.trim();
 
-
                 const qty =
                     Number(
                         row.querySelector(
                             ".article-qty"
                         ).value
                     ) || 0;
-
 
                 const price =
                     Number(
@@ -3331,14 +3201,12 @@ window.saveOrder = async function(){
                         ).value
                     ) || 0;
 
-
                 const discount =
                     Number(
                         row.querySelector(
                             ".article-discount"
                         ).value
                     ) || 25;
-
 
                 if(code){
 
@@ -3359,7 +3227,6 @@ window.saveOrder = async function(){
             }
         );
 
-
     if(!date){
 
         alert(
@@ -3370,7 +3237,6 @@ window.saveOrder = async function(){
 
     }
 
-
     if(!articles.length){
 
         alert(
@@ -3380,7 +3246,6 @@ window.saveOrder = async function(){
         return;
 
     }
-
 
     if(
         loggedUser !== "Gio" &&
@@ -3395,7 +3260,6 @@ window.saveOrder = async function(){
 
     }
 
-
     try{
 
         if(editingOrderId){
@@ -3405,7 +3269,6 @@ window.saveOrder = async function(){
                     order =>
                     order.id === editingOrderId
                 );
-
 
             if(!existingOrder){
 
@@ -3417,7 +3280,6 @@ window.saveOrder = async function(){
 
             }
 
-
             const updateData = {
 
                 articles:articles,
@@ -3425,7 +3287,6 @@ window.saveOrder = async function(){
                 updatedAt:Date.now()
 
             };
-
 
             if(loggedUser === "Gio"){
 
@@ -3436,10 +3297,9 @@ window.saveOrder = async function(){
                     date;
 
                 updateData.status =
-                    "daordinare";
+                    status;
 
             }
-
 
             await updateDoc(
 
@@ -3463,14 +3323,12 @@ window.saveOrder = async function(){
                     )
                 );
 
-
             const number =
                 "KTM-" +
                 String(
                     existing.size + 1
                 )
                 .padStart(4,"0");
-
 
             const newOrder = {
 
@@ -3480,7 +3338,7 @@ window.saveOrder = async function(){
 
                 date:date,
 
-                status:"daordinare",
+                status: loggedUser === "Gio" ? status : "daordinare",
 
                 paymentStatus:"da_pagare",
 
@@ -3491,7 +3349,6 @@ window.saveOrder = async function(){
                 createdBy:loggedUser
 
             };
-
 
             await addDoc(
 
@@ -3506,9 +3363,7 @@ window.saveOrder = async function(){
 
         }
 
-
         closeModal();
-
 
     }catch(error){
 
@@ -3516,7 +3371,6 @@ window.saveOrder = async function(){
             "Errore salvataggio ordine:",
             error
         );
-
 
         alert(
             "Non è stato possibile salvare l'ordine.\n\n" +
@@ -3526,7 +3380,6 @@ window.saveOrder = async function(){
     }
 
 };
-
 
 /* =====================================================
    DETTAGLIO ORDINE
@@ -3539,14 +3392,11 @@ function showOrder(order){
             order
         );
 
-
     const payment =
         order.paymentStatus ||
         "da_pagare";
 
-
     let rows = "";
-
 
     (order.articles || [])
     .forEach(
@@ -3557,18 +3407,15 @@ function showOrder(order){
                     article.price
                 ) || 0;
 
-
             const qty =
                 Number(
                     article.qty
                 ) || 0;
 
-
             const discount =
                 Number(
                     article.discount
                 ) || 0;
-
 
             const net =
                 price *
@@ -3577,11 +3424,9 @@ function showOrder(order){
                     discount / 100
                 );
 
-
             const line =
                 net *
                 qty;
-
 
             rows += `
 
@@ -3616,7 +3461,6 @@ function showOrder(order){
         }
     );
 
-
     const adminPaymentControls =
         loggedUser === "Gio"
         ?
@@ -3644,7 +3488,6 @@ function showOrder(order){
                     ✓ PAGATO
 
                 </button>
-
 
                 <button
                     type="button"
@@ -3697,7 +3540,6 @@ function showOrder(order){
 
         `;
 
-
     document.getElementById(
         "detailContent"
     ).innerHTML = `
@@ -3734,7 +3576,6 @@ function showOrder(order){
 
                 </div>
 
-
                 <div>
 
                     <span class="
@@ -3753,7 +3594,6 @@ function showOrder(order){
 
                 </div>
 
-
                 <div class="detail-total">
 
                     ${euro(total)}
@@ -3761,7 +3601,6 @@ function showOrder(order){
                 </div>
 
             </div>
-
 
             <div class="detail-table-wrap">
 
@@ -3814,9 +3653,7 @@ function showOrder(order){
 
             </div>
 
-
             ${adminPaymentControls}
-
 
             <div class="detail-actions">
 
@@ -3829,7 +3666,6 @@ function showOrder(order){
 
                 </button>
 
-
                 <button
                     type="button"
                     class="delete"
@@ -3838,7 +3674,6 @@ function showOrder(order){
                     ELIMINA
 
                 </button>
-
 
                 <button
                     type="button"
@@ -3855,7 +3690,6 @@ function showOrder(order){
 
     `;
 
-
     document.getElementById(
         "editOrderButton"
     ).addEventListener(
@@ -3869,7 +3703,6 @@ function showOrder(order){
         }
     );
 
-
     document.getElementById(
         "deleteOrderButton"
     ).addEventListener(
@@ -3882,7 +3715,6 @@ function showOrder(order){
 
         }
     );
-
 
     if(loggedUser === "Gio"){
 
@@ -3900,7 +3732,6 @@ function showOrder(order){
             }
         );
 
-
         document.getElementById(
             "markUnpaidButton"
         ).addEventListener(
@@ -3917,14 +3748,12 @@ function showOrder(order){
 
     }
 
-
     document.getElementById(
         "detailModal"
     ).style.display =
         "block";
 
 }
-
 
 window.closeDetail = function(){
 
@@ -3934,7 +3763,6 @@ window.closeDetail = function(){
         "none";
 
 };
-
 
 /* =====================================================
    PAGAMENTO ORDINE
@@ -3954,7 +3782,6 @@ async function setPaymentStatus(
         return;
 
     }
-
 
     try{
 
@@ -3978,13 +3805,11 @@ async function setPaymentStatus(
 
         );
 
-
         const order =
             allOrders.find(
                 o =>
                 o.id === id
             );
-
 
         if(order){
 
@@ -4001,7 +3826,6 @@ async function setPaymentStatus(
             error
         );
 
-
         alert(
             "Errore durante l'aggiornamento del pagamento.\n\n" +
             error.message
@@ -4010,7 +3834,6 @@ async function setPaymentStatus(
     }
 
 }
-
 
 /* =====================================================
    MODIFICA ORDINE
@@ -4024,7 +3847,6 @@ window.editOrder = async function(id){
             item.id === id
         );
 
-
     if(!order){
 
         alert(
@@ -4034,7 +3856,6 @@ window.editOrder = async function(id){
         return;
 
     }
-
 
     if(
         loggedUser !== "Gio" &&
@@ -4049,10 +3870,8 @@ window.editOrder = async function(id){
 
     }
 
-
     editingOrderId =
         id;
-
 
     document.getElementById(
         "modalTitle"
@@ -4060,12 +3879,10 @@ window.editOrder = async function(id){
         "Modifica " +
         order.number;
 
-
     document.getElementById(
         "orderPerson"
     ).value =
         order.person;
-
 
     document.getElementById(
         "orderDate"
@@ -4073,18 +3890,16 @@ window.editOrder = async function(id){
         order.date ||
         "";
 
-
     document.getElementById(
         "orderStatus"
     ).value =
+        order.status ||
         "daordinare";
-
 
     document.getElementById(
         "articles"
     ).innerHTML =
         "";
-
 
     (order.articles || [])
     .forEach(
@@ -4092,26 +3907,21 @@ window.editOrder = async function(id){
         addArticle(article)
     );
 
-
     applyOrderPermissions();
-
 
     document.getElementById(
         "detailModal"
     ).style.display =
         "none";
 
-
     document.getElementById(
         "orderModal"
     ).style.display =
         "block";
 
-
     calculateOrderTotal();
 
 };
-
 
 /* =====================================================
    ELIMINA ORDINE
@@ -4129,17 +3939,14 @@ window.deleteOrder = async function(id){
 
     }
 
-
     const order =
         allOrders.find(
             item =>
             item.id === id
         );
 
-
     if(!order)
         return;
-
 
     if(
         loggedUser !== "Gio" &&
@@ -4154,7 +3961,6 @@ window.deleteOrder = async function(id){
 
     }
 
-
     try{
 
         await deleteDoc(
@@ -4167,16 +3973,13 @@ window.deleteOrder = async function(id){
 
         );
 
-
         closeDetail();
-
 
     }catch(error){
 
         console.error(
             error
         );
-
 
         alert(
             "Errore durante l'eliminazione.\n\n" +
@@ -4186,7 +3989,6 @@ window.deleteOrder = async function(id){
     }
 
 };
-
 
 /* =====================================================
    CONTO
@@ -4202,11 +4004,9 @@ function calculateAccount(
             order.person === person
         );
 
-
     let total = 0;
     let paid = 0;
     let payable = 0;
-
 
     orders.forEach(
         order => {
@@ -4216,9 +4016,7 @@ function calculateAccount(
                     order
                 );
 
-
             total += value;
-
 
             if(
                 order.paymentStatus ===
@@ -4236,7 +4034,6 @@ function calculateAccount(
         }
     );
 
-
     return {
 
         total:total,
@@ -4250,7 +4047,6 @@ function calculateAccount(
     };
 
 }
-
 
 /* =====================================================
    AGGIORNA RIQUADRO CONTO
@@ -4267,37 +4063,31 @@ function updateAccountSummary(){
 
     }
 
-
     const account =
         calculateAccount(
             loggedUser
         );
-
 
     document.getElementById(
         "accountTotal"
     ).textContent =
         euro(account.total);
 
-
     document.getElementById(
         "accountPaid"
     ).textContent =
         euro(account.paid);
-
 
     document.getElementById(
         "accountPayable"
     ).textContent =
         euro(account.payable);
 
-
     renderAccountModal(
         account
     );
 
 }
-
 
 /* =====================================================
    APRI CONTO
@@ -4314,17 +4104,14 @@ window.openAccountModal = function(){
 
     }
 
-
     const account =
         calculateAccount(
             loggedUser
         );
 
-
     renderAccountModal(
         account
     );
-
 
     document.getElementById(
         "accountModal"
@@ -4332,7 +4119,6 @@ window.openAccountModal = function(){
         "block";
 
 };
-
 
 window.closeAccountModal = function(){
 
@@ -4342,7 +4128,6 @@ window.closeAccountModal = function(){
         "none";
 
 };
-
 
 /* =====================================================
    RENDER CONTO
@@ -4357,13 +4142,10 @@ function renderAccountModal(
             "accountModalContent"
         );
 
-
     if(!content)
         return;
 
-
     let ordersHtml = "";
-
 
     if(!account.orders.length){
 
@@ -4387,11 +4169,9 @@ function renderAccountModal(
                             order
                         );
 
-
                     const payment =
                         order.paymentStatus ||
                         "da_pagare";
-
 
                     return `
 
@@ -4426,7 +4206,6 @@ function renderAccountModal(
 
                                 </div>
 
-
                                 <div class="account-order-total">
 
                                     ${euro(total)}
@@ -4434,7 +4213,6 @@ function renderAccountModal(
                                 </div>
 
                             </div>
-
 
                             <div style="margin-top:10px;">
 
@@ -4468,7 +4246,6 @@ function renderAccountModal(
 
     }
 
-
     content.innerHTML = `
 
         <div class="account-modal-summary">
@@ -4501,7 +4278,6 @@ function renderAccountModal(
 
                 </div>
 
-
                 <div class="account-modal-box">
 
                     <span>
@@ -4520,16 +4296,13 @@ function renderAccountModal(
 
         </div>
 
-
         <h3 style="margin-bottom:15px;">
             I miei ordini
         </h3>
 
-
         ${ordersHtml}
 
     `;
-
 
     content
         .querySelectorAll(
@@ -4545,13 +4318,11 @@ function renderAccountModal(
                         const id =
                             element.dataset.orderId;
 
-
                         const order =
                             allOrders.find(
                                 item =>
                                 item.id === id
                             );
-
 
                         if(order){
 
@@ -4569,7 +4340,6 @@ function renderAccountModal(
 
 }
 
-
 /* =====================================================
    SCROLL ORDINI
 ===================================================== */
@@ -4586,7 +4356,6 @@ window.scrollToOrders = function(){
 
 };
 
-
 /* =====================================================
    LAVORI
 ===================================================== */
@@ -4597,20 +4366,17 @@ function listenJobs(){
         return;
     }
 
-
     if(unsubscribeJobs){
 
         unsubscribeJobs();
 
     }
 
-
     const jobsRef =
         collection(
             db,
             "lavori"
         );
-
 
     const q =
         query(
@@ -4621,7 +4387,6 @@ function listenJobs(){
             )
         );
 
-
     unsubscribeJobs =
         onSnapshot(
 
@@ -4630,7 +4395,6 @@ function listenJobs(){
             snapshot => {
 
                 allJobs = [];
-
 
                 snapshot.forEach(
                     docSnap => {
@@ -4646,7 +4410,6 @@ function listenJobs(){
                     }
                 );
 
-
                 renderJobs();
 
             },
@@ -4657,7 +4420,6 @@ function listenJobs(){
                     "Errore lavori:",
                     error
                 );
-
 
                 document.getElementById(
                     "jobsList"
@@ -4677,7 +4439,6 @@ function listenJobs(){
 
 }
 
-
 /* =====================================================
    RENDER LAVORI
 ===================================================== */
@@ -4688,12 +4449,10 @@ function renderJobs(){
         return;
     }
 
-
     const list =
         document.getElementById(
             "jobsList"
         );
-
 
     if(!allJobs.length){
 
@@ -4709,9 +4468,7 @@ function renderJobs(){
 
     }
 
-
     list.innerHTML = "";
-
 
     allJobs.forEach(
         job => {
@@ -4721,10 +4478,8 @@ function renderJobs(){
                     "div"
                 );
 
-
             div.className =
                 "job-item";
-
 
             div.innerHTML = `
 
@@ -4756,7 +4511,6 @@ function renderJobs(){
 
                 </div>
 
-
                 <div class="job-price">
 
                     ${euro(
@@ -4767,14 +4521,12 @@ function renderJobs(){
 
             `;
 
-
             list.appendChild(div);
 
         }
     );
 
 }
-
 
 /* =====================================================
    APRI LAVORO
@@ -4792,30 +4544,25 @@ window.openJobModal = function(){
 
     }
 
-
     document.getElementById(
         "jobPerson"
     ).value =
         "Roby";
-
 
     document.getElementById(
         "jobDescription"
     ).value =
         "";
 
-
     document.getElementById(
         "jobPrice"
     ).value =
         "";
 
-
     document.getElementById(
         "jobDate"
     ).value =
         getToday();
-
 
     document.getElementById(
         "jobModal"
@@ -4823,7 +4570,6 @@ window.openJobModal = function(){
         "block";
 
 };
-
 
 window.closeJobModal = function(){
 
@@ -4833,7 +4579,6 @@ window.closeJobModal = function(){
         "none";
 
 };
-
 
 /* =====================================================
    SALVA LAVORO
@@ -4851,18 +4596,15 @@ window.saveJob = async function(){
 
     }
 
-
     const person =
         document.getElementById(
             "jobPerson"
         ).value;
 
-
     const description =
         document.getElementById(
             "jobDescription"
         ).value.trim();
-
 
     const price =
         Number(
@@ -4871,12 +4613,10 @@ window.saveJob = async function(){
             ).value
         );
 
-
     const date =
         document.getElementById(
             "jobDate"
         ).value;
-
 
     if(!description){
 
@@ -4887,7 +4627,6 @@ window.saveJob = async function(){
         return;
 
     }
-
 
     if(
         !Number.isFinite(price) ||
@@ -4902,7 +4641,6 @@ window.saveJob = async function(){
 
     }
 
-
     if(!date){
 
         alert(
@@ -4912,7 +4650,6 @@ window.saveJob = async function(){
         return;
 
     }
-
 
     try{
 
@@ -4941,16 +4678,13 @@ window.saveJob = async function(){
 
         );
 
-
         closeJobModal();
-
 
     }catch(error){
 
         console.error(
             error
         );
-
 
         alert(
             "Errore durante il salvataggio del lavoro.\n\n" +
@@ -4960,7 +4694,6 @@ window.saveJob = async function(){
     }
 
 };
-
 
 /* =====================================================
    TUTTI GLI ORDINI
@@ -4978,17 +4711,14 @@ window.showAllOrders = function(){
 
     }
 
-
     document.getElementById(
         "ordersTitle"
     ).textContent =
         "Tutti gli ordini";
 
-
     renderOrders();
 
 };
-
 
 /* =====================================================
    UTILITÀ
@@ -5011,18 +4741,15 @@ function calculateTotal(order){
                     article.price
                 ) || 0;
 
-
             const qty =
                 Number(
                     article.qty
                 ) || 0;
 
-
             const discount =
                 Number(
                     article.discount
                 ) || 0;
-
 
             return total +
                 price *
@@ -5040,7 +4767,6 @@ function calculateTotal(order){
 
 }
 
-
 function euro(value){
 
     return new Intl.NumberFormat(
@@ -5055,21 +4781,17 @@ function euro(value){
 
 }
 
-
 function formatDate(date){
 
     if(!date)
         return "";
 
-
     const p =
         String(date)
         .split("-");
 
-
     if(p.length !== 3)
         return date;
-
 
     return p[2] +
         "/" +
@@ -5079,16 +4801,13 @@ function formatDate(date){
 
 }
 
-
 function getToday(){
 
     const now =
         new Date();
 
-
     const year =
         now.getFullYear();
-
 
     const month =
         String(
@@ -5099,7 +4818,6 @@ function getToday(){
             "0"
         );
 
-
     const day =
         String(
             now.getDate()
@@ -5108,7 +4826,6 @@ function getToday(){
             2,
             "0"
         );
-
 
     return (
         year +
@@ -5119,7 +4836,6 @@ function getToday(){
     );
 
 }
-
 
 function statusLabel(status){
 
@@ -5143,7 +4859,6 @@ function statusLabel(status){
     }
 
 }
-
 
 function escapeHtml(value){
 
@@ -5173,7 +4888,6 @@ function escapeHtml(value){
 
 }
 
-
 function escapeAttr(value){
 
     return escapeHtml(
@@ -5181,7 +4895,6 @@ function escapeAttr(value){
     );
 
 }
-
 
 /* =====================================================
    NOTIFICHE
@@ -5193,16 +4906,13 @@ async function setupNotifications(){
         return;
     }
 
-
     if(!("Notification" in window)){
 
         return;
 
     }
 
-
     updateNotificationButtonState();
-
 
     try{
 
@@ -5215,7 +4925,6 @@ async function setupNotifications(){
                 localStorage.getItem(
                     "ktm_gio_notification_token"
                 );
-
 
             if(savedToken){
 
@@ -5236,7 +4945,6 @@ async function setupNotifications(){
 
 }
 
-
 function setNotificationButtonActive(){
 
     const button =
@@ -5244,22 +4952,18 @@ function setNotificationButtonActive(){
             "notificationButton"
         );
 
-
     if(!button){
         return;
     }
 
-
     button.textContent =
         "🔔 NOTIFICHE ATTIVE";
-
 
     button.classList.add(
         "notification-active"
     );
 
 }
-
 
 function updateNotificationButtonState(){
 
@@ -5268,17 +4972,14 @@ function updateNotificationButtonState(){
             "notificationButton"
         );
 
-
     if(!button){
         return;
     }
-
 
     const savedToken =
         localStorage.getItem(
             "ktm_gio_notification_token"
         );
-
 
     if(
         savedToken &&
@@ -5301,7 +5002,6 @@ function updateNotificationButtonState(){
 
 }
 
-
 /* =====================================================
    ATTIVA NOTIFICHE
 ===================================================== */
@@ -5313,7 +5013,6 @@ async function(){
         return;
     }
 
-
     if(!("Notification" in window)){
 
         alert(
@@ -5323,7 +5022,6 @@ async function(){
         return;
 
     }
-
 
     if(
         !messagingSupported ||
@@ -5338,12 +5036,10 @@ async function(){
 
     }
 
-
     try{
 
         const permission =
             await Notification.requestPermission();
-
 
         if(
             permission !==
@@ -5365,9 +5061,7 @@ async function(){
 
         }
 
-
         await registerNotifications();
-
 
     }catch(error){
 
@@ -5375,7 +5069,6 @@ async function(){
             "Errore notifiche:",
             error
         );
-
 
         alert(
             "Errore durante l'attivazione delle notifiche.\n\n" +
@@ -5385,7 +5078,6 @@ async function(){
     }
 
 };
-
 
 /* =====================================================
    REGISTRAZIONE FCM
@@ -5405,7 +5097,6 @@ async function registerNotifications(){
 
     }
 
-
     if(!messaging){
 
         alert(
@@ -5415,7 +5106,6 @@ async function registerNotifications(){
         return;
 
     }
-
 
     if(!NORMALIZED_VAPID_KEY){
 
@@ -5427,9 +5117,7 @@ async function registerNotifications(){
 
     }
 
-
     let registration;
-
 
     try{
 
@@ -5441,14 +5129,12 @@ async function registerNotifications(){
                 }
             );
 
-
     }catch(error){
 
         console.error(
             "Errore Service Worker:",
             error
         );
-
 
         alert(
             "Impossibile registrare il Service Worker.\n\n" +
@@ -5459,12 +5145,9 @@ async function registerNotifications(){
 
     }
 
-
     await navigator.serviceWorker.ready;
 
-
     let token;
-
 
     try{
 
@@ -5480,14 +5163,12 @@ async function registerNotifications(){
                 }
             );
 
-
     }catch(error){
 
         console.error(
             "ERRORE getToken():",
             error
         );
-
 
         alert(
             "Firebase ha rifiutato la richiesta del token.\n\n" +
@@ -5497,7 +5178,6 @@ async function registerNotifications(){
         return;
 
     }
-
 
     if(!token){
 
@@ -5509,12 +5189,10 @@ async function registerNotifications(){
 
     }
 
-
     localStorage.setItem(
         "ktm_gio_notification_token",
         token
     );
-
 
     try{
 
@@ -5557,13 +5235,11 @@ async function registerNotifications(){
 
         );
 
-
         alert(
             "✅ NOTIFICHE ATTIVE!\n\n" +
             "Il token è stato salvato correttamente.\n\n" +
             "Firebase: utenti/Gio"
         );
-
 
     }catch(error){
 
@@ -5571,7 +5247,6 @@ async function registerNotifications(){
             "ERRORE SALVATAGGIO TOKEN:",
             error
         );
-
 
         alert(
             "❌ ERRORE SALVATAGGIO TOKEN\n\n" +
@@ -5582,9 +5257,7 @@ async function registerNotifications(){
 
     }
 
-
     setNotificationButtonActive();
-
 
     if(!notificationListenerActive){
 
@@ -5597,18 +5270,15 @@ async function registerNotifications(){
                     payload
                 );
 
-
                 const title =
                     payload.notification?.title ||
                     payload.data?.title ||
                     "KTM ORDINI";
 
-
                 const body =
                     payload.notification?.body ||
                     payload.data?.body ||
                     "È arrivato un nuovo ordine.";
-
 
                 if(
                     Notification.permission ===
@@ -5628,14 +5298,12 @@ async function registerNotifications(){
             }
         );
 
-
         notificationListenerActive =
             true;
 
     }
 
 }
-
 
 /* =====================================================
    AVVIO
@@ -5645,7 +5313,6 @@ const savedUser =
     localStorage.getItem(
         "ktm_logged_user"
     );
-
 
 if(
     savedUser &&
@@ -5666,7 +5333,6 @@ if(
 
 }
 
-
 /* =====================================================
    CHIUSURA MODAL
 ===================================================== */
@@ -5680,24 +5346,20 @@ window.addEventListener(
                 "orderModal"
             );
 
-
         const detailModal =
             document.getElementById(
                 "detailModal"
             );
-
 
         const accountModal =
             document.getElementById(
                 "accountModal"
             );
 
-
         const jobModal =
             document.getElementById(
                 "jobModal"
             );
-
 
         if(
             event.target ===
@@ -5708,7 +5370,6 @@ window.addEventListener(
 
         }
 
-
         if(
             event.target ===
             detailModal
@@ -5718,7 +5379,6 @@ window.addEventListener(
 
         }
 
-
         if(
             event.target ===
             accountModal
@@ -5727,7 +5387,6 @@ window.addEventListener(
             closeAccountModal();
 
         }
-
 
         if(
             event.target ===
@@ -5740,7 +5399,6 @@ window.addEventListener(
 
     }
 );
-
 
 /* =====================================================
    ENTER LOGIN
