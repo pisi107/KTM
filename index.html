@@ -570,10 +570,11 @@ button{
 }
 
 /* =========================
-   LAVORI
+   LAVORI & SCALA SOLDI PANNELLI
 ========================= */
 
-.jobs-panel{
+.jobs-panel,
+.scales-panel{
     background:#fff;
     border-radius:18px;
     padding:25px;
@@ -582,7 +583,8 @@ button{
     text-align:left;
 }
 
-.jobs-header{
+.jobs-header,
+.scales-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -590,7 +592,8 @@ button{
     margin-bottom:20px;
 }
 
-.jobs-header h2{
+.jobs-header h2,
+.scales-header h2{
     font-size:23px;
 }
 
@@ -600,13 +603,21 @@ button{
     padding:12px 16px;
 }
 
-.jobs-list{
+.add-scale-button{
+    background:#ff6600;
+    color:#fff;
+    padding:12px 16px;
+}
+
+.jobs-list,
+.scales-list{
     display:flex;
     flex-direction:column;
     gap:12px;
 }
 
-.job-item{
+.job-item,
+.scale-item{
     border:1px solid #e5e7eb;
     border-radius:12px;
     padding:16px;
@@ -616,26 +627,31 @@ button{
     align-items:center;
 }
 
-.job-name{
+.job-name,
+.scale-name{
     font-size:17px;
     font-weight:900;
 }
 
-.job-description{
+.job-description,
+.scale-description{
     margin-top:5px;
     color:#64748b;
 }
 
-.job-date{
+.job-date,
+.scale-date{
     margin-top:5px;
     color:#94a3b8;
     font-size:12px;
 }
 
-.job-price{
+.job-price,
+.scale-price{
     font-size:20px;
     font-weight:900;
     white-space:nowrap;
+    color:#dc2626;
 }
 
 /* =========================
@@ -1025,7 +1041,8 @@ button{
     }
 
     .panel-header,
-    .jobs-header{
+    .jobs-header,
+    .scales-header{
         flex-direction:column;
         align-items:stretch;
     }
@@ -1058,7 +1075,8 @@ button{
         align-items:flex-start;
     }
 
-    .job-item{
+    .job-item,
+    .scale-item{
         flex-direction:column;
         align-items:flex-start;
     }
@@ -1615,6 +1633,46 @@ button{
 
                 <div class="empty-orders">
                     Nessun lavoro inserito.
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             SCALA SOLDI (CARTELLA DEDICATA)
+        ========================= -->
+
+        <div
+            id="scalesPanel"
+            class="scales-panel"
+            style="display:none;">
+
+            <div class="scales-header">
+
+                <h2>
+                    💸 Soldi Scalati
+                </h2>
+
+                <button
+                    id="addScaleButtonPanel"
+                    type="button"
+                    class="add-scale-button"
+                    onclick="openScaleModal()"
+                    style="display:none;">
+
+                    + Scala soldi
+
+                </button>
+
+            </div>
+
+            <div
+                id="scalesList"
+                class="scales-list">
+
+                <div class="empty-orders">
+                    Nessun importo scalato.
                 </div>
 
             </div>
@@ -2296,11 +2354,13 @@ let editingOrderId = null;
 
 let unsubscribeOrders = null;
 let unsubscribeJobs = null;
+let unsubscribeScales = null;
 
 let notificationListenerActive = false;
 
 let allOrders = [];
 let allJobs = [];
+let allScales = [];
 
 /* =====================================================
    LOGIN
@@ -2534,6 +2594,16 @@ function openApp(){
             "scaleCard"
         );
 
+    const scalesPanel =
+        document.getElementById(
+            "scalesPanel"
+        );
+
+    const addScaleButtonPanel =
+        document.getElementById(
+            "addScaleButtonPanel"
+        );
+
     if(USERS[loggedUser].admin){
 
         document.getElementById("welcomeText")
@@ -2565,6 +2635,12 @@ function openApp(){
 
         jobsPanel.style.display =
             "block";
+
+        scalesPanel.style.display =
+            "block";
+
+        addScaleButtonPanel.style.display =
+            "inline-block";
 
         notificationButton.style.display =
             "inline-block";
@@ -2604,6 +2680,12 @@ function openApp(){
         jobsPanel.style.display =
             "none";
 
+        scalesPanel.style.display =
+            "block";
+
+        addScaleButtonPanel.style.display =
+            "none";
+
         notificationButton.style.display =
             "none";
 
@@ -2611,6 +2693,7 @@ function openApp(){
 
     listenOrders();
     listenJobs();
+    listenScales();
 
     if(loggedUser === "Gio"){
 
@@ -2642,11 +2725,20 @@ window.logout = function(){
 
     }
 
+    if(unsubscribeScales){
+
+        unsubscribeScales();
+
+        unsubscribeScales = null;
+
+    }
+
     loggedUser = null;
     selectedUser = null;
 
     allOrders = [];
     allJobs = [];
+    allScales = [];
 
     notificationListenerActive = false;
 
@@ -4176,6 +4268,12 @@ function calculateAccount(
             job.person === person
         );
 
+    const scales =
+        allScales.filter(
+            scale =>
+            scale.person === person
+        );
+
     let totalOrders = 0;
     let paidOrders = 0;
     let payableOrders = 0;
@@ -4211,8 +4309,14 @@ function calculateAccount(
         totalJobs += Number(job.price) || 0;
     });
 
-    let finalPayable = Math.max(0, payableOrders - totalJobs);
-    let finalTotal = Math.max(0, totalOrders - totalJobs);
+    let totalScales = 0;
+    scales.forEach(scale => {
+        totalScales += Number(scale.price) || 0;
+    });
+
+    // I lavori non riducono più il conto, ma i soldi scalati sì
+    let finalPayable = Math.max(0, payableOrders - totalScales);
+    let finalTotal = Math.max(0, totalOrders - totalScales);
 
     return {
 
@@ -4587,7 +4691,6 @@ function listenJobs(){
                 );
 
                 renderJobs();
-                updateAccountSummary();
 
             },
 
@@ -4872,8 +4975,111 @@ window.saveJob = async function(){
 };
 
 /* =====================================================
-   SCALA SOLDI (GESTIONE AMMINISTRAZIONE)
+   SCALA SOLDI (CARTELLA DEDICATA)
 ===================================================== */
+
+function listenScales(){
+
+    if(unsubscribeScales){
+        unsubscribeScales();
+    }
+
+    const scalesRef =
+        collection(
+            db,
+            "scala_soldi"
+        );
+
+    const q =
+        query(
+            scalesRef,
+            orderBy(
+                "createdAt",
+                "desc"
+            )
+        );
+
+    unsubscribeScales =
+        onSnapshot(
+            q,
+            snapshot => {
+                allScales = [];
+                snapshot.forEach(
+                    docSnap => {
+                        allScales.push({
+                            id: docSnap.id,
+                            ...docSnap.data()
+                        });
+                    }
+                );
+                renderScales();
+                updateAccountSummary();
+            },
+            error => {
+                console.error("Errore scala soldi:", error);
+                const listElem = document.getElementById("scalesList");
+                if(listElem){
+                    listElem.innerHTML = `
+                        <div class="empty-orders">
+                            Errore caricamento soldi scalati.
+                        </div>
+                    `;
+                }
+            }
+        );
+
+}
+
+function renderScales(){
+
+    const list =
+        document.getElementById(
+            "scalesList"
+        );
+
+    if(!list) return;
+
+    let scalesToRender = allScales;
+    if(!USERS[loggedUser].admin){
+        scalesToRender = allScales.filter(s => s.person === loggedUser);
+    }
+
+    if(!scalesToRender.length){
+        list.innerHTML = `
+            <div class="empty-orders">
+                Nessun importo scalato presente.
+            </div>
+        `;
+        return;
+    }
+
+    list.innerHTML = "";
+
+    scalesToRender.forEach(scale => {
+        const div = document.createElement("div");
+        div.className = "scale-item";
+
+        div.innerHTML = `
+            <div>
+                <div class="scale-name">
+                    ${escapeHtml(scale.person)}
+                </div>
+                <div class="scale-description">
+                    ${escapeHtml(scale.description)}
+                </div>
+                <div class="scale-date">
+                    ${formatDate(scale.date)}
+                </div>
+            </div>
+            <div class="scale-price">
+                - ${euro(scale.price)}
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+
+}
 
 window.openScaleModal = function(){
 
@@ -4921,12 +5127,11 @@ window.saveScaleMoney = async function(){
 
     try{
 
-        // Salviamo direttamente nella collezione 'lavori' così viene sottratto in automatico dal conto
         await addDoc(
 
             collection(
                 db,
-                "lavori"
+                "scala_soldi"
             ),
 
             {
