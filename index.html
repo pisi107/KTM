@@ -2840,10 +2840,13 @@ function applyOrderPermissions(){
         statusSelect.classList.add("fixed-field");
     }
 
-    document.getElementById(
-        "orderDate"
-    ).disabled =
-        !isAdmin;
+    const dateField = document.getElementById("orderDate");
+    dateField.disabled = !isAdmin;
+    if(isAdmin){
+        dateField.classList.remove("fixed-field");
+    } else {
+        dateField.classList.add("fixed-field");
+    }
 
     document
         .querySelectorAll(
@@ -3164,7 +3167,7 @@ window.saveOrder = async function(){
 
     const articles = [];
 
-    document
+    document 
         .querySelectorAll(
             ".article-row"
         )
@@ -4034,7 +4037,6 @@ function calculateAccount(
         totalJobs += Number(job.price) || 0;
     });
 
-    // Sottrae i lavori scalati dal totale e dal "da pagare"
     let finalPayable = Math.max(0, payableOrders - totalJobs);
     let finalTotal = Math.max(0, totalOrders - totalJobs);
 
