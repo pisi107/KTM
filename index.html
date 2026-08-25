@@ -226,6 +226,7 @@ button{
     margin-bottom:7px;
     font-weight:800;
     font-size:13px;
+    text-align:center;
 }
 
 .form-group input,
@@ -236,6 +237,7 @@ button{
     border-radius:9px;
     font-size:15px;
     outline:none;
+    text-align:center;
 }
 
 .form-group input:focus,
@@ -297,10 +299,12 @@ button{
     max-width:1400px;
     margin:auto;
     padding:30px;
+    text-align:center;
 }
 
 .welcome{
     margin-bottom:25px;
+    text-align:center;
 }
 
 .welcome h1{
@@ -328,6 +332,7 @@ button{
     border-radius:18px;
     padding:24px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
+    text-align:center;
 }
 
 .card-icon{
@@ -340,7 +345,7 @@ button{
     align-items:center;
     justify-content:center;
     font-size:22px;
-    margin-bottom:15px;
+    margin:0 auto 15px;
 }
 
 .card h2{
@@ -358,6 +363,7 @@ button{
     padding:12px 15px;
     background:#ff6600;
     color:#fff;
+    width:100%;
 }
 
 /* =========================
@@ -371,6 +377,7 @@ button{
     padding:25px;
     margin-bottom:25px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
+    text-align:center;
 }
 
 .account-summary-title{
@@ -397,6 +404,7 @@ button{
     background:#1f2937;
     border-radius:12px;
     padding:16px;
+    text-align:center;
 }
 
 .account-box span{
@@ -423,6 +431,7 @@ button{
     padding:13px 18px;
     background:#16a34a;
     color:#fff;
+    width:100%;
 }
 
 /* =========================
@@ -434,6 +443,7 @@ button{
     border-radius:18px;
     padding:25px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
+    text-align:left;
 }
 
 .panel-header{
@@ -569,6 +579,7 @@ button{
     padding:25px;
     margin-bottom:25px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
+    text-align:left;
 }
 
 .jobs-header{
@@ -648,6 +659,7 @@ button{
     background:#fff;
     border-radius:18px;
     padding:25px;
+    text-align:left;
 }
 
 .modal-header{
@@ -671,6 +683,7 @@ button{
     margin-bottom:20px;
     line-height:1.5;
     font-weight:700;
+    text-align:center;
 }
 
 .fixed-field{
@@ -705,6 +718,7 @@ button{
     padding:11px;
     border:1px solid #d1d5db;
     border-radius:8px;
+    text-align:center;
 }
 
 .article-actions{
@@ -830,6 +844,7 @@ button{
     background:#f8fafc;
     padding:18px;
     border-radius:12px;
+    text-align:center;
 }
 
 .payment-box-title{
@@ -841,6 +856,7 @@ button{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
+    justify-content:center;
 }
 
 .payment-button{
@@ -866,6 +882,7 @@ button{
     gap:10px;
     flex-wrap:wrap;
     margin-top:25px;
+    justify-content:center;
 }
 
 .detail-actions button{
@@ -892,6 +909,7 @@ button{
     border-radius:16px;
     padding:22px;
     margin-bottom:20px;
+    text-align:center;
 }
 
 .account-modal-summary small{
@@ -914,6 +932,7 @@ button{
     background:#1f2937;
     border-radius:10px;
     padding:14px;
+    text-align:center;
 }
 
 .account-modal-box span{
@@ -1013,7 +1032,8 @@ button{
 
     .detail-header{
         flex-direction:column;
-        align-items:flex-start;
+        align-items:center;
+        text-align:center;
         gap:15px;
     }
 
@@ -1467,6 +1487,37 @@ button{
                     onclick="showAllOrders()">
 
                     TUTTI GLI ORDINI
+
+                </button>
+
+            </div>
+
+            <!-- SCALA SOLDI ADMIN -->
+
+            <div
+                id="scaleCard"
+                class="card"
+                style="display:none;">
+
+                <div class="card-icon">
+                    💸
+                </div>
+
+                <h2>
+                    Scala soldi
+                </h2>
+
+                <p>
+                    Scala denaro dal totale
+                    di Roby o Fede.
+                </p>
+
+                <button
+                    type="button"
+                    style="background:#111827;"
+                    onclick="openScaleModal()">
+
+                    SCALA SOLDI
 
                 </button>
 
@@ -1927,6 +1978,118 @@ button{
 
 </div>
 
+<!-- =====================================================
+     MODALE SCALA SOLDI
+===================================================== -->
+
+<div id="scaleModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                💸 Scala soldi
+            </h2>
+
+            <button
+                type="button"
+                class="close"
+                onclick="closeScaleModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Seleziona utente
+            </label>
+
+            <select id="scalePerson">
+
+                <option value="Roby">
+                    Roby
+                </option>
+
+                <option value="Fede">
+                    Fede
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Motivo / Descrizione
+            </label>
+
+            <input
+                id="scaleDescription"
+                type="text"
+                placeholder="Es. Sconto / Conguaglio / Contanti">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Importo da scalare (€)
+            </label>
+
+            <input
+                id="scalePrice"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0,00">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data
+            </label>
+
+            <input
+                id="scaleDate"
+                class="date-field"
+                type="date">
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="cancel"
+                onclick="closeScaleModal()">
+
+                Annulla
+
+            </button>
+
+            <button
+                type="button"
+                class="save"
+                onclick="saveScaleMoney()">
+
+                SCALA SOLDI
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script type="module">
 
 /* =====================================================
@@ -2366,6 +2529,11 @@ function openApp(){
             "jobsPanel"
         );
 
+    const scaleCard =
+        document.getElementById(
+            "scaleCard"
+        );
+
     if(USERS[loggedUser].admin){
 
         document.getElementById("welcomeText")
@@ -2374,6 +2542,9 @@ function openApp(){
 
         document.getElementById("adminCard")
             .style.display = "block";
+
+        scaleCard.style.display =
+            "block";
 
         document.getElementById("ordersTitle")
             .textContent =
@@ -2408,6 +2579,9 @@ function openApp(){
 
         document.getElementById("adminCard")
             .style.display =
+            "none";
+
+        scaleCard.style.display =
             "none";
 
         document.getElementById("ordersTitle")
@@ -4698,6 +4872,98 @@ window.saveJob = async function(){
 };
 
 /* =====================================================
+   SCALA SOLDI (GESTIONE AMMINISTRAZIONE)
+===================================================== */
+
+window.openScaleModal = function(){
+
+    if(loggedUser !== "Gio"){
+        alert("Funzione riservata all'amministratore.");
+        return;
+    }
+
+    document.getElementById("scalePerson").value = "Roby";
+    document.getElementById("scaleDescription").value = "Scala soldi";
+    document.getElementById("scalePrice").value = "";
+    document.getElementById("scaleDate").value = getToday();
+
+    document.getElementById("scaleModal").style.display = "block";
+
+};
+
+window.closeScaleModal = function(){
+
+    document.getElementById("scaleModal").style.display = "none";
+
+};
+
+window.saveScaleMoney = async function(){
+
+    if(loggedUser !== "Gio"){
+        alert("Funzione riservata all'amministratore.");
+        return;
+    }
+
+    const person = document.getElementById("scalePerson").value;
+    const description = document.getElementById("scaleDescription").value.trim() || "Scala soldi";
+    const price = Number(document.getElementById("scalePrice").value);
+    const date = document.getElementById("scaleDate").value;
+
+    if(!Number.isFinite(price) || price <= 0){
+        alert("Inserisci un importo valido da scalare.");
+        return;
+    }
+
+    if(!date){
+        alert("Inserisci la data.");
+        return;
+    }
+
+    try{
+
+        // Salviamo direttamente nella collezione 'lavori' così viene sottratto in automatico dal conto
+        await addDoc(
+
+            collection(
+                db,
+                "lavori"
+            ),
+
+            {
+
+                person: person,
+
+                description: description,
+
+                price: price,
+
+                date: date,
+
+                createdAt: Date.now(),
+
+                createdBy: "Gio"
+
+            }
+
+        );
+
+        closeScaleModal();
+        alert("Importo scalato con successo!");
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Errore durante l'operazione.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+/* =====================================================
    TUTTI GLI ORDINI
 ===================================================== */
 
@@ -5363,6 +5629,11 @@ window.addEventListener(
                 "jobModal"
             );
 
+        const scaleModal =
+            document.getElementById(
+                "scaleModal"
+            );
+
         if(
             event.target ===
             orderModal
@@ -5396,6 +5667,15 @@ window.addEventListener(
         ){
 
             closeJobModal();
+
+        }
+
+        if(
+            event.target ===
+            scaleModal
+        ){
+
+            closeScaleModal();
 
         }
 
