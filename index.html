@@ -2436,22 +2436,11 @@ function openApp(){
     }
 
     listenOrders();
+    listenJobs();
 
     if(loggedUser === "Gio"){
 
-        listenJobs();
-
         setupNotifications();
-
-    }else{
-
-        if(unsubscribeJobs){
-
-            unsubscribeJobs();
-
-            unsubscribeJobs = null;
-
-        }
 
     }
 
@@ -4004,9 +3993,15 @@ function calculateAccount(
             order.person === person
         );
 
-    let total = 0;
-    let paid = 0;
-    let payable = 0;
+    const jobs =
+        allJobs.filter(
+            job =>
+            job.person === person
+        );
+
+    let totalOrders = 0;
+    let paidOrders = 0;
+    let payableOrders = 0;
 
     orders.forEach(
         order => {
@@ -4016,33 +4011,42 @@ function calculateAccount(
                     order
                 );
 
-            total += value;
+            totalOrders += value;
 
             if(
                 order.paymentStatus ===
                 "pagato"
             ){
 
-                paid += value;
+                paidOrders += value;
 
             }else{
 
-                payable += value;
+                payableOrders += value;
 
             }
 
         }
     );
 
+    let totalJobs = 0;
+    jobs.forEach(job => {
+        totalJobs += Number(job.price) || 0;
+    });
+
+    // Sottrae i lavori scalati dal totale e dal "da pagare"
+    let finalPayable = Math.max(0, payableOrders - totalJobs);
+    let finalTotal = Math.max(0, totalOrders - totalJobs);
+
     return {
 
-        total:total,
+        total: finalTotal,
 
-        paid:paid,
+        paid: paidOrders,
 
-        payable:payable,
+        payable: finalPayable,
 
-        orders:orders
+        orders: orders
 
     };
 
@@ -4362,10 +4366,6 @@ window.scrollToOrders = function(){
 
 function listenJobs(){
 
-    if(loggedUser !== "Gio"){
-        return;
-    }
-
     if(unsubscribeJobs){
 
         unsubscribeJobs();
@@ -4411,6 +4411,7 @@ function listenJobs(){
                 );
 
                 renderJobs();
+                updateAccountSummary();
 
             },
 
@@ -4421,17 +4422,14 @@ function listenJobs(){
                     error
                 );
 
-                document.getElementById(
-                    "jobsList"
-                ).innerHTML = `
-
-                    <div class="empty-orders">
-
-                        Errore caricamento lavori.
-
-                    </div>
-
-                `;
+                const jobsListElem = document.getElementById("jobsList");
+                if(jobsListElem){
+                    jobsListElem.innerHTML = `
+                        <div class="empty-orders">
+                            Errore caricamento lavori.
+                        </div>
+                    `;
+                }
 
             }
 
@@ -4453,6 +4451,8 @@ function renderJobs(){
         document.getElementById(
             "jobsList"
         );
+
+    if(!list) return;
 
     if(!allJobs.length){
 
