@@ -312,6 +312,10 @@ button{
     color:#6b7280;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -360,29 +364,30 @@ button{
    CONTO
 ========================= */
 
-.account-card{
+.account-summary{
     background:#111827;
-    color:white;
+    color:#fff;
     border-radius:18px;
     padding:25px;
     margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.10);
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.account-card h2{
+.account-summary-title{
+    color:#cbd5e1;
     font-size:15px;
-    color:#9ca3af;
-    text-transform:uppercase;
+    font-weight:800;
     margin-bottom:8px;
+    text-transform:uppercase;
 }
 
-.account-total{
-    font-size:36px;
+.account-summary-total{
+    font-size:38px;
     font-weight:900;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
-.account-summary{
+.account-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:12px;
@@ -390,32 +395,34 @@ button{
 
 .account-box{
     background:#1f2937;
-    padding:15px;
     border-radius:12px;
+    padding:16px;
 }
 
 .account-box span{
     display:block;
     color:#9ca3af;
-    font-size:12px;
+    font-size:13px;
     margin-bottom:5px;
 }
 
 .account-box strong{
-    font-size:20px;
+    font-size:22px;
 }
 
-.account-due strong{
-    color:#fbbf24;
+.account-box.payable strong{
+    color:#f59e0b;
 }
 
-.account-paid strong{
+.account-box.paid strong{
     color:#4ade80;
 }
 
 .account-button{
-    margin-top:18px!important;
-    background:#16a34a!important;
+    margin-top:18px;
+    padding:13px 18px;
+    background:#16a34a;
+    color:#fff;
 }
 
 /* =========================
@@ -487,6 +494,37 @@ button{
     font-size:14px;
 }
 
+.order-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-top:12px;
+}
+
+.order-price{
+    font-weight:900;
+    font-size:17px;
+}
+
+.payment-status{
+    display:inline-block;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.payment-paid{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.payment-unpaid{
+    background:#fef3c7;
+    color:#92400e;
+}
+
 .status{
     display:inline-block;
     padding:7px 10px;
@@ -515,16 +553,6 @@ button{
     color:#166534;
 }
 
-.pagato{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.dapagare{
-    background:#fee2e2;
-    color:#b91c1c;
-}
-
 .empty-orders{
     padding:25px;
     text-align:center;
@@ -543,57 +571,60 @@ button{
     box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.job{
+.jobs-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.jobs-header h2{
+    font-size:23px;
+}
+
+.add-job-button{
+    background:#111827;
+    color:#fff;
+    padding:12px 16px;
+}
+
+.jobs-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.job-item{
     border:1px solid #e5e7eb;
     border-radius:12px;
-    padding:17px;
-    margin-bottom:12px;
-}
-
-.job:last-child{
-    margin-bottom:0;
-}
-
-.job-top{
+    padding:16px;
     display:flex;
     justify-content:space-between;
     gap:15px;
+    align-items:center;
 }
 
 .job-name{
-    font-size:18px;
+    font-size:17px;
     font-weight:900;
 }
 
 .job-description{
+    margin-top:5px;
     color:#64748b;
-    margin-top:7px;
+}
+
+.job-date{
+    margin-top:5px;
+    color:#94a3b8;
+    font-size:12px;
 }
 
 .job-price{
     font-size:20px;
     font-weight:900;
-}
-
-.job-date{
-    color:#94a3b8;
-    font-size:12px;
-    margin-top:8px;
-}
-
-.job-actions{
-    display:flex;
-    gap:8px;
-    margin-top:12px;
-}
-
-.job-actions button{
-    padding:9px 12px;
-}
-
-.job-delete{
-    background:#fee2e2;
-    color:#b91c1c;
+    white-space:nowrap;
 }
 
 /* =========================
@@ -632,6 +663,29 @@ button{
     color:#666;
 }
 
+.info-box{
+    background:#fff7ed;
+    color:#9a3412;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+    line-height:1.5;
+    font-weight:700;
+}
+
+.fixed-field{
+    background:#f3f4f6!important;
+    color:#6b7280;
+    pointer-events:none;
+}
+
+.date-field{
+    text-align:center!important;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 .article-row{
     background:#f8fafc;
     padding:15px;
@@ -653,26 +707,31 @@ button{
     border-radius:8px;
 }
 
+.article-actions{
+    display:flex;
+    gap:8px;
+    align-items:end;
+}
+
 .remove{
     background:#fee2e2;
     color:#b91c1c;
     padding:11px;
+    min-width:44px;
 }
 
 .add-article{
     background:#111827;
     color:#fff;
     padding:11px 14px;
-    margin-bottom:15px;
 }
 
-.price-notice{
-    background:#fff7ed;
-    color:#9a3412;
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:20px;
-    font-weight:700;
+.article-header-actions{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:8px;
+    margin-bottom:15px;
 }
 
 .total{
@@ -743,37 +802,6 @@ button{
     font-weight:900;
 }
 
-.payment-panel{
-    margin-top:20px;
-    background:#f8fafc;
-    border-radius:12px;
-    padding:18px;
-}
-
-.payment-panel h3{
-    margin-bottom:12px;
-}
-
-.payment-buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.payment-button{
-    padding:11px 15px;
-}
-
-.payment-button.active-paid{
-    background:#16a34a;
-    color:#fff;
-}
-
-.payment-button.active-due{
-    background:#dc2626;
-    color:#fff;
-}
-
 .detail-table-wrap{
     overflow-x:auto;
     margin-top:20px;
@@ -795,6 +823,42 @@ button{
 .detail-table td{
     padding:13px 12px;
     border-top:1px solid #e5e7eb;
+}
+
+.payment-box{
+    margin-top:20px;
+    background:#f8fafc;
+    padding:18px;
+    border-radius:12px;
+}
+
+.payment-box-title{
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.payment-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.payment-button{
+    padding:12px 16px;
+}
+
+.payment-button.paid{
+    background:#16a34a;
+    color:#fff;
+}
+
+.payment-button.unpaid{
+    background:#f59e0b;
+    color:#fff;
+}
+
+.payment-button.active{
+    box-shadow:0 0 0 3px rgba(17,24,39,.2);
 }
 
 .detail-actions{
@@ -822,46 +886,45 @@ button{
    CONTO MODALE
 ========================= */
 
-.account-modal-total{
+.account-modal-summary{
     background:#111827;
-    color:white;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:18px;
+    color:#fff;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
 }
 
-.account-modal-name{
+.account-modal-summary small{
     color:#cbd5e1;
-    font-size:18px;
-    margin-bottom:8px;
 }
 
-.account-modal-total strong{
-    font-size:42px;
+.account-modal-summary h3{
+    font-size:36px;
+    margin-top:5px;
 }
 
 .account-modal-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-bottom:20px;
+    margin-top:15px;
 }
 
 .account-modal-box{
-    padding:18px;
-    border-radius:14px;
-    background:#f8fafc;
+    background:#1f2937;
+    border-radius:10px;
+    padding:14px;
 }
 
 .account-modal-box span{
     display:block;
-    color:#64748b;
-    font-size:13px;
+    color:#9ca3af;
+    font-size:12px;
     margin-bottom:5px;
 }
 
 .account-modal-box strong{
-    font-size:24px;
+    font-size:20px;
 }
 
 .account-order{
@@ -869,35 +932,32 @@ button{
     border-radius:12px;
     padding:16px;
     margin-bottom:10px;
+    cursor:pointer;
+}
+
+.account-order:hover{
+    background:#f8fafc;
+}
+
+.account-order-top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    gap:15px;
+    gap:10px;
 }
 
 .account-order-number{
-    font-weight:900;
     font-size:17px;
+    font-weight:900;
 }
 
 .account-order-date{
     color:#64748b;
     font-size:13px;
-    margin-top:5px;
+    margin-top:4px;
 }
 
-.account-order-right{
-    text-align:right;
-}
-
-.account-order-price{
-    font-weight:900;
+.account-order-total{
     font-size:18px;
-}
-
-.account-order-payment{
-    margin-top:6px;
-    font-size:11px;
     font-weight:900;
 }
 
@@ -905,18 +965,23 @@ button{
    RESPONSIVE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:1000px){
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .article-grid{
+        grid-template-columns:1.5fr .7fr 1fr .8fr auto;
+    }
+
+}
+
+@media(max-width:700px){
 
     .cards{
         grid-template-columns:1fr;
     }
-
-    .article-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
 
     .app-content{
         padding:18px;
@@ -940,7 +1005,8 @@ button{
         font-size:11px;
     }
 
-    .panel-header{
+    .panel-header,
+    .jobs-header{
         flex-direction:column;
         align-items:stretch;
     }
@@ -952,47 +1018,72 @@ button{
     }
 
     .article-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
     }
 
-    .account-summary{
-        grid-template-columns:1fr;
+    .article-grid > div:first-child{
+        grid-column:1 / -1;
     }
 
+    .article-actions{
+        grid-column:1 / -1;
+    }
+
+    .add-article{
+        flex:1;
+    }
+
+    .order-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .job-item{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .account-grid,
     .account-modal-grid{
         grid-template-columns:1fr;
     }
 
-    .account-order{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .account-order-right{
-        text-align:left;
-    }
 }
 
-/* =========================
-   DATA CENTRATA
-========================= */
+@media(max-width:480px){
 
-#orderDate{
-    text-align:center;
-    text-align-last:center;
-    -webkit-appearance:none;
-    appearance:none;
-}
+    .article-grid{
+        grid-template-columns:1fr;
+    }
 
-#orderDate::-webkit-date-and-time-value{
-    text-align:center;
-    margin:0 auto;
+    .article-grid > div:first-child{
+        grid-column:auto;
+    }
+
+    .article-actions{
+        grid-column:auto;
+    }
+
+    .modal{
+        padding:15px 8px;
+    }
+
+    .modal-box{
+        padding:18px;
+        border-radius:18px;
+    }
+
+    .detail{
+        padding:18px;
+    }
+
 }
 
 </style>
 </head>
 
 <body>
+
 
 <!-- =====================================================
      LOGIN
@@ -1281,23 +1372,23 @@ button{
                     Ordini
                 </h2>
 
-                <p>
+                <p id="ordersCardText">
                     Visualizza gli ordini disponibili
                     nel tuo account.
                 </p>
 
                 <button
                     type="button"
-                    onclick="loadOrders()">
+                    onclick="scrollToOrders()">
 
-                    AGGIORNA ORDINI
+                    VEDI ORDINI
 
                 </button>
 
             </div>
 
 
-            <!-- CONTO ROBY / FEDE -->
+            <!-- CONTO ROBY/FEDE -->
 
             <div
                 id="accountCard"
@@ -1313,16 +1404,48 @@ button{
                 </h2>
 
                 <p>
-                    Visualizza quanto hai speso,
+                    Controlla quanto hai comprato,
                     quanto hai già pagato e quanto
                     devi ancora pagare.
                 </p>
 
                 <button
                     type="button"
-                    onclick="openAccount()">
+                    onclick="openAccountModal()">
 
                     DETTAGLIO CONTO
+
+                </button>
+
+            </div>
+
+
+            <!-- LAVORI GIO -->
+
+            <div
+                id="jobsCard"
+                class="card"
+                style="display:none;">
+
+                <div class="card-icon">
+                    🔧
+                </div>
+
+                <h2>
+                    Lavori
+                </h2>
+
+                <p>
+                    Inserisci i lavori eseguiti
+                    per Roby o Fede e il relativo
+                    importo pagato da Gio.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="openJobModal()">
+
+                    GESTISCI LAVORI
 
                 </button>
 
@@ -1359,65 +1482,31 @@ button{
 
             </div>
 
-
-            <!-- LAVORI -->
-
-            <div
-                id="jobsCard"
-                class="card"
-                style="display:none;">
-
-                <div class="card-icon">
-                    🔧
-                </div>
-
-                <h2>
-                    Lavori
-                </h2>
-
-                <p>
-                    Inserisci i lavori fatti per
-                    Roby o Fede. Questi importi
-                    sono separati dagli ordini.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="openJobModal()">
-
-                    GESTISCI LAVORI
-
-                </button>
-
-            </div>
-
         </div>
 
 
         <!-- =========================
-             CONTO
+             CONTO ROBY / FEDE
         ========================= -->
 
         <div
             id="accountSummary"
-            class="account-card"
+            class="account-summary"
             style="display:none;">
 
-            <h2>
-                Totale complessivo ordini
-            </h2>
+            <div class="account-summary-title">
+                Il mio conto
+            </div>
 
             <div
                 id="accountTotal"
-                class="account-total">
-
+                class="account-summary-total">
                 €0,00
-
             </div>
 
-            <div class="account-summary">
+            <div class="account-grid">
 
-                <div class="account-box account-paid">
+                <div class="account-box paid">
 
                     <span>
                         PAGATO
@@ -1429,13 +1518,13 @@ button{
 
                 </div>
 
-                <div class="account-box account-due">
+                <div class="account-box payable">
 
                     <span>
                         DA PAGARE
                     </span>
 
-                    <strong id="accountDue">
+                    <strong id="accountPayable">
                         €0,00
                     </strong>
 
@@ -1445,8 +1534,8 @@ button{
 
             <button
                 type="button"
-                class="card account-button"
-                onclick="openAccount()">
+                class="account-button"
+                onclick="openAccountModal()">
 
                 DETTAGLIO CONTO
 
@@ -1464,27 +1553,29 @@ button{
             class="jobs-panel"
             style="display:none;">
 
-            <div class="panel-header">
+            <div class="jobs-header">
 
                 <h2>
-                    Lavori
+                    🔧 Lavori
                 </h2>
 
                 <button
                     type="button"
-                    class="new-order"
+                    class="add-job-button"
                     onclick="openJobModal()">
 
-                    + Nuovo lavoro
+                    + Aggiungi lavoro
 
                 </button>
 
             </div>
 
-            <div id="jobsList">
+            <div
+                id="jobsList"
+                class="jobs-list">
 
                 <div class="empty-orders">
-                    Nessun lavoro presente.
+                    Nessun lavoro inserito.
                 </div>
 
             </div>
@@ -1564,7 +1655,9 @@ button{
                 Cliente
             </label>
 
-            <select id="orderPerson">
+            <select
+                id="orderPerson"
+                class="fixed-field">
 
                 <option value="Roby">
                     Roby
@@ -1585,12 +1678,13 @@ button{
 
         <div class="form-group">
 
-            <label>
+            <label style="text-align:center;">
                 Data ordine
             </label>
 
             <input
                 id="orderDate"
+                class="date-field fixed-field"
                 type="date">
 
         </div>
@@ -1602,7 +1696,9 @@ button{
                 Stato
             </label>
 
-            <select id="orderStatus">
+            <select
+                id="orderStatus"
+                class="fixed-field">
 
                 <option value="daordinare">
                     Da ordinare
@@ -1613,9 +1709,7 @@ button{
         </div>
 
 
-        <div
-            id="priceNotice"
-            class="price-notice">
+        <div class="info-box">
 
             💡 Il prezzo e lo sconto verranno inseriti
             successivamente da Gio.
@@ -1623,14 +1717,28 @@ button{
         </div>
 
 
-        <button
-            type="button"
-            class="add-article"
-            onclick="addArticle()">
+        <div class="article-header-actions">
 
-            + Aggiungi articolo
+            <button
+                type="button"
+                class="add-article"
+                onclick="addArticle()">
 
-        </button>
+                + Aggiungi articolo
+
+            </button>
+
+            <button
+                type="button"
+                class="remove"
+                onclick="removeLastArticle()"
+                title="Rimuovi ultimo articolo">
+
+                ×
+
+            </button>
+
+        </div>
 
 
         <div id="articles"></div>
@@ -1677,6 +1785,53 @@ button{
 
 
 <!-- =====================================================
+     DETTAGLIO ORDINE
+===================================================== -->
+
+<div id="detailModal" class="modal">
+
+    <div class="modal-box">
+
+        <div id="detailContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODALE CONTO
+===================================================== -->
+
+<div id="accountModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                💰 Il mio conto
+            </h2>
+
+            <button
+                type="button"
+                class="close"
+                onclick="closeAccountModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div id="accountModalContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      MODALE LAVORO
 ===================================================== -->
 
@@ -1687,7 +1842,7 @@ button{
         <div class="modal-header">
 
             <h2>
-                Nuovo lavoro
+                🔧 Nuovo lavoro
             </h2>
 
             <button
@@ -1726,7 +1881,7 @@ button{
         <div class="form-group">
 
             <label>
-                Descrizione lavoro
+                Lavoro
             </label>
 
             <input
@@ -1740,7 +1895,7 @@ button{
         <div class="form-group">
 
             <label>
-                Prezzo €
+                Prezzo pagato da Gio
             </label>
 
             <input
@@ -1761,6 +1916,7 @@ button{
 
             <input
                 id="jobDate"
+                class="date-field"
                 type="date">
 
         </div>
@@ -1787,53 +1943,6 @@ button{
             </button>
 
         </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     DETTAGLIO ORDINE
-===================================================== -->
-
-<div id="detailModal" class="modal">
-
-    <div class="modal-box">
-
-        <div id="detailContent"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     CONTO
-===================================================== -->
-
-<div id="accountModal" class="modal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h2>
-                💰 Il mio conto
-            </h2>
-
-            <button
-                type="button"
-                class="close"
-                onclick="closeAccount()">
-
-                ×
-
-            </button>
-
-        </div>
-
-        <div id="accountContent"></div>
 
     </div>
 
@@ -1921,6 +2030,10 @@ try{
         messaging =
             getMessaging(app);
 
+        console.log(
+            "Firebase Messaging supportato."
+        );
+
     }
 
 }catch(error){
@@ -1938,7 +2051,7 @@ try{
 ===================================================== */
 
 const VAPID_KEY =
-"BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+"BM8lpUTpngWnKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
 
 
 function normalizeVapidKey(key){
@@ -1949,7 +2062,8 @@ function normalizeVapidKey(key){
         );
     }
 
-    const clean = key.trim();
+    const clean =
+        key.trim();
 
     if(!clean){
         throw new Error(
@@ -1970,7 +2084,8 @@ function normalizeVapidKey(key){
 
     try{
 
-        binary = atob(base64);
+        binary =
+            atob(base64);
 
     }catch(error){
 
@@ -2045,9 +2160,14 @@ const USERS = {
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
+
 let unsubscribeOrders = null;
 let unsubscribeJobs = null;
+
 let notificationListenerActive = false;
+
+let allOrders = [];
+let allJobs = [];
 
 
 /* =====================================================
@@ -2156,10 +2276,12 @@ window.login = function(){
     loggedUser =
         selectedUser;
 
+
     localStorage.setItem(
         "ktm_logged_user",
         loggedUser
     );
+
 
     openApp();
 
@@ -2281,20 +2403,18 @@ function openApp(){
             "accountCard"
         );
 
+
     const accountSummary =
         document.getElementById(
             "accountSummary"
         );
 
-    const adminCard =
-        document.getElementById(
-            "adminCard"
-        );
 
     const jobsCard =
         document.getElementById(
             "jobsCard"
         );
+
 
     const jobsPanel =
         document.getElementById(
@@ -2308,14 +2428,16 @@ function openApp(){
             .textContent =
             "Sei entrato come amministratore.";
 
-        adminCard.style.display =
-            "block";
+        document.getElementById("adminCard")
+            .style.display = "block";
 
-        jobsCard.style.display =
-            "block";
+        document.getElementById("ordersTitle")
+            .textContent =
+            "Tutti gli ordini";
 
-        jobsPanel.style.display =
-            "block";
+        document.getElementById("ordersCardText")
+            .textContent =
+            "Visualizza tutti gli ordini di Roby e Fede.";
 
         accountCard.style.display =
             "none";
@@ -2323,18 +2445,16 @@ function openApp(){
         accountSummary.style.display =
             "none";
 
-        document.getElementById("ordersTitle")
-            .textContent =
-            "Tutti gli ordini";
+        jobsCard.style.display =
+            "block";
+
+        jobsPanel.style.display =
+            "block";
 
         notificationButton.style.display =
             "inline-block";
 
         updateNotificationButtonState();
-
-        listenJobs();
-
-        setupNotifications();
 
     }else{
 
@@ -2342,14 +2462,17 @@ function openApp(){
             .textContent =
             "Gestisci i tuoi ordini KTM.";
 
-        adminCard.style.display =
+        document.getElementById("adminCard")
+            .style.display =
             "none";
 
-        jobsCard.style.display =
-            "none";
+        document.getElementById("ordersTitle")
+            .textContent =
+            "I miei ordini";
 
-        jobsPanel.style.display =
-            "none";
+        document.getElementById("ordersCardText")
+            .textContent =
+            "Visualizza e controlla i tuoi ordini.";
 
         accountCard.style.display =
             "block";
@@ -2357,9 +2480,11 @@ function openApp(){
         accountSummary.style.display =
             "block";
 
-        document.getElementById("ordersTitle")
-            .textContent =
-            "I miei ordini";
+        jobsCard.style.display =
+            "none";
+
+        jobsPanel.style.display =
+            "none";
 
         notificationButton.style.display =
             "none";
@@ -2368,6 +2493,25 @@ function openApp(){
 
 
     listenOrders();
+
+
+    if(loggedUser === "Gio"){
+
+        listenJobs();
+
+        setupNotifications();
+
+    }else{
+
+        if(unsubscribeJobs){
+
+            unsubscribeJobs();
+
+            unsubscribeJobs = null;
+
+        }
+
+    }
 
 }
 
@@ -2386,6 +2530,7 @@ window.logout = function(){
 
     }
 
+
     if(unsubscribeJobs){
 
         unsubscribeJobs();
@@ -2394,14 +2539,20 @@ window.logout = function(){
 
     }
 
+
     loggedUser = null;
     selectedUser = null;
 
+    allOrders = [];
+    allJobs = [];
+
     notificationListenerActive = false;
+
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
+
 
     document.getElementById("appPage")
         .style.display = "none";
@@ -2426,13 +2577,19 @@ function listenOrders(){
 
 
     const ordersRef =
-        collection(db,"ordini");
+        collection(
+            db,
+            "ordini"
+        );
 
 
     const q =
         query(
             ordersRef,
-            orderBy("createdAt","desc")
+            orderBy(
+                "createdAt",
+                "desc"
+            )
         );
 
 
@@ -2443,45 +2600,27 @@ function listenOrders(){
 
             snapshot => {
 
-                let orders = [];
+                allOrders = [];
 
 
-                snapshot.forEach(docSnap => {
+                snapshot.forEach(
+                    docSnap => {
 
-                    orders.push({
+                        allOrders.push({
 
-                        id:docSnap.id,
+                            id:docSnap.id,
 
-                        ...docSnap.data()
+                            ...docSnap.data()
 
-                    });
+                        });
 
-                });
-
-
-                if(
-                    !USERS[loggedUser].admin
-                ){
-
-                    orders =
-                        orders.filter(
-                            o =>
-                            o.person === loggedUser
-                        );
-
-                }
+                    }
+                );
 
 
-                renderOrders(orders);
+                renderOrders();
 
-                if(
-                    loggedUser === "Roby" ||
-                    loggedUser === "Fede"
-                ){
-
-                    renderAccountSummary(orders);
-
-                }
+                updateAccountSummary();
 
             },
 
@@ -2491,6 +2630,7 @@ function listenOrders(){
                     "Errore Firestore:",
                     error
                 );
+
 
                 document.getElementById(
                     "ordersList"
@@ -2521,13 +2661,45 @@ function listenOrders(){
 
 
 /* =====================================================
+   ORDINI VISIBILI
+===================================================== */
+
+function getVisibleOrders(){
+
+    if(!loggedUser){
+        return [];
+    }
+
+
+    if(USERS[loggedUser].admin){
+
+        return allOrders;
+
+    }
+
+
+    return allOrders.filter(
+        order =>
+        order.person === loggedUser
+    );
+
+}
+
+
+/* =====================================================
    RENDER ORDINI
 ===================================================== */
 
-function renderOrders(orders){
+function renderOrders(){
 
     const list =
-        document.getElementById("ordersList");
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    const orders =
+        getVisibleOrders();
 
 
     if(!orders.length){
@@ -2571,32 +2743,9 @@ function renderOrders(orders){
             calculateTotal(order);
 
 
-        let paymentHtml = "";
-
-
-        if(loggedUser === "Gio"){
-
-            const paid =
-                order.paymentStatus === "pagato";
-
-
-            paymentHtml = `
-
-                <div style="
-                    margin-top:10px;
-                    font-size:12px;
-                    font-weight:900;
-                ">
-
-                    ${paid
-                        ? "🟢 PAGATO"
-                        : "🔴 DA PAGARE"}
-
-                </div>
-
-            `;
-
-        }
+        const payment =
+            order.paymentStatus ||
+            "da_pagare";
 
 
         div.innerHTML = `
@@ -2655,16 +2804,34 @@ function renderOrders(orders){
             </div>
 
 
-            <div style="
-                margin-top:10px;
-                font-weight:900;
-            ">
+            <div class="order-bottom">
 
-                ${euro(total)}
+                <div class="order-price">
+
+                    ${euro(total)}
+
+                </div>
+
+
+                <span class="payment-status ${
+                    payment === "pagato"
+                    ?
+                    "payment-paid"
+                    :
+                    "payment-unpaid"
+                }">
+
+                    ${
+                        payment === "pagato"
+                        ?
+                        "✓ PAGATO"
+                        :
+                        "DA PAGARE"
+                    }
+
+                </span>
 
             </div>
-
-            ${paymentHtml}
 
         `;
 
@@ -2694,7 +2861,9 @@ window.openNewOrder = function(){
 
     if(!loggedUser){
 
-        alert("Devi prima effettuare l'accesso.");
+        alert(
+            "Devi prima effettuare l'accesso."
+        );
 
         return;
 
@@ -2714,22 +2883,16 @@ window.openNewOrder = function(){
         "orderPerson"
     ).value =
         loggedUser === "Gio"
-        ? "Roby"
-        : loggedUser;
-
-
-    document.getElementById(
-        "orderPerson"
-    ).disabled =
-        !USERS[loggedUser].admin;
+        ?
+        "Roby"
+        :
+        loggedUser;
 
 
     document.getElementById(
         "orderDate"
     ).value =
-        new Date()
-        .toISOString()
-        .split("T")[0];
+        getToday();
 
 
     document.getElementById(
@@ -2743,16 +2906,6 @@ window.openNewOrder = function(){
     ).innerHTML = "";
 
 
-    const priceNotice =
-        document.getElementById(
-            "priceNotice"
-        );
-
-
-    priceNotice.style.display =
-        "block";
-
-
     addArticle();
 
 
@@ -2760,6 +2913,9 @@ window.openNewOrder = function(){
         "orderModal"
     ).style.display =
         "block";
+
+
+    applyOrderPermissions();
 
 };
 
@@ -2775,13 +2931,73 @@ window.closeModal = function(){
 
 
 /* =====================================================
+   PERMESSI MODALE ORDINE
+===================================================== */
+
+function applyOrderPermissions(){
+
+    const isAdmin =
+        loggedUser === "Gio";
+
+
+    document.getElementById(
+        "orderPerson"
+    ).disabled =
+        !isAdmin;
+
+
+    document.getElementById(
+        "orderStatus"
+    ).disabled =
+        true;
+
+
+    document.getElementById(
+        "orderDate"
+    ).disabled =
+        true;
+
+
+    document
+        .querySelectorAll(
+            ".article-price"
+        )
+        .forEach(
+            input => {
+
+                input.disabled =
+                    !isAdmin;
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".article-discount"
+        )
+        .forEach(
+            input => {
+
+                input.disabled =
+                    !isAdmin;
+
+            }
+        );
+
+}
+
+
+/* =====================================================
    ARTICOLI
 ===================================================== */
 
 window.addArticle = function(article=null){
 
     const container =
-        document.getElementById("articles");
+        document.getElementById(
+            "articles"
+        );
 
 
     const row =
@@ -2792,8 +3008,22 @@ window.addArticle = function(article=null){
         "article-row";
 
 
-    const isGio =
-        loggedUser === "Gio";
+    const price =
+        article &&
+        article.price !== undefined
+        ?
+        Number(article.price)
+        :
+        0;
+
+
+    const discount =
+        article &&
+        article.discount !== undefined
+        ?
+        Number(article.discount)
+        :
+        25;
 
 
     row.innerHTML = `
@@ -2842,67 +3072,64 @@ window.addArticle = function(article=null){
             </div>
 
 
-            ${
-                isGio
-                ?
-                `
+            <div class="form-group">
 
-                <div class="form-group">
+                <label>
+                    Prezzo €
+                </label>
 
-                    <label>
-                        Prezzo €
-                    </label>
+                <input
+                    class="article-price fixed-field"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="${
+                        article &&
+                        article.price !== undefined
+                        ?
+                        price
+                        :
+                        ""
+                    }"
+                    placeholder="Inserisce Gio">
 
-                    <input
-                        class="article-price"
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value="${
-                            article
-                            ?
-                            Number(article.price) || 0
-                            :
-                            ""
-                        }">
-
-                </div>
+            </div>
 
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <label>
-                        Sconto %
-                    </label>
+                <label>
+                    Sconto %
+                </label>
 
-                    <input
-                        class="article-discount"
-                        type="number"
-                        min="0"
-                        max="100"
-                        value="${
-                            article
-                            ?
-                            Number(article.discount) || 0
-                            :
-                            25
-                        }">
+                <input
+                    class="article-discount fixed-field"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="${
+                        article
+                        ?
+                        discount
+                        :
+                        25
+                    }">
 
-                </div>
-
-                `
-                :
-                ""
-            }
+            </div>
 
 
-            <button
-                type="button"
-                class="remove">
+            <div class="article-actions">
 
-                ×
+                <button
+                    type="button"
+                    class="remove"
+                    title="Rimuovi articolo">
 
-            </button>
+                    ×
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -2915,13 +3142,13 @@ window.addArticle = function(article=null){
         );
 
 
-    const price =
+    const priceInput =
         row.querySelector(
             ".article-price"
         );
 
 
-    const discount =
+    const discountInput =
         row.querySelector(
             ".article-discount"
         );
@@ -2939,24 +3166,16 @@ window.addArticle = function(article=null){
     );
 
 
-    if(price){
-
-        price.addEventListener(
-            "input",
-            calculateOrderTotal
-        );
-
-    }
+    priceInput.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
 
 
-    if(discount){
-
-        discount.addEventListener(
-            "input",
-            calculateOrderTotal
-        );
-
-    }
+    discountInput.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
 
 
     remove.addEventListener(
@@ -2973,6 +3192,31 @@ window.addArticle = function(article=null){
 
     container.appendChild(row);
 
+
+    applyOrderPermissions();
+
+    calculateOrderTotal();
+
+};
+
+
+window.removeLastArticle = function(){
+
+    const rows =
+        document.querySelectorAll(
+            ".article-row"
+        );
+
+
+    if(!rows.length){
+        return;
+    }
+
+
+    rows[rows.length - 1]
+        .remove();
+
+
     calculateOrderTotal();
 
 };
@@ -2988,54 +3232,46 @@ window.calculateOrderTotal = function(){
 
 
     document
-        .querySelectorAll(".article-row")
-        .forEach(row => {
+        .querySelectorAll(
+            ".article-row"
+        )
+        .forEach(
+            row => {
 
-            const qty =
-                Number(
-                    row.querySelector(
-                        ".article-qty"
-                    ).value
-                ) || 0;
-
-
-            const priceElement =
-                row.querySelector(
-                    ".article-price"
-                );
+                const qty =
+                    Number(
+                        row.querySelector(
+                            ".article-qty"
+                        ).value
+                    ) || 0;
 
 
-            const discountElement =
-                row.querySelector(
-                    ".article-discount"
-                );
+                const price =
+                    Number(
+                        row.querySelector(
+                            ".article-price"
+                        ).value
+                    ) || 0;
 
 
-            const price =
-                priceElement
-                ?
-                Number(priceElement.value) || 0
-                :
-                0;
+                const discount =
+                    Number(
+                        row.querySelector(
+                            ".article-discount"
+                        ).value
+                    ) || 0;
 
 
-            const discount =
-                discountElement
-                ?
-                Number(discountElement.value) || 0
-                :
-                0;
+                total +=
+                    qty *
+                    price *
+                    (
+                        1 -
+                        discount / 100
+                    );
 
-
-            total +=
-                qty *
-                price *
-                (
-                    1 -
-                    discount / 100
-                );
-
-        });
+            }
+        );
 
 
     document.getElementById(
@@ -3064,78 +3300,64 @@ window.saveOrder = async function(){
         ).value;
 
 
-    /* STATO SEMPRE DA ORDINARE */
-
-    const status =
-        "daordinare";
-
-
     const articles = [];
 
 
     document
-        .querySelectorAll(".article-row")
-        .forEach(row => {
+        .querySelectorAll(
+            ".article-row"
+        )
+        .forEach(
+            row => {
 
-            const code =
-                row.querySelector(
-                    ".article-code"
-                ).value.trim();
-
-
-            const qty =
-                Number(
+                const code =
                     row.querySelector(
-                        ".article-qty"
-                    ).value
-                ) || 0;
+                        ".article-code"
+                    ).value.trim();
 
 
-            const priceElement =
-                row.querySelector(
-                    ".article-price"
-                );
+                const qty =
+                    Number(
+                        row.querySelector(
+                            ".article-qty"
+                        ).value
+                    ) || 0;
 
 
-            const discountElement =
-                row.querySelector(
-                    ".article-discount"
-                );
+                const price =
+                    Number(
+                        row.querySelector(
+                            ".article-price"
+                        ).value
+                    ) || 0;
 
 
-            const price =
-                priceElement
-                ?
-                Number(priceElement.value) || 0
-                :
-                0;
+                const discount =
+                    Number(
+                        row.querySelector(
+                            ".article-discount"
+                        ).value
+                    ) || 25;
 
 
-            const discount =
-                discountElement
-                ?
-                Number(discountElement.value) || 0
-                :
-                0;
+                if(code){
 
+                    articles.push({
 
-            if(code){
+                        code:code,
 
-                articles.push({
+                        qty:qty,
 
-                    code:code,
+                        price:price,
 
-                    qty:qty,
+                        discount:discount
 
-                    price:price,
+                    });
 
-                    discount:discount
-
-                });
+                }
 
             }
-
-        });
+        );
 
 
     if(!date){
@@ -3161,7 +3383,7 @@ window.saveOrder = async function(){
 
 
     if(
-        !USERS[loggedUser].admin &&
+        loggedUser !== "Gio" &&
         person !== loggedUser
     ){
 
@@ -3178,35 +3400,45 @@ window.saveOrder = async function(){
 
         if(editingOrderId){
 
-            const existingSnapshot =
-                await getDocs(
-                    collection(
-                        db,
-                        "ordini"
-                    )
+            const existingOrder =
+                allOrders.find(
+                    order =>
+                    order.id === editingOrderId
                 );
 
 
-            let oldOrder = null;
+            if(!existingOrder){
+
+                alert(
+                    "Ordine non trovato."
+                );
+
+                return;
+
+            }
 
 
-            existingSnapshot.forEach(
-                d => {
+            const updateData = {
 
-                    if(d.id === editingOrderId){
+                articles:articles,
 
-                        oldOrder = {
+                updatedAt:Date.now()
 
-                            id:d.id,
+            };
 
-                            ...d.data()
 
-                        };
+            if(loggedUser === "Gio"){
 
-                    }
+                updateData.person =
+                    person;
 
-                }
-            );
+                updateData.date =
+                    date;
+
+                updateData.status =
+                    "daordinare";
+
+            }
 
 
             await updateDoc(
@@ -3217,28 +3449,7 @@ window.saveOrder = async function(){
                     editingOrderId
                 ),
 
-                {
-
-                    person:person,
-
-                    date:date,
-
-                    status:
-                        loggedUser === "Gio"
-                        ?
-                        status
-                        :
-                        "daordinare",
-
-                    articles:articles,
-
-                    paymentStatus:
-                        oldOrder?.paymentStatus ||
-                        "da_pagare",
-
-                    updatedAt:Date.now()
-
-                }
+                updateData
 
             );
 
@@ -3271,9 +3482,9 @@ window.saveOrder = async function(){
 
                 status:"daordinare",
 
-                articles:articles,
-
                 paymentStatus:"da_pagare",
+
+                articles:articles,
 
                 createdAt:Date.now(),
 
@@ -3324,54 +3535,67 @@ window.saveOrder = async function(){
 function showOrder(order){
 
     const total =
-        calculateTotal(order);
+        calculateTotal(
+            order
+        );
+
+
+    const payment =
+        order.paymentStatus ||
+        "da_pagare";
 
 
     let rows = "";
 
 
     (order.articles || [])
-    .forEach(article => {
+    .forEach(
+        article => {
 
-        const price =
-            Number(article.price) || 0;
-
-        const qty =
-            Number(article.qty) || 0;
-
-        const discount =
-            Number(article.discount) || 0;
+            const price =
+                Number(
+                    article.price
+                ) || 0;
 
 
-        const net =
-            price *
-            (
-                1 -
-                discount / 100
-            );
+            const qty =
+                Number(
+                    article.qty
+                ) || 0;
 
 
-        const line =
-            net *
-            qty;
+            const discount =
+                Number(
+                    article.discount
+                ) || 0;
 
 
-        rows += `
+            const net =
+                price *
+                (
+                    1 -
+                    discount / 100
+                );
 
-            <tr>
 
-                <td>
-                    ${escapeHtml(article.code)}
-                </td>
+            const line =
+                net *
+                qty;
 
-                <td>
-                    ${qty}
-                </td>
 
-                ${
-                    loggedUser === "Gio"
-                    ?
-                    `
+            rows += `
+
+                <tr>
+
+                    <td>
+                        ${escapeHtml(
+                            article.code
+                        )}
+                    </td>
+
+                    <td>
+                        ${qty}
+                    </td>
 
                     <td>
                         ${euro(price)}
@@ -3381,68 +3605,59 @@ function showOrder(order){
                         ${discount}%
                     </td>
 
-                    `
-                    :
-                    ""
-                }
+                    <td>
+                        ${euro(line)}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
 
 
-                <td>
-                    ${euro(line)}
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-
-    const paid =
-        order.paymentStatus === "pagato";
-
-
-    const paymentPanel =
+    const adminPaymentControls =
         loggedUser === "Gio"
         ?
         `
 
-        <div class="payment-panel">
+        <div class="payment-box">
 
-            <h3>
+            <div class="payment-box-title">
                 Stato pagamento
-            </h3>
+            </div>
 
             <div class="payment-buttons">
 
                 <button
                     type="button"
-                    class="payment-button ${
-                        paid
+                    class="payment-button paid ${
+                        payment === "pagato"
                         ?
-                        "active-paid"
+                        "active"
                         :
                         ""
                     }"
-                    onclick="setPaymentStatus('${order.id}','pagato')">
+                    id="markPaidButton">
 
-                    🟢 PAGATO
+                    ✓ PAGATO
 
                 </button>
 
 
                 <button
                     type="button"
-                    class="payment-button ${
-                        !paid
+                    class="payment-button unpaid ${
+                        payment !== "pagato"
                         ?
-                        "active-due"
+                        "active"
                         :
                         ""
                     }"
-                    onclick="setPaymentStatus('${order.id}','da_pagare')">
+                    id="markUnpaidButton">
 
-                    🔴 DA PAGARE
+                    DA PAGARE
 
                 </button>
 
@@ -3452,7 +3667,35 @@ function showOrder(order){
 
         `
         :
-        "";
+        `
+
+        <div class="payment-box">
+
+            <div class="payment-box-title">
+                Stato pagamento
+            </div>
+
+            <span class="payment-status ${
+                payment === "pagato"
+                ?
+                "payment-paid"
+                :
+                "payment-unpaid"
+            }">
+
+                ${
+                    payment === "pagato"
+                    ?
+                    "✓ PAGATO"
+                    :
+                    "DA PAGARE"
+                }
+
+            </span>
+
+        </div>
+
+        `;
 
 
     document.getElementById(
@@ -3483,7 +3726,9 @@ function showOrder(order){
 
                         ·
 
-                        ${formatDate(order.date)}
+                        ${formatDate(
+                            order.date
+                        )}
 
                     </div>
 
@@ -3518,9 +3763,6 @@ function showOrder(order){
             </div>
 
 
-            ${paymentPanel}
-
-
             <div class="detail-table-wrap">
 
                 <table class="detail-table">
@@ -3537,21 +3779,13 @@ function showOrder(order){
                                 Q.tà
                             </th>
 
-                            ${
-                                loggedUser === "Gio"
-                                ?
-                                `
-                                <th>
-                                    Prezzo
-                                </th>
+                            <th>
+                                Prezzo
+                            </th>
 
-                                <th>
-                                    Sconto
-                                </th>
-                                `
-                                :
-                                ""
-                            }
+                            <th>
+                                Sconto
+                            </th>
 
                             <th>
                                 Totale
@@ -3563,13 +3797,25 @@ function showOrder(order){
 
                     <tbody>
 
-                        ${rows}
+                        ${
+                            rows ||
+                            `
+                            <tr>
+                                <td colspan="5">
+                                    Nessun articolo.
+                                </td>
+                            </tr>
+                            `
+                        }
 
                     </tbody>
 
                 </table>
 
             </div>
+
+
+            ${adminPaymentControls}
 
 
             <div class="detail-actions">
@@ -3616,7 +3862,9 @@ function showOrder(order){
         "click",
         function(){
 
-            editOrder(order.id);
+            editOrder(
+                order.id
+            );
 
         }
     );
@@ -3628,10 +3876,46 @@ function showOrder(order){
         "click",
         function(){
 
-            deleteOrder(order.id);
+            deleteOrder(
+                order.id
+            );
 
         }
     );
+
+
+    if(loggedUser === "Gio"){
+
+        document.getElementById(
+            "markPaidButton"
+        ).addEventListener(
+            "click",
+            function(){
+
+                setPaymentStatus(
+                    order.id,
+                    "pagato"
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "markUnpaidButton"
+        ).addEventListener(
+            "click",
+            function(){
+
+                setPaymentStatus(
+                    order.id,
+                    "da_pagare"
+                );
+
+            }
+        );
+
+    }
 
 
     document.getElementById(
@@ -3653,10 +3937,10 @@ window.closeDetail = function(){
 
 
 /* =====================================================
-   PAGAMENTO
+   PAGAMENTO ORDINE
 ===================================================== */
 
-window.setPaymentStatus = async function(
+async function setPaymentStatus(
     id,
     status
 ){
@@ -3684,21 +3968,32 @@ window.setPaymentStatus = async function(
 
             {
 
-                paymentStatus:
-                    status,
+                paymentStatus:status,
 
-                paymentUpdatedAt:
-                    Date.now(),
+                paymentUpdatedAt:Date.now(),
 
-                paymentUpdatedBy:
-                    "Gio"
+                paymentUpdatedBy:"Gio"
 
             }
 
         );
 
 
-        closeDetail();
+        const order =
+            allOrders.find(
+                o =>
+                o.id === id
+            );
+
+
+        if(order){
+
+            order.paymentStatus =
+                status;
+
+            showOrder(order);
+
+        }
 
     }catch(error){
 
@@ -3706,14 +4001,15 @@ window.setPaymentStatus = async function(
             error
         );
 
+
         alert(
-            "Errore aggiornamento pagamento.\n\n" +
+            "Errore durante l'aggiornamento del pagamento.\n\n" +
             error.message
         );
 
     }
 
-};
+}
 
 
 /* =====================================================
@@ -3722,148 +4018,97 @@ window.setPaymentStatus = async function(
 
 window.editOrder = async function(id){
 
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "ordini"
-                )
-            );
-
-
-        let order = null;
-
-
-        snapshot.forEach(
-            d => {
-
-                if(d.id === id){
-
-                    order = {
-
-                        id:d.id,
-
-                        ...d.data()
-
-                    };
-
-                }
-
-            }
+    const order =
+        allOrders.find(
+            item =>
+            item.id === id
         );
 
 
-        if(!order){
-
-            alert(
-                "Ordine non trovato."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            !USERS[loggedUser].admin &&
-            order.person !== loggedUser
-        ){
-
-            alert(
-                "Non puoi modificare questo ordine."
-            );
-
-            return;
-
-        }
-
-
-        editingOrderId = id;
-
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Modifica " +
-            order.number;
-
-
-        document.getElementById(
-            "orderPerson"
-        ).value =
-            order.person;
-
-
-        document.getElementById(
-            "orderPerson"
-        ).disabled =
-            !USERS[loggedUser].admin;
-
-
-        document.getElementById(
-            "orderDate"
-        ).value =
-            order.date || "";
-
-
-        document.getElementById(
-            "orderStatus"
-        ).value =
-            "daordinare";
-
-
-        document.getElementById(
-            "articles"
-        ).innerHTML = "";
-
-
-        document.getElementById(
-            "priceNotice"
-        ).style.display =
-            loggedUser === "Gio"
-            ?
-            "none"
-            :
-            "block";
-
-
-        (order.articles || [])
-        .forEach(
-            article =>
-            addArticle(article)
-        );
-
-
-        document.getElementById(
-            "detailModal"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "orderModal"
-        ).style.display =
-            "block";
-
-
-        calculateOrderTotal();
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
+    if(!order){
 
         alert(
-            "Errore nel caricamento dell'ordine.\n\n" +
-            error.message
+            "Ordine non trovato."
         );
 
+        return;
+
     }
+
+
+    if(
+        loggedUser !== "Gio" &&
+        order.person !== loggedUser
+    ){
+
+        alert(
+            "Non puoi modificare questo ordine."
+        );
+
+        return;
+
+    }
+
+
+    editingOrderId =
+        id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Modifica " +
+        order.number;
+
+
+    document.getElementById(
+        "orderPerson"
+    ).value =
+        order.person;
+
+
+    document.getElementById(
+        "orderDate"
+    ).value =
+        order.date ||
+        "";
+
+
+    document.getElementById(
+        "orderStatus"
+    ).value =
+        "daordinare";
+
+
+    document.getElementById(
+        "articles"
+    ).innerHTML =
+        "";
+
+
+    (order.articles || [])
+    .forEach(
+        article =>
+        addArticle(article)
+    );
+
+
+    applyOrderPermissions();
+
+
+    document.getElementById(
+        "detailModal"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "orderModal"
+    ).style.display =
+        "block";
+
+
+    calculateOrderTotal();
 
 };
 
@@ -3885,56 +4130,32 @@ window.deleteOrder = async function(id){
     }
 
 
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "ordini"
-                )
-            );
-
-
-        let order = null;
-
-
-        snapshot.forEach(
-            d => {
-
-                if(d.id === id){
-
-                    order = {
-
-                        id:d.id,
-
-                        ...d.data()
-
-                    };
-
-                }
-
-            }
+    const order =
+        allOrders.find(
+            item =>
+            item.id === id
         );
 
 
-        if(!order)
-            return;
+    if(!order)
+        return;
 
 
-        if(
-            !USERS[loggedUser].admin &&
-            order.person !== loggedUser
-        ){
+    if(
+        loggedUser !== "Gio" &&
+        order.person !== loggedUser
+    ){
 
-            alert(
-                "Non puoi eliminare questo ordine."
-            );
+        alert(
+            "Non puoi eliminare questo ordine."
+        );
 
-            return;
+        return;
 
-        }
+    }
 
+
+    try{
 
         await deleteDoc(
 
@@ -3971,33 +4192,49 @@ window.deleteOrder = async function(id){
    CONTO
 ===================================================== */
 
-function getAccountData(orders){
+function calculateAccount(
+    person
+){
+
+    const orders =
+        allOrders.filter(
+            order =>
+            order.person === person
+        );
+
 
     let total = 0;
     let paid = 0;
-    let due = 0;
+    let payable = 0;
 
 
-    orders.forEach(order => {
+    orders.forEach(
+        order => {
 
-        const amount =
-            calculateTotal(order);
+            const value =
+                calculateTotal(
+                    order
+                );
 
 
-        total += amount;
+            total += value;
 
 
-        if(order.paymentStatus === "pagato"){
+            if(
+                order.paymentStatus ===
+                "pagato"
+            ){
 
-            paid += amount;
+                paid += value;
 
-        }else{
+            }else{
 
-            due += amount;
+                payable += value;
+
+            }
 
         }
-
-    });
+    );
 
 
     return {
@@ -4006,44 +4243,24 @@ function getAccountData(orders){
 
         paid:paid,
 
-        due:due
+        payable:payable,
+
+        orders:orders
 
     };
 
 }
 
 
-function renderAccountSummary(orders){
+/* =====================================================
+   AGGIORNA RIQUADRO CONTO
+===================================================== */
 
-    const data =
-        getAccountData(orders);
-
-
-    document.getElementById(
-        "accountTotal"
-    ).textContent =
-        euro(data.total);
-
-
-    document.getElementById(
-        "accountPaid"
-    ).textContent =
-        euro(data.paid);
-
-
-    document.getElementById(
-        "accountDue"
-    ).textContent =
-        euro(data.due);
-
-}
-
-
-window.openAccount = async function(){
+function updateAccountSummary(){
 
     if(
-        loggedUser !== "Roby" &&
-        loggedUser !== "Fede"
+        !loggedUser ||
+        loggedUser === "Gio"
     ){
 
         return;
@@ -4051,162 +4268,222 @@ window.openAccount = async function(){
     }
 
 
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "ordini"
-                )
-            );
-
-
-        let orders = [];
-
-
-        snapshot.forEach(
-            d => {
-
-                const order = {
-
-                    id:d.id,
-
-                    ...d.data()
-
-                };
-
-
-                if(
-                    order.person === loggedUser
-                ){
-
-                    orders.push(order);
-
-                }
-
-            }
+    const account =
+        calculateAccount(
+            loggedUser
         );
 
 
-        orders.sort(
-            (a,b) =>
-            Number(b.createdAt || 0) -
-            Number(a.createdAt || 0)
+    document.getElementById(
+        "accountTotal"
+    ).textContent =
+        euro(account.total);
+
+
+    document.getElementById(
+        "accountPaid"
+    ).textContent =
+        euro(account.paid);
+
+
+    document.getElementById(
+        "accountPayable"
+    ).textContent =
+        euro(account.payable);
+
+
+    renderAccountModal(
+        account
+    );
+
+}
+
+
+/* =====================================================
+   APRI CONTO
+===================================================== */
+
+window.openAccountModal = function(){
+
+    if(
+        !loggedUser ||
+        loggedUser === "Gio"
+    ){
+
+        return;
+
+    }
+
+
+    const account =
+        calculateAccount(
+            loggedUser
         );
 
 
-        const data =
-            getAccountData(orders);
+    renderAccountModal(
+        account
+    );
 
 
-        let orderHtml = "";
+    document.getElementById(
+        "accountModal"
+    ).style.display =
+        "block";
+
+};
 
 
-        if(!orders.length){
+window.closeAccountModal = function(){
 
-            orderHtml = `
+    document.getElementById(
+        "accountModal"
+    ).style.display =
+        "none";
 
-                <div class="empty-orders">
-                    Nessun ordine presente.
-                </div>
-
-            `;
-
-        }else{
-
-            orders.forEach(order => {
-
-                const amount =
-                    calculateTotal(order);
+};
 
 
-                const paid =
-                    order.paymentStatus === "pagato";
+/* =====================================================
+   RENDER CONTO
+===================================================== */
 
+function renderAccountModal(
+    account
+){
 
-                orderHtml += `
-
-                    <div class="account-order">
-
-                        <div>
-
-                            <div class="account-order-number">
-
-                                ${escapeHtml(
-                                    order.number ||
-                                    "ORDINE"
-                                )}
-
-                            </div>
-
-                            <div class="account-order-date">
-
-                                ${formatDate(order.date)}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="account-order-right">
-
-                            <div class="account-order-price">
-
-                                ${euro(amount)}
-
-                            </div>
-
-                            <div class="
-                                account-order-payment
-                                ${
-                                    paid
-                                    ?
-                                    "pagato"
-                                    :
-                                    "dapagare"
-                                }
-                            ">
-
-                                ${
-                                    paid
-                                    ?
-                                    "🟢 PAGATO"
-                                    :
-                                    "🔴 DA PAGARE"
-                                }
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-
-
+    const content =
         document.getElementById(
-            "accountContent"
-        ).innerHTML = `
+            "accountModalContent"
+        );
 
-            <div class="account-modal-total">
 
-                <div class="account-modal-name">
+    if(!content)
+        return;
 
-                    ${escapeHtml(loggedUser)}
 
-                </div>
+    let ordersHtml = "";
 
-                <strong>
-                    ${euro(data.total)}
-                </strong>
 
+    if(!account.orders.length){
+
+        ordersHtml = `
+
+            <div class="empty-orders">
+                Nessun ordine presente.
             </div>
 
+        `;
+
+    }else{
+
+        ordersHtml =
+            account.orders
+            .map(
+                order => {
+
+                    const total =
+                        calculateTotal(
+                            order
+                        );
+
+
+                    const payment =
+                        order.paymentStatus ||
+                        "da_pagare";
+
+
+                    return `
+
+                        <div
+                            class="account-order"
+                            data-order-id="${
+                                escapeAttr(
+                                    order.id
+                                )
+                            }">
+
+                            <div class="account-order-top">
+
+                                <div>
+
+                                    <div class="account-order-number">
+
+                                        ${escapeHtml(
+                                            order.number ||
+                                            "ORDINE"
+                                        )}
+
+                                    </div>
+
+                                    <div class="account-order-date">
+
+                                        ${formatDate(
+                                            order.date
+                                        )}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="account-order-total">
+
+                                    ${euro(total)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div style="margin-top:10px;">
+
+                                <span class="payment-status ${
+                                    payment === "pagato"
+                                    ?
+                                    "payment-paid"
+                                    :
+                                    "payment-unpaid"
+                                }">
+
+                                    ${
+                                        payment === "pagato"
+                                        ?
+                                        "✓ PAGATO"
+                                        :
+                                        "DA PAGARE"
+                                    }
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    content.innerHTML = `
+
+        <div class="account-modal-summary">
+
+            <small>
+                ${escapeHtml(
+                    loggedUser
+                )}
+            </small>
+
+            <h3>
+                ${euro(
+                    account.total
+                )}
+            </h3>
 
             <div class="account-modal-grid">
 
@@ -4216,8 +4493,10 @@ window.openAccount = async function(){
                         PAGATO
                     </span>
 
-                    <strong style="color:#16a34a;">
-                        ${euro(data.paid)}
+                    <strong style="color:#4ade80;">
+                        ${euro(
+                            account.paid
+                        )}
                     </strong>
 
                 </div>
@@ -4229,53 +4508,81 @@ window.openAccount = async function(){
                         DA PAGARE
                     </span>
 
-                    <strong style="color:#dc2626;">
-                        ${euro(data.due)}
+                    <strong style="color:#f59e0b;">
+                        ${euro(
+                            account.payable
+                        )}
                     </strong>
 
                 </div>
 
             </div>
 
-
-            <h3 style="margin-bottom:12px;">
-                Dettaglio ordini
-            </h3>
+        </div>
 
 
-            ${orderHtml}
+        <h3 style="margin-bottom:15px;">
+            I miei ordini
+        </h3>
 
-        `;
+
+        ${ordersHtml}
+
+    `;
 
 
-        document.getElementById(
-            "accountModal"
-        ).style.display =
-            "block";
+    content
+        .querySelectorAll(
+            ".account-order"
+        )
+        .forEach(
+            element => {
 
-    }catch(error){
+                element.addEventListener(
+                    "click",
+                    function(){
 
-        console.error(
-            error
+                        const id =
+                            element.dataset.orderId;
+
+
+                        const order =
+                            allOrders.find(
+                                item =>
+                                item.id === id
+                            );
+
+
+                        if(order){
+
+                            closeAccountModal();
+
+                            showOrder(order);
+
+                        }
+
+                    }
+                );
+
+            }
         );
 
-
-        alert(
-            "Errore caricamento conto.\n\n" +
-            error.message
-        );
-
-    }
-
-};
+}
 
 
-window.closeAccount = function(){
+/* =====================================================
+   SCROLL ORDINI
+===================================================== */
 
-    document.getElementById(
-        "accountModal"
-    ).style.display =
-        "none";
+window.scrollToOrders = function(){
+
+    document
+        .querySelector(
+            ".orders-panel"
+        )
+        ?.scrollIntoView({
+            behavior:"smooth"
+        });
 
 };
 
@@ -4285,6 +4592,11 @@ window.closeAccount = function(){
 ===================================================== */
 
 function listenJobs(){
+
+    if(loggedUser !== "Gio"){
+        return;
+    }
+
 
     if(unsubscribeJobs){
 
@@ -4317,17 +4629,17 @@ function listenJobs(){
 
             snapshot => {
 
-                const jobs = [];
+                allJobs = [];
 
 
                 snapshot.forEach(
-                    d => {
+                    docSnap => {
 
-                        jobs.push({
+                        allJobs.push({
 
-                            id:d.id,
+                            id:docSnap.id,
 
-                            ...d.data()
+                            ...docSnap.data()
 
                         });
 
@@ -4335,7 +4647,7 @@ function listenJobs(){
                 );
 
 
-                renderJobs(jobs);
+                renderJobs();
 
             },
 
@@ -4346,6 +4658,19 @@ function listenJobs(){
                     error
                 );
 
+
+                document.getElementById(
+                    "jobsList"
+                ).innerHTML = `
+
+                    <div class="empty-orders">
+
+                        Errore caricamento lavori.
+
+                    </div>
+
+                `;
+
             }
 
         );
@@ -4353,7 +4678,16 @@ function listenJobs(){
 }
 
 
-function renderJobs(jobs){
+/* =====================================================
+   RENDER LAVORI
+===================================================== */
+
+function renderJobs(){
+
+    if(loggedUser !== "Gio"){
+        return;
+    }
+
 
     const list =
         document.getElementById(
@@ -4361,12 +4695,12 @@ function renderJobs(jobs){
         );
 
 
-    if(!jobs.length){
+    if(!allJobs.length){
 
         list.innerHTML = `
 
             <div class="empty-orders">
-                Nessun lavoro presente.
+                Nessun lavoro inserito.
             </div>
 
         `;
@@ -4379,21 +4713,20 @@ function renderJobs(jobs){
     list.innerHTML = "";
 
 
-    jobs.forEach(job => {
+    allJobs.forEach(
+        job => {
 
-        const div =
-            document.createElement(
-                "div"
-            );
-
-
-        div.className =
-            "job";
+            const div =
+                document.createElement(
+                    "div"
+                );
 
 
-        div.innerHTML = `
+            div.className =
+                "job-item";
 
-            <div class="job-top">
+
+            div.innerHTML = `
 
                 <div>
 
@@ -4432,35 +4765,28 @@ function renderJobs(jobs){
 
                 </div>
 
-            </div>
+            `;
 
 
-            <div class="job-actions">
+            list.appendChild(div);
 
-                <button
-                    type="button"
-                    class="job-delete"
-                    onclick="deleteJob('${job.id}')">
-
-                    ELIMINA
-
-                </button>
-
-            </div>
-
-        `;
-
-
-        list.appendChild(div);
-
-    });
+        }
+    );
 
 }
 
 
+/* =====================================================
+   APRI LAVORO
+===================================================== */
+
 window.openJobModal = function(){
 
     if(loggedUser !== "Gio"){
+
+        alert(
+            "Solo Gio può inserire i lavori."
+        );
 
         return;
 
@@ -4488,9 +4814,7 @@ window.openJobModal = function(){
     document.getElementById(
         "jobDate"
     ).value =
-        new Date()
-        .toISOString()
-        .split("T")[0];
+        getToday();
 
 
     document.getElementById(
@@ -4511,9 +4835,17 @@ window.closeJobModal = function(){
 };
 
 
+/* =====================================================
+   SALVA LAVORO
+===================================================== */
+
 window.saveJob = async function(){
 
     if(loggedUser !== "Gio"){
+
+        alert(
+            "Solo Gio può inserire i lavori."
+        );
 
         return;
 
@@ -4537,7 +4869,7 @@ window.saveJob = async function(){
             document.getElementById(
                 "jobPrice"
             ).value
-        ) || 0;
+        );
 
 
     const date =
@@ -4557,7 +4889,10 @@ window.saveJob = async function(){
     }
 
 
-    if(price <= 0){
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
 
         alert(
             "Inserisci un prezzo valido."
@@ -4609,6 +4944,7 @@ window.saveJob = async function(){
 
         closeJobModal();
 
+
     }catch(error){
 
         console.error(
@@ -4617,7 +4953,7 @@ window.saveJob = async function(){
 
 
         alert(
-            "Errore salvataggio lavoro.\n\n" +
+            "Errore durante il salvataggio del lavoro.\n\n" +
             error.message
         );
 
@@ -4626,51 +4962,30 @@ window.saveJob = async function(){
 };
 
 
-window.deleteJob = async function(id){
+/* =====================================================
+   TUTTI GLI ORDINI
+===================================================== */
+
+window.showAllOrders = function(){
 
     if(loggedUser !== "Gio"){
 
-        return;
-
-    }
-
-
-    if(
-        !confirm(
-            "Vuoi eliminare questo lavoro?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-        await deleteDoc(
-
-            doc(
-                db,
-                "lavori",
-                id
-            )
-
-        );
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
         alert(
-            "Errore eliminazione lavoro.\n\n" +
-            error.message
+            "Questa funzione è disponibile solo per Gio."
         );
 
+        return;
+
     }
+
+
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Tutti gli ordini";
+
+
+    renderOrders();
 
 };
 
@@ -4681,34 +4996,47 @@ window.deleteJob = async function(id){
 
 function calculateTotal(order){
 
-    return (order.articles || [])
-        .reduce(
+    return (
+        order.articles || []
+    )
+    .reduce(
 
-            (total,a) => {
+        (
+            total,
+            article
+        ) => {
 
-                const price =
-                    Number(a.price) || 0;
-
-                const qty =
-                    Number(a.qty) || 0;
-
-                const discount =
-                    Number(a.discount) || 0;
+            const price =
+                Number(
+                    article.price
+                ) || 0;
 
 
-                return total +
-                    price *
-                    qty *
-                    (
-                        1 -
-                        discount / 100
-                    );
+            const qty =
+                Number(
+                    article.qty
+                ) || 0;
 
-            },
 
-            0
+            const discount =
+                Number(
+                    article.discount
+                ) || 0;
 
-        );
+
+            return total +
+                price *
+                qty *
+                (
+                    1 -
+                    discount / 100
+                );
+
+        },
+
+        0
+
+    );
 
 }
 
@@ -4735,7 +5063,8 @@ function formatDate(date){
 
 
     const p =
-        String(date).split("-");
+        String(date)
+        .split("-");
 
 
     if(p.length !== 3)
@@ -4747,6 +5076,47 @@ function formatDate(date){
         p[1] +
         "/" +
         p[0];
+
+}
+
+
+function getToday(){
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            now.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+    );
 
 }
 
@@ -4777,93 +5147,40 @@ function statusLabel(status){
 
 function escapeHtml(value){
 
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
 
 }
 
 
 function escapeAttr(value){
 
-    return escapeHtml(value);
+    return escapeHtml(
+        value
+    );
 
 }
-
-
-/* =====================================================
-   TUTTI GLI ORDINI
-===================================================== */
-
-window.showAllOrders = function(){
-
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Questa funzione è disponibile solo per Gio."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Tutti gli ordini";
-
-
-    document.getElementById(
-        "ordersList"
-    ).innerHTML = `
-
-        <div class="empty-orders">
-            🔄 Caricamento di tutti gli ordini...
-        </div>
-
-    `;
-
-
-    listenOrders();
-
-};
-
-
-/* =====================================================
-   AGGIORNA ORDINI
-===================================================== */
-
-window.loadOrders = function(){
-
-    const list =
-        document.getElementById(
-            "ordersList"
-        );
-
-
-    list.innerHTML = `
-
-        <div class="empty-orders">
-            🔄 Aggiornamento ordini...
-        </div>
-
-    `;
-
-
-    listenOrders();
-
-
-    if(loggedUser === "Gio"){
-
-        setupNotifications();
-
-    }
-
-};
 
 
 /* =====================================================
@@ -4878,7 +5195,9 @@ async function setupNotifications(){
 
 
     if(!("Notification" in window)){
+
         return;
+
     }
 
 
@@ -4918,10 +5237,6 @@ async function setupNotifications(){
 }
 
 
-/* =====================================================
-   STATO PULSANTE NOTIFICHE
-===================================================== */
-
 function setNotificationButtonActive(){
 
     const button =
@@ -4937,6 +5252,7 @@ function setNotificationButtonActive(){
 
     button.textContent =
         "🔔 NOTIFICHE ATTIVE";
+
 
     button.classList.add(
         "notification-active"
@@ -5009,7 +5325,10 @@ async function(){
     }
 
 
-    if(!messagingSupported || !messaging){
+    if(
+        !messagingSupported ||
+        !messaging
+    ){
 
         alert(
             "Firebase Messaging non è supportato da questo browser."
@@ -5026,13 +5345,18 @@ async function(){
             await Notification.requestPermission();
 
 
-        if(permission !== "granted"){
+        if(
+            permission !==
+            "granted"
+        ){
 
-            if(permission === "denied"){
+            if(
+                permission ===
+                "denied"
+            ){
 
                 alert(
-                    "Le notifiche sono state bloccate.\n\n" +
-                    "Abilita le notifiche dalle impostazioni del dispositivo."
+                    "Le notifiche sono state bloccate. Abilita le notifiche dalle impostazioni del dispositivo."
                 );
 
             }
@@ -5048,7 +5372,7 @@ async function(){
     }catch(error){
 
         console.error(
-            "Errore attivazione notifiche:",
+            "Errore notifiche:",
             error
         );
 
@@ -5069,7 +5393,9 @@ async function(){
 
 async function registerNotifications(){
 
-    if(!("serviceWorker" in navigator)){
+    if(
+        !("serviceWorker" in navigator)
+    ){
 
         alert(
             "Il browser non supporta i Service Worker."
@@ -5114,6 +5440,7 @@ async function registerNotifications(){
                     scope:"./"
                 }
             );
+
 
     }catch(error){
 
@@ -5211,8 +5538,10 @@ async function registerNotifications(){
                     /iPhone|iPad|iPod/i.test(
                         navigator.userAgent
                     )
-                    ? "iOS"
-                    : "browser",
+                    ?
+                    "iOS"
+                    :
+                    "browser",
 
                 notificationUserAgent:
                     navigator.userAgent,
@@ -5263,6 +5592,12 @@ async function registerNotifications(){
             messaging,
             payload => {
 
+                console.log(
+                    "Messaggio Firebase ricevuto:",
+                    payload
+                );
+
+
                 const title =
                     payload.notification?.title ||
                     payload.data?.title ||
@@ -5303,6 +5638,36 @@ async function registerNotifications(){
 
 
 /* =====================================================
+   AVVIO
+===================================================== */
+
+const savedUser =
+    localStorage.getItem(
+        "ktm_logged_user"
+    );
+
+
+if(
+    savedUser &&
+    USERS[savedUser]
+){
+
+    loggedUser =
+        savedUser;
+
+    openApp();
+
+}else{
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
    CHIUSURA MODAL
 ===================================================== */
 
@@ -5335,7 +5700,8 @@ window.addEventListener(
 
 
         if(
-            event.target === orderModal
+            event.target ===
+            orderModal
         ){
 
             closeModal();
@@ -5344,7 +5710,8 @@ window.addEventListener(
 
 
         if(
-            event.target === detailModal
+            event.target ===
+            detailModal
         ){
 
             closeDetail();
@@ -5353,16 +5720,18 @@ window.addEventListener(
 
 
         if(
-            event.target === accountModal
+            event.target ===
+            accountModal
         ){
 
-            closeAccount();
+            closeAccountModal();
 
         }
 
 
         if(
-            event.target === jobModal
+            event.target ===
+            jobModal
         ){
 
             closeJobModal();
@@ -5383,7 +5752,10 @@ document.getElementById(
     "keydown",
     function(event){
 
-        if(event.key === "Enter"){
+        if(
+            event.key ===
+            "Enter"
+        ){
 
             login();
 
@@ -5391,36 +5763,6 @@ document.getElementById(
 
     }
 );
-
-
-/* =====================================================
-   AVVIO
-===================================================== */
-
-const savedUser =
-    localStorage.getItem(
-        "ktm_logged_user"
-    );
-
-
-if(
-    savedUser &&
-    USERS[savedUser]
-){
-
-    loggedUser =
-        savedUser;
-
-    openApp();
-
-}else{
-
-    document.getElementById(
-        "loginPage"
-    ).style.display =
-        "flex";
-
-}
 
 </script>
 
