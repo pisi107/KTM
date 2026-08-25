@@ -312,10 +312,6 @@ button{
     color:#6b7280;
 }
 
-/* =========================
-   CARDS
-========================= */
-
 .cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -357,71 +353,6 @@ button{
     margin-top:18px;
     padding:12px 15px;
     background:#ff6600;
-    color:#fff;
-}
-
-/* =========================
-   CONTO
-========================= */
-
-.account-summary{
-    background:#111827;
-    color:#fff;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-}
-
-.account-summary-title{
-    color:#cbd5e1;
-    font-size:15px;
-    font-weight:800;
-    margin-bottom:8px;
-    text-transform:uppercase;
-}
-
-.account-summary-total{
-    font-size:38px;
-    font-weight:900;
-    margin-bottom:20px;
-}
-
-.account-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.account-box{
-    background:#1f2937;
-    border-radius:12px;
-    padding:16px;
-}
-
-.account-box span{
-    display:block;
-    color:#9ca3af;
-    font-size:13px;
-    margin-bottom:5px;
-}
-
-.account-box strong{
-    font-size:22px;
-}
-
-.account-box.payable strong{
-    color:#f59e0b;
-}
-
-.account-box.paid strong{
-    color:#4ade80;
-}
-
-.account-button{
-    margin-top:18px;
-    padding:13px 18px;
-    background:#16a34a;
     color:#fff;
 }
 
@@ -494,37 +425,6 @@ button{
     font-size:14px;
 }
 
-.order-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-top:12px;
-}
-
-.order-price{
-    font-weight:900;
-    font-size:17px;
-}
-
-.payment-status{
-    display:inline-block;
-    padding:7px 10px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:900;
-}
-
-.payment-paid{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.payment-unpaid{
-    background:#fef3c7;
-    color:#92400e;
-}
-
 .status{
     display:inline-block;
     padding:7px 10px;
@@ -557,74 +457,6 @@ button{
     padding:25px;
     text-align:center;
     color:#64748b;
-}
-
-/* =========================
-   LAVORI
-========================= */
-
-.jobs-panel{
-    background:#fff;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-}
-
-.jobs-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.jobs-header h2{
-    font-size:23px;
-}
-
-.add-job-button{
-    background:#111827;
-    color:#fff;
-    padding:12px 16px;
-}
-
-.jobs-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.job-item{
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:16px;
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    align-items:center;
-}
-
-.job-name{
-    font-size:17px;
-    font-weight:900;
-}
-
-.job-description{
-    margin-top:5px;
-    color:#64748b;
-}
-
-.job-date{
-    margin-top:5px;
-    color:#94a3b8;
-    font-size:12px;
-}
-
-.job-price{
-    font-size:20px;
-    font-weight:900;
-    white-space:nowrap;
 }
 
 /* =========================
@@ -663,29 +495,6 @@ button{
     color:#666;
 }
 
-.info-box{
-    background:#fff7ed;
-    color:#9a3412;
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:20px;
-    line-height:1.5;
-    font-weight:700;
-}
-
-.fixed-field{
-    background:#f3f4f6!important;
-    color:#6b7280;
-    pointer-events:none;
-}
-
-.date-field{
-    text-align:center!important;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-}
-
 .article-row{
     background:#f8fafc;
     padding:15px;
@@ -707,30 +516,16 @@ button{
     border-radius:8px;
 }
 
-.article-actions{
-    display:flex;
-    gap:8px;
-    align-items:end;
-}
-
 .remove{
     background:#fee2e2;
     color:#b91c1c;
     padding:11px;
-    min-width:44px;
 }
 
 .add-article{
     background:#111827;
     color:#fff;
     padding:11px 14px;
-}
-
-.article-header-actions{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:8px;
     margin-bottom:15px;
 }
 
@@ -825,42 +620,6 @@ button{
     border-top:1px solid #e5e7eb;
 }
 
-.payment-box{
-    margin-top:20px;
-    background:#f8fafc;
-    padding:18px;
-    border-radius:12px;
-}
-
-.payment-box-title{
-    font-weight:900;
-    margin-bottom:10px;
-}
-
-.payment-buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.payment-button{
-    padding:12px 16px;
-}
-
-.payment-button.paid{
-    background:#16a34a;
-    color:#fff;
-}
-
-.payment-button.unpaid{
-    background:#f59e0b;
-    color:#fff;
-}
-
-.payment-button.active{
-    box-shadow:0 0 0 3px rgba(17,24,39,.2);
-}
-
 .detail-actions{
     display:flex;
     gap:10px;
@@ -883,105 +642,21 @@ button{
 }
 
 /* =========================
-   CONTO MODALE
-========================= */
-
-.account-modal-summary{
-    background:#111827;
-    color:#fff;
-    border-radius:16px;
-    padding:22px;
-    margin-bottom:20px;
-}
-
-.account-modal-summary small{
-    color:#cbd5e1;
-}
-
-.account-modal-summary h3{
-    font-size:36px;
-    margin-top:5px;
-}
-
-.account-modal-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:15px;
-}
-
-.account-modal-box{
-    background:#1f2937;
-    border-radius:10px;
-    padding:14px;
-}
-
-.account-modal-box span{
-    display:block;
-    color:#9ca3af;
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.account-modal-box strong{
-    font-size:20px;
-}
-
-.account-order{
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:10px;
-    cursor:pointer;
-}
-
-.account-order:hover{
-    background:#f8fafc;
-}
-
-.account-order-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.account-order-number{
-    font-size:17px;
-    font-weight:900;
-}
-
-.account-order-date{
-    color:#64748b;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.account-order-total{
-    font-size:18px;
-    font-weight:900;
-}
-
-/* =========================
    RESPONSIVE
 ========================= */
 
-@media(max-width:1000px){
-
-    .cards{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .article-grid{
-        grid-template-columns:1.5fr .7fr 1fr .8fr auto;
-    }
-
-}
-
-@media(max-width:700px){
+@media(max-width:900px){
 
     .cards{
         grid-template-columns:1fr;
     }
+
+    .article-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
 
     .app-content{
         padding:18px;
@@ -1005,8 +680,7 @@ button{
         font-size:11px;
     }
 
-    .panel-header,
-    .jobs-header{
+    .panel-header{
         flex-direction:column;
         align-items:stretch;
     }
@@ -1018,72 +692,14 @@ button{
     }
 
     .article-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .article-grid > div:first-child{
-        grid-column:1 / -1;
-    }
-
-    .article-actions{
-        grid-column:1 / -1;
-    }
-
-    .add-article{
-        flex:1;
-    }
-
-    .order-bottom{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .job-item{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .account-grid,
-    .account-modal-grid{
         grid-template-columns:1fr;
     }
-
-}
-
-@media(max-width:480px){
-
-    .article-grid{
-        grid-template-columns:1fr;
-    }
-
-    .article-grid > div:first-child{
-        grid-column:auto;
-    }
-
-    .article-actions{
-        grid-column:auto;
-    }
-
-    .modal{
-        padding:15px 8px;
-    }
-
-    .modal-box{
-        padding:18px;
-        border-radius:18px;
-    }
-
-    .detail{
-        padding:18px;
-    }
-
 }
 
 </style>
 </head>
 
 <body>
-
 
 <!-- =====================================================
      LOGIN
@@ -1330,10 +946,6 @@ button{
         </div>
 
 
-        <!-- =========================
-             CARDS
-        ========================= -->
-
         <div class="cards">
 
             <div class="card">
@@ -1372,87 +984,21 @@ button{
                     Ordini
                 </h2>
 
-                <p id="ordersCardText">
+                <p>
                     Visualizza gli ordini disponibili
                     nel tuo account.
                 </p>
 
                 <button
                     type="button"
-                    onclick="scrollToOrders()">
+                    onclick="loadOrders()">
 
-                    VEDI ORDINI
-
-                </button>
-
-            </div>
-
-
-            <!-- CONTO ROBY/FEDE -->
-
-            <div
-                id="accountCard"
-                class="card"
-                style="display:none;">
-
-                <div class="card-icon">
-                    💰
-                </div>
-
-                <h2>
-                    Il mio conto
-                </h2>
-
-                <p>
-                    Controlla quanto hai comprato,
-                    quanto hai già pagato e quanto
-                    devi ancora pagare.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="openAccountModal()">
-
-                    DETTAGLIO CONTO
+                    AGGIORNA ORDINI
 
                 </button>
 
             </div>
 
-
-            <!-- LAVORI GIO -->
-
-            <div
-                id="jobsCard"
-                class="card"
-                style="display:none;">
-
-                <div class="card-icon">
-                    🔧
-                </div>
-
-                <h2>
-                    Lavori
-                </h2>
-
-                <p>
-                    Inserisci i lavori eseguiti
-                    per Roby o Fede e il relativo
-                    importo pagato da Gio.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="openJobModal()">
-
-                    GESTISCI LAVORI
-
-                </button>
-
-            </div>
-
-
-            <!-- ADMIN -->
 
             <div
                 id="adminCard"
@@ -1484,108 +1030,6 @@ button{
 
         </div>
 
-
-        <!-- =========================
-             CONTO ROBY / FEDE
-        ========================= -->
-
-        <div
-            id="accountSummary"
-            class="account-summary"
-            style="display:none;">
-
-            <div class="account-summary-title">
-                Il mio conto
-            </div>
-
-            <div
-                id="accountTotal"
-                class="account-summary-total">
-                €0,00
-            </div>
-
-            <div class="account-grid">
-
-                <div class="account-box paid">
-
-                    <span>
-                        PAGATO
-                    </span>
-
-                    <strong id="accountPaid">
-                        €0,00
-                    </strong>
-
-                </div>
-
-                <div class="account-box payable">
-
-                    <span>
-                        DA PAGARE
-                    </span>
-
-                    <strong id="accountPayable">
-                        €0,00
-                    </strong>
-
-                </div>
-
-            </div>
-
-            <button
-                type="button"
-                class="account-button"
-                onclick="openAccountModal()">
-
-                DETTAGLIO CONTO
-
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             LAVORI GIO
-        ========================= -->
-
-        <div
-            id="jobsPanel"
-            class="jobs-panel"
-            style="display:none;">
-
-            <div class="jobs-header">
-
-                <h2>
-                    🔧 Lavori
-                </h2>
-
-                <button
-                    type="button"
-                    class="add-job-button"
-                    onclick="openJobModal()">
-
-                    + Aggiungi lavoro
-
-                </button>
-
-            </div>
-
-            <div
-                id="jobsList"
-                class="jobs-list">
-
-                <div class="empty-orders">
-                    Nessun lavoro inserito.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             ORDINI
-        ========================= -->
 
         <div class="orders-panel">
 
@@ -1655,9 +1099,7 @@ button{
                 Cliente
             </label>
 
-            <select
-                id="orderPerson"
-                class="fixed-field">
+            <select id="orderPerson">
 
                 <option value="Roby">
                     Roby
@@ -1678,13 +1120,12 @@ button{
 
         <div class="form-group">
 
-            <label style="text-align:center;">
+            <label>
                 Data ordine
             </label>
 
             <input
                 id="orderDate"
-                class="date-field fixed-field"
                 type="date">
 
         </div>
@@ -1696,12 +1137,22 @@ button{
                 Stato
             </label>
 
-            <select
-                id="orderStatus"
-                class="fixed-field">
+            <select id="orderStatus">
 
                 <option value="daordinare">
                     Da ordinare
+                </option>
+
+                <option value="ordinato">
+                    Ordinato
+                </option>
+
+                <option value="ritirare">
+                    Da ritirare
+                </option>
+
+                <option value="consegnato">
+                    Consegnato
                 </option>
 
             </select>
@@ -1709,36 +1160,14 @@ button{
         </div>
 
 
-        <div class="info-box">
+        <button
+            type="button"
+            class="add-article"
+            onclick="addArticle()">
 
-            💡 Il prezzo e lo sconto verranno inseriti
-            successivamente da Gio.
+            + Aggiungi articolo
 
-        </div>
-
-
-        <div class="article-header-actions">
-
-            <button
-                type="button"
-                class="add-article"
-                onclick="addArticle()">
-
-                + Aggiungi articolo
-
-            </button>
-
-            <button
-                type="button"
-                class="remove"
-                onclick="removeLastArticle()"
-                title="Rimuovi ultimo articolo">
-
-                ×
-
-            </button>
-
-        </div>
+        </button>
 
 
         <div id="articles"></div>
@@ -1793,156 +1222,6 @@ button{
     <div class="modal-box">
 
         <div id="detailContent"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODALE CONTO
-===================================================== -->
-
-<div id="accountModal" class="modal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h2>
-                💰 Il mio conto
-            </h2>
-
-            <button
-                type="button"
-                class="close"
-                onclick="closeAccountModal()">
-
-                ×
-
-            </button>
-
-        </div>
-
-        <div id="accountModalContent"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODALE LAVORO
-===================================================== -->
-
-<div id="jobModal" class="modal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h2>
-                🔧 Nuovo lavoro
-            </h2>
-
-            <button
-                type="button"
-                class="close"
-                onclick="closeJobModal()">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Per chi?
-            </label>
-
-            <select id="jobPerson">
-
-                <option value="Roby">
-                    Roby
-                </option>
-
-                <option value="Fede">
-                    Fede
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Lavoro
-            </label>
-
-            <input
-                id="jobDescription"
-                type="text"
-                placeholder="Descrizione del lavoro">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Prezzo pagato da Gio
-            </label>
-
-            <input
-                id="jobPrice"
-                type="number"
-                min="0"
-                step="0.01"
-                placeholder="0,00">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Data
-            </label>
-
-            <input
-                id="jobDate"
-                class="date-field"
-                type="date">
-
-        </div>
-
-
-        <div class="modal-footer">
-
-            <button
-                type="button"
-                class="cancel"
-                onclick="closeJobModal()">
-
-                Annulla
-
-            </button>
-
-            <button
-                type="button"
-                class="save"
-                onclick="saveJob()">
-
-                SALVA LAVORO
-
-            </button>
-
-        </div>
 
     </div>
 
@@ -2015,6 +1294,7 @@ const db =
 
 /* =====================================================
    FIREBASE MESSAGING
+   NON DEVE BLOCCARE IL SITO
 ===================================================== */
 
 let messaging = null;
@@ -2034,6 +1314,12 @@ try{
             "Firebase Messaging supportato."
         );
 
+    }else{
+
+        console.warn(
+            "Firebase Messaging non supportato da questo browser."
+        );
+
     }
 
 }catch(error){
@@ -2051,7 +1337,7 @@ try{
 ===================================================== */
 
 const VAPID_KEY =
-"BM8lpUTpngWnKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+"BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
 
 
 function normalizeVapidKey(key){
@@ -2062,8 +1348,7 @@ function normalizeVapidKey(key){
         );
     }
 
-    const clean =
-        key.trim();
+    const clean = key.trim();
 
     if(!clean){
         throw new Error(
@@ -2084,8 +1369,7 @@ function normalizeVapidKey(key){
 
     try{
 
-        binary =
-            atob(base64);
+        binary = atob(base64);
 
     }catch(error){
 
@@ -2120,6 +1404,10 @@ try{
 
     NORMALIZED_VAPID_KEY =
         normalizeVapidKey(VAPID_KEY);
+
+    console.log(
+        "VAPID verificata correttamente."
+    );
 
 }catch(error){
 
@@ -2160,14 +1448,8 @@ const USERS = {
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
-
 let unsubscribeOrders = null;
-let unsubscribeJobs = null;
-
 let notificationListenerActive = false;
-
-let allOrders = [];
-let allJobs = [];
 
 
 /* =====================================================
@@ -2276,12 +1558,10 @@ window.login = function(){
     loggedUser =
         selectedUser;
 
-
     localStorage.setItem(
         "ktm_logged_user",
         loggedUser
     );
-
 
     openApp();
 
@@ -2398,30 +1678,6 @@ function openApp(){
         );
 
 
-    const accountCard =
-        document.getElementById(
-            "accountCard"
-        );
-
-
-    const accountSummary =
-        document.getElementById(
-            "accountSummary"
-        );
-
-
-    const jobsCard =
-        document.getElementById(
-            "jobsCard"
-        );
-
-
-    const jobsPanel =
-        document.getElementById(
-            "jobsPanel"
-        );
-
-
     if(USERS[loggedUser].admin){
 
         document.getElementById("welcomeText")
@@ -2434,22 +1690,6 @@ function openApp(){
         document.getElementById("ordersTitle")
             .textContent =
             "Tutti gli ordini";
-
-        document.getElementById("ordersCardText")
-            .textContent =
-            "Visualizza tutti gli ordini di Roby e Fede.";
-
-        accountCard.style.display =
-            "none";
-
-        accountSummary.style.display =
-            "none";
-
-        jobsCard.style.display =
-            "block";
-
-        jobsPanel.style.display =
-            "block";
 
         notificationButton.style.display =
             "inline-block";
@@ -2470,22 +1710,6 @@ function openApp(){
             .textContent =
             "I miei ordini";
 
-        document.getElementById("ordersCardText")
-            .textContent =
-            "Visualizza e controlla i tuoi ordini.";
-
-        accountCard.style.display =
-            "block";
-
-        accountSummary.style.display =
-            "block";
-
-        jobsCard.style.display =
-            "none";
-
-        jobsPanel.style.display =
-            "none";
-
         notificationButton.style.display =
             "none";
 
@@ -2497,19 +1721,7 @@ function openApp(){
 
     if(loggedUser === "Gio"){
 
-        listenJobs();
-
         setupNotifications();
-
-    }else{
-
-        if(unsubscribeJobs){
-
-            unsubscribeJobs();
-
-            unsubscribeJobs = null;
-
-        }
 
     }
 
@@ -2530,29 +1742,14 @@ window.logout = function(){
 
     }
 
-
-    if(unsubscribeJobs){
-
-        unsubscribeJobs();
-
-        unsubscribeJobs = null;
-
-    }
-
-
     loggedUser = null;
     selectedUser = null;
 
-    allOrders = [];
-    allJobs = [];
-
     notificationListenerActive = false;
-
 
     localStorage.removeItem(
         "ktm_logged_user"
     );
-
 
     document.getElementById("appPage")
         .style.display = "none";
@@ -2577,19 +1774,13 @@ function listenOrders(){
 
 
     const ordersRef =
-        collection(
-            db,
-            "ordini"
-        );
+        collection(db,"ordini");
 
 
     const q =
         query(
             ordersRef,
-            orderBy(
-                "createdAt",
-                "desc"
-            )
+            orderBy("createdAt","desc")
         );
 
 
@@ -2600,27 +1791,36 @@ function listenOrders(){
 
             snapshot => {
 
-                allOrders = [];
+                let orders = [];
 
 
-                snapshot.forEach(
-                    docSnap => {
+                snapshot.forEach(docSnap => {
 
-                        allOrders.push({
+                    orders.push({
 
-                            id:docSnap.id,
+                        id:docSnap.id,
 
-                            ...docSnap.data()
+                        ...docSnap.data()
 
-                        });
+                    });
 
-                    }
-                );
+                });
 
 
-                renderOrders();
+                if(
+                    !USERS[loggedUser].admin
+                ){
 
-                updateAccountSummary();
+                    orders =
+                        orders.filter(
+                            o =>
+                            o.person === loggedUser
+                        );
+
+                }
+
+
+                renderOrders(orders);
 
             },
 
@@ -2630,7 +1830,6 @@ function listenOrders(){
                     "Errore Firestore:",
                     error
                 );
-
 
                 document.getElementById(
                     "ordersList"
@@ -2661,45 +1860,13 @@ function listenOrders(){
 
 
 /* =====================================================
-   ORDINI VISIBILI
-===================================================== */
-
-function getVisibleOrders(){
-
-    if(!loggedUser){
-        return [];
-    }
-
-
-    if(USERS[loggedUser].admin){
-
-        return allOrders;
-
-    }
-
-
-    return allOrders.filter(
-        order =>
-        order.person === loggedUser
-    );
-
-}
-
-
-/* =====================================================
    RENDER ORDINI
 ===================================================== */
 
-function renderOrders(){
+function renderOrders(orders){
 
     const list =
-        document.getElementById(
-            "ordersList"
-        );
-
-
-    const orders =
-        getVisibleOrders();
+        document.getElementById("ordersList");
 
 
     if(!orders.length){
@@ -2741,11 +1908,6 @@ function renderOrders(){
 
         const total =
             calculateTotal(order);
-
-
-        const payment =
-            order.paymentStatus ||
-            "da_pagare";
 
 
         div.innerHTML = `
@@ -2804,32 +1966,12 @@ function renderOrders(){
             </div>
 
 
-            <div class="order-bottom">
+            <div style="
+                margin-top:10px;
+                font-weight:900;
+            ">
 
-                <div class="order-price">
-
-                    ${euro(total)}
-
-                </div>
-
-
-                <span class="payment-status ${
-                    payment === "pagato"
-                    ?
-                    "payment-paid"
-                    :
-                    "payment-unpaid"
-                }">
-
-                    ${
-                        payment === "pagato"
-                        ?
-                        "✓ PAGATO"
-                        :
-                        "DA PAGARE"
-                    }
-
-                </span>
+                ${euro(total)}
 
             </div>
 
@@ -2861,9 +2003,7 @@ window.openNewOrder = function(){
 
     if(!loggedUser){
 
-        alert(
-            "Devi prima effettuare l'accesso."
-        );
+        alert("Devi prima effettuare l'accesso.");
 
         return;
 
@@ -2882,17 +2022,21 @@ window.openNewOrder = function(){
     document.getElementById(
         "orderPerson"
     ).value =
-        loggedUser === "Gio"
-        ?
-        "Roby"
-        :
         loggedUser;
+
+
+    document.getElementById(
+        "orderPerson"
+    ).disabled =
+        !USERS[loggedUser].admin;
 
 
     document.getElementById(
         "orderDate"
     ).value =
-        getToday();
+        new Date()
+        .toISOString()
+        .split("T")[0];
 
 
     document.getElementById(
@@ -2914,9 +2058,6 @@ window.openNewOrder = function(){
     ).style.display =
         "block";
 
-
-    applyOrderPermissions();
-
 };
 
 
@@ -2931,73 +2072,13 @@ window.closeModal = function(){
 
 
 /* =====================================================
-   PERMESSI MODALE ORDINE
-===================================================== */
-
-function applyOrderPermissions(){
-
-    const isAdmin =
-        loggedUser === "Gio";
-
-
-    document.getElementById(
-        "orderPerson"
-    ).disabled =
-        !isAdmin;
-
-
-    document.getElementById(
-        "orderStatus"
-    ).disabled =
-        true;
-
-
-    document.getElementById(
-        "orderDate"
-    ).disabled =
-        true;
-
-
-    document
-        .querySelectorAll(
-            ".article-price"
-        )
-        .forEach(
-            input => {
-
-                input.disabled =
-                    !isAdmin;
-
-            }
-        );
-
-
-    document
-        .querySelectorAll(
-            ".article-discount"
-        )
-        .forEach(
-            input => {
-
-                input.disabled =
-                    !isAdmin;
-
-            }
-        );
-
-}
-
-
-/* =====================================================
    ARTICOLI
 ===================================================== */
 
 window.addArticle = function(article=null){
 
     const container =
-        document.getElementById(
-            "articles"
-        );
+        document.getElementById("articles");
 
 
     const row =
@@ -3006,24 +2087,6 @@ window.addArticle = function(article=null){
 
     row.className =
         "article-row";
-
-
-    const price =
-        article &&
-        article.price !== undefined
-        ?
-        Number(article.price)
-        :
-        0;
-
-
-    const discount =
-        article &&
-        article.discount !== undefined
-        ?
-        Number(article.discount)
-        :
-        25;
 
 
     row.innerHTML = `
@@ -3079,19 +2142,17 @@ window.addArticle = function(article=null){
                 </label>
 
                 <input
-                    class="article-price fixed-field"
+                    class="article-price"
                     type="number"
                     min="0"
                     step="0.01"
                     value="${
-                        article &&
-                        article.price !== undefined
+                        article
                         ?
-                        price
+                        Number(article.price) || 0
                         :
                         ""
-                    }"
-                    placeholder="Inserisce Gio">
+                    }">
 
             </div>
 
@@ -3103,14 +2164,14 @@ window.addArticle = function(article=null){
                 </label>
 
                 <input
-                    class="article-discount fixed-field"
+                    class="article-discount"
                     type="number"
                     min="0"
                     max="100"
                     value="${
                         article
                         ?
-                        discount
+                        Number(article.discount) || 0
                         :
                         25
                     }">
@@ -3118,18 +2179,13 @@ window.addArticle = function(article=null){
             </div>
 
 
-            <div class="article-actions">
+            <button
+                type="button"
+                class="remove">
 
-                <button
-                    type="button"
-                    class="remove"
-                    title="Rimuovi articolo">
+                ×
 
-                    ×
-
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
@@ -3141,18 +2197,15 @@ window.addArticle = function(article=null){
             ".article-qty"
         );
 
-
-    const priceInput =
+    const price =
         row.querySelector(
             ".article-price"
         );
 
-
-    const discountInput =
+    const discount =
         row.querySelector(
             ".article-discount"
         );
-
 
     const remove =
         row.querySelector(
@@ -3165,14 +2218,12 @@ window.addArticle = function(article=null){
         calculateOrderTotal
     );
 
-
-    priceInput.addEventListener(
+    price.addEventListener(
         "input",
         calculateOrderTotal
     );
 
-
-    discountInput.addEventListener(
+    discount.addEventListener(
         "input",
         calculateOrderTotal
     );
@@ -3192,29 +2243,2969 @@ window.addArticle = function(article=null){
 
     container.appendChild(row);
 
-
-    applyOrderPermissions();
-
     calculateOrderTotal();
 
 };
 
 
-window.removeLastArticle = function(){
+/* =====================================================
+   CALCOLO
+===================================================== */
 
-    const rows =
-        document.querySelectorAll(
-            ".article-row"
+window.calculateOrderTotal = function(){
+
+    let total = 0;
+
+
+    document
+        .querySelectorAll(".article-row")
+        .forEach(row => {
+
+            const qty =
+                Number(
+                    row.querySelector(
+                        ".article-qty"
+                    ).value
+                ) || 0;
+
+
+            const price =
+                Number(
+                    row.querySelector(
+                        ".article-price"
+                    ).value
+                ) || 0;
+
+
+            const discount =
+                Number(
+                    row.querySelector(
+                        ".article-discount"
+                    ).value
+                ) || 0;
+
+
+            total +=
+                qty *
+                price *
+                (
+                    1 -
+                    discount / 100
+                );
+
+        });
+
+
+    document.getElementById(
+        "orderTotal"
+    ).textContent =
+        euro(total);
+
+};
+
+
+/* =====================================================
+   SALVA ORDINE
+===================================================== */
+
+window.saveOrder = async function(){
+
+    const person =
+        document.getElementById(
+            "orderPerson"
+        ).value;
+
+
+    const date =
+        document.getElementById(
+            "orderDate"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "orderStatus"
+        ).value;
+
+
+    const articles = [];
+
+
+    document
+        .querySelectorAll(".article-row")
+        .forEach(row => {
+
+            const code =
+                row.querySelector(
+                    ".article-code"
+                ).value.trim();
+
+
+            const qty =
+                Number(
+                    row.querySelector(
+                        ".article-qty"
+                    ).value
+                ) || 0;
+
+
+            const price =
+                Number(
+                    row.querySelector(
+                        ".article-price"
+                    ).value
+                ) || 0;
+
+
+            const discount =
+                Number(
+                    row.querySelector(
+                        ".article-discount"
+                    ).value
+                ) || 0;
+
+
+            if(code){
+
+                articles.push({
+
+                    code:code,
+
+                    qty:qty,
+
+                    price:price,
+
+                    discount:discount
+
+                });
+
+            }
+
+        });
+
+
+    if(!date){
+
+        alert(
+            "Inserisci la data."
+        );
+
+        return;
+
+    }
+
+
+    if(!articles.length){
+
+        alert(
+            "Inserisci almeno un codice articolo."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !USERS[loggedUser].admin &&
+        person !== loggedUser
+    ){
+
+        alert(
+            "Non puoi creare un ordine per un altro utente."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        if(editingOrderId){
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "ordini",
+                    editingOrderId
+                ),
+
+                {
+
+                    person:person,
+
+                    date:date,
+
+                    status:status,
+
+                    articles:articles,
+
+                    updatedAt:Date.now()
+
+                }
+
+            );
+
+        }else{
+
+            const existing =
+                await getDocs(
+                    collection(
+                        db,
+                        "ordini"
+                    )
+                );
+
+
+            const number =
+                "KTM-" +
+                String(
+                    existing.size + 1
+                )
+                .padStart(4,"0");
+
+
+            const newOrder = {
+
+                number:number,
+
+                person:person,
+
+                date:date,
+
+                status:status,
+
+                articles:articles,
+
+                createdAt:Date.now(),
+
+                createdBy:loggedUser
+
+            };
+
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "ordini"
+                ),
+
+                newOrder
+
+            );
+
+        }
+
+
+        closeModal();
+
+
+    }catch(error){
+
+        console.error(
+            "Errore salvataggio ordine:",
+            error
         );
 
 
-    if(!rows.length){
+        alert(
+            "Non è stato possibile salvare l'ordine.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   DETTAGLIO
+===================================================== */
+
+function showOrder(order){
+
+    const total =
+        calculateTotal(order);
+
+
+    let rows = "";
+
+
+    (order.articles || [])
+    .forEach(article => {
+
+        const price =
+            Number(article.price) || 0;
+
+        const qty =
+            Number(article.qty) || 0;
+
+        const discount =
+            Number(article.discount) || 0;
+
+
+        const net =
+            price *
+            (
+                1 -
+                discount / 100
+            );
+
+
+        const line =
+            net *
+            qty;
+
+
+        rows += `
+
+            <tr>
+
+                <td>
+                    ${escapeHtml(article.code)}
+                </td>
+
+                <td>
+                    ${qty}
+                </td>
+
+                <td>
+                    ${euro(price)}
+                </td>
+
+                <td>
+                    ${discount}%
+                </td>
+
+                <td>
+                    ${euro(line)}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    document.getElementById(
+        "detailContent"
+    ).innerHTML = `
+
+        <div class="detail">
+
+            <div class="detail-header">
+
+                <div>
+
+                    <div class="detail-number">
+
+                        ${escapeHtml(
+                            order.number ||
+                            "ORDINE"
+                        )}
+
+                    </div>
+
+                    <div class="detail-date">
+
+                        ${escapeHtml(
+                            order.person ||
+                            ""
+                        )}
+
+                        ·
+
+                        ${formatDate(order.date)}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="
+                        status
+                        ${escapeAttr(
+                            order.status ||
+                            "daordinare"
+                        )}
+                    ">
+
+                        ${statusLabel(
+                            order.status
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="detail-total">
+
+                    ${euro(total)}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-table-wrap">
+
+                <table class="detail-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Codice articolo</th>
+                            <th>Q.tà</th>
+                            <th>Prezzo</th>
+                            <th>Sconto</th>
+                            <th>Totale</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${rows}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="detail-actions">
+
+                <button
+                    type="button"
+                    class="edit"
+                    id="editOrderButton">
+
+                    MODIFICA
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="delete"
+                    id="deleteOrderButton">
+
+                    ELIMINA
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel"
+                    onclick="closeDetail()">
+
+                    CHIUDI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "editOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
+
+            editOrder(order.id);
+
+        }
+    );
+
+
+    document.getElementById(
+        "deleteOrderButton"
+    ).addEventListener(
+        "click",
+        function(){
+
+            deleteOrder(order.id);
+
+        }
+    );
+
+
+    document.getElementById(
+        "detailModal"
+    ).style.display =
+        "block";
+
+}
+
+
+window.closeDetail = function(){
+
+    document.getElementById(
+        "detailModal"
+    ).style.display =
+        "none";
+
+};
+
+
+/* =====================================================
+   MODIFICA
+===================================================== */
+
+window.editOrder = async function(id){
+
+    try{
+
+        const orderRef =
+            doc(
+                db,
+                "ordini",
+                id
+            );
+
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "ordini"
+                )
+            );
+
+
+        let order = null;
+
+
+        snapshot.forEach(
+            d => {
+
+                if(d.id === id){
+
+                    order = {
+
+                        id:d.id,
+
+                        ...d.data()
+
+                    };
+
+                }
+
+            }
+        );
+
+
+        if(!order){
+
+            alert(
+                "Ordine non trovato."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ){
+
+            alert(
+                "Non puoi modificare questo ordine."
+            );
+
+            return;
+
+        }
+
+
+        editingOrderId = id;
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Modifica " +
+            order.number;
+
+
+        document.getElementById(
+            "orderPerson"
+        ).value =
+            order.person;
+
+
+        document.getElementById(
+            "orderPerson"
+        ).disabled =
+            !USERS[loggedUser].admin;
+
+
+        document.getElementById(
+            "orderDate"
+        ).value =
+            order.date || "";
+
+
+        document.getElementById(
+            "orderStatus"
+        ).value =
+            order.status ||
+            "daordinare";
+
+
+        document.getElementById(
+            "articles"
+        ).innerHTML = "";
+
+
+        (order.articles || [])
+        .forEach(
+            article =>
+            addArticle(article)
+        );
+
+
+        document.getElementById(
+            "detailModal"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "orderModal"
+        ).style.display =
+            "block";
+
+
+        calculateOrderTotal();
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Errore nel caricamento dell'ordine.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   ELIMINA
+===================================================== */
+
+window.deleteOrder = async function(id){
+
+    if(
+        !confirm(
+            "Vuoi davvero eliminare questo ordine?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "ordini"
+                )
+            );
+
+
+        let order = null;
+
+
+        snapshot.forEach(
+            d => {
+
+                if(d.id === id){
+
+                    order = {
+
+                        id:d.id,
+
+                        ...d.data()
+
+                    };
+
+                }
+
+            }
+        );
+
+
+        if(!order)
+            return;
+
+
+        if(
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ){
+
+            alert(
+                "Non puoi eliminare questo ordine."
+            );
+
+            return;
+
+        }
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "ordini",
+                id
+            )
+
+        );
+
+
+        closeDetail();
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Errore durante l'eliminazione.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   UTILITÀ
+===================================================== */
+
+function calculateTotal(order){
+
+    return (order.articles || [])
+        .reduce(
+
+            (total,a) => {
+
+                const price =
+                    Number(a.price) || 0;
+
+                const qty =
+                    Number(a.qty) || 0;
+
+                const discount =
+                    Number(a.discount) || 0;
+
+
+                return total +
+                    price *
+                    qty *
+                    (
+                        1 -
+                        discount / 100
+                    );
+
+            },
+
+            0
+
+        );
+
+}
+
+
+function euro(value){
+
+    return new Intl.NumberFormat(
+        "it-IT",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    ).format(
+        Number(value) || 0
+    );
+
+}
+
+
+function formatDate(date){
+
+    if(!date)
+        return "";
+
+
+    const p =
+        String(date).split("-");
+
+
+    if(p.length !== 3)
+        return date;
+
+
+    return p[2] +
+        "/" +
+        p[1] +
+        "/" +
+        p[0];
+
+}
+
+
+function statusLabel(status){
+
+    switch(status){
+
+        case "daordinare":
+            return "Da ordinare";
+
+        case "ordinato":
+            return "Ordinato";
+
+        case "ritirare":
+            return "Da ritirare";
+
+        case "consegnato":
+            return "Consegnato";
+
+        default:
+            return status ||
+                "Da ordinare";
+
+    }
+
+}
+
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+    return escapeHtml(value);
+
+}
+
+
+/* =====================================================
+   AGGIORNA ORDINI
+===================================================== */
+
+window.showAllOrders = function(){
+
+    console.log("TUTTI GLI ORDINI premuto");
+
+    if(loggedUser !== "Gio"){
+        alert("Questa funzione è disponibile solo per Gio.");
+        return;
+    }
+
+    document.getElementById("ordersTitle")
+        .textContent = "Tutti gli ordini";
+
+    document.getElementById("ordersList")
+        .innerHTML = `
+            <div class="empty-orders">
+                🔄 Caricamento di tutti gli ordini...
+            </div>
+        `;
+
+    listenOrders();
+
+};
+
+
+window.loadOrders = function(){
+
+    console.log("AGGIORNA ORDINI premuto");
+
+    const list =
+        document.getElementById("ordersList");
+
+    list.innerHTML = `
+        <div class="empty-orders">
+            🔄 Aggiornamento ordini...
+        </div>
+    `;
+
+    listenOrders();
+
+    if(loggedUser === "Gio"){
+        setupNotifications();
+    }
+
+};
+
+
+/* =====================================================
+   NOTIFICHE
+===================================================== */
+
+async function setupNotifications(){
+
+    if(loggedUser !== "Gio"){
         return;
     }
 
 
-    rows[rows.length - 1]
-        .remove();
+    if(!("Notification" in window)){
+
+        console.log(
+            "Notifiche browser non supportate."
+        );
+
+        return;
+
+    }
+
+
+    updateNotificationButtonState();
+
+
+    try{
+
+        if(
+            Notification.permission ===
+            "granted"
+        ){
+
+            const savedToken =
+                localStorage.getItem(
+                    "ktm_gio_notification_token"
+                );
+
+
+            if(savedToken){
+
+                setNotificationButtonActive();
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Errore setup notifiche:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   STATO PULSANTE NOTIFICHE
+===================================================== */
+
+function setNotificationButtonActive(){
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    if(!button){
+        return;
+    }
+
+
+    button.textContent =
+        "🔔 NOTIFICHE ATTIVE";
+
+    button.classList.add(
+        "notification-active"
+    );
+
+}
+
+
+function updateNotificationButtonState(){
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    if(!button){
+        return;
+    }
+
+
+    const savedToken =
+        localStorage.getItem(
+            "ktm_gio_notification_token"
+        );
+
+
+    if(
+        savedToken &&
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ){
+
+        setNotificationButtonActive();
+
+    }else{
+
+        button.textContent =
+            "🔔 ATTIVA NOTIFICHE";
+
+        button.classList.remove(
+            "notification-active"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ATTIVA NOTIFICHE
+===================================================== */
+
+window.activateNotifications =
+async function(){
+
+    if(loggedUser !== "Gio"){
+        return;
+    }
+
+
+    if(!("Notification" in window)){
+
+        alert(
+            "Questo browser non supporta le notifiche."
+        );
+
+        return;
+
+    }
+
+
+    if(!messagingSupported || !messaging){
+
+        alert(
+            "Firebase Messaging non è supportato da questo browser.\n\n" +
+            "Il resto del sito continua comunque a funzionare."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const permission =
+            await Notification.requestPermission();
+
+
+        console.log(
+            "Permesso notifiche:",
+            permission
+        );
+
+
+        if(permission !== "granted"){
+
+            if(permission === "denied"){
+
+                alert(
+                    "Le notifiche sono state bloccate.\n\n" +
+                    "Abilita le notifiche dalle impostazioni del dispositivo."
+                );
+
+            }
+
+            return;
+
+        }
+
+
+        await registerNotifications();
+
+
+    }catch(error){
+
+        console.error(
+            "Errore attivazione notifiche:",
+            error
+        );
+
+
+        alert(
+            "Errore durante l'attivazione delle notifiche.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   REGISTRAZIONE FCM
+===================================================== */
+
+async function registerNotifications(){
+
+    console.log(
+        "================================"
+    );
+
+    console.log(
+        "AVVIO REGISTRAZIONE NOTIFICHE"
+    );
+
+    console.log(
+        "================================"
+    );
+
+
+    if(!("serviceWorker" in navigator)){
+
+        alert(
+            "Il browser non supporta i Service Worker."
+        );
+
+        return;
+
+    }
+
+
+    if(!messaging){
+
+        alert(
+            "Firebase Messaging non è disponibile."
+        );
+
+        return;
+
+    }
+
+
+    if(!NORMALIZED_VAPID_KEY){
+
+        alert(
+            "La chiave VAPID non è valida."
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       SERVICE WORKER
+    ========================= */
+
+    let registration;
+
+
+    try{
+
+        registration =
+            await navigator.serviceWorker.register(
+                "./firebase-messaging-sw.js",
+                {
+                    scope:"./"
+                }
+            );
+
+
+        console.log(
+            "Service Worker registrato:",
+            registration.scope
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Errore Service Worker:",
+            error
+        );
+
+
+        alert(
+            "Impossibile registrare il Service Worker.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    await navigator.serviceWorker.ready;
+
+
+    console.log(
+        "Service Worker pronto."
+    );
+
+
+    /* =========================
+       TOKEN FCM
+    ========================= */
+
+    let token;
+
+
+    try{
+
+        token =
+            await getToken(
+                messaging,
+                {
+                    vapidKey:
+                        NORMALIZED_VAPID_KEY,
+
+                    serviceWorkerRegistration:
+                        registration
+                }
+            );
+
+
+    }catch(error){
+
+        console.error(
+            "ERRORE getToken():",
+            error
+        );
+
+
+        alert(
+            "Firebase ha rifiutato la richiesta del token.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    if(!token){
+
+        alert(
+            "Firebase non ha restituito il token."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "TOKEN FCM GIO:",
+        token
+    );
+
+
+    localStorage.setItem(
+        "ktm_gio_notification_token",
+        token
+    );
+
+
+    /* =========================
+       FIRESTORE
+    ========================= */
+
+    try{
+
+        await setDoc(
+
+            doc(
+                db,
+                "utenti",
+                "Gio"
+            ),
+
+            {
+
+                notificationToken:
+                    token,
+
+                notificationActive:
+                    true,
+
+                notificationPlatform:
+                    /iPhone|iPad|iPod/i.test(
+                        navigator.userAgent
+                    )
+                    ? "iOS"
+                    : "browser",
+
+                notificationUserAgent:
+                    navigator.userAgent,
+
+                notificationUpdatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        console.log(
+            "TOKEN SALVATO CORRETTAMENTE"
+        );
+
+        console.log(
+            "Percorso: utenti/Gio"
+        );
+
+
+        alert(
+            "✅ NOTIFICHE ATTIVE!\n\n" +
+            "Il token è stato salvato correttamente.\n\n" +
+            "Firebase: utenti/Gio"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "ERRORE SALVATAGGIO TOKEN:",
+            error
+        );
+
+
+        alert(
+            "❌ ERRORE SALVATAGGIO TOKEN\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    setNotificationButtonActive();
+
+
+    /* =========================
+       FOREGROUND
+    ========================= */
+
+    if(!notificationListenerActive){
+
+        onMessage(
+            messaging,
+            payload => {
+
+                console.log(
+                    "Messaggio Firebase ricevuto:",
+                    payload
+                );
+
+
+                const title =
+                    payload.notification?.title ||
+                    payload.data?.title ||
+                    "KTM ORDINI";
+
+
+                const body =
+                    payload.notification?.body ||
+                    payload.data?.body ||
+                    "È arrivato un nuovo ordine.";
+
+
+                if(
+                    Notification.permission ===
+                    "granted"
+                ){
+
+                    new Notification(
+                        title,
+                        {
+                            body:body,
+                            icon:"./icon-192.png"
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        notificationListenerActive =
+            true;
+
+    }
+
+
+    console.log(
+        "NOTIFICHE CONFIGURATE"
+    );
+
+}
+
+
+/* =====================================================
+   AVVIO
+===================================================== */
+
+const savedUser =
+    localStorage.getItem(
+        "ktm_logged_user"
+    );
+
+
+if(
+    savedUser &&
+    USERS[savedUser]
+){
+
+    loggedUser =
+        savedUser;
+
+    openApp();
+
+}else{
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
+   CHIUSURA MODAL
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function(event){
+
+        const orderModal =
+            document.getElementById(
+                "orderModal"
+            );
+
+
+        const detailModal =
+            document.getElementById(
+                "detailModal"
+            );
+
+
+        if(
+            event.target === orderModal
+        ){
+
+            closeModal();
+
+        }
+
+
+        if(
+            event.target === detailModal
+        ){
+
+            closeDetail();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INVIO CON ENTER NEL LOGIN
+===================================================== */
+
+document.getElementById(
+    "loginCode"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            login();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html> 
+        <div class="form-group">
+            <label>Stato</label>
+
+            <select id="orderStatus">
+                <option value="daordinare">Da ordinare</option>
+            </select>
+        </div>
+
+        <div class="articles-title-row">
+            <h3>Articoli</h3>
+
+            <button
+                type="button"
+                class="add-article"
+                onclick="addArticle()">
+                + Aggiungi articolo
+            </button>
+        </div>
+
+        <div id="articles"></div>
+
+        <div class="total">
+            <span>Totale ordine</span>
+
+            <strong id="orderTotal">
+                €0,00
+            </strong>
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="cancel"
+                onclick="closeModal()">
+                Annulla
+            </button>
+
+            <button
+                type="button"
+                class="save"
+                onclick="saveOrder()">
+                SALVA ORDINE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODALE DETTAGLIO ORDINE
+===================================================== -->
+
+<div id="detailModal" class="modal">
+
+    <div class="modal-box">
+
+        <div id="detailContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODALE LAVORI
+===================================================== -->
+
+<div id="worksModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Lavori
+            </h2>
+
+            <button
+                type="button"
+                class="close"
+                onclick="closeWorksModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Persona
+            </label>
+
+            <select id="workPerson">
+
+                <option value="Roby">
+                    Roby
+                </option>
+
+                <option value="Fede">
+                    Fede
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Lavoro
+            </label>
+
+            <input
+                id="workDescription"
+                type="text"
+                placeholder="Descrizione del lavoro">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Prezzo €
+            </label>
+
+            <input
+                id="workPrice"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0,00">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Stato pagamento
+            </label>
+
+            <select id="workPaymentStatus">
+
+                <option value="dapagare">
+                    Da pagare
+                </option>
+
+                <option value="pagato">
+                    Pagato
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="cancel"
+                onclick="closeWorksModal()">
+                Annulla
+            </button>
+
+            <button
+                type="button"
+                class="save"
+                onclick="saveWork()">
+                SALVA LAVORO
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    getDoc,
+    doc,
+    updateDoc,
+    deleteDoc,
+    setDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    getMessaging,
+    getToken,
+    onMessage,
+    isSupported
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyAnu-kly4oALndRaeCl2dvQjWefJSHWZvc",
+
+    authDomain:
+    "ktm-ordini.firebaseapp.com",
+
+    projectId:
+    "ktm-ordini",
+
+    storageBucket:
+    "ktm-ordini.firebasestorage.app",
+
+    messagingSenderId:
+    "1031736748386",
+
+    appId:
+    "1:1031736748386:web:b1070dcf67563b84c4643b"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   FIREBASE MESSAGING
+===================================================== */
+
+let messaging = null;
+let messagingSupported = false;
+
+try {
+
+    messagingSupported =
+        await isSupported();
+
+    if (messagingSupported) {
+
+        messaging =
+            getMessaging(app);
+
+        console.log(
+            "Firebase Messaging supportato."
+        );
+
+    }
+
+} catch (error) {
+
+    console.warn(
+        "Firebase Messaging non disponibile:",
+        error
+    );
+
+}
+
+
+/* =====================================================
+   VAPID
+===================================================== */
+
+const VAPID_KEY =
+"BM8lpUTpngwDInKCxZcJ2loVmv2WxVhCcHbzqThrmDuFpB2ouxa_GPRmdph2l_gtf2n59zdjd_rZ7uDU4tJ87oY";
+
+
+function normalizeVapidKey(key) {
+
+    if (typeof key !== "string") {
+
+        throw new Error(
+            "La VAPID_KEY non è una stringa."
+        );
+
+    }
+
+    const clean =
+        key.trim();
+
+    if (!clean) {
+
+        throw new Error(
+            "La VAPID_KEY è vuota."
+        );
+
+    }
+
+    const base64 =
+        clean
+        .replace(/-/g, "+")
+        .replace(/_/g, "/")
+        .padEnd(
+            Math.ceil(clean.length / 4) * 4,
+            "="
+        );
+
+    let binary;
+
+    try {
+
+        binary =
+            atob(base64);
+
+    } catch (error) {
+
+        throw new Error(
+            "La VAPID_KEY non è valida."
+        );
+
+    }
+
+    if (
+        binary.length !== 65 ||
+        binary.charCodeAt(0) !== 4
+    ) {
+
+        throw new Error(
+            "La VAPID_KEY non è una public key P-256 valida."
+        );
+
+    }
+
+    return btoa(binary)
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/g, "");
+
+}
+
+
+let NORMALIZED_VAPID_KEY = null;
+
+try {
+
+    NORMALIZED_VAPID_KEY =
+        normalizeVapidKey(VAPID_KEY);
+
+} catch (error) {
+
+    console.error(
+        "ERRORE VAPID:",
+        error
+    );
+
+}
+
+
+/* =====================================================
+   UTENTI
+===================================================== */
+
+const DEFAULT_CODE =
+    "123456";
+
+
+const USERS = {
+
+    Roby: {
+        name: "Roby",
+        admin: false
+    },
+
+    Fede: {
+        name: "Fede",
+        admin: false
+    },
+
+    Gio: {
+        name: "Gio",
+        admin: true
+    }
+
+};
+
+
+let selectedUser = null;
+let loggedUser = null;
+
+let editingOrderId = null;
+
+let unsubscribeOrders = null;
+let unsubscribeWorks = null;
+
+let notificationListenerActive = false;
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+window.selectUser =
+function(user) {
+
+    selectedUser =
+        user;
+
+    document.getElementById(
+        "userCircle"
+    ).textContent =
+        user.charAt(0);
+
+    document.getElementById(
+        "codeSubtitle"
+    ).textContent =
+        "Inserisci il codice di " + user;
+
+    document.getElementById(
+        "loginCode"
+    ).value = "";
+
+    document.getElementById(
+        "loginError"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "codePage"
+    ).style.display =
+        "flex";
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "loginCode"
+        ).focus();
+
+    }, 100);
+
+};
+
+
+window.backUsers =
+function() {
+
+    selectedUser =
+        null;
+
+    document.getElementById(
+        "codePage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "flex";
+
+};
+
+
+window.login =
+function() {
+
+    if (!selectedUser) {
+
+        return;
+
+    }
+
+    const entered =
+        document.getElementById(
+            "loginCode"
+        ).value.trim();
+
+    const saved =
+        localStorage.getItem(
+            "ktm_code_" + selectedUser
+        );
+
+    const realCode =
+        saved || DEFAULT_CODE;
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+
+    if (entered !== realCode) {
+
+        error.textContent =
+            "Codice non corretto.";
+
+        error.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    error.style.display =
+        "none";
+
+
+    if (!saved) {
+
+        document.getElementById(
+            "codePage"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "changeCodePage"
+        ).style.display =
+            "flex";
+
+        return;
+
+    }
+
+
+    loggedUser =
+        selectedUser;
+
+    localStorage.setItem(
+        "ktm_logged_user",
+        loggedUser
+    );
+
+    openApp();
+
+};
+
+
+/* =====================================================
+   CAMBIO CODICE
+===================================================== */
+
+window.changeCode =
+function() {
+
+    const newCode =
+        document.getElementById(
+            "newCode"
+        ).value.trim();
+
+    const confirmCode =
+        document.getElementById(
+            "confirmCode"
+        ).value.trim();
+
+    const error =
+        document.getElementById(
+            "changeError"
+        );
+
+
+    if (newCode.length < 4) {
+
+        error.textContent =
+            "Il codice deve avere almeno 4 caratteri.";
+
+        error.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    if (newCode !== confirmCode) {
+
+        error.textContent =
+            "I codici non coincidono.";
+
+        error.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    if (newCode === DEFAULT_CODE) {
+
+        error.textContent =
+            "Scegli un codice diverso da 123456.";
+
+        error.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "ktm_code_" + selectedUser,
+        newCode
+    );
+
+
+    loggedUser =
+        selectedUser;
+
+
+    localStorage.setItem(
+        "ktm_logged_user",
+        loggedUser
+    );
+
+
+    openApp();
+
+};
+
+
+/* =====================================================
+   APERTURA APP
+===================================================== */
+
+function openApp() {
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "codePage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "changeCodePage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "appPage"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "loggedName"
+    ).textContent =
+        loggedUser.toUpperCase();
+
+
+    document.getElementById(
+        "welcomeTitle"
+    ).textContent =
+        "Benvenuto " +
+        loggedUser.toUpperCase();
+
+
+    const notificationButton =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    const worksCard =
+        document.getElementById(
+            "worksCard"
+        );
+
+
+    if (USERS[loggedUser].admin) {
+
+        document.getElementById(
+            "welcomeText"
+        ).textContent =
+            "Sei entrato come amministratore.";
+
+        document.getElementById(
+            "adminCard"
+        ).style.display =
+            "block";
+
+        if (worksCard) {
+
+            worksCard.style.display =
+                "block";
+
+        }
+
+        document.getElementById(
+            "ordersTitle"
+        ).textContent =
+            "Tutti gli ordini";
+
+        notificationButton.style.display =
+            "inline-block";
+
+        updateNotificationButtonState();
+
+    } else {
+
+        document.getElementById(
+            "welcomeText"
+        ).textContent =
+            "Gestisci i tuoi ordini KTM.";
+
+        document.getElementById(
+            "adminCard"
+        ).style.display =
+            "none";
+
+        if (worksCard) {
+
+            worksCard.style.display =
+                "block";
+
+        }
+
+        document.getElementById(
+            "ordersTitle"
+        ).textContent =
+            "I miei ordini";
+
+        notificationButton.style.display =
+            "none";
+
+    }
+
+
+    listenOrders();
+
+
+    if (loggedUser === "Gio") {
+
+        setupNotifications();
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout =
+function() {
+
+    if (unsubscribeOrders) {
+
+        unsubscribeOrders();
+
+        unsubscribeOrders =
+            null;
+
+    }
+
+    if (unsubscribeWorks) {
+
+        unsubscribeWorks();
+
+        unsubscribeWorks =
+            null;
+
+    }
+
+
+    loggedUser =
+        null;
+
+    selectedUser =
+        null;
+
+    notificationListenerActive =
+        false;
+
+
+    localStorage.removeItem(
+        "ktm_logged_user"
+    );
+
+
+    document.getElementById(
+        "appPage"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+        "flex";
+
+};
+
+
+/* =====================================================
+   ORDINI FIRESTORE
+===================================================== */
+
+function listenOrders() {
+
+    if (unsubscribeOrders) {
+
+        unsubscribeOrders();
+
+    }
+
+
+    const ordersRef =
+        collection(
+            db,
+            "ordini"
+        );
+
+
+    const q =
+        query(
+            ordersRef,
+            orderBy(
+                "createdAt",
+                "desc"
+            )
+        );
+
+
+    unsubscribeOrders =
+        onSnapshot(
+
+            q,
+
+            snapshot => {
+
+                let orders = [];
+
+
+                snapshot.forEach(
+                    docSnap => {
+
+                        orders.push({
+
+                            id:
+                                docSnap.id,
+
+                            ...docSnap.data()
+
+                        });
+
+                    }
+                );
+
+
+                if (
+                    !USERS[loggedUser].admin
+                ) {
+
+                    orders =
+                        orders.filter(
+                            order =>
+                                order.person ===
+                                loggedUser
+                        );
+
+                }
+
+
+                renderOrders(
+                    orders
+                );
+
+            },
+
+            error => {
+
+                console.error(
+                    "Errore Firestore:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "ordersList"
+                ).innerHTML = `
+
+                    <div class="empty-orders">
+
+                        <strong>
+                            Errore collegamento Firebase
+                        </strong>
+
+                        <br><br>
+
+                        ${escapeHtml(
+                            error.message ||
+                            "Errore sconosciuto"
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+}
+
+
+/* =====================================================
+   RENDER ORDINI
+===================================================== */
+
+function renderOrders(orders) {
+
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    if (!orders.length) {
+
+        list.innerHTML = `
+
+            <div class="empty-orders">
+
+                Nessun ordine presente.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        "";
+
+
+    orders.forEach(
+        order => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "order";
+
+
+            const codes =
+                (order.articles || [])
+                .map(
+                    article =>
+                        `${escapeHtml(
+                            article.qty
+                        )} × ${escapeHtml(
+                            article.code
+                        )}`
+                )
+                .join(", ");
+
+
+            const total =
+                calculateTotal(
+                    order
+                );
+
+
+            div.innerHTML = `
+
+                <div class="order-top">
+
+                    <div>
+
+                        <div class="order-number">
+
+                            ${escapeHtml(
+                                order.number ||
+                                "ORDINE"
+                            )}
+
+                        </div>
+
+                        <div class="order-info">
+
+                            ${escapeHtml(
+                                order.person ||
+                                ""
+                            )}
+
+                            ·
+
+                            ${formatDate(
+                                order.date
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="
+                        status
+                        ${escapeAttr(
+                            order.status ||
+                            "daordinare"
+                        )}
+                    ">
+
+                        ${statusLabel(
+                            order.status
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="order-codes">
+
+                    ${
+                        codes ||
+                        "Nessun articolo"
+                    }
+
+                </div>
+
+
+                <div style="
+                    margin-top:10px;
+                    font-weight:900;
+                ">
+
+                    ${euro(total)}
+
+                </div>
+
+            `;
+
+
+            div.addEventListener(
+                "click",
+                () => {
+
+                    showOrder(
+                        order
+                    );
+
+                }
+            );
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   NUOVO ORDINE
+===================================================== */
+
+window.openNewOrder =
+function() {
+
+    if (!loggedUser) {
+
+        alert(
+            "Devi prima effettuare l'accesso."
+        );
+
+        return;
+
+    }
+
+
+    editingOrderId =
+        null;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Nuovo ordine";
+
+
+    document.getElementById(
+        "orderPerson"
+    ).value =
+        loggedUser;
+
+
+    document.getElementById(
+        "orderPerson"
+    ).disabled =
+        !USERS[loggedUser].admin;
+
+
+    const dateInput =
+        document.getElementById(
+            "orderDate"
+        );
+
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            now.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    dateInput.value =
+        `${year}-${month}-${day}`;
+
+
+    document.getElementById(
+        "orderStatus"
+    ).value =
+        "daordinare";
+
+
+    document.getElementById(
+        "orderStatus"
+    ).disabled =
+        true;
+
+
+    document.getElementById(
+        "articles"
+    ).innerHTML =
+        "";
+
+
+    addArticle();
+
+
+    document.getElementById(
+        "orderModal"
+    ).style.display =
+        "block";
+
+};
+
+
+/* =====================================================
+   CHIUSURA MODALE ORDINE
+===================================================== */
+
+window.closeModal =
+function() {
+
+    document.getElementById(
+        "orderModal"
+    ).style.display =
+        "none";
+
+};
+
+
+/* =====================================================
+   ARTICOLI
+===================================================== */
+
+window.addArticle =
+function(article = null) {
+
+    const container =
+        document.getElementById(
+            "articles"
+        );
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "article-row";
+
+
+    row.innerHTML = `
+
+        <div class="article-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Codice articolo
+                </label>
+
+                <input
+                    class="article-code"
+                    type="text"
+                    placeholder="Codice"
+                    value="${
+                        article
+                        ?
+                        escapeAttr(
+                            article.code
+                        )
+                        :
+                        ""
+                    }">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Quantità
+                </label>
+
+                <input
+                    class="article-qty"
+                    type="number"
+                    min="1"
+                    value="${
+                        article
+                        ?
+                        Number(
+                            article.qty
+                        ) || 1
+                        :
+                        1
+                    }">
+
+            </div>
+
+
+            <div class="form-group price-field">
+
+                <label>
+                    Prezzo €
+                </label>
+
+                <input
+                    class="article-price"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="Lo inserirà Gio"
+                    value="${
+                        article &&
+                        article.price != null
+                        ?
+                        Number(
+                            article.price
+                        )
+                        :
+                        ""
+                    }"
+                    ${
+                        loggedUser !== "Gio"
+                        ?
+                        "disabled"
+                        :
+                        ""
+                    }>
+
+            </div>
+
+
+            <div class="form-group discount-field">
+
+                <label>
+                    Sconto %
+                </label>
+
+                <input
+                    class="article-discount"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="${
+                        article &&
+                        article.discount != null
+                        ?
+                        Number(
+                            article.discount
+                        )
+                        :
+                        ""
+                    }"
+                    placeholder="Lo inserirà Gio"
+                    ${
+                        loggedUser !== "Gio"
+                        ?
+                        "disabled"
+                        :
+                        ""
+                    }>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="remove">
+
+                ×
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    const qty =
+        row.querySelector(
+            ".article-qty"
+        );
+
+
+    const price =
+        row.querySelector(
+            ".article-price"
+        );
+
+
+    const discount =
+        row.querySelector(
+            ".article-discount"
+        );
+
+
+    const remove =
+        row.querySelector(
+            ".remove"
+        );
+
+
+    qty.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+
+    price.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+
+    discount.addEventListener(
+        "input",
+        calculateOrderTotal
+    );
+
+
+    remove.addEventListener(
+        "click",
+        () => {
+
+            row.remove();
+
+            calculateOrderTotal();
+
+        }
+    );
+
+
+    container.appendChild(
+        row
+    );
 
 
     calculateOrderTotal();
@@ -3223,12 +5214,14 @@ window.removeLastArticle = function(){
 
 
 /* =====================================================
-   CALCOLO ORDINE
+   CALCOLO TOTALE ORDINE
 ===================================================== */
 
-window.calculateOrderTotal = function(){
+window.calculateOrderTotal =
+function() {
 
-    let total = 0;
+    let total =
+        0;
 
 
     document
@@ -3283,10 +5276,11 @@ window.calculateOrderTotal = function(){
 
 
 /* =====================================================
-   SALVA ORDINE
+   SALVATAGGIO ORDINE
 ===================================================== */
 
-window.saveOrder = async function(){
+window.saveOrder =
+async function() {
 
     const person =
         document.getElementById(
@@ -3300,7 +5294,8 @@ window.saveOrder = async function(){
         ).value;
 
 
-    const articles = [];
+    const articles =
+        [];
 
 
     document
@@ -3324,33 +5319,58 @@ window.saveOrder = async function(){
                     ) || 0;
 
 
-                const price =
+                const priceInput =
+                    row.querySelector(
+                        ".article-price"
+                    );
+
+
+                const discountInput =
+                    row.querySelector(
+                        ".article-discount"
+                    );
+
+
+                let price =
                     Number(
-                        row.querySelector(
-                            ".article-price"
-                        ).value
+                        priceInput.value
                     ) || 0;
 
 
-                const discount =
+                let discount =
                     Number(
-                        row.querySelector(
-                            ".article-discount"
-                        ).value
-                    ) || 25;
+                        discountInput.value
+                    ) || 0;
 
 
-                if(code){
+                if (
+                    loggedUser !== "Gio"
+                ) {
+
+                    price =
+                        0;
+
+                    discount =
+                        0;
+
+                }
+
+
+                if (code) {
 
                     articles.push({
 
-                        code:code,
+                        code:
+                            code,
 
-                        qty:qty,
+                        qty:
+                            qty,
 
-                        price:price,
+                        price:
+                            price,
 
-                        discount:discount
+                        discount:
+                            discount
 
                     });
 
@@ -3360,7 +5380,7 @@ window.saveOrder = async function(){
         );
 
 
-    if(!date){
+    if (!date) {
 
         alert(
             "Inserisci la data."
@@ -3371,7 +5391,7 @@ window.saveOrder = async function(){
     }
 
 
-    if(!articles.length){
+    if (!articles.length) {
 
         alert(
             "Inserisci almeno un codice articolo."
@@ -3382,10 +5402,10 @@ window.saveOrder = async function(){
     }
 
 
-    if(
-        loggedUser !== "Gio" &&
+    if (
+        !USERS[loggedUser].admin &&
         person !== loggedUser
-    ){
+    ) {
 
         alert(
             "Non puoi creare un ordine per un altro utente."
@@ -3396,18 +5416,25 @@ window.saveOrder = async function(){
     }
 
 
-    try{
+    try {
 
-        if(editingOrderId){
+        if (editingOrderId) {
 
-            const existingOrder =
-                allOrders.find(
-                    order =>
-                    order.id === editingOrderId
+            const orderRef =
+                doc(
+                    db,
+                    "ordini",
+                    editingOrderId
                 );
 
 
-            if(!existingOrder){
+            const existingSnapshot =
+                await getDoc(
+                    orderRef
+                );
+
+
+            if (!existingSnapshot.exists()) {
 
                 alert(
                     "Ordine non trovato."
@@ -3418,42 +5445,82 @@ window.saveOrder = async function(){
             }
 
 
-            const updateData = {
-
-                articles:articles,
-
-                updatedAt:Date.now()
-
-            };
+            const existingOrder =
+                existingSnapshot.data();
 
 
-            if(loggedUser === "Gio"){
+            let finalArticles =
+                articles;
 
-                updateData.person =
-                    person;
 
-                updateData.date =
-                    date;
+            /*
+             * Roby e Fede non possono modificare
+             * prezzo e sconto.
+             *
+             * Manteniamo quindi i valori già
+             * inseriti da Gio.
+             */
 
-                updateData.status =
-                    "daordinare";
+            if (
+                loggedUser !== "Gio"
+            ) {
+
+                finalArticles =
+                    articles.map(
+                        (article, index) => {
+
+                            const old =
+                                existingOrder
+                                .articles?.[index] ||
+                                {};
+
+                            return {
+
+                                code:
+                                    article.code,
+
+                                qty:
+                                    article.qty,
+
+                                price:
+                                    Number(
+                                        old.price
+                                    ) || 0,
+
+                                discount:
+                                    Number(
+                                        old.discount
+                                    ) || 0
+
+                            };
+
+                        }
+                    );
 
             }
 
 
             await updateDoc(
+                orderRef,
+                {
 
-                doc(
-                    db,
-                    "ordini",
-                    editingOrderId
-                ),
+                    person:
+                        person,
 
-                updateData
+                    date:
+                        date,
 
+                    articles:
+                        finalArticles,
+
+                    updatedAt:
+                        Date.now()
+
+                }
             );
 
-        }else{
+
+        } else {
 
             const existing =
                 await getDocs(
@@ -3468,40 +5535,44 @@ window.saveOrder = async function(){
                 "KTM-" +
                 String(
                     existing.size + 1
-                )
-                .padStart(4,"0");
+                ).padStart(
+                    4,
+                    "0"
+                );
 
 
             const newOrder = {
 
-                number:number,
+                number:
+                    number,
 
-                person:person,
+                person:
+                    person,
 
-                date:date,
+                date:
+                    date,
 
-                status:"daordinare",
+                status:
+                    "daordinare",
 
-                paymentStatus:"da_pagare",
+                articles:
+                    articles,
 
-                articles:articles,
+                createdAt:
+                    Date.now(),
 
-                createdAt:Date.now(),
-
-                createdBy:loggedUser
+                createdBy:
+                    loggedUser
 
             };
 
 
             await addDoc(
-
                 collection(
                     db,
                     "ordini"
                 ),
-
                 newOrder
-
             );
 
         }
@@ -3510,7 +5581,7 @@ window.saveOrder = async function(){
         closeModal();
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
             "Errore salvataggio ordine:",
@@ -3532,7 +5603,7 @@ window.saveOrder = async function(){
    DETTAGLIO ORDINE
 ===================================================== */
 
-function showOrder(order){
+function showOrder(order) {
 
     const total =
         calculateTotal(
@@ -3540,16 +5611,14 @@ function showOrder(order){
         );
 
 
-    const payment =
-        order.paymentStatus ||
-        "da_pagare";
+    let rows =
+        "";
 
 
-    let rows = "";
-
-
-    (order.articles || [])
-    .forEach(
+    (
+        order.articles ||
+        []
+    ).forEach(
         article => {
 
             const price =
@@ -3598,15 +5667,33 @@ function showOrder(order){
                     </td>
 
                     <td>
-                        ${euro(price)}
+                        ${
+                            price > 0
+                            ?
+                            euro(price)
+                            :
+                            "Da inserire"
+                        }
                     </td>
 
                     <td>
-                        ${discount}%
+                        ${
+                            price > 0
+                            ?
+                            discount + "%"
+                            :
+                            "—"
+                        }
                     </td>
 
                     <td>
-                        ${euro(line)}
+                        ${
+                            price > 0
+                            ?
+                            euro(line)
+                            :
+                            "Da calcolare"
+                        }
                     </td>
 
                 </tr>
@@ -3617,85 +5704,9 @@ function showOrder(order){
     );
 
 
-    const adminPaymentControls =
-        loggedUser === "Gio"
-        ?
-        `
-
-        <div class="payment-box">
-
-            <div class="payment-box-title">
-                Stato pagamento
-            </div>
-
-            <div class="payment-buttons">
-
-                <button
-                    type="button"
-                    class="payment-button paid ${
-                        payment === "pagato"
-                        ?
-                        "active"
-                        :
-                        ""
-                    }"
-                    id="markPaidButton">
-
-                    ✓ PAGATO
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="payment-button unpaid ${
-                        payment !== "pagato"
-                        ?
-                        "active"
-                        :
-                        ""
-                    }"
-                    id="markUnpaidButton">
-
-                    DA PAGARE
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `
-        :
-        `
-
-        <div class="payment-box">
-
-            <div class="payment-box-title">
-                Stato pagamento
-            </div>
-
-            <span class="payment-status ${
-                payment === "pagato"
-                ?
-                "payment-paid"
-                :
-                "payment-unpaid"
-            }">
-
-                ${
-                    payment === "pagato"
-                    ?
-                    "✓ PAGATO"
-                    :
-                    "DA PAGARE"
-                }
-
-            </span>
-
-        </div>
-
-        `;
+    const canEdit =
+        loggedUser === "Gio" ||
+        order.person === loggedUser;
 
 
     document.getElementById(
@@ -3797,16 +5808,7 @@ function showOrder(order){
 
                     <tbody>
 
-                        ${
-                            rows ||
-                            `
-                            <tr>
-                                <td colspan="5">
-                                    Nessun articolo.
-                                </td>
-                            </tr>
-                            `
-                        }
+                        ${rows}
 
                     </tbody>
 
@@ -3815,29 +5817,137 @@ function showOrder(order){
             </div>
 
 
-            ${adminPaymentControls}
+            ${
+                loggedUser === "Gio"
+                ?
+                `
+
+                <div class="payment-box">
+
+                    <div>
+
+                        <strong>
+                            Stato pagamento
+                        </strong>
+
+                        <small>
+                            Questo riguarda il conto dell'ordine.
+                        </small>
+
+                    </div>
+
+                    <select
+                        id="orderPaymentStatus"
+                        onchange="changeOrderPayment('${escapeAttr(order.id)}')">
+
+                        <option
+                            value="dapagare"
+                            ${
+                                order.paymentStatus !== "pagato"
+                                ?
+                                "selected"
+                                :
+                                ""
+                            }>
+                            Da pagare
+                        </option>
+
+                        <option
+                            value="pagato"
+                            ${
+                                order.paymentStatus === "pagato"
+                                ?
+                                "selected"
+                                :
+                                ""
+                            }>
+                            Pagato
+                        </option>
+
+                    </select>
+
+                </div>
+
+                `
+                :
+                `
+                <div class="payment-box">
+
+                    <div>
+
+                        <strong>
+                            Stato pagamento
+                        </strong>
+
+                    </div>
+
+                    <span class="
+                        payment-status
+                        ${
+                            order.paymentStatus === "pagato"
+                            ?
+                            "paid"
+                            :
+                            "unpaid"
+                        }
+                    ">
+
+                        ${
+                            order.paymentStatus === "pagato"
+                            ?
+                            "Pagato"
+                            :
+                            "Da pagare"
+                        }
+
+                    </span>
+
+                </div>
+
+                `
+            }
 
 
             <div class="detail-actions">
 
-                <button
-                    type="button"
-                    class="edit"
-                    id="editOrderButton">
+                ${
+                    canEdit
+                    ?
+                    `
 
-                    MODIFICA
+                    <button
+                        type="button"
+                        class="edit"
+                        id="editOrderButton">
 
-                </button>
+                        MODIFICA
+
+                    </button>
+
+                    `
+                    :
+                    ""
+                }
 
 
-                <button
-                    type="button"
-                    class="delete"
-                    id="deleteOrderButton">
+                ${
+                    canEdit
+                    ?
+                    `
 
-                    ELIMINA
+                    <button
+                        type="button"
+                        class="delete"
+                        id="deleteOrderButton">
 
-                </button>
+                        ELIMINA
+
+                    </button>
+
+                    `
+                    :
+                    ""
+                }
 
 
                 <button
@@ -3856,45 +5966,16 @@ function showOrder(order){
     `;
 
 
-    document.getElementById(
-        "editOrderButton"
-    ).addEventListener(
-        "click",
-        function(){
-
-            editOrder(
-                order.id
-            );
-
-        }
-    );
-
-
-    document.getElementById(
-        "deleteOrderButton"
-    ).addEventListener(
-        "click",
-        function(){
-
-            deleteOrder(
-                order.id
-            );
-
-        }
-    );
-
-
-    if(loggedUser === "Gio"){
+    if (canEdit) {
 
         document.getElementById(
-            "markPaidButton"
+            "editOrderButton"
         ).addEventListener(
             "click",
-            function(){
+            () => {
 
-                setPaymentStatus(
-                    order.id,
-                    "pagato"
+                editOrder(
+                    order.id
                 );
 
             }
@@ -3902,14 +5983,13 @@ function showOrder(order){
 
 
         document.getElementById(
-            "markUnpaidButton"
+            "deleteOrderButton"
         ).addEventListener(
             "click",
-            function(){
+            () => {
 
-                setPaymentStatus(
-                    order.id,
-                    "da_pagare"
+                deleteOrder(
+                    order.id
                 );
 
             }
@@ -3926,7 +6006,76 @@ function showOrder(order){
 }
 
 
-window.closeDetail = function(){
+/* =====================================================
+   STATO PAGAMENTO ORDINE
+===================================================== */
+
+window.changeOrderPayment =
+async function(id) {
+
+    if (loggedUser !== "Gio") {
+
+        return;
+
+    }
+
+
+    const select =
+        document.getElementById(
+            "orderPaymentStatus"
+        );
+
+
+    if (!select) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await updateDoc(
+            doc(
+                db,
+                "ordini",
+                id
+            ),
+            {
+
+                paymentStatus:
+                    select.value,
+
+                paymentUpdatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Errore aggiornamento pagamento.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CHIUDI DETTAGLIO
+===================================================== */
+
+window.closeDetail =
+function() {
 
     document.getElementById(
         "detailModal"
@@ -3937,65 +6086,146 @@ window.closeDetail = function(){
 
 
 /* =====================================================
-   PAGAMENTO ORDINE
+   MODIFICA ORDINE
 ===================================================== */
 
-async function setPaymentStatus(
-    id,
-    status
-){
+window.editOrder =
+async function(id) {
 
-    if(loggedUser !== "Gio"){
+    try {
 
-        alert(
-            "Solo Gio può modificare il pagamento."
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        await updateDoc(
-
-            doc(
-                db,
-                "ordini",
-                id
-            ),
-
-            {
-
-                paymentStatus:status,
-
-                paymentUpdatedAt:Date.now(),
-
-                paymentUpdatedBy:"Gio"
-
-            }
-
-        );
-
-
-        const order =
-            allOrders.find(
-                o =>
-                o.id === id
+        const snapshot =
+            await getDoc(
+                doc(
+                    db,
+                    "ordini",
+                    id
+                )
             );
 
 
-        if(order){
+        if (!snapshot.exists()) {
 
-            order.paymentStatus =
-                status;
+            alert(
+                "Ordine non trovato."
+            );
 
-            showOrder(order);
+            return;
 
         }
 
-    }catch(error){
+
+        const order = {
+
+            id:
+                snapshot.id,
+
+            ...snapshot.data()
+
+        };
+
+
+        if (
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ) {
+
+            alert(
+                "Non puoi modificare questo ordine."
+            );
+
+            return;
+
+        }
+
+
+        editingOrderId =
+            id;
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Modifica " +
+            order.number;
+
+
+        document.getElementById(
+            "orderPerson"
+        ).value =
+            order.person;
+
+
+        document.getElementById(
+            "orderPerson"
+        ).disabled =
+            !USERS[loggedUser].admin;
+
+
+        document.getElementById(
+            "orderDate"
+        ).value =
+            order.date ||
+            "";
+
+
+        document.getElementById(
+            "orderStatus"
+        ).value =
+            "daordinare";
+
+
+        document.getElementById(
+            "orderStatus"
+        ).disabled =
+            true;
+
+
+        document.getElementById(
+            "articles"
+        ).innerHTML =
+            "";
+
+
+        (
+            order.articles ||
+            []
+        ).forEach(
+            article => {
+
+                addArticle(
+                    article
+                );
+
+            }
+        );
+
+
+        if (
+            !(order.articles || []).length
+        ) {
+
+            addArticle();
+
+        }
+
+
+        document.getElementById(
+            "detailModal"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "orderModal"
+        ).style.display =
+            "block";
+
+
+        calculateOrderTotal();
+
+
+    } catch (error) {
 
         console.error(
             error
@@ -4003,112 +6233,11 @@ async function setPaymentStatus(
 
 
         alert(
-            "Errore durante l'aggiornamento del pagamento.\n\n" +
+            "Errore nel caricamento dell'ordine.\n\n" +
             error.message
         );
 
     }
-
-}
-
-
-/* =====================================================
-   MODIFICA ORDINE
-===================================================== */
-
-window.editOrder = async function(id){
-
-    const order =
-        allOrders.find(
-            item =>
-            item.id === id
-        );
-
-
-    if(!order){
-
-        alert(
-            "Ordine non trovato."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        loggedUser !== "Gio" &&
-        order.person !== loggedUser
-    ){
-
-        alert(
-            "Non puoi modificare questo ordine."
-        );
-
-        return;
-
-    }
-
-
-    editingOrderId =
-        id;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "Modifica " +
-        order.number;
-
-
-    document.getElementById(
-        "orderPerson"
-    ).value =
-        order.person;
-
-
-    document.getElementById(
-        "orderDate"
-    ).value =
-        order.date ||
-        "";
-
-
-    document.getElementById(
-        "orderStatus"
-    ).value =
-        "daordinare";
-
-
-    document.getElementById(
-        "articles"
-    ).innerHTML =
-        "";
-
-
-    (order.articles || [])
-    .forEach(
-        article =>
-        addArticle(article)
-    );
-
-
-    applyOrderPermissions();
-
-
-    document.getElementById(
-        "detailModal"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "orderModal"
-    ).style.display =
-        "block";
-
-
-    calculateOrderTotal();
 
 };
 
@@ -4117,61 +6246,70 @@ window.editOrder = async function(id){
    ELIMINA ORDINE
 ===================================================== */
 
-window.deleteOrder = async function(id){
+window.deleteOrder =
+async function(id) {
 
-    if(
+    if (
         !confirm(
             "Vuoi davvero eliminare questo ordine?"
         )
-    ){
+    ) {
 
         return;
 
     }
 
 
-    const order =
-        allOrders.find(
-            item =>
-            item.id === id
-        );
+    try {
+
+        const snapshot =
+            await getDoc(
+                doc(
+                    db,
+                    "ordini",
+                    id
+                )
+            );
 
 
-    if(!order)
-        return;
+        if (!snapshot.exists()) {
+
+            return;
+
+        }
 
 
-    if(
-        loggedUser !== "Gio" &&
-        order.person !== loggedUser
-    ){
-
-        alert(
-            "Non puoi eliminare questo ordine."
-        );
-
-        return;
-
-    }
+        const order =
+            snapshot.data();
 
 
-    try{
+        if (
+            !USERS[loggedUser].admin &&
+            order.person !== loggedUser
+        ) {
+
+            alert(
+                "Non puoi eliminare questo ordine."
+            );
+
+            return;
+
+        }
+
 
         await deleteDoc(
-
             doc(
                 db,
                 "ordini",
                 id
             )
-
         );
 
 
         closeDetail();
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
             error
@@ -4189,818 +6327,15 @@ window.deleteOrder = async function(id){
 
 
 /* =====================================================
-   CONTO
+   TOTALI
 ===================================================== */
 
-function calculateAccount(
-    person
-){
-
-    const orders =
-        allOrders.filter(
-            order =>
-            order.person === person
-        );
-
-
-    let total = 0;
-    let paid = 0;
-    let payable = 0;
-
-
-    orders.forEach(
-        order => {
-
-            const value =
-                calculateTotal(
-                    order
-                );
-
-
-            total += value;
-
-
-            if(
-                order.paymentStatus ===
-                "pagato"
-            ){
-
-                paid += value;
-
-            }else{
-
-                payable += value;
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        total:total,
-
-        paid:paid,
-
-        payable:payable,
-
-        orders:orders
-
-    };
-
-}
-
-
-/* =====================================================
-   AGGIORNA RIQUADRO CONTO
-===================================================== */
-
-function updateAccountSummary(){
-
-    if(
-        !loggedUser ||
-        loggedUser === "Gio"
-    ){
-
-        return;
-
-    }
-
-
-    const account =
-        calculateAccount(
-            loggedUser
-        );
-
-
-    document.getElementById(
-        "accountTotal"
-    ).textContent =
-        euro(account.total);
-
-
-    document.getElementById(
-        "accountPaid"
-    ).textContent =
-        euro(account.paid);
-
-
-    document.getElementById(
-        "accountPayable"
-    ).textContent =
-        euro(account.payable);
-
-
-    renderAccountModal(
-        account
-    );
-
-}
-
-
-/* =====================================================
-   APRI CONTO
-===================================================== */
-
-window.openAccountModal = function(){
-
-    if(
-        !loggedUser ||
-        loggedUser === "Gio"
-    ){
-
-        return;
-
-    }
-
-
-    const account =
-        calculateAccount(
-            loggedUser
-        );
-
-
-    renderAccountModal(
-        account
-    );
-
-
-    document.getElementById(
-        "accountModal"
-    ).style.display =
-        "block";
-
-};
-
-
-window.closeAccountModal = function(){
-
-    document.getElementById(
-        "accountModal"
-    ).style.display =
-        "none";
-
-};
-
-
-/* =====================================================
-   RENDER CONTO
-===================================================== */
-
-function renderAccountModal(
-    account
-){
-
-    const content =
-        document.getElementById(
-            "accountModalContent"
-        );
-
-
-    if(!content)
-        return;
-
-
-    let ordersHtml = "";
-
-
-    if(!account.orders.length){
-
-        ordersHtml = `
-
-            <div class="empty-orders">
-                Nessun ordine presente.
-            </div>
-
-        `;
-
-    }else{
-
-        ordersHtml =
-            account.orders
-            .map(
-                order => {
-
-                    const total =
-                        calculateTotal(
-                            order
-                        );
-
-
-                    const payment =
-                        order.paymentStatus ||
-                        "da_pagare";
-
-
-                    return `
-
-                        <div
-                            class="account-order"
-                            data-order-id="${
-                                escapeAttr(
-                                    order.id
-                                )
-                            }">
-
-                            <div class="account-order-top">
-
-                                <div>
-
-                                    <div class="account-order-number">
-
-                                        ${escapeHtml(
-                                            order.number ||
-                                            "ORDINE"
-                                        )}
-
-                                    </div>
-
-                                    <div class="account-order-date">
-
-                                        ${formatDate(
-                                            order.date
-                                        )}
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="account-order-total">
-
-                                    ${euro(total)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div style="margin-top:10px;">
-
-                                <span class="payment-status ${
-                                    payment === "pagato"
-                                    ?
-                                    "payment-paid"
-                                    :
-                                    "payment-unpaid"
-                                }">
-
-                                    ${
-                                        payment === "pagato"
-                                        ?
-                                        "✓ PAGATO"
-                                        :
-                                        "DA PAGARE"
-                                    }
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-    }
-
-
-    content.innerHTML = `
-
-        <div class="account-modal-summary">
-
-            <small>
-                ${escapeHtml(
-                    loggedUser
-                )}
-            </small>
-
-            <h3>
-                ${euro(
-                    account.total
-                )}
-            </h3>
-
-            <div class="account-modal-grid">
-
-                <div class="account-modal-box">
-
-                    <span>
-                        PAGATO
-                    </span>
-
-                    <strong style="color:#4ade80;">
-                        ${euro(
-                            account.paid
-                        )}
-                    </strong>
-
-                </div>
-
-
-                <div class="account-modal-box">
-
-                    <span>
-                        DA PAGARE
-                    </span>
-
-                    <strong style="color:#f59e0b;">
-                        ${euro(
-                            account.payable
-                        )}
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <h3 style="margin-bottom:15px;">
-            I miei ordini
-        </h3>
-
-
-        ${ordersHtml}
-
-    `;
-
-
-    content
-        .querySelectorAll(
-            ".account-order"
-        )
-        .forEach(
-            element => {
-
-                element.addEventListener(
-                    "click",
-                    function(){
-
-                        const id =
-                            element.dataset.orderId;
-
-
-                        const order =
-                            allOrders.find(
-                                item =>
-                                item.id === id
-                            );
-
-
-                        if(order){
-
-                            closeAccountModal();
-
-                            showOrder(order);
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-/* =====================================================
-   SCROLL ORDINI
-===================================================== */
-
-window.scrollToOrders = function(){
-
-    document
-        .querySelector(
-            ".orders-panel"
-        )
-        ?.scrollIntoView({
-            behavior:"smooth"
-        });
-
-};
-
-
-/* =====================================================
-   LAVORI
-===================================================== */
-
-function listenJobs(){
-
-    if(loggedUser !== "Gio"){
-        return;
-    }
-
-
-    if(unsubscribeJobs){
-
-        unsubscribeJobs();
-
-    }
-
-
-    const jobsRef =
-        collection(
-            db,
-            "lavori"
-        );
-
-
-    const q =
-        query(
-            jobsRef,
-            orderBy(
-                "createdAt",
-                "desc"
-            )
-        );
-
-
-    unsubscribeJobs =
-        onSnapshot(
-
-            q,
-
-            snapshot => {
-
-                allJobs = [];
-
-
-                snapshot.forEach(
-                    docSnap => {
-
-                        allJobs.push({
-
-                            id:docSnap.id,
-
-                            ...docSnap.data()
-
-                        });
-
-                    }
-                );
-
-
-                renderJobs();
-
-            },
-
-            error => {
-
-                console.error(
-                    "Errore lavori:",
-                    error
-                );
-
-
-                document.getElementById(
-                    "jobsList"
-                ).innerHTML = `
-
-                    <div class="empty-orders">
-
-                        Errore caricamento lavori.
-
-                    </div>
-
-                `;
-
-            }
-
-        );
-
-}
-
-
-/* =====================================================
-   RENDER LAVORI
-===================================================== */
-
-function renderJobs(){
-
-    if(loggedUser !== "Gio"){
-        return;
-    }
-
-
-    const list =
-        document.getElementById(
-            "jobsList"
-        );
-
-
-    if(!allJobs.length){
-
-        list.innerHTML = `
-
-            <div class="empty-orders">
-                Nessun lavoro inserito.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    list.innerHTML = "";
-
-
-    allJobs.forEach(
-        job => {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "job-item";
-
-
-            div.innerHTML = `
-
-                <div>
-
-                    <div class="job-name">
-
-                        ${escapeHtml(
-                            job.person
-                        )}
-
-                    </div>
-
-                    <div class="job-description">
-
-                        ${escapeHtml(
-                            job.description
-                        )}
-
-                    </div>
-
-                    <div class="job-date">
-
-                        ${formatDate(
-                            job.date
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="job-price">
-
-                    ${euro(
-                        job.price
-                    )}
-
-                </div>
-
-            `;
-
-
-            list.appendChild(div);
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   APRI LAVORO
-===================================================== */
-
-window.openJobModal = function(){
-
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Solo Gio può inserire i lavori."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "jobPerson"
-    ).value =
-        "Roby";
-
-
-    document.getElementById(
-        "jobDescription"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "jobPrice"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "jobDate"
-    ).value =
-        getToday();
-
-
-    document.getElementById(
-        "jobModal"
-    ).style.display =
-        "block";
-
-};
-
-
-window.closeJobModal = function(){
-
-    document.getElementById(
-        "jobModal"
-    ).style.display =
-        "none";
-
-};
-
-
-/* =====================================================
-   SALVA LAVORO
-===================================================== */
-
-window.saveJob = async function(){
-
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Solo Gio può inserire i lavori."
-        );
-
-        return;
-
-    }
-
-
-    const person =
-        document.getElementById(
-            "jobPerson"
-        ).value;
-
-
-    const description =
-        document.getElementById(
-            "jobDescription"
-        ).value.trim();
-
-
-    const price =
-        Number(
-            document.getElementById(
-                "jobPrice"
-            ).value
-        );
-
-
-    const date =
-        document.getElementById(
-            "jobDate"
-        ).value;
-
-
-    if(!description){
-
-        alert(
-            "Inserisci la descrizione del lavoro."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !Number.isFinite(price) ||
-        price < 0
-    ){
-
-        alert(
-            "Inserisci un prezzo valido."
-        );
-
-        return;
-
-    }
-
-
-    if(!date){
-
-        alert(
-            "Inserisci la data."
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        await addDoc(
-
-            collection(
-                db,
-                "lavori"
-            ),
-
-            {
-
-                person:person,
-
-                description:description,
-
-                price:price,
-
-                date:date,
-
-                createdAt:Date.now(),
-
-                createdBy:"Gio"
-
-            }
-
-        );
-
-
-        closeJobModal();
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        alert(
-            "Errore durante il salvataggio del lavoro.\n\n" +
-            error.message
-        );
-
-    }
-
-};
-
-
-/* =====================================================
-   TUTTI GLI ORDINI
-===================================================== */
-
-window.showAllOrders = function(){
-
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Questa funzione è disponibile solo per Gio."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Tutti gli ordini";
-
-
-    renderOrders();
-
-};
-
-
-/* =====================================================
-   UTILITÀ
-===================================================== */
-
-function calculateTotal(order){
+function calculateTotal(order) {
 
     return (
-        order.articles || []
-    )
-    .reduce(
-
+        order.articles ||
+        []
+    ).reduce(
         (
             total,
             article
@@ -5033,21 +6368,22 @@ function calculateTotal(order){
                 );
 
         },
-
         0
-
     );
 
 }
 
 
-function euro(value){
+function euro(value) {
 
     return new Intl.NumberFormat(
         "it-IT",
         {
-            style:"currency",
-            currency:"EUR"
+            style:
+                "currency",
+
+            currency:
+                "EUR"
         }
     ).format(
         Number(value) || 0
@@ -5056,10 +6392,13 @@ function euro(value){
 }
 
 
-function formatDate(date){
+function formatDate(date) {
 
-    if(!date)
+    if (!date) {
+
         return "";
+
+    }
 
 
     const p =
@@ -5067,63 +6406,27 @@ function formatDate(date){
         .split("-");
 
 
-    if(p.length !== 3)
+    if (p.length !== 3) {
+
         return date;
 
-
-    return p[2] +
-        "/" +
-        p[1] +
-        "/" +
-        p[0];
-
-}
-
-
-function getToday(){
-
-    const now =
-        new Date();
-
-
-    const year =
-        now.getFullYear();
-
-
-    const month =
-        String(
-            now.getMonth() + 1
-        )
-        .padStart(
-            2,
-            "0"
-        );
-
-
-    const day =
-        String(
-            now.getDate()
-        )
-        .padStart(
-            2,
-            "0"
-        );
+    }
 
 
     return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
+        p[2] +
+        "/" +
+        p[1] +
+        "/" +
+        p[0]
     );
 
 }
 
 
-function statusLabel(status){
+function statusLabel(status) {
 
-    switch(status){
+    switch (status) {
 
         case "daordinare":
             return "Da ordinare";
@@ -5145,7 +6448,11 @@ function statusLabel(status){
 }
 
 
-function escapeHtml(value){
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value) {
 
     return String(
         value ?? ""
@@ -5174,7 +6481,7 @@ function escapeHtml(value){
 }
 
 
-function escapeAttr(value){
+function escapeAttr(value) {
 
     return escapeHtml(
         value
@@ -5184,17 +6491,528 @@ function escapeAttr(value){
 
 
 /* =====================================================
-   NOTIFICHE
+   AGGIORNA ORDINI
 ===================================================== */
 
-async function setupNotifications(){
+window.loadOrders =
+function() {
 
-    if(loggedUser !== "Gio"){
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    list.innerHTML = `
+
+        <div class="empty-orders">
+
+            🔄 Aggiornamento ordini...
+
+        </div>
+
+    `;
+
+
+    /*
+     * Non è necessario ricaricare la pagina:
+     * onSnapshot aggiorna automaticamente
+     * gli ordini.
+     *
+     * Qui forziamo comunque una nuova
+     * sottoscrizione per il pulsante.
+     */
+
+    listenOrders();
+
+
+    setTimeout(
+        () => {
+
+            const current =
+                document.getElementById(
+                    "ordersList"
+                );
+
+
+            if (
+                current &&
+                current.innerHTML.includes(
+                    "Aggiornamento ordini"
+                )
+            ) {
+
+                current.innerHTML = `
+
+                    <div class="empty-orders">
+
+                        ✅ Ordini aggiornati.
+
+                    </div>
+
+                `;
+
+                listenOrders();
+
+            }
+
+        },
+        700
+    );
+
+};
+
+
+/* =====================================================
+   TUTTI GLI ORDINI
+===================================================== */
+
+window.showAllOrders =
+function() {
+
+    if (loggedUser !== "Gio") {
+
+        alert(
+            "Questa funzione è disponibile solo per Gio."
+        );
+
         return;
+
     }
 
 
-    if(!("Notification" in window)){
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Tutti gli ordini";
+
+
+    listenOrders();
+
+};
+
+
+/* =====================================================
+   LAVORI
+===================================================== */
+
+window.openWorks =
+function() {
+
+    if (loggedUser !== "Gio") {
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "worksModal"
+    ).style.display =
+        "block";
+
+
+    loadWorks();
+
+};
+
+
+window.closeWorksModal =
+function() {
+
+    document.getElementById(
+        "worksModal"
+    ).style.display =
+        "none";
+
+};
+
+
+/* =====================================================
+   SALVA LAVORO
+===================================================== */
+
+window.saveWork =
+async function() {
+
+    if (loggedUser !== "Gio") {
+
+        return;
+
+    }
+
+
+    const person =
+        document.getElementById(
+            "workPerson"
+        ).value;
+
+
+    const description =
+        document.getElementById(
+            "workDescription"
+        ).value.trim();
+
+
+    const price =
+        Number(
+            document.getElementById(
+                "workPrice"
+            ).value
+        ) || 0;
+
+
+    const paymentStatus =
+        document.getElementById(
+            "workPaymentStatus"
+        ).value;
+
+
+    if (!description) {
+
+        alert(
+            "Inserisci il lavoro."
+        );
+
+        return;
+
+    }
+
+
+    if (price <= 0) {
+
+        alert(
+            "Inserisci il prezzo."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await addDoc(
+            collection(
+                db,
+                "lavori"
+            ),
+            {
+
+                person:
+                    person,
+
+                description:
+                    description,
+
+                price:
+                    price,
+
+                paymentStatus:
+                    paymentStatus,
+
+                createdAt:
+                    Date.now(),
+
+                createdBy:
+                    "Gio"
+
+            }
+        );
+
+
+        document.getElementById(
+            "workDescription"
+        ).value =
+            "";
+
+        document.getElementById(
+            "workPrice"
+        ).value =
+            "";
+
+        document.getElementById(
+            "workPaymentStatus"
+        ).value =
+            "dapagare";
+
+
+        alert(
+            "✅ Lavoro salvato."
+        );
+
+
+        loadWorks();
+
+
+    } catch (error) {
+
+        console.error(
+            "Errore salvataggio lavoro:",
+            error
+        );
+
+
+        alert(
+            "Errore durante il salvataggio del lavoro.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CARICA LAVORI
+===================================================== */
+
+async function loadWorks() {
+
+    if (loggedUser !== "Gio") {
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "worksList"
+        );
+
+
+    if (!list) {
+
+        return;
+
+    }
+
+
+    list.innerHTML = `
+
+        <div class="empty-orders">
+
+            🔄 Caricamento lavori...
+
+        </div>
+
+    `;
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(
+                        db,
+                        "lavori"
+                    ),
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    )
+                )
+            );
+
+
+        if (snapshot.empty) {
+
+            list.innerHTML = `
+
+                <div class="empty-orders">
+
+                    Nessun lavoro inserito.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+            "";
+
+
+        snapshot.forEach(
+            workDoc => {
+
+                const work =
+                    workDoc.data();
+
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "work-item";
+
+
+                div.innerHTML = `
+
+                    <div>
+
+                        <strong>
+                            ${escapeHtml(
+                                work.description
+                            )}
+                        </strong>
+
+                        <div class="work-info">
+
+                            ${escapeHtml(
+                                work.person
+                            )}
+
+                            ·
+
+                            ${euro(
+                                work.price
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <select
+                        class="work-payment-select">
+
+                        <option
+                            value="dapagare"
+                            ${
+                                work.paymentStatus !== "pagato"
+                                ?
+                                "selected"
+                                :
+                                ""
+                            }>
+                            Da pagare
+                        </option>
+
+                        <option
+                            value="pagato"
+                            ${
+                                work.paymentStatus === "pagato"
+                                ?
+                                "selected"
+                                :
+                                ""
+                            }>
+                            Pagato
+                        </option>
+
+                    </select>
+
+                `;
+
+
+                const paymentSelect =
+                    div.querySelector(
+                        ".work-payment-select"
+                    );
+
+
+                paymentSelect.addEventListener(
+                    "change",
+                    async () => {
+
+                        try {
+
+                            await updateDoc(
+                                doc(
+                                    db,
+                                    "lavori",
+                                    workDoc.id
+                                ),
+                                {
+
+                                    paymentStatus:
+                                        paymentSelect.value,
+
+                                    paymentUpdatedAt:
+                                        serverTimestamp()
+
+                                }
+                            );
+
+                        } catch (error) {
+
+                            console.error(
+                                error
+                            );
+
+                            alert(
+                                "Errore aggiornamento pagamento."
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                list.appendChild(
+                    div
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="empty-orders">
+
+                Errore caricamento lavori.
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   NOTIFICHE
+===================================================== */
+
+async function setupNotifications() {
+
+    if (
+        loggedUser !== "Gio"
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !("Notification" in window)
+    ) {
 
         return;
 
@@ -5204,12 +7022,12 @@ async function setupNotifications(){
     updateNotificationButtonState();
 
 
-    try{
+    try {
 
-        if(
+        if (
             Notification.permission ===
             "granted"
-        ){
+        ) {
 
             const savedToken =
                 localStorage.getItem(
@@ -5217,7 +7035,7 @@ async function setupNotifications(){
                 );
 
 
-            if(savedToken){
+            if (savedToken) {
 
                 setNotificationButtonActive();
 
@@ -5225,10 +7043,9 @@ async function setupNotifications(){
 
         }
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
-            "Errore setup notifiche:",
             error
         );
 
@@ -5237,7 +7054,11 @@ async function setupNotifications(){
 }
 
 
-function setNotificationButtonActive(){
+/* =====================================================
+   PULSANTE NOTIFICHE
+===================================================== */
+
+function setNotificationButtonActive() {
 
     const button =
         document.getElementById(
@@ -5245,8 +7066,10 @@ function setNotificationButtonActive(){
         );
 
 
-    if(!button){
+    if (!button) {
+
         return;
+
     }
 
 
@@ -5261,7 +7084,7 @@ function setNotificationButtonActive(){
 }
 
 
-function updateNotificationButtonState(){
+function updateNotificationButtonState() {
 
     const button =
         document.getElementById(
@@ -5269,8 +7092,10 @@ function updateNotificationButtonState(){
         );
 
 
-    if(!button){
+    if (!button) {
+
         return;
+
     }
 
 
@@ -5280,15 +7105,16 @@ function updateNotificationButtonState(){
         );
 
 
-    if(
+    if (
         savedToken &&
         "Notification" in window &&
-        Notification.permission === "granted"
-    ){
+        Notification.permission ===
+        "granted"
+    ) {
 
         setNotificationButtonActive();
 
-    }else{
+    } else {
 
         button.textContent =
             "🔔 ATTIVA NOTIFICHE";
@@ -5307,14 +7133,20 @@ function updateNotificationButtonState(){
 ===================================================== */
 
 window.activateNotifications =
-async function(){
+async function() {
 
-    if(loggedUser !== "Gio"){
+    if (
+        loggedUser !== "Gio"
+    ) {
+
         return;
+
     }
 
 
-    if(!("Notification" in window)){
+    if (
+        !("Notification" in window)
+    ) {
 
         alert(
             "Questo browser non supporta le notifiche."
@@ -5325,10 +7157,10 @@ async function(){
     }
 
 
-    if(
+    if (
         !messagingSupported ||
         !messaging
-    ){
+    ) {
 
         alert(
             "Firebase Messaging non è supportato da questo browser."
@@ -5339,24 +7171,24 @@ async function(){
     }
 
 
-    try{
+    try {
 
         const permission =
             await Notification.requestPermission();
 
 
-        if(
+        if (
             permission !==
             "granted"
-        ){
+        ) {
 
-            if(
+            if (
                 permission ===
                 "denied"
-            ){
+            ) {
 
                 alert(
-                    "Le notifiche sono state bloccate. Abilita le notifiche dalle impostazioni del dispositivo."
+                    "Le notifiche sono state bloccate."
                 );
 
             }
@@ -5369,10 +7201,9 @@ async function(){
         await registerNotifications();
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
-            "Errore notifiche:",
             error
         );
 
@@ -5388,36 +7219,28 @@ async function(){
 
 
 /* =====================================================
-   REGISTRAZIONE FCM
+   REGISTRAZIONE NOTIFICHE
 ===================================================== */
 
-async function registerNotifications(){
+async function registerNotifications() {
 
-    if(
+    if (
         !("serviceWorker" in navigator)
-    ){
-
-        alert(
-            "Il browser non supporta i Service Worker."
-        );
+    ) {
 
         return;
 
     }
 
 
-    if(!messaging){
-
-        alert(
-            "Firebase Messaging non è disponibile."
-        );
+    if (!messaging) {
 
         return;
 
     }
 
 
-    if(!NORMALIZED_VAPID_KEY){
+    if (!NORMALIZED_VAPID_KEY) {
 
         alert(
             "La chiave VAPID non è valida."
@@ -5431,18 +7254,19 @@ async function registerNotifications(){
     let registration;
 
 
-    try{
+    try {
 
         registration =
             await navigator.serviceWorker.register(
                 "./firebase-messaging-sw.js",
                 {
-                    scope:"./"
+                    scope:
+                        "./"
                 }
             );
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
             "Errore Service Worker:",
@@ -5466,25 +7290,27 @@ async function registerNotifications(){
     let token;
 
 
-    try{
+    try {
 
         token =
             await getToken(
                 messaging,
                 {
+
                     vapidKey:
                         NORMALIZED_VAPID_KEY,
 
                     serviceWorkerRegistration:
                         registration
+
                 }
             );
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
-            "ERRORE getToken():",
+            "Errore getToken:",
             error
         );
 
@@ -5499,7 +7325,7 @@ async function registerNotifications(){
     }
 
 
-    if(!token){
+    if (!token) {
 
         alert(
             "Firebase non ha restituito il token."
@@ -5516,16 +7342,14 @@ async function registerNotifications(){
     );
 
 
-    try{
+    try {
 
         await setDoc(
-
             doc(
                 db,
                 "utenti",
                 "Gio"
             ),
-
             {
 
                 notificationToken:
@@ -5543,32 +7367,29 @@ async function registerNotifications(){
                     :
                     "browser",
 
-                notificationUserAgent:
-                    navigator.userAgent,
-
                 notificationUpdatedAt:
                     serverTimestamp()
 
             },
-
             {
-                merge:true
+                merge:
+                    true
             }
-
         );
+
+
+        setNotificationButtonActive();
 
 
         alert(
             "✅ NOTIFICHE ATTIVE!\n\n" +
-            "Il token è stato salvato correttamente.\n\n" +
-            "Firebase: utenti/Gio"
+            "Il token è stato salvato correttamente."
         );
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
-            "ERRORE SALVATAGGIO TOKEN:",
             error
         );
 
@@ -5583,43 +7404,39 @@ async function registerNotifications(){
     }
 
 
-    setNotificationButtonActive();
-
-
-    if(!notificationListenerActive){
+    if (
+        !notificationListenerActive
+    ) {
 
         onMessage(
             messaging,
             payload => {
 
-                console.log(
-                    "Messaggio Firebase ricevuto:",
-                    payload
-                );
-
-
                 const title =
                     payload.notification?.title ||
-                    payload.data?.title ||
                     "KTM ORDINI";
 
 
                 const body =
                     payload.notification?.body ||
-                    payload.data?.body ||
                     "È arrivato un nuovo ordine.";
 
 
-                if(
+                if (
                     Notification.permission ===
                     "granted"
-                ){
+                ) {
 
                     new Notification(
                         title,
                         {
-                            body:body,
-                            icon:"./icon-192.png"
+
+                            body:
+                                body,
+
+                            icon:
+                                "./icon-192.png"
+
                         }
                     );
 
@@ -5647,17 +7464,17 @@ const savedUser =
     );
 
 
-if(
+if (
     savedUser &&
     USERS[savedUser]
-){
+) {
 
     loggedUser =
         savedUser;
 
     openApp();
 
-}else{
+} else {
 
     document.getElementById(
         "loginPage"
@@ -5668,12 +7485,12 @@ if(
 
 
 /* =====================================================
-   CHIUSURA MODAL
+   CHIUSURA MODAL CON CLICK ESTERNO
 ===================================================== */
 
 window.addEventListener(
     "click",
-    function(event){
+    event => {
 
         const orderModal =
             document.getElementById(
@@ -5687,54 +7504,38 @@ window.addEventListener(
             );
 
 
-        const accountModal =
+        const worksModal =
             document.getElementById(
-                "accountModal"
+                "worksModal"
             );
 
 
-        const jobModal =
-            document.getElementById(
-                "jobModal"
-            );
-
-
-        if(
+        if (
             event.target ===
             orderModal
-        ){
+        ) {
 
             closeModal();
 
         }
 
 
-        if(
+        if (
             event.target ===
             detailModal
-        ){
+        ) {
 
             closeDetail();
 
         }
 
 
-        if(
+        if (
             event.target ===
-            accountModal
-        ){
+            worksModal
+        ) {
 
-            closeAccountModal();
-
-        }
-
-
-        if(
-            event.target ===
-            jobModal
-        ){
-
-            closeJobModal();
+            closeWorksModal();
 
         }
 
@@ -5750,12 +7551,12 @@ document.getElementById(
     "loginCode"
 ).addEventListener(
     "keydown",
-    function(event){
+    event => {
 
-        if(
+        if (
             event.key ===
             "Enter"
-        ){
+        ) {
 
             login();
 
@@ -5763,6 +7564,278 @@ document.getElementById(
 
     }
 );
+
+</script>
+
+</body>
+</html> 
+        /* =====================================================
+           CHIUSURA MODAL
+        ===================================================== */
+
+        window.addEventListener(
+            "click",
+            function(event){
+
+                const orderModal =
+                    document.getElementById(
+                        "orderModal"
+                    );
+
+                const detailModal =
+                    document.getElementById(
+                        "detailModal"
+                    );
+
+                const worksModal =
+                    document.getElementById(
+                        "worksModal"
+                    );
+
+                const accountsModal =
+                    document.getElementById(
+                        "accountsModal"
+                    );
+
+
+                if(event.target === orderModal){
+                    closeModal();
+                }
+
+
+                if(event.target === detailModal){
+                    closeDetail();
+                }
+
+
+                if(event.target === worksModal){
+                    closeWorks();
+                }
+
+
+                if(event.target === accountsModal){
+                    closeAccounts();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INVIO CON ENTER NEL LOGIN
+        ===================================================== */
+
+        document.getElementById(
+            "loginCode"
+        ).addEventListener(
+            "keydown",
+            function(event){
+
+                if(event.key === "Enter"){
+                    login();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           CHIUSURA CON ESC
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event){
+
+                if(event.key !== "Escape"){
+                    return;
+                }
+
+
+                closeModal();
+                closeDetail();
+                closeWorks();
+                closeAccounts();
+
+            }
+        );
+
+
+        /* =====================================================
+           AGGIORNAMENTO AUTOMATICO
+        ===================================================== */
+
+        /*
+         * Gli ordini vengono già aggiornati in tempo reale
+         * tramite onSnapshot().
+         *
+         * Il pulsante "Aggiorna ordini" esegue comunque
+         * un refresh esplicito della lettura.
+         */
+
+        window.refreshOrdersNow =
+        async function(){
+
+            const list =
+                document.getElementById(
+                    "ordersList"
+                );
+
+
+            if(!list){
+                return;
+            }
+
+
+            list.innerHTML = `
+                <div class="empty-orders">
+                    🔄 Aggiornamento in corso...
+                </div>
+            `;
+
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "ordini"
+                            ),
+                            orderBy(
+                                "createdAt",
+                                "desc"
+                            )
+                        )
+                    );
+
+
+                let orders = [];
+
+
+                snapshot.forEach(
+                    docSnap => {
+
+                        orders.push({
+
+                            id:
+                                docSnap.id,
+
+                            ...docSnap.data()
+
+                        });
+
+                    }
+                );
+
+
+                if(loggedUser !== "Gio"){
+
+                    orders =
+                        orders.filter(
+                            order =>
+                                order.person ===
+                                loggedUser
+                        );
+
+                }
+
+
+                renderOrders(orders);
+
+
+            }catch(error){
+
+                console.error(
+                    "Errore aggiornamento:",
+                    error
+                );
+
+
+                list.innerHTML = `
+                    <div class="empty-orders">
+
+                        ❌ Errore durante
+                        l'aggiornamento.
+
+                        <br><br>
+
+                        ${escapeHtml(
+                            error.message
+                        )}
+
+                    </div>
+                `;
+
+            }
+
+        };
+
+
+        /* =====================================================
+           RIAPERTURA APP
+        ===================================================== */
+
+        function restoreSession(){
+
+            const savedUser =
+                localStorage.getItem(
+                    "ktm_logged_user"
+                );
+
+
+            if(
+                savedUser &&
+                USERS[savedUser]
+            ){
+
+                loggedUser =
+                    savedUser;
+
+                selectedUser =
+                    savedUser;
+
+                openApp();
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "loginPage"
+            ).style.display =
+                "flex";
+
+        }
+
+
+        /* =====================================================
+           AVVIO
+        ===================================================== */
+
+        restoreSession();
+
+
+        console.log(
+            "================================"
+        );
+
+        console.log(
+            "KTM ORDINI AVVIATO"
+        );
+
+        console.log(
+            "Utente:",
+            loggedUser || "nessuno"
+        );
+
+        console.log(
+            "================================"
+        );
+
+    }
 
 </script>
 
