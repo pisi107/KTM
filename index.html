@@ -4314,7 +4314,6 @@ function calculateAccount(
         totalScales += Number(scale.price) || 0;
     });
 
-    // I lavori non riducono più il conto, ma i soldi scalati sì
     let finalPayable = Math.max(0, payableOrders - totalScales);
     let finalTotal = Math.max(0, totalOrders - totalScales);
 
@@ -5851,7 +5850,7 @@ window.addEventListener(
         if(
             event.target ===
             detailModal
-        );{
+        ){
 
             closeDetail();
 
@@ -5888,11 +5887,25 @@ window.addEventListener(
 );
 
 /* =====================================================
-   ENTER LOGIN
+   INVIO LOGIN / CODICE
 ===================================================== */
 
-document.getElementById(p => {
-    // skip
+document.getElementById("loginCode").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        login();
+    }
+});
+
+document.getElementById("newCode").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        changeCode();
+    }
+});
+
+document.getElementById("confirmCode").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        changeCode();
+    }
 });
 
 </script>
