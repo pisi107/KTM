@@ -5168,6 +5168,30 @@ window.showOrdersByPerson = function(person){
 
     renderOrdersFiltered(orders);
 };
+    window.showOrderFolders = function(){
+
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Tutti gli ordini";
+
+    document.querySelector(
+        ".order-folders"
+    ).style.display = "grid";
+
+        document.querySelector(
+    ".back-folders"
+).style.display = "block";
+
+    document.getElementById(
+        "ordersList"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".back-folders"
+    ).style.display = "none";
+
+};
     function renderOrdersFiltered(orders){
 
     const list =
