@@ -5098,7 +5098,139 @@ window.showAllOrders = function(){
         return;
 
     }
+window.showOrdersByPerson = function(person){
 
+    if(loggedUser !== "Gio"){
+        alert(
+            "Questa funzione è disponibile solo per Gio."
+        );
+
+        return;
+    }
+
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Ordini " + person;
+
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+    const orders =
+        allOrders.filter(
+            order =>
+            order.person === person
+        );
+
+    if(!orders.length){
+
+        list.innerHTML = `
+            <div class="empty-orders">
+                Nessun ordine presente per ${escapeHtml(person)}.
+            </div>
+        `;
+
+        return;
+    }
+
+    renderOrdersFiltered(
+        orders
+    );
+};
+    function renderOrdersFiltered(orders){
+
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+    list.innerHTML = "";
+
+    orders.forEach(order => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "order";
+
+        const codes =
+            (order.articles || [])
+            .map(
+                a =>
+                `${escapeHtml(a.qty)} × ${escapeHtml(a.code)}`
+            )
+            .join(", ");
+
+        const total =
+            calculateTotal(order);
+
+        div.innerHTML = `
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+                        ${escapeHtml(
+                            order.person || ""
+                        )}
+                        ·
+                        ${formatDate(order.date)}
+                    </div>
+
+                </div>
+
+                <span class="status ${
+                    escapeAttr(
+                        order.status ||
+                        "daordinare"
+                    )
+                }">
+
+                    ${statusLabel(
+                        order.status
+                    )}
+
+                </span>
+
+            </div>
+
+            <div class="order-codes">
+
+                ${
+                    codes ||
+                    "Nessun articolo"
+                }
+
+            </div>
+
+            <div class="order-bottom">
+
+                <div class="order-price">
+                    ${euro(total)}
+                </div>
+
+            </div>
+
+        `;
+
+        div.addEventListener(
+            "click",
+            function(){
+
+                showOrder(order);
+
+            }
+        );
+
+        list.appendChild(div);
+
+    });
+
+}
     document.getElementById(
         "ordersTitle"
     ).textContent =
