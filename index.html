@@ -712,11 +712,17 @@ button{
 
 .date-field{
     text-align:center!important;
+    text-align-last:center!important;
     display:block;
     margin-left:auto;
     margin-right:auto;
+    -webkit-appearance:none;
+    appearance:none;
 }
 
+.date-field::-webkit-date-and-time-value{
+    text-align:center;
+}
 .article-row{
     background:#f8fafc;
     padding:15px;
