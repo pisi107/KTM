@@ -5122,18 +5122,50 @@ window.saveScaleMoney = async function(){
    TUTTI GLI ORDINI
 ===================================================== */
 
+/* =====================================================
+   TUTTI GLI ORDINI
+===================================================== */
+
 window.showAllOrders = function(){
 
     if(loggedUser !== "Gio"){
-
         alert(
             "Questa funzione è disponibile solo per Gio."
         );
 
         return;
-
     }
-    activeOrderPerson = person;
+
+    // Nessuna cartella selezionata
+    activeOrderPerson = null;
+
+    // Titolo
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Tutti gli ordini";
+
+    // Mostra le due cartelle
+    document.querySelector(
+        ".order-folders"
+    ).style.display = "grid";
+
+    // Nasconde il pulsante indietro
+    document.querySelector(
+        ".back-folders"
+    ).style.display = "none";
+
+    // Nasconde completamente gli ordini
+    document.getElementById(
+        "ordersList"
+    ).style.display = "none";
+};
+
+
+/* =====================================================
+   APRI CARTELLA ROBY / FEDE
+===================================================== */
+
 window.showOrdersByPerson = function(person){
 
     if(loggedUser !== "Gio"){
@@ -5144,74 +5176,92 @@ window.showOrdersByPerson = function(person){
         return;
     }
 
+    // Memorizza la cartella aperta
+    activeOrderPerson = person;
+
+    // Cambia titolo
     document.getElementById(
         "ordersTitle"
     ).textContent =
         "Ordini " + person;
 
+    // Nasconde le cartelle
     document.querySelector(
         ".order-folders"
     ).style.display = "none";
 
+    // Mostra il pulsante indietro
+    document.querySelector(
+        ".back-folders"
+    ).style.display = "block";
+
+    // Mostra gli ordini
     document.getElementById(
         "ordersList"
     ).style.display = "block";
 
-    const list =
-        document.getElementById(
-            "ordersList"
-        );
-
+    // Prende solo gli ordini della persona
     const orders =
         allOrders.filter(
             order =>
             order.person === person
         );
 
-    if(!orders.length){
-
-        list.innerHTML = `
-            <div class="empty-orders">
-                Nessun ordine presente per
-                ${escapeHtml(person)}.
-            </div>
-        `;
-
-        return;
-    }
-
     renderOrdersFiltered(orders);
 };
-    window.showOrderFolders = function(){
+
+
+/* =====================================================
+   TORNA ALLE CARTELLE
+===================================================== */
+
+window.showOrderFolders = function(){
+
+    activeOrderPerson = null;
 
     document.getElementById(
         "ordersTitle"
     ).textContent =
         "Tutti gli ordini";
 
+    // Mostra le cartelle
     document.querySelector(
         ".order-folders"
     ).style.display = "grid";
 
-        document.querySelector(
-    ".back-folders"
-).style.display = "block";
-
-    document.getElementById(
-        "ordersList"
-    ).style.display = "none";
-
+    // Nasconde il pulsante indietro
     document.querySelector(
         ".back-folders"
     ).style.display = "none";
 
+    // Nasconde gli ordini
+    document.getElementById(
+        "ordersList"
+    ).style.display = "none";
 };
-    function renderOrdersFiltered(orders){
+
+
+/* =====================================================
+   RENDER ORDINI FILTRATI
+===================================================== */
+
+function renderOrdersFiltered(orders){
 
     const list =
         document.getElementById(
             "ordersList"
         );
+
+    if(!orders.length){
+
+        list.innerHTML = `
+            <div class="empty-orders">
+                Nessun ordine presente.
+            </div>
+        `;
+
+        return;
+    }
 
     list.innerHTML = "";
 
@@ -5241,11 +5291,17 @@ window.showOrdersByPerson = function(person){
                 <div>
 
                     <div class="order-number">
+
                         ${escapeHtml(
                             order.person || ""
                         )}
+
                         ·
-                        ${formatDate(order.date)}
+
+                        ${formatDate(
+                            order.date
+                        )}
+
                     </div>
 
                 </div>
@@ -5277,7 +5333,9 @@ window.showOrdersByPerson = function(person){
             <div class="order-bottom">
 
                 <div class="order-price">
+
                     ${euro(total)}
+
                 </div>
 
             </div>
@@ -5298,14 +5356,6 @@ window.showOrdersByPerson = function(person){
     });
 
 }
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Tutti gli ordini";
-
-    renderOrders();
-
-};
 
 /* =====================================================
    UTILITÀ
