@@ -2939,7 +2939,20 @@ function listenOrders(){
                     }
                 );
 
-                renderOrders();
+                if(activeOrderPerson){
+
+    renderOrdersFiltered(
+        allOrders.filter(
+            order =>
+            order.person === activeOrderPerson
+        )
+    );
+
+}else{
+
+    renderOrders();
+
+}
 
                 updateAccountSummary();
 
