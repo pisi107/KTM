@@ -2966,25 +2966,12 @@ function renderOrders(){
                 <div>
 
                     <div class="order-number">
-
-                        ${escapeHtml(
-                            order.number ||
-                            "ORDINE"
-                        )}
-
-                    </div>
-
-                    <div class="order-info">
-
-                        ${escapeHtml(
-                            order.person || ""
-                        )}
-
-                        ·
-
-                        ${formatDate(order.date)}
-
-                    </div>
+    ${escapeHtml(
+        order.person || ""
+    )}
+    ·
+    ${formatDate(order.date)}
+</div>
 
                 </div>
 
