@@ -2939,16 +2939,32 @@ function listenOrders(){
                     }
                 );
 
-                if(activeOrderPerson){
+                if(loggedUser === "Gio"){
 
-    renderOrdersFiltered(
-        allOrders.filter(
-            order =>
-            order.person === activeOrderPerson
-        )
-    );
+    if(activeOrderPerson){
+
+        renderOrdersFiltered(
+            allOrders.filter(
+                order =>
+                order.person === activeOrderPerson
+            )
+        );
+
+    }else{
+
+        // Gio vede solo le cartelle
+        document.getElementById(
+            "ordersList"
+        ).style.display = "none";
+
+    }
 
 }else{
+
+    // Roby e Fede vedono normalmente i propri ordini
+    document.getElementById(
+        "ordersList"
+    ).style.display = "block";
 
     renderOrders();
 
