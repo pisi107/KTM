@@ -5115,6 +5115,14 @@ window.showOrdersByPerson = function(person){
     ).textContent =
         "Ordini " + person;
 
+    document.querySelector(
+        ".order-folders"
+    ).style.display = "none";
+
+    document.getElementById(
+        "ordersList"
+    ).style.display = "block";
+
     const list =
         document.getElementById(
             "ordersList"
@@ -5130,16 +5138,15 @@ window.showOrdersByPerson = function(person){
 
         list.innerHTML = `
             <div class="empty-orders">
-                Nessun ordine presente per ${escapeHtml(person)}.
+                Nessun ordine presente per
+                ${escapeHtml(person)}.
             </div>
         `;
 
         return;
     }
 
-    renderOrdersFiltered(
-        orders
-    );
+    renderOrdersFiltered(orders);
 };
     function renderOrdersFiltered(orders){
 
