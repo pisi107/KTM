@@ -3474,12 +3474,17 @@ window.saveOrder = async function(){
                         ).value
                     ) || 0;
 
-                const discount =
-                    Number(
-                        row.querySelector(
-                            ".article-discount"
-                        ).value
-                    ) || 25;
+                const discountValue =
+    Number(
+        row.querySelector(
+            ".article-discount"
+        ).value
+    );
+
+const discount =
+    Number.isFinite(discountValue)
+        ? discountValue
+        : 25;
 
                 if(code){
 
