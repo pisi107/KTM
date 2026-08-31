@@ -4200,72 +4200,34 @@ window.deleteOrder = async function(id){
    CONTO
 ===================================================== */
 
-function calculateAccount(
-    person
-){
-
-    const orders =
-        allOrders.filter(
-            order =>
-            order.person === person
-        );
-
-    const jobs =
-        allJobs.filter(
-            job =>
-            job.person === person
-        );
-
-    const scales =
-        allScales.filter(
-            scale =>
-            scale.person === person
-        );
+function calculateAccount(person) {
+    const orders = allOrders.filter(order => order.person === person);
+    const jobs = allJobs.filter(job => job.person === person);
+    const scales = allScales.filter(scale => scale.person === person);
 
     let totalOrders = 0;
+    orders.forEach(order => {
+        totalOrders += calculateTotal(order);
+    });
 
-    orders.forEach(
-        order => {
-            const value =
-                calculateTotal(
-                    order
-                );
-            totalOrders += value;
-        }
-    );
-
-    // Calcoliamo il totale dei crediti/pagamenti extra (Lavori + Soldi scalati)
     let totalCredits = 0;
-    
     jobs.forEach(job => {
         totalCredits += Number(job.price) || 0;
     });
-
     scales.forEach(scale => {
         totalCredits += Number(scale.price) || 0;
     });
 
-    // Il totale complessivo degli ordini rimane intero
     let finalTotal = totalOrders;
-
-    // Quello che è stato pagato tramite lavori o soldi scalati diventa il "PAGATO"
     let paidOrders = Math.min(totalOrders, totalCredits);
-
-    // Il "DA PAGARE" diminuisce di conseguenza
     let finalPayable = Math.max(0, totalOrders - paidOrders);
 
     return {
-
         total: finalTotal,
-
         paid: paidOrders,
-
         payable: finalPayable,
-
         orders: orders
-
     };
-
 }
 
     );
