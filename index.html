@@ -4200,36 +4200,56 @@ window.deleteOrder = async function(id){
    CONTO
 ===================================================== */
 
-function calculateAccount(person) {
-    const orders = allOrders.filter(order => order.person === person);
-    const jobs = allJobs.filter(job => job.person === person);
-    const scales = allScales.filter(scale => scale.person === person);
+function calculateAccount(
+    person
+){
+
+    const orders =
+        allOrders.filter(
+            order =>
+            order.person === person
+        );
+
+    const jobs =
+        allJobs.filter(
+            job =>
+            job.person === person
+        );
+
+    const scales =
+        allScales.filter(
+            scale =>
+            scale.person === person
+        );
 
     let totalOrders = 0;
-    orders.forEach(order => {
-        totalOrders += calculateTotal(order);
-    });
+    let paidOrders = 0;
+    let payableOrders = 0;
 
-    let totalCredits = 0;
-    jobs.forEach(job => {
-        totalCredits += Number(job.price) || 0;
-    });
-    scales.forEach(scale => {
-        totalCredits += Number(scale.price) || 0;
-    });
+    orders.forEach(
+        order => {
 
-    let finalTotal = totalOrders;
-    let paidOrders = Math.min(totalOrders, totalCredits);
-    let finalPayable = Math.max(0, totalOrders - paidOrders);
+            const value =
+                calculateTotal(
+                    order
+                );
 
-    return {
-        total: finalTotal,
-        paid: paidOrders,
-        payable: finalPayable,
-        orders: orders
-    };
-}
+            totalOrders += value;
 
+            if(
+                order.paymentStatus ===
+                "pagato"
+            ){
+
+                paidOrders += value;
+
+            }else{
+
+                payableOrders += value;
+
+            }
+
+        }
     );
 
     let totalJobs = 0;
