@@ -861,6 +861,12 @@ button{
     margin-bottom:15px;
 }
 
+.parts-finder-button{
+    width:auto;
+    margin-top:0;
+    padding:11px 14px;
+}
+
 .total{
     margin-top:20px;
     background:#111827;
@@ -1919,6 +1925,19 @@ button{
 
         </div>
 
+        <div class="form-group">
+
+            <label>
+                Modello KTM / VIN
+            </label>
+
+            <input
+                id="orderVehicle"
+                type="text"
+                placeholder="Es. 450 EXC 2019 oppure VIN">
+
+        </div>
+
         <div class="info-box">
 
             💡 Il prezzo e lo sconto possono essere inseriti o modificati da Gio.
@@ -1933,6 +1952,15 @@ button{
                 onclick="addArticle()">
 
                 + Aggiungi articolo
+
+            </button>
+
+            <button
+                type="button"
+                class="gray-button parts-finder-button"
+                onclick="openKtmPartsFinder()">
+
+                🔍 Cerca ricambio KTM
 
             </button>
 
@@ -3230,6 +3258,10 @@ window.openNewOrder = function(){
         "daordinare";
 
     document.getElementById(
+        "orderVehicle"
+    ).value = "";
+
+    document.getElementById(
         "articles"
     ).innerHTML = "";
 
@@ -3250,6 +3282,16 @@ window.closeModal = function(){
         "orderModal"
     ).style.display =
         "none";
+
+};
+
+window.openKtmPartsFinder = function(){
+
+    window.open(
+        "https://sparepartsfinder.ktm.com",
+        "_blank",
+        "noopener"
+    );
 
 };
 
@@ -3282,6 +3324,14 @@ function applyOrderPermissions(){
     } else {
         dateField.classList.add("fixed-field");
     }
+
+    const vehicleField =
+        document.getElementById(
+            "orderVehicle"
+        );
+
+    vehicleField.disabled = false;
+    vehicleField.classList.remove("fixed-field");
 
     document
         .querySelectorAll(
@@ -3651,6 +3701,11 @@ window.saveOrder = async function(){
             "orderStatus"
         ).value;
 
+    const vehicle =
+        document.getElementById(
+            "orderVehicle"
+        ).value.trim();
+
     const articles = [];
 
     document 
@@ -3774,6 +3829,8 @@ window.saveOrder = async function(){
 
                 articles:articles,
 
+                vehicle:vehicle,
+
                 updatedAt:Date.now()
 
             };
@@ -3827,6 +3884,8 @@ window.saveOrder = async function(){
                 person:person,
 
                 date:date,
+
+                vehicle:vehicle,
 
                 status: loggedUser === "Gio" ? status : "daordinare",
 
@@ -4242,6 +4301,12 @@ window.editOrder = async function(id){
     ).value =
         order.status ||
         "daordinare";
+
+    document.getElementById(
+        "orderVehicle"
+    ).value =
+        order.vehicle ||
+        "";
 
     document.getElementById(
         "articles"
