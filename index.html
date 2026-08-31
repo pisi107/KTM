@@ -601,9 +601,31 @@ button{
     color:#c2410c;
 }
 
+.arrivato{
+    background:#ffedd5;
+    color:#c2410c;
+}
+
 .consegnato{
     background:#dcfce7;
     color:#166534;
+}
+
+.article-status{
+    min-width:165px;
+    padding:7px 10px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    background:#fff;
+    color:#171717;
+    font:inherit;
+    font-size:13px;
+    font-weight:700;
+}
+
+.article-status:focus{
+    outline:none;
+    border-color:#ff6600;
 }
 
 .empty-orders{
@@ -784,7 +806,7 @@ button{
 
 .article-grid{
     display:grid;
-    grid-template-columns:2fr .7fr 1fr .8fr auto;
+    grid-template-columns:2fr .7fr 1fr .8fr 1.25fr auto;
     gap:10px;
     align-items:end;
 }
@@ -1029,7 +1051,7 @@ button{
     }
 
     .article-grid{
-        grid-template-columns:1.5fr .7fr 1fr .8fr auto;
+        grid-template-columns:1.5fr .7fr 1fr .8fr 1.25fr auto;
     }
 
 }
@@ -1871,7 +1893,7 @@ button{
                 </option>
 
                 <option value="ritirare">
-                    Da ritirare
+                    Disponibile al ritiro
                 </option>
 
                 <option value="consegnato">
@@ -3275,13 +3297,31 @@ function applyOrderPermissions(){
             }
         );
 
+    document
+        .querySelectorAll(
+            ".article-status"
+        )
+        .forEach(
+            input => {
+                input.disabled = !isAdmin;
+                if(isAdmin){
+                    input.classList.remove("fixed-field");
+                } else {
+                    input.classList.add("fixed-field");
+                }
+            }
+        );
+
 }
 
 /* =====================================================
    ARTICOLI
 ===================================================== */
 
-window.addArticle = function(article=null){
+window.addArticle = function(
+    article=null,
+    defaultStatus="ordinato"
+){
 
     const container =
         document.getElementById(
@@ -3309,6 +3349,13 @@ window.addArticle = function(article=null){
         Number(article.discount)
         :
         37.5;
+
+    const articleStatus =
+        normalizeArticleStatus(
+            article && article.status
+            ? article.status
+            : defaultStatus
+        );
 
     row.innerHTML = `
 
@@ -3395,6 +3442,32 @@ window.addArticle = function(article=null){
                         :
                         37.5
                     }">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Stato articolo
+                </label>
+
+                <select class="article-status">
+                    <option value="ordinato" ${
+                        articleStatus === "ordinato"
+                        ? "selected"
+                        : ""
+                    }>Ordinato</option>
+                    <option value="arrivato" ${
+                        articleStatus === "arrivato"
+                        ? "selected"
+                        : ""
+                    }>Arrivato</option>
+                    <option value="consegnato" ${
+                        articleStatus === "consegnato"
+                        ? "selected"
+                        : ""
+                    }>Consegnato</option>
+                </select>
 
             </div>
 
@@ -3597,10 +3670,15 @@ window.saveOrder = async function(){
         ).value
     );
 
-const discount =
+                const discount =
     Number.isFinite(discountValue)
         ? discountValue
         : 37.5;
+
+                const status =
+                    row.querySelector(
+                        ".article-status"
+                    ).value;
 
                 if(code){
 
@@ -3612,7 +3690,9 @@ const discount =
 
                         price:price,
 
-                        discount:discount
+                        discount:discount,
+
+                        status:status
 
                     });
 
@@ -3792,6 +3872,13 @@ function showOrder(order){
     .forEach(
         article => {
 
+            const articleStatus =
+                normalizeArticleStatus(
+                    article.status ||
+                    order.status ||
+                    "ordinato"
+                );
+
             const price =
                 Number(
                     article.price
@@ -3838,6 +3925,14 @@ function showOrder(order){
 
                     <td>
                         ${discount}%
+                    </td>
+
+                    <td>
+                        <span class="status ${
+                            escapeAttr(articleStatus)
+                        }">
+                            ${articleStatusLabel(articleStatus)}
+                        </span>
                     </td>
 
                     <td>
@@ -3938,6 +4033,10 @@ function showOrder(order){
                             </th>
 
                             <th>
+                                Stato
+                            </th>
+
+                            <th>
                                 Totale
                             </th>
 
@@ -3951,7 +4050,7 @@ function showOrder(order){
                             rows ||
                             `
                             <tr>
-                                <td colspan="5">
+                                <td colspan="6">
                                     Nessun articolo.
                                 </td>
                             </tr>
@@ -4110,7 +4209,10 @@ window.editOrder = async function(id){
     (order.articles || [])
     .forEach(
         article =>
-        addArticle(article)
+        addArticle(
+            article,
+            order.status || "ordinato"
+        )
     );
 
     applyOrderPermissions();
@@ -5503,13 +5605,49 @@ function statusLabel(status){
             return "Ordinato";
 
         case "ritirare":
-            return "Da ritirare";
+            return "Disponibile al ritiro";
 
         case "consegnato":
             return "Consegnato";
 
         default:
             return "Da ordinare";
+
+    }
+
+}
+
+function normalizeArticleStatus(status){
+
+    switch(status){
+
+        case "arrivato":
+        case "ordinato":
+        case "consegnato":
+            return status;
+
+        case "ritirare":
+            return "arrivato";
+
+        default:
+            return "ordinato";
+
+    }
+
+}
+
+function articleStatusLabel(status){
+
+    switch(normalizeArticleStatus(status)){
+
+        case "arrivato":
+            return "Arrivato";
+
+        case "consegnato":
+            return "Consegnato";
+
+        default:
+            return "Ordinato";
 
     }
 
