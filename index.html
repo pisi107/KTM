@@ -4128,6 +4128,19 @@ function showOrder(order){
         }
     );
 
+    if(
+        loggedUser !== "Gio" &&
+        isOrderLockedForCustomer(order)
+    ){
+        document.getElementById(
+            "editOrderButton"
+        ).style.display = "none";
+
+        document.getElementById(
+            "deleteOrderButton"
+        ).style.display = "none";
+    }
+
     document.getElementById(
         "deleteOrderButton"
     ).addEventListener(
@@ -4186,6 +4199,18 @@ window.editOrder = async function(id){
 
         alert(
             "Non puoi modificare questo ordine."
+        );
+
+        return;
+
+    }
+
+    if(
+        loggedUser !== "Gio" &&
+        isOrderLockedForCustomer(order)
+    ){
+        alert(
+            "Questo ordine è già stato inviato e non può più essere modificato."
         );
 
         return;
@@ -4280,6 +4305,18 @@ window.deleteOrder = async function(id){
 
         alert(
             "Non puoi eliminare questo ordine."
+        );
+
+        return;
+
+    }
+
+    if(
+        loggedUser !== "Gio" &&
+        isOrderLockedForCustomer(order)
+    ){
+        alert(
+            "Questo ordine è già stato inviato e non può più essere eliminato."
         );
 
         return;
@@ -5710,6 +5747,33 @@ function articleStatusSummary(order){
             </span>
         </div>
     `;
+
+}
+
+function isOrderLockedForCustomer(order){
+
+    const activeStatuses = [
+        "ordinato",
+        "arrivato",
+        "ritirare",
+        "consegnato"
+    ];
+
+    if(
+        activeStatuses.includes(
+            order.status
+        )
+    ){
+        return true;
+    }
+
+    return (order.articles || [])
+        .some(
+            article =>
+            activeStatuses.includes(
+                article.status
+            )
+        );
 
 }
 
