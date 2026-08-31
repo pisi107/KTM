@@ -628,6 +628,21 @@ button{
     border-color:#ff6600;
 }
 
+.article-status-summary{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+}
+
+.article-status-count{
+    display:inline-block;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:900;
+}
+
 .empty-orders{
     padding:25px;
     text-align:center;
@@ -3144,6 +3159,8 @@ function renderOrders(){
 
             </div>
 
+            ${articleStatusSummary(order)}
+
             <div class="order-bottom">
 
                 <div class="order-price">
@@ -5450,6 +5467,8 @@ function renderOrdersFiltered(orders){
 
             </div>
 
+            ${articleStatusSummary(order)}
+
             <div class="order-bottom">
 
                 <div class="order-price">
@@ -5650,6 +5669,47 @@ function articleStatusLabel(status){
             return "Ordinato";
 
     }
+
+}
+
+function articleStatusSummary(order){
+
+    const counts = {
+        ordinato:0,
+        arrivato:0,
+        consegnato:0
+    };
+
+    (order.articles || [])
+    .forEach(
+        article => {
+
+            const status =
+                normalizeArticleStatus(
+                    article.status ||
+                    order.status ||
+                    "ordinato"
+                );
+
+            counts[status] +=
+                Number(article.qty) || 0;
+
+        }
+    );
+
+    return `
+        <div class="article-status-summary" aria-label="Riepilogo stato articoli">
+            <span class="article-status-count ordinato">
+                Ordinati: ${counts.ordinato}
+            </span>
+            <span class="article-status-count arrivato">
+                Arrivati: ${counts.arrivato}
+            </span>
+            <span class="article-status-count consegnato">
+                Consegnati: ${counts.consegnato}
+            </span>
+        </div>
+    `;
 
 }
 
