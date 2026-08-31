@@ -1928,13 +1928,13 @@ button{
         <div class="form-group">
 
             <label>
-                Modello KTM / VIN
+                Modello KTM / codice ricambio
             </label>
 
             <input
                 id="orderVehicle"
                 type="text"
-                placeholder="Es. 450 EXC 2019 oppure VIN">
+                placeholder="Es. 450 EXC 2019 oppure codice ricambio">
 
         </div>
 
@@ -1958,9 +1958,9 @@ button{
             <button
                 type="button"
                 class="gray-button parts-finder-button"
-                onclick="openKtmPartsFinder()">
+                onclick="openKtmFarioli()">
 
-                🔍 Cerca ricambio KTM
+                🔍 Cerca su KTM Farioli
 
             </button>
 
@@ -3285,10 +3285,10 @@ window.closeModal = function(){
 
 };
 
-window.openKtmPartsFinder = function(){
+window.openKtmFarioli = function(){
 
     window.open(
-        "https://sparepartsfinder.ktm.com",
+        "https://ktmfarioli.com/ricambi-ktm",
         "_blank",
         "noopener"
     );
