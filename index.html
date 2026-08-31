@@ -3137,13 +3137,12 @@ function renderOrders(){
 
                 <span class="status ${
                     escapeAttr(
-                        order.status ||
-                        "daordinare"
+                        orderProgressStatus(order)
                     )
                 }">
 
                     ${statusLabel(
-                        order.status
+                        orderProgressStatus(order)
                     )}
 
                 </span>
@@ -4004,13 +4003,12 @@ function showOrder(order){
                     <span class="
                         status
                         ${escapeAttr(
-                            order.status ||
-                            "daordinare"
+                            orderProgressStatus(order)
                         )}
                     ">
 
                         ${statusLabel(
-                            order.status
+                            orderProgressStatus(order)
                         )}
 
                     </span>
@@ -5484,13 +5482,12 @@ function renderOrdersFiltered(orders){
 
                 <span class="status ${
                     escapeAttr(
-                        order.status ||
-                        "daordinare"
+                        orderProgressStatus(order)
                     )
                 }">
 
                     ${statusLabel(
-                        order.status
+                        orderProgressStatus(order)
                     )}
 
                 </span>
@@ -5662,6 +5659,9 @@ function statusLabel(status){
         case "ordinato":
             return "Ordinato";
 
+        case "arrivato":
+            return "Arrivato";
+
         case "ritirare":
             return "Disponibile al ritiro";
 
@@ -5713,6 +5713,27 @@ function articleStatusLabel(status){
 
 function articleStatusSummary(order){
 
+    const counts =
+        getArticleStatusCounts(order);
+
+    return `
+        <div class="article-status-summary" aria-label="Riepilogo stato articoli">
+            <span class="article-status-count ordinato">
+                Ordinati: ${counts.ordinato}
+            </span>
+            <span class="article-status-count arrivato">
+                Arrivati: ${counts.arrivato}
+            </span>
+            <span class="article-status-count consegnato">
+                Consegnati: ${counts.consegnato}
+            </span>
+        </div>
+    `;
+
+}
+
+function getArticleStatusCounts(order){
+
     const counts = {
         ordinato:0,
         arrivato:0,
@@ -5736,19 +5757,33 @@ function articleStatusSummary(order){
         }
     );
 
-    return `
-        <div class="article-status-summary" aria-label="Riepilogo stato articoli">
-            <span class="article-status-count ordinato">
-                Ordinati: ${counts.ordinato}
-            </span>
-            <span class="article-status-count arrivato">
-                Arrivati: ${counts.arrivato}
-            </span>
-            <span class="article-status-count consegnato">
-                Consegnati: ${counts.consegnato}
-            </span>
-        </div>
-    `;
+    return counts;
+
+}
+
+function orderProgressStatus(order){
+
+    const counts =
+        getArticleStatusCounts(order);
+
+    const total =
+        counts.ordinato +
+        counts.arrivato +
+        counts.consegnato;
+
+    if(!total){
+        return order.status || "daordinare";
+    }
+
+    if(counts.ordinato > 0){
+        return "ordinato";
+    }
+
+    if(counts.arrivato > 0){
+        return "arrivato";
+    }
+
+    return "consegnato";
 
 }
 
