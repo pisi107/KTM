@@ -4223,33 +4223,51 @@ function calculateAccount(
         );
 
     let totalOrders = 0;
-    let paidOrders = 0;
-    let payableOrders = 0;
 
     orders.forEach(
         order => {
-
             const value =
                 calculateTotal(
                     order
                 );
-
             totalOrders += value;
-
-            if(
-                order.paymentStatus ===
-                "pagato"
-            ){
-
-                paidOrders += value;
-
-            }else{
-
-                payableOrders += value;
-
-            }
-
         }
+    );
+
+    // Calcoliamo il totale dei crediti/pagamenti extra (Lavori + Soldi scalati)
+    let totalCredits = 0;
+    
+    jobs.forEach(job => {
+        totalCredits += Number(job.price) || 0;
+    });
+
+    scales.forEach(scale => {
+        totalCredits += Number(scale.price) || 0;
+    });
+
+    // Il totale complessivo degli ordini rimane intero
+    let finalTotal = totalOrders;
+
+    // Quello che è stato pagato tramite lavori o soldi scalati diventa il "PAGATO"
+    let paidOrders = Math.min(totalOrders, totalCredits);
+
+    // Il "DA PAGARE" diminuisce di conseguenza
+    let finalPayable = Math.max(0, totalOrders - paidOrders);
+
+    return {
+
+        total: finalTotal,
+
+        paid: paidOrders,
+
+        payable: finalPayable,
+
+        orders: orders
+
+    };
+
+}
+
     );
 
     let totalJobs = 0;
