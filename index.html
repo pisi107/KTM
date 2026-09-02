@@ -3199,6 +3199,8 @@ const APP_USER = (() => {
 
 })();
 
+const ACCESS_CODES_ENABLED = false;
+
 const USERS = {
 
     Roby:{
@@ -3240,6 +3242,20 @@ let allScales = [];
 window.selectUser = async function(user){
 
     selectedUser = user;
+
+    if(!ACCESS_CODES_ENABLED){
+
+        loggedUser = user;
+
+        localStorage.setItem(
+            "ktm_logged_user",
+            loggedUser
+        );
+
+        openApp();
+        return;
+
+    }
 
     document.getElementById("userCircle")
         .textContent =
@@ -3503,6 +3519,13 @@ function openApp(){
     document.getElementById("loggedName")
         .textContent =
         loggedUser.toUpperCase();
+
+    document.querySelector(
+        ".logout"
+    ).style.display =
+        APP_USER
+        ? "none"
+        : "inline-block";
 
     document.getElementById("welcomeTitle")
         .textContent =
@@ -7191,10 +7214,19 @@ if(APP_USER){
         "KTM " +
         APP_USER.toUpperCase();
 
-    if(savedUser === APP_USER){
+    if(
+        !ACCESS_CODES_ENABLED ||
+        savedUser === APP_USER
+    ){
 
         loggedUser = APP_USER;
         selectedUser = APP_USER;
+
+        localStorage.setItem(
+            "ktm_logged_user",
+            loggedUser
+        );
+
         openApp();
 
     }else{
