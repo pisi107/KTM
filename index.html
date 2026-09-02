@@ -1689,11 +1689,12 @@ button{
 
             <div class="jobs-header">
 
-                <h2>
+                <h2 id="jobsPanelTitle">
                     🔧 Lavori
                 </h2>
 
                 <button
+                    id="addJobButtonPanel"
                     type="button"
                     class="add-job-button"
                     onclick="openJobModal()">
@@ -2791,6 +2792,16 @@ function openApp(){
             "jobsPanel"
         );
 
+    const jobsPanelTitle =
+        document.getElementById(
+            "jobsPanelTitle"
+        );
+
+    const addJobButtonPanel =
+        document.getElementById(
+            "addJobButtonPanel"
+        );
+
     const scaleCard =
         document.getElementById(
             "scaleCard"
@@ -2838,6 +2849,12 @@ function openApp(){
         jobsPanel.style.display =
             "block";
 
+        jobsPanelTitle.textContent =
+            "🔧 Lavori";
+
+        addJobButtonPanel.style.display =
+            "inline-block";
+
         scalesPanel.style.display =
             "block";
 
@@ -2882,6 +2899,12 @@ document.querySelector(
             "none";
 
         jobsPanel.style.display =
+            "block";
+
+        jobsPanelTitle.textContent =
+            "🔧 I miei lavori";
+
+        addJobButtonPanel.style.display =
             "none";
 
         scalesPanel.style.display =
@@ -4883,10 +4906,6 @@ function listenJobs(){
 
 function renderJobs(){
 
-    if(loggedUser !== "Gio"){
-        return;
-    }
-
     const list =
         document.getElementById(
             "jobsList"
@@ -4894,12 +4913,22 @@ function renderJobs(){
 
     if(!list) return;
 
-    if(!allJobs.length){
+    const jobsToRender =
+        loggedUser === "Gio"
+        ? allJobs
+        : allJobs.filter(
+            job =>
+            job.person === loggedUser
+        );
+
+    if(!jobsToRender.length){
 
         list.innerHTML = `
 
             <div class="empty-orders">
-                Nessun lavoro inserito.
+                ${loggedUser === "Gio"
+                    ? "Nessun lavoro inserito."
+                    : "Nessun lavoro assegnato a te."}
             </div>
 
         `;
@@ -4910,7 +4939,7 @@ function renderJobs(){
 
     list.innerHTML = "";
 
-    allJobs.forEach(
+    jobsToRender.forEach(
         job => {
 
             const div =
@@ -4961,6 +4990,8 @@ function renderJobs(){
 
                     </div>
 
+                    ${loggedUser === "Gio" ? `
+
                     <div class="job-actions">
 
                         <button
@@ -4973,6 +5004,8 @@ function renderJobs(){
                         </button>
 
                     </div>
+
+                    ` : ""}
 
                 </div>
 
