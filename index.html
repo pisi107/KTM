@@ -3177,6 +3177,28 @@ try{
 
 const DEFAULT_CODE = "1234";
 
+const APP_USER = (() => {
+
+    const requestedUser =
+        new URLSearchParams(
+            window.location.search
+        ).get("app");
+
+    const normalizedUser =
+        requestedUser
+        ? requestedUser.trim().toLowerCase()
+        : "";
+
+    const appUsers = {
+        roby:"Roby",
+        fede:"Fede",
+        gio:"Gio"
+    };
+
+    return appUsers[normalizedUser] || null;
+
+})();
+
 const USERS = {
 
     Roby:{
@@ -3239,6 +3261,13 @@ window.selectUser = async function(user){
     document.getElementById("codePage")
         .style.display = "flex";
 
+    document.querySelector(
+        "#codePage .gray-button"
+    ).style.display =
+        APP_USER
+        ? "none"
+        : "block";
+
     // Gestione pulsante Biometria (Face ID / Impronta)
     const bioBtn = document.getElementById("biometricBtn");
     const hasSavedCode = localStorage.getItem("ktm_code_" + selectedUser);
@@ -3258,6 +3287,11 @@ window.selectUser = async function(user){
 };
 
 window.backUsers = function(){
+
+    if(APP_USER){
+        selectUser(APP_USER);
+        return;
+    }
 
     selectedUser = null;
 
@@ -3684,8 +3718,16 @@ window.logout = function(){
     document.getElementById("appPage")
         .style.display = "none";
 
-    document.getElementById("loginPage")
-        .style.display = "flex";
+    if(APP_USER){
+
+        selectUser(APP_USER);
+
+    }else{
+
+        document.getElementById("loginPage")
+            .style.display = "flex";
+
+    }
 
 };
 
@@ -7143,7 +7185,25 @@ const savedUser =
         "ktm_logged_user"
     );
 
-if(
+if(APP_USER){
+
+    document.title =
+        "KTM " +
+        APP_USER.toUpperCase();
+
+    if(savedUser === APP_USER){
+
+        loggedUser = APP_USER;
+        selectedUser = APP_USER;
+        openApp();
+
+    }else{
+
+        selectUser(APP_USER);
+
+    }
+
+}else if(
     savedUser &&
     USERS[savedUser]
 ){
