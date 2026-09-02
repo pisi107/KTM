@@ -4483,14 +4483,25 @@ function calculateAccount(
         totalScales += Number(scale.price) || 0;
     });
 
-    let finalPayable = Math.max(0, payableOrders - totalScales);
-    let finalTotal = Math.max(0, totalOrders - totalScales);
+    const appliedScales =
+        Math.min(
+            totalScales,
+            payableOrders
+        );
+
+    const finalPayable =
+        payableOrders -
+        appliedScales;
+
+    const finalPaid =
+        paidOrders +
+        appliedScales;
 
     return {
 
-        total: finalTotal,
+        total: totalOrders,
 
-        paid: paidOrders,
+        paid: finalPaid,
 
         payable: finalPayable,
 
