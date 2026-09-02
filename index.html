@@ -734,12 +734,14 @@ button{
     color:#dc2626;
 }
 
+.job-actions,
 .scale-actions{
     display:flex;
     gap:8px;
     align-items:center;
 }
 
+.job-actions button,
 .scale-actions button{
     padding:8px 12px;
     font-size:12px;
@@ -4483,19 +4485,23 @@ function calculateAccount(
         totalScales += Number(scale.price) || 0;
     });
 
-    const appliedScales =
+    const totalCredits =
+        totalJobs +
+        totalScales;
+
+    const appliedCredits =
         Math.min(
-            totalScales,
+            totalCredits,
             payableOrders
         );
 
     const finalPayable =
         payableOrders -
-        appliedScales;
+        appliedCredits;
 
     const finalPaid =
         paidOrders +
-        appliedScales;
+        appliedCredits;
 
     return {
 
@@ -4845,6 +4851,8 @@ function listenJobs(){
 
                 renderJobs();
 
+                updateAccountSummary();
+
             },
 
             error => {
@@ -4943,11 +4951,28 @@ function renderJobs(){
 
                 </div>
 
-                <div class="job-price">
+                <div style="display:flex; align-items:center; gap:20px;">
 
-                    ${euro(
-                        job.price
-                    )}
+                    <div class="job-price">
+
+                        - ${euro(
+                            job.price
+                        )}
+
+                    </div>
+
+                    <div class="job-actions">
+
+                        <button
+                            type="button"
+                            class="delete"
+                            onclick="deleteJob('${job.id}')">
+
+                            Elimina
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -4959,6 +4984,39 @@ function renderJobs(){
     );
 
 }
+
+window.deleteJob = async function(id){
+
+    if(loggedUser !== "Gio"){
+        return;
+    }
+
+    if(!confirm("Vuoi davvero eliminare questo lavoro?")){
+        return;
+    }
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "lavori",
+                id
+            )
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Errore durante l'eliminazione del lavoro.\n\n" +
+            error.message
+        );
+
+    }
+
+};
 
 /* =====================================================
    APRI LAVORO
