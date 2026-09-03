@@ -3922,16 +3922,13 @@ function normalizeOrderSearch(value){
 
 function orderMatchesSearch(order, queryText){
     if(!queryText) return true;
-    const articleCodes = (order.articles || [])
-        .map(article => article.code || "")
-        .join(" ");
-    const searchable = normalizeOrderSearch([
-        order.number,
-        order.person,
-        order.date,
-        articleCodes
-    ].join(" "));
-    return queryText.split(/\s+/).every(term => searchable.includes(term));
+    const searchable = normalizeOrderSearch(JSON.stringify(order));
+    const compactSearchable = searchable.replace(/[^a-z0-9]/g, "");
+    return queryText.split(/\s+/).every(term => {
+        const compactTerm = term.replace(/[^a-z0-9]/g, "");
+        return searchable.includes(term) ||
+            (compactTerm && compactSearchable.includes(compactTerm));
+    });
 }
 
 window.filterOrders = function(){
