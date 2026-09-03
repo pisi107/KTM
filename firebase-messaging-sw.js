@@ -19,26 +19,14 @@ firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
 
+/*
+ * Il messaggio inviato dal server contiene gia una notifica Web Push.
+ * Firebase la mostra automaticamente quando l'app e in background.
+ * Non chiamiamo showNotification qui, altrimenti su iPhone appare due volte.
+ */
 messaging.onBackgroundMessage(function(payload) {
-
   console.log(
-    "[firebase-messaging-sw.js] Messaggio ricevuto:",
+    "[firebase-messaging-sw.js] Notifica gestita da Firebase:",
     payload
   );
-
-  const notificationTitle =
-    payload.notification?.title || "KTM ORDINI";
-
-  const notificationOptions = {
-    body:
-      payload.notification?.body ||
-      "È arrivato un nuovo ordine.",
-    icon: "./icon-192.png"
-  };
-
-  self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  );
-
 });
