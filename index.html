@@ -1892,6 +1892,17 @@ select:focus-visible{
     }
 }
 
+.order-search-wrap{position:relative;margin:0 0 16px;}
+.order-search-wrap::before{content:"🔎";position:absolute;left:15px;top:50%;transform:translateY(-50%);pointer-events:none;}
+.order-search{width:100%;padding:13px 44px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);color:var(--ink);font:inherit;}
+.order-search:focus{outline:3px solid rgba(255,102,0,.14);border-color:var(--orange);background:#fff;}
+.clear-order-search{display:none;position:absolute;right:8px;top:50%;width:34px;height:34px;padding:0;transform:translateY(-50%);border-radius:10px;background:transparent;color:var(--muted);font-size:20px;}
+.lessons-panel{display:none;margin-bottom:20px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);text-align:left;}
+.lessons-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.lesson-item{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px;margin-bottom:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);}
+.lesson-description{font-weight:800;}.lesson-date{margin-top:4px;color:var(--muted);font-size:13px;}.lesson-price{color:#16a34a;font-weight:900;white-space:nowrap;}.lesson-actions{display:flex;gap:8px;}.lesson-actions button{padding:8px 12px;font-size:12px;}
+@media(max-width:700px){.lessons-panel{padding:17px;border-radius:17px;}.lessons-header{align-items:stretch;flex-direction:column;}.lessons-header button{width:100%;}.lesson-item{align-items:flex-start;flex-direction:column;}}
+
 </style>
 </head>
 
@@ -1984,6 +1995,8 @@ select:focus-visible{
             class="code-input"
             type="password"
             inputmode="numeric"
+            maxlength="6"
+            pattern="[0-9]{4,6}"
             placeholder="••••">
 
         <button
@@ -1992,16 +2005,6 @@ select:focus-visible{
             onclick="login()">
 
             ACCEDI
-
-        </button>
-
-        <button
-            type="button"
-            id="biometricBtn"
-            class="biometric-button"
-            onclick="loginWithBiometrics()">
-
-            🔒 Accedi con Face ID / Impronta
 
         </button>
 
@@ -2049,7 +2052,7 @@ select:focus-visible{
 
             <br><br>
 
-            Scegli ora il tuo codice personale di almeno 4 cifre.
+            Scegli ora il tuo codice personale da 4 a 6 cifre.
 
         </div>
 
@@ -2061,6 +2064,8 @@ select:focus-visible{
                 id="newCode"
                 type="password"
                 inputmode="numeric"
+                maxlength="6"
+                pattern="[0-9]{4,6}"
                 placeholder="Nuovo codice">
 
         </div>
@@ -2073,6 +2078,8 @@ select:focus-visible{
                 id="confirmCode"
                 type="password"
                 inputmode="numeric"
+                maxlength="6"
+                pattern="[0-9]{4,6}"
                 placeholder="Ripeti il codice">
 
         </div>
@@ -2465,6 +2472,18 @@ select:focus-visible{
 
         </div>
 
+        <div id="lessonsPanel" class="lessons-panel">
+            <div class="lessons-header">
+                <h2>📚 Lezioni</h2>
+                <button id="addLessonButton" type="button" class="add-job-button" onclick="openLessonModal()">
+                    + Aggiungi lezione
+                </button>
+            </div>
+            <div id="lessonsList">
+                <div class="empty-orders">Caricamento lezioni...</div>
+            </div>
+        </div>
+
         <!-- =========================
              ORDINI
         ========================= -->
@@ -2486,6 +2505,12 @@ select:focus-visible{
 
                 </button>
 
+            </div>
+            <div class="order-search-wrap">
+                <input id="orderSearch" class="order-search" type="search" autocomplete="off"
+                    placeholder="Cerca un codice articolo..." oninput="filterOrders()">
+                <button id="clearOrderSearch" type="button" class="clear-order-search"
+                    aria-label="Cancella ricerca" onclick="clearOrderSearch()">×</button>
             </div>
 <div class="order-folders">
 
@@ -2633,19 +2658,6 @@ select:focus-visible{
                 </option>
 
             </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Modello KTM / codice ricambio
-            </label>
-
-            <input
-                id="orderVehicle"
-                type="text"
-                placeholder="Es. 450 EXC 2019 oppure codice ricambio">
 
         </div>
 
@@ -2996,6 +3008,32 @@ select:focus-visible{
 
 </div>
 
+<!-- MODALE LEZIONE -->
+<div id="lessonModal" class="modal">
+    <div class="modal-box" style="max-width:620px;">
+        <div class="modal-header">
+            <h2 id="lessonModalTitle">📚 Nuova lezione</h2>
+            <button type="button" class="close" onclick="closeLessonModal()">×</button>
+        </div>
+        <div class="form-group">
+            <label>Descrizione lezione</label>
+            <input id="lessonDescription" type="text" placeholder="Es. Lezione del sabato">
+        </div>
+        <div class="form-group">
+            <label>Prezzo (€)</label>
+            <input id="lessonPrice" type="number" min="0.01" step="0.01" placeholder="0,00">
+        </div>
+        <div class="form-group">
+            <label>Data</label>
+            <input id="lessonDate" class="date-field" type="date">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="cancel" onclick="closeLessonModal()">Annulla</button>
+            <button type="button" class="save" onclick="saveLesson()">Salva lezione</button>
+        </div>
+    </div>
+</div>
+
 <script type="module">
 
 /* =====================================================
@@ -3199,7 +3237,7 @@ const APP_USER = (() => {
 
 })();
 
-const ACCESS_CODES_ENABLED = false;
+const ACCESS_CODES_ENABLED = true;
 
 const USERS = {
 
@@ -3224,16 +3262,19 @@ let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
 let editingScaleId = null;
+let editingLessonId = null;
 
 let unsubscribeOrders = null;
 let unsubscribeJobs = null;
 let unsubscribeScales = null;
+let unsubscribeLessons = null;
 
 let notificationListenerActive = false;
 
 let allOrders = [];
 let allJobs = [];
 let allScales = [];
+let allLessons = [];
 
 /* =====================================================
    LOGIN & BIOMETRIA
@@ -3284,17 +3325,6 @@ window.selectUser = async function(user){
         ? "none"
         : "block";
 
-    // Gestione pulsante Biometria (Face ID / Impronta)
-    const bioBtn = document.getElementById("biometricBtn");
-    const hasSavedCode = localStorage.getItem("ktm_code_" + selectedUser);
-    const hasBioRegistered = localStorage.getItem("ktm_bio_" + selectedUser) === "true";
-
-    if (hasSavedCode && hasSavedCode !== DEFAULT_CODE && hasBioRegistered && window.PublicKeyCredential) {
-        bioBtn.style.display = "block";
-    } else {
-        bioBtn.style.display = "none";
-    }
-
     setTimeout(function(){
         document.getElementById("loginCode")
             .focus();
@@ -3335,7 +3365,9 @@ window.login = function(){
         );
 
     const realCode =
-        saved || DEFAULT_CODE;
+        /^\d{4,6}$/.test(saved || "")
+        ? saved
+        : DEFAULT_CODE;
 
     const error =
         document.getElementById("loginError");
@@ -3356,7 +3388,7 @@ window.login = function(){
         "none";
 
     // Se non ha ancora salvato un codice personalizzato (quindi usa 1234), obbliga al cambio
-    if(!saved || saved === DEFAULT_CODE){
+    if(!/^\d{4,6}$/.test(saved || "") || saved === DEFAULT_CODE){
 
         document.getElementById("codePage")
             .style.display = "none";
@@ -3375,9 +3407,6 @@ window.login = function(){
         "ktm_logged_user",
         loggedUser
     );
-
-    // Chiedi se vuole registrare la biometria per i prossimi accessi (se supportata)
-    offerBiometricRegistration();
 
     openApp();
 
@@ -3444,10 +3473,10 @@ window.changeCode = function(){
     const error =
         document.getElementById("changeError");
 
-    if(newCode.length < 4){
+    if(!/^\d{4,6}$/.test(newCode)){
 
         error.textContent =
-            "Il codice deve avere almeno 4 cifre.";
+            "Il codice deve contenere da 4 a 6 cifre.";
 
         error.style.display =
             "block";
@@ -3493,7 +3522,6 @@ window.changeCode = function(){
         loggedUser
     );
 
-    offerBiometricRegistration();
     openApp();
 
 };
@@ -3523,9 +3551,7 @@ function openApp(){
     document.querySelector(
         ".logout"
     ).style.display =
-        APP_USER
-        ? "none"
-        : "inline-block";
+        "inline-block";
 
     document.getElementById("welcomeTitle")
         .textContent =
@@ -3582,6 +3608,9 @@ function openApp(){
             "addScaleButtonPanel"
         );
 
+    const lessonsPanel = document.getElementById("lessonsPanel");
+    const addLessonButton = document.getElementById("addLessonButton");
+
     if(USERS[loggedUser].admin){
 
         document.getElementById("welcomeText")
@@ -3589,7 +3618,7 @@ function openApp(){
             "Sei entrato come amministratore.";
 
         document.getElementById("adminCard")
-            .style.display = "block";
+            .style.display = "none";
 
         scaleCard.style.display =
             "block";
@@ -3683,9 +3712,19 @@ document.querySelector(
 
     }
 
+    lessonsPanel.style.display =
+        loggedUser === "Gio" || loggedUser === "Roby"
+        ? "block"
+        : "none";
+    addLessonButton.style.display =
+        loggedUser === "Gio"
+        ? "inline-block"
+        : "none";
+
     listenOrders();
     listenJobs();
     listenScales();
+    listenLessons();
 
     if(loggedUser === "Gio"){
 
@@ -3725,12 +3764,18 @@ window.logout = function(){
 
     }
 
+    if(unsubscribeLessons){
+        unsubscribeLessons();
+        unsubscribeLessons = null;
+    }
+
     loggedUser = null;
     selectedUser = null;
 
     allOrders = [];
     allJobs = [];
     allScales = [];
+    allLessons = [];
 
     notificationListenerActive = false;
 
@@ -3804,36 +3849,7 @@ function listenOrders(){
                     }
                 );
 
-                if(loggedUser === "Gio"){
-
-    if(activeOrderPerson){
-
-        renderOrdersFiltered(
-            allOrders.filter(
-                order =>
-                order.person === activeOrderPerson
-            )
-        );
-
-    }else{
-
-        // Gio vede solo le cartelle
-        document.getElementById(
-            "ordersList"
-        ).style.display = "none";
-
-    }
-
-}else{
-
-    // Roby e Fede vedono normalmente i propri ordini
-    document.getElementById(
-        "ordersList"
-    ).style.display = "block";
-
-    renderOrders();
-
-}
+                filterOrders();
 
                 updateAccountSummary();
 
@@ -3895,6 +3911,78 @@ function getVisibleOrders(){
     );
 
 }
+
+function normalizeOrderSearch(value){
+    return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+}
+
+function orderMatchesSearch(order, queryText){
+    if(!queryText) return true;
+    const articleCodes = (order.articles || [])
+        .map(article => article.code || "")
+        .join(" ");
+    const searchable = normalizeOrderSearch([
+        order.number,
+        order.person,
+        order.date,
+        articleCodes
+    ].join(" "));
+    return queryText.split(/\s+/).every(term => searchable.includes(term));
+}
+
+window.filterOrders = function(){
+    const searchInput = document.getElementById("orderSearch");
+    const clearButton = document.getElementById("clearOrderSearch");
+    const list = document.getElementById("ordersList");
+    const folders = document.querySelector(".order-folders");
+    const backButton = document.querySelector(".back-folders");
+    const queryText = normalizeOrderSearch(searchInput ? searchInput.value : "");
+
+    if(clearButton){
+        clearButton.style.display = queryText ? "block" : "none";
+    }
+
+    if(loggedUser === "Gio"){
+        if(!queryText && !activeOrderPerson){
+            folders.style.display = "grid";
+            backButton.style.display = "none";
+            list.style.display = "none";
+            document.getElementById("ordersTitle").textContent = "Tutti gli ordini";
+            return;
+        }
+
+        const baseOrders = activeOrderPerson
+            ? allOrders.filter(order => order.person === activeOrderPerson)
+            : allOrders;
+        folders.style.display = "none";
+        backButton.style.display = activeOrderPerson ? "block" : "none";
+        list.style.display = "block";
+        document.getElementById("ordersTitle").textContent = activeOrderPerson
+            ? "Ordini di " + activeOrderPerson
+            : "Risultati ricerca";
+        renderOrdersFiltered(baseOrders.filter(order => orderMatchesSearch(order, queryText)));
+        return;
+    }
+
+    folders.style.display = "none";
+    backButton.style.display = "none";
+    list.style.display = "block";
+    const ownOrders = allOrders.filter(order => order.person === loggedUser);
+    renderOrdersFiltered(ownOrders.filter(order => orderMatchesSearch(order, queryText)));
+};
+
+window.clearOrderSearch = function(){
+    const searchInput = document.getElementById("orderSearch");
+    if(searchInput){
+        searchInput.value = "";
+        searchInput.focus();
+    }
+    filterOrders();
+};
 
 /* =====================================================
    RENDER ORDINI
@@ -4056,10 +4144,6 @@ window.openNewOrder = function(){
         "daordinare";
 
     document.getElementById(
-        "orderVehicle"
-    ).value = "";
-
-    document.getElementById(
         "articles"
     ).innerHTML = "";
 
@@ -4122,14 +4206,6 @@ function applyOrderPermissions(){
     } else {
         dateField.classList.add("fixed-field");
     }
-
-    const vehicleField =
-        document.getElementById(
-            "orderVehicle"
-        );
-
-    vehicleField.disabled = false;
-    vehicleField.classList.remove("fixed-field");
 
     document
         .querySelectorAll(
@@ -4499,11 +4575,6 @@ window.saveOrder = async function(){
             "orderStatus"
         ).value;
 
-    const vehicle =
-        document.getElementById(
-            "orderVehicle"
-        ).value.trim();
-
     const articles = [];
 
     document 
@@ -4627,8 +4698,6 @@ window.saveOrder = async function(){
 
                 articles:articles,
 
-                vehicle:vehicle,
-
                 updatedAt:Date.now()
 
             };
@@ -4682,8 +4751,6 @@ window.saveOrder = async function(){
                 person:person,
 
                 date:date,
-
-                vehicle:vehicle,
 
                 status: loggedUser === "Gio" ? status : "daordinare",
 
@@ -5101,12 +5168,6 @@ window.editOrder = async function(id){
         "daordinare";
 
     document.getElementById(
-        "orderVehicle"
-    ).value =
-        order.vehicle ||
-        "";
-
-    document.getElementById(
         "articles"
     ).innerHTML =
         "";
@@ -5281,9 +5342,17 @@ function calculateAccount(
         totalScales += Number(scale.price) || 0;
     });
 
+    const totalLessons = person === "Roby"
+        ? allLessons.reduce(
+            (total, lesson) => total + (Number(lesson.price) || 0),
+            0
+        )
+        : 0;
+
     const totalCredits =
         totalJobs +
-        totalScales;
+        totalScales +
+        totalLessons;
 
     const appliedCredits =
         Math.min(
@@ -5991,6 +6060,184 @@ window.saveJob = async function(){
 
 };
 
++/* =====================================================
+   LEZIONI (VISIBILI A GIO E ROBY)
+===================================================== */
+
+function listenLessons(){
+
+    if(unsubscribeLessons){
+        unsubscribeLessons();
+    }
+
+    const lessonsRef = collection(db, "lezioni");
+    const lessonsQuery = query(
+        lessonsRef,
+        orderBy("createdAt", "desc")
+    );
+
+    unsubscribeLessons = onSnapshot(
+        lessonsQuery,
+        snapshot => {
+            allLessons = [];
+            snapshot.forEach(docSnap => {
+                allLessons.push({
+                    id: docSnap.id,
+                    ...docSnap.data()
+                });
+            });
+            renderLessons();
+            updateAccountSummary();
+        },
+        error => {
+            console.error("Errore lezioni:", error);
+            const list = document.getElementById("lessonsList");
+            if(list){
+                list.innerHTML = '<div class="empty-orders">Errore caricamento lezioni.</div>';
+            }
+        }
+    );
+}
+
+function renderLessons(){
+
+    const list = document.getElementById("lessonsList");
+    if(!list) return;
+
+    if(loggedUser !== "Gio" && loggedUser !== "Roby"){
+        list.innerHTML = "";
+        return;
+    }
+
+    if(!allLessons.length){
+        list.innerHTML = '<div class="empty-orders">Nessuna lezione inserita.</div>';
+        return;
+    }
+
+    list.innerHTML = "";
+    allLessons.forEach(lesson => {
+        const div = document.createElement("div");
+        div.className = "lesson-item";
+        div.innerHTML = `
+            <div>
+                <div class="lesson-description">${escapeHtml(lesson.description || "Lezione")}</div>
+                <div class="lesson-date">${formatDate(lesson.date)}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                <div class="lesson-price">+ ${euro(lesson.price)} pagato</div>
+                ${loggedUser === "Gio" ? `
+                    <div class="lesson-actions">
+                        <button type="button" class="edit" onclick="editLesson('${lesson.id}')">Modifica</button>
+                        <button type="button" class="delete" onclick="deleteLesson('${lesson.id}')">Elimina</button>
+                    </div>
+                ` : ""}
+            </div>
+        `;
+        list.appendChild(div);
+    });
+}
+
+window.openLessonModal = function(){
+
+    if(loggedUser !== "Gio"){
+        alert("Solo Gio può gestire le lezioni.");
+        return;
+    }
+
+    editingLessonId = null;
+    document.getElementById("lessonModalTitle").textContent = "📚 Nuova lezione";
+    document.getElementById("lessonDescription").value = "";
+    document.getElementById("lessonPrice").value = "";
+    document.getElementById("lessonDate").value = getToday();
+    document.getElementById("lessonModal").style.display = "block";
+};
+
+window.editLesson = function(id){
+
+    if(loggedUser !== "Gio") return;
+
+    const lesson = allLessons.find(item => item.id === id);
+    if(!lesson) return;
+
+    editingLessonId = id;
+    document.getElementById("lessonModalTitle").textContent = "Modifica lezione";
+    document.getElementById("lessonDescription").value = lesson.description || "";
+    document.getElementById("lessonPrice").value = lesson.price || "";
+    document.getElementById("lessonDate").value = lesson.date || getToday();
+    document.getElementById("lessonModal").style.display = "block";
+};
+
+window.closeLessonModal = function(){
+    document.getElementById("lessonModal").style.display = "none";
+    editingLessonId = null;
+};
+
+window.saveLesson = async function(){
+
+    if(loggedUser !== "Gio"){
+        alert("Solo Gio può gestire le lezioni.");
+        return;
+    }
+
+    const description = document.getElementById("lessonDescription").value.trim();
+    const price = Number(document.getElementById("lessonPrice").value);
+    const date = document.getElementById("lessonDate").value;
+
+    if(!description){
+        alert("Inserisci la descrizione della lezione.");
+        return;
+    }
+
+    if(!Number.isFinite(price) || price <= 0){
+        alert("Inserisci un prezzo valido.");
+        return;
+    }
+
+    if(!date){
+        alert("Inserisci la data.");
+        return;
+    }
+
+    try{
+        if(editingLessonId){
+            await updateDoc(doc(db, "lezioni", editingLessonId), {
+                description,
+                price,
+                date,
+                updatedAt: Date.now(),
+                updatedBy: "Gio"
+            });
+        }else{
+            await addDoc(collection(db, "lezioni"), {
+                description,
+                price,
+                date,
+                person: "Roby",
+                createdAt: Date.now(),
+                createdBy: "Gio"
+            });
+        }
+        closeLessonModal();
+    }catch(error){
+        console.error("Errore salvataggio lezione:", error);
+        alert("Errore durante il salvataggio della lezione.\n\n" + error.message);
+    }
+};
+
+window.deleteLesson = async function(id){
+
+    if(loggedUser !== "Gio") return;
+    if(!confirm("Vuoi davvero eliminare questa lezione?")) return;
+
+    try{
+        await deleteDoc(doc(db, "lezioni", id));
+    }catch(error){
+        console.error("Errore eliminazione lezione:", error);
+        alert("Errore durante l'eliminazione della lezione.\n\n" + error.message);
+    }
+};
+
+
 /* =====================================================
    SCALA SOLDI (CARTELLA DEDICATA)
 ===================================================== */
@@ -6250,29 +6497,10 @@ window.showAllOrders = function(){
         return;
     }
 
-    // Nessuna cartella selezionata
     activeOrderPerson = null;
-
-    // Titolo
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Tutti gli ordini";
-
-    // Mostra le due cartelle
-    document.querySelector(
-        ".order-folders"
-    ).style.display = "grid";
-
-    // Nasconde il pulsante indietro
-    document.querySelector(
-        ".back-folders"
-    ).style.display = "none";
-
-    // Nasconde completamente gli ordini
-    document.getElementById(
-        "ordersList"
-    ).style.display = "none";
+    const searchInput = document.getElementById("orderSearch");
+    if(searchInput) searchInput.value = "";
+    filterOrders();
 };
 
 
@@ -6290,38 +6518,8 @@ window.showOrdersByPerson = function(person){
         return;
     }
 
-    // Memorizza la cartella aperta
     activeOrderPerson = person;
-
-    // Cambia titolo
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Ordini " + person;
-
-    // Nasconde le cartelle
-    document.querySelector(
-        ".order-folders"
-    ).style.display = "none";
-
-    // Mostra il pulsante indietro
-    document.querySelector(
-        ".back-folders"
-    ).style.display = "block";
-
-    // Mostra gli ordini
-    document.getElementById(
-        "ordersList"
-    ).style.display = "block";
-
-    // Prende solo gli ordini della persona
-    const orders =
-        allOrders.filter(
-            order =>
-            order.person === person
-        );
-
-    renderOrdersFiltered(orders);
+    filterOrders();
 };
 
 
@@ -6332,26 +6530,9 @@ window.showOrdersByPerson = function(person){
 window.showOrderFolders = function(){
 
     activeOrderPerson = null;
-
-    document.getElementById(
-        "ordersTitle"
-    ).textContent =
-        "Tutti gli ordini";
-
-    // Mostra le cartelle
-    document.querySelector(
-        ".order-folders"
-    ).style.display = "grid";
-
-    // Nasconde il pulsante indietro
-    document.querySelector(
-        ".back-folders"
-    ).style.display = "none";
-
-    // Nasconde gli ordini
-    document.getElementById(
-        "ordersList"
-    ).style.display = "none";
+    const searchInput = document.getElementById("orderSearch");
+    if(searchInput) searchInput.value = "";
+    filterOrders();
 };
 
 
@@ -7214,36 +7395,7 @@ if(APP_USER){
         "KTM " +
         APP_USER.toUpperCase();
 
-    if(
-        !ACCESS_CODES_ENABLED ||
-        savedUser === APP_USER
-    ){
-
-        loggedUser = APP_USER;
-        selectedUser = APP_USER;
-
-        localStorage.setItem(
-            "ktm_logged_user",
-            loggedUser
-        );
-
-        openApp();
-
-    }else{
-
-        selectUser(APP_USER);
-
-    }
-
-}else if(
-    savedUser &&
-    USERS[savedUser]
-){
-
-    loggedUser =
-        savedUser;
-
-    openApp();
+    selectUser(APP_USER);
 
 }else{
 
@@ -7285,6 +7437,11 @@ window.addEventListener(
         const scaleModal =
             document.getElementById(
                 "scaleModal"
+            );
+
+        const lessonModal =
+            document.getElementById(
+                "lessonModal"
             );
 
         if(
@@ -7329,6 +7486,15 @@ window.addEventListener(
         ){
 
             closeScaleModal();
+
+        }
+
+        if(
+            event.target ===
+            lessonModal
+        ){
+
+            closeLessonModal();
 
         }
 
