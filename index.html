@@ -1629,6 +1629,45 @@ select:focus-visible{
     transform:translateY(-1px);
 }
 
+.order.order-new{
+    border:2px solid var(--ktm-orange);
+    background:linear-gradient(135deg,#fff7f0 0%,#ffffff 72%);
+    box-shadow:0 10px 26px rgba(242,101,34,.13);
+}
+
+.order-badges{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+}
+
+.new-order-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 9px;
+    border-radius:999px;
+    background:var(--ktm-orange);
+    color:#fff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.45px;
+}
+
+.order-folder .folder-new-badge{
+    display:none;
+    width:max-content;
+    margin:8px auto 0!important;
+    padding:5px 8px;
+    border-radius:999px;
+    background:var(--ktm-orange);
+    color:#fff;
+    font-size:10px!important;
+    font-weight:900;
+    line-height:1.2;
+}
+
 .order-number,
 .job-name,
 .scale-name{
@@ -2850,6 +2889,8 @@ select:focus-visible{
 
         ORDINI ROBY
 
+        <span id="robyNewOrdersBadge" class="folder-new-badge"></span>
+
         <small>
             Tutti gli ordini di Roby
         </small>
@@ -2864,6 +2905,8 @@ select:focus-visible{
         <span>📁</span>
 
         ORDINI FEDE
+
+        <span id="fedeNewOrdersBadge" class="folder-new-badge"></span>
 
         <small>
             Tutti gli ordini di Fede
@@ -3618,6 +3661,88 @@ let allJobs = [];
 let allScales = [];
 let allLessons = [];
 
+const GIO_SEEN_ORDERS_KEY = "ktm_gio_seen_orders_v1";
+let gioSeenOrderIds = new Set();
+let gioSeenOrdersReady = false;
+
+function wasOrderCreatedByRobyOrFede(order){
+    const creator = order.createdBy || order.person || "";
+    return creator === "Roby" || creator === "Fede";
+}
+
+function prepareGioSeenOrders(orders){
+    if(loggedUser !== "Gio") return;
+
+    if(!gioSeenOrdersReady){
+        const saved = localStorage.getItem(GIO_SEEN_ORDERS_KEY);
+
+        if(saved === null){
+            const newestExternalOrder = orders.find(
+                order => wasOrderCreatedByRobyOrFede(order)
+            );
+
+            gioSeenOrderIds = new Set(
+                orders
+                    .filter(order => !newestExternalOrder || order.id !== newestExternalOrder.id)
+                    .map(order => order.id)
+            );
+        }else{
+            try{
+                const parsed = JSON.parse(saved);
+                gioSeenOrderIds = new Set(Array.isArray(parsed) ? parsed : []);
+            }catch(error){
+                gioSeenOrderIds = new Set();
+            }
+        }
+
+        gioSeenOrdersReady = true;
+    }
+
+    const currentIds = new Set(orders.map(order => order.id));
+    gioSeenOrderIds = new Set(
+        [...gioSeenOrderIds].filter(id => currentIds.has(id))
+    );
+    localStorage.setItem(
+        GIO_SEEN_ORDERS_KEY,
+        JSON.stringify([...gioSeenOrderIds])
+    );
+}
+
+function isNewOrderForGio(order){
+    return loggedUser === "Gio" &&
+        gioSeenOrdersReady &&
+        wasOrderCreatedByRobyOrFede(order) &&
+        !gioSeenOrderIds.has(order.id);
+}
+
+function updateNewOrderIndicators(){
+    ["Roby", "Fede"].forEach(person => {
+        const badge = document.getElementById(
+            person.toLowerCase() + "NewOrdersBadge"
+        );
+        if(!badge) return;
+
+        const count = allOrders.filter(
+            order => order.person === person && isNewOrderForGio(order)
+        ).length;
+
+        badge.textContent = count === 1 ? "1 NUOVO" : `${count} NUOVI`;
+        badge.style.display = count ? "inline-flex" : "none";
+    });
+}
+
+function markOrderSeenByGio(order){
+    if(!isNewOrderForGio(order)) return;
+
+    gioSeenOrderIds.add(order.id);
+    localStorage.setItem(
+        GIO_SEEN_ORDERS_KEY,
+        JSON.stringify([...gioSeenOrderIds])
+    );
+    updateNewOrderIndicators();
+    filterOrders();
+}
+
 /* =====================================================
    LOGIN & BIOMETRIA
 ===================================================== */
@@ -4191,6 +4316,9 @@ function listenOrders(){
                     }
                 );
 
+                prepareGioSeenOrders(allOrders);
+                updateNewOrderIndicators();
+
                 filterOrders();
 
                 updateAccountSummary();
@@ -4358,8 +4486,11 @@ function renderOrders(){
         const div =
             document.createElement("div");
 
+        const isNew = isNewOrderForGio(order);
+
         div.className =
-            "order";
+            isNew ? "order order-new" : "order";
+        div.dataset.orderId = order.id;
 
         const codes =
             (order.articles || [])
@@ -4388,6 +4519,10 @@ function renderOrders(){
 
                 </div>
 
+                <div class="order-badges">
+
+                ${isNew ? '<span class="new-order-badge">NUOVO</span>' : ''}
+
                 <span class="status ${
                     escapeAttr(
                         orderProgressStatus(order)
@@ -4399,6 +4534,8 @@ function renderOrders(){
                     )}
 
                 </span>
+
+                </div>
 
             </div>
 
@@ -4429,6 +4566,7 @@ function renderOrders(){
             "click",
             function(){
 
+                markOrderSeenByGio(order);
                 showOrder(order);
 
             }
@@ -6904,8 +7042,11 @@ function renderOrdersFiltered(orders){
         const div =
             document.createElement("div");
 
+        const isNew = isNewOrderForGio(order);
+
         div.className =
-            "order";
+            isNew ? "order order-new" : "order";
+        div.dataset.orderId = order.id;
 
         const codes =
             (order.articles || [])
@@ -6940,6 +7081,10 @@ function renderOrdersFiltered(orders){
 
                 </div>
 
+                <div class="order-badges">
+
+                ${isNew ? '<span class="new-order-badge">NUOVO</span>' : ''}
+
                 <span class="status ${
                     escapeAttr(
                         orderProgressStatus(order)
@@ -6951,6 +7096,8 @@ function renderOrdersFiltered(orders){
                     )}
 
                 </span>
+
+                </div>
 
             </div>
 
@@ -6981,6 +7128,7 @@ function renderOrdersFiltered(orders){
             "click",
             function(){
 
+                markOrderSeenByGio(order);
                 showOrder(order);
 
             }
