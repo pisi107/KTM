@@ -1714,6 +1714,15 @@ select:focus-visible{
     background:#272b32;
 }
 
+.whatsapp-button{
+    background:#1fa855;
+    color:#fff;
+}
+
+.whatsapp-button:hover{
+    background:#168844;
+}
+
 .empty-orders{
     padding:32px 18px;
     border:1px dashed #d7dbe1;
@@ -2214,6 +2223,10 @@ select:focus-visible{
     .detail{padding:2px 0 0;}
     .detail-header{align-items:flex-start;text-align:left;}
     .detail-number,.detail-total{font-size:23px;}
+    .detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .detail-actions button{width:100%;min-height:46px;}
+    .detail-actions .whatsapp-button,
+    .detail-actions .cancel{grid-column:1 / -1;}
 
     .mobile-nav{
         position:fixed;
@@ -5276,6 +5289,28 @@ window.saveOrder = async function(){
    DETTAGLIO ORDINE
 ===================================================== */
 
+const DAVIDE_WHATSAPP_NUMBER = "393249808027";
+
+function sendOrderToDavide(order){
+    const lines = (order.articles || [])
+        .filter(article => String(article.code || "").trim())
+        .map(article => {
+            const quantity = Number(article.qty) || 1;
+            const code = String(article.code).trim();
+            return `${quantity} × ${code}`;
+        });
+
+    if(!lines.length){
+        alert("Questo ordine non contiene articoli da inviare.");
+        return;
+    }
+
+    const whatsappUrl =
+        `https://wa.me/${DAVIDE_WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+}
+
 function showOrder(order){
 
     const total =
@@ -5483,6 +5518,17 @@ function showOrder(order){
 
             <div class="detail-actions">
 
+                ${loggedUser === "Gio" ? `
+                <button
+                    type="button"
+                    class="whatsapp-button"
+                    id="sendDavideButton">
+
+                    INVIA A DAVIDE
+
+                </button>
+                ` : ""}
+
                 <button
                     type="button"
                     class="edit"
@@ -5515,6 +5561,19 @@ function showOrder(order){
         </div>
 
     `;
+
+    const sendDavideButton = document.getElementById(
+        "sendDavideButton"
+    );
+
+    if(sendDavideButton){
+        sendDavideButton.addEventListener(
+            "click",
+            function(){
+                sendOrderToDavide(order);
+            }
+        );
+    }
 
     document.getElementById(
         "editOrderButton"
