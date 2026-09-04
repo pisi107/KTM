@@ -3679,7 +3679,7 @@ let allJobs = [];
 let allScales = [];
 let allLessons = [];
 
-const GIO_SEEN_ORDERS_KEY = "ktm_gio_seen_orders_v1";
+const GIO_SEEN_ORDERS_KEY = "ktm_gio_seen_orders_v2";
 let gioSeenOrderIds = new Set();
 let gioSeenOrdersReady = false;
 
@@ -4584,7 +4584,6 @@ function renderOrders(){
             "click",
             function(){
 
-                markOrderSeenByGio(order);
                 showOrder(order);
 
             }
@@ -5325,10 +5324,25 @@ function sendOrderToDavide(order){
         return;
     }
 
+    const reference =
+        order.person === "Roby" ? "R" :
+        order.person === "Fede" ? "F" : "";
+
+    const heading = reference
+        ? `Ciao Davide, ti ordino questi articoli riferimento ${reference}`
+        : "Ciao Davide, ti ordino questi articoli";
+
+    const message = [
+        heading,
+        "",
+        ...lines
+    ].join("\n");
+
     const whatsappUrl =
-        `https://wa.me/${DAVIDE_WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+        `https://wa.me/${DAVIDE_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    markOrderSeenByGio(order);
 }
 
 function showOrder(order){
@@ -7207,7 +7221,6 @@ function renderOrdersFiltered(orders){
             "click",
             function(){
 
-                markOrderSeenByGio(order);
                 showOrder(order);
 
             }
