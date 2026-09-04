@@ -830,6 +830,10 @@ button{
     align-items:end;
 }
 
+.article-grid.customer-article-grid{
+    grid-template-columns:2fr .7fr 1fr .8fr auto;
+}
+
 .article-grid input{
     width:100%;
     padding:11px;
@@ -2200,6 +2204,7 @@ select:focus-visible{
 
     .article-row{padding:12px;border-radius:14px;}
     .article-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .article-grid.customer-article-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
     .article-grid > div:first-child,
     .article-actions{grid-column:1 / -1;}
     .article-grid input{min-height:46px;text-align:left;}
@@ -4698,6 +4703,21 @@ function applyOrderPermissions(){
     }
 
     document
+        .querySelectorAll(".article-status-field")
+        .forEach(field => {
+            field.style.display = isAdmin ? "" : "none";
+        });
+
+    document
+        .querySelectorAll(".article-grid")
+        .forEach(grid => {
+            grid.classList.toggle(
+                "customer-article-grid",
+                !isAdmin
+            );
+        });
+
+    document
         .querySelectorAll(
             ".article-price"
         )
@@ -4875,7 +4895,7 @@ window.addArticle = function(
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group article-status-field">
 
                 <label>
                     Stato articolo
