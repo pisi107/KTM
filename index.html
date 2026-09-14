@@ -7396,7 +7396,7 @@ function renderScales(){
         const actionsHtml = isAdmin ? `
             <div class="scale-actions">
                 <button type="button" class="edit" onclick="editScale('${scale.id}')">Modifica</button>
-                <button type="button" class="delete" onclick="deleteScale('${scale.id}')">Elimina</button>
+                <button type="button" class="delete" onclick="requestDeleteScale(this, '${scale.id}')">Elimina</button>
             </div>
         ` : '';
 
@@ -7456,12 +7456,27 @@ window.editScale = function(id){
     document.getElementById("scaleModal").style.display = "block";
 };
 
-window.deleteScale = async function(id){
-    if(loggedUser !== "Gio") return;
+window.requestDeleteScale = function(button, id){
 
-    if(!confirm("Vuoi davvero eliminare questo importo scalato?")){
+    if(button.dataset.deleteId === id){
+        deleteScale(id);
         return;
     }
+
+    button.dataset.deleteId = id;
+    button.textContent = "Confermi?";
+
+    setTimeout(function(){
+        if(button.dataset.deleteId === id){
+            delete button.dataset.deleteId;
+            button.textContent = "Elimina";
+        }
+    }, 4000);
+
+};
+
+window.deleteScale = async function(id){
+    if(loggedUser !== "Gio") return;
 
     try{
         await deleteDoc(doc(db, "scala_soldi", id));
