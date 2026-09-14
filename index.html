@@ -679,6 +679,39 @@ button{
     font-size:23px;
 }
 
+.panel-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex:1;
+    gap:12px;
+    padding:4px 0;
+    background:transparent;
+    color:inherit;
+    text-align:left;
+    font-size:inherit;
+}
+
+.panel-toggle-icon{
+    display:inline-block;
+    color:#64748b;
+    font-size:20px;
+    line-height:1;
+    transition:transform .2s ease;
+}
+
+.collapsible-panel.is-open .panel-toggle-icon{
+    transform:rotate(180deg);
+}
+
+.collapsible-content{
+    display:none;
+}
+
+.collapsible-panel.is-open .collapsible-content{
+    display:block;
+}
+
 .add-job-button{
     background:#111827;
     color:#fff;
@@ -2783,14 +2816,23 @@ select:focus-visible{
 
         <div
             id="jobsPanel"
-            class="jobs-panel"
+            class="jobs-panel collapsible-panel"
             style="display:none;">
 
             <div class="jobs-header">
 
-                <h2 id="jobsPanelTitle">
-                    🔧 Lavori
-                </h2>
+                <button
+                    id="jobsPanelToggle"
+                    type="button"
+                    class="panel-toggle"
+                    aria-expanded="false"
+                    aria-controls="jobsContent"
+                    onclick="togglePanel('jobs')">
+
+                    <span id="jobsPanelTitle">🔧 Lavori</span>
+                    <span class="panel-toggle-icon" aria-hidden="true">⌄</span>
+
+                </button>
 
                 <button
                     id="addJobButtonPanel"
@@ -2804,14 +2846,17 @@ select:focus-visible{
 
             </div>
 
-            <div
-                id="jobsList"
-                class="jobs-list">
+            <div id="jobsContent" class="collapsible-content">
 
-                <div class="empty-orders">
-                    Nessun lavoro inserito.
+                <div
+                    id="jobsList"
+                    class="jobs-list">
+
+                    <div class="empty-orders">
+                        Nessun lavoro inserito.
+                    </div>
+
                 </div>
-
             </div>
 
         </div>
@@ -2822,14 +2867,23 @@ select:focus-visible{
 
         <div
             id="scalesPanel"
-            class="scales-panel"
+            class="scales-panel collapsible-panel"
             style="display:none;">
 
             <div class="scales-header">
 
-                <h2>
-                    💸 Soldi Scalati
-                </h2>
+                <button
+                    id="scalesPanelToggle"
+                    type="button"
+                    class="panel-toggle"
+                    aria-expanded="false"
+                    aria-controls="scalesContent"
+                    onclick="togglePanel('scales')">
+
+                    <span>💸 Soldi scalati</span>
+                    <span class="panel-toggle-icon" aria-hidden="true">⌄</span>
+
+                </button>
 
                 <button
                     id="addScaleButtonPanel"
@@ -2844,14 +2898,17 @@ select:focus-visible{
 
             </div>
 
-            <div
-                id="scalesList"
-                class="scales-list">
+            <div id="scalesContent" class="collapsible-content">
 
-                <div class="empty-orders">
-                    Nessun importo scalato.
+                <div
+                    id="scalesList"
+                    class="scales-list">
+
+                    <div class="empty-orders">
+                        Nessun importo scalato.
+                    </div>
+
                 </div>
-
             </div>
 
         </div>
@@ -4015,6 +4072,36 @@ window.changeCode = function(){
    APP
 ===================================================== */
 
+window.togglePanel = function(panelName){
+
+    const panel = document.getElementById(panelName + "Panel");
+    const toggle = document.getElementById(panelName + "PanelToggle");
+
+    if(!panel || !toggle) return;
+
+    const isOpen = panel.classList.toggle("is-open");
+
+    toggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+    );
+
+};
+
+function closeCollapsiblePanels(){
+
+    ["jobs", "scales"].forEach(panelName => {
+
+        const panel = document.getElementById(panelName + "Panel");
+        const toggle = document.getElementById(panelName + "PanelToggle");
+
+        if(panel) panel.classList.remove("is-open");
+        if(toggle) toggle.setAttribute("aria-expanded", "false");
+
+    });
+
+}
+
 function openApp(){
 
     document.getElementById("loginPage")
@@ -4028,6 +4115,8 @@ function openApp(){
 
     document.getElementById("appPage")
         .style.display = "block";
+
+    closeCollapsiblePanels();
 
     document.getElementById("loggedName")
         .textContent =
