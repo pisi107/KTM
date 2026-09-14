@@ -1996,6 +1996,9 @@ select:focus-visible{
 .lessons-panel{display:none;margin-bottom:20px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);text-align:left;}
 .lessons-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);}
 .lessons-panel:not(.is-open) .lessons-header{margin-bottom:0;padding-bottom:0;border-bottom:0;}
+.gio-lessons-view .lessons-header{justify-content:center;}
+.gio-lessons-view .lessons-header .panel-toggle{flex:0 1 auto;}
+.gio-lessons-view .lesson-item{flex-direction:column;align-items:center;text-align:center;}
 .lesson-item{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px;margin-bottom:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);}
 .lesson-description{font-weight:800;}.lesson-date{margin-top:4px;color:var(--muted);font-size:13px;}.lesson-price{color:#16a34a;font-weight:900;white-space:nowrap;}.lesson-actions{display:flex;gap:8px;}.lesson-actions button{padding:8px 12px;font-size:12px;}
 @media(max-width:700px){.lessons-panel{padding:17px;border-radius:17px;}.lessons-header{align-items:stretch;flex-direction:column;}.lessons-header button{width:100%;}.lesson-item{align-items:flex-start;flex-direction:column;}}
@@ -4320,11 +4323,9 @@ document.querySelector(
         loggedUser === "Gio"
         ? "inline-block"
         : "none";
-    importExcelLessonsButton.style.display =
-        loggedUser === "Gio"
-        ? "inline-block"
-        : "none";
-    // Gio inserisce e importa le lezioni, ma il relativo elenco è riservato a Roby.
+    importExcelLessonsButton.style.display = "none";
+    lessonsPanel.classList.toggle("gio-lessons-view", loggedUser === "Gio");
+    // Le lezioni possono essere consultate da Gio e Roby.
     lessonsList.style.display =
         loggedUser === "Roby" || loggedUser === "Gio"
         ? "block"
