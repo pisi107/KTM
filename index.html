@@ -5465,14 +5465,25 @@ async function markImportedFedeOrdersDelivered(){
 
         snapshot.forEach(docSnap => {
             const order = docSnap.data();
-            if(order.source !== FEDE_EXCEL_ORDERS_SOURCE || order.status === "consegnato"){
+            if(order.source !== FEDE_EXCEL_ORDERS_SOURCE){
                 return;
             }
 
             const articles = (order.articles || []).map(article => ({
                 ...article,
-                status:"consegnato"
+                status:"consegnato",
+                discount: Number(article.discount) === 37.5
+                    ? 25
+                    : Number(article.discount) === 29.18
+                        ? 15
+                        : article.discount
             }));
+            const needsUpdate = order.status !== "consegnato" ||
+                articles.some((article, index) =>
+                    article.status !== (order.articles || [])[index]?.status ||
+                    article.discount !== (order.articles || [])[index]?.discount
+                );
+            if(!needsUpdate) return;
             updates.push(
                 updateDoc(doc(db, "ordini", docSnap.id), {
                     status:"consegnato",
@@ -5528,7 +5539,11 @@ window.importFedeExcelOrders = async function(button){
             }
 
             const articles = rows.map(([code, qty, price, discount]) => ({
-                code, qty, price, discount, status:"ordinato"
+                code,
+                qty,
+                price,
+                discount: discount === 37.5 ? 25 : discount === 29.18 ? 15 : discount,
+                status:"ordinato"
             }));
             const number = "KTM-" + String(existingSnapshot.size + imported + 1).padStart(4, "0");
             await addDoc(collection(db, "ordini"), {
