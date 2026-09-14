@@ -2916,6 +2916,9 @@ select:focus-visible{
         <div id="lessonsPanel" class="lessons-panel">
             <div class="lessons-header">
                 <h2>📚 Lezioni</h2>
+                <button id="importExcelLessonsButton" type="button" class="add-job-button" onclick="importExcelLessons(this)">
+                    Importa lezioni Excel
+                </button>
                 <button id="addLessonButton" type="button" class="add-job-button" onclick="openLessonModal()">
                     + Aggiungi lezione
                 </button>
@@ -4186,6 +4189,8 @@ function openApp(){
 
     const lessonsPanel = document.getElementById("lessonsPanel");
     const addLessonButton = document.getElementById("addLessonButton");
+    const importExcelLessonsButton = document.getElementById("importExcelLessonsButton");
+    const lessonsList = document.getElementById("lessonsList");
 
     if(USERS[loggedUser].admin){
 
@@ -4295,6 +4300,15 @@ document.querySelector(
     addLessonButton.style.display =
         loggedUser === "Gio"
         ? "inline-block"
+        : "none";
+    importExcelLessonsButton.style.display =
+        loggedUser === "Gio"
+        ? "inline-block"
+        : "none";
+    // Gio inserisce e importa le lezioni, ma il relativo elenco è riservato a Roby.
+    lessonsList.style.display =
+        loggedUser === "Roby"
+        ? "block"
         : "none";
 
     listenOrders();
@@ -6777,7 +6791,7 @@ window.saveJob = async function(){
 };
 
 /* =====================================================
-   LEZIONI (VISIBILI A GIO E ROBY)
+   LEZIONI (GESTITE DA GIO, VISIBILI SOLO A ROBY)
 ===================================================== */
 
 function listenLessons(){
@@ -6826,7 +6840,7 @@ function renderLessons(){
     const list = document.getElementById("lessonsList");
     if(!list) return;
 
-    if(loggedUser !== "Gio" && loggedUser !== "Roby"){
+    if(loggedUser !== "Roby"){
         list.innerHTML = "";
         return;
     }
@@ -6944,6 +6958,124 @@ window.saveLesson = async function(){
     }catch(error){
         console.error("Errore salvataggio lezione:", error);
         alert("Errore durante il salvataggio della lezione.\n\n" + error.message);
+    }
+};
+
+/* Importazione unica dal file Excel "Roby Lombrici ricambi verificato Gio".
+   Le righe senza data usano 01/01/2026; Lezione Arco usa 26/05/2026. */
+const EXCEL_LESSONS_TO_IMPORT = [
+    ["2024-11-16", "Lezione", 40],
+    ["2024-11-20", "Lezione", 40],
+    ["2024-11-30", "Lezione", 40],
+    ["2026-01-01", "Lezione", 40],
+    ["2025-01-19", "Lezione", 40],
+    ["2025-01-22", "Lezione", 40],
+    ["2025-01-25", "Lezione", 40],
+    ["2025-01-29", "Lezione", 40],
+    ["2025-02-02", "Lezione", 40],
+    ["2025-02-06", "Lezione", 40],
+    ["2026-01-01", "Lezione", 40],
+    ["2025-02-26", "Lezione", 40],
+    ["2025-03-04", "Lezione Mantova", 100],
+    ["2025-03-09", "Lezione", 40],
+    ["2025-03-26", "Lezione Vercelli", 40],
+    ["2025-04-02", "Lezione Bellinzago", 40],
+    ["2025-04-05", "Lezione Fara", 40],
+    ["2025-04-23", "Lezione Fara", 40],
+    ["2025-05-14", "Lezione Fara", 40],
+    ["2025-05-21", "Lezione Bellinzago", 40],
+    ["2025-05-29", "Lezione Ottobiano", 50],
+    ["2025-06-05", "Lezione Bellinzago", 40],
+    ["2025-07-09", "Lezione Fara", 40],
+    ["2025-08-24", "Lezione Fara", 40],
+    ["2025-08-27", "Lezione Ceriano", 40],
+    ["2025-09-03", "Lezione Casale", 40],
+    ["2025-09-17", "Lezione Cremona", 50],
+    ["2025-10-01", "Lezione Ottobiano", 40],
+    ["2025-10-22", "Lezione Bellinzago + moto", 75],
+    ["2025-11-26", "Lezione Ceriano", 40],
+    ["2025-12-03", "Lezione Ottobiano", 40],
+    ["2026-01-01", "Lezione Ceriano", 40],
+    ["2026-01-29", "Lezione Chieve", 40],
+    ["2026-02-05", "Lezione Chieve", 40],
+    ["2026-02-07", "Lezione Fiume", 40],
+    ["2026-02-11", "Lezione Fiume", 40],
+    ["2026-02-25", "Lezione Ottobiano", 40],
+    ["2026-03-25", "Lezione Dorno", 40],
+    ["2026-04-02", "Lezione Bosisio", 40],
+    ["2026-04-23", "Lezione Ottobiano", 40],
+    ["2026-04-29", "Lezione Bellinzago", 40],
+    ["2026-05-06", "Lezione Fiume", 40],
+    ["2026-05-20", "Lezione Ceriano", 40],
+    ["2026-05-26", "Lezione Arco", 100],
+    ["2026-06-03", "Lezione Fara", 40],
+    ["2026-09-03", "Lezione Vercelli", 40],
+    ["2026-09-08", "Lezione Bellinzago", 40]
+];
+
+const EXCEL_LESSONS_SOURCE = "excel-roby-lombrici-2026";
+
+window.importExcelLessons = async function(button){
+
+    if(loggedUser !== "Gio") return;
+
+    if(button.dataset.confirmImport !== "yes"){
+        button.dataset.confirmImport = "yes";
+        button.textContent = "Confermi importazione?";
+        setTimeout(function(){
+            if(button.dataset.confirmImport === "yes"){
+                delete button.dataset.confirmImport;
+                button.textContent = "Importa lezioni Excel";
+            }
+        }, 5000);
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Importazione...";
+
+    try{
+        const existingSnapshot = await getDocs(collection(db, "lavori"));
+        const existing = new Set();
+        existingSnapshot.forEach(docSnap => {
+            const item = docSnap.data();
+            if(item.type === "lezione" && item.source === EXCEL_LESSONS_SOURCE){
+                existing.add(`${item.date}|${item.description}|${Number(item.price)}`);
+            }
+        });
+
+        let imported = 0;
+        let skipped = 0;
+        for(let index = 0; index < EXCEL_LESSONS_TO_IMPORT.length; index++){
+            const [date, description, price] = EXCEL_LESSONS_TO_IMPORT[index];
+            const key = `${date}|${description}|${price}`;
+
+            if(existing.has(key)){
+                skipped++;
+                continue;
+            }
+
+            await addDoc(collection(db, "lavori"), {
+                description,
+                price,
+                date,
+                person: "Roby",
+                type: "lezione",
+                source: EXCEL_LESSONS_SOURCE,
+                createdAt: Date.now() + index,
+                createdBy: "Gio"
+            });
+            imported++;
+        }
+
+        button.textContent = "Lezioni importate";
+        delete button.dataset.confirmImport;
+        alert(`Importazione completata: ${imported} lezioni aggiunte, ${skipped} già presenti.`);
+    }catch(error){
+        console.error("Errore importazione lezioni:", error);
+        button.disabled = false;
+        button.textContent = "Importa lezioni Excel";
+        alert("Errore durante l'importazione delle lezioni. Riprova: quelle già inserite non verranno duplicate.\n\n" + error.message);
     }
 };
 
