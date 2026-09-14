@@ -6554,7 +6554,7 @@ function renderJobs(){
                         <button
                             type="button"
                             class="delete"
-                            onclick="deleteJob('${job.id}')">
+                            onclick="requestDeleteJob(this, '${job.id}')">
 
                             Elimina
 
@@ -6575,15 +6575,30 @@ function renderJobs(){
 
 }
 
+window.requestDeleteJob = function(button, id){
+
+    if(button.dataset.deleteId === id){
+        deleteJob(id);
+        return;
+    }
+
+    button.dataset.deleteId = id;
+    button.textContent = "Confermi?";
+
+    setTimeout(function(){
+        if(button.dataset.deleteId === id){
+            delete button.dataset.deleteId;
+            button.textContent = "Elimina";
+        }
+    }, 4000);
+
+};
+
 window.deleteJob = async function(id){
 
     const job = allJobs.find(item => item.id === id);
 
     if(!job || (loggedUser !== "Gio" && job.createdBy !== loggedUser)){
-        return;
-    }
-
-    if(!confirm("Vuoi davvero eliminare questo lavoro?")){
         return;
     }
 
