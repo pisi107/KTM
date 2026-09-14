@@ -6364,13 +6364,17 @@ function listenJobs(){
                 snapshot.forEach(
                     docSnap => {
 
-                        allJobs.push({
+                        const job = {
 
                             id:docSnap.id,
 
                             ...docSnap.data()
 
-                        });
+                        };
+
+                        if(job.type !== "lezione"){
+                            allJobs.push(job);
+                        }
 
                     }
                 );
@@ -6782,7 +6786,9 @@ function listenLessons(){
         unsubscribeLessons();
     }
 
-    const lessonsRef = collection(db, "lezioni");
+    // Le lezioni condividono la raccolta "lavori", già autorizzata
+    // dalle regole Firebase dell'app.
+    const lessonsRef = collection(db, "lavori");
     const lessonsQuery = query(
         lessonsRef,
         orderBy("createdAt", "desc")
@@ -6793,10 +6799,14 @@ function listenLessons(){
         snapshot => {
             allLessons = [];
             snapshot.forEach(docSnap => {
-                allLessons.push({
+                const lesson = {
                     id: docSnap.id,
                     ...docSnap.data()
-                });
+                };
+
+                if(lesson.type === "lezione"){
+                    allLessons.push(lesson);
+                }
             });
             renderLessons();
             updateAccountSummary();
@@ -6912,7 +6922,7 @@ window.saveLesson = async function(){
 
     try{
         if(editingLessonId){
-            await updateDoc(doc(db, "lezioni", editingLessonId), {
+            await updateDoc(doc(db, "lavori", editingLessonId), {
                 description,
                 price,
                 date,
@@ -6920,11 +6930,12 @@ window.saveLesson = async function(){
                 updatedBy: "Gio"
             });
         }else{
-            await addDoc(collection(db, "lezioni"), {
+            await addDoc(collection(db, "lavori"), {
                 description,
                 price,
                 date,
                 person: "Roby",
+                type: "lezione",
                 createdAt: Date.now(),
                 createdBy: "Gio"
             });
@@ -6942,7 +6953,7 @@ window.deleteLesson = async function(id){
     if(!confirm("Vuoi davvero eliminare questa lezione?")) return;
 
     try{
-        await deleteDoc(doc(db, "lezioni", id));
+        await deleteDoc(doc(db, "lavori", id));
     }catch(error){
         console.error("Errore eliminazione lezione:", error);
         alert("Errore durante l'eliminazione della lezione.\n\n" + error.message);
