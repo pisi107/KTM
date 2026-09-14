@@ -2960,17 +2960,6 @@ select:focus-visible{
                 </button>
 
                 <button
-                    id="importFedeOrdersButton"
-                    type="button"
-                    class="add-job-button"
-                    onclick="importFedeExcelOrders(this)"
-                    style="display:none;">
-
-                    Importa ordini Fede
-
-                </button>
-
-                <button
                     type="button"
                     class="new-order"
                     onclick="openNewOrder()">
@@ -4224,7 +4213,6 @@ function openApp(){
     const addLessonButton = document.getElementById("addLessonButton");
     const importExcelLessonsButton = document.getElementById("importExcelLessonsButton");
     const lessonsList = document.getElementById("lessonsList");
-    const importFedeOrdersButton = document.getElementById("importFedeOrdersButton");
 
     if(USERS[loggedUser].admin){
 
@@ -4337,10 +4325,6 @@ document.querySelector(
         : "none";
     importExcelLessonsButton.style.display = "none";
     lessonsPanel.classList.toggle("gio-lessons-view", loggedUser === "Gio");
-    importFedeOrdersButton.style.display =
-        loggedUser === "Gio"
-        ? "inline-block"
-        : "none";
     // Le lezioni possono essere consultate da Gio e Roby.
     lessonsList.style.display =
         loggedUser === "Roby" || loggedUser === "Gio"
@@ -4355,6 +4339,7 @@ document.querySelector(
     if(loggedUser === "Gio"){
 
         setupNotifications();
+        markImportedFedeOrdersDelivered();
 
     }
 
@@ -5471,6 +5456,39 @@ const FEDE_EXCEL_ORDERS = [
 ];
 
 const FEDE_EXCEL_ORDERS_SOURCE = "excel-fede-ricambi-2026";
+
+async function markImportedFedeOrdersDelivered(){
+
+    try{
+        const snapshot = await getDocs(collection(db, "ordini"));
+        const updates = [];
+
+        snapshot.forEach(docSnap => {
+            const order = docSnap.data();
+            if(order.source !== FEDE_EXCEL_ORDERS_SOURCE || order.status === "consegnato"){
+                return;
+            }
+
+            const articles = (order.articles || []).map(article => ({
+                ...article,
+                status:"consegnato"
+            }));
+            updates.push(
+                updateDoc(doc(db, "ordini", docSnap.id), {
+                    status:"consegnato",
+                    articles,
+                    updatedAt:Date.now(),
+                    updatedBy:"Gio"
+                })
+            );
+        });
+
+        await Promise.all(updates);
+    }catch(error){
+        console.error("Errore aggiornamento ordini Fede:", error);
+    }
+
+}
 
 window.importFedeExcelOrders = async function(button){
 
