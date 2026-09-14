@@ -521,6 +521,12 @@ button{
     font-size:23px;
 }
 
+.panel-header .panel-toggle,
+.lessons-header .panel-toggle{
+    font-size:20px;
+    font-weight:800;
+}
+
 .new-order{
     padding:12px 16px;
     background:#ff6600;
@@ -768,6 +774,9 @@ button{
     white-space:nowrap;
     color:#dc2626;
 }
+
+.positive-price{color:#16a34a!important;}
+.negative-price{color:#dc2626!important;}
 
 .job-actions,
 .scale-actions{
@@ -1986,6 +1995,7 @@ select:focus-visible{
 .clear-order-search{display:none;position:absolute;right:8px;top:50%;width:34px;height:34px;padding:0;transform:translateY(-50%);border-radius:10px;background:transparent;color:var(--muted);font-size:20px;}
 .lessons-panel{display:none;margin-bottom:20px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);text-align:left;}
 .lessons-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.lessons-panel:not(.is-open) .lessons-header{margin-bottom:0;padding-bottom:0;border-bottom:0;}
 .lesson-item{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px;margin-bottom:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);}
 .lesson-description{font-weight:800;}.lesson-date{margin-top:4px;color:var(--muted);font-size:13px;}.lesson-price{color:#16a34a;font-weight:900;white-space:nowrap;}.lesson-actions{display:flex;gap:8px;}.lesson-actions button{padding:8px 12px;font-size:12px;}
 @media(max-width:700px){.lessons-panel{padding:17px;border-radius:17px;}.lessons-header{align-items:stretch;flex-direction:column;}.lessons-header button{width:100%;}.lesson-item{align-items:flex-start;flex-direction:column;}}
@@ -2913,9 +2923,12 @@ select:focus-visible{
 
         </div>
 
-        <div id="lessonsPanel" class="lessons-panel">
+        <div id="lessonsPanel" class="lessons-panel collapsible-panel">
             <div class="lessons-header">
-                <h2>📚 Lezioni</h2>
+                <button id="lessonsPanelToggle" type="button" class="panel-toggle" aria-expanded="false" aria-controls="lessonsContent" onclick="togglePanel('lessons')">
+                    <span>📚 Lezioni</span>
+                    <span class="panel-toggle-icon" aria-hidden="true">⌄</span>
+                </button>
                 <button id="importExcelLessonsButton" type="button" class="add-job-button" onclick="importExcelLessons(this)">
                     Importa lezioni Excel
                 </button>
@@ -2923,8 +2936,10 @@ select:focus-visible{
                     + Aggiungi lezione
                 </button>
             </div>
-            <div id="lessonsList">
-                <div class="empty-orders">Caricamento lezioni...</div>
+            <div id="lessonsContent" class="collapsible-content">
+                <div id="lessonsList">
+                    <div class="empty-orders">Caricamento lezioni...</div>
+                </div>
             </div>
         </div>
 
@@ -2932,13 +2947,14 @@ select:focus-visible{
              ORDINI
         ========================= -->
 
-        <div class="orders-panel">
+        <div id="ordersPanel" class="orders-panel collapsible-panel">
 
             <div class="panel-header">
 
-                <h2 id="ordersTitle">
-                    Ordini
-                </h2>
+                <button id="ordersPanelToggle" type="button" class="panel-toggle" aria-expanded="false" aria-controls="ordersContent" onclick="togglePanel('orders')">
+                    <span id="ordersTitle">Ordini</span>
+                    <span class="panel-toggle-icon" aria-hidden="true">⌄</span>
+                </button>
 
                 <button
                     type="button"
@@ -2950,6 +2966,7 @@ select:focus-visible{
                 </button>
 
             </div>
+            <div id="ordersContent" class="collapsible-content">
             <div class="order-search-wrap">
                 <input id="orderSearch" class="order-search" type="search" autocomplete="off"
                     placeholder="Cerca un codice articolo..." oninput="filterOrders()">
@@ -3008,6 +3025,8 @@ select:focus-visible{
                 <div class="empty-orders">
                     Caricamento ordini...
                 </div>
+
+            </div>
 
             </div>
 
@@ -4095,7 +4114,7 @@ window.togglePanel = function(panelName){
 
 function closeCollapsiblePanels(){
 
-    ["jobs", "scales"].forEach(panelName => {
+    ["jobs", "scales", "lessons", "orders"].forEach(panelName => {
 
         const panel = document.getElementById(panelName + "Panel");
         const toggle = document.getElementById(panelName + "PanelToggle");
@@ -4307,7 +4326,7 @@ document.querySelector(
         : "none";
     // Gio inserisce e importa le lezioni, ma il relativo elenco è riservato a Roby.
     lessonsList.style.display =
-        loggedUser === "Roby"
+        loggedUser === "Roby" || loggedUser === "Gio"
         ? "block"
         : "none";
 
@@ -6329,6 +6348,13 @@ function renderAccountModal(
 
 window.scrollToOrders = function(){
 
+    const ordersPanel = document.getElementById("ordersPanel");
+    const ordersToggle = document.getElementById("ordersPanelToggle");
+    if(ordersPanel && ordersToggle){
+        ordersPanel.classList.add("is-open");
+        ordersToggle.setAttribute("aria-expanded", "true");
+    }
+
     document
         .querySelector(
             ".orders-panel"
@@ -6503,7 +6529,7 @@ function renderJobs(){
 
                 <div style="display:flex; align-items:center; gap:20px;">
 
-                    <div class="job-price">
+                    <div class="job-price ${loggedUser === "Roby" ? "positive-price" : ""}">
 
                         - ${euro(
                             job.price
@@ -6791,7 +6817,7 @@ window.saveJob = async function(){
 };
 
 /* =====================================================
-   LEZIONI (GESTITE DA GIO, VISIBILI SOLO A ROBY)
+   LEZIONI (GESTITE DA GIO, VISIBILI A GIO E ROBY)
 ===================================================== */
 
 function listenLessons(){
@@ -6840,7 +6866,7 @@ function renderLessons(){
     const list = document.getElementById("lessonsList");
     if(!list) return;
 
-    if(loggedUser !== "Roby"){
+    if(loggedUser !== "Roby" && loggedUser !== "Gio"){
         list.innerHTML = "";
         return;
     }
@@ -6860,7 +6886,7 @@ function renderLessons(){
                 <div class="lesson-date">${formatDate(lesson.date)}</div>
             </div>
             <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-                <div class="lesson-price">+ ${euro(lesson.price)} pagato</div>
+                <div class="lesson-price ${loggedUser === "Gio" ? "negative-price" : ""}">${euro(lesson.price)}</div>
                 ${loggedUser === "Gio" ? `
                     <div class="lesson-actions">
                         <button type="button" class="edit" onclick="editLesson('${lesson.id}')">Modifica</button>
@@ -7218,7 +7244,7 @@ function renderScales(){
                 </div>
             </div>
             <div style="display:flex; align-items:center; gap:20px;">
-                <div class="scale-price">
+                <div class="scale-price ${isAdmin ? "positive-price" : ""}">
                     - ${euro(scale.price)}
                 </div>
                 ${actionsHtml}
