@@ -5456,6 +5456,21 @@ const FEDE_EXCEL_ORDERS = [
 ];
 
 const FEDE_EXCEL_ORDERS_SOURCE = "excel-fede-ricambi-2026";
+const FEDE_DIRECT_25_CODES = new Set([
+    "79030207010II", "79030207010I", "79030015144", "0988324515",
+    "79236002000", "79236001000", "79236013100", "77736053000",
+    "77330082200"
+]);
+
+function fedeDiscountForGio(code, discount){
+    if(FEDE_DIRECT_25_CODES.has(String(code).trim())) return 25;
+    // Il file calcola questi importi con netto scontato / 1,2.
+    // 29,1666…% è il valore preciso che fa tornare il totale Dare a Gio.
+    return Number(discount) === 15 || Number(discount) === 29.18 ||
+        Number(discount) === 29.1666666667
+        ? 29.1666666667
+        : 37.5;
+}
 
 async function markImportedFedeOrdersDelivered(){
 
@@ -5472,11 +5487,7 @@ async function markImportedFedeOrdersDelivered(){
             const articles = (order.articles || []).map(article => ({
                 ...article,
                 status:"consegnato",
-                discount: Number(article.discount) === 37.5
-                    ? 25
-                    : Number(article.discount) === 29.18
-                        ? 15
-                        : article.discount
+                discount: fedeDiscountForGio(article.code, article.discount)
             }));
             const needsUpdate = order.status !== "consegnato" ||
                 articles.some((article, index) =>
@@ -5542,7 +5553,7 @@ window.importFedeExcelOrders = async function(button){
                 code,
                 qty,
                 price,
-                discount: discount === 37.5 ? 25 : discount === 29.18 ? 15 : discount,
+                discount: fedeDiscountForGio(code, discount),
                 status:"ordinato"
             }));
             const number = "KTM-" + String(existingSnapshot.size + imported + 1).padStart(4, "0");
