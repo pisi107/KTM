@@ -6850,7 +6850,7 @@ function renderLessons(){
                 ${loggedUser === "Gio" ? `
                     <div class="lesson-actions">
                         <button type="button" class="edit" onclick="editLesson('${lesson.id}')">Modifica</button>
-                        <button type="button" class="delete" onclick="deleteLesson('${lesson.id}')">Elimina</button>
+                        <button type="button" class="delete" onclick="requestDeleteLesson(this, '${lesson.id}')">Elimina</button>
                     </div>
                 ` : ""}
             </div>
@@ -6947,10 +6947,28 @@ window.saveLesson = async function(){
     }
 };
 
+window.requestDeleteLesson = function(button, id){
+
+    if(button.dataset.deleteId === id){
+        deleteLesson(id);
+        return;
+    }
+
+    button.dataset.deleteId = id;
+    button.textContent = "Confermi?";
+
+    setTimeout(function(){
+        if(button.dataset.deleteId === id){
+            delete button.dataset.deleteId;
+            button.textContent = "Elimina";
+        }
+    }, 4000);
+
+};
+
 window.deleteLesson = async function(id){
 
     if(loggedUser !== "Gio") return;
-    if(!confirm("Vuoi davvero eliminare questa lezione?")) return;
 
     try{
         await deleteDoc(doc(db, "lavori", id));
