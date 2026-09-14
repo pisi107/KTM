@@ -3305,7 +3305,7 @@ select:focus-visible{
         <div class="form-group">
 
             <label>
-                Prezzo pagato da Gio
+                Costo lavoro (€)
             </label>
 
             <input
@@ -4273,7 +4273,7 @@ document.querySelector(
             "🔧 I miei lavori";
 
         addJobButtonPanel.style.display =
-            "none";
+            "inline-block";
 
         scalesPanel.style.display =
             "block";
@@ -6558,20 +6558,17 @@ window.deleteJob = async function(id){
 
 window.openJobModal = function(){
 
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Solo Gio può inserire i lavori."
-        );
-
-        return;
-
-    }
-
     document.getElementById(
         "jobPerson"
     ).value =
-        "Roby";
+        loggedUser === "Gio"
+        ? "Roby"
+        : loggedUser;
+
+    document.getElementById(
+        "jobPerson"
+    ).disabled =
+        loggedUser !== "Gio";
 
     document.getElementById(
         "jobDescription"
@@ -6610,20 +6607,10 @@ window.closeJobModal = function(){
 
 window.saveJob = async function(){
 
-    if(loggedUser !== "Gio"){
-
-        alert(
-            "Solo Gio può inserire i lavori."
-        );
-
-        return;
-
-    }
-
     const person =
-        document.getElementById(
-            "jobPerson"
-        ).value;
+        loggedUser === "Gio"
+        ? document.getElementById("jobPerson").value
+        : loggedUser;
 
     const description =
         document.getElementById(
@@ -6654,7 +6641,7 @@ window.saveJob = async function(){
 
     if(
         !Number.isFinite(price) ||
-        price < 0
+        price <= 0
     ){
 
         alert(
@@ -6696,7 +6683,7 @@ window.saveJob = async function(){
 
                 createdAt:Date.now(),
 
-                createdBy:"Gio"
+                createdBy:loggedUser
 
             }
 
@@ -6719,7 +6706,7 @@ window.saveJob = async function(){
 
 };
 
-+/* =====================================================
+/* =====================================================
    LEZIONI (VISIBILI A GIO E ROBY)
 ===================================================== */
 
