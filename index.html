@@ -3254,7 +3254,7 @@ select:focus-visible{
 
         <div class="modal-header">
 
-            <h2 id="jobModalTitle">
+            <h2>
                 🔧 Nuovo lavoro
             </h2>
 
@@ -3342,7 +3342,6 @@ select:focus-visible{
             </button>
 
             <button
-                id="jobSaveButton"
                 type="button"
                 class="save"
                 onclick="saveJob()">
@@ -3722,7 +3721,6 @@ const USERS = {
 let selectedUser = null;
 let loggedUser = null;
 let editingOrderId = null;
-let editingJobId = null;
 let editingScaleId = null;
 let editingLessonId = null;
 
@@ -6493,18 +6491,9 @@ function renderJobs(){
 
                     </div>
 
-                    ${loggedUser === "Gio" || job.createdBy === loggedUser ? `
+                    ${loggedUser === "Gio" ? `
 
                     <div class="job-actions">
-
-                        <button
-                            type="button"
-                            class="edit"
-                            onclick="editJob('${job.id}')">
-
-                            Modifica
-
-                        </button>
 
                         <button
                             type="button"
@@ -6532,9 +6521,7 @@ function renderJobs(){
 
 window.deleteJob = async function(id){
 
-    const job = allJobs.find(item => item.id === id);
-
-    if(!job || (loggedUser !== "Gio" && job.createdBy !== loggedUser)){
+    if(loggedUser !== "Gio"){
         return;
     }
 
@@ -6570,14 +6557,6 @@ window.deleteJob = async function(id){
 ===================================================== */
 
 window.openJobModal = function(){
-
-    editingJobId = null;
-
-    document.getElementById("jobModalTitle")
-        .textContent = "🔧 Nuovo lavoro";
-
-    document.getElementById("jobSaveButton")
-        .textContent = "SALVA LAVORO";
 
     document.getElementById(
         "jobPerson"
@@ -6619,33 +6598,6 @@ window.closeJobModal = function(){
         "jobModal"
     ).style.display =
         "none";
-
-    editingJobId = null;
-
-};
-
-window.editJob = function(id){
-
-    const job = allJobs.find(item => item.id === id);
-
-    if(!job || (loggedUser !== "Gio" && job.createdBy !== loggedUser)){
-        return;
-    }
-
-    editingJobId = id;
-
-    document.getElementById("jobModalTitle")
-        .textContent = "Modifica lavoro";
-
-    document.getElementById("jobSaveButton")
-        .textContent = "SALVA MODIFICHE";
-
-    document.getElementById("jobPerson").value = job.person;
-    document.getElementById("jobPerson").disabled = loggedUser !== "Gio";
-    document.getElementById("jobDescription").value = job.description || "";
-    document.getElementById("jobPrice").value = job.price || "";
-    document.getElementById("jobDate").value = job.date || getToday();
-    document.getElementById("jobModal").style.display = "block";
 
 };
 
@@ -6712,48 +6664,30 @@ window.saveJob = async function(){
 
     try{
 
-        if(editingJobId){
+        await addDoc(
 
-            await updateDoc(
-                doc(db, "lavori", editingJobId),
-                {
-                    person:person,
-                    description:description,
-                    price:price,
-                    date:date,
-                    updatedAt:Date.now(),
-                    updatedBy:loggedUser
-                }
-            );
+            collection(
+                db,
+                "lavori"
+            ),
 
-        }else{
+            {
 
-            await addDoc(
+                person:person,
 
-                collection(
-                    db,
-                    "lavori"
-                ),
+                description:description,
 
-                {
+                price:price,
 
-                    person:person,
+                date:date,
 
-                    description:description,
+                createdAt:Date.now(),
 
-                    price:price,
+                createdBy:loggedUser
 
-                    date:date,
+            }
 
-                    createdAt:Date.now(),
-
-                    createdBy:loggedUser
-
-                }
-
-            );
-
-        }
+        );
 
         closeJobModal();
 
