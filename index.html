@@ -2960,6 +2960,17 @@ select:focus-visible{
                 </button>
 
                 <button
+                    id="importFedeOrdersButton"
+                    type="button"
+                    class="add-job-button"
+                    onclick="importFedeExcelOrders(this)"
+                    style="display:none;">
+
+                    Importa ordini Fede
+
+                </button>
+
+                <button
                     type="button"
                     class="new-order"
                     onclick="openNewOrder()">
@@ -4213,6 +4224,7 @@ function openApp(){
     const addLessonButton = document.getElementById("addLessonButton");
     const importExcelLessonsButton = document.getElementById("importExcelLessonsButton");
     const lessonsList = document.getElementById("lessonsList");
+    const importFedeOrdersButton = document.getElementById("importFedeOrdersButton");
 
     if(USERS[loggedUser].admin){
 
@@ -4325,6 +4337,10 @@ document.querySelector(
         : "none";
     importExcelLessonsButton.style.display = "none";
     lessonsPanel.classList.toggle("gio-lessons-view", loggedUser === "Gio");
+    importFedeOrdersButton.style.display =
+        loggedUser === "Gio"
+        ? "inline-block"
+        : "none";
     // Le lezioni possono essere consultate da Gio e Roby.
     lessonsList.style.display =
         loggedUser === "Roby" || loggedUser === "Gio"
@@ -5427,6 +5443,99 @@ window.saveOrder = async function(){
 
     }
 
+};
+
+/* Ordini estratti dal file "Fede ricambi.xlsx".
+   Celle senza data: 01/01/2025. A46003044000: 02/04/2026. */
+const FEDE_EXCEL_ORDERS = [
+    ["2025-01-01", [["79030207010II",1,287.5,37.5],["79030207010I",1,287.5,37.5],["79030015144",1,296.58,37.5],["0988324515",1,1.16,37.5],["79236002000",1,15.92,37.5],["79236001000",1,12.38,37.5],["79236013100",1,88.69,37.5],["77736053000",1,13.66,37.5],["77330082200",2,59.67,37.5],["59033034044",2,4.94,37.5],["0760222841",2,4.7,37.5],["58033097000",2,9.03,37.5],["77110090050",5,2.99,37.5],["0800001708900",1,14.34,37.5],["51702091000",1,41.33,37.5],["7900200100030",2,103.09,37.5],["A46006026033",2,54.78,37.5],["A42006016000",2,21.29,37.5],["00190802665",6,3.78,37.5],["06923080003",6,1.16,37.5]]],
+    ["2025-12-01", [["RP10027T",2,51.06,37.5]]],
+    ["2025-12-08", [["A46030007010II",1,287.55,37.5]]],
+    ["2025-12-10", [["50180603S7",10,49.53,37.5]]],
+    ["2026-01-09", [["77205068000",2,5.92,29.18],["79105068000",1,6.77,29.18],["0025080506",2,3.78,29.18],["0025080406",2,3.29,29.18],["A48013051000",2,17.14,29.18],["58507012000",2,5.06,29.18],["77109072000",1,1.71,29.18],["A46009082000",2,9.88,29.18],["77204087000",2,6.47,29.18],["77204080010",1,10.13,29.18],["0618182416",1,8.3,29.18]]],
+    ["2026-01-11", [["A460300007010 II",1,293.41,37.5]]],
+    ["2026-03-16", [["50180603S7",10,50.33,37.5]]],
+    ["2026-03-25", [["S421800010S0100",1,263.7,37.5]]],
+    ["2026-04-02", [["A46003044000",10,4.27,37.5]]],
+    ["2026-04-04", [["77204089000",3,6.47,37.5]]],
+    ["2026-04-08", [["A46011074000",2,99.55,37.5]]],
+    ["2026-05-10", [["79240001000",1,261.32,37.5]]],
+    ["2026-05-15", [["79111053000",1,93.33,37.5]]],
+    ["2026-05-19", [["77239093000",1,28.24,37.5],["0019080266S",12,3.78,37.5],["06923090003",12,1.16,37.5]]],
+    ["2026-06-04", [["79332010033",1,173.33,37.5]]],
+    ["2026-06-30", [["A46014069000",2,56.66,37.5]]],
+    ["2026-07-07", [["A46002091000",2,49.11,37.5]]],
+    ["2026-07-16", [["A46003062000",4,5.61,37.5]]],
+    ["2026-08-05", [["59009062013",12,1.89,37.5]]],
+    ["2026-08-22", [["A48040027000",2,12.93,37.5],["50181100",5,22.69,37.5],["RP10027T",2,51.55,37.5],["46181237",4,22.69,37.5]]]
+];
+
+const FEDE_EXCEL_ORDERS_SOURCE = "excel-fede-ricambi-2026";
+
+window.importFedeExcelOrders = async function(button){
+
+    if(loggedUser !== "Gio") return;
+
+    if(button.dataset.confirmImport !== "yes"){
+        button.dataset.confirmImport = "yes";
+        button.textContent = "Confermi importazione?";
+        setTimeout(function(){
+            if(button.dataset.confirmImport === "yes"){
+                delete button.dataset.confirmImport;
+                button.textContent = "Importa ordini Fede";
+            }
+        }, 5000);
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Importazione...";
+
+    try{
+        const existingSnapshot = await getDocs(collection(db, "ordini"));
+        const importedDates = new Set();
+        existingSnapshot.forEach(docSnap => {
+            const order = docSnap.data();
+            if(order.source === FEDE_EXCEL_ORDERS_SOURCE){
+                importedDates.add(order.date);
+            }
+        });
+
+        let imported = 0;
+        let skipped = 0;
+        for(const [date, rows] of FEDE_EXCEL_ORDERS){
+            if(importedDates.has(date)){
+                skipped++;
+                continue;
+            }
+
+            const articles = rows.map(([code, qty, price, discount]) => ({
+                code, qty, price, discount, status:"ordinato"
+            }));
+            const number = "KTM-" + String(existingSnapshot.size + imported + 1).padStart(4, "0");
+            await addDoc(collection(db, "ordini"), {
+                number,
+                person:"Fede",
+                date,
+                status:"ordinato",
+                paymentStatus:"da_pagare",
+                articles,
+                source:FEDE_EXCEL_ORDERS_SOURCE,
+                createdAt:Date.now() + imported,
+                createdBy:"Gio"
+            });
+            imported++;
+        }
+
+        delete button.dataset.confirmImport;
+        button.textContent = imported ? "Ordini Fede importati" : "Ordini già importati";
+        alert(`Importazione completata: ${imported} ordini aggiunti, ${skipped} già presenti.`);
+    }catch(error){
+        console.error("Errore importazione ordini Fede:", error);
+        button.disabled = false;
+        button.textContent = "Importa ordini Fede";
+        alert("Errore durante l'importazione. Riprova: gli ordini già inseriti non verranno duplicati.\n\n" + error.message);
+    }
 };
 
 /* =====================================================
