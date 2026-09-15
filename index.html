@@ -117,7 +117,7 @@ button{
 }
 
 /* =========================
-   CODICE
+   PASSWORD
 ========================= */
 
 #codePage{
@@ -206,7 +206,7 @@ button{
 }
 
 /* =========================
-   CAMBIO CODICE
+   CAMBIO PASSWORD
 ========================= */
 
 #changeCodePage{
@@ -2538,7 +2538,7 @@ select:focus-visible{
 </div>
 
 <!-- =====================================================
-     CODICE
+     PASSWORD
 ===================================================== -->
 
 <div id="codePage">
@@ -2550,7 +2550,7 @@ select:focus-visible{
         </div>
 
         <div class="code-title">
-            Inserisci il codice
+            Inserisci la password
         </div>
 
         <div id="codeSubtitle" class="code-subtitle">
@@ -2585,7 +2585,7 @@ select:focus-visible{
         </button>
 
         <div id="loginError" class="error">
-            Codice non corretto.
+            Password non corretta.
         </div>
 
     </div>
@@ -2593,7 +2593,7 @@ select:focus-visible{
 </div>
 
 <!-- =====================================================
-     CAMBIO CODICE
+     CAMBIO PASSWORD
 ===================================================== -->
 
 <div id="changeCodePage">
@@ -2610,22 +2610,22 @@ select:focus-visible{
 
         <div class="warning">
 
-            <strong>Devi cambiare il codice.</strong>
+            <strong>Devi creare una password.</strong>
 
             <br><br>
 
-            Il codice iniziale è
+            La password iniziale è
             <strong>1234</strong>.
 
             <br><br>
 
-            Scegli ora il tuo codice personale da 4 a 6 cifre.
+            Scegli ora la tua password personale da 4 a 6 cifre.
 
         </div>
 
         <div class="form-group">
 
-            <label>Nuovo codice</label>
+            <label>Nuova password</label>
 
             <input
                 id="newCode"
@@ -2633,13 +2633,13 @@ select:focus-visible{
                 inputmode="numeric"
                 maxlength="6"
                 pattern="[0-9]{4,6}"
-                placeholder="Nuovo codice">
+                placeholder="Nuova password">
 
         </div>
 
         <div class="form-group">
 
-            <label>Conferma nuovo codice</label>
+            <label>Conferma nuova password</label>
 
             <input
                 id="confirmCode"
@@ -2647,7 +2647,7 @@ select:focus-visible{
                 inputmode="numeric"
                 maxlength="6"
                 pattern="[0-9]{4,6}"
-                placeholder="Ripeti il codice">
+                placeholder="Ripeti la password">
 
         </div>
 
@@ -2658,7 +2658,7 @@ select:focus-visible{
             class="orange-button"
             onclick="changeCode()">
 
-            SALVA NUOVO CODICE
+            SALVA PASSWORD
 
         </button>
 
@@ -3858,7 +3858,28 @@ try{
    UTENTI
 ===================================================== */
 
-const DEFAULT_CODE = "1234";
+const DEFAULT_PASSWORD = "1234";
+const PASSWORD_STORAGE_PREFIX = "ktm_password_";
+const PASSWORD_RESET_VERSION = "password-reset-2026-09-15";
+
+// Applica una sola volta l'azzeramento richiesto: tutti devono creare una
+// nuova password e l'eventuale accesso biometrico precedente non resta valido.
+function resetSavedPasswords(){
+    if(localStorage.getItem("ktm_password_reset_version") === PASSWORD_RESET_VERSION){
+        return;
+    }
+
+    ["Roby", "Fede", "Gio"].forEach(user => {
+        localStorage.removeItem("ktm_code_" + user);
+        localStorage.removeItem(PASSWORD_STORAGE_PREFIX + user);
+        localStorage.removeItem("ktm_bio_" + user);
+    });
+
+    localStorage.removeItem("ktm_logged_user");
+    localStorage.setItem("ktm_password_reset_version", PASSWORD_RESET_VERSION);
+}
+
+resetSavedPasswords();
 
 const APP_USER = (() => {
 
@@ -4032,7 +4053,7 @@ window.selectUser = async function(user){
 
     document.getElementById("codeSubtitle")
         .textContent =
-        "Inserisci il codice di " + user;
+        "Inserisci la password di " + user;
 
     document.getElementById("loginCode")
         .value = "";
@@ -4089,13 +4110,13 @@ window.login = function(){
 
     const saved =
         localStorage.getItem(
-            "ktm_code_" + selectedUser
+            PASSWORD_STORAGE_PREFIX + selectedUser
         );
 
     const realCode =
         /^\d{4,6}$/.test(saved || "")
         ? saved
-        : DEFAULT_CODE;
+        : DEFAULT_PASSWORD;
 
     const error =
         document.getElementById("loginError");
@@ -4103,7 +4124,7 @@ window.login = function(){
     if(entered !== realCode){
 
         error.textContent =
-            "Codice non corretto.";
+            "Password non corretta.";
 
         error.style.display =
             "block";
@@ -4115,8 +4136,8 @@ window.login = function(){
     error.style.display =
         "none";
 
-    // Se non ha ancora salvato un codice personalizzato (quindi usa 1234), obbliga al cambio
-    if(!/^\d{4,6}$/.test(saved || "") || saved === DEFAULT_CODE){
+    // Se non ha ancora salvato una password personale, obbliga alla creazione.
+    if(!/^\d{4,6}$/.test(saved || "") || saved === DEFAULT_PASSWORD){
 
         document.getElementById("codePage")
             .style.display = "none";
@@ -4204,7 +4225,7 @@ window.changeCode = function(){
     if(!/^\d{4,6}$/.test(newCode)){
 
         error.textContent =
-            "Il codice deve contenere da 4 a 6 cifre.";
+            "La password deve contenere da 4 a 6 cifre.";
 
         error.style.display =
             "block";
@@ -4216,7 +4237,7 @@ window.changeCode = function(){
     if(newCode !== confirmCode){
 
         error.textContent =
-            "I codici non coincidono.";
+            "Le password non coincidono.";
 
         error.style.display =
             "block";
@@ -4225,10 +4246,10 @@ window.changeCode = function(){
 
     }
 
-    if(newCode === DEFAULT_CODE){
+    if(newCode === DEFAULT_PASSWORD){
 
         error.textContent =
-            "Scegli un codice diverso da 1234.";
+            "Scegli una password diversa da 1234.";
 
         error.style.display =
             "block";
@@ -4238,7 +4259,7 @@ window.changeCode = function(){
     }
 
     localStorage.setItem(
-        "ktm_code_" + selectedUser,
+        PASSWORD_STORAGE_PREFIX + selectedUser,
         newCode
     );
 
@@ -8799,7 +8820,7 @@ window.addEventListener(
 );
 
 /* =====================================================
-   INVIO LOGIN / CODICE
+   INVIO LOGIN / PASSWORD
 ===================================================== */
 
 document.getElementById("loginCode").addEventListener("keydown", function(event) {
