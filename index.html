@@ -2337,6 +2337,139 @@ select:focus-visible{
     *,*::before,*::after{transition:none!important;}
 }
 
+/* Interfaccia rinnovata: ogni area resta separata, con un colore dedicato. */
+body{
+    --app-accent:#f97316;
+    --app-accent-dark:#c2410c;
+    --app-accent-soft:#fff7ed;
+    background:
+        radial-gradient(circle at 100% 0, var(--app-accent-soft) 0, transparent 31rem),
+        linear-gradient(180deg,#fbfcff 0%,#f3f5f8 100%);
+}
+
+body[data-user="roby"]{
+    --app-accent:#16a34a;
+    --app-accent-dark:#15803d;
+    --app-accent-soft:#ecfdf3;
+}
+
+body[data-user="fede"]{
+    --app-accent:#2563eb;
+    --app-accent-dark:#1d4ed8;
+    --app-accent-soft:#eff6ff;
+}
+
+body[data-user="gio"]{
+    --app-accent:#f97316;
+    --app-accent-dark:#c2410c;
+    --app-accent-soft:#fff7ed;
+}
+
+.topbar{
+    border-bottom:1px solid rgba(15,23,42,.09);
+    background:rgba(255,255,255,.88);
+    box-shadow:0 7px 24px rgba(15,23,42,.05);
+    backdrop-filter:blur(16px);
+}
+
+.top-user{
+    color:var(--app-accent-dark);
+    font-weight:800;
+}
+
+.app-content{max-width:1280px;}
+
+.welcome{
+    position:relative;
+    overflow:hidden;
+    padding:27px 30px;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:24px;
+    background:linear-gradient(135deg,#ffffff 0%,var(--app-accent-soft) 100%);
+    box-shadow:0 14px 32px rgba(15,23,42,.07);
+}
+
+.welcome::after{
+    position:absolute;
+    right:-55px;
+    bottom:-82px;
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    background:var(--app-accent);
+    opacity:.11;
+    content:"";
+}
+
+.welcome h1{position:relative;z-index:1;letter-spacing:-1.1px;}
+.welcome p{position:relative;z-index:1;max-width:720px;}
+
+.card{
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:20px;
+    box-shadow:0 9px 22px rgba(15,23,42,.055);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    border-color:color-mix(in srgb,var(--app-accent) 32%,#dbe1e8);
+    box-shadow:0 16px 28px rgba(15,23,42,.1);
+}
+
+.card-icon{
+    background:var(--app-accent-soft);
+    color:var(--app-accent-dark);
+}
+
+.orders-panel,
+.jobs-panel,
+.scales-panel,
+.lessons-panel{
+    border:1px solid rgba(15,23,42,.09);
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(15,23,42,.055);
+}
+
+.panel-header,
+.jobs-header,
+.scales-header,
+.lessons-header{
+    border-color:rgba(15,23,42,.1);
+}
+
+.panel-header h2,
+.jobs-header h2,
+.scales-header h2,
+.lessons-header h2{letter-spacing:-.35px;}
+
+.panel-toggle{
+    border-color:color-mix(in srgb,var(--app-accent) 26%,#dbe1e8);
+    background:var(--app-accent-soft);
+    color:var(--app-accent-dark);
+}
+
+.order{
+    border-left:4px solid color-mix(in srgb,var(--app-accent) 48%,#dbe1e8);
+    box-shadow:0 3px 11px rgba(15,23,42,.035);
+}
+
+.order:hover{box-shadow:0 9px 18px rgba(15,23,42,.08);}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible{
+    outline:3px solid color-mix(in srgb,var(--app-accent) 38%,transparent);
+    outline-offset:2px;
+}
+
+@media(max-width:700px){
+    .welcome{padding:22px 19px;border-radius:19px;}
+    .welcome::after{right:-91px;bottom:-103px;width:190px;height:190px;}
+    .card:hover{transform:none;}
+    .orders-panel,.jobs-panel,.scales-panel,.lessons-panel{border-radius:18px;}
+}
+
 </style>
 </head>
 
@@ -4169,6 +4302,9 @@ function openApp(){
     document.getElementById("appPage")
         .style.display = "block";
 
+    document.body.dataset.user =
+        String(loggedUser || "").toLowerCase();
+
     closeCollapsiblePanels();
 
     document.getElementById("loggedName")
@@ -4558,7 +4694,20 @@ function getVisibleOrders(){
 }
 
 function dateSortValue(value){
-    const timestamp = new Date(String(value || "") + "T12:00:00").getTime();
+    if(value && typeof value.toDate === "function"){
+        return value.toDate().getTime();
+    }
+
+    const text = String(value || "").trim();
+    const italianDate = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+    if(italianDate){
+        const year = italianDate[3].length === 2
+            ? 2000 + Number(italianDate[3])
+            : Number(italianDate[3]);
+        return new Date(year, Number(italianDate[2]) - 1, Number(italianDate[1]), 12).getTime();
+    }
+
+    const timestamp = new Date(text.includes("T") ? text : text + "T12:00:00").getTime();
     return Number.isFinite(timestamp) ? timestamp : 0;
 }
 
