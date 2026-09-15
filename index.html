@@ -5475,7 +5475,7 @@ window.saveOrder = async function(){
 /* Ordini estratti dal file "Fede ricambi.xlsx".
    Celle senza data: 01/01/2025. A46003044000: 02/04/2026. */
 const FEDE_EXCEL_ORDERS = [
-    ["2025-01-01", [["79030207010II",1,287.5,37.5],["79030207010I",1,287.5,37.5],["79030015144",1,296.58,37.5],["0988324515",1,1.16,37.5],["79236002000",1,15.92,37.5],["79236001000",1,12.38,37.5],["79236013100",1,88.69,37.5],["77736053000",1,13.66,37.5],["77330082200",2,59.67,37.5],["59033034044",2,4.94,37.5],["0760222841",2,4.7,37.5],["58033097000",2,9.03,37.5],["77110090050",5,2.99,37.5],["0800001708900",1,14.34,37.5],["51702091000",1,41.33,37.5],["7900200100030",2,103.09,37.5],["A46006026033",2,54.78,37.5],["A42006016000",2,21.29,37.5],["00190802665",6,3.78,37.5],["06923080003",6,1.16,37.5]]],
+    ["2025-01-01", [["79030207010II",1,287.5,37.5],["79030207010I",1,287.5,37.5],["79030015144",1,296.58,37.5],["0988324515",1,1.16,37.5],["79236002000",1,15.92,37.5],["79236001000",1,12.38,37.5],["79236013100",1,88.69,37.5],["77736053000",1,13.66,37.5],["77330082200",2,59.67,37.5],["59033034044",2,4.94,37.5],["0760222841",2,4.7,37.5],["58033097000",2,9.03,37.5],["77110090050",5,2.99,37.5],["0800001708900",1,14.34,37.5],["51702091000",1,41.33,37.5],["7900200100030",2,103.09,37.5],["A46006026033",2,54.78,37.5],["A42006016000",2,21.29,37.5]]],
     ["2025-12-01", [["RP10027T",2,51.06,37.5]]],
     ["2025-12-08", [["A46030007010II",1,287.55,37.5]]],
     ["2025-12-10", [["50180603S7",10,49.53,37.5]]],
@@ -5493,7 +5493,6 @@ const FEDE_EXCEL_ORDERS = [
     ["2026-06-30", [["A46014069000",2,56.66,37.5]]],
     ["2026-07-07", [["A46002091000",2,49.11,37.5]]],
     ["2026-07-16", [["A46003062000",4,5.61,37.5]]],
-    ["2026-08-05", [["59009062013",12,1.89,37.5]]],
     ["2026-08-22", [["A48040027000",2,12.93,37.5],["50181100",5,22.69,37.5],["RP10027T",2,51.55,37.5],["46181237",4,22.69,37.5]]]
 ];
 
@@ -5519,6 +5518,18 @@ async function markImportedFedeOrdersDelivered(){
     try{
         const snapshot = await getDocs(collection(db, "ordini"));
         const updates = [];
+        const expectedByDate = new Map(
+            FEDE_EXCEL_ORDERS.map(([date, rows]) => [
+                date,
+                rows.map(([code, qty, price, discount]) => ({
+                    code,
+                    qty,
+                    price,
+                    discount:fedeDiscountForGio(code, discount),
+                    status:"consegnato"
+                }))
+            ])
+        );
 
         snapshot.forEach(docSnap => {
             const order = docSnap.data();
@@ -5526,16 +5537,12 @@ async function markImportedFedeOrdersDelivered(){
                 return;
             }
 
-            const articles = (order.articles || []).map(article => ({
-                ...article,
-                status:"consegnato",
-                discount: fedeDiscountForGio(article.code, article.discount)
+            const articles = expectedByDate.get(order.date) || (order.articles || []).map(article => ({
+                ...article, status:"consegnato",
+                discount:fedeDiscountForGio(article.code, article.discount)
             }));
             const needsUpdate = order.status !== "consegnato" ||
-                articles.some((article, index) =>
-                    article.status !== (order.articles || [])[index]?.status ||
-                    article.discount !== (order.articles || [])[index]?.discount
-                );
+                JSON.stringify(articles) !== JSON.stringify(order.articles || []);
             if(!needsUpdate) return;
             updates.push(
                 updateDoc(doc(db, "ordini", docSnap.id), {
