@@ -2561,10 +2561,9 @@ select:focus-visible{
             id="loginCode"
             class="code-input"
             type="password"
-            inputmode="numeric"
-            maxlength="6"
-            pattern="[0-9]{4,6}"
-            placeholder="••••">
+            autocomplete="current-password"
+            minlength="4"
+            placeholder="Password">
 
         <button
             type="button"
@@ -2615,11 +2614,11 @@ select:focus-visible{
             <br><br>
 
             La password iniziale è
-            <strong>1234</strong>.
+            <strong>ktmordini</strong>.
 
             <br><br>
 
-            Scegli ora la tua password personale da 4 a 6 cifre.
+            Scegli ora una password personale di almeno 4 lettere.
 
         </div>
 
@@ -2630,9 +2629,8 @@ select:focus-visible{
             <input
                 id="newCode"
                 type="password"
-                inputmode="numeric"
-                maxlength="6"
-                pattern="[0-9]{4,6}"
+                autocomplete="new-password"
+                minlength="4"
                 placeholder="Nuova password">
 
         </div>
@@ -2644,9 +2642,8 @@ select:focus-visible{
             <input
                 id="confirmCode"
                 type="password"
-                inputmode="numeric"
-                maxlength="6"
-                pattern="[0-9]{4,6}"
+                autocomplete="new-password"
+                minlength="4"
                 placeholder="Ripeti la password">
 
         </div>
@@ -3858,9 +3855,9 @@ try{
    UTENTI
 ===================================================== */
 
-const DEFAULT_PASSWORD = "1234";
+const DEFAULT_PASSWORD = "ktmordini";
 const PASSWORD_STORAGE_PREFIX = "ktm_password_";
-const PASSWORD_RESET_VERSION = "password-reset-2026-09-15";
+const PASSWORD_RESET_VERSION = "password-reset-lettere-2026-09-15";
 
 // Applica una sola volta l'azzeramento richiesto: tutti devono creare una
 // nuova password e l'eventuale accesso biometrico precedente non resta valido.
@@ -4114,7 +4111,7 @@ window.login = function(){
         );
 
     const realCode =
-        /^\d{4,6}$/.test(saved || "")
+        /^[A-Za-zÀ-ÖØ-öø-ÿ]{4,}$/.test(saved || "")
         ? saved
         : DEFAULT_PASSWORD;
 
@@ -4137,7 +4134,7 @@ window.login = function(){
         "none";
 
     // Se non ha ancora salvato una password personale, obbliga alla creazione.
-    if(!/^\d{4,6}$/.test(saved || "") || saved === DEFAULT_PASSWORD){
+    if(!/^[A-Za-zÀ-ÖØ-öø-ÿ]{4,}$/.test(saved || "") || saved === DEFAULT_PASSWORD){
 
         document.getElementById("codePage")
             .style.display = "none";
@@ -4222,10 +4219,10 @@ window.changeCode = function(){
     const error =
         document.getElementById("changeError");
 
-    if(!/^\d{4,6}$/.test(newCode)){
+    if(!/^[A-Za-zÀ-ÖØ-öø-ÿ]{4,}$/.test(newCode)){
 
         error.textContent =
-            "La password deve contenere da 4 a 6 cifre.";
+            "La password deve contenere almeno 4 lettere, senza numeri o spazi.";
 
         error.style.display =
             "block";
@@ -4249,7 +4246,7 @@ window.changeCode = function(){
     if(newCode === DEFAULT_PASSWORD){
 
         error.textContent =
-            "Scegli una password diversa da 1234.";
+            "Scegli una password diversa da ktmordini.";
 
         error.style.display =
             "block";
