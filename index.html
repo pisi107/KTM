@@ -437,6 +437,10 @@ button{
     color:#4ade80;
 }
 
+.account-box.negative strong{
+    color:#f87171;
+}
+
 .account-button{
     margin-top:18px;
     padding:13px 18px;
@@ -2584,6 +2588,28 @@ select:focus-visible{
 
         </div>
 
+        <div
+            id="adminAccountsSummary"
+            class="account-summary"
+            style="display:none;">
+
+            <div class="account-summary-title">
+                Conti clienti
+            </div>
+
+            <div class="account-grid">
+                <div id="adminRobyAccountBox" class="account-box payable">
+                    <span id="adminRobyAccountLabel">ROBY · DA PAGARE</span>
+                    <strong id="adminRobyAccount">€0,00</strong>
+                </div>
+                <div id="adminFedeAccountBox" class="account-box payable">
+                    <span id="adminFedeAccountLabel">FEDE · DA PAGARE</span>
+                    <strong id="adminFedeAccount">€0,00</strong>
+                </div>
+            </div>
+
+        </div>
+
         <!-- =========================
              CARDS
         ========================= -->
@@ -4173,6 +4199,7 @@ function openApp(){
         document.getElementById(
             "accountSummary"
         );
+    const adminAccountsSummary = document.getElementById("adminAccountsSummary");
 
     const jobsCard =
         document.getElementById(
@@ -4240,6 +4267,8 @@ function openApp(){
         accountSummary.style.display =
             "none";
 
+        adminAccountsSummary.style.display = "block";
+
         jobsCard.style.display =
             "block";
 
@@ -4291,6 +4320,8 @@ document.querySelector(
 
         accountSummary.style.display =
             "block";
+
+        adminAccountsSummary.style.display = "none";
 
         jobsCard.style.display =
             "none";
@@ -4515,15 +4546,26 @@ function getVisibleOrders(){
 
     if(USERS[loggedUser].admin){
 
-        return allOrders;
+        return sortByDateDesc(allOrders);
 
     }
 
-    return allOrders.filter(
+    return sortByDateDesc(allOrders.filter(
         order =>
         order.person === loggedUser
-    );
+    ));
 
+}
+
+function dateSortValue(value){
+    const timestamp = new Date(String(value || "") + "T12:00:00").getTime();
+    return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+function sortByDateDesc(items){
+    return [...items].sort((first, second) =>
+        dateSortValue(second.date) - dateSortValue(first.date)
+    );
 }
 
 function normalizeOrderSearch(value){
@@ -4575,7 +4617,7 @@ window.filterOrders = function(){
         document.getElementById("ordersTitle").textContent = activeOrderPerson
             ? "Ordini di " + activeOrderPerson
             : "Risultati ricerca";
-        renderOrdersFiltered(baseOrders.filter(order => orderMatchesSearch(order, queryText)));
+        renderOrdersFiltered(sortByDateDesc(baseOrders.filter(order => orderMatchesSearch(order, queryText))));
         return;
     }
 
@@ -4583,7 +4625,7 @@ window.filterOrders = function(){
     backButton.style.display = "none";
     list.style.display = "block";
     const ownOrders = allOrders.filter(order => order.person === loggedUser);
-    renderOrdersFiltered(ownOrders.filter(order => orderMatchesSearch(order, queryText)));
+    renderOrdersFiltered(sortByDateDesc(ownOrders.filter(order => orderMatchesSearch(order, queryText))));
 };
 
 window.clearOrderSearch = function(){
@@ -6133,10 +6175,10 @@ function calculateAccount(
 ){
 
     const orders =
-        allOrders.filter(
+        sortByDateDesc(allOrders.filter(
             order =>
             order.person === person
-        );
+        ));
 
     const jobs =
         allJobs.filter(
@@ -6202,19 +6244,13 @@ function calculateAccount(
         totalScales +
         totalLessons;
 
-    const appliedCredits =
-        Math.min(
-            totalCredits,
-            payableOrders
-        );
-
     const finalPayable =
         payableOrders -
-        appliedCredits;
+        totalCredits;
 
     const finalPaid =
         paidOrders +
-        appliedCredits;
+        Math.min(totalCredits, payableOrders);
 
     return {
 
@@ -6236,13 +6272,26 @@ function calculateAccount(
 
 function updateAccountSummary(){
 
-    if(
-        !loggedUser ||
-        loggedUser === "Gio"
-    ){
+    if(!loggedUser){
 
         return;
 
+    }
+
+    if(loggedUser === "Gio"){
+        ["Roby", "Fede"].forEach(person => {
+            const account = calculateAccount(person);
+            const isNegative = account.payable < 0;
+            const amount = document.getElementById(`admin${person}Account`);
+            const label = document.getElementById(`admin${person}AccountLabel`);
+            const box = document.getElementById(`admin${person}AccountBox`);
+            amount.textContent = euro(account.payable);
+            label.textContent = `${person.toUpperCase()} · ${isNegative ? "CREDITO" : "DA PAGARE"}`;
+            box.classList.toggle("negative", isNegative);
+            box.classList.toggle("paid", !isNegative);
+            box.classList.toggle("payable", !isNegative);
+        });
+        return;
     }
 
     const account =
@@ -6614,13 +6663,14 @@ function renderJobs(){
 
     if(!list) return;
 
-    const jobsToRender =
+    const jobsToRender = sortByDateDesc(
         loggedUser === "Gio"
         ? allJobs
         : allJobs.filter(
             job =>
             job.person === loggedUser
-        );
+        )
+    );
 
     if(!jobsToRender.length){
 
@@ -7046,7 +7096,7 @@ function renderLessons(){
     }
 
     list.innerHTML = "";
-    allLessons.forEach(lesson => {
+    sortByDateDesc(allLessons).forEach(lesson => {
         const div = document.createElement("div");
         div.className = "lesson-item";
         div.innerHTML = `
@@ -7375,6 +7425,8 @@ function renderScales(){
     if(!USERS[loggedUser].admin){
         scalesToRender = allScales.filter(s => s.person === loggedUser);
     }
+
+    scalesToRender = sortByDateDesc(scalesToRender);
 
     if(!scalesToRender.length){
         list.innerHTML = `
